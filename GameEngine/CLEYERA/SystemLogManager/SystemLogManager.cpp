@@ -22,3 +22,4 @@ SystemLogManager::~SystemLogManager() {
   if (logFile_.is_open()) {
     logFile_.close();
   }
+}

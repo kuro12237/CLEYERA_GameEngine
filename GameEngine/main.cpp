@@ -6,24 +6,23 @@
 #include <fstream>
 #include <iostream>
 
+#include "CLEYERA/CLEYERA.h"
+
 /// <summary>
-/// メイン関数
+/// 繝｡繧､繝ｳ髢｢謨ｰ
 /// </summary>
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
-  Math::Vector::Vec2 aVec = {1.0f, 5.0f};
-  Math::Vector::Vec2 bVec = {2.0f, 5.0f};
+  std::unique_ptr<Engine> engine_ = std::make_unique<Engine>();
+  engine_->Init();
 
-  Math::Vector::Vec2 r = aVec * bVec;
+  while (CLEYERA::Base::Win::WinApp::GetInstance()->WinMsg())
+  {
 
-  // rをテキストファイルに書き込む
-  std::ofstream outFile("output.txt");
-  if (outFile.is_open()) {
-    outFile << "r: (" << r.x << ", " << r.y << ")" << std::endl;
-    outFile.close();
-  } else {
-    std::cerr << "ファイルを開くことができませんでした。" << std::endl;
+
   }
+  
+  engine_->Finalize();
 
   return 0;
 }

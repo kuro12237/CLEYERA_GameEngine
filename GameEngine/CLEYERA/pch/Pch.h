@@ -45,7 +45,7 @@
 #include <wrl.h>
 #pragma comment(lib, "d3dcompiler.lib")
 
-#define DIRECTINPUT_VERSION 0x0800 // DirectInput�̃o�[�W�����w��
+#define DIRECTINPUT_VERSION 0x0800 
 #include <Xinput.h>
 #include <dinput.h>
 #pragma comment(lib, "xinput.lib")

@@ -5,7 +5,7 @@ namespace CLEYERA::LogManager
 {
 
 /// <summary>
-/// システムの監視インターフェース
+/// 
 /// </summary>
 class ISystemObserver {
 public:

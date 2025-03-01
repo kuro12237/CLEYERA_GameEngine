@@ -3,14 +3,13 @@
 
 namespace CLEYERA::LogManager {
 
-// === ロガークラス (オブザーバー) ===
 class SystemLogManager : public CLEYERA::LogManager::ISystemObserver {
 public:
   SystemLogManager();
   ~SystemLogManager();
 
   /// <summary>
-  /// 作った通知の書き込み
+  /// 
   /// </summary>
   /// <param name="objectType"></param>
   void OnObjectCreated(const std::string &objectType) override;

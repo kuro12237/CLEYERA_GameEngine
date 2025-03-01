@@ -2,7 +2,8 @@
 
 using namespace CLEYERA::Base::DX;
 
-bool DXDevice::Create() {
+
+void DXDevice::Create() {
   D3D_FEATURE_LEVEL featureLevels[] = {
       D3D_FEATURE_LEVEL_12_2, D3D_FEATURE_LEVEL_12_1, D3D_FEATURE_LEVEL_12_0};
 
@@ -16,9 +17,4 @@ bool DXDevice::Create() {
       break;
     }
   }
-
-  if (device_) {
-    return false;
-  }
-  return true;
 }

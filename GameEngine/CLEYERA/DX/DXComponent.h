@@ -2,14 +2,14 @@
 #include "../SystemLogManager/ISystemObserver.h"
 
 /// <summary>
-/// DIrectXのコンポーネント
+/// 
 /// </summary>
 class DXComponent {
 public:
   DXComponent() = default;
   ~DXComponent() = default;
 
-  virtual bool Create() = 0;
+  virtual void Create() = 0;
 
 private:
 protected:
