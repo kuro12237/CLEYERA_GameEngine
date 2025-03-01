@@ -1,6 +1,6 @@
-#include"math/Vector/SVector.h"
-#include<Windows.h>
 
+#include<Windows.h>
+#include"math/MathInclude.h"
 
 /// <summary>
 /// ƒƒCƒ“ŠÖ”

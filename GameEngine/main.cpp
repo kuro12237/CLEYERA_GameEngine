@@ -1,5 +1,7 @@
-#include "../Math/math/Vector/SVector.h"
+
 #include <Windows.h>
+
+#include "MathInclude.h"
 
 #include <fstream>
 #include <iostream>
