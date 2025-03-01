@@ -21,9 +21,15 @@ public:
   /// <param name="common"></param>
   void SetPtr(DXCommon *common);
 
+#pragma region Set
+
+#pragma endregion
+
 #pragma region Get
 
   ID3D12Device5 *GetDevice() { return device_.lock()->GetDevice(); }
+  IDXGIFactory7 *GetFactory() { return factory_.lock()->GetFactory(); }
+  IDXGIAdapter4 *GetAdapter() { return adapter_.lock()->GetAdapter(); }
 
 #pragma endregion
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#define VAR_NAME(var) (#var)
+
 /// コンパイルファイル
 
 #include <cassert>

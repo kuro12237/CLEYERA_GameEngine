@@ -17,4 +17,6 @@ void DXDevice::Create() {
       break;
     }
   }
+
+  NotifyObserversCreateComp();
 }

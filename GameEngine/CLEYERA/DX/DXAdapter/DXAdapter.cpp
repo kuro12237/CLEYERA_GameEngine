@@ -4,10 +4,8 @@ using namespace CLEYERA::Base::DX;
 
 void DXAdapter::Create()
 {
-
- 
-
- /* for (UINT i = 0; factory_->EnumAdapterByGpuPreference(
+  IDXGIFactory7 *factory = DX::DXManager::GetInstance();
+  for (UINT i = 0; factory_->EnumAdapterByGpuPreference(
                        i, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE,
                        IID_PPV_ARGS(&adapter_)) != DXGI_ERROR_NOT_FOUND;
        i++) {
@@ -21,7 +19,7 @@ void DXAdapter::Create()
     adapter_ = nullptr;
   }
   assert(adapter_ != nullptr);
-*/
 
-
+  DX::DXManager::GetInstance()
+  NotifyObserversCreateComp();
 }

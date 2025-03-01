@@ -1,4 +1,6 @@
 #pragma once
+
+#include"../DXManager.h"
 #include "../DXComponent.h"
 
 namespace CLEYERA::Base::DX {
@@ -10,6 +12,9 @@ using Microsoft::WRL::ComPtr;
 /// </summary>
 class DXDevice : public DXComponent {
 public:
+  DXDevice(const std::string &name) : DXComponent(name) {};
+  ~DXDevice() = default;
+
   void Create() override;
 
 #pragma region Get
