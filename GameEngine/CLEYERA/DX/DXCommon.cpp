@@ -35,6 +35,9 @@ void DXCommon::Create() {
   commandList_ = std::make_shared<DXCommandList>(VAR_NAME(DXCommandList));
   componentList_.push_back(commandList_);
 
+  swapChain_ = std::make_shared<DXSwapChain>(VAR_NAME(DXSwapChain));
+  componentList_.push_back(swapChain_);
+
   for (auto &obj : componentList_) {
     obj.lock()->AddObserver(logManager_);
   }
@@ -70,10 +73,13 @@ void DXCommon::Create() {
 
   commandList_->Create();
   dxManager_->SetCommandList(commandList_);
+
+  swapChain_->Create();
+  dxManager_->SetSwapChain(swapChain_);
 }
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
-
+  swapChain_.reset();
   commandList_.reset();
   commandAllcator_.reset();
   commandQueue_.reset();

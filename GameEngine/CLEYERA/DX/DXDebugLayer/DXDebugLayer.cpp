@@ -6,4 +6,6 @@ void CLEYERA::Base::DX::DXDebugLayer::Create() {
     debugController->EnableDebugLayer();
     debugController->SetEnableGPUBasedValidation(TRUE);
   }
+
+  NotifyObserversCreateComp();
 }

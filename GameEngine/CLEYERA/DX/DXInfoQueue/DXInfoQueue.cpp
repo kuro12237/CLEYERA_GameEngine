@@ -21,4 +21,5 @@ void CLEYERA::Base::DX::DXInfoQueue::Create()
     infoQueue_->PushStorageFilter(&filter);
   }
 
+  NotifyObserversCreateComp();
 }

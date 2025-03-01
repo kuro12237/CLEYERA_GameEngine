@@ -8,7 +8,7 @@
 #include"DXInfoQueue/DXInfoQueue.h"
 #include "DXDevice/DXDevice.h"
 #include "DXFactory/DXFactory.h"
-
+#include"DXSwapChain/DXSwapChain.h"
 
 namespace CLEYERA::Base::DX {
 
@@ -48,7 +48,10 @@ public:
   void SetCommandList(const std::weak_ptr<DXCommandList> &list) {
     commandList_ = list;
   }
-
+  void SetSwapChain(const std::weak_ptr<DXSwapChain> & swapChain)
+  {
+    swapChain_ = swapChain;
+  }
 #pragma endregion
 
 #pragma region Get
@@ -68,6 +71,7 @@ public:
   ID3D12CommandAllocator *GetCommandAllocator() {
     return commandAllocator_.lock()->GetCommandAllocator();
   }
+  IDXGISwapChain4 *GetSwapChain() { return swapChain_.lock()->GetSwapChain(); }
 
 #pragma endregion
 
@@ -80,7 +84,7 @@ private:
   std::weak_ptr<DXCommandQueue> commandQueue_;
   std::weak_ptr<DXCommandAllocator> commandAllocator_;
   std::weak_ptr<DXCommandList> commandList_;
-
+  std::weak_ptr<DXSwapChain> swapChain_;
 #pragma region SIngle
 
   DXManager() = default;

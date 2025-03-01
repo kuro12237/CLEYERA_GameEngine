@@ -1,5 +1,6 @@
 #pragma once
 #include "../SystemLogManager/ISystemObserver.h"
+#include"../WIn/WinApp.h"
 
 namespace CLEYERA::Base::DX {
 
@@ -40,5 +41,6 @@ protected:
   std::vector<std::weak_ptr<CLEYERA::LogManager::ISystemObserver>> obsrvers_;
 
   DXManager *dxManager_ = nullptr;
+  CLEYERA::Base::Win::WinApp *winApp_ = nullptr;
 };
 } // namespace CLEYERA::Base::DX

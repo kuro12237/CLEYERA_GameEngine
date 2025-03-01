@@ -10,6 +10,7 @@
 #include"DXCommand/DXCommandAllocator.h"
 #include"DXCommand/DXCommandList.h"
 #include"DXCommand/DXCommandQueue.h"
+#include"DXSwapChain/DXSwapChain.h"
 
 namespace CLEYERA::Base::DX {
 
@@ -41,6 +42,8 @@ private:
   std::weak_ptr<LogManager::SystemLogManager> logManager_;
 
   std::list<std::weak_ptr<DXComponent>> componentList_;
+
+  std::shared_ptr<DXSwapChain> swapChain_ = nullptr;
 
   std::shared_ptr<DXCommandList> commandList_ = nullptr;
   std::shared_ptr<DXCommandAllocator> commandAllcator_ = nullptr;

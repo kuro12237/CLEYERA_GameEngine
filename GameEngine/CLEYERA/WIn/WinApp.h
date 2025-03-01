@@ -5,31 +5,35 @@ namespace CLEYERA::Base::Win {
 
 class WinApp {
 public:
-
   static WinApp *GetInstance();
 
-
   /// <summary>
-  /// 
+  ///
   /// </summary>
   void Create();
 
   /// <summary>
-  /// 
+  ///
   /// </summary>
   void Finalize();
 
   /// <summary>
-  /// 
+  ///
   /// </summary>
   /// <returns></returns>
   bool WinMsg();
 
+#pragma region Get
+
+  static int32_t GetKWindowWidth() { return kWindowWidth; }
+  static int32_t GetKWindowHeight() { return kWindowHeight; }
+  
+  HWND GetHWND() { return hwnd_; }
+#pragma endregion
+
 private:
-
-
   /// <summary>
-  /// 
+  ///
   /// </summary>
   static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wparam,
                                      LPARAM lparam);
