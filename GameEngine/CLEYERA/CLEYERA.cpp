@@ -6,18 +6,17 @@ using namespace CLEYERA::LogManager;
 
 void Engine::Init() {
 
-  systemLogManager_ = std::shared_ptr<SystemLogManager>();
+  systemLogManager_ = std::make_shared<SystemLogManager>();
 
   winApp_ = WinApp::GetInstance();
   winApp_->Create();
 
-  dxCommon_ = std::make_shared<DXCommon>("DX");
+  dxCommon_ = std::make_shared<DXCommon>(VAR_NAME(DXCommon));
   dxCommon_->SetLogManager(systemLogManager_);
   dxCommon_->Create();
-
-
-
-
 }
 
-void Engine::Finalize() { winApp_->Finalize(); }
+void Engine::Finalize() {
+  dxCommon_->Finalize();
+  winApp_->Finalize();
+}

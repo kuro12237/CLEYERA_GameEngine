@@ -146,6 +146,7 @@
     <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
     <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
+    <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h" />
     <ClInclude Include="CLEYERA\DX\DXManager.h" />
     <ClInclude Include="CLEYERA\pch\Pch.h" />
+    <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h" />
     <ClInclude Include="CLEYERA\DX\DXComponent.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\SystemLogManager.h" />

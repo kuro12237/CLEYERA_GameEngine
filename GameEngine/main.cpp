@@ -3,9 +3,6 @@
 
 #include "MathInclude.h"
 
-#include <fstream>
-#include <iostream>
-
 #include "CLEYERA/CLEYERA.h"
 
 /// <summary>
@@ -21,7 +18,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
   }
-  
+
   engine_->Finalize();
 
   return 0;

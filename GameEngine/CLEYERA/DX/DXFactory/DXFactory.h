@@ -1,5 +1,4 @@
 #pragma once
-#include"../DXManager.h"
 #include "../DXComponent.h"
 
 namespace CLEYERA::Base::DX {

@@ -1,5 +1,8 @@
 #pragma once
-#include "DXCommon.h"
+#include"DXDevice/DXDevice.h"
+#include"DXAdapter/DXAdapter.h"
+#include"DXFactory/DXFactory.h"
+#include"../pch/Pch.h"
 
 namespace CLEYERA::Base::DX {
 
@@ -10,18 +13,22 @@ class DXCommon;
 /// </summary>
 class DXManager {
 public:
-  static DXManager &GetInstance() {
+  static DXManager *GetInstance() {
     static DXManager instance;
-    return instance;
+    return &instance;
   }
 
-  /// <summary>
-  /// common
-  /// </summary>
-  /// <param name="common"></param>
-  void SetPtr(DXCommon *common);
 
 #pragma region Set
+  void SetAdapter(std::weak_ptr<DXAdapter> adapter) {
+    adapter_ = adapter;
+  }
+  void SetFactory(std::weak_ptr<DXFactory> factory) {
+    factory_ = factory;
+  }
+  void SetDevice(std::weak_ptr<DXDevice> device) {
+    device_=device;
+  }
 
 #pragma endregion
 

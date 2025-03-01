@@ -1,11 +1,14 @@
 #include "DXAdapter.h"
+#include "../DXManager.h"
 
 using namespace CLEYERA::Base::DX;
 
-void DXAdapter::Create()
-{
-  IDXGIFactory7 *factory = DX::DXManager::GetInstance();
-  for (UINT i = 0; factory_->EnumAdapterByGpuPreference(
+void DXAdapter::Create() {
+  dxManager_ = DXManager::GetInstance();
+
+  IDXGIFactory7 *factory = dxManager_->GetFactory();
+
+  for (UINT i = 0; factory->EnumAdapterByGpuPreference(
                        i, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE,
                        IID_PPV_ARGS(&adapter_)) != DXGI_ERROR_NOT_FOUND;
        i++) {
@@ -14,12 +17,14 @@ void DXAdapter::Create()
     assert(SUCCEEDED(hr));
 
     if (!(adapterDesc.Flags & DXGI_ADAPTER_FLAG3_SOFTWARE)) {
-        break;
+      std::string msg =ConvertString(std::format(L"Use Adapater:{}\n", adapterDesc.Description));
+      NotifyObservesMsg(msg);
+
+      break;
     }
     adapter_ = nullptr;
   }
   assert(adapter_ != nullptr);
 
-  DX::DXManager::GetInstance()
   NotifyObserversCreateComp();
 }

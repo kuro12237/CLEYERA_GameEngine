@@ -1,6 +1,6 @@
 #pragma once
 #include "../DXComponent.h"
-#include "../DXManager.h"
+#include"../../SystemLogManager/ConvertString.h"
 
 namespace CLEYERA::Base::DX {
 using Microsoft::WRL::ComPtr;

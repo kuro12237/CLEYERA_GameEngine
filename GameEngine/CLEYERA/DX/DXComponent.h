@@ -1,12 +1,17 @@
 #pragma once
 #include "../SystemLogManager/ISystemObserver.h"
 
+namespace CLEYERA::Base::DX {
+
+class DXManager;
+
 /// <summary>
 ///
 /// </summary>
 class DXComponent {
 public:
   DXComponent(const std::string &name) : name_(name) {};
+
   ~DXComponent() = default;
 
   virtual void Create() = 0;
@@ -22,9 +27,18 @@ public:
     }
   }
 
+  void NotifyObservesMsg(const std::string &m) {
+    for (auto observer : obsrvers_) {
+      observer.lock()->OnMsg(m);
+    }
+  }
+
 private:
 protected:
   std::string name_ = "";
 
   std::vector<std::weak_ptr<CLEYERA::LogManager::ISystemObserver>> obsrvers_;
+
+  DXManager *dxManager_ = nullptr;
 };
+} // namespace CLEYERA::Base::DX

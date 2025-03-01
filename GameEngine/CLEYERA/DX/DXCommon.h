@@ -14,6 +14,9 @@ public:
   ~DXCommon() {};
 
   void Create() override;
+
+  void Finalize();
+
 #pragma region Get
 
   std::shared_ptr<DXFactory> GetFactory() { return factory_; }

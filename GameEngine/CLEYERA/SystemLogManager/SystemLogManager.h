@@ -1,5 +1,6 @@
 #pragma once
 #include "ISystemObserver.h"
+#include"ConvertString.h"
 
 namespace CLEYERA::LogManager {
 
@@ -14,9 +15,9 @@ public:
   /// <param name="objectType"></param>
   void OnObjectCreated(const std::string &objectType) override;
 
-  static std::wstring ConvertString(const std::string &str);
-  static std::string ConvertString(const std::wstring &str);
-  
+  void OnMsg(const std::string &msg) override;
+
+ 
 
   void Log(const std::string &message);
 
