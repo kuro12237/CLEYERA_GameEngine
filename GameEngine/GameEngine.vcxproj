@@ -108,7 +108,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -142,9 +142,14 @@
   <ItemGroup>
     <ClCompile Include="CLEYERA\CLEYERA.cpp" />
     <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandAllocator.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandList.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommon.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
     <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
@@ -154,9 +159,14 @@
   <ItemGroup>
     <ClInclude Include="CLEYERA\CLEYERA.h" />
     <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandAllocator.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandList.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXCommon.h" />
+    <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h" />
     <ClInclude Include="CLEYERA\DX\DXDevice\DXDevice.h" />
     <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h" />
+    <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXManager.h" />
     <ClInclude Include="CLEYERA\pch\Pch.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h" />
