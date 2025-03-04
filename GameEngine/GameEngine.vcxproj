@@ -147,6 +147,8 @@
     <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommon.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
     <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp" />
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
@@ -166,6 +168,8 @@
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXCommon.h" />
     <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.h" />
     <ClInclude Include="CLEYERA\DX\DXDevice\DXDevice.h" />
     <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h" />
     <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />

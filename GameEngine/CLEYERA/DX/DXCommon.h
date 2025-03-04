@@ -12,6 +12,8 @@
 #include"DXCommand/DXCommandQueue.h"
 #include"DXSwapChain/DXSwapChain.h"
 
+#include"DXDescripter/DXRTVDescripter.h"
+
 namespace CLEYERA::Base::DX {
 
 class DXCommon : public DXComponent {
@@ -43,6 +45,7 @@ private:
 
   std::list<std::weak_ptr<DXComponent>> componentList_;
 
+  std::shared_ptr<DXRTVDescripter> rtvDescripter_ = nullptr;
   std::shared_ptr<DXSwapChain> swapChain_ = nullptr;
 
   std::shared_ptr<DXCommandList> commandList_ = nullptr;

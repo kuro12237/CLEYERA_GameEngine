@@ -34,6 +34,6 @@ private:
   DXGI_SWAP_CHAIN_DESC1 swapChainDesc_{};
   ComPtr<IDXGISwapChain4> swapChain_ = nullptr;
 
-  std::unique_ptr<DXBufferResource<uint32_t>> resources_[swapChainCount_];
+  std::array<std::unique_ptr<DXBufferResource<uint32_t>>,swapChainCount_> resources_;
 };
 } // namespace CLEYERA::Base::DX

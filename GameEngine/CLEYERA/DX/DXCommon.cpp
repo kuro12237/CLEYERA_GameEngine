@@ -38,6 +38,9 @@ void DXCommon::Create() {
   swapChain_ = std::make_shared<DXSwapChain>(VAR_NAME(DXSwapChain));
   componentList_.push_back(swapChain_);
 
+  rtvDescripter_ = std::make_shared<DXRTVDescripter>(VAR_NAME(DXRTVDescripter));
+  componentList_.push_back(rtvDescripter_);
+
   for (auto &obj : componentList_) {
     obj.lock()->AddObserver(logManager_);
   }
@@ -76,9 +79,14 @@ void DXCommon::Create() {
 
   swapChain_->Create();
   dxManager_->SetSwapChain(swapChain_);
+
+  rtvDescripter_->Create();
 }
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
+
+  rtvDescripter_.reset();
+
   swapChain_.reset();
   commandList_.reset();
   commandAllcator_.reset();
