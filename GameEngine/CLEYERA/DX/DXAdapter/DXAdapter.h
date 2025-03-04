@@ -1,8 +1,11 @@
 #pragma once
+#include "../../SystemLogManager/ConvertString.h"
 #include "../DXComponent.h"
-#include"../../SystemLogManager/ConvertString.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 /// <summary>
@@ -23,4 +26,6 @@ public:
 private:
   ComPtr<IDXGIAdapter4> adapter_ = nullptr;
 };
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

@@ -2,7 +2,10 @@
 
 #include "../DXComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 class DXCommandAllocator : public DXComponent {
@@ -22,5 +25,6 @@ public:
 private:
   ComPtr<ID3D12CommandAllocator> commandAllocator_;
 };
-
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

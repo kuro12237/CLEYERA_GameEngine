@@ -1,8 +1,13 @@
 #pragma once
+#include "../DXCommand/DXCommandList.h"
 #include "../DXComponent.h"
+#include "../DXSwapChain/DXSwapChain.h"
 #include "DXDescripterComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 class DXDescripterComponent : public DXComponent {
@@ -11,10 +16,13 @@ public:
   virtual ~DXDescripterComponent() {};
 
   virtual void Create() = 0;
-
-protected:
+  
   void CreateDescripter(const D3D12_DESCRIPTOR_HEAP_TYPE &type,
                         bool shaderVisible);
+
+protected:
+
+  ID3D12GraphicsCommandList *commandList_ = nullptr;
 
   ComPtr<ID3D12DescriptorHeap> descripter_ = nullptr;
 
@@ -23,13 +31,14 @@ protected:
   D3D12_DESCRIPTOR_HEAP_TYPE type_;
   size_t handleIndex_ = 0;
 
-  D3D12_CPU_DESCRIPTOR_HANDLE rtvCPUStartHandle_;
-  D3D12_GPU_DESCRIPTOR_HANDLE rtvGPUStartHandle_;
+  D3D12_CPU_DESCRIPTOR_HANDLE cpuStartHandle_;
+  D3D12_GPU_DESCRIPTOR_HANDLE gpuStartHandle_;
 
-  std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> rtvCPUHandles_;
-  std::vector<D3D12_GPU_DESCRIPTOR_HANDLE> rtvGPUHandles_;
+  std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> cpuHandles_;
+  std::vector<D3D12_GPU_DESCRIPTOR_HANDLE> gpuHandles_;
 
 private:
 };
-
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

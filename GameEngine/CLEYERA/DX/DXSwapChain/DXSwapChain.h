@@ -2,7 +2,10 @@
 #include "../DXBufferResource/DXBufferResource.h"
 #include "../DXComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 /// <summary>
@@ -20,6 +23,10 @@ public:
 #pragma region Get
 
   IDXGISwapChain4 *GetSwapChain() { return swapChain_.Get(); }
+  ID3D12Resource *GetSwapChainResource(size_t index) {
+    return resources_[index]->GetResource();
+  }
+  size_t GetSwapChainCount() { return swapChainCount_; }
 
 #pragma endregion
 
@@ -34,6 +41,9 @@ private:
   DXGI_SWAP_CHAIN_DESC1 swapChainDesc_{};
   ComPtr<IDXGISwapChain4> swapChain_ = nullptr;
 
-  std::array<std::unique_ptr<DXBufferResource<uint32_t>>,swapChainCount_> resources_;
+  std::array<std::unique_ptr<DXBufferResource<uint32_t>>, swapChainCount_>
+      resources_;
 };
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

@@ -2,7 +2,10 @@
 
 #include "../DXComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 class DXCommandQueue : public DXComponent {
@@ -21,5 +24,6 @@ private:
   D3D12_COMMAND_QUEUE_DESC queueDesc{};
   ComPtr<ID3D12CommandQueue> commandQueue_;
 };
-
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

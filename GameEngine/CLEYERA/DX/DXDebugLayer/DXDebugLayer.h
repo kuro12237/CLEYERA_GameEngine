@@ -1,12 +1,14 @@
 #pragma once
 #include "../DXComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
 
 using Microsoft::WRL::ComPtr;
 
 /// <summary>
-/// 
+///
 /// </summary>
 class DXDebugLayer : public DXComponent {
 public:
@@ -17,10 +19,11 @@ public:
 
 #pragma region Get
 
-
 #pragma endregion
 
 private:
   ComPtr<ID3D12Debug1> debugController = nullptr;
 };
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

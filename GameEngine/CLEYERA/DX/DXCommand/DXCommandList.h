@@ -1,7 +1,10 @@
 #pragma once
 #include "../DXComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 class DXCommandList : public DXComponent {
@@ -11,13 +14,16 @@ public:
 
   void Create() override;
 
+  void End();
+
 #pragma region Get
-  ID3D12CommandList *GetCommandList() { return commandlist_.Get(); }
+  ID3D12GraphicsCommandList *GetCommandList() { return commandlist_.Get(); }
 
 #pragma endregion
 
 private:
-  ComPtr<ID3D12CommandList> commandlist_;
+  ComPtr<ID3D12GraphicsCommandList> commandlist_;
 };
-
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

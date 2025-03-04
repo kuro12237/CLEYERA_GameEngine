@@ -1,7 +1,9 @@
 #pragma once
 #include "../SystemLogManager/ISystemObserver.h"
 
-namespace CLEYERA::Base::Win {
+namespace CLEYERA {
+namespace Base {
+namespace Win {
 
 class WinApp {
 public:
@@ -27,7 +29,7 @@ public:
 
   static int32_t GetKWindowWidth() { return kWindowWidth; }
   static int32_t GetKWindowHeight() { return kWindowHeight; }
-  
+
   HWND GetHWND() { return hwnd_; }
 #pragma endregion
 
@@ -51,4 +53,6 @@ private:
   WinApp(const WinApp &) = delete;
   const WinApp &operator=(const WinApp &) = delete;
 };
-} // namespace CLEYERA::Base::Win
+} // namespace Win
+} // namespace Base
+} // namespace CLEYERA

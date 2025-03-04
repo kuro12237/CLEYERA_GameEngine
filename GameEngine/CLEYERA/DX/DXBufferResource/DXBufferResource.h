@@ -2,11 +2,14 @@
 #include "../../pch/Pch.h"
 #include "../DXDevice/DXDevice.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
 using Microsoft::WRL::ComPtr;
 
 /// <summary>
-/// 
+///
 /// </summary>
 template <typename T> class DXBufferResource {
 public:
@@ -18,11 +21,14 @@ public:
 #pragma region Set
   void SetDevice(const std::weak_ptr<DXDevice> &device) { device_ = device; }
   void SetParam(const T &param) { param_ptr_ = param; }
+  void SetResource(ComPtr<ID3D12Resource> resource) {
+    buffer_ = std::move(resource);
+  };
 #pragma endregion
 
 #pragma region Get
 
-  ComPtr<ID3D12Resource> GetResource() { return buffer_; }
+  ID3D12Resource* GetResource() { return buffer_.Get(); }
 
 #pragma endregion
 
@@ -54,5 +60,6 @@ inline void DXBufferResource<T>::CreateBuffer(
       heapParam, HeapFlags, pDesc, state, &value, IID_PPV_ARGS(&buffer_));
   assert(SUCCEEDED(hr));
 }
-
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

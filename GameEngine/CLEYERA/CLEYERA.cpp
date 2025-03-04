@@ -20,3 +20,7 @@ void Engine::Finalize() {
   dxCommon_->Finalize();
   winApp_->Finalize();
 }
+
+void Engine::Begin() { dxCommon_->Begin(); }
+
+void Engine::End() { dxCommon_->End(); }

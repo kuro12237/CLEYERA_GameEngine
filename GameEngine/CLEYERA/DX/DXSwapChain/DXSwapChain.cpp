@@ -38,10 +38,11 @@ void CLEYERA::Base::DX::DXSwapChain::Begin()
 void CLEYERA::Base::DX::DXSwapChain::CreateResources() {
 
   for (size_t i = 0; i < this->swapChainCount_; i++) {
-
+    ComPtr<ID3D12Resource> resource = nullptr;
     resources_[i] = std::make_unique<DXBufferResource<uint32_t>>();
     HRESULT hr = swapChain_->GetBuffer(
-        static_cast<UINT>(i), IID_PPV_ARGS(&resources_[i]->GetResource()));
+        static_cast<UINT>(i), IID_PPV_ARGS(&resource));
+    resources_[i]->SetResource(resource);
 
     assert(SUCCEEDED(hr));
   }

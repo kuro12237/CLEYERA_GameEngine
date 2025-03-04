@@ -3,6 +3,13 @@
 
 using namespace CLEYERA::Base::DX;
 
+///フェンス生成
+
+
+
+/// <summary>
+/// 
+/// </summary>
 void DXCommon::Create() {
 
   dxManager_ = DXManager::GetInstance();
@@ -41,6 +48,9 @@ void DXCommon::Create() {
   rtvDescripter_ = std::make_shared<DXRTVDescripter>(VAR_NAME(DXRTVDescripter));
   componentList_.push_back(rtvDescripter_);
 
+  srvDescripter_ = std::make_unique<DXSRVDescripter>(VAR_NAME(DXSRVDescripter));
+  componentList_.push_back(srvDescripter_);
+
   for (auto &obj : componentList_) {
     obj.lock()->AddObserver(logManager_);
   }
@@ -77,10 +87,25 @@ void DXCommon::Create() {
   commandList_->Create();
   dxManager_->SetCommandList(commandList_);
 
+  rtvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, false);
+  dxManager_->SetRTVDescripter(rtvDescripter_);
+  rtvDescripter_->SetBackBufferIndex(backBufferIndex_);
+
+  srvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
+                                   true);
+  srvDescripter_->Create();
+
   swapChain_->Create();
   dxManager_->SetSwapChain(swapChain_);
 
   rtvDescripter_->Create();
+
+  barriers_.resize(1);
+
+  barriers_[0] = std::make_unique<DXBarrier>();
+  barriers_[0]->Init();
+
+
 }
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
@@ -109,4 +134,42 @@ void CLEYERA::Base::DX::DXCommon::Finalize() {
     debug->ReportLiveObjects(DXGI_DEBUG_APP, DXGI_DEBUG_RLO_ALL);
     debug->ReportLiveObjects(DXGI_DEBUG_D3D12, DXGI_DEBUG_RLO_ALL);
   }
+}
+
+void CLEYERA::Base::DX::DXCommon::Begin() {
+
+  backBufferIndex_ = swapChain_->GetSwapChain()->GetCurrentBackBufferIndex();
+
+  barriers_[0]->SetBarrierType(0, D3D12_RESOURCE_BARRIER_TYPE_TRANSITION);
+  barriers_[0]->SetBarrierFlag(0, D3D12_RESOURCE_BARRIER_FLAG_NONE);
+  barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_PRESENT,
+                                D3D12_RESOURCE_STATE_RENDER_TARGET);
+  barriers_[0]->SetBuffer(swapChain_->GetSwapChainResource(backBufferIndex_));
+  barriers_[0]->Barrier();
+
+  rtvDescripter_->Begin();
+}
+
+void CLEYERA::Base::DX::DXCommon::End() {
+  ID3D12CommandList *list[] = {commandList_->GetCommandList()};
+  ID3D12GraphicsCommandList *commandList = commandList_->GetCommandList();
+  ID3D12CommandQueue *queue = commandQueue_->GetCommandQueue();
+  ID3D12CommandAllocator *allocator = commandAllcator_->GetCommandAllocator();
+
+  IDXGISwapChain4 *swapChain = swapChain_->GetSwapChain();
+
+  barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_RENDER_TARGET,
+                                D3D12_RESOURCE_STATE_PRESENT);
+  barriers_[0]->Barrier();
+
+  HRESULT hr = commandList->Close();
+  assert(SUCCEEDED(hr));
+
+  queue->ExecuteCommandLists(1, list);
+  swapChain->Present(1, 0);
+
+  hr = allocator->Reset();
+  assert(SUCCEEDED(hr));
+
+  hr = commandList->Reset(allocator, nullptr);
 }

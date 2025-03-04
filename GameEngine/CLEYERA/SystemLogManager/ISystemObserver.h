@@ -1,11 +1,11 @@
 #pragma once
-#include"../pch/Pch.h"
+#include "../pch/Pch.h"
 
-namespace CLEYERA::LogManager
-{
+namespace CLEYERA {
+namespace LogManager {
 
 /// <summary>
-/// 
+///
 /// </summary>
 class ISystemObserver {
 public:
@@ -18,6 +18,5 @@ public:
 
 private:
 };
-
-
+} // namespace LogManager
 } // namespace CLEYERA

@@ -2,7 +2,9 @@
 #include "../SystemLogManager/ISystemObserver.h"
 #include"../WIn/WinApp.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
 
 class DXManager;
 
@@ -43,4 +45,6 @@ protected:
   DXManager *dxManager_ = nullptr;
   CLEYERA::Base::Win::WinApp *winApp_ = nullptr;
 };
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

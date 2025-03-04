@@ -2,7 +2,9 @@
 
 #include "../DXComponent.h"
 
-namespace CLEYERA::Base::DX {
+namespace CLEYERA {
+namespace Base {
+namespace DX {
 
 using Microsoft::WRL::ComPtr;
 
@@ -25,4 +27,6 @@ public:
 private:
   ComPtr<ID3D12Device5> device_ = nullptr;
 };
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA

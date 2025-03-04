@@ -12,6 +12,9 @@ public:
 
   void Finalize();
 
+  void Begin();
+  void End();
+
 private:
 
   std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;

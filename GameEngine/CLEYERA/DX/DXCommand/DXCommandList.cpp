@@ -18,3 +18,9 @@ void CLEYERA::Base::DX::DXCommandList::Create()
 
   NotifyObserversCreateComp();
 }
+
+void CLEYERA::Base::DX::DXCommandList::End()
+{
+
+
+}

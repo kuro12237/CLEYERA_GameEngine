@@ -1,8 +1,6 @@
 
 #include <Windows.h>
 
-#include "MathInclude.h"
-
 #include "CLEYERA/CLEYERA.h"
 
 /// <summary>
@@ -15,7 +13,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
   while (CLEYERA::Base::Win::WinApp::GetInstance()->WinMsg())
   {
+    engine_->Begin();
 
+
+    engine_->End();
 
   }
 

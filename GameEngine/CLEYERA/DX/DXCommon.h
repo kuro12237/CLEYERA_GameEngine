@@ -2,19 +2,26 @@
 #include "DXComponent.h"
 
 #include "../SystemLogManager/SystemLogManager.h"
-#include"DXDebugLayer/DXDebugLayer.h"
-#include"DXInfoQueue/DXInfoQueue.h"
 #include "DXAdapter/DXAdapter.h"
+#include "DXCommand/DXCommandAllocator.h"
+#include "DXCommand/DXCommandList.h"
+#include "DXCommand/DXCommandQueue.h"
+#include "DXDebugLayer/DXDebugLayer.h"
 #include "DXDevice/DXDevice.h"
 #include "DXFactory/DXFactory.h"
-#include"DXCommand/DXCommandAllocator.h"
-#include"DXCommand/DXCommandList.h"
-#include"DXCommand/DXCommandQueue.h"
-#include"DXSwapChain/DXSwapChain.h"
+#include "DXInfoQueue/DXInfoQueue.h"
+#include "DXSwapChain/DXSwapChain.h"
 
-#include"DXDescripter/DXRTVDescripter.h"
+#include "DXDescripter/DXRTVDescripter.h"
+#include "DXDescripter/DXSRVDescripter.h"
 
-namespace CLEYERA::Base::DX {
+#include "DXBarrier/DXBarrier.h"
+
+namespace CLEYERA {
+namespace Base {
+namespace DX {
+
+enum class DXCommonBarrierTable { SwapChainBarrier=0, Max =1};
 
 class DXCommon : public DXComponent {
 public:
@@ -24,6 +31,10 @@ public:
   void Create() override;
 
   void Finalize();
+
+  void Begin();
+
+  void End();
 
 #pragma region Get
 
@@ -41,10 +52,13 @@ public:
 #pragma endregion
 
 private:
+  UINT backBufferIndex_ = 0;
+
   std::weak_ptr<LogManager::SystemLogManager> logManager_;
 
   std::list<std::weak_ptr<DXComponent>> componentList_;
 
+  std::shared_ptr<DXSRVDescripter> srvDescripter_ = nullptr;
   std::shared_ptr<DXRTVDescripter> rtvDescripter_ = nullptr;
   std::shared_ptr<DXSwapChain> swapChain_ = nullptr;
 
@@ -55,12 +69,14 @@ private:
   std::shared_ptr<DXAdapter> adapter_ = nullptr;
   std::shared_ptr<DXDevice> device_ = nullptr;
 
+  std::vector<std::unique_ptr<DXBarrier>> barriers_;
+
 #ifdef _DEBUG
 
   std::shared_ptr<DXInfoQueue> infoQueue_ = nullptr;
   std::shared_ptr<DXDebugLayer> debugLayer_ = nullptr;
 #endif // _DEBUG
-
 };
-
-} // namespace CLEYERA::Base::DX
+} // namespace DX
+} // namespace Base
+} // namespace CLEYERA
