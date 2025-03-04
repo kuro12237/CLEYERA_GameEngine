@@ -119,5 +119,8 @@
     <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CLEYERA\DX\DXBufferResource\DXBufferResource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

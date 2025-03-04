@@ -30,6 +30,7 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <span>
 #include <type_traits>
 
 #include <iostream>

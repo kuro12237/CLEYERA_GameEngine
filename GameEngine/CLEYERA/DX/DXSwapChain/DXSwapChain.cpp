@@ -1,8 +1,7 @@
 #include "DXSwapChain.h"
-#include"../DXManager.h"
+#include "../DXManager.h"
 
-void CLEYERA::Base::DX::DXSwapChain::Create() 
-{
+void CLEYERA::Base::DX::DXSwapChain::Create() {
 
   dxManager_ = DXManager::GetInstance();
   IDXGIFactory7 *factory = dxManager_->GetFactory();
@@ -21,8 +20,29 @@ void CLEYERA::Base::DX::DXSwapChain::Create()
   swapChainDesc_.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
   factory->CreateSwapChainForHwnd(
-      queue, hwnd, &swapChainDesc_, nullptr,
-      nullptr, reinterpret_cast<IDXGISwapChain1 **>(swapChain_.GetAddressOf()));
+      queue, hwnd, &swapChainDesc_, nullptr, nullptr,
+      reinterpret_cast<IDXGISwapChain1 **>(swapChain_.GetAddressOf()));
+
+  CreateResources();
 
   NotifyObserversCreateComp();
+}
+
+void CLEYERA::Base::DX::DXSwapChain::Begin() 
+{
+
+
+
+}
+
+void CLEYERA::Base::DX::DXSwapChain::CreateResources() {
+
+  for (size_t i = 0; i < this->swapChainCount_; i++) {
+
+    resources_[i] = std::make_unique<DXBufferResource<uint32_t>>();
+    HRESULT hr = swapChain_->GetBuffer(
+        static_cast<UINT>(i), IID_PPV_ARGS(&resources_[i]->GetResource()));
+
+    assert(SUCCEEDED(hr));
+  }
 }

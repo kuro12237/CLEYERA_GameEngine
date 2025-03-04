@@ -1,4 +1,5 @@
 #pragma once
+#include "../DXBufferResource/DXBufferResource.h"
 #include "../DXComponent.h"
 
 namespace CLEYERA::Base::DX {
@@ -14,6 +15,8 @@ public:
 
   void Create() override;
 
+  void Begin();
+
 #pragma region Get
 
   IDXGISwapChain4 *GetSwapChain() { return swapChain_.Get(); }
@@ -21,9 +24,16 @@ public:
 #pragma endregion
 
 private:
-  size_t swapChainCount_ = 2;
+  /// <summary>
+  /// swapChain
+  /// </summary>
+  void CreateResources();
+
+  static const size_t swapChainCount_ = 2;
 
   DXGI_SWAP_CHAIN_DESC1 swapChainDesc_{};
   ComPtr<IDXGISwapChain4> swapChain_ = nullptr;
+
+  std::unique_ptr<DXBufferResource<uint32_t>> resources_[swapChainCount_];
 };
 } // namespace CLEYERA::Base::DX

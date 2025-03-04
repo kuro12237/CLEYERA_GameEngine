@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="CLEYERA\CLEYERA.h" />
     <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />
+    <ClInclude Include="CLEYERA\DX\DXBufferResource\DXBufferResource.h" />
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandAllocator.h" />
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandList.h" />
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
