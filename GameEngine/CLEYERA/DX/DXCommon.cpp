@@ -3,12 +3,10 @@
 
 using namespace CLEYERA::Base::DX;
 
-///フェンス生成
-
-
+/// フェンス生成
 
 /// <summary>
-/// 
+///
 /// </summary>
 void DXCommon::Create() {
 
@@ -50,6 +48,9 @@ void DXCommon::Create() {
 
   srvDescripter_ = std::make_unique<DXSRVDescripter>(VAR_NAME(DXSRVDescripter));
   componentList_.push_back(srvDescripter_);
+
+  fence_ = std::make_shared<DXFence>(VAR_NAME(DXFence));
+  componentList_.push_back(fence_);
 
   for (auto &obj : componentList_) {
     obj.lock()->AddObserver(logManager_);
@@ -100,16 +101,18 @@ void DXCommon::Create() {
 
   rtvDescripter_->Create();
 
+  fence_->Create();
+
   barriers_.resize(1);
 
   barriers_[0] = std::make_unique<DXBarrier>();
   barriers_[0]->Init();
-
-
 }
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
 
+  fence_.reset();
+  srvDescripter_.reset();
   rtvDescripter_.reset();
 
   swapChain_.reset();
@@ -148,6 +151,7 @@ void CLEYERA::Base::DX::DXCommon::Begin() {
   barriers_[0]->Barrier();
 
   rtvDescripter_->Begin();
+
 }
 
 void CLEYERA::Base::DX::DXCommon::End() {
@@ -168,8 +172,11 @@ void CLEYERA::Base::DX::DXCommon::End() {
   queue->ExecuteCommandLists(1, list);
   swapChain->Present(1, 0);
 
+  fence_->End();
+
   hr = allocator->Reset();
   assert(SUCCEEDED(hr));
 
   hr = commandList->Reset(allocator, nullptr);
+  assert(SUCCEEDED(hr));
 }

@@ -14,6 +14,7 @@
 
 #include "DXDescripter/DXRTVDescripter.h"
 #include "DXDescripter/DXSRVDescripter.h"
+#include"DXFence/DXFence.h"
 
 #include "DXBarrier/DXBarrier.h"
 
@@ -58,6 +59,7 @@ private:
 
   std::list<std::weak_ptr<DXComponent>> componentList_;
 
+  std::shared_ptr<DXFence> fence_ = nullptr;
   std::shared_ptr<DXSRVDescripter> srvDescripter_ = nullptr;
   std::shared_ptr<DXRTVDescripter> rtvDescripter_ = nullptr;
   std::shared_ptr<DXSwapChain> swapChain_ = nullptr;

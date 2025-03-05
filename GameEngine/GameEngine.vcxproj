@@ -154,6 +154,7 @@
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
     <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXFence\DXFence.cpp" />
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.h" />
     <ClInclude Include="CLEYERA\DX\DXDevice\DXDevice.h" />
     <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h" />
+    <ClInclude Include="CLEYERA\DX\DXFence\DXFence.h" />
     <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXManager.h" />
     <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h" />
