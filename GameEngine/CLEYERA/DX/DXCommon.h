@@ -24,6 +24,9 @@ namespace DX {
 
 enum class DXCommonBarrierTable { SwapChainBarrier=0, Max =1};
 
+/// <summary>
+/// DXの本体を持つクラス
+/// </summary>
 class DXCommon : public DXComponent {
 public:
   DXCommon(const std::string &name) : DXComponent(name) {};
