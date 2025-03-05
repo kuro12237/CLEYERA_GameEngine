@@ -12,9 +12,11 @@
 #include "DXInfoQueue/DXInfoQueue.h"
 #include "DXSwapChain/DXSwapChain.h"
 
+#include "DXDescripter/DXDSVDescripter.h"
 #include "DXDescripter/DXRTVDescripter.h"
 #include "DXDescripter/DXSRVDescripter.h"
-#include"DXFence/DXFence.h"
+#include "DXFence/DXFence.h"
+#include"DXDepth/DXDepth.h"
 
 #include "DXBarrier/DXBarrier.h"
 
@@ -22,7 +24,7 @@ namespace CLEYERA {
 namespace Base {
 namespace DX {
 
-enum class DXCommonBarrierTable { SwapChainBarrier=0, Max =1};
+enum class DXCommonBarrierTable { SwapChainBarrier = 0, Max = 1 };
 
 /// <summary>
 /// DXの本体を持つクラス
@@ -36,9 +38,9 @@ public:
 
   void Finalize();
 
-  void Begin();
+  void PreDraw();
 
-  void End();
+  void PostDraw();
 
 #pragma region Get
 
@@ -63,6 +65,7 @@ private:
   std::list<std::weak_ptr<DXComponent>> componentList_;
 
   std::shared_ptr<DXFence> fence_ = nullptr;
+  std::shared_ptr<DXDSVDescripter> dsvDescripter_ = nullptr;
   std::shared_ptr<DXSRVDescripter> srvDescripter_ = nullptr;
   std::shared_ptr<DXRTVDescripter> rtvDescripter_ = nullptr;
   std::shared_ptr<DXSwapChain> swapChain_ = nullptr;
@@ -75,6 +78,8 @@ private:
   std::shared_ptr<DXDevice> device_ = nullptr;
 
   std::vector<std::unique_ptr<DXBarrier>> barriers_;
+
+  std::shared_ptr<DXDepth>depth_=nullptr;
 
 #ifdef _DEBUG
 

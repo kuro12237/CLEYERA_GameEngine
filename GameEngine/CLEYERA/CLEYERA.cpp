@@ -21,6 +21,6 @@ void Engine::Finalize() {
   winApp_->Finalize();
 }
 
-void Engine::Begin() { dxCommon_->Begin(); }
+void Engine::Begin() { dxCommon_->PreDraw(); }
 
-void Engine::End() { dxCommon_->End(); }
+void Engine::End() { dxCommon_->PostDraw(); }

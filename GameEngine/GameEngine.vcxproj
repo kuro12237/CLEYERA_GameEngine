@@ -149,7 +149,9 @@
     <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommon.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDepth\DXDepth.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
@@ -164,6 +166,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLEYERA\3d\Vertex\Vertex.h" />
     <ClInclude Include="CLEYERA\CLEYERA.h" />
     <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />
     <ClInclude Include="CLEYERA\DX\DXBarrier\DXBarrier.h" />
@@ -173,6 +176,8 @@
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXCommon.h" />
     <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h" />
+    <ClInclude Include="CLEYERA\DX\DXDepth\DXDepth.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.h" />
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.h" />
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.h" />
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.h" />
@@ -188,6 +193,9 @@
     <ClInclude Include="CLEYERA\DX\DXComponent.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\SystemLogManager.h" />
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

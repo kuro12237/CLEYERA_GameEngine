@@ -1,6 +1,5 @@
 #pragma once
 #include "../../pch/Pch.h"
-#include "../DXDevice/DXDevice.h"
 
 namespace CLEYERA {
 namespace Base {
@@ -12,53 +11,42 @@ using Microsoft::WRL::ComPtr;
 ///
 /// </summary>
 template <typename T> class DXBufferResource {
-public:
-  DXBufferResource() {};
-  ~DXBufferResource() {};
+ public:
+   DXBufferResource() {};
+   ~DXBufferResource() {};
 
-  void Update();
+   void Update();
 
 #pragma region Set
-  void SetDevice(const std::weak_ptr<DXDevice> &device) { device_ = device; }
-  void SetParam(const T &param) { param_ptr_ = param; }
-  void SetResource(ComPtr<ID3D12Resource> resource) {
-    buffer_ = std::move(resource);
-  };
+   void SetDevice(ID3D12Device5* device) { device_ = device; }
+   void SetParam(const T &param) { param_ptr_ = param; }
+   void SetResource(ComPtr<ID3D12Resource> resource) { buffer_ = std::move(resource); };
 #pragma endregion
 
 #pragma region Get
 
-  ID3D12Resource* GetResource() { return buffer_.Get(); }
+   ID3D12Resource *GetResource() { return buffer_.Get(); }
 
 #pragma endregion
 
-  void CreateBuffer(const D3D12_HEAP_PROPERTIES &heapParam,
-                    D3D12_HEAP_FLAGS HeapFlags,
-                    const D3D12_RESOURCE_DESC &pDesc,
-                    D3D12_RESOURCE_STATES &state,
-                    const D3D12_CLEAR_VALUE &value);
+   void CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, D3D12_CLEAR_VALUE value);
 
-private:
-  size_t instanceNum_ = 1;
+ private:
+   size_t instanceNum_ = 1;
 
-  const T *param_ptr_ = nullptr;
-  ComPtr<ID3D12Resource> buffer_ = nullptr;
+   const T *param_ptr_ = nullptr;
+   ComPtr<ID3D12Resource> buffer_ = nullptr;
 
-  std::weak_ptr<DXDevice> device_;
+   ID3D12Device5* device_;
 };
 
 template <typename T> inline void DXBufferResource<T>::Update() {}
 
-template <typename T>
-inline void DXBufferResource<T>::CreateBuffer(
-    const D3D12_HEAP_PROPERTIES &heapParam, D3D12_HEAP_FLAGS HeapFlags,
-    const D3D12_RESOURCE_DESC &pDesc, D3D12_RESOURCE_STATES &state,
-    const D3D12_CLEAR_VALUE &value) {
+template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, D3D12_CLEAR_VALUE value) {
 
-  ComPtr<ID3D12Device5> device;
-  HRESULT hr = device->CreateCommittedResource(
-      heapParam, HeapFlags, pDesc, state, &value, IID_PPV_ARGS(&buffer_));
-  assert(SUCCEEDED(hr));
+
+   HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, pDesc, state, value, IID_PPV_ARGS(&buffer_));
+   assert(SUCCEEDED(hr));
 }
 } // namespace DX
 } // namespace Base

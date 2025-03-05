@@ -9,8 +9,6 @@ void CLEYERA::Base::DX::DXRTVDescripter::Create() {
   swapChain_ = dxManager_->GetSwapChain();
   commandList_ = dxManager_->GetCommandList();
 
-  
-
   size_t resourceCount = swapChain_.lock()->GetSwapChainCount();
   swapResources.resize(resourceCount);
 
@@ -41,16 +39,13 @@ void CLEYERA::Base::DX::DXRTVDescripter::Create() {
 }
 
 void CLEYERA::Base::DX::DXRTVDescripter::Begin() {
-  UINT backBufferIndex =
-      swapChain_.lock()->GetSwapChain()->GetCurrentBackBufferIndex();
+  UINT backBufferIndex = *backBufferIndex_;
 
   commandList_->OMSetRenderTargets(1, &cpuHandles_[backBufferIndex], false,
                                    nullptr);
   float clearColor[] = {0.1f, 0.25f, 0.5f, 1.0f};
-
   commandList_->ClearRenderTargetView(cpuHandles_[backBufferIndex],
                                       clearColor, 0, nullptr);
-
 }
 
 void CLEYERA::Base::DX::DXRTVDescripter::End() {}

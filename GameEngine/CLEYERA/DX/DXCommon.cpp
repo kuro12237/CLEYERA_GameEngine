@@ -10,173 +10,180 @@ using namespace CLEYERA::Base::DX;
 /// </summary>
 void DXCommon::Create() {
 
-  dxManager_ = DXManager::GetInstance();
+   dxManager_ = DXManager::GetInstance();
+
+#ifdef _DEBUG
+   debugLayer_ = std::make_shared<DXDebugLayer>(VAR_NAME(DXDebugLayer));
+   componentList_.push_back(debugLayer_);
+#endif // _DEBUG
+
+   factory_ = std::make_shared<DXFactory>(VAR_NAME(DXFactory));
+   componentList_.push_back(factory_);
+   adapter_ = std::make_shared<DXAdapter>(VAR_NAME(DXAdapter));
+   componentList_.push_back(adapter_);
+   device_ = std::make_shared<DXDevice>(VAR_NAME(DXDevice));
+   componentList_.push_back(device_);
+
+#ifdef _DEBUG
+   infoQueue_ = std::make_shared<DXInfoQueue>(VAR_NAME(DXInfoQueue));
+   componentList_.push_back(infoQueue_);
+#endif // _DEBUG
+
+#pragma region コマンド
+
+   commandQueue_ = std::make_shared<DXCommandQueue>(VAR_NAME(DXCommandQueue));
+   componentList_.push_back(commandQueue_);
+
+   commandAllcator_ = std::make_shared<DXCommandAllocator>(VAR_NAME(DXCommandAllocator));
+   componentList_.push_back(commandAllcator_);
+
+   commandList_ = std::make_shared<DXCommandList>(VAR_NAME(DXCommandList));
+   componentList_.push_back(commandList_);
+
+#pragma endregion
+
+   swapChain_ = std::make_shared<DXSwapChain>(VAR_NAME(DXSwapChain));
+   componentList_.push_back(swapChain_);
+
+#pragma region Descripter
+
+   rtvDescripter_ = std::make_shared<DXRTVDescripter>(VAR_NAME(DXRTVDescripter));
+   componentList_.push_back(rtvDescripter_);
+
+   srvDescripter_ = std::make_shared<DXSRVDescripter>(VAR_NAME(DXSRVDescripter));
+   componentList_.push_back(srvDescripter_);
+
+   dsvDescripter_ = std::make_shared<DXDSVDescripter>(VAR_NAME(DXDSVDescripter));
+   componentList_.push_back(dsvDescripter_);
+
+#pragma endregion
+
+   fence_ = std::make_shared<DXFence>(VAR_NAME(DXFence));
+   componentList_.push_back(fence_);
+
+   depth_ = std::make_shared<DXDepth>();
+
+   for (auto &obj : componentList_) {
+      obj.lock()->AddObserver(logManager_);
+   }
 
 #ifdef _DEBUG
 
-  debugLayer_ = std::make_shared<DXDebugLayer>(VAR_NAME(DXDebugLayer));
-  componentList_.push_back(debugLayer_);
+   debugLayer_->Create();
+   dxManager_->SetDebugLayer(debugLayer_);
 
 #endif // _DEBUG
 
-  factory_ = std::make_shared<DXFactory>(VAR_NAME(DXFactory));
-  componentList_.push_back(factory_);
-  adapter_ = std::make_shared<DXAdapter>(VAR_NAME(DXAdapter));
-  componentList_.push_back(adapter_);
-  device_ = std::make_shared<DXDevice>(VAR_NAME(DXDevice));
-  componentList_.push_back(device_);
+   factory_->Create();
+   dxManager_->SetFactory(factory_);
 
-#ifdef _DEBUG
-  infoQueue_ = std::make_shared<DXInfoQueue>(VAR_NAME(DXInfoQueue));
-  componentList_.push_back(infoQueue_);
-#endif // _DEBUG
+   adapter_->Create();
+   dxManager_->SetAdapter(adapter_);
 
-  commandQueue_ = std::make_shared<DXCommandQueue>(VAR_NAME(DXCommandQueue));
-  componentList_.push_back(commandQueue_);
-  commandAllcator_ =
-      std::make_shared<DXCommandAllocator>(VAR_NAME(DXCommandAllocator));
-  componentList_.push_back(commandAllcator_);
-
-  commandList_ = std::make_shared<DXCommandList>(VAR_NAME(DXCommandList));
-  componentList_.push_back(commandList_);
-
-  swapChain_ = std::make_shared<DXSwapChain>(VAR_NAME(DXSwapChain));
-  componentList_.push_back(swapChain_);
-
-  rtvDescripter_ = std::make_shared<DXRTVDescripter>(VAR_NAME(DXRTVDescripter));
-  componentList_.push_back(rtvDescripter_);
-
-  srvDescripter_ = std::make_unique<DXSRVDescripter>(VAR_NAME(DXSRVDescripter));
-  componentList_.push_back(srvDescripter_);
-
-  fence_ = std::make_shared<DXFence>(VAR_NAME(DXFence));
-  componentList_.push_back(fence_);
-
-  for (auto &obj : componentList_) {
-    obj.lock()->AddObserver(logManager_);
-  }
+   device_->Create();
+   dxManager_->SetDevice(device_);
 
 #ifdef _DEBUG
 
-  debugLayer_->Create();
-  dxManager_->SetDebugLayer(debugLayer_);
+   infoQueue_->Create();
+   dxManager_->SetInfoQueue(infoQueue_);
 
 #endif // _DEBUG
 
-  factory_->Create();
-  dxManager_->SetFactory(factory_);
+   commandQueue_->Create();
+   dxManager_->SetCommandQueue(commandQueue_);
 
-  adapter_->Create();
-  dxManager_->SetAdapter(adapter_);
+   commandAllcator_->Create();
+   dxManager_->SetCommandAllocator(commandAllcator_);
 
-  device_->Create();
-  dxManager_->SetDevice(device_);
+   commandList_->Create();
+   dxManager_->SetCommandList(commandList_);
 
-#ifdef _DEBUG
+   rtvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, false);
+   dxManager_->SetRTVDescripter(rtvDescripter_);
+   rtvDescripter_->SetBackBufferIndex(backBufferIndex_);
 
-  infoQueue_->Create();
-  dxManager_->SetInfoQueue(infoQueue_);
+   srvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, true);
+   dsvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_DSV, false);
 
-#endif // _DEBUG
+   swapChain_->Create();
+   dxManager_->SetSwapChain(swapChain_);
 
-  commandQueue_->Create();
-  dxManager_->SetCommandQueue(commandQueue_);
+   rtvDescripter_->Create();
+   srvDescripter_->Create();
 
-  commandAllcator_->Create();
-  dxManager_->SetCommandAllocator(commandAllcator_);
+   fence_->Create();
 
-  commandList_->Create();
-  dxManager_->SetCommandList(commandList_);
-
-  rtvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, false);
-  dxManager_->SetRTVDescripter(rtvDescripter_);
-  rtvDescripter_->SetBackBufferIndex(backBufferIndex_);
-
-  srvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV,
-                                   true);
-  srvDescripter_->Create();
-
-  swapChain_->Create();
-  dxManager_->SetSwapChain(swapChain_);
-
-  rtvDescripter_->Create();
-
-  fence_->Create();
-
-  barriers_.resize(1);
-
-  barriers_[0] = std::make_unique<DXBarrier>();
-  barriers_[0]->Init();
+   barriers_.resize(1);
+   barriers_[0] = std::make_unique<DXBarrier>();
+   barriers_[0]->Init();
 }
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
 
-  fence_.reset();
-  srvDescripter_.reset();
-  rtvDescripter_.reset();
+   fence_.reset();
+   srvDescripter_.reset();
+   rtvDescripter_.reset();
 
-  swapChain_.reset();
-  commandList_.reset();
-  commandAllcator_.reset();
-  commandQueue_.reset();
+   swapChain_.reset();
+   commandList_.reset();
+   commandAllcator_.reset();
+   commandQueue_.reset();
 #ifdef _DEBUG
-  infoQueue_.reset();
+   infoQueue_.reset();
 #endif // _DEBUG
 
-  device_.reset();
-  adapter_.reset();
-  factory_.reset();
+   device_.reset();
+   adapter_.reset();
+   factory_.reset();
 
 #ifdef _DEBUG
-  debugLayer_.reset();
+   debugLayer_.reset();
 #endif // _DEBUG
 
-  ComPtr<IDXGIDebug1> debug;
-  if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&debug)))) {
-    debug->ReportLiveObjects(DXGI_DEBUG_ALL, DXGI_DEBUG_RLO_ALL);
-    debug->ReportLiveObjects(DXGI_DEBUG_APP, DXGI_DEBUG_RLO_ALL);
-    debug->ReportLiveObjects(DXGI_DEBUG_D3D12, DXGI_DEBUG_RLO_ALL);
-  }
+   ComPtr<IDXGIDebug1> debug;
+   if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&debug)))) {
+      debug->ReportLiveObjects(DXGI_DEBUG_ALL, DXGI_DEBUG_RLO_ALL);
+      debug->ReportLiveObjects(DXGI_DEBUG_APP, DXGI_DEBUG_RLO_ALL);
+      debug->ReportLiveObjects(DXGI_DEBUG_D3D12, DXGI_DEBUG_RLO_ALL);
+   }
 }
 
-void CLEYERA::Base::DX::DXCommon::Begin() {
+void CLEYERA::Base::DX::DXCommon::PreDraw() {
 
-  backBufferIndex_ = swapChain_->GetSwapChain()->GetCurrentBackBufferIndex();
+   backBufferIndex_ = swapChain_->GetSwapChain()->GetCurrentBackBufferIndex();
 
-  barriers_[0]->SetBarrierType(0, D3D12_RESOURCE_BARRIER_TYPE_TRANSITION);
-  barriers_[0]->SetBarrierFlag(0, D3D12_RESOURCE_BARRIER_FLAG_NONE);
-  barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_PRESENT,
-                                D3D12_RESOURCE_STATE_RENDER_TARGET);
-  barriers_[0]->SetBuffer(swapChain_->GetSwapChainResource(backBufferIndex_));
-  barriers_[0]->Barrier();
+   barriers_[0]->SetBarrierType(0, D3D12_RESOURCE_BARRIER_TYPE_TRANSITION);
+   barriers_[0]->SetBarrierFlag(0, D3D12_RESOURCE_BARRIER_FLAG_NONE);
+   barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+   barriers_[0]->SetBuffer(swapChain_->GetSwapChainResource(backBufferIndex_));
+   barriers_[0]->Barrier();
 
-  rtvDescripter_->Begin();
-
+   rtvDescripter_->Begin();
 }
 
-void CLEYERA::Base::DX::DXCommon::End() {
-  ID3D12CommandList *list[] = {commandList_->GetCommandList()};
-  ID3D12GraphicsCommandList *commandList = commandList_->GetCommandList();
-  ID3D12CommandQueue *queue = commandQueue_->GetCommandQueue();
-  ID3D12CommandAllocator *allocator = commandAllcator_->GetCommandAllocator();
+void CLEYERA::Base::DX::DXCommon::PostDraw() {
+   ID3D12CommandList *list[] = {commandList_->GetCommandList()};
+   ID3D12GraphicsCommandList *commandList = commandList_->GetCommandList();
+   ID3D12CommandQueue *queue = commandQueue_->GetCommandQueue();
+   ID3D12CommandAllocator *allocator = commandAllcator_->GetCommandAllocator();
 
-  IDXGISwapChain4 *swapChain = swapChain_->GetSwapChain();
+   IDXGISwapChain4 *swapChain = swapChain_->GetSwapChain();
 
-  barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_RENDER_TARGET,
-                                D3D12_RESOURCE_STATE_PRESENT);
-  barriers_[0]->Barrier();
+   barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+   barriers_[0]->Barrier();
 
-  HRESULT hr = commandList->Close();
-  assert(SUCCEEDED(hr));
+   HRESULT hr = commandList->Close();
+   assert(SUCCEEDED(hr));
 
-  queue->ExecuteCommandLists(1, list);
-  swapChain->Present(1, 0);
+   queue->ExecuteCommandLists(1, list);
+   swapChain->Present(1, 0);
 
-  fence_->End();
+   fence_->End();
 
-  hr = allocator->Reset();
-  assert(SUCCEEDED(hr));
+   hr = allocator->Reset();
+   assert(SUCCEEDED(hr));
 
-  hr = commandList->Reset(allocator, nullptr);
-  assert(SUCCEEDED(hr));
+   hr = commandList->Reset(allocator, nullptr);
+   assert(SUCCEEDED(hr));
 }

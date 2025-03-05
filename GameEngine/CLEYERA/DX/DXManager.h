@@ -10,7 +10,11 @@
 #include "DXInfoQueue/DXInfoQueue.h"
 #include "DXSwapChain/DXSwapChain.h"
 
+#include "DXDescripter/DXDSVDescripter.h"
 #include "DXDescripter/DXRTVDescripter.h"
+#include "DXDescripter/DXSRVDescripter.h"
+
+#include "DXFence/DXFence.h"
 
 namespace CLEYERA {
 namespace Base {
@@ -55,7 +59,7 @@ public:
   void SetSwapChain(const std::weak_ptr<DXSwapChain> &swapChain) {
     swapChain_ = swapChain;
   }
-  void SetRTVDescripter(const std::weak_ptr<DXRTVDescripter> & descripter) {
+  void SetRTVDescripter(const std::weak_ptr<DXRTVDescripter> &descripter) {
     rtvDescripter_ = descripter;
   }
 #pragma endregion
@@ -77,7 +81,7 @@ public:
   ID3D12CommandAllocator *GetCommandAllocator() {
     return commandAllocator_.lock()->GetCommandAllocator();
   }
-  
+
   std::weak_ptr<DXSwapChain> GetSwapChain() { return swapChain_.lock(); }
 
 #pragma endregion
@@ -92,13 +96,15 @@ private:
   std::weak_ptr<DXCommandAllocator> commandAllocator_;
   std::weak_ptr<DXCommandList> commandList_;
   std::weak_ptr<DXSwapChain> swapChain_;
+  
   std::weak_ptr<DXRTVDescripter> rtvDescripter_;
+  std::weak_ptr<DXDSVDescripter> dsvDescripter_;
+  std::weak_ptr<DXSRVDescripter> srvDescripter_;
 
-#pragma region SIngle
+#pragma region Single
 
   DXManager() = default;
   ~DXManager() = default;
-
   DXManager(const DXManager &) = delete;
   DXManager &operator=(const DXManager &) = delete;
 
