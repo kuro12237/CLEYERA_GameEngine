@@ -40,7 +40,7 @@ protected:
 
   D3D12_DESCRIPTOR_HEAP_TYPE type_;
   size_t handleIndex_ = 0;
-
+  //0は使わない
 
   std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> cpuHandles_;
   std::vector<D3D12_GPU_DESCRIPTOR_HANDLE> gpuHandles_;

@@ -45,6 +45,7 @@ class DXSwapChain : public DXComponent {
    DXGI_SWAP_CHAIN_DESC1 swapChainDesc_{};
    ComPtr<IDXGISwapChain4> swapChain_ = nullptr;
 
+
    std::array<std::unique_ptr<DXBufferResource<uint32_t>>, swapChainCount_> resources_;
 
    DXCommandManager *commandManager_ = nullptr;

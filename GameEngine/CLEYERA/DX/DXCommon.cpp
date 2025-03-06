@@ -105,18 +105,21 @@ void DXCommon::Create() {
    rtvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, false);
    srvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, true);
    dsvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_DSV, false);
-   dxManager_->SetRTVDescripter(rtvDescripter_);
-
 
    DXDescripterManager::GetInstance()->SetRTVDescripter(rtvDescripter_);
+   DXDescripterManager::GetInstance()->SetDSVDescripter(dsvDescripter_);
+   DXDescripterManager::GetInstance()->SetSRVDescripter(srvDescripter_);
 
    rtvDescripter_->Create();
-   
+   dxManager_->SetRTVDescripter(rtvDescripter_);
+
+   srvDescripter_->Create();
+   dsvDescripter_->Create();
+
    swapChain_->Create();
    dxManager_->SetSwapChain(swapChain_);
 
    swapChain_->RegisterRTV();
-
 
    fence_->Create();
 
@@ -133,11 +136,12 @@ void CLEYERA::Base::DX::DXCommon::Finalize() {
 
    fence_.reset();
 
+   swapChain_.reset();
+
    dsvDescripter_.reset();
    srvDescripter_.reset();
    rtvDescripter_.reset();
 
-   swapChain_.reset();
    commandList_.reset();
    commandAllcator_.reset();
    commandQueue_.reset();
@@ -174,7 +178,10 @@ void CLEYERA::Base::DX::DXCommon::PreDraw() {
 
    std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> handles = {rtvDescripter_->GetCPUHandle(backBufferIndex_)};
 
-   DXCommandManager::GetInstace()->OMRenderTargets(handles, nullptr);
+   D3D12_CPU_DESCRIPTOR_HANDLE depth = dsvDescripter_->GetCPUHandle(depth_->GetBuf()->GetDSVIndex());
+
+   DXCommandManager::GetInstace()->OMRenderTargets(handles, &depth);
+   DXCommandManager::GetInstace()->ClearDepthStencilView(depth, D3D12_CLEAR_FLAG_DEPTH);
 
    std::vector<float> clearColor = {0.1f, 0.25f, 0.5f, 1.0f};
    DXCommandManager::GetInstace()->ClearRenderTargetView(rtvDescripter_->GetCPUHandle(backBufferIndex_), clearColor);

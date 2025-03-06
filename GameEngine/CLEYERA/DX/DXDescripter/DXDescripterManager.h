@@ -5,9 +5,11 @@ namespace CLEYERA {
 namespace Base {
 namespace DX {
 
-enum class SRV_TYPE { SRV, UAV };
 
 class DXRTVDescripter;
+class DXSRVDescripter;
+class DXDSVDescripter;
+
 
 /// <summary>
 /// でスクリプタ管理クラス
@@ -22,14 +24,23 @@ class DXDescripterManager {
    size_t RTVAddPtr(ID3D12Resource *buf, D3D12_RENDER_TARGET_VIEW_DESC desc);
    void RTVRelease(size_t index);
 
-   size_t CreateSRV();
+   size_t SRVAddPtr(ID3D12Resource*buf,D3D12_SHADER_RESOURCE_VIEW_DESC desc);
+   size_t UAVAddPtr(ID3D12Resource*buf,D3D12_UNORDERED_ACCESS_VIEW_DESC desc);
+   void SRV_UAVReleace(size_t index);
+
+   size_t DSVAddPtr(ID3D12Resource *buf, D3D12_DEPTH_STENCIL_VIEW_DESC desc);
+   void DSVRelease(size_t index);
 
 #pragma region Set
    void SetRTVDescripter(std::weak_ptr<DXRTVDescripter> rtv) { rtvDescripter_ = rtv; }
+   void SetSRVDescripter(std::weak_ptr<DXSRVDescripter> srv) { srvDescripter_ = srv; }
+   void SetDSVDescripter(std::weak_ptr<DXDSVDescripter> dsv) { dsvDescripter_ = dsv; }
 #pragma endregion
 
  private:
    std::weak_ptr<DXRTVDescripter> rtvDescripter_;
+   std::weak_ptr<DXSRVDescripter> srvDescripter_;
+   std::weak_ptr<DXDSVDescripter> dsvDescripter_;
 
    DXDescripterManager() = default;
    ~DXDescripterManager() = default;

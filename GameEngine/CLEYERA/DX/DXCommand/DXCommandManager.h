@@ -15,6 +15,8 @@ class DXCommandManager {
 
    void ClearRenderTargetView(D3D12_CPU_DESCRIPTOR_HANDLE handle, const std::vector<float> &clearColor);
 
+   void ClearDepthStencilView(D3D12_CPU_DESCRIPTOR_HANDLE handle, D3D12_CLEAR_FLAGS flag);
+
 #pragma region Set
 
    void SetCommandList(ID3D12GraphicsCommandList *list) { list_ = list; }

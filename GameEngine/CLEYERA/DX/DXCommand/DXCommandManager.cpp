@@ -9,10 +9,7 @@ DXCommandManager *DXCommandManager::GetInstace() {
    return &instance;
 }
 
-void CLEYERA::Base::DX::DXCommandManager::Init() {
-
-   list_ = DXManager::GetInstance()->GetCommandList();
-}
+void CLEYERA::Base::DX::DXCommandManager::Init() { list_ = DXManager::GetInstance()->GetCommandList(); }
 
 void CLEYERA::Base::DX::DXCommandManager::OMRenderTargets(const std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> &rtvHandles, const D3D12_CPU_DESCRIPTOR_HANDLE *dsvHandle) {
 
@@ -24,5 +21,12 @@ void CLEYERA::Base::DX::DXCommandManager::OMRenderTargets(const std::vector<D3D1
 void CLEYERA::Base::DX::DXCommandManager::ClearRenderTargetView(D3D12_CPU_DESCRIPTOR_HANDLE handle, const std::vector<float> &clearColor) {
    if (list_ && clearColor.size() == 4) {
       list_->ClearRenderTargetView(handle, clearColor.data(), 0, nullptr);
+   }
+}
+
+void CLEYERA::Base::DX::DXCommandManager::ClearDepthStencilView(D3D12_CPU_DESCRIPTOR_HANDLE handle, D3D12_CLEAR_FLAGS flag) {
+
+   if (list_) {
+      list_->ClearDepthStencilView(handle, flag, 1.0f, 0, 0, nullptr);
    }
 }

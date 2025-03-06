@@ -35,9 +35,7 @@ void CLEYERA::Base::DX::DXSwapChain::RegisterRTV() {
 
    /// ハンドルのぽいんたげっと
    for (size_t i = 0; i < this->swapChainCount_; i++) {
-
-       ID3D12Resource* resource = resources_[i]->GetResource();
-      descripterManager_->RTVAddPtr(resource, rtvDesc_);
+      resources_[i]->RegisterRTV(rtvDesc_);
 
    }
 
@@ -50,6 +48,7 @@ void CLEYERA::Base::DX::DXSwapChain::CreateResources() {
    for (size_t i = 0; i < this->swapChainCount_; i++) {
       ComPtr<ID3D12Resource> resource = nullptr;
       resources_[i] = std::make_unique<DXBufferResource<uint32_t>>();
+      resources_[i]->Init();
       HRESULT hr = swapChain_->GetBuffer(static_cast<UINT>(i), IID_PPV_ARGS(&resource));
       D3D12_RENDER_TARGET_VIEW_DESC desc;
 

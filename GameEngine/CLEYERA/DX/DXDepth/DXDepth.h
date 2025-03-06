@@ -13,6 +13,8 @@ public:
 
   void Init();
 
+  DXBufferResource<int32_t> *GetBuf() { return buf_.get(); }
+
 private:
   Win::WinApp *winApp_ = nullptr;
   std::unique_ptr<DXBufferResource<int32_t>> buf_ = nullptr;

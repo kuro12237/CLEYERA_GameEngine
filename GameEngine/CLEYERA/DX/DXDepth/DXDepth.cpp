@@ -24,7 +24,14 @@ void CLEYERA::Base::DX::DXDepth::Init() {
    depthClearValue.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 
    buf_ = std::make_unique<DXBufferResource<int32_t>>();
+   buf_->Init();
    buf_->SetDevice(DXManager::GetInstance()->GetDevice());
 
    buf_->CreateBuffer(heap, D3D12_HEAP_FLAG_NONE, desc, D3D12_RESOURCE_STATE_DEPTH_WRITE, depthClearValue);
+
+   D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc{};
+   dsvDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+   dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+
+   buf_->RegisterDSV(dsvDesc);
 }
