@@ -16,10 +16,6 @@ public:
 
   void Create() override;
 
-  void Begin();
-
-  void End();
-
 private:
 };
 } // namespace DX

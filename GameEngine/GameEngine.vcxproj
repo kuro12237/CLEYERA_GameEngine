@@ -146,11 +146,13 @@
     <ClCompile Include="CLEYERA\DX\DXBarrier\DXBarrier.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandAllocator.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandList.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXCommon.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDepth\DXDepth.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.cpp" />
@@ -173,10 +175,12 @@
     <ClInclude Include="CLEYERA\DX\DXBufferResource\DXBufferResource.h" />
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandAllocator.h" />
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandList.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandManager.h" />
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXCommon.h" />
     <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h" />
     <ClInclude Include="CLEYERA\DX\DXDepth\DXDepth.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterManager.h" />
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.h" />
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.h" />
     <ClInclude Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.h" />

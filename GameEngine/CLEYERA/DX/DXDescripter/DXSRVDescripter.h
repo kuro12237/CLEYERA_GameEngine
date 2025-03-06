@@ -17,7 +17,6 @@ public:
 
   void Begin();
 
-  void End();
 
  
 private:

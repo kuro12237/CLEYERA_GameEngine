@@ -25,7 +25,7 @@ template <typename T> class DXBufferResource {
 
 #pragma region Get
 
-   ID3D12Resource *GetResource() { return buffer_.Get(); }
+   ID3D12Resource *GetResource()const { return buffer_.Get(); }
 
 #pragma endregion
 
@@ -44,10 +44,10 @@ template <typename T> inline void DXBufferResource<T>::Update() {}
 
 template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, D3D12_CLEAR_VALUE value) {
 
-
-   HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, pDesc, state, value, IID_PPV_ARGS(&buffer_));
+   HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, &pDesc, state, &value, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
 }
+
 } // namespace DX
 } // namespace Base
 } // namespace CLEYERA

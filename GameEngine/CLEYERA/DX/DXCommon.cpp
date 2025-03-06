@@ -98,21 +98,29 @@ void DXCommon::Create() {
 
    commandList_->Create();
    dxManager_->SetCommandList(commandList_);
+   DXCommandManager::GetInstace()->SetCommandList(commandList_->GetCommandList());
+   DXCommandManager::GetInstace()->Init();
 
+   /// descripterを作る
    rtvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_RTV, false);
-   dxManager_->SetRTVDescripter(rtvDescripter_);
-   rtvDescripter_->SetBackBufferIndex(backBufferIndex_);
-
    srvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, true);
    dsvDescripter_->CreateDescripter(D3D12_DESCRIPTOR_HEAP_TYPE_DSV, false);
+   dxManager_->SetRTVDescripter(rtvDescripter_);
 
+
+   DXDescripterManager::GetInstance()->SetRTVDescripter(rtvDescripter_);
+
+   rtvDescripter_->Create();
+   
    swapChain_->Create();
    dxManager_->SetSwapChain(swapChain_);
 
-   rtvDescripter_->Create();
-   srvDescripter_->Create();
+   swapChain_->RegisterRTV();
+
 
    fence_->Create();
+
+   depth_->Init();
 
    barriers_.resize(1);
    barriers_[0] = std::make_unique<DXBarrier>();
@@ -121,7 +129,11 @@ void DXCommon::Create() {
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
 
+   depth_.reset();
+
    fence_.reset();
+
+   dsvDescripter_.reset();
    srvDescripter_.reset();
    rtvDescripter_.reset();
 
@@ -141,6 +153,7 @@ void CLEYERA::Base::DX::DXCommon::Finalize() {
    debugLayer_.reset();
 #endif // _DEBUG
 
+   /// リーク
    ComPtr<IDXGIDebug1> debug;
    if (SUCCEEDED(DXGIGetDebugInterface1(0, IID_PPV_ARGS(&debug)))) {
       debug->ReportLiveObjects(DXGI_DEBUG_ALL, DXGI_DEBUG_RLO_ALL);
@@ -159,7 +172,12 @@ void CLEYERA::Base::DX::DXCommon::PreDraw() {
    barriers_[0]->SetBuffer(swapChain_->GetSwapChainResource(backBufferIndex_));
    barriers_[0]->Barrier();
 
-   rtvDescripter_->Begin();
+   std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> handles = {rtvDescripter_->GetCPUHandle(backBufferIndex_)};
+
+   DXCommandManager::GetInstace()->OMRenderTargets(handles, nullptr);
+
+   std::vector<float> clearColor = {0.1f, 0.25f, 0.5f, 1.0f};
+   DXCommandManager::GetInstace()->ClearRenderTargetView(rtvDescripter_->GetCPUHandle(backBufferIndex_), clearColor);
 }
 
 void CLEYERA::Base::DX::DXCommon::PostDraw() {

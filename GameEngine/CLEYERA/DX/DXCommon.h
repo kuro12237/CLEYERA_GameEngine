@@ -20,6 +20,8 @@
 
 #include "DXBarrier/DXBarrier.h"
 
+#include"DXDescripter/DXDescripterManager.h"
+
 namespace CLEYERA {
 namespace Base {
 namespace DX {
@@ -81,6 +83,8 @@ private:
 
   std::shared_ptr<DXDepth>depth_=nullptr;
 
+  
+   D3D12_RENDER_TARGET_VIEW_DESC desc;
 #ifdef _DEBUG
 
   std::shared_ptr<DXInfoQueue> infoQueue_ = nullptr;

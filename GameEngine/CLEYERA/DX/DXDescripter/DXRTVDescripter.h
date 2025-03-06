@@ -15,17 +15,15 @@ public:
 
   void Create() override;
 
-  void Begin();
+  size_t AddPtr(ID3D12Resource*buf,D3D12_RENDER_TARGET_VIEW_DESC desc);
 
-  void End();
-
-  void SetBackBufferIndex(const UINT &index) { backBufferIndex_ = &index; }
+  void Release(size_t index) { indexFreeList_.push_back(index); }
 
 private:
   D3D12_RENDER_TARGET_VIEW_DESC rtvDesc_{};
-  std::weak_ptr<DXSwapChain> swapChain_;
 
   const UINT *backBufferIndex_ = nullptr;
+  ID3D12Device5 *device_ = nullptr;
 };
 } // namespace DX
 } // namespace Base
