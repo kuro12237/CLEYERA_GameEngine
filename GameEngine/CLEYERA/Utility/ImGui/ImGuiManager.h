@@ -21,6 +21,14 @@ class ImGuiManager {
 
    void SetImGuiCommon(std::weak_ptr<ImGuiCommon> common) { common_ = common; }
 
+#pragma region Ui
+
+   void BeginParamsList();
+
+   void EndParamsList();
+
+#pragma endregion
+
  private:
    std::weak_ptr<ImGuiCommon> common_;
 

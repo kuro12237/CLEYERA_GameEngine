@@ -25,7 +25,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
     commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-    ImGui::ShowDemoWindow();
+    imGuiManager->BeginParamsList();
+
+    imGuiManager->EndParamsList();
 
     std::vector<ID3D12DescriptorHeap *> desc = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};
     commandManager->SetDescripterHeap(desc);
