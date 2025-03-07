@@ -30,3 +30,34 @@ void CLEYERA::Base::DX::DXCommandManager::ClearDepthStencilView(D3D12_CPU_DESCRI
       list_->ClearDepthStencilView(handle, flag, 1.0f, 0, 0, nullptr);
    }
 }
+
+void CLEYERA::Base::DX::DXCommandManager::SetViewCommand(int32_t width, int32_t height) {
+
+   D3D12_VIEWPORT viewport = {};
+
+   viewport.Width = float(width);
+   viewport.Height = float(height);
+   viewport.TopLeftX = 0;
+   viewport.TopLeftY = 0;
+   viewport.MinDepth = 0.0f;
+   viewport.MaxDepth = 1.0f;
+
+   list_->RSSetViewports(1, &viewport);
+}
+
+void CLEYERA::Base::DX::DXCommandManager::SetScissorCommand(int32_t width, int32_t height) {
+
+   D3D12_RECT scissorRect{};
+   scissorRect.left = 0;
+   scissorRect.right = width;
+   scissorRect.top = 0;
+   scissorRect.bottom = height;
+
+   list_->RSSetScissorRects(1, &scissorRect);
+}
+
+void CLEYERA::Base::DX::DXCommandManager::SetDescripterHeap(const std::vector<ID3D12DescriptorHeap *> desc) {
+
+    list_->SetDescriptorHeaps(static_cast<UINT>(desc.size()), desc.data());
+
+}

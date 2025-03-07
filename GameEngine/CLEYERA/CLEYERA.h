@@ -1,23 +1,29 @@
 #pragma once
+#include "DX/DXCommon.h"
+#include "SystemLogManager/SystemLogManager.h"
 #include "WIn/WinApp.h"
-#include"DX/DXCommon.h"
-#include"SystemLogManager/SystemLogManager.h"
+
+#include "Utility/ImGui/ImGuiManager.h"
 
 class Engine {
-public:
-  Engine() {};
-  ~Engine() {};
+ public:
+   Engine() {};
+   ~Engine() {};
 
-  void Init();
+   void Init();
 
-  void Finalize();
+   void Finalize();
 
-  void Begin();
-  void End();
+   void Begin();
 
-private:
+   void End();
 
-  std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;
-  CLEYERA::Base::Win::WinApp* winApp_ = nullptr;
-  std::shared_ptr<CLEYERA::Base::DX::DXCommon> dxCommon_ = nullptr;
+ private:
+   CLEYERA::Base::Win::WinApp *winApp_ = nullptr;
+   CLEYERA::Utility::ImGuiManager *imGuiManager_ = nullptr;
+
+   std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;
+
+   std::shared_ptr<CLEYERA::Base::DX::DXCommon> dxCommon_ = nullptr;
+   std::shared_ptr<CLEYERA::Utility::ImGuiCommon> imGuiCommon_ = nullptr;
 };

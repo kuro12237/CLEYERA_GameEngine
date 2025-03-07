@@ -34,7 +34,7 @@ template <typename T> class DXBufferResource {
    }
 
    void RegisterSRV(D3D12_SHADER_RESOURCE_VIEW_DESC desc) {
-      srvHandleIndex_ = descripterManager_->SRVAddPtr(buffer_.Get(), desc);
+      srvHandleIndex_ = descripterManager_->SRVAddCreatePtr(buffer_.Get(), desc);
       isSrvUse_ = true;
    }
 

@@ -1,15 +1,13 @@
 #pragma once
-#include"../../pch/Pch.h"
+#include "../../pch/Pch.h"
 
 namespace CLEYERA {
 namespace Base {
 namespace DX {
 
-
 class DXRTVDescripter;
 class DXSRVDescripter;
 class DXDSVDescripter;
-
 
 /// <summary>
 /// でスクリプタ管理クラス
@@ -24,12 +22,21 @@ class DXDescripterManager {
    size_t RTVAddPtr(ID3D12Resource *buf, D3D12_RENDER_TARGET_VIEW_DESC desc);
    void RTVRelease(size_t index);
 
-   size_t SRVAddPtr(ID3D12Resource*buf,D3D12_SHADER_RESOURCE_VIEW_DESC desc);
-   size_t UAVAddPtr(ID3D12Resource*buf,D3D12_UNORDERED_ACCESS_VIEW_DESC desc);
+   size_t SRVAddPtr();
+   size_t SRVAddCreatePtr(ID3D12Resource *buf, D3D12_SHADER_RESOURCE_VIEW_DESC desc);
+   size_t UAVAddPtr(ID3D12Resource *buf, D3D12_UNORDERED_ACCESS_VIEW_DESC desc);
    void SRV_UAVReleace(size_t index);
 
    size_t DSVAddPtr(ID3D12Resource *buf, D3D12_DEPTH_STENCIL_VIEW_DESC desc);
    void DSVRelease(size_t index);
+
+#pragma region Get
+
+   std::weak_ptr<DXSRVDescripter> GetSRV() { return srvDescripter_; }
+   D3D12_CPU_DESCRIPTOR_HANDLE GetSRVCPUHandle(size_t index);
+   D3D12_GPU_DESCRIPTOR_HANDLE GetSRVGPUHandle(size_t index);
+
+#pragma endregion
 
 #pragma region Set
    void SetRTVDescripter(std::weak_ptr<DXRTVDescripter> rtv) { rtvDescripter_ = rtv; }

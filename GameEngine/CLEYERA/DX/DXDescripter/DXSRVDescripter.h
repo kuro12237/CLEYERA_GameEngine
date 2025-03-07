@@ -16,7 +16,10 @@ class DXSRVDescripter : public DXDescripterComponent {
    void Create() override;
 
    [[nodiscard]]
-   size_t AddSRVPtr(ID3D12Resource *buf, D3D12_SHADER_RESOURCE_VIEW_DESC desc);
+   size_t AddSRVPtr();
+
+   [[nodiscard]]
+   size_t AddSRVCreatePtr(ID3D12Resource *buf, D3D12_SHADER_RESOURCE_VIEW_DESC desc);
 
    [[nodiscard]]
    size_t AddUAVPtr(ID3D12Resource *buf, D3D12_UNORDERED_ACCESS_VIEW_DESC desc);

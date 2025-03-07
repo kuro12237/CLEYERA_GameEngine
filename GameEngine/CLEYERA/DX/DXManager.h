@@ -83,7 +83,6 @@ public:
   }
 
   std::weak_ptr<DXSwapChain> GetSwapChain() { return swapChain_.lock(); }
-
 #pragma endregion
 
 private:

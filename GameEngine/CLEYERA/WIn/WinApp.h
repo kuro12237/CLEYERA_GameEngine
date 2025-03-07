@@ -1,5 +1,9 @@
 #pragma once
 #include "../SystemLogManager/ISystemObserver.h"
+#include"../pch/Pch.h"
+
+
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 namespace CLEYERA {
 namespace Base {

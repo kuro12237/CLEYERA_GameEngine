@@ -2,10 +2,9 @@
 #include "../DXBufferResource/DXBufferResource.h"
 #include "../DXComponent.h"
 
-#include"../DXCommand/DXCommandManager.h"
+#include "../DXCommand/DXCommandManager.h"
 
 #include "../DXDescripter/DXDescripterManager.h"
-
 
 namespace CLEYERA {
 namespace Base {
@@ -30,7 +29,11 @@ class DXSwapChain : public DXComponent {
 #pragma region Get
 
    IDXGISwapChain4 *GetSwapChain() { return swapChain_.Get(); }
-   ID3D12Resource *GetSwapChainResource(size_t index)const { return resources_[index]->GetResource(); }
+
+   DXGI_SWAP_CHAIN_DESC1 GetSwapChainDesc() { return swapChainDesc_; }
+   D3D12_RENDER_TARGET_VIEW_DESC GetRTVDesc() { return rtvDesc_; }
+
+   ID3D12Resource *GetSwapChainResource(size_t index) const { return resources_[index]->GetResource(); }
    size_t GetSwapChainCount() { return swapChainCount_; }
 
 #pragma endregion
@@ -45,15 +48,12 @@ class DXSwapChain : public DXComponent {
    DXGI_SWAP_CHAIN_DESC1 swapChainDesc_{};
    ComPtr<IDXGISwapChain4> swapChain_ = nullptr;
 
-
    std::array<std::unique_ptr<DXBufferResource<uint32_t>>, swapChainCount_> resources_;
 
    DXCommandManager *commandManager_ = nullptr;
    DXDescripterManager *descripterManager_ = nullptr;
 
-   
-  D3D12_RENDER_TARGET_VIEW_DESC rtvDesc_{};
-
+   D3D12_RENDER_TARGET_VIEW_DESC rtvDesc_{};
 };
 } // namespace DX
 } // namespace Base

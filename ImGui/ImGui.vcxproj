@@ -21,32 +21,32 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{def99086-66ff-4484-9f12-2bdc40a448f3}</ProjectGuid>
-    <RootNamespace>GameEngine</RootNamespace>
+    <ProjectGuid>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</ProjectGuid>
+    <RootNamespace>ImGui</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -73,21 +73,17 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\generated\obj\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)..\ImGui\;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\generated\obj\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -97,11 +93,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -109,19 +106,17 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>$(ProjectDir)..\externals\math\lib\Debug</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,89 +125,37 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MinSpace</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CLEYERA\CLEYERA.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXBarrier\DXBarrier.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandAllocator.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandList.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandManager.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXCommon.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDepth\DXDepth.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterManager.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXFence\DXFence.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
-    <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
-    <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
-    <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
-    <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
-    <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
-    <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_dx12.h" />
+    <ClInclude Include="imgui_impl_win32.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CLEYERA\3d\Vertex\Vertex.h" />
-    <ClInclude Include="CLEYERA\CLEYERA.h" />
-    <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />
-    <ClInclude Include="CLEYERA\DX\DXBarrier\DXBarrier.h" />
-    <ClInclude Include="CLEYERA\DX\DXBufferResource\DXBufferResource.h" />
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandAllocator.h" />
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandList.h" />
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandManager.h" />
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
-    <ClInclude Include="CLEYERA\DX\DXCommon.h" />
-    <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h" />
-    <ClInclude Include="CLEYERA\DX\DXDepth\DXDepth.h" />
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterManager.h" />
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.h" />
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.h" />
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.h" />
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.h" />
-    <ClInclude Include="CLEYERA\DX\DXDevice\DXDevice.h" />
-    <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h" />
-    <ClInclude Include="CLEYERA\DX\DXFence\DXFence.h" />
-    <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />
-    <ClInclude Include="CLEYERA\DX\DXManager.h" />
-    <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h" />
-    <ClInclude Include="CLEYERA\pch\Pch.h" />
-    <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h" />
-    <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h" />
-    <ClInclude Include="CLEYERA\DX\DXComponent.h" />
-    <ClInclude Include="CLEYERA\SystemLogManager\SystemLogManager.h" />
-    <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiCommon.h" />
-    <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiManager.h" />
-    <ClInclude Include="CLEYERA\WIn\WinApp.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".clang-format" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
-      <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
-    </ProjectReference>
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_dx12.cpp" />
+    <ClCompile Include="imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

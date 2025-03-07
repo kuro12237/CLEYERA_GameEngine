@@ -11,10 +11,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
   std::unique_ptr<Engine> engine_ = std::make_unique<Engine>();
   engine_->Init();
 
+  CLEYERA::Utility::ImGuiManager *imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
+  CLEYERA::Base::DX::DXCommandManager *commandManager = CLEYERA::Base::DX::DXCommandManager::GetInstace();
+  CLEYERA::Base::Win::WinApp *winApp = CLEYERA::Base::Win::WinApp::GetInstance();
+
+
   while (CLEYERA::Base::Win::WinApp::GetInstance()->WinMsg())
   {
     engine_->Begin();
 
+    imGuiManager->Begin();
+
+    commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+    commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+
+    ImGui::ShowDemoWindow();
+
+    std::vector<ID3D12DescriptorHeap *> desc = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};
+    commandManager->SetDescripterHeap(desc);
+
+    imGuiManager->Render();
 
     engine_->End();
 
