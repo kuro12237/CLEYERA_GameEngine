@@ -11,22 +11,22 @@ struct Vec2 {
 
   void Init() { x = 0.0f, y = 0.0f; }
 
-  // 加算オペレーター
+  // 蜉邂励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec2 operator+(const Vec2 &other) const {
     return Vec2{x + other.x, y + other.y};
   }
 
-  // 減算オペレーター
+  // 貂帷ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec2 operator-(const Vec2 &other) const {
     return Vec2{x - other.x, y - other.y};
   }
 
-  // 乗算オペレーター
+  // 荵礼ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec2 operator*(const Vec2 &other) const {
     return Vec2{x * other.x, y * other.y};
   }
 
-  // 割り算オペレーター
+  // 蜑ｲ繧顔ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec2 operator/(const Vec2 &other) const {
     return Vec2{x / other.x, y / other.y};
   }
@@ -39,22 +39,22 @@ struct Vec3 {
   float x = 0.0f, y = 0.0f, z = 0.0f;
 
   void Init() { x = 0.0f, y = 0.0f, z = 0.0f; }
-  // 加算オペレーター
+  // 蜉邂励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec3 operator+(const Vec3 &other) const {
     return Vec3{x + other.x, y + other.y, z + other.z};
   }
 
-  // 減算オペレーター
+  // 貂帷ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec3 operator-(const Vec3 &other) const {
     return Vec3{x - other.x, y - other.y, z - other.z};
   }
 
-  // 乗算オペレーター
+  // 荵礼ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec3 operator*(const Vec3 &other) const {
     return Vec3{x * other.x, y * other.y, z * other.z};
   }
 
-  // 割り算オペレーター
+  // 蜑ｲ繧顔ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec3 operator/(const Vec3 &other) const {
     return Vec3{x / other.x, y / other.y, z / other.z};
   }
@@ -68,22 +68,22 @@ struct Vec4 {
 
   void Init() { x = 0.0f, y = 0.0f, z = 0.0f, w = 0.0f; }
 
-  // 加算オペレーター
+  // 蜉邂励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec4 operator+(const Vec4 &other) const {
     return Vec4{x + other.x, y + other.y, z + other.z, w + other.w};
   }
 
-  // 減算オペレーター
+  // 貂帷ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec4 operator-(const Vec4 &other) const {
     return Vec4{x - other.x, y - other.y, z - other.z, w - other.w};
   }
 
-  // 乗算オペレーター
+  // 荵礼ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec4 operator*(const Vec4 &other) const {
     return Vec4{x * other.x, y * other.y, z * other.z, w * other.w};
   }
 
-  // 割り算オペレーター
+  // 蜑ｲ繧顔ｮ励が繝壹Ξ繝ｼ繧ｿ繝ｼ
   Vec4 operator/(const Vec4 &other) const {
     return Vec4{x / other.x, y / other.y, z / other.z, w / other.w};
   }

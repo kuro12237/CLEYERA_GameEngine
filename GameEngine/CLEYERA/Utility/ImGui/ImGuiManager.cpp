@@ -17,8 +17,8 @@ void ImGuiManager::Render() { common_.lock()->Render(); }
 
 void ImGuiManager::BeginParamsList() {
 
-   ImGui::SetNextWindowPos(ImVec2(768, 0), ImGuiCond_Always);
-   ImGui::SetNextWindowSize(ImVec2(512, 720), ImGuiCond_Always);
+   ImGui::SetNextWindowPos(ImVec2(1280-320, 0), ImGuiCond_Always);
+   ImGui::SetNextWindowSize(ImVec2(320, 720), ImGuiCond_Always);
    ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.08f, 0.08f, 0.08f, 1.0f));
    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.02f, 0.02f, 0.02f, 1.0f));
    ImGui::Begin("Params", nullptr, ImGuiWindowFlags_NoCollapse);

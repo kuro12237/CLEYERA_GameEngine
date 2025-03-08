@@ -5,6 +5,8 @@
 
 #include "Utility/ImGui/ImGuiManager.h"
 
+#include"3d/Model3d.h"
+
 class Engine {
  public:
    Engine() {};

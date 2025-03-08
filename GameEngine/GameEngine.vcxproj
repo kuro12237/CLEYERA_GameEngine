@@ -122,6 +122,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(ProjectDir)..\externals\math\lib\Debug</ImportLibrary>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,6 +146,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CLEYERA\3d\Model3d.cpp" />
+    <ClCompile Include="CLEYERA\3d\Vertex\Vertex.cpp" />
     <ClCompile Include="CLEYERA\CLEYERA.cpp" />
     <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp" />
     <ClCompile Include="CLEYERA\DX\DXBarrier\DXBarrier.cpp" />
@@ -174,6 +177,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLEYERA\3d\Model3d.h" />
     <ClInclude Include="CLEYERA\3d\Vertex\Vertex.h" />
     <ClInclude Include="CLEYERA\CLEYERA.h" />
     <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />

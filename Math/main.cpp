@@ -3,6 +3,6 @@
 #include"math/MathInclude.h"
 
 /// <summary>
-/// ƒƒCƒ“ŠÖ”
+/// ãƒ¡ã‚¤ãƒ³é–¢æ•°
 /// </summary>
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) { return 0; }

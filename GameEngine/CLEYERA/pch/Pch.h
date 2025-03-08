@@ -70,3 +70,11 @@
 #include <imgui_impl_win32.h>
 
 #pragma endregion
+
+
+#pragma region Math
+
+#include"math/MathInclude.h"
+#pragma comment(lib, "math.lib")
+
+#pragma endregion
