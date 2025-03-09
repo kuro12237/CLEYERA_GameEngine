@@ -28,9 +28,9 @@
 #include <cstring>
 #include <fstream>
 #include <iomanip>
+#include <span>
 #include <sstream>
 #include <string>
-#include <span>
 #include <type_traits>
 
 #include <iostream>
@@ -41,14 +41,16 @@
 #pragma region DirectX
 
 #include <d3d12.h>
+#include <d3d12shader.h>
 #include <d3dcompiler.h>
 #include <dxcapi.h>
+#include <dxgi1_5.h>
 #include <dxgi1_6.h>
 #include <dxgidebug.h>
-#include <wrl.h>
+
 #pragma comment(lib, "d3dcompiler.lib")
 
-#define DIRECTINPUT_VERSION 0x0800 
+#define DIRECTINPUT_VERSION 0x0800
 #include <Xinput.h>
 #include <dinput.h>
 #pragma comment(lib, "xinput.lib")
@@ -61,9 +63,7 @@
 
 #pragma endregion
 
-
 #pragma region ImGui
-
 
 #include <imgui.h>
 #include <imgui_impl_dx12.h>
@@ -71,10 +71,9 @@
 
 #pragma endregion
 
-
 #pragma region Math
 
-#include"math/MathInclude.h"
+#include "math/MathInclude.h"
 #pragma comment(lib, "math.lib")
 
 #pragma endregion

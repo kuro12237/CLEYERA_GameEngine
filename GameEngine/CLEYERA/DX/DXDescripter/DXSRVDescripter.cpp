@@ -58,7 +58,7 @@ size_t CLEYERA::Base::DX::DXSRVDescripter::AddUAVPtr(ID3D12Resource *buf, D3D12_
    cpuHandles_[handleIndex_].ptr = handleCPU.ptr + size * handleIndex_;
    gpuHandles_[handleIndex_].ptr = handleGPU.ptr + size * handleIndex_;
 
-   device_->CreateUnorderedAccessView(buf,nullptr, &desc, cpuHandles_[handleIndex_]);
+   device_->CreateUnorderedAccessView(buf, nullptr, &desc, cpuHandles_[handleIndex_]);
    return newHandle;
 }
 
@@ -85,6 +85,10 @@ size_t CLEYERA::Base::DX::DXSRVDescripter::AddSRVCreatePtr(ID3D12Resource *buf, 
    cpuHandles_[handleIndex_].ptr = handleCPU.ptr + size * handleIndex_;
    gpuHandles_[handleIndex_].ptr = handleGPU.ptr + size * handleIndex_;
 
-   device_->CreateShaderResourceView(buf, &desc, cpuHandles_[handleIndex_]);
+   if (desc.ViewDimension == D3D12_SRV_DIMENSION_RAYTRACING_ACCELERATION_STRUCTURE) {
+      device_->CreateShaderResourceView(nullptr, &desc, cpuHandles_[handleIndex_]);
+   } else {
+      device_->CreateShaderResourceView(buf, &desc, cpuHandles_[handleIndex_]);
+   }
    return newHandle;
 }

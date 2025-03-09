@@ -98,7 +98,11 @@ void DXCommon::Create() {
 
    commandList_->Create();
    dxManager_->SetCommandList(commandList_);
+
    DXCommandManager::GetInstace()->SetCommandList(commandList_->GetCommandList());
+   DXCommandManager::GetInstace()->SetCommandQueue(commandQueue_->GetCommandQueue());
+   DXCommandManager::GetInstace()->SetCommandAllocator(commandAllcator_->GetCommandAllocator());
+
    DXCommandManager::GetInstace()->Init();
 
    /// descripterを作る

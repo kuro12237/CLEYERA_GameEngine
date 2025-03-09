@@ -144,10 +144,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="math\MathInclude.h" />
+    <ClInclude Include="math\Matrix\MatFunc.h" />
+    <ClInclude Include="math\Matrix\SMatrix.h" />
     <ClInclude Include="math\Vector\SVector.h" />
+    <ClInclude Include="math\Vector\VectorFunc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="math\Matrix\MatFunc.cpp" />
+    <ClCompile Include="math\Matrix\SMatrix.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

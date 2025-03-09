@@ -42,7 +42,7 @@ template <typename T> class DXBufferResource {
       isSrvUse_ = true;
    }
 
-   void RegisterUAV(D3D12_SHADER_RESOURCE_VIEW_DESC desc) {
+   void RegisterUAV(D3D12_UNORDERED_ACCESS_VIEW_DESC desc) {
       srvHandleIndex_ = descripterManager_->UAVAddPtr(buffer_.Get(), desc);
       isSrvUse_ = true;
    }
@@ -70,6 +70,10 @@ template <typename T> class DXBufferResource {
 #pragma endregion
 
    void CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE *value);
+   void DFCreateBuffer(size_t size, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
+   void CreateTexture2d(Math::Vector::Vec2 size,DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
+
+   void WriteMemory(const void *pData, size_t dataSize);
 
  private:
    size_t instanceNum_ = 1;
@@ -113,6 +117,76 @@ template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_P
 
    HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, &pDesc, state, value, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
+}
+
+template <typename T> inline void DXBufferResource<T>::DFCreateBuffer(size_t size, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType) {
+
+   D3D12_HEAP_PROPERTIES heapProps{};
+   if (heapType == D3D12_HEAP_TYPE_DEFAULT) {
+      heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_DEFAULT, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
+   }
+   if (heapType == D3D12_HEAP_TYPE_UPLOAD) {
+      heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_UPLOAD, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
+   }
+
+   HRESULT hr;
+   D3D12_RESOURCE_DESC resDesc{};
+   resDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+   resDesc.Alignment = 0;
+   resDesc.Width = size;
+
+   resDesc.Height = 1;
+   resDesc.DepthOrArraySize = 1;
+   resDesc.MipLevels = 1;
+   resDesc.Format = DXGI_FORMAT_UNKNOWN;
+   resDesc.SampleDesc = {1, 0};
+   resDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+   resDesc.Flags = flags;
+
+   hr = device_->CreateCommittedResource(&heapProps, D3D12_HEAP_FLAG_NONE, &resDesc, initialState, nullptr, IID_PPV_ARGS(buffer_.ReleaseAndGetAddressOf()));
+   assert(SUCCEEDED(hr));
+}
+
+template <typename T> inline void DXBufferResource<T>::CreateTexture2d(Math::Vector::Vec2 size, DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType) {
+
+     D3D12_HEAP_PROPERTIES heapProps{};
+   if (heapType == D3D12_HEAP_TYPE_DEFAULT) {
+      heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_DEFAULT, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
+   }
+   if (heapType == D3D12_HEAP_TYPE_UPLOAD) {
+      heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_UPLOAD, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
+   }
+   HRESULT hr;
+   D3D12_RESOURCE_DESC resDesc{};
+   resDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+   resDesc.Alignment = 0;
+   resDesc.Width = static_cast<UINT>(size.x);
+   resDesc.Height = static_cast<UINT>(size.y);
+   resDesc.DepthOrArraySize = 1;
+   resDesc.MipLevels = 1;
+   resDesc.Format = format;
+   resDesc.SampleDesc = {1, 0};
+   resDesc.Layout = D3D12_TEXTURE_LAYOUT_UNKNOWN;
+   resDesc.Flags = flags;
+
+   hr = device_->CreateCommittedResource(&heapProps, D3D12_HEAP_FLAG_NONE, &resDesc, initialState, nullptr, IID_PPV_ARGS(&buffer_));
+   assert(SUCCEEDED(hr));
+
+}
+
+template <typename T> inline void DXBufferResource<T>::WriteMemory(const void *pData, size_t dataSize) {
+
+   if (buffer_ == nullptr) {
+      assert(true);
+      return;
+   }
+   void *mapped = nullptr;
+   D3D12_RANGE range{0, dataSize};
+   HRESULT hr = buffer_->Map(0, &range, &mapped);
+   if (SUCCEEDED(hr)) {
+      memcpy(mapped, pData, dataSize);
+      buffer_->Unmap(0, &range);
+   }
 }
 
 } // namespace DX

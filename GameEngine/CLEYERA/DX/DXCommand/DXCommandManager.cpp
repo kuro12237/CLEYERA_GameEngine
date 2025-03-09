@@ -9,7 +9,10 @@ DXCommandManager *DXCommandManager::GetInstace() {
    return &instance;
 }
 
-void CLEYERA::Base::DX::DXCommandManager::Init() { list_ = DXManager::GetInstance()->GetCommandList(); }
+void CLEYERA::Base::DX::DXCommandManager::Init() {
+   list_ = DXManager::GetInstance()->GetCommandList();
+   commandQueue_ = DXManager::GetInstance()->GetCommandQueue();
+}
 
 void CLEYERA::Base::DX::DXCommandManager::OMRenderTargets(const std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> &rtvHandles, const D3D12_CPU_DESCRIPTOR_HANDLE *dsvHandle) {
 
@@ -56,8 +59,56 @@ void CLEYERA::Base::DX::DXCommandManager::SetScissorCommand(int32_t width, int32
    list_->RSSetScissorRects(1, &scissorRect);
 }
 
-void CLEYERA::Base::DX::DXCommandManager::SetDescripterHeap(const std::vector<ID3D12DescriptorHeap *> desc) {
+void CLEYERA::Base::DX::DXCommandManager::SetDescripterHeap(const std::vector<ID3D12DescriptorHeap *> desc) { list_->SetDescriptorHeaps(static_cast<UINT>(desc.size()), desc.data()); }
 
-    list_->SetDescriptorHeaps(static_cast<UINT>(desc.size()), desc.data());
+void CLEYERA::Base::DX::DXCommandManager::CommandClose() {
 
+   HRESULT hr = list_->Close();
+   assert(SUCCEEDED(hr));
+
+   ID3D12CommandList *commandLists[] = {list_};
+   commandQueue_->ExecuteCommandLists(1, commandLists);
+
+   UINT64 fenceValue = 1;
+
+   ID3D12Device5 *device = DXManager::GetInstance()->GetDevice();
+
+   ComPtr<ID3D12Fence1> fence = nullptr;
+   device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(fence.ReleaseAndGetAddressOf()));
+
+   // Event
+   commandQueue_->Signal(fence.Get(), fenceValue);
+
+   if (fence->GetCompletedValue() < fenceValue) {
+      HANDLE fenceEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+      assert(fenceEvent != nullptr);
+      fence->SetEventOnCompletion(fenceValue, fenceEvent);
+      WaitForSingleObject(fenceEvent, INFINITE);
+      CloseHandle(fenceEvent);
+   }
+
+   // コマンドリセット
+   hr = allocator_->Reset();
+   assert(SUCCEEDED(hr));
+   hr = list_->Reset(allocator_, nullptr);
+   assert(SUCCEEDED(hr));
+}
+
+void CLEYERA::Base::DX::DXCommandManager::CommandExecute() {
+   if (list_) {
+
+      ID3D12CommandList *commandLists[] = {list_};
+      commandQueue_->ExecuteCommandLists(1, commandLists);
+   }
+}
+
+void CLEYERA::Base::DX::DXCommandManager::WaitForIdleGpu() {
+   ID3D12Device5 *device = DXManager::GetInstance()->GetDevice();
+
+   ComPtr<ID3D12Fence1> fence;
+   device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(fence.ReleaseAndGetAddressOf()));
+   UINT64 fenceValue = 1;
+   fence->SetEventOnCompletion(fenceValue, waitEvent);
+   commandQueue_->Signal(fence.Get(), fenceValue);
+   WaitForSingleObject(waitEvent, INFINITE);
 }

@@ -17,12 +17,12 @@ public:
   void End();
 
 #pragma region Get
-  ID3D12GraphicsCommandList *GetCommandList() { return commandlist_.Get(); }
+  ID3D12GraphicsCommandList4 *GetCommandList() { return commandlist_.Get(); }
 
 #pragma endregion
 
 private:
-  ComPtr<ID3D12GraphicsCommandList> commandlist_;
+  ComPtr<ID3D12GraphicsCommandList4> commandlist_;
 };
 } // namespace DX
 } // namespace Base

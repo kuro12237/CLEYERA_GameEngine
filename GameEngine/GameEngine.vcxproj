@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -146,7 +146,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
+    <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
     <ClCompile Include="CLEYERA\3d\Model3d.cpp" />
+    <ClCompile Include="CLEYERA\3d\OutPutRay\OutPutRay.cpp" />
+    <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp" />
     <ClCompile Include="CLEYERA\3d\Vertex\Vertex.cpp" />
     <ClCompile Include="CLEYERA\CLEYERA.cpp" />
     <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp" />
@@ -177,7 +181,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
+    <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
+    <ClInclude Include="CLEYERA\3d\OutPutRay\OutPutRay.h" />
+    <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />
     <ClInclude Include="CLEYERA\3d\Vertex\Vertex.h" />
     <ClInclude Include="CLEYERA\CLEYERA.h" />
     <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />

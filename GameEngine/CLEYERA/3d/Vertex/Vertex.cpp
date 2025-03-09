@@ -13,7 +13,7 @@ void CLEYERA::Model3d::system::Vertex::Init() {
 
    buf_->Init(vertexData_.size());
 
-   size_t size = sizeof(SVertex) * vertexData_.size();
+   bytesSize_ = static_cast<uint32_t>(sizeof(SVertex) * vertexData_.size());
 
    D3D12_HEAP_PROPERTIES heapParam;
 
@@ -22,7 +22,7 @@ void CLEYERA::Model3d::system::Vertex::Init() {
    D3D12_RESOURCE_DESC resDesc{};
    resDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
    resDesc.Alignment = 0;
-   resDesc.Width = size;
+   resDesc.Width = bytesSize_;
    resDesc.Height = 1;
    resDesc.DepthOrArraySize = 1;
    resDesc.MipLevels = 1;
@@ -35,4 +35,11 @@ void CLEYERA::Model3d::system::Vertex::Init() {
 
    buf_->Map();
    buf_->SetParam(vertexData_);
+}
+
+void CLEYERA::Model3d::system::Vertex::Update() {
+
+   buf_->Map();
+   buf_->SetParam(vertexData_);
+   buf_->UnMap();
 }

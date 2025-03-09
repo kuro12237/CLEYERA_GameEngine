@@ -72,7 +72,7 @@ public:
 
   ID3D12InfoQueue *GetInfoQueue() { return infoQueue_.lock()->GetinfoQueue(); }
 
-  ID3D12GraphicsCommandList *GetCommandList() {
+  ID3D12GraphicsCommandList4 *GetCommandList() {
     return commandList_.lock()->GetCommandList();
   }
   ID3D12CommandQueue *GetCommandQueue() {
