@@ -14,10 +14,19 @@ class OutPutRay {
 
    void Init();
 
+   void Begin();
+
+   void End();
+
+   void BufferBind();
+
+#pragma region Get
+
+   ID3D12Resource *GetResource() { return buf_->GetResource(); }
+#pragma endregion
+
  private:
-
    std::unique_ptr<Base::DX::DXBufferResource<int32_t>> buf_ = nullptr;
-
 };
 
 } // namespace system

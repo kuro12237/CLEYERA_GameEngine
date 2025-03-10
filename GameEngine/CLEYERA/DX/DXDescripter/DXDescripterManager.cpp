@@ -21,3 +21,10 @@ void CLEYERA::Base::DX::DXDescripterManager::DSVRelease(size_t index) { dsvDescr
 D3D12_CPU_DESCRIPTOR_HANDLE CLEYERA::Base::DX::DXDescripterManager::GetSRVCPUHandle(size_t index) { return srvDescripter_.lock()->GetCPUHandle(index); }
 
 D3D12_GPU_DESCRIPTOR_HANDLE CLEYERA::Base::DX::DXDescripterManager::GetSRVGPUHandle(size_t index) { return srvDescripter_.lock()->GetGPUHandle(index); }
+
+D3D12_CPU_DESCRIPTOR_HANDLE CLEYERA::Base::DX::DXDescripterManager::GetRTVCPUHandle(size_t index) { return rtvDescripter_.lock()->GetCPUHandle(index); }
+
+ID3D12Resource *CLEYERA::Base::DX::DXDescripterManager::GetRTVResource(size_t index) {
+   index;
+   return nullptr;
+}

@@ -4,7 +4,7 @@
 namespace Math::Matrix::Func {
 
 	/// <summary>
-	/// 3x4s—ñ’PˆÊs—ñ
+	/// 3x4è¡Œåˆ—å˜ä½è¡Œåˆ—
 	/// </summary>
 	/// <returns></returns>
 	Mat3x4 Identity3x4();

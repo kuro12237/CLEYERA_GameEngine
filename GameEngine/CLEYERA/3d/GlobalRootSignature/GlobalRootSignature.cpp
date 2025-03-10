@@ -41,3 +41,9 @@ void CLEYERA::Model3d::system::GlobalRootSignature::Init() {
    hr = device->CreateRootSignature(0, blob->GetBufferPointer(), blob->GetBufferSize(), IID_PPV_ARGS(rootSignature_.ReleaseAndGetAddressOf()));
    assert(SUCCEEDED(hr));
 }
+
+void CLEYERA::Model3d::system::GlobalRootSignature::Render() {
+
+   auto list = CLEYERA::Base::DX::DXCommandManager::GetInstace()->GetCommandList();
+   list->SetComputeRootSignature(rootSignature_.Get());
+}

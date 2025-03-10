@@ -30,6 +30,7 @@
 #include <iomanip>
 #include <span>
 #include <sstream>
+#include<filesystem>
 #include <string>
 #include <type_traits>
 
@@ -61,6 +62,7 @@
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dxcompiler.lib")
 
+using namespace Microsoft::WRL;
 #pragma endregion
 
 #pragma region ImGui

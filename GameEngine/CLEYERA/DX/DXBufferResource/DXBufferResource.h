@@ -1,6 +1,7 @@
 #pragma once
 #include "../../pch/Pch.h"
 
+#include "../DXCommand/DXCommandManager.h"
 #include "../DXDescripter/DXDescripterManager.h"
 
 namespace CLEYERA {
@@ -30,7 +31,11 @@ template <typename T> class DXBufferResource {
 
    void Map();
 
+   void Map(void **p);
+
    void UnMap();
+
+   void ComputeRootDescripterTable(UINT num);
 
    void RegisterRTV(D3D12_RENDER_TARGET_VIEW_DESC desc) {
       rtvHandleIndex_ = descripterManager_->RTVAddPtr(buffer_.Get(), desc);
@@ -71,7 +76,7 @@ template <typename T> class DXBufferResource {
 
    void CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE *value);
    void DFCreateBuffer(size_t size, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
-   void CreateTexture2d(Math::Vector::Vec2 size,DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
+   void CreateTexture2d(Math::Vector::Vec2 size, DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
 
    void WriteMemory(const void *pData, size_t dataSize);
 
@@ -103,7 +108,17 @@ template <typename T> inline void DXBufferResource<T>::Update() {}
 
 template <typename T> inline void DXBufferResource<T>::Map() { buffer_->Map(0, nullptr, reinterpret_cast<void **>(&this->param_ptr_)); }
 
+template <typename T> inline void DXBufferResource<T>::Map(void **p) { buffer_->Map(0, nullptr, p); }
+
 template <typename T> inline void DXBufferResource<T>::UnMap() {}
+
+template <typename T> inline void DXBufferResource<T>::ComputeRootDescripterTable(UINT num) {
+
+   
+   auto list = Base::DX::DXCommandManager::GetInstace();
+   D3D12_GPU_DESCRIPTOR_HANDLE handle = descripterManager_->GetSRVGPUHandle(srvHandleIndex_);
+   list->ComputeDescripterTable(num, handle);
+}
 
 template <typename T> inline void DXBufferResource<T>::SetParam(std::vector<T> param) {
 
@@ -149,7 +164,7 @@ template <typename T> inline void DXBufferResource<T>::DFCreateBuffer(size_t siz
 
 template <typename T> inline void DXBufferResource<T>::CreateTexture2d(Math::Vector::Vec2 size, DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType) {
 
-     D3D12_HEAP_PROPERTIES heapProps{};
+   D3D12_HEAP_PROPERTIES heapProps{};
    if (heapType == D3D12_HEAP_TYPE_DEFAULT) {
       heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_DEFAULT, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
    }
@@ -171,7 +186,6 @@ template <typename T> inline void DXBufferResource<T>::CreateTexture2d(Math::Vec
 
    hr = device_->CreateCommittedResource(&heapProps, D3D12_HEAP_FLAG_NONE, &resDesc, initialState, nullptr, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
-
 }
 
 template <typename T> inline void DXBufferResource<T>::WriteMemory(const void *pData, size_t dataSize) {

@@ -112,3 +112,11 @@ void CLEYERA::Base::DX::DXCommandManager::WaitForIdleGpu() {
    commandQueue_->Signal(fence.Get(), fenceValue);
    WaitForSingleObject(waitEvent, INFINITE);
 }
+
+void CLEYERA::Base::DX::DXCommandManager::SetDescripter(std::vector<ID3D12DescriptorHeap *> desc) { list_->SetDescriptorHeaps(UINT(desc.size()), desc.data()); }
+
+void CLEYERA::Base::DX::DXCommandManager::Barrier(const D3D12_RESOURCE_BARRIER &barrier) { list_->ResourceBarrier(1, &barrier); }
+
+void CLEYERA::Base::DX::DXCommandManager::ComputeRootSignature(ID3D12RootSignature *root) { list_->SetComputeRootSignature(root); }
+
+void CLEYERA::Base::DX::DXCommandManager::ComputeDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle) { list_->SetComputeRootDescriptorTable(num, handle); }

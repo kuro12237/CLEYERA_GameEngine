@@ -150,6 +150,8 @@
     <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
     <ClCompile Include="CLEYERA\3d\Model3d.cpp" />
     <ClCompile Include="CLEYERA\3d\OutPutRay\OutPutRay.cpp" />
+    <ClCompile Include="CLEYERA\3d\ShaderTable\ShaderTable.cpp" />
+    <ClCompile Include="CLEYERA\3d\StateObject\StateObject.cpp" />
     <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp" />
     <ClCompile Include="CLEYERA\3d\Vertex\Vertex.cpp" />
     <ClCompile Include="CLEYERA\CLEYERA.cpp" />
@@ -173,6 +175,7 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
@@ -185,6 +188,8 @@
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
     <ClInclude Include="CLEYERA\3d\OutPutRay\OutPutRay.h" />
+    <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
+    <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
     <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />
     <ClInclude Include="CLEYERA\3d\Vertex\Vertex.h" />
     <ClInclude Include="CLEYERA\CLEYERA.h" />
@@ -209,6 +214,7 @@
     <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXManager.h" />
     <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderManager.h" />
     <ClInclude Include="CLEYERA\pch\Pch.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h" />
@@ -225,6 +231,14 @@
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Shaders\triangleShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Library</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.6</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).dxlib</ObjectFileOutput>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

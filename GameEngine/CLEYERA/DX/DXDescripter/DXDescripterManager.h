@@ -35,6 +35,10 @@ class DXDescripterManager {
    std::weak_ptr<DXSRVDescripter> GetSRV() { return srvDescripter_; }
    D3D12_CPU_DESCRIPTOR_HANDLE GetSRVCPUHandle(size_t index);
    D3D12_GPU_DESCRIPTOR_HANDLE GetSRVGPUHandle(size_t index);
+   D3D12_CPU_DESCRIPTOR_HANDLE GetRTVCPUHandle(size_t index);
+   ID3D12Resource *GetRTVResource(size_t index);
+
+   D3D12_GPU_DESCRIPTOR_HANDLE GetRTVGPUHandle(size_t index);
 
 #pragma endregion
 

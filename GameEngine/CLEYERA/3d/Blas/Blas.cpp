@@ -13,7 +13,7 @@ void CLEYERA::Model3d::system::Blas::Init() {
    geomDesc.Triangles.VertexCount = static_cast<UINT>(paramCount_);
 
    D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC buildASDesc{};
-   auto &inputs = buildASDesc.Inputs; // D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS
+   auto &inputs = buildASDesc.Inputs; 
    inputs.Type = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL;
    inputs.DescsLayout = D3D12_ELEMENTS_LAYOUT_ARRAY;
    inputs.Flags = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_NONE;
@@ -31,7 +31,7 @@ void CLEYERA::Model3d::system::Blas::Init() {
 
    blasScratch->DFCreateBuffer(blasPrebuild.ResultDataMaxSizeInBytes, D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
 
-   // コマンドリストでリソースの状態を変更
+   // CommonからUAVに変更
    D3D12_RESOURCE_BARRIER barrier = {};
    barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
    barrier.Transition.pResource = blasScratch->GetResource();
@@ -47,11 +47,10 @@ void CLEYERA::Model3d::system::Blas::Init() {
    buf_->Init();
    buf_->DFCreateBuffer(blasPrebuild.ResultDataMaxSizeInBytes, D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_RAYTRACING_ACCELERATION_STRUCTURE, D3D12_HEAP_TYPE_DEFAULT);
 
-   // Acceleration Structure 構築.
+   // Acceleration Structure
    buildASDesc.ScratchAccelerationStructureData = blasScratch->GetResource()->GetGPUVirtualAddress();
    buildASDesc.DestAccelerationStructureData = buf_->GetResource()->GetGPUVirtualAddress();
 
-   // コマンドリストに積んで実行する.
 
    list->BuildRaytracingAccelerationStructure(&buildASDesc, 0, nullptr);
 

@@ -176,7 +176,7 @@ void CLEYERA::Base::DX::DXCommon::PreDraw() {
 
    barriers_[0]->SetBarrierType(0, D3D12_RESOURCE_BARRIER_TYPE_TRANSITION);
    barriers_[0]->SetBarrierFlag(0, D3D12_RESOURCE_BARRIER_FLAG_NONE);
-   barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+   barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_COPY_DEST);
    barriers_[0]->SetBuffer(swapChain_->GetSwapChainResource(backBufferIndex_));
    barriers_[0]->Barrier();
 
@@ -188,7 +188,7 @@ void CLEYERA::Base::DX::DXCommon::PreDraw() {
    DXCommandManager::GetInstace()->ClearDepthStencilView(depth, D3D12_CLEAR_FLAG_DEPTH);
 
    std::vector<float> clearColor = {0.1f, 0.25f, 0.5f, 1.0f};
-   DXCommandManager::GetInstace()->ClearRenderTargetView(rtvDescripter_->GetCPUHandle(backBufferIndex_), clearColor);
+   //DXCommandManager::GetInstace()->ClearRenderTargetView(rtvDescripter_->GetCPUHandle(backBufferIndex_), clearColor);
 }
 
 void CLEYERA::Base::DX::DXCommon::PostDraw() {
@@ -199,7 +199,7 @@ void CLEYERA::Base::DX::DXCommon::PostDraw() {
 
    IDXGISwapChain4 *swapChain = swapChain_->GetSwapChain();
 
-   barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+   barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_COPY_DEST, D3D12_RESOURCE_STATE_PRESENT);
    barriers_[0]->Barrier();
 
    HRESULT hr = commandList->Close();

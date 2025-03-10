@@ -28,6 +28,13 @@ class DXCommandManager {
 
    void WaitForIdleGpu();
 
+   void SetDescripter(std::vector<ID3D12DescriptorHeap*>desc);
+
+   void Barrier(const D3D12_RESOURCE_BARRIER& barrier);
+
+   void ComputeRootSignature(ID3D12RootSignature *root);
+   void ComputeDescripterTable(UINT num,D3D12_GPU_DESCRIPTOR_HANDLE handle);
+
 #pragma region Set
 
    void SetCommandList(ID3D12GraphicsCommandList4 *list) { list_ = list; }

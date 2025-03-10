@@ -14,6 +14,14 @@ class GlobalRootSignature {
 
    void Init();
 
+   void Render();
+
+   #pragma region Get
+   ID3D12RootSignature *GetRootSignature() { return rootSignature_.Get(); }
+
+#pragma endregion
+
+
  private:
    Microsoft::WRL::ComPtr<ID3D12RootSignature> rootSignature_;
 };

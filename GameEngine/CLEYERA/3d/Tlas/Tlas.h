@@ -16,6 +16,8 @@ class Tlas {
 
    void Init();
 
+   void BufferBind();
+
    #pragma region Set
 
    void SetBlas(ID3D12Resource *buf) { blas_ = buf; }
