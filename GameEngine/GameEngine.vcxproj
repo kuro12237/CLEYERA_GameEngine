@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\generated\obj\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)..\ImGui\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ImGui\;$(SolutionDir)App\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
@@ -137,6 +137,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -228,7 +229,7 @@
     <None Include=".clang-format" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
+    <ProjectReference Include="ImGui\ImGui.vcxproj">
       <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
     </ProjectReference>
   </ItemGroup>

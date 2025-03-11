@@ -8,13 +8,14 @@ void Math::Matrix::Mat3x4::Identity() {
 
 void Math::Matrix::Mat3x4::FromMat4x4(const Mat4x4 &mat) {
 
-  // ã3s‚Æ•½sˆÚ“®¬•ª‚ğƒRƒs[
+  // ä¸Š3è¡Œã¨å¹³è¡Œç§»å‹•æˆåˆ†ã‚’ã‚³ãƒ”ãƒ¼
   for (int i = 0; i < 3; ++i) {
     for (int j = 0; j < 4; ++j) {
       m[i][j] = mat.m[i][j];
     }
   }
 }
+
 void Math::Matrix::Mat4x4::Identity() {
   m[0][0] = 1, m[0][1] = 0, m[0][2] = 0, m[0][3] = 0;
   m[1][0] = 0, m[1][1] = 1, m[1][2] = 0, m[2][3] = 0;
@@ -119,5 +120,16 @@ Math::Matrix::Mat4x4 Math::Matrix::Mat4x4::Inverse() {
                     m[0][1] * m[1][0] * m[2][2] - m[0][0] * m[1][2] * m[2][1]) *
                    determinantRecp;
 
+  return result;
+}
+
+Math::Matrix::Mat4x4 Math::Matrix::Mat4x4::TransposeMatrix() {
+
+  Mat4x4 result{};
+  for (int row = 0; row < 4; ++row) {
+    for (int column = 0; column < 4; ++column) {
+      result.m[row][column] = m[column][row];
+    }
+  }
   return result;
 }

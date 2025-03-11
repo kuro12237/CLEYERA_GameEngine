@@ -1,5 +1,5 @@
 #pragma once
-#include<cassert>
+#include <cassert>
 
 namespace Math::Matrix {
 
@@ -20,6 +20,10 @@ struct Mat4x4 {
   /// </summary>
   Mat4x4 Inverse();
 
+  /// <summary>
+  /// 行列を転置する関数
+  /// </summary>
+  Mat4x4 TransposeMatrix();
 };
 
 /// <summary>
@@ -34,13 +38,10 @@ struct Mat3x4 {
   /// </summary>
   void Identity();
 
-
   /// <summary>
   /// 4x4からの変換
   /// </summary>
   void FromMat4x4(const Mat4x4 &mat);
-
-
 };
 
 } // namespace Math::Matrix
