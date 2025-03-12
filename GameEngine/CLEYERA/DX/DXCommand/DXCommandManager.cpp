@@ -120,3 +120,10 @@ void CLEYERA::Base::DX::DXCommandManager::Barrier(const D3D12_RESOURCE_BARRIER &
 void CLEYERA::Base::DX::DXCommandManager::ComputeRootSignature(ID3D12RootSignature *root) { list_->SetComputeRootSignature(root); }
 
 void CLEYERA::Base::DX::DXCommandManager::ComputeDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle) { list_->SetComputeRootDescriptorTable(num, handle); }
+
+void CLEYERA::Base::DX::DXCommandManager::CopyResource(ID3D12Resource *target, ID3D12Resource *source) {
+   if (list_) {
+
+      list_->CopyResource(target, source);
+   }
+}

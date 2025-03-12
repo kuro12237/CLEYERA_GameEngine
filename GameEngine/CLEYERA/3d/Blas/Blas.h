@@ -14,6 +14,8 @@ class Blas {
 
    void Init();
 
+   void Update();
+
    void SetSize(uint32_t size) { size_ = size; }
    void SetParamCount(size_t count) { paramCount_ = count; };
    void SetVertexBuf(ID3D12Resource *buf) { vertexbuf_ = buf; }

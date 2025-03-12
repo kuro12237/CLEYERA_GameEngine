@@ -25,7 +25,7 @@ class Vertex {
 
 #pragma region Get
 
-   std::vector<SVertex> GetVertexdata() const { return vertexData_; }
+   std::vector<SVertex> &GetVertexdata() { return vertexData_; }
    uint32_t GetByteSize() { return bytesSize_; }
    Base::DX::DXBufferResource<SVertex> *GetResource() { return buf_.get(); }
 

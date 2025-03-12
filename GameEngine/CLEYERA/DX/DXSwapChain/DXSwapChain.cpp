@@ -5,12 +5,13 @@ void CLEYERA::Base::DX::DXSwapChain::Create() {
 
    dxManager_ = DXManager::GetInstance();
    descripterManager_ = DXDescripterManager::GetInstance();
+   commandManager_ = DX::DXCommandManager::GetInstace();
 
    IDXGIFactory7 *factory = dxManager_->GetFactory();
    ID3D12CommandQueue *queue = dxManager_->GetCommandQueue();
 
    winApp_ = Win::WinApp::GetInstance();
-  
+
    HWND hwnd = winApp_->GetHWND();
 
    swapChainDesc_.Width = winApp_->GetKWindowWidth();
@@ -36,12 +37,14 @@ void CLEYERA::Base::DX::DXSwapChain::RegisterRTV() {
    /// ハンドルのぽいんたげっと
    for (size_t i = 0; i < this->swapChainCount_; i++) {
       resources_[i]->RegisterRTV(rtvDesc_);
-
    }
-
 }
 
-void CLEYERA::Base::DX::DXSwapChain::Begin() {}
+void CLEYERA::Base::DX::DXSwapChain::Begin() { backBufferIndex_ = swapChain_->GetCurrentBackBufferIndex(); }
+
+void CLEYERA::Base::DX::DXSwapChain::SwapChainResourceState(const D3D12_RESOURCE_BARRIER &barrier) { this->commandManager_->Barrier(barrier); }
+
+void CLEYERA::Base::DX::DXSwapChain::RTVCopyBuf(ID3D12Resource *buf) { commandManager_->CopyResource(resources_[backBufferIndex_]->GetResource(), buf); }
 
 void CLEYERA::Base::DX::DXSwapChain::CreateResources() {
 
@@ -58,6 +61,4 @@ void CLEYERA::Base::DX::DXSwapChain::CreateResources() {
 
       assert(SUCCEEDED(hr));
    }
-
-
 }

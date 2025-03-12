@@ -51,7 +51,6 @@ void CLEYERA::Model3d::system::Tlas::Init() {
    ID3D12GraphicsCommandList4 *list = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
    list->ResourceBarrier(1, &barrier);
 
-   // BLAS 用メモリ(バッファ)を確保.
    buf_ = std::make_unique<Base::DX::DXBufferResource<int32_t>>();
    buf_->SetDevice(device);
    buf_->Init();

@@ -41,9 +41,13 @@ void CLEYERA::Model3d::Model::Init() {
    commandManager->CommandClose();
 }
 
-void CLEYERA::Model3d::Model::Update() {}
+void CLEYERA::Model3d::Model::Update() { vertex_->Update();
+
+blas_->Update();
+}
 
 void CLEYERA::Model3d::Model::Render() {
+
 
    auto commandManager = Base::DX::DXCommandManager::GetInstace();
    auto list = commandManager->GetCommandList();
@@ -57,8 +61,11 @@ void CLEYERA::Model3d::Model::Render() {
 
    //outputRay_->Begin();
 
+   // レイトレーシングを開始.
    //ルートシグネチャセット
    globalrootsignature_->Render();
+
+   list->SetPipelineState1(stateObject_->GetStateObject().Get());
 
    //tlasのセット
    tlas_->BufferBind();
@@ -66,14 +73,20 @@ void CLEYERA::Model3d::Model::Render() {
    //outputのセット
    outputRay_->BufferBind();
 
-   // レイトレーシングを開始.
-   list->SetPipelineState1(stateObject_->GetStateObject().Get());
    D3D12_DISPATCH_RAYS_DESC desc = shaderTable_->GetDispatchRayDesc();
 
    //計算
    list->DispatchRays(&desc);
+}
 
-   //stateの変更
-   //outputRay_->End();
+void CLEYERA::Model3d::Model::ImGuiUpdate() {
 
+ImGui::Begin("Vertex_Test");
+
+ImGui::DragFloat3("left", &vertex_->GetVertexdata()[0].pos.x);
+ImGui::DragFloat3("top", &vertex_->GetVertexdata()[1].pos.x);
+ImGui::DragFloat3("right", &vertex_->GetVertexdata()[2].pos.x);
+
+
+ImGui::End();
 }

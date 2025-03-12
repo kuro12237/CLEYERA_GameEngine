@@ -23,10 +23,12 @@ class Model {
 
    void Render();
 
+   void ImGuiUpdate();
+
 #pragma region Get
 
    system::OutPutRay *GetOutPut() { return outputRay_.get(); }
-
+   system::Vertex *GetVertex() { return vertex_.get(); }
 #pragma endregion
 
  private:

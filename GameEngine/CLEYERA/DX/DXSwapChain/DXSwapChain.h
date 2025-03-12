@@ -26,6 +26,14 @@ class DXSwapChain : public DXComponent {
 
    void Begin();
 
+   void SwapChainResourceState(const D3D12_RESOURCE_BARRIER &barrir);
+
+   /// <summary>
+   /// 描画されてるrtvにコピーする
+   /// </summary>
+   /// <returns></returns>
+   void RTVCopyBuf(ID3D12Resource* buf);
+
 #pragma region Get
 
    IDXGISwapChain4 *GetSwapChain() { return swapChain_.Get(); }
@@ -54,6 +62,8 @@ class DXSwapChain : public DXComponent {
    DXDescripterManager *descripterManager_ = nullptr;
 
    D3D12_RENDER_TARGET_VIEW_DESC rtvDesc_{};
+
+   UINT backBufferIndex_ = 0;
 };
 } // namespace DX
 } // namespace Base
