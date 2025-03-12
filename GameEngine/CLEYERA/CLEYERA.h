@@ -5,7 +5,9 @@
 
 #include "Utility/ImGui/ImGuiManager.h"
 
-#include"3d/Model3d.h"
+#include "3d/Model3d.h"
+
+#include "Graphics/RaytracingManager/RaytracingManager.h"
 
 class Engine {
  public:
@@ -20,9 +22,15 @@ class Engine {
 
    void End();
 
+#pragma region Get
+
+   std::weak_ptr<CLEYERA::Graphics::RaytracingManager> GetRaytracingManager() { return raytracingManager_; }
+#pragma endregion
+
  private:
    CLEYERA::Base::Win::WinApp *winApp_ = nullptr;
    CLEYERA::Utility::ImGuiManager *imGuiManager_ = nullptr;
+   std::shared_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_ = nullptr;
 
    std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;
 

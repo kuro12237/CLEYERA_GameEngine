@@ -26,7 +26,7 @@ class Model {
    void ImGuiUpdate();
 
 #pragma region Get
-
+   ShaderTable *GetShaderTable() { return shaderTable_.get(); }
    system::OutPutRay *GetOutPut() { return outputRay_.get(); }
    system::Vertex *GetVertex() { return vertex_.get(); }
 #pragma endregion

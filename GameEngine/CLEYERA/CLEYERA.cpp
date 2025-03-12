@@ -4,6 +4,7 @@ using namespace CLEYERA::Base::Win;
 using namespace CLEYERA::Base::DX;
 using namespace CLEYERA::LogManager;
 using namespace CLEYERA::Utility;
+using namespace CLEYERA::Graphics;
 
 void Engine::Init() {
 
@@ -21,10 +22,14 @@ void Engine::Init() {
 
    imGuiManager_ = ImGuiManager::GetInstance();
    imGuiManager_->SetImGuiCommon(imGuiCommon_);
+
+   raytracingManager_ = std::make_shared<RaytracingManager>();
+   raytracingManager_->Create();
 }
 
 void Engine::Finalize() {
 
+   raytracingManager_.reset();
    imGuiCommon_.reset();
    dxCommon_->Finalize();
    winApp_->Finalize();

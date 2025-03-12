@@ -121,6 +121,8 @@ void CLEYERA::Base::DX::DXCommandManager::ComputeRootSignature(ID3D12RootSignatu
 
 void CLEYERA::Base::DX::DXCommandManager::ComputeDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle) { list_->SetComputeRootDescriptorTable(num, handle); }
 
+void CLEYERA::Base::DX::DXCommandManager::DispachRay(const D3D12_DISPATCH_RAYS_DESC &desc) { list_->DispatchRays(&desc); }
+
 void CLEYERA::Base::DX::DXCommandManager::CopyResource(ID3D12Resource *target, ID3D12Resource *source) {
    if (list_) {
 

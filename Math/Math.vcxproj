@@ -146,6 +146,8 @@
     <ClInclude Include="math\MathInclude.h" />
     <ClInclude Include="math\Matrix\MatFunc.h" />
     <ClInclude Include="math\Matrix\SMatrix.h" />
+    <ClInclude Include="math\Quaternion\Quaternion.h" />
+    <ClInclude Include="math\Quaternion\QuaternionFunc.h" />
     <ClInclude Include="math\Vector\SVector.h" />
     <ClInclude Include="math\Vector\VectorFunc.h" />
   </ItemGroup>

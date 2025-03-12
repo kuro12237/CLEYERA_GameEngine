@@ -70,13 +70,6 @@ void CLEYERA::Model3d::Model::Render() {
    //tlasのセット
    tlas_->BufferBind();
 
-   //outputのセット
-   outputRay_->BufferBind();
-
-   D3D12_DISPATCH_RAYS_DESC desc = shaderTable_->GetDispatchRayDesc();
-
-   //計算
-   list->DispatchRays(&desc);
 }
 
 void CLEYERA::Model3d::Model::ImGuiUpdate() {

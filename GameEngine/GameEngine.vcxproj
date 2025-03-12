@@ -73,11 +73,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\generated\obj\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)ImGui\;$(SolutionDir)App\;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\ImGui\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\generated\obj\$(ProjectName)\</IntDir>
+    <IncludePath>$(SolutionDir)..\ImGui\</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -176,11 +177,14 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Camera\Camera.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\TransformBase\TransformBase.cpp" />
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -215,23 +219,21 @@
     <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />
     <ClInclude Include="CLEYERA\DX\DXManager.h" />
     <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h" />
+    <ClInclude Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderManager.h" />
     <ClInclude Include="CLEYERA\pch\Pch.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h" />
     <ClInclude Include="CLEYERA\DX\DXComponent.h" />
     <ClInclude Include="CLEYERA\SystemLogManager\SystemLogManager.h" />
+    <ClInclude Include="CLEYERA\Utility\Camera\Camera.h" />
     <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiCommon.h" />
     <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiManager.h" />
+    <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h" />
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="ImGui\ImGui.vcxproj">
-      <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\triangleShader.hlsl">
@@ -240,6 +242,11 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).dxlib</ObjectFileOutput>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
+      <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
