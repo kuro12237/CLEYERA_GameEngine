@@ -25,9 +25,13 @@ void Engine::Init() {
 
    raytracingManager_ = std::make_shared<RaytracingManager>();
    raytracingManager_->Create();
+
+   modelManager_ = CLEYERA::Manager::ModelManager::GetInstance();
 }
 
 void Engine::Finalize() {
+
+   modelManager_->Finalize();
 
    raytracingManager_.reset();
    imGuiCommon_.reset();

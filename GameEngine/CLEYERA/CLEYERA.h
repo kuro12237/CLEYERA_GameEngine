@@ -8,6 +8,7 @@
 #include "3d/Model3d.h"
 
 #include "Graphics/RaytracingManager/RaytracingManager.h"
+#include"3d/ModelManager/ModelManager.h"
 
 class Engine {
  public:
@@ -30,6 +31,8 @@ class Engine {
  private:
    CLEYERA::Base::Win::WinApp *winApp_ = nullptr;
    CLEYERA::Utility::ImGuiManager *imGuiManager_ = nullptr;
+   CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
+
    std::shared_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_ = nullptr;
 
    std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;

@@ -23,15 +23,14 @@ class TransformBase {
    Math::Vector::Vec3 GetTranslate() const { return *translate_; }
 
    void SetScale(const Math::Vector::Vec3 &s) { scale_ = &s; }
-   void SetRotate(const Math::Vector::Vec3 &r) { scale_ = &r; }
-   void SetTranslate(const Math::Vector::Vec3 &t) { scale_ = &t; }
-
+   void SetRotate(const Math::Vector::Vec3 &r) { rotate_ = &r; }
+   void SetTranslate(const Math::Vector::Vec3 &t) { translate_ = &t; }
 
  protected:
-   const Math::Vector::Vec3 *scale_{};
-   const Math::Vector::Vec3 *rotate_{};
-   const Math::Quaternon::Qua *qua_ = {};
-   const Math::Vector::Vec3 *translate_{};
+   const Math::Vector::Vec3 *scale_ = nullptr;
+   const Math::Vector::Vec3 *rotate_ = nullptr;
+   const Math::Quaternon::Qua *qua_ = nullptr;
+   const Math::Vector::Vec3 *translate_ = nullptr;
 
    Math::Matrix::Mat4x4 mat_ = {};
 

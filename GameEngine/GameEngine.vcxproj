@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(SolutionDir)../externals/assimp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)../Externals/assimp/include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -123,7 +123,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(ProjectDir)..\externals\math\lib\Debug</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib;$(ProjectDir)..\externals\assimp\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib;$(ProjectDir)..\externals\assimp\lib\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -188,13 +189,16 @@
     <ClCompile Include="CLEYERA\Utility\TransformBase\TransformBase.cpp" />
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="testCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h" />
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
+    <ClInclude Include="CLEYERA\3d\ModelManager\Model3dPool.h" />
     <ClInclude Include="CLEYERA\3d\ModelManager\ModelManager.h" />
+    <ClInclude Include="testCamera.h" />
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
     <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
     <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />

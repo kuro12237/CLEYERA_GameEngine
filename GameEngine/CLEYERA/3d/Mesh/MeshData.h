@@ -48,6 +48,11 @@ class MeshData {
 #pragma region Get
 
    system::VertexData GetData() const { return data_; }
+   uint32_t GetByteSize() { return byteSize_; }
+
+   ID3D12Resource *GetVertBuf() { return vertBuf_->GetResource(); }
+   ID3D12Resource *GetBlasBuf() { return blas_->GetResource(); }
+
 
 #pragma endregion
 
@@ -61,6 +66,7 @@ class MeshData {
 
    std::unique_ptr<system::Blas> blas_ = nullptr;
 
+   uint32_t byteSize_ = 0;
 };
 
 } // namespace Model3d

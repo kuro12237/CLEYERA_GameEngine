@@ -1,6 +1,16 @@
 RaytracingAccelerationStructure gRtScene : register(t0);
 RWTexture2D<float4> gOutput : register(u0);
 
+struct SCamera
+{
+    float32_t4x4 mtxProj;
+    float32_t4x4 mtxProjInv;
+    float32_t4x4 mtxView;
+    float32_t4x4 mtxViewInv;
+};
+
+ConstantBuffer<SCamera> gCamera : register(b0);
+
 struct Payload
 {
     float3 color;
@@ -15,12 +25,19 @@ void mainRayGen()
 {
     uint2 launchIndex = DispatchRaysIndex().xy;
     float2 dims = float2(DispatchRaysDimensions().xy);
-
+    
     float2 d = (launchIndex.xy + 0.5) / dims.xy * 2.0 - 1.0;
+    float aspect = dims.x / dims.y;
+
+    matrix mtxViewInv = gCamera.mtxViewInv;
+    matrix mtxProjInv = gCamera.mtxProjInv;
 
     RayDesc rayDesc;
-    rayDesc.Origin = float3(d.x, -d.y, 1);
-    rayDesc.Direction = float3(0, 0, -1);
+    rayDesc.Origin = mul(mtxViewInv, float4(0, 0, 0, 1)).xyz;
+
+    float4 target = mul(mtxProjInv, float4(d.x, -d.y, 1, 1));
+    rayDesc.Direction = mul(mtxViewInv, float4(target.xyz, 0)).xyz;
+
     rayDesc.TMin = 0;
     rayDesc.TMax = 100000;
 

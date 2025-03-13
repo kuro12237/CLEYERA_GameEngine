@@ -7,7 +7,6 @@ void Math::Matrix::Mat3x4::Identity() {
 }
 
 void Math::Matrix::Mat3x4::FromMat4x4(const Mat4x4 &mat) {
-
   // 上3行と平行移動成分をコピー
   for (int i = 0; i < 3; ++i) {
     for (int j = 0; j < 4; ++j) {
@@ -18,37 +17,44 @@ void Math::Matrix::Mat3x4::FromMat4x4(const Mat4x4 &mat) {
 
 void Math::Matrix::Mat4x4::Identity() {
   m[0][0] = 1, m[0][1] = 0, m[0][2] = 0, m[0][3] = 0;
-  m[1][0] = 0, m[1][1] = 1, m[1][2] = 0, m[2][3] = 0;
+  m[1][0] = 0, m[1][1] = 1, m[1][2] = 0, m[1][3] = 0;
   m[2][0] = 0, m[2][1] = 0, m[2][2] = 1, m[2][3] = 0;
   m[3][0] = 0, m[3][1] = 0, m[3][2] = 0, m[3][3] = 1;
-};
+}
+
 Math::Matrix::Mat4x4 Math::Matrix::Mat4x4::Inverse() {
-  Mat4x4 result = {};
+  Mat4x4 result;
   float determinant = m[0][0] * m[1][1] * m[2][2] * m[3][3] +
                       m[0][0] * m[1][2] * m[2][3] * m[3][1] +
                       m[0][0] * m[1][3] * m[2][1] * m[3][2] -
+
                       m[0][0] * m[1][3] * m[2][2] * m[3][1] -
                       m[0][0] * m[1][2] * m[2][1] * m[3][3] -
                       m[0][0] * m[1][1] * m[2][3] * m[3][2] -
+
                       m[0][1] * m[1][0] * m[2][2] * m[3][3] -
                       m[0][2] * m[1][0] * m[2][3] * m[3][1] -
                       m[0][3] * m[1][0] * m[2][1] * m[3][2] +
+
                       m[0][3] * m[1][0] * m[2][2] * m[3][1] +
                       m[0][2] * m[1][0] * m[2][1] * m[3][3] +
                       m[0][1] * m[1][0] * m[2][3] * m[3][2] +
+
                       m[0][1] * m[1][2] * m[2][0] * m[3][3] +
                       m[0][2] * m[1][3] * m[2][0] * m[3][1] +
                       m[0][3] * m[1][1] * m[2][0] * m[3][2] -
+
                       m[0][3] * m[1][2] * m[2][0] * m[3][1] -
                       m[0][2] * m[1][1] * m[2][0] * m[3][3] -
                       m[0][1] * m[1][3] * m[2][0] * m[3][2] -
+
                       m[0][1] * m[1][2] * m[2][3] * m[3][0] -
                       m[0][2] * m[1][3] * m[2][1] * m[3][0] -
                       m[0][3] * m[1][1] * m[2][2] * m[3][0] +
+
                       m[0][3] * m[1][2] * m[2][1] * m[3][0] +
                       m[0][2] * m[1][1] * m[2][3] * m[3][0] +
                       m[0][1] * m[1][3] * m[2][2] * m[3][0];
-
   assert(determinant != 0.0f);
   float determinantRecp = 1.0f / determinant;
 
@@ -99,7 +105,7 @@ Math::Matrix::Mat4x4 Math::Matrix::Mat4x4::Inverse() {
                     m[0][1] * m[1][0] * m[3][3] - m[0][0] * m[1][3] * m[3][1]) *
                    determinantRecp;
   result.m[2][3] = (-m[0][0] * m[1][1] * m[2][3] - m[0][1] * m[1][3] * m[2][0] -
-                    m[0][3] * m[1][0] * m[2][2] + m[0][3] * m[1][1] * m[2][0] +
+                    m[0][3] * m[1][0] * m[2][1] + m[0][3] * m[1][1] * m[2][0] +
                     m[0][1] * m[1][0] * m[2][3] + m[0][0] * m[1][3] * m[2][1]) *
                    determinantRecp;
 
@@ -124,7 +130,6 @@ Math::Matrix::Mat4x4 Math::Matrix::Mat4x4::Inverse() {
 }
 
 Math::Matrix::Mat4x4 Math::Matrix::Mat4x4::TransposeMatrix() {
-
   Mat4x4 result{};
   for (int row = 0; row < 4; ++row) {
     for (int column = 0; column < 4; ++column) {

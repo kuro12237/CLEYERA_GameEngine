@@ -8,6 +8,8 @@
 
 #include "../Graphics/ShaderManager/ShaderManager.h"
 
+#include"Mesh/MeshData.h"
+
 namespace CLEYERA {
 namespace Model3d {
 
@@ -24,15 +26,20 @@ class Model {
 
    void ImGuiUpdate();
 
+   void CreateMesh(aiMesh *mesh) {
+      mesh_ = std::make_unique<Model3d::MeshData>();
+      mesh_->Create(mesh);
+   }
+
 #pragma region Get
    ShaderTable *GetShaderTable() { return shaderTable_.get(); }
-   system::Vertex *GetVertex() { return vertex_.get(); }
 #pragma endregion
 
  private:
-   std::unique_ptr<system::Vertex> vertex_ = nullptr;
 
-   std::unique_ptr<system::Blas> blas_ = nullptr;
+	 std::unique_ptr<MeshData> mesh_ = nullptr;
+	
+
    std::unique_ptr<system::Tlas> tlas_ = nullptr;
 
    std::unique_ptr<system::GlobalRootSignature> globalrootsignature_ = nullptr;

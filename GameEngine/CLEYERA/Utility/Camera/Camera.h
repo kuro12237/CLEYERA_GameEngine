@@ -1,10 +1,23 @@
 #pragma once
+#include "../../DX/DXManager.h"
 #include "../../WIn/WinApp.h"
 #include "../../pch/Pch.h"
 #include "../TransformBase/TransformBase.h"
 
 namespace CLEYERA {
 namespace Util {
+
+namespace system {
+
+struct SCamera {
+
+   Math::Matrix::Mat4x4 matProj_ = {};
+   Math::Matrix::Mat4x4 mtxProjInv_ = {};
+   Math::Matrix::Mat4x4 matView_ = {};
+   Math::Matrix::Mat4x4 mtxViewInv_ = {};
+
+};
+} // namespace system
 
 class Camera : public TransformBase {
  public:
@@ -15,10 +28,20 @@ class Camera : public TransformBase {
 
    void Update() override;
 
- private:
-   Math::Matrix::Mat4x4 matProj_ = {};
-   Math::Matrix::Mat4x4 matView_ = {};
+   void Call(UINT num) { buf_->BaindComuputeCBV(num); };
 
+ private:
+
+   void ConvertData();
+
+   std::shared_ptr<Base::DX::DXBufferResource<system::SCamera>> buf_ = nullptr;
+
+   system::SCamera forGpu_;
+
+   Math::Matrix::Mat4x4 matProj_ = {};
+   Math::Matrix::Mat4x4 mtxProjInv_ = {};
+   Math::Matrix::Mat4x4 matView_ = {};
+   Math::Matrix::Mat4x4 mtxViewInv_ = {};
 
    const Math::Vector::Vec3 dfScale = {1.0f, 1.0f, 1.0f};
 

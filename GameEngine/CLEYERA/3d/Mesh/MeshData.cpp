@@ -4,16 +4,11 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
 
     device_ = Base::DX::DXManager::GetInstance()->GetDevice();
 
-    vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::S2Vertex>>();
-    vertBuf_->SetDevice(device_);
-   
-    indexBuf_ = std::make_unique<Base::DX::DXBufferResource<uint32_t>>();
-    indexBuf_->SetDevice(device_);
-
     ///データ確保
    data_.vertices.resize(mesh->mNumVertices);
-   
-   
+   //合計のサイズ
+   byteSize_ = static_cast<uint32_t>(sizeof(system::S2Vertex) * data_.vertices.size());
+
    for (uint32_t faceIndex = 0; faceIndex < mesh->mNumFaces; ++faceIndex) {
       aiFace &face = mesh->mFaces[faceIndex];
       assert(face.mNumIndices == 3); // 三角形のみ
@@ -30,6 +25,9 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
       }
    }
 
+   vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::S2Vertex>>();
+   vertBuf_->SetDevice(device_);
+
    //バッファの作成
    vertBuf_->Init(data_.vertices.size());
    vertBuf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
@@ -39,6 +37,9 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    vertBuf_->SetParam(data_.vertices);
    vertBuf_->UnMap();
 
+   indexBuf_ = std::make_unique<Base::DX::DXBufferResource<uint32_t>>();
+   indexBuf_->SetDevice(device_);
+
    indexBuf_->Init(data_.indecs.size());
    indexBuf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
    indexBuf_->CreateIndexBufferView();
@@ -47,4 +48,10 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    indexBuf_->SetParam(data_.indecs);
    indexBuf_->UnMap();
 
+   //Blas
+   blas_ = std::make_unique<system::Blas>();
+   blas_->SetParamCount(this->data_.vertices.size());
+   blas_->SetSize(sizeof(system::S2Vertex));
+   blas_->SetVertexBuf(vertBuf_->GetResource());
+   blas_->Init();
 }

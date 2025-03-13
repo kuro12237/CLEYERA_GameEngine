@@ -59,7 +59,7 @@ template <typename T> class DXBufferResource {
 
 #pragma region Set
    void SetDevice(ID3D12Device5 *device) { device_ = device; }
-   void SetParam(const T &param) { param_ptr_ = param; }
+   void SetParam(T param) { *param_ptr_ = param; }
    void SetParam(std::vector<T> param);
 
    void SetResource(ComPtr<ID3D12Resource> resource) { buffer_ = std::move(resource); };
@@ -74,6 +74,7 @@ template <typename T> class DXBufferResource {
 
 #pragma endregion
 
+   void BaindComuputeCBV(UINT num);
    void CreateVertexBufferView();
    void CreateIndexBufferView();
 
@@ -135,6 +136,11 @@ template <typename T> inline void DXBufferResource<T>::SetParam(std::vector<T> p
    }
 }
 
+template <typename T> inline void DXBufferResource<T>::BaindComuputeCBV(UINT num) {
+   auto list = DXCommandManager::GetInstace()->GetCommandList();
+   list->SetComputeRootConstantBufferView(num, buffer_->GetGPUVirtualAddress());
+}
+
 template <typename T> inline void DXBufferResource<T>::CreateVertexBufferView() {
 
    vertexBufferView_.BufferLocation = buffer_->GetGPUVirtualAddress();
@@ -168,7 +174,7 @@ template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_T
    ResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
    HRESULT hr = {};
-   hr = device_->CreateCommittedResource(&uploadHeapProperties, D3D12_HEAP_FLAG_NONE, &ResourceDesc, state, nullptr, IID_PPV_ARGS(&buffer_));
+   hr = device_->CreateCommittedResource(&heapProps, D3D12_HEAP_FLAG_NONE, &ResourceDesc, state, nullptr, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
 }
 

@@ -1,10 +1,10 @@
 #include "GlobalRootSignature.h"
 
-void CLEYERA::Model3d::system::GlobalRootSignature::Init () {
+void CLEYERA::Model3d::system::GlobalRootSignature::Init() {
 
    ID3D12Device5 *device = Base::DX::DXManager::GetInstance()->GetDevice();
 
-   std::array<D3D12_ROOT_PARAMETER, 2> rootParams{};
+   std::array<D3D12_ROOT_PARAMETER, 3> rootParams{};
 
    // TLAS を t0 レジスタに割り当てて使用する設定.
    D3D12_DESCRIPTOR_RANGE descRangeTLAS{};
@@ -20,6 +20,7 @@ void CLEYERA::Model3d::system::GlobalRootSignature::Init () {
 
    rootParams[0] = D3D12_ROOT_PARAMETER{};
    rootParams[1] = D3D12_ROOT_PARAMETER{};
+   rootParams[2] = D3D12_ROOT_PARAMETER{};
 
    rootParams[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
    rootParams[0].DescriptorTable.NumDescriptorRanges = 1;
@@ -28,6 +29,10 @@ void CLEYERA::Model3d::system::GlobalRootSignature::Init () {
    rootParams[1].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
    rootParams[1].DescriptorTable.NumDescriptorRanges = 1;
    rootParams[1].DescriptorTable.pDescriptorRanges = &descRangeOutput;
+
+   rootParams[2].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+   rootParams[2].Descriptor.ShaderRegister = 0;
+   rootParams[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
    D3D12_ROOT_SIGNATURE_DESC rootSigDesc{};
    rootSigDesc.NumParameters = UINT(rootParams.size());

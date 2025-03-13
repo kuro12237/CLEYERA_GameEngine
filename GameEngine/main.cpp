@@ -3,6 +3,8 @@
 
 #include "CLEYERA/CLEYERA.h"
 
+#include"testCamera.h"
+
 /// <summary>
 /// メイン関数
 /// </summary>
@@ -17,14 +19,23 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
    auto imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
    auto raytracingManager = engine_->GetRaytracingManager();
 
-   std::unique_ptr<CLEYERA::Model3d::Model> model = std::make_unique<CLEYERA::Model3d::Model>();
+   std::weak_ptr<CLEYERA::Model3d::Model> model;
 
-   model->Init();
+   uint32_t handle = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/Tower","Tower");
+   handle;
+
+   model = CLEYERA::Manager::ModelManager::GetInstance()->GetModel("Resources/Model/Tower/Tower.obj");
+
+   std::unique_ptr<TestCamera> camera = std::make_unique<TestCamera>();
+   camera->Create();
+
 
    // 一旦クローズ
    CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
 
-   raytracingManager.lock()->SetDispathRayDesc(model->GetShaderTable()->GetDispatchRayDesc());
+
+
+   raytracingManager.lock()->SetDispathRayDesc(model.lock()->GetShaderTable()->GetDispatchRayDesc());
 
    while (CLEYERA::Base::Win::WinApp::GetInstance()->WinMsg()) {
       engine_->Begin();
@@ -34,12 +45,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 #pragma region ImGui
 
-      model->ImGuiUpdate();
 #pragma endregion
 
 #pragma region 更新
 
-      model->Update();
+      camera->Update();
 
 #pragma endregion
 
@@ -52,7 +62,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-      model->Render();
+      model.lock()->Render();
+      camera->Call(2);
+
       raytracingManager.lock()->DispachRay();
 
       // レイトレのoutput結果をレンダーターゲットにコピー
@@ -74,6 +86,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       engine_->End();
    }
 
+   camera.reset();
    model.reset();
 
    engine_->Finalize();

@@ -63,6 +63,7 @@ void CLEYERA::Model3d::system::Blas::Init() {
 
    auto commandManager = Base::DX::DXCommandManager::GetInstace();
    commandManager->CommandClose();
+
 }
 void CLEYERA::Model3d::system::Blas::Update() {
 
