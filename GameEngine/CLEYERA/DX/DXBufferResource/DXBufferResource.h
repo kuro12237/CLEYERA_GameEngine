@@ -74,6 +74,11 @@ template <typename T> class DXBufferResource {
 
 #pragma endregion
 
+   void CreateVertexBufferView();
+   void CreateIndexBufferView();
+
+   void CreateBuffer(D3D12_HEAP_TYPE heapType, D3D12_RESOURCE_STATES state);
+
    void CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE *value);
    void DFCreateBuffer(size_t size, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
    void CreateTexture2d(Math::Vector::Vec2 size, DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
@@ -93,6 +98,9 @@ template <typename T> class DXBufferResource {
    size_t dsvHandleIndex_ = 0;
 
    T *param_ptr_ = nullptr;
+   D3D12_VERTEX_BUFFER_VIEW vertexBufferView_{};
+   D3D12_INDEX_BUFFER_VIEW indexBufferView_{};
+
    ComPtr<ID3D12Resource> buffer_ = nullptr;
 
    DXDescripterManager *descripterManager_ = nullptr;
@@ -114,7 +122,6 @@ template <typename T> inline void DXBufferResource<T>::UnMap() {}
 
 template <typename T> inline void DXBufferResource<T>::ComputeRootDescripterTable(UINT num) {
 
-   
    auto list = Base::DX::DXCommandManager::GetInstace();
    D3D12_GPU_DESCRIPTOR_HANDLE handle = descripterManager_->GetSRVGPUHandle(srvHandleIndex_);
    list->ComputeDescripterTable(num, handle);
@@ -126,6 +133,43 @@ template <typename T> inline void DXBufferResource<T>::SetParam(std::vector<T> p
 
       param_ptr_[i] = param[i];
    }
+}
+
+template <typename T> inline void DXBufferResource<T>::CreateVertexBufferView() {
+
+   vertexBufferView_.BufferLocation = buffer_->GetGPUVirtualAddress();
+   vertexBufferView_.SizeInBytes = UINT(sizeof(T) * instanceNum_);
+   vertexBufferView_.StrideInBytes = UINT(sizeof(T));
+}
+
+template <typename T> inline void DXBufferResource<T>::CreateIndexBufferView() {
+   indexBufferView_.BufferLocation = buffer_->GetGPUVirtualAddress();
+   indexBufferView_.SizeInBytes = UINT(sizeof(T) * instanceNum_);
+   indexBufferView_.Format = DXGI_FORMAT_R32_UINT;
+}
+
+template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_TYPE heapType, D3D12_RESOURCE_STATES state) {
+   size_t sizeInbyte = sizeof(T) * instanceNum_;
+   D3D12_HEAP_PROPERTIES heapProps{};
+   if (heapType == D3D12_HEAP_TYPE_DEFAULT) {
+      heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_DEFAULT, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
+   }
+   if (heapType == D3D12_HEAP_TYPE_UPLOAD) {
+      heapProps = D3D12_HEAP_PROPERTIES{D3D12_HEAP_TYPE_UPLOAD, D3D12_CPU_PAGE_PROPERTY_UNKNOWN, D3D12_MEMORY_POOL_UNKNOWN, 1, 1};
+   }
+
+   D3D12_RESOURCE_DESC ResourceDesc{};
+   ResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
+   ResourceDesc.Width = sizeInbyte;
+   ResourceDesc.Height = 1;
+   ResourceDesc.DepthOrArraySize = 1;
+   ResourceDesc.MipLevels = 1;
+   ResourceDesc.SampleDesc.Count = 1;
+   ResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
+
+   HRESULT hr = {};
+   hr = device_->CreateCommittedResource(&uploadHeapProperties, D3D12_HEAP_FLAG_NONE, &ResourceDesc, state, nullptr, IID_PPV_ARGS(&buffer_));
+   assert(SUCCEEDED(hr));
 }
 
 template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE *value) {

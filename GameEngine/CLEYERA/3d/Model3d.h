@@ -1,7 +1,6 @@
 #pragma once
 #include "Blas/Blas.h"
 #include "GlobalRootSignature/GlobalRootSignature.h"
-#include "OutPutRay/OutPutRay.h"
 #include "ShaderTable/ShaderTable.h"
 #include "StateObject/StateObject.h"
 #include "Tlas/Tlas.h"
@@ -27,7 +26,6 @@ class Model {
 
 #pragma region Get
    ShaderTable *GetShaderTable() { return shaderTable_.get(); }
-   system::OutPutRay *GetOutPut() { return outputRay_.get(); }
    system::Vertex *GetVertex() { return vertex_.get(); }
 #pragma endregion
 
@@ -41,7 +39,6 @@ class Model {
    std::unique_ptr<system::PiplineStateObject> stateObject_ = nullptr;
    std::unique_ptr<ShaderTable> shaderTable_ = nullptr;
 
-   std::unique_ptr<system::OutPutRay> outputRay_ = nullptr;
 };
 
 } // namespace Model3d

@@ -33,9 +33,6 @@ void CLEYERA::Model3d::Model::Init() {
    shaderTable_->SetStateObj(stateObject_->GetStateObject());
    shaderTable_->Init();
 
-   // 出力用バッファ
-   outputRay_ = std::make_unique<system::OutPutRay>();
-   outputRay_->Init();
 
    auto commandManager = Base::DX::DXCommandManager::GetInstace();
    commandManager->CommandClose();

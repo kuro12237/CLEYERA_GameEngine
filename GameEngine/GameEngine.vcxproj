@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(SolutionDir)../externals/assimp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -123,7 +123,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(ProjectDir)..\externals\math\lib\Debug</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib;$(ProjectDir)..\externals\assimp\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,8 +150,9 @@
   <ItemGroup>
     <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
     <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
+    <ClCompile Include="CLEYERA\3d\Mesh\MeshData.cpp" />
     <ClCompile Include="CLEYERA\3d\Model3d.cpp" />
-    <ClCompile Include="CLEYERA\3d\OutPutRay\OutPutRay.cpp" />
+    <ClCompile Include="CLEYERA\3d\ModelManager\ModelManager.cpp" />
     <ClCompile Include="CLEYERA\3d\ShaderTable\ShaderTable.cpp" />
     <ClCompile Include="CLEYERA\3d\StateObject\StateObject.cpp" />
     <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp" />
@@ -191,8 +192,9 @@
   <ItemGroup>
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h" />
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
-    <ClInclude Include="CLEYERA\3d\OutPutRay\OutPutRay.h" />
+    <ClInclude Include="CLEYERA\3d\ModelManager\ModelManager.h" />
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
     <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
     <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />

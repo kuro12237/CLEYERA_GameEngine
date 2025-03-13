@@ -1,6 +1,6 @@
 #include "GlobalRootSignature.h"
 
-void CLEYERA::Model3d::system::GlobalRootSignature::Init() {
+void CLEYERA::Model3d::system::GlobalRootSignature::Init () {
 
    ID3D12Device5 *device = Base::DX::DXManager::GetInstance()->GetDevice();
 
