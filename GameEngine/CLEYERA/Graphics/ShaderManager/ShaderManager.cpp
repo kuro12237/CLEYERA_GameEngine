@@ -38,10 +38,11 @@ std::vector<char> ShaderManager::CompileShader(const std::filesystem::path &hlsl
 
    // コンパイルオプション
    std::vector<LPCWSTR> arguments = {
-       L"-E",  L"main",    // エントリーポイント
-       L"-T",  L"lib_6_6", // ターゲットプロファイル
-       L"-O3",             // 最適化レベル
-       L"-Zi"              // デバッグ情報
+       L"-E",           L"main",    // エントリーポイント
+       L"-T",           L"lib_6_6", // ターゲットプロファイル
+       L"-O3",                      // 最適化レベル
+       L"-Zi",
+       L"-Qembed_debug" // デバッグ情報
    };
 
    // シェーダのコンパイル

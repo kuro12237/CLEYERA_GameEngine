@@ -1,5 +1,4 @@
 RaytracingAccelerationStructure gRtScene : register(t0);
-RWTexture2D<float4> gOutput : register(u0);
 
 struct SCamera
 {
@@ -10,11 +9,11 @@ struct SCamera
 };
 
 ConstantBuffer<SCamera> gCamera : register(b0);
+RWTexture2D<float4> gOutput : register(u0);
 
 struct Vertex
 {
-    float4 Position;
-    float2 texCoord;
+    float3 Position;
     float3 normal;
 };
 // Local Root Signature (for HitGroup)
@@ -75,15 +74,43 @@ void mainRayGen()
 [shader("miss")]
 void mainMS(inout Payload payload)
 {
-    payload.color = float3(0.4, 0.8, 0.9);
+    payload.color = float3(0.0, 0.0, 0.0);
 }
+
+
+inline float3 CalcBarycentrics(float2 barys)
+{
+    return float3(
+        1.0 - barys.x - barys.y,
+        barys.x,
+        barys.y);
+}
+
+Vertex GetHitVertex(MyAttribute attrib)
+{
+    Vertex v = (Vertex) 0;
+    float3 barycentrics = CalcBarycentrics(attrib.barys);
+    uint vertexId = PrimitiveIndex() * 3; // Triangle List のため.
+
+    float weights[3] =
+    {
+        barycentrics.x, barycentrics.y, barycentrics.z
+    };
+    for (int i = 0; i < 3; ++i)
+    {
+        uint index = indexBuffer[vertexId + i];
+        float w = weights[i];
+        v.Position += vertexBuffer[index].Position * w;
+        v.normal += vertexBuffer[index].normal * w;
+    }
+    v.normal = normalize(v.normal);
+    return v;
+}
+
 
 [shader("closesthit")]
 void mainCHS(inout Payload payload, MyAttribute attrib)
 {
-    payload.color = float3(1, 1, 1);
-    float3 col = 0;
-    col.xy = attrib.barys;
-    col.z = 1.0 - col.x - col.y;
-    payload.color = col;
+    Vertex vtx = GetHitVertex(attrib);
+    payload.color.rgb = float32_t3(1.0f,0.0f,0.0f);
 }

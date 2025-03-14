@@ -16,8 +16,7 @@ namespace system {
 /// </summary>
 struct S2Vertex {
 
-   Math::Vector::Vec4 pos = {};
-   Math::Vector::Vec2 texCoord = {};
+   Math::Vector::Vec3 pos = {};
    Math::Vector::Vec3 normal = {};
 };
 
@@ -53,6 +52,10 @@ class MeshData {
    ID3D12Resource *GetVertBuf() { return vertBuf_->GetResource(); }
    ID3D12Resource *GetBlasBuf() { return blas_->GetResource(); }
 
+   size_t GetVertexBufIndex() { return vertBuf_->GetSRVIndex(); }
+   size_t GetIndexBufIndex() { return indexBuf_->GetSRVIndex(); }
+
+   std::wstring GetShaderName() { return shaderName; }
 #pragma endregion
 
  private:
@@ -66,7 +69,7 @@ class MeshData {
    std::unique_ptr<system::Blas> blas_ = nullptr;
 
    uint32_t byteSize_ = 0;
-   std::wstring shaderName = {};
+   std::wstring shaderName = CLEYERA::Graphics::HitGroup::ALL;
 };
 
 } // namespace Model3d

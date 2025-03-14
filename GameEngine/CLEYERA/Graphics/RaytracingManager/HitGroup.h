@@ -10,7 +10,7 @@ namespace Graphics {
 /// </summary>
 namespace HitGroup {
 
-static const wchar_t *ALL = L"hgObject";
+static const wchar_t *ALL =L"hgObject";
 
 }
 } // namespace Graphics

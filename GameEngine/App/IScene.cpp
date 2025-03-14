@@ -19,13 +19,19 @@ void SceneCompornent::InitRaytracing() {
    this->rayGenRootSignature_ = std::make_unique<system::RayGenRootSignature>();
    rayGenRootSignature_->Create();
 
+   CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
+
    // パイプライン
    stateObject_ = std::make_unique<system::PiplineStateObject>();
    stateObject_->SetGlobalRootSignature(globalrootsignature_->GetRootSignature());
+   stateObject_->SetClosetHitRootSignature(closeHitRootSignature_->GetRootSignature());
+   stateObject_->SetRayGenRootSignature(rayGenRootSignature_->GetRootSignature());
+
    stateObject_->Init();
 
    // シェーダーテーブル
    shaderTable_ = std::make_unique<ShaderTable>();
+   shaderTable_->SetOutPutDescripterHandle(raytracingManager_.lock()->Gethandle());
    shaderTable_->SetStateObj(stateObject_->GetStateObject());
    shaderTable_->Init();
 }

@@ -18,16 +18,6 @@ void DebugScene::Init() {
 
    this->objectList_.push_back(gameObj_);
 
-   gameObjCube_ = std::make_shared<CLEYERA::Model3d::Game3dObject>();
-   gameObjCube_->Create(handleCube);
-
-   gameObjCube_->SetScale(scaleCube_);
-   gameObjCube_->SetRotate(rotateCube_);
-   gameObjCube_->SetTranslate(translateCube_);
-
-   gameObjCube_->TransformUpdate();
-
-   this->objectList_.push_back(gameObjCube_);
    InitRaytracing();
 }
 

@@ -33,6 +33,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
    std::unique_ptr<SceneCompornent> scene_ = std::make_unique<DebugScene>();
+   scene_->SetRaytracingmanager(raytracingManager);
    scene_->Init();
 
 

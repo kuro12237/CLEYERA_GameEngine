@@ -21,6 +21,8 @@ class PiplineStateObject {
 
 #pragma region Set
    void SetClosetHitRootSignature(ID3D12RootSignature *r) { closetHitRootSignature_ = r; }
+   void SetRayGenRootSignature(ID3D12RootSignature *r) { rayGenRootSignature_ = r; }
+
    void SetGlobalRootSignature(ID3D12RootSignature *r) { globalRootSignature_ = r; }
 #pragma endregion
 
@@ -32,6 +34,8 @@ class PiplineStateObject {
  private:
    ID3D12RootSignature *globalRootSignature_ = nullptr;
    ID3D12RootSignature *closetHitRootSignature_ = nullptr;
+
+   ID3D12RootSignature *rayGenRootSignature_ = nullptr;
    ID3D12Device5 *device_ = nullptr;
 
    Microsoft::WRL::ComPtr<ID3D12StateObject> stateObject_;

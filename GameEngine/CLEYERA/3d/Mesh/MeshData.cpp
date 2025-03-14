@@ -2,11 +2,11 @@
 
 void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
 
-    device_ = Base::DX::DXManager::GetInstance()->GetDevice();
+   device_ = Base::DX::DXManager::GetInstance()->GetDevice();
 
-    ///データ確保
+   /// データ確保
    data_.vertices.resize(mesh->mNumVertices);
-   //合計のサイズ
+   // 合計のサイズ
    byteSize_ = static_cast<uint32_t>(sizeof(system::S2Vertex) * data_.vertices.size());
 
    for (uint32_t faceIndex = 0; faceIndex < mesh->mNumFaces; ++faceIndex) {
@@ -17,9 +17,8 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
          aiVector3D &position = mesh->mVertices[vertexIndex];
          aiVector3D &normal = mesh->mNormals[vertexIndex];
          aiVector3D &texcoord = mesh->mTextureCoords[0][vertexIndex];
-         data_.vertices[vertexIndex].pos = {-position.x, position.y, position.z, 1.0f};
-         data_.vertices[vertexIndex].normal = {-normal.x, normal.y, normal.z};
-         data_.vertices[vertexIndex].texCoord = {texcoord.x, texcoord.y};
+         data_.vertices[vertexIndex].pos = {-position.x, position.y, position.z};
+         data_.vertices[vertexIndex].normal = {normal.x, normal.y, normal.z};
          // Indexの解析
          data_.indecs.push_back(vertexIndex);
       }
@@ -28,7 +27,7 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::S2Vertex>>();
    vertBuf_->SetDevice(device_);
 
-   //バッファの作成
+   // バッファの作成
    vertBuf_->Init(data_.vertices.size());
    vertBuf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
    vertBuf_->CreateVertexBufferView();
@@ -52,7 +51,7 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
 
    indexBuf_->RegisterSRV();
 
-   //Blas
+   // Blas
    blas_ = std::make_unique<system::Blas>();
    blas_->SetParamCount(this->data_.vertices.size());
    blas_->SetSize(sizeof(system::S2Vertex));
@@ -60,5 +59,4 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    blas_->Init();
 
    this->shaderName = CLEYERA::Graphics::HitGroup::ALL;
-
 }

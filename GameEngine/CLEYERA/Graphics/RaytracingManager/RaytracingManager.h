@@ -38,6 +38,7 @@ class RaytracingManager {
 
 #pragma region Get
    ID3D12Resource *GetOutputResource() { return outputBuf_->GetResource(); }
+   size_t Gethandle() { return outputBuf_->GetSRVIndex(); }
 #pragma endregion
 
 #pragma region Set

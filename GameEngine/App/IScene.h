@@ -6,9 +6,10 @@
 #include "../CLEYERA/3d/Tlas/Tlas.h"
 #include "../CLEYERA/pch/Pch.h"
 
-#include"../CLEYERA/3d/LocalRootSignature/ClosestHitRootSignature.h"
-#include"../CLEYERA/3d/LocalRootSignature/RayGenRootSignature.h"
+#include "../CLEYERA/3d/LocalRootSignature/ClosestHitRootSignature.h"
+#include "../CLEYERA/3d/LocalRootSignature/RayGenRootSignature.h"
 
+#include "../CLEYERA/Graphics/RaytracingManager/RaytracingManager.h"
 
 /// <summary>
 /// Scene抽象クラス
@@ -30,24 +31,28 @@ class SceneCompornent {
 
    void Render();
 
-   #pragma region Get
+#pragma region Get
 
    ShaderTable *GetTable() { return shaderTable_.get(); }
 
 #pragma endregion
 
+#pragma region Set
+   void SetRaytracingmanager(std::weak_ptr<CLEYERA::Graphics::RaytracingManager> m) { raytracingManager_ = m; }
+
+#pragma endregion
 
  protected:
-
    std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 
  private:
+   std::weak_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_;
+
    std::unique_ptr<CLEYERA::Model3d::system::Tlas> tlas_ = nullptr;
    std::unique_ptr<CLEYERA::Model3d::system::GlobalRootSignature> globalrootsignature_ = nullptr;
 
    std::unique_ptr<CLEYERA::Model3d::system::CloseHitRootSignature> closeHitRootSignature_ = nullptr;
    std::unique_ptr<CLEYERA::Model3d::system::RayGenRootSignature> rayGenRootSignature_ = nullptr;
-
 
    std::unique_ptr<CLEYERA::Model3d::system::PiplineStateObject> stateObject_ = nullptr;
    std::unique_ptr<ShaderTable> shaderTable_ = nullptr;
