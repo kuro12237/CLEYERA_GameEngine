@@ -35,6 +35,14 @@ class ModelManager {
       return datas_[key]->GetModel();
    }
 
+   /// <summary>
+   /// モデルのデータをゲット
+   /// </summary>
+   /// <param name="key"></param>
+   /// <returns></returns>
+   [[nodiscard]]
+   std::weak_ptr<Model3d::Model> GetModel(uint32_t key);
+
    void Finalize();
 
  private:

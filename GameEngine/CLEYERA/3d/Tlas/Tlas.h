@@ -3,11 +3,11 @@
 #include "../../DX/DXManager.h"
 
 #include "../../DX/DXBarrier/DXBarrier.h"
+#include "../Game3dObject.h"
 
 namespace CLEYERA {
 namespace Model3d {
 namespace system {
-
 
 class Tlas {
  public:
@@ -18,20 +18,18 @@ class Tlas {
 
    void BufferBind();
 
-   #pragma region Set
+   void SetCreateObject(std::vector<std::weak_ptr<Model3d::Game3dObject>> &obj);
 
-   void SetBlas(ID3D12Resource *buf) { blas_ = buf; }
+#pragma region Set
+
 #pragma endregion
 
-
  private:
-  
-std::unique_ptr<Base::DX::DXBufferResource<int32_t>> buf_ = nullptr;
-   ID3D12Resource *blas_ = nullptr;
+   std::vector<D3D12_RAYTRACING_INSTANCE_DESC> instanceDesc_;
 
+   std::unique_ptr<Base::DX::DXBufferResource<int32_t>> buf_ = nullptr;
 };
 
-
-}
+} // namespace system
 } // namespace Model3d
 } // namespace CLEYERA

@@ -5,6 +5,9 @@
 
 #include"testCamera.h"
 
+#include"App/IScene.h"
+#include"App/DebugScene.h"
+
 /// <summary>
 /// メイン関数
 /// </summary>
@@ -19,15 +22,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
    auto imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
    auto raytracingManager = engine_->GetRaytracingManager();
 
-   std::weak_ptr<CLEYERA::Model3d::Model> model;
 
    uint32_t handle = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/Tower","Tower");
    handle;
 
-   model = CLEYERA::Manager::ModelManager::GetInstance()->GetModel("Resources/Model/Tower/Tower.obj");
-
+ 
    std::unique_ptr<TestCamera> camera = std::make_unique<TestCamera>();
    camera->Create();
+
+
+
+   std::unique_ptr<SceneCompornent> scene_ = std::make_unique<DebugScene>();
+   scene_->Init();
 
 
    // 一旦クローズ
@@ -35,7 +41,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 
 
-   raytracingManager.lock()->SetDispathRayDesc(model.lock()->GetShaderTable()->GetDispatchRayDesc());
+   raytracingManager.lock()->SetDispathRayDesc(scene_->GetTable()->GetDispatchRayDesc());
 
    while (CLEYERA::Base::Win::WinApp::GetInstance()->WinMsg()) {
       engine_->Begin();
@@ -49,6 +55,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 #pragma region 更新
 
+      scene_->Update();
       camera->Update();
 
 #pragma endregion
@@ -62,7 +69,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-      model.lock()->Render();
+      scene_->Render();
       camera->Call(2);
 
       raytracingManager.lock()->DispachRay();
@@ -86,8 +93,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       engine_->End();
    }
 
+   scene_.reset();
    camera.reset();
-   model.reset();
 
    engine_->Finalize();
 

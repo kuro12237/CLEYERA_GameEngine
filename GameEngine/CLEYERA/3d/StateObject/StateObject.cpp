@@ -9,7 +9,7 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
    subobjects.reserve(32);
 
    std::vector<char> shader= ShaderManager::CompileShader("Resources/Shaders/triangleShader.hlsl");
-   ;
+
 
    // DXIL Library
    // シェーダーから各関数レコード.
@@ -24,6 +24,19 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
    dxilLibDesc.pExports = exports;
 
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_DXIL_LIBRARY, &dxilLibDesc});
+
+   //   // ローカル Root Signature 設定.
+   //D3D12_LOCAL_ROOT_SIGNATURE rootSignatureLocal{};
+   //rootSignatureLocal.pLocalRootSignature = this->closetHitRootSignature_;
+   //subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_LOCAL_ROOT_SIGNATURE, &rootSignatureLocal});
+
+   //const wchar_t *symbols[] = {L"hgObject"};
+   //D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION assoc{};
+   //assoc.NumExports = _countof(symbols);
+   //assoc.pExports = symbols;
+   //assoc.pSubobjectToAssociate = &subobjects.back();
+   //subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_SUBOBJECT_TO_EXPORTS_ASSOCIATION, &assoc});
+
 
    // ヒットグループの設定.
    D3D12_HIT_GROUP_DESC hitGroupDesc{};

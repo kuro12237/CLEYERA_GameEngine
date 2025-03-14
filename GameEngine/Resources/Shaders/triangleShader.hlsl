@@ -11,6 +11,16 @@ struct SCamera
 
 ConstantBuffer<SCamera> gCamera : register(b0);
 
+struct Vertex
+{
+    float4 Position;
+    float2 texCoord;
+    float3 normal;
+};
+// Local Root Signature (for HitGroup)
+StructuredBuffer<uint> indexBuffer : register(t0, space1);
+StructuredBuffer<Vertex> vertexBuffer : register(t1, space1);
+
 struct Payload
 {
     float3 color;

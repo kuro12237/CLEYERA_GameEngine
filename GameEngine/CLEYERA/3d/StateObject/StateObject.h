@@ -1,7 +1,7 @@
 #pragma once
+#include "../../DX/DXManager.h"
+#include "../../Graphics/ShaderManager/ShaderManager.h"
 #include "../../pch/Pch.h"
-#include"../../DX/DXManager.h"
-#include"../../Graphics/ShaderManager/ShaderManager.h"
 
 namespace CLEYERA {
 namespace Model3d {
@@ -18,19 +18,18 @@ class PiplineStateObject {
    void Init();
 
 #pragma region Set
-
+   void SetClosetHitRootSignature(ID3D12RootSignature *r) { closetHitRootSignature_ = r; }
    void SetGlobalRootSignature(ID3D12RootSignature *r) { globalRootSignature_ = r; }
 #pragma endregion
 
-   #pragma region get
+#pragma region get
    ComPtr<ID3D12StateObject> GetStateObject() { return stateObject_; }
 
 #pragma endregion
 
-
-
  private:
    ID3D12RootSignature *globalRootSignature_ = nullptr;
+   ID3D12RootSignature *closetHitRootSignature_ = nullptr;
    ID3D12Device5 *device_ = nullptr;
 
    Microsoft::WRL::ComPtr<ID3D12StateObject> stateObject_;

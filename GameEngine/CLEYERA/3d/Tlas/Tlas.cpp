@@ -5,26 +5,16 @@ void CLEYERA::Model3d::system::Tlas::Init() {
    auto dxManager = Base::DX::DXManager::GetInstance();
    ID3D12Device5 *device = Base::DX::DXManager::GetInstance()->GetDevice();
 
-   D3D12_RAYTRACING_INSTANCE_DESC instanceDesc{};
-
-   Math::Matrix::Mat3x4 mat;
-   mat.Identity();
-
-   memcpy(&instanceDesc.Transform, &mat, sizeof(Math::Matrix::Mat3x4));
-   instanceDesc.InstanceID = 0;
-   instanceDesc.InstanceMask = 0xFF;
-   instanceDesc.InstanceContributionToHitGroupIndex = 0;
-   instanceDesc.Flags = D3D12_RAYTRACING_INSTANCE_FLAG_NONE;
-   instanceDesc.AccelerationStructure = blas_->GetGPUVirtualAddress();
+   size_t size = instanceDesc_.size() * sizeof(D3D12_RAYTRACING_INSTANCE_DESC);
 
    std::unique_ptr<CLEYERA::Base::DX::DXBufferResource<int32_t>> instanceDescBuf = std::make_unique<Base::DX::DXBufferResource<int32_t>>();
 
    instanceDescBuf->SetDevice(dxManager->GetDevice());
-   instanceDescBuf->DFCreateBuffer(sizeof(instanceDesc), D3D12_RESOURCE_FLAG_NONE, D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_HEAP_TYPE_UPLOAD);
-   instanceDescBuf->WriteMemory(&instanceDesc, sizeof(instanceDesc));
+   instanceDescBuf->DFCreateBuffer(size, D3D12_RESOURCE_FLAG_NONE, D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_HEAP_TYPE_UPLOAD);
+   instanceDescBuf->WriteMemory(instanceDesc_.data(), sizeof(D3D12_RAYTRACING_INSTANCE_DESC));
 
    D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC buildASDesc{};
-   auto &inputs = buildASDesc.Inputs; 
+   auto &inputs = buildASDesc.Inputs;
    inputs.Type = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL;
    inputs.DescsLayout = D3D12_ELEMENTS_LAYOUT_ARRAY;
    inputs.Flags = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_NONE;
@@ -83,3 +73,29 @@ void CLEYERA::Model3d::system::Tlas::Init() {
 }
 
 void CLEYERA::Model3d::system::Tlas::BufferBind() { buf_->ComputeRootDescripterTable(0); }
+
+void CLEYERA::Model3d::system::Tlas::SetCreateObject(std::vector<std::weak_ptr<Model3d::Game3dObject>> &obj) {
+
+   size_t size = obj.size();
+
+   instanceDesc_.resize(size);
+
+   D3D12_RAYTRACING_INSTANCE_DESC instanceDesc{};
+   instanceDesc.InstanceMask = 0xFF;
+   instanceDesc.Flags = D3D12_RAYTRACING_INSTANCE_FLAG_NONE;
+
+   for (size_t i = 0; i < size; i++) {
+
+      auto it = obj[i].lock();
+
+      instanceDesc_[i] = instanceDesc;
+
+      memcpy(&instanceDesc_[i].Transform, &it->GetMat3x4(), sizeof(Math::Matrix::Mat3x4));
+      instanceDesc_[i].InstanceID = 0;
+      instanceDesc_[i].InstanceMask = 0xFF;
+      instanceDesc_[i].InstanceContributionToHitGroupIndex = 0;
+      instanceDesc_[i].Flags = D3D12_RAYTRACING_INSTANCE_FLAG_NONE;
+      instanceDesc_[i].AccelerationStructure = it->GetModel().lock()->GetMeshData()->GetBlasBuf()->GetGPUVirtualAddress();
+
+   }
+}

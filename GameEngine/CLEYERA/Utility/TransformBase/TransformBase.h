@@ -12,7 +12,7 @@ class TransformBase {
 
    virtual void Init() {};
 
-   virtual void Update() {};
+   void TransformUpdate();
 
    Math::Vector::Vec3 GetWorldPos();
    Math::Vector::Vec3 GetWorldRotate();
@@ -21,6 +21,8 @@ class TransformBase {
    Math::Vector::Vec3 GetScale() const { return *scale_; }
    Math::Vector::Vec3 GetRotate() const { return *rotate_; }
    Math::Vector::Vec3 GetTranslate() const { return *translate_; }
+   Math::Matrix::Mat4x4 GetMat() const { return mat_; }
+   const Math::Matrix::Mat3x4 &GetMat3x4() const { return forGpumat_; }
 
    void SetScale(const Math::Vector::Vec3 &s) { scale_ = &s; }
    void SetRotate(const Math::Vector::Vec3 &r) { rotate_ = &r; }
@@ -35,6 +37,7 @@ class TransformBase {
    Math::Matrix::Mat4x4 mat_ = {};
 
  private:
+   Math::Matrix::Mat3x4 forGpumat_ = {};
 };
 
 } // namespace Util

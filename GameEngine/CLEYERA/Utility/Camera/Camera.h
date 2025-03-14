@@ -26,7 +26,7 @@ class Camera : public TransformBase {
 
    void Init() override;
 
-   void Update() override;
+   void Update();
 
    void Call(UINT num) { buf_->BaindComuputeCBV(num); };
 

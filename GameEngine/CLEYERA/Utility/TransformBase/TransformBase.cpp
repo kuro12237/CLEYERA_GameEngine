@@ -1,6 +1,12 @@
 #include "TransformBase.h"
 using namespace Math::Vector;
 
+void CLEYERA::Util::TransformBase::TransformUpdate() {
+   mat_ = Math::Matrix::Func::AffineMatrix(*scale_, *rotate_, *translate_);
+
+   forGpumat_.FromMat4x4(mat_);
+}
+
 Math::Vector::Vec3 CLEYERA::Util::TransformBase::GetWorldPos() {
    Math::Vector::Vec3 pos = Vec3(mat_.m[3][0], mat_.m[3][1], mat_.m[3][2]);
 

@@ -1,14 +1,7 @@
 #pragma once
 #include "Blas/Blas.h"
-#include "GlobalRootSignature/GlobalRootSignature.h"
-#include "ShaderTable/ShaderTable.h"
-#include "StateObject/StateObject.h"
-#include "Tlas/Tlas.h"
-#include "Vertex/Vertex.h"
 
-#include "../Graphics/ShaderManager/ShaderManager.h"
-
-#include"Mesh/MeshData.h"
+#include "Mesh/MeshData.h"
 
 namespace CLEYERA {
 namespace Model3d {
@@ -32,19 +25,11 @@ class Model {
    }
 
 #pragma region Get
-   ShaderTable *GetShaderTable() { return shaderTable_.get(); }
+   MeshData *GetMeshData() { return mesh_.get(); }
 #pragma endregion
 
  private:
-
-	 std::unique_ptr<MeshData> mesh_ = nullptr;
-	
-
-   std::unique_ptr<system::Tlas> tlas_ = nullptr;
-
-   std::unique_ptr<system::GlobalRootSignature> globalrootsignature_ = nullptr;
-   std::unique_ptr<system::PiplineStateObject> stateObject_ = nullptr;
-   std::unique_ptr<ShaderTable> shaderTable_ = nullptr;
+   std::unique_ptr<MeshData> mesh_ = nullptr;
 
 };
 

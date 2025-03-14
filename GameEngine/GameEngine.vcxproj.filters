@@ -96,9 +96,6 @@
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Vertex\Vertex.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CLEYERA\3d\Model3d.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -136,6 +133,18 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="testCamera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\3d\Game3dObject.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="App\IScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="App\DebugScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,9 +227,6 @@
     <ClInclude Include="CLEYERA\DX\DXDepth\DXDepth.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Vertex\Vertex.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -273,6 +279,21 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="testCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\3d\Game3dObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="App\IScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="App\DebugScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
