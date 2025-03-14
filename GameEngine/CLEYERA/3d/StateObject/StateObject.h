@@ -3,6 +3,8 @@
 #include "../../Graphics/ShaderManager/ShaderManager.h"
 #include "../../pch/Pch.h"
 
+#include"../../Graphics/RaytracingManager/HitGroup.h"
+
 namespace CLEYERA {
 namespace Model3d {
 namespace system {

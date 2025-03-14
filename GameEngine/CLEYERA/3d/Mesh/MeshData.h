@@ -1,7 +1,8 @@
 #pragma once
-#include "../../pch/Pch.h"
 #include "../../DX/DXBufferResource/DXBufferResource.h"
 #include "../../DX/DXManager.h"
+#include "../../Graphics/RaytracingManager/HitGroup.h"
+#include "../../pch/Pch.h"
 #include "../Blas/Blas.h"
 
 namespace CLEYERA {
@@ -44,7 +45,6 @@ class MeshData {
    /// </summary>
    void Create(aiMesh *mesh);
 
-
 #pragma region Get
 
    system::VertexData GetData() const { return data_; }
@@ -53,7 +53,6 @@ class MeshData {
    ID3D12Resource *GetVertBuf() { return vertBuf_->GetResource(); }
    ID3D12Resource *GetBlasBuf() { return blas_->GetResource(); }
 
-
 #pragma endregion
 
  private:
@@ -61,12 +60,13 @@ class MeshData {
 
    ID3D12Device5 *device_ = nullptr;
 
-   std::unique_ptr < Base::DX::DXBufferResource<system::S2Vertex>> vertBuf_ = nullptr;
+   std::unique_ptr<Base::DX::DXBufferResource<system::S2Vertex>> vertBuf_ = nullptr;
    std::unique_ptr<Base::DX::DXBufferResource<uint32_t>> indexBuf_ = nullptr;
 
    std::unique_ptr<system::Blas> blas_ = nullptr;
 
    uint32_t byteSize_ = 0;
+   std::wstring shaderName = {};
 };
 
 } // namespace Model3d

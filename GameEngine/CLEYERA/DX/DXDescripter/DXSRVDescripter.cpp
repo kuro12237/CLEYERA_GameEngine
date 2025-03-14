@@ -75,7 +75,6 @@ size_t CLEYERA::Base::DX::DXSRVDescripter::AddSRVCreatePtr(ID3D12Resource *buf, 
       indexFreeList_.pop_back();
    } else {
       newHandle = handleIndex_;
-      handleIndex_++;
    }
 
    // ずらして作成

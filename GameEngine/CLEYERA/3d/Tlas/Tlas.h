@@ -16,6 +16,8 @@ class Tlas {
 
    void Init();
 
+   void Update(std::vector<std::weak_ptr<Model3d::Game3dObject>> &obj);
+
    void BufferBind();
 
    void SetCreateObject(std::vector<std::weak_ptr<Model3d::Game3dObject>> &obj);
@@ -27,6 +29,7 @@ class Tlas {
  private:
    std::vector<D3D12_RAYTRACING_INSTANCE_DESC> instanceDesc_;
 
+   std::unique_ptr<CLEYERA::Base::DX::DXBufferResource<int32_t>> instanceDescBuf;
    std::unique_ptr<Base::DX::DXBufferResource<int32_t>> buf_ = nullptr;
 };
 

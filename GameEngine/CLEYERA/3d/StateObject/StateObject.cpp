@@ -11,13 +11,12 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
    std::vector<char> shader= ShaderManager::CompileShader("Resources/Shaders/triangleShader.hlsl");
 
 
-   // DXIL Library
-   // シェーダーから各関数レコード.
    D3D12_EXPORT_DESC exports[] = {
        {L"mainRayGen", nullptr, D3D12_EXPORT_FLAG_NONE},
        {L"mainMS", nullptr, D3D12_EXPORT_FLAG_NONE},
        {L"mainCHS", nullptr, D3D12_EXPORT_FLAG_NONE},
    };
+
    D3D12_DXIL_LIBRARY_DESC dxilLibDesc{};
    dxilLibDesc.DXILLibrary = D3D12_SHADER_BYTECODE{shader.data(), shader.size()};
    dxilLibDesc.NumExports = _countof(exports);
@@ -25,30 +24,32 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
 
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_DXIL_LIBRARY, &dxilLibDesc});
 
-   //   // ローカル Root Signature 設定.
-   //D3D12_LOCAL_ROOT_SIGNATURE rootSignatureLocal{};
-   //rootSignatureLocal.pLocalRootSignature = this->closetHitRootSignature_;
-   //subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_LOCAL_ROOT_SIGNATURE, &rootSignatureLocal});
-
-   //const wchar_t *symbols[] = {L"hgObject"};
-   //D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION assoc{};
-   //assoc.NumExports = _countof(symbols);
-   //assoc.pExports = symbols;
-   //assoc.pSubobjectToAssociate = &subobjects.back();
-   //subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_SUBOBJECT_TO_EXPORTS_ASSOCIATION, &assoc});
-
-
-   // ヒットグループの設定.
+   // ヒットグループの設定
    D3D12_HIT_GROUP_DESC hitGroupDesc{};
    hitGroupDesc.Type = D3D12_HIT_GROUP_TYPE_TRIANGLES;
    hitGroupDesc.ClosestHitShaderImport = L"mainCHS";
    hitGroupDesc.HitGroupExport = DefaultHitgroup;
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_HIT_GROUP, &hitGroupDesc});
 
-   // グローバル Root Signature 設定.
+   // グローバルルートシグネチャ設定
    D3D12_GLOBAL_ROOT_SIGNATURE rootSignatureGlobal{};
    rootSignatureGlobal.pGlobalRootSignature = globalRootSignature_;
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_GLOBAL_ROOT_SIGNATURE, &rootSignatureGlobal});
+
+  //// ローカルルートシグネチャ設定
+  // D3D12_LOCAL_ROOT_SIGNATURE rootSignatureLocal{};
+  // rootSignatureLocal.pLocalRootSignature = this->closetHitRootSignature_;
+  // subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_LOCAL_ROOT_SIGNATURE, &rootSignatureLocal});
+
+  // const wchar_t *symbols[] = {CLEYERA::Graphics::HitGroup::ALL};
+
+  // D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION assoc{};
+  // assoc.NumExports = _countof(symbols);
+  // assoc.pExports = symbols;
+  // assoc.pSubobjectToAssociate = &subobjects.back();
+  // subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_SUBOBJECT_TO_EXPORTS_ASSOCIATION, &assoc});
+
+
 
    // シェーダー設定.
    D3D12_RAYTRACING_SHADER_CONFIG shaderConfig{};

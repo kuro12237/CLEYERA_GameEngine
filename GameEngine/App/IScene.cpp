@@ -14,6 +14,11 @@ void SceneCompornent::InitRaytracing() {
    globalrootsignature_ = std::make_unique<system::GlobalRootSignature>();
    globalrootsignature_->Init();
 
+   this->closeHitRootSignature_ = std::make_unique<system::CloseHitRootSignature>();
+   closeHitRootSignature_->Create();
+   this->rayGenRootSignature_ = std::make_unique<system::RayGenRootSignature>();
+   rayGenRootSignature_->Create();
+
    // パイプライン
    stateObject_ = std::make_unique<system::PiplineStateObject>();
    stateObject_->SetGlobalRootSignature(globalrootsignature_->GetRootSignature());
@@ -25,9 +30,14 @@ void SceneCompornent::InitRaytracing() {
    shaderTable_->Init();
 }
 
+void SceneCompornent::RaytracigTransfar() {
+   // tlas転送
+   tlas_->Update(objectList_);
+}
+
 void SceneCompornent::Render() {
 
-  auto commandManager = Base::DX::DXCommandManager::GetInstace();
+   auto commandManager = Base::DX::DXCommandManager::GetInstace();
    auto list = commandManager->GetCommandList();
 
    std::vector<ID3D12DescriptorHeap *> descs = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};

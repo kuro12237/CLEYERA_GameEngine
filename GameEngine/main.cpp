@@ -51,11 +51,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 #pragma region ImGui
 
+      scene_->ImGuiUpdate();
+
 #pragma endregion
 
 #pragma region 更新
 
       scene_->Update();
+      scene_->RaytracigTransfar();
+
       camera->Update();
 
 #pragma endregion

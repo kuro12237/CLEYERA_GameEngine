@@ -7,6 +7,7 @@ namespace CLEYERA {
 
 namespace Graphics {
 
+
 /// <summary>
 /// レイトレーシング管理クラス
 /// </summary>
@@ -59,7 +60,6 @@ class RaytracingManager {
    D3D12_RESOURCE_BARRIER barrier_ = {};
 
    const D3D12_DISPATCH_RAYS_DESC *dispachRayDesc_ = nullptr;
-
 };
 
 } // namespace Graphics

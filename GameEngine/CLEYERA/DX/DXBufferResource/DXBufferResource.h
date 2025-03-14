@@ -42,6 +42,19 @@ template <typename T> class DXBufferResource {
       isRtvUse_ = true;
    }
 
+   void RegisterSRV() {
+
+      D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};
+      srvDesc.ViewDimension = D3D12_SRV_DIMENSION_BUFFER;
+      srvDesc.Format = DXGI_FORMAT_UNKNOWN;
+      srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+      srvDesc.Buffer.NumElements = static_cast<UINT>(instanceNum_);
+      srvDesc.Buffer.FirstElement = 0;
+      srvDesc.Buffer.StructureByteStride =static_cast<UINT>(sizeof(T));
+
+      srvHandleIndex_ = descripterManager_->SRVAddCreatePtr(buffer_.Get(), srvDesc);
+      isSrvUse_ = true;
+   }
    void RegisterSRV(D3D12_SHADER_RESOURCE_VIEW_DESC desc) {
       srvHandleIndex_ = descripterManager_->SRVAddCreatePtr(buffer_.Get(), desc);
       isSrvUse_ = true;

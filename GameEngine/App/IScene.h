@@ -6,6 +6,10 @@
 #include "../CLEYERA/3d/Tlas/Tlas.h"
 #include "../CLEYERA/pch/Pch.h"
 
+#include"../CLEYERA/3d/LocalRootSignature/ClosestHitRootSignature.h"
+#include"../CLEYERA/3d/LocalRootSignature/RayGenRootSignature.h"
+
+
 /// <summary>
 /// Scene抽象クラス
 /// </summary>
@@ -18,9 +22,11 @@ class SceneCompornent {
 
    virtual void Update() = 0;
 
-   virtual void ImGui() {};
+   virtual void ImGuiUpdate() {};
 
    void InitRaytracing();
+
+   void RaytracigTransfar();
 
    void Render();
 
@@ -38,6 +44,10 @@ class SceneCompornent {
  private:
    std::unique_ptr<CLEYERA::Model3d::system::Tlas> tlas_ = nullptr;
    std::unique_ptr<CLEYERA::Model3d::system::GlobalRootSignature> globalrootsignature_ = nullptr;
+
+   std::unique_ptr<CLEYERA::Model3d::system::CloseHitRootSignature> closeHitRootSignature_ = nullptr;
+   std::unique_ptr<CLEYERA::Model3d::system::RayGenRootSignature> rayGenRootSignature_ = nullptr;
+
 
    std::unique_ptr<CLEYERA::Model3d::system::PiplineStateObject> stateObject_ = nullptr;
    std::unique_ptr<ShaderTable> shaderTable_ = nullptr;

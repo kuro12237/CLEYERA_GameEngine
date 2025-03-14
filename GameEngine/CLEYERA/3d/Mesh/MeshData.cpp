@@ -32,7 +32,9 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    vertBuf_->Init(data_.vertices.size());
    vertBuf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
    vertBuf_->CreateVertexBufferView();
-   
+
+   vertBuf_->RegisterSRV();
+
    vertBuf_->Map();
    vertBuf_->SetParam(data_.vertices);
    vertBuf_->UnMap();
@@ -48,10 +50,15 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    indexBuf_->SetParam(data_.indecs);
    indexBuf_->UnMap();
 
+   indexBuf_->RegisterSRV();
+
    //Blas
    blas_ = std::make_unique<system::Blas>();
    blas_->SetParamCount(this->data_.vertices.size());
    blas_->SetSize(sizeof(system::S2Vertex));
    blas_->SetVertexBuf(vertBuf_->GetResource());
    blas_->Init();
+
+   this->shaderName = CLEYERA::Graphics::HitGroup::ALL;
+
 }

@@ -7,7 +7,7 @@ void CLEYERA::Model3d::system::Tlas::Init() {
 
    size_t size = instanceDesc_.size() * sizeof(D3D12_RAYTRACING_INSTANCE_DESC);
 
-   std::unique_ptr<CLEYERA::Base::DX::DXBufferResource<int32_t>> instanceDescBuf = std::make_unique<Base::DX::DXBufferResource<int32_t>>();
+   instanceDescBuf = std::make_unique<Base::DX::DXBufferResource<int32_t>>();
 
    instanceDescBuf->SetDevice(dxManager->GetDevice());
    instanceDescBuf->DFCreateBuffer(size, D3D12_RESOURCE_FLAG_NONE, D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_HEAP_TYPE_UPLOAD);
@@ -70,6 +70,21 @@ void CLEYERA::Model3d::system::Tlas::Init() {
 
    auto commandManager = Base::DX::DXCommandManager::GetInstace();
    commandManager->CommandClose();
+}
+
+void CLEYERA::Model3d::system::Tlas::Update(std::vector<std::weak_ptr<Model3d::Game3dObject>> &obj) {
+    
+     size_t size = obj.size();
+
+   for (size_t i = 0; i < size; i++) {
+
+      auto it = obj[i].lock();
+
+      memcpy(&instanceDesc_[i].Transform, &it->GetMat3x4(), sizeof(Math::Matrix::Mat3x4));
+   }
+    instanceDescBuf->WriteMemory(instanceDesc_.data(), sizeof(D3D12_RAYTRACING_INSTANCE_DESC));
+
+
 }
 
 void CLEYERA::Model3d::system::Tlas::BufferBind() { buf_->ComputeRootDescripterTable(0); }

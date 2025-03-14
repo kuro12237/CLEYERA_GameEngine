@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../../DX/DXManager.h"
 
 namespace CLEYERA {
@@ -6,16 +7,16 @@ namespace Model3d {
 namespace system {
 
 /// <summary>
-/// CloseHitのルートシグネチャ
+/// RayGenのルートシグネチャ
 /// </summary>
-class CloseHitRootSignature {
+class RayGenRootSignature {
  public:
-   CloseHitRootSignature() {};
-   ~CloseHitRootSignature() {};
+   RayGenRootSignature() {};
+   ~RayGenRootSignature() {};
 
    void Create();
 
-   #pragma region Get
+#pragma region Get
 
    ID3D12RootSignature *GetRootSignature() { return rootSignature_.Get(); }
 

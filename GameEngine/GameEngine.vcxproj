@@ -155,6 +155,7 @@
     <ClCompile Include="CLEYERA\3d\Game3dObject.cpp" />
     <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
     <ClCompile Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.cpp" />
+    <ClCompile Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.cpp" />
     <ClCompile Include="CLEYERA\3d\Mesh\MeshData.cpp" />
     <ClCompile Include="CLEYERA\3d\Model3d.cpp" />
     <ClCompile Include="CLEYERA\3d\ModelManager\ModelManager.cpp" />
@@ -201,10 +202,12 @@
     <ClInclude Include="CLEYERA\3d\Game3dObject.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h" />
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
     <ClInclude Include="CLEYERA\3d\ModelManager\Model3dPool.h" />
     <ClInclude Include="CLEYERA\3d\ModelManager\ModelManager.h" />
+    <ClInclude Include="CLEYERA\Graphics\RaytracingManager\HitGroup.h" />
     <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
     <ClInclude Include="testCamera.h" />
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
