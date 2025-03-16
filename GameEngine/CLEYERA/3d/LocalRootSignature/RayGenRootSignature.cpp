@@ -6,10 +6,11 @@ void CLEYERA::Model3d::system::RayGenRootSignature::Create() {
 
    D3D12_DESCRIPTOR_RANGE range;
 
-   range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
    range.BaseShaderRegister = 0;
    range.NumDescriptors = 1;
-   range.RegisterSpace = 0;
+   range.RegisterSpace = 1;
+   range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
+
    range.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
    std::array<D3D12_ROOT_PARAMETER, 1> rootparam;

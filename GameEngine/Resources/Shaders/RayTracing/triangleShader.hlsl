@@ -17,49 +17,49 @@ struct SCamera
 };
 
 ConstantBuffer<SCamera> gCamera : register(b0);
-RWTexture2D<float4> gOutput : register(u0,space0);
+RWTexture2D<float4> gOutput : register(u3,space0);
 
 
 // Local Root Signature (for HitGroup)
-StructuredBuffer<uint> indexBuffer : register(t1, space0);
+StructuredBuffer<uint32_t> indexBuffer : register(t1, space0);
 StructuredBuffer<Vertex> vertexBuffer : register(t2, space0);
 
 struct Payload
 {
-    float3 color;
+    float32_t3 color;
 };
 struct MyAttribute
 {
-    float2 barys;
+    float32_t2 barys;
 };
 
 //レイの処理
 [shader("raygeneration")]
 void mainRayGen()
 {
-    uint2 launchIndex = DispatchRaysIndex().xy;
-    float2 dims = float2(DispatchRaysDimensions().xy);
+    uint32_t2 launchIndex = DispatchRaysIndex().xy;
+    float32_t2 dims = float2(DispatchRaysDimensions().xy);
     
-    float2 d = (launchIndex.xy + 0.5) / dims.xy * 2.0 - 1.0;
-    float aspect = dims.x / dims.y;
+    float32_t2 d = (launchIndex.xy + 0.5) / dims.xy * 2.0 - 1.0;
+    float32_t aspect = dims.x / dims.y;
 
-    matrix mtxViewInv = gCamera.mtxViewInv;
-    matrix mtxProjInv = gCamera.mtxProjInv;
+    float32_t4x4 mtxViewInv = gCamera.mtxViewInv;
+    float32_t4x4 mtxProjInv = gCamera.mtxProjInv;
 
     RayDesc rayDesc;
-    rayDesc.Origin = mul(mtxViewInv, float4(0, 0, 0, 1)).xyz;
+    rayDesc.Origin = mul(mtxViewInv, float32_t4(0, 0, 0, 1)).xyz;
 
-    float4 target = mul(mtxProjInv, float4(d.x, -d.y, 1, 1));
-    rayDesc.Direction = mul(mtxViewInv, float4(target.xyz, 0)).xyz;
+    float32_t4 target = mul(mtxProjInv, float32_t4(d.x, -d.y, 1, 1));
+    rayDesc.Direction = mul(mtxViewInv, float32_t4(target.xyz, 0)).xyz;
 
     rayDesc.TMin = 0;
     rayDesc.TMax = 100000;
 
     Payload payload;
-    payload.color = (float3)0;
+    payload.color = (float32_t3)0;
 
     RAY_FLAG flags = RAY_FLAG_NONE;
-    uint rayMask = 0xFF;
+    uint32_t rayMask = 0xFF;
 
     TraceRay(
         gRtScene,
@@ -83,7 +83,7 @@ void mainMS(inout Payload payload)
 }
 
 
-inline float3 CalcBarycentrics(float2 barys)
+float3 CalcBarycentrics(float2 barys)
 {
     return float3(
         1.0 - barys.x - barys.y,
@@ -106,8 +106,8 @@ Vertex GetHitVertex(MyAttribute attrib)
         uint index = indexBuffer[vertexId + i];
         float w = weights[i];
         v.Position += vertexBuffer[index].Position * w;
-       
-        
+        v.normal = (float32_t3) 0;
+
     }
     return v;
 }

@@ -22,10 +22,11 @@ void SceneCompornent::InitRaytracing() {
    closeHitRootSignature_->Create();
    
    //output
-   //spcce0
+   //spcce2
    this->rayGenRootSignature_ = std::make_unique<system::RayGenRootSignature>();
    rayGenRootSignature_->Create();
 
+   //一旦クローズ
    CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
 
    // パイプライン
@@ -69,4 +70,13 @@ void SceneCompornent::Render() {
 
    // tlasのセット
    tlas_->BufferBind();
+
+   auto desc = Base::DX::DXDescripterManager::GetInstance();
+
+   auto VbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetVertexBufIndex());
+   auto IbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetIndexBufIndex());
+
+   auto command = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
+   command->SetComputeRootDescriptorTable(2,IbIndex);
+   command->SetComputeRootDescriptorTable(3, VbIndex);
 }

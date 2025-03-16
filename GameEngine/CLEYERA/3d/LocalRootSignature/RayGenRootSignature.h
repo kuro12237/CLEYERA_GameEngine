@@ -18,7 +18,7 @@ class RayGenRootSignature {
 
 #pragma region Get
 
-   ID3D12RootSignature *GetRootSignature() { return rootSignature_.Get(); }
+   ComPtr<ID3D12RootSignature >GetRootSignature() { return rootSignature_; }
 
 #pragma endregion
 

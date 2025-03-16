@@ -28,8 +28,9 @@ void CLEYERA::Graphics::RaytracingManager::PostRaytracing() {
 }
 
 void CLEYERA::Graphics::RaytracingManager::DispachRay() {
-   //auto gpuHandle = descripterManager_->GetSRVGPUHandle(outputBuf_->GetSRVIndex());
-   //commandManager_->ComputeDescripterTable(1, gpuHandle);
+   auto gpuHandle = descripterManager_->GetSRVGPUHandle(outputBuf_->GetSRVIndex());
+   commandManager_->ComputeDescripterTable(4, gpuHandle);
+
 
    commandManager_->DispachRay(*dispachRayDesc_);
 
