@@ -186,6 +186,7 @@
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
@@ -216,7 +217,9 @@
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.h" />
     <ClInclude Include="CLEYERA\Graphics\RaytracingManager\HitGroup.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.h" />
     <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
     <ClInclude Include="testCamera.h" />
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />

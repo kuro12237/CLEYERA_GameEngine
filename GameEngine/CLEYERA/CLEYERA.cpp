@@ -26,6 +26,12 @@ void Engine::Init() {
    raytracingManager_ = std::make_shared<RaytracingManager>();
    raytracingManager_->Create();
 
+   rasterPiplineCommon_ = std::make_shared<Raster::system::RasterPiplineCommon>();
+   rasterPiplineCommon_->Init();
+
+   rasterPiplineManager_ = Raster::RasterPiplineManager::GetInstance();
+   rasterPiplineManager_->SetCommon(rasterPiplineCommon_);
+
    modelManager_ = CLEYERA::Manager::ModelManager::GetInstance();
 }
 

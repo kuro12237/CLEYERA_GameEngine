@@ -1,5 +1,11 @@
 #include "DFModel3dDraw.h"
 
+void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingShader() {
+
+
+
+}
+
 void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingRootParam() {
 
    this->rootParam_.resize(2);

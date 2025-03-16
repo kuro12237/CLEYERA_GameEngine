@@ -1,5 +1,8 @@
 #pragma once
+#include "RasterEnum.h"
 #include "pipline/RasterPiplineCompornent.h"
+
+#include "pipline/DF/DFModel3dDraw.h"
 
 namespace CLEYERA {
 
@@ -19,9 +22,10 @@ class RasterPiplineCommon {
 
    void Init();
 
- private:
+   template <typename T> std::weak_ptr<T> Getpipline(RasterPipline_Mode mode) { return dynamic_cast<T>(piplines_[mode]); }
 
-   std::map<Shader::ShaderMode, std::weak_ptr<RasterPiplineCompornent>> piplines_;
+ private:
+   std::map<RasterPipline_Mode, std::shared_ptr<RasterPiplineCompornent>> piplines_;
 };
 
 } // namespace system

@@ -1,4 +1,5 @@
 #pragma once
+#include "RasterPiplineCommon.h"
 
 namespace CLEYERA {
 
@@ -11,16 +12,16 @@ namespace Raster {
 /// </summary>
 class RasterPiplineManager {
  public:
+   static RasterPiplineManager *GetInstance();
+
 #pragma region Set
-
-   void SetCommon();
-
+   void SetCommon(std::weak_ptr<Raster::system::RasterPiplineCommon> c) { common_ = c; };
 #pragma endregion
 
+   template <typename T> std::weak_ptr<T> GetPipline(Graphics::RasterPipline_Mode mode) { return common_.lock()->Getpipline<T>(mode); }
+
  private:
-
-
-
+   std::weak_ptr<Raster::system::RasterPiplineCommon> common_;
 
 #pragma region Single
 

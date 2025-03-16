@@ -16,7 +16,7 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
    subobjects.reserve(32);
 
    /// シェーダー読み込み
-   std::vector<char> shader = ShaderManager::CompileShader("Resources/Shaders/RayTracing/triangleShader.hlsl");
+   std::vector<char> shader = Graphics::Shader::ShaderManager::CompileShader("Resources/Shaders/RayTracing/triangleShader.hlsl");
 
    D3D12_EXPORT_DESC exports[] = {
        {L"mainRayGen", nullptr, D3D12_EXPORT_FLAG_NONE},

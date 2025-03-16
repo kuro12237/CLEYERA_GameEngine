@@ -35,7 +35,7 @@ class RasterPiplineCompornent {
    void SetMode(RasterPipline_Mode mode) { mode_ = mode; }
 #pragma endregion
 
-
+   virtual void SettingShader() = 0;
    virtual void SettingRootParam() = 0;
    virtual void SettingSampler() = 0;
    virtual void SettingInput() = 0;
