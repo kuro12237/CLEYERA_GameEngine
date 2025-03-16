@@ -4,35 +4,47 @@ void CLEYERA::Model3d::system::GlobalRootSignature::Init() {
 
    ID3D12Device5 *device = Base::DX::DXManager::GetInstance()->GetDevice();
 
-   std::array<D3D12_ROOT_PARAMETER, 3> rootParams{};
+   std::array<D3D12_ROOT_PARAMETER, 4> rootParams{};
 
-   // TLAS を t0 レジスタに割り当てて使用する設定.
    D3D12_DESCRIPTOR_RANGE descRangeTLAS{};
    descRangeTLAS.BaseShaderRegister = 0;
    descRangeTLAS.NumDescriptors = 1;
    descRangeTLAS.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
 
-   // 出力バッファ(UAV) を u0 レジスタに割り当てて使用する設定.
-   D3D12_DESCRIPTOR_RANGE descRangeOutput{};
-   descRangeOutput.BaseShaderRegister = 0;
-   descRangeOutput.NumDescriptors = 1;
-   descRangeOutput.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
-
    rootParams[0] = D3D12_ROOT_PARAMETER{};
    rootParams[1] = D3D12_ROOT_PARAMETER{};
-   rootParams[2] = D3D12_ROOT_PARAMETER{};
 
    rootParams[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
    rootParams[0].DescriptorTable.NumDescriptorRanges = 1;
    rootParams[0].DescriptorTable.pDescriptorRanges = &descRangeTLAS;
 
-   rootParams[1].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-   rootParams[1].DescriptorTable.NumDescriptorRanges = 1;
-   rootParams[1].DescriptorTable.pDescriptorRanges = &descRangeOutput;
+   rootParams[1].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+   rootParams[1].Descriptor.ShaderRegister = 0;
+   rootParams[1].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
 
-   rootParams[2].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-   rootParams[2].Descriptor.ShaderRegister = 0;
+   D3D12_DESCRIPTOR_RANGE rangeIB{};
+   rangeIB.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+   rangeIB.BaseShaderRegister = 1;
+   rangeIB.NumDescriptors = 1;
+   rangeIB.RegisterSpace = 1;
+   rangeIB.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
+   D3D12_DESCRIPTOR_RANGE rangeVB{};
+   rangeVB.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+   rangeVB.BaseShaderRegister = 2;
+   rangeVB.NumDescriptors = 1;
+   rangeVB.RegisterSpace = 1;
+   rangeVB.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+
    rootParams[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+   rootParams[2].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+   rootParams[2].DescriptorTable.NumDescriptorRanges = 1;
+   rootParams[2].DescriptorTable.pDescriptorRanges = &rangeIB;
+
+   rootParams[3].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+   rootParams[3].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+   rootParams[3].DescriptorTable.NumDescriptorRanges = 1;
+   rootParams[3].DescriptorTable.pDescriptorRanges = &rangeVB;
 
    D3D12_ROOT_SIGNATURE_DESC rootSigDesc{};
    rootSigDesc.NumParameters = UINT(rootParams.size());

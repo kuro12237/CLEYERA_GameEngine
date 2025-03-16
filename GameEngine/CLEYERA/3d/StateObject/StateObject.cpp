@@ -5,11 +5,10 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
     device_ = Base::DX::DXManager::GetInstance()->GetDevice();
 
    std::vector<D3D12_STATE_SUBOBJECT> subobjects;
-   subobjects.reserve(9);
+   subobjects.reserve(32);
 
    ///シェーダー読み込み
-   std::vector<char> shader= ShaderManager::CompileShader("Resources/Shaders/triangleShader.hlsl");
-
+   std::vector<char> shader= ShaderManager::CompileShader("Resources/Shaders/RayTracing/triangleShader.hlsl");
 
    D3D12_EXPORT_DESC exports[] = {
        {L"mainRayGen", nullptr, D3D12_EXPORT_FLAG_NONE},
@@ -24,35 +23,34 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
 
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_DXIL_LIBRARY, &dxilLibDesc});
 
-   // ヒットグループの設定
+   //ここまで
+
+   // ヒットグループの設定.
    D3D12_HIT_GROUP_DESC hitGroupDesc{};
    hitGroupDesc.Type = D3D12_HIT_GROUP_TYPE_TRIANGLES;
    hitGroupDesc.ClosestHitShaderImport = L"mainCHS";
-   hitGroupDesc.HitGroupExport = CLEYERA::Graphics::HitGroup::ALL;
+   hitGroupDesc.HitGroupExport = Graphics::HitGroup::ALL;
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_HIT_GROUP, &hitGroupDesc});
 
-   // グローバルルートシグネチャ設定
+   // グローバル Root Signature 設定.
    D3D12_GLOBAL_ROOT_SIGNATURE rootSignatureGlobal{};
    rootSignatureGlobal.pGlobalRootSignature = globalRootSignature_;
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_GLOBAL_ROOT_SIGNATURE, &rootSignatureGlobal});
 
-  
-    // ローカル Root Signature 設定
-   //closedHit
-   D3D12_LOCAL_ROOT_SIGNATURE rootSignatureLocal{};
-   rootSignatureLocal.pLocalRootSignature = this->closetHitRootSignature_;
-   subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_LOCAL_ROOT_SIGNATURE, &rootSignatureLocal});
+   //// ローカル Root Signature 設定.
+   //D3D12_LOCAL_ROOT_SIGNATURE rootSignatureLocal{};
+   //rootSignatureLocal.pLocalRootSignature = this->closetHitRootSignature_;
+   //subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_LOCAL_ROOT_SIGNATURE, &rootSignatureLocal});
 
-   const wchar_t *symbols[] = {CLEYERA::Graphics::HitGroup::ALL};
-   D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION assoc{};
-   assoc.NumExports = _countof(symbols);
-   assoc.pExports = symbols;
-   assoc.pSubobjectToAssociate = &subobjects.back();
-   subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_SUBOBJECT_TO_EXPORTS_ASSOCIATION, &assoc});
+   //const wchar_t *symbols[] = {Graphics::HitGroup::ALL};
+   //D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION assoc{};
+   //assoc.NumExports = _countof(symbols);
+   //assoc.pExports = symbols;
+   //assoc.pSubobjectToAssociate = &subobjects.back();
+   //subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_SUBOBJECT_TO_EXPORTS_ASSOCIATION, &assoc});
 
-   ///RayGen
    D3D12_LOCAL_ROOT_SIGNATURE lrsRayGen{};
-   lrsRayGen.pLocalRootSignature = this->rayGenRootSignature_;
+   lrsRayGen.pLocalRootSignature = rayGenRootSignature_;
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_LOCAL_ROOT_SIGNATURE, &lrsRayGen});
    const wchar_t *symbolsRGS[] = {L"mainRayGen"};
    D3D12_SUBOBJECT_TO_EXPORTS_ASSOCIATION assoc2{};
@@ -61,25 +59,24 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
    assoc2.pSubobjectToAssociate = &subobjects.back();
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_SUBOBJECT_TO_EXPORTS_ASSOCIATION, &assoc2});
 
-
-   // シェーダー設定
+   // シェーダー設定.
    D3D12_RAYTRACING_SHADER_CONFIG shaderConfig{};
    shaderConfig.MaxPayloadSizeInBytes = sizeof(Math::Vector::Vec3);
    shaderConfig.MaxAttributeSizeInBytes = sizeof(Math::Vector::Vec2);
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_RAYTRACING_SHADER_CONFIG, &shaderConfig});
 
-   // パイプライン設定
+   // パイプライン設定.
    D3D12_RAYTRACING_PIPELINE_CONFIG pipelineConfig{};
    pipelineConfig.MaxTraceRecursionDepth = 1;
    subobjects.emplace_back(D3D12_STATE_SUBOBJECT{D3D12_STATE_SUBOBJECT_TYPE_RAYTRACING_PIPELINE_CONFIG, &pipelineConfig});
 
-   // ステートオブジェクトの生成
+   // ステートオブジェクトの生成.
    D3D12_STATE_OBJECT_DESC stateObjDesc{};
    stateObjDesc.Type = D3D12_STATE_OBJECT_TYPE_RAYTRACING_PIPELINE;
    stateObjDesc.NumSubobjects = UINT(subobjects.size());
    stateObjDesc.pSubobjects = subobjects.data();
 
-   HRESULT hr = device_->CreateStateObject(&stateObjDesc, IID_PPV_ARGS(stateObject_.ReleaseAndGetAddressOf()));
+   HRESULT hr = device_->CreateStateObject(&stateObjDesc, IID_PPV_ARGS(this->stateObject_.ReleaseAndGetAddressOf()));
    assert(SUCCEEDED(hr));
  
 }

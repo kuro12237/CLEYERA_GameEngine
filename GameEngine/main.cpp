@@ -75,7 +75,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
       scene_->Render();
-      camera->Call(2);
+      camera->Call(1);
 
       raytracingManager.lock()->DispachRay();
 

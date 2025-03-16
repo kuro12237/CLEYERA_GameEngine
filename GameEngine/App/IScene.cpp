@@ -11,11 +11,18 @@ void SceneCompornent::InitRaytracing() {
    tlas_->Init();
 
    // 汎用ルートシグネチャ
+   //globalにTlas
+   //Camera
    globalrootsignature_ = std::make_unique<system::GlobalRootSignature>();
    globalrootsignature_->Init();
 
+   //IB,VB
+   //space1
    this->closeHitRootSignature_ = std::make_unique<system::CloseHitRootSignature>();
    closeHitRootSignature_->Create();
+   
+   //output
+   //spcce0
    this->rayGenRootSignature_ = std::make_unique<system::RayGenRootSignature>();
    rayGenRootSignature_->Create();
 

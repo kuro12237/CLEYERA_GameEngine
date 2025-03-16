@@ -150,6 +150,15 @@
     <ClCompile Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h">
@@ -305,11 +314,36 @@
     <ClInclude Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterEnum.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
+    <None Include="Resources\Shaders\Common\Vert.hlsli" />
+    <None Include="Resources\Shaders\Common\Camera.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
+    <None Include="Resources\Shaders\Common\WtTransform.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\triangleShader.hlsl" />
+    <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_PS.hlsl" />
   </ItemGroup>
 </Project>

@@ -11,20 +11,20 @@ void ShaderTable::Init() {
    //アライメント
    const auto ShaderRecordAlignment = D3D12_RAYTRACING_SHADER_RECORD_BYTE_ALIGNMENT;
   
-   // RayGeneration
+   //OutPut
    UINT raygenRecordSize = 0;
    raygenRecordSize += D3D12_SHADER_IDENTIFIER_SIZE_IN_BYTES;
    raygenRecordSize += sizeof(D3D12_GPU_DESCRIPTOR_HANDLE);
    raygenRecordSize = RoundUp(raygenRecordSize, ShaderRecordAlignment);
 
-   // ヒットグループでは
+   //IB+VB
    UINT hitgroupRecordSize = 0;
    hitgroupRecordSize += D3D12_SHADER_IDENTIFIER_SIZE_IN_BYTES;
    hitgroupRecordSize += sizeof(D3D12_GPU_DESCRIPTOR_HANDLE);
    hitgroupRecordSize += sizeof(D3D12_GPU_DESCRIPTOR_HANDLE);
    hitgroupRecordSize = RoundUp(hitgroupRecordSize, ShaderRecordAlignment);
 
-   // Missシェーダーではローカルルートシグネチャ未使用.
+   //何もしない
    UINT missRecordSize = 0;
    missRecordSize += D3D12_SHADER_IDENTIFIER_SIZE_IN_BYTES;
    missRecordSize = RoundUp(missRecordSize, ShaderRecordAlignment);
@@ -40,19 +40,18 @@ void ShaderTable::Init() {
    auto missRegion = RoundUp(missSize, tableAlign);
    auto hitgroupRegion = RoundUp(hitGroupSize, tableAlign);
 
-   // シェーダーテーブル確保.
+   // シェーダーテーブル確保
    auto tableSize = raygenRegion + missRegion + hitgroupRegion;
    shaderTable_->DFCreateBuffer(tableSize, D3D12_RESOURCE_FLAG_NONE, D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_HEAP_TYPE_UPLOAD);
 
    ComPtr<ID3D12StateObjectProperties> rtsoProps;
    this->stateObject_.As(&rtsoProps);
 
-   // 各シェーダーレコードを書き込んでいく.
    void *mapped = nullptr;
    shaderTable_->GetResource()->Map(0, nullptr, &mapped);
    uint8_t *pStart = static_cast<uint8_t *>(mapped);
 
-   // RayGeneration 用のシェーダーレコードを書き込み.
+   // RayGeneration
    auto rgsStart = pStart;
    {
       uint8_t *p = rgsStart;
@@ -64,7 +63,7 @@ void ShaderTable::Init() {
       p += WriteGPUDescriptor(p, handle);
    }
 
-   // Miss Shader 用のシェーダーレコードを書き込み.
+   //miss書きこみ
    auto missStart = pStart + raygenRegion;
    {
       uint8_t *p = missStart;
@@ -73,7 +72,7 @@ void ShaderTable::Init() {
       p += WriteShaderIdentifier(p, id);
    }
 
-   // Hit Group 用のシェーダーレコードを書き込み.
+   //HitGroup
    auto hitgroupStart = pStart + raygenRegion + missRegion;
    {
       uint8_t *pRecord = hitgroupStart;
@@ -84,7 +83,7 @@ void ShaderTable::Init() {
       }
    }
 
-   // DispatchRays のために情報をセットしておく.
+   //情報をセット
    auto startAddress = shaderTable_->GetResource()->GetGPUVirtualAddress();
 
    auto &shaderRecordRG = dispatchRayDesc.RayGenerationShaderRecord;

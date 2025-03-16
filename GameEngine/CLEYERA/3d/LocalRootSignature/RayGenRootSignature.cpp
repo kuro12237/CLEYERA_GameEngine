@@ -5,9 +5,12 @@ void CLEYERA::Model3d::system::RayGenRootSignature::Create() {
    ID3D12Device5 *device = Base::DX::DXManager::GetInstance()->GetDevice();
 
    D3D12_DESCRIPTOR_RANGE range;
-   range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+
+   range.RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
    range.BaseShaderRegister = 0;
    range.NumDescriptors = 1;
+   range.RegisterSpace = 0;
+   range.OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
 
    std::array<D3D12_ROOT_PARAMETER, 1> rootparam;
    rootparam[0].DescriptorTable.NumDescriptorRanges = 1;

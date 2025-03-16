@@ -1,3 +1,11 @@
+
+struct Vertex
+{
+    float4 Position;
+    float3 normal;
+};
+
+
 RaytracingAccelerationStructure gRtScene : register(t0);
 
 struct SCamera
@@ -9,16 +17,12 @@ struct SCamera
 };
 
 ConstantBuffer<SCamera> gCamera : register(b0);
-RWTexture2D<float4> gOutput : register(u0);
+RWTexture2D<float4> gOutput : register(u0,space0);
 
-struct Vertex
-{
-    float3 Position;
-    float3 normal;
-};
+
 // Local Root Signature (for HitGroup)
-StructuredBuffer<uint> indexBuffer : register(t0, space1);
-StructuredBuffer<Vertex> vertexBuffer : register(t1, space1);
+StructuredBuffer<uint> indexBuffer : register(t1, space0);
+StructuredBuffer<Vertex> vertexBuffer : register(t2, space0);
 
 struct Payload
 {
@@ -29,6 +33,7 @@ struct MyAttribute
     float2 barys;
 };
 
+//レイの処理
 [shader("raygeneration")]
 void mainRayGen()
 {
@@ -51,7 +56,7 @@ void mainRayGen()
     rayDesc.TMax = 100000;
 
     Payload payload;
-    payload.color = float3(0, 0, 0.5);
+    payload.color = (float3)0;
 
     RAY_FLAG flags = RAY_FLAG_NONE;
     uint rayMask = 0xFF;
@@ -60,21 +65,21 @@ void mainRayGen()
         gRtScene,
         flags,
         rayMask,
-        0, // ray index
-        1, // MultiplierForGeometryContrib
-        0, // miss index
+        0,
+        1,
+        0,
         rayDesc,
         payload);
     float3 col = payload.color;
-
     // 結果格納.
     gOutput[launchIndex.xy] = float4(col, 1);
 }
 
+//外れたとき
 [shader("miss")]
 void mainMS(inout Payload payload)
 {
-    payload.color = float3(0.0, 0.0, 0.0);
+    payload.color = float3(0.1f, 0.25f, 0.5f);
 }
 
 
@@ -101,16 +106,16 @@ Vertex GetHitVertex(MyAttribute attrib)
         uint index = indexBuffer[vertexId + i];
         float w = weights[i];
         v.Position += vertexBuffer[index].Position * w;
-        v.normal += vertexBuffer[index].normal * w;
+       
+        
     }
-    v.normal = normalize(v.normal);
     return v;
 }
 
-
+//当たった時
 [shader("closesthit")]
 void mainCHS(inout Payload payload, MyAttribute attrib)
 {
     Vertex vtx = GetHitVertex(attrib);
-    payload.color.rgb = float32_t3(1.0f,0.0f,0.0f);
+    payload.color.rgb = float32_t3(1.0f, 0.0f, 0.0f);
 }

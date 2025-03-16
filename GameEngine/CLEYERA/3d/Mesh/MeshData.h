@@ -16,7 +16,7 @@ namespace system {
 /// </summary>
 struct S2Vertex {
 
-   Math::Vector::Vec3 pos = {};
+   Math::Vector::Vec4 pos = {};
    Math::Vector::Vec3 normal = {};
 };
 

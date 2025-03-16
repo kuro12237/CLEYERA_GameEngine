@@ -183,6 +183,9 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
@@ -207,7 +210,13 @@
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
     <ClInclude Include="CLEYERA\3d\ModelManager\Model3dPool.h" />
     <ClInclude Include="CLEYERA\3d\ModelManager\ModelManager.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterEnum.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.h" />
     <ClInclude Include="CLEYERA\Graphics\RaytracingManager\HitGroup.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h" />
     <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
     <ClInclude Include="testCamera.h" />
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
@@ -250,9 +259,32 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
+    <None Include="Resources\Shaders\Common\Camera.hlsli" />
+    <None Include="Resources\Shaders\Common\WtTransform.hlsli" />
+    <None Include="Resources\Shaders\Common\Vert.hlsli">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </None>
+    <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\triangleShader.hlsl">
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_PS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_VS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Library</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.6</ShaderModel>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)%(Filename).dxlib</ObjectFileOutput>

@@ -35,7 +35,7 @@
 #include <type_traits>
 
 #include <iostream>
-
+#include <comdef.h>
 #include <Windows.h>
 #pragma comment(lib, "winmm.lib")
 
