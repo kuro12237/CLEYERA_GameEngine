@@ -3,6 +3,8 @@
 #include "../RasterPipline/RasterEnum.h"
 #include "ShaderEnum.h"
 
+#include "ShaderCommon.h"
+
 namespace CLEYERA {
 
 namespace Graphics {
@@ -11,25 +13,23 @@ namespace Shader {
 
 class ShaderManager {
  public:
-   ShaderManager() {};
-   ~ShaderManager() {};
+   static ShaderManager *GetInstance();
 
    void Init();
 
    static std::vector<char> CompileShader(const std::filesystem::path &hlslFilename);
 
-   /// <summary>
-   /// コンパイル関数
-   /// </summary>
-   IDxcBlob *CompilerShaderFanc(const std::wstring &filePath, const wchar_t *profile);
+   void SetCommon(std::weak_ptr<Shader::system::ShaderCommon> c) { common_ = c; }
 
-   IDxcBlob *GetShader(Graphics::RasterPipline_Mode pipMode, Shader::ShaderMode shaderMode) { return shaders_[pipMode]; }
+   IDxcBlob *GetShader(Graphics::RasterPipline_Mode pipMode, Shader::ShaderMode shaderMode) { return common_.lock()->GetBlob(pipMode, shaderMode); }
 
  private:
-   ComPtr<IDxcIncludeHandler> includeHandler_ = nullptr;
-   ComPtr<IDxcUtils> utils_ = nullptr;
-   ComPtr<IDxcCompiler3> compiler_ = nullptr;
-   std::map<Graphics::RasterPipline_Mode,Graphics::Shader::ShaderMode> shaders_;
+
+
+   std::weak_ptr<Shader::system::ShaderCommon> common_;
+
+   ShaderManager() = default;
+   ~ShaderManager() = default;
 };
 } // namespace Shader
 } // namespace Graphics

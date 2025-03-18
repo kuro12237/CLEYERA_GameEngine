@@ -33,9 +33,12 @@ class DXCommandManager {
    void Barrier(const D3D12_RESOURCE_BARRIER &barrier);
 
    void ComputeRootSignature(ID3D12RootSignature *root);
+
    void ComputeDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle);
 
    void DispachRay(const D3D12_DISPATCH_RAYS_DESC &desc);
+
+   void GraphicsCommandCall(UINT number, ID3D12Resource *buf);
 
    /// <summary>
    /// targetにコピー

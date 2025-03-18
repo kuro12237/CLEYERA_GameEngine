@@ -1,4 +1,7 @@
 #pragma once
+#include "../../pch/Pch.h"
+
+#include "json.hpp"
 
 namespace CLEYERA {
 
@@ -10,19 +13,10 @@ namespace Shader {
 /// シェーダーの種類
 /// </summary>
 enum class ShaderMode {
-
-   PS,
-   VS,
-   DS,
-   HS,
-   GS,
-   CS,
-   RAYGEN,
-   MISS,
-   CLOSEST_HIT,
-   ANY_HIT,
-   INTERSECTION
+   PS, VS, DS, HS, GS, CS, RAYGEN, MISS, CLOSEST_HIT, ANY_HIT, INTERSECTION,kMax
 };
-}
+
+
+} // namespace Shader
 } // namespace Graphics
 } // namespace CLEYERA

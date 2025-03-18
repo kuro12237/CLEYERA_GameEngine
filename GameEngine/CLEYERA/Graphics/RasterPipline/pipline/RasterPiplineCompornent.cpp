@@ -1,9 +1,14 @@
 #include "RasterPiplineCompornent.h"
 
-void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::Init() { device_ = Base::DX::DXManager::GetInstance()->GetDevice(); }
+void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::Init() {
+
+   shaderManager_ = Shader::ShaderManager::GetInstance();
+   device_ = Base::DX::DXManager::GetInstance()->GetDevice();
+}
 
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::Create() {
 
+   SettingShader();
    SettingRootParam();
    SettingSampler();
    this->CreateRootSignature();
@@ -12,15 +17,16 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::Create() {
    SettingRaster();
    SettingDepth();
    SettingPipline();
-   
+
    this->CreatePipline();
 }
 
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::CreateRootSignature() {
    descriptionRootSignature_.pStaticSamplers = staticSamplers_.data();
-   descriptionRootSignature_.NumStaticSamplers = staticSamplers_.size();
+   descriptionRootSignature_.NumStaticSamplers = UINT(staticSamplers_.size());
    descriptionRootSignature_.pParameters = rootParam_.data();
-   descriptionRootSignature_.NumParameters = rootParam_.size();
+   descriptionRootSignature_.NumParameters = UINT(rootParam_.size());
+   descriptionRootSignature_.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
 
    ComPtr<ID3DBlob> signatureBlob = nullptr;
    ComPtr<ID3DBlob> errorBlob = nullptr;
@@ -49,28 +55,34 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingDepth() 
    despthStencilDesc_.DepthEnable = true;
    despthStencilDesc_.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
    despthStencilDesc_.DepthFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
+   despthStencilDesc_.FrontFace.StencilFailOp = D3D12_STENCIL_OP_KEEP; // ここを確認
+   despthStencilDesc_.FrontFace.StencilDepthFailOp = D3D12_STENCIL_OP_KEEP;
+   despthStencilDesc_.FrontFace.StencilPassOp = D3D12_STENCIL_OP_REPLACE;
+   despthStencilDesc_.FrontFace.StencilFunc = D3D12_COMPARISON_FUNC_ALWAYS;
+
+   despthStencilDesc_.BackFace = despthStencilDesc_.FrontFace; // BackFace も同じ設定
 }
 
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingPipline() {
 
    auto vs = shaders_[Shader::ShaderMode::VS];
-   if (vs.Get()) {
+   if (vs) {
       pipelineStateDesc_.VS = {vs->GetBufferPointer(), vs->GetBufferSize()};
    }
    auto ps = shaders_[Shader::ShaderMode::PS];
-   if (ps.Get()) {
+   if (ps) {
       pipelineStateDesc_.PS = {ps->GetBufferPointer(), ps->GetBufferSize()};
    }
    auto ds = shaders_[Shader::ShaderMode::DS];
-   if (ds.Get()) {
+   if (ds) {
       pipelineStateDesc_.DS = {ds->GetBufferPointer(), ds->GetBufferSize()};
    }
    auto hs = shaders_[Shader::ShaderMode::HS];
-   if (hs.Get()) {
+   if (hs) {
       pipelineStateDesc_.HS = {hs->GetBufferPointer(), hs->GetBufferSize()};
    }
    auto gs = shaders_[Shader::ShaderMode::GS];
-   if (gs.Get()) {
+   if (gs) {
       pipelineStateDesc_.GS = {gs->GetBufferPointer(), gs->GetBufferSize()};
    }
 

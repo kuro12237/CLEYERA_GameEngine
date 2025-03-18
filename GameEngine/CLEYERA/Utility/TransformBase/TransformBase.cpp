@@ -1,5 +1,11 @@
 #include "TransformBase.h"
+#include "../../DX/DXManager.h"
+
 using namespace Math::Vector;
+
+CLEYERA::Util::TransformBase::TransformBase() {
+
+}
 
 void CLEYERA::Util::TransformBase::TransformUpdate() {
    mat_ = Math::Matrix::Func::AffineMatrix(*scale_, *rotate_, *translate_);

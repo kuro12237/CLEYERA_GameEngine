@@ -2,8 +2,8 @@
 #include "../../../DX/DXManager.h"
 #include "../../../pch/Pch.h"
 #include "../../ShaderManager/ShaderEnum.h"
+#include "../../ShaderManager/ShaderManager.h"
 #include "../RasterEnum.h"
-
 
 namespace CLEYERA {
 
@@ -22,17 +22,18 @@ class RasterPiplineCompornent {
 
    void Create();
 
+   void SetMode(RasterPipline_Mode mode) { mode_ = mode; }
+
  private:
    void CreateRootSignature();
    void CreatePipline();
 
    ID3D12Device5 *device_ = nullptr;
 
-   RasterPipline_Mode mode_;
-
  protected:
 #pragma region Set
-   void SetMode(RasterPipline_Mode mode) { mode_ = mode; }
+   void SetFilePath(Shader::ShaderMode mode, std::string file) { filePath_[mode] = file; }
+
 #pragma endregion
 
    virtual void SettingShader() = 0;
@@ -42,6 +43,8 @@ class RasterPiplineCompornent {
    virtual void SettingRaster();
    virtual void SettingDepth();
    virtual void SettingPipline();
+   Shader::ShaderManager *shaderManager_ = nullptr;
+   RasterPipline_Mode mode_;
 
    D3D12_ROOT_SIGNATURE_DESC descriptionRootSignature_{};
    std::vector<D3D12_ROOT_PARAMETER> rootParam_;
@@ -57,10 +60,11 @@ class RasterPiplineCompornent {
 
    DXGI_FORMAT depthFormat_ = DXGI_FORMAT_D24_UNORM_S8_UINT;
 
-   std::map<CLEYERA::Graphics::Shader::ShaderMode, ComPtr<IDxcBlob>> shaders_;
-
    ComPtr<ID3D12PipelineState> GraphicsPipelineState_ = nullptr;
    ComPtr<ID3D12RootSignature> rootSignature_ = nullptr;
+
+   std::map<Shader::ShaderMode, std::string> filePath_;
+   std::map<Shader::ShaderMode, IDxcBlob *> shaders_;
 };
 
 } // namespace system

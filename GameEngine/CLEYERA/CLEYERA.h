@@ -11,6 +11,7 @@
 #include"3d/ModelManager/ModelManager.h"
 
 #include"Graphics/RasterPipline/RasterPiplineManager.h"
+#include"Graphics/ShaderManager/ShaderManager.h"
 
 class Engine {
  public:
@@ -41,6 +42,7 @@ class Engine {
    std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;
 
    std::shared_ptr<CLEYERA::Graphics::Raster::system::RasterPiplineCommon> rasterPiplineCommon_ = nullptr;
+   std::shared_ptr<CLEYERA::Graphics::Shader::system::ShaderCommon> shaderCommon_ = nullptr;
 
    std::shared_ptr<CLEYERA::Base::DX::DXCommon> dxCommon_ = nullptr;
    std::shared_ptr<CLEYERA::Utility::ImGuiCommon> imGuiCommon_ = nullptr;

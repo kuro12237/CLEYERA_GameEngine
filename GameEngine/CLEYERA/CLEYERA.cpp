@@ -26,6 +26,11 @@ void Engine::Init() {
    raytracingManager_ = std::make_shared<RaytracingManager>();
    raytracingManager_->Create();
 
+   shaderCommon_ = std::make_shared<Shader::system::ShaderCommon>();
+   shaderCommon_->Init();
+   auto shaderManager = Shader::ShaderManager::GetInstance();
+   shaderManager->SetCommon(shaderCommon_);
+
    rasterPiplineCommon_ = std::make_shared<Raster::system::RasterPiplineCommon>();
    rasterPiplineCommon_->Init();
 
@@ -38,6 +43,9 @@ void Engine::Init() {
 void Engine::Finalize() {
 
    modelManager_->Finalize();
+
+   shaderCommon_.reset();
+   rasterPiplineCommon_.reset();
 
    raytracingManager_.reset();
    imGuiCommon_.reset();

@@ -3,10 +3,10 @@
 
 #include "CLEYERA/CLEYERA.h"
 
-#include"testCamera.h"
+#include "testCamera.h"
 
-#include"App/IScene.h"
-#include"App/DebugScene.h"
+#include "App/DebugScene.h"
+#include "App/IScene.h"
 
 /// <summary>
 /// メイン関数
@@ -22,25 +22,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
    auto imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
    auto raytracingManager = engine_->GetRaytracingManager();
 
-
-   uint32_t handle = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/Tower","Tower");
-   handle;
-
- 
    std::unique_ptr<TestCamera> camera = std::make_unique<TestCamera>();
    camera->Create();
-
-
 
    std::unique_ptr<SceneCompornent> scene_ = std::make_unique<DebugScene>();
    scene_->SetRaytracingmanager(raytracingManager);
    scene_->Init();
 
-
    // 一旦クローズ
    CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
-
-
 
    raytracingManager.lock()->SetDispathRayDesc(scene_->GetTable()->GetDispatchRayDesc());
 
@@ -51,7 +41,13 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       imGuiManager->Begin();
 
 #pragma region ImGui
-
+      if (ImGui::BeginMainMenuBar()) {
+         if (ImGui::BeginMenu("Engine")) {
+            // Add menu items here
+            ImGui::EndMenu();
+         }
+         ImGui::EndMainMenuBar();
+      }
       scene_->ImGuiUpdate();
 
 #pragma endregion
@@ -82,6 +78,28 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       // レイトレのoutput結果をレンダーターゲットにコピー
       swap.lock()->RTVCopyBuf(raytracingManager.lock()->GetOutputResource());
       raytracingManager.lock()->PostRaytracing();
+
+#pragma endregion
+
+#pragma region ラスタ描画
+
+#pragma region 背景2d
+
+#pragma endregion
+
+#pragma region 3d
+
+#pragma endregion
+
+#pragma region 前景2d
+
+#pragma endregion
+
+#pragma endregion
+
+#pragma endregion
+
+#pragma region ポストエフェクトの画像処理
 
 #pragma endregion
 

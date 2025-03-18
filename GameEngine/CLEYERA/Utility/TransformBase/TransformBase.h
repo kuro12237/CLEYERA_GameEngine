@@ -1,13 +1,25 @@
 #pragma once
 #include "../../pch/Pch.h"
+#include"../../DX/DXBufferResource/DXBufferResource.h"
 
 namespace CLEYERA {
 
 namespace Util {
 
+namespace system {
+
+struct SCamera {
+
+   Math::Matrix::Mat4x4 matProj_ = {};
+   Math::Matrix::Mat4x4 mtxProjInv_ = {};
+   Math::Matrix::Mat4x4 matView_ = {};
+   Math::Matrix::Mat4x4 mtxViewInv_ = {};
+};
+} // namespace system
+
 class TransformBase {
  public:
-   TransformBase() {};
+   TransformBase();
    virtual ~TransformBase() {};
 
    virtual void Init() {};

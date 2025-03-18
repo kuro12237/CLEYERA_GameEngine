@@ -123,6 +123,12 @@ void CLEYERA::Base::DX::DXCommandManager::ComputeDescripterTable(UINT num, D3D12
 
 void CLEYERA::Base::DX::DXCommandManager::DispachRay(const D3D12_DISPATCH_RAYS_DESC &desc) { list_->DispatchRays(&desc); }
 
+void CLEYERA::Base::DX::DXCommandManager::GraphicsCommandCall(UINT number, ID3D12Resource *buf) {
+   if (list_) {
+      list_->SetGraphicsRootConstantBufferView(number, buf->GetGPUVirtualAddress());
+   }
+}
+
 void CLEYERA::Base::DX::DXCommandManager::CopyResource(ID3D12Resource *target, ID3D12Resource *source) {
    if (list_) {
 

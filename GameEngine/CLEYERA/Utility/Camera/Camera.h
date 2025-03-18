@@ -7,17 +7,6 @@
 namespace CLEYERA {
 namespace Util {
 
-namespace system {
-
-struct SCamera {
-
-   Math::Matrix::Mat4x4 matProj_ = {};
-   Math::Matrix::Mat4x4 mtxProjInv_ = {};
-   Math::Matrix::Mat4x4 matView_ = {};
-   Math::Matrix::Mat4x4 mtxViewInv_ = {};
-
-};
-} // namespace system
 
 class Camera : public TransformBase {
  public:
@@ -29,6 +18,12 @@ class Camera : public TransformBase {
    void Update();
 
    void Call(UINT num) { buf_->BaindComuputeCBV(num); };
+
+   #pragma region Get
+
+   ID3D12Resource *GetBuf() { return buf_->GetResource(); }
+#pragma endregion
+
 
  private:
 

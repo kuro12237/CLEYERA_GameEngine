@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)../Externals/assimp/include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)../Externals/assimp/include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -136,7 +136,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -188,10 +188,13 @@
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.cpp" />
     <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
     <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Camera\Camera.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Camera\CameraManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\TransformBase\TransformBase.cpp" />
@@ -220,6 +223,7 @@
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.h" />
+    <ClInclude Include="CLEYERA\Utility\Camera\CameraManager.h" />
     <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
     <ClInclude Include="testCamera.h" />
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
