@@ -7,26 +7,24 @@
 namespace CLEYERA {
 namespace Util {
 
-
 class Camera : public TransformBase {
  public:
    Camera() {};
    ~Camera() {};
 
-   void Init() override;
+   void Init();
 
    void Update();
 
    void Call(UINT num) { buf_->BaindComuputeCBV(num); };
 
-   #pragma region Get
+#pragma region Get
 
    ID3D12Resource *GetBuf() { return buf_->GetResource(); }
+   const system::SCamera &GetForGpu() const { return forGpu_; }
 #pragma endregion
 
-
  private:
-
    void ConvertData();
 
    std::shared_ptr<Base::DX::DXBufferResource<system::SCamera>> buf_ = nullptr;

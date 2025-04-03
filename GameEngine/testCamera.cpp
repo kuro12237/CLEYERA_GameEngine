@@ -1,11 +1,13 @@
 #include "testCamera.h"
 
 void TestCamera::Create() {
-   camera_ = std::make_unique<CLEYERA::Util::Camera>();
+   camera_ = std::make_shared<CLEYERA::Util::Camera>();
    camera_->Init();
 
    camera_->SetRotate(rotate_);
    camera_->SetTranslate(translate_);
+
+   CLEYERA::Manager::CameraManager::GetInstance()->SetCamera(this->camera_);
 }
 
 void TestCamera::Update() {

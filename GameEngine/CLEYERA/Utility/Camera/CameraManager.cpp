@@ -1,15 +1,21 @@
 #include "CameraManager.h"
 
-void CLEYERA::Manager::CameraManager::Init() { dxManager_ = Base::DX::DXManager::GetInstance();
+CLEYERA::Manager::CameraManager *CLEYERA::Manager::CameraManager::GetInstance() {
 
-commandManager_ = Base::DX::DXCommandManager::GetInstace();
+   static CameraManager instance;
+   return &instance;
+}
 
+void CLEYERA::Manager::CameraManager::Init() {
+   dxManager_ = Base::DX::DXManager::GetInstance();
+
+   commandManager_ = Base::DX::DXCommandManager::GetInstace();
 }
 
 void CLEYERA::Manager::CameraManager::Update() {
-   if (!camera_.expired()) {
-	   //カメラをセットしていない
-	   assert(false);
+   if (camera_.expired()) {
+      // カメラをセットしていない
+      assert(false);
    }
 
    auto camera = camera_.lock();
@@ -18,10 +24,12 @@ void CLEYERA::Manager::CameraManager::Update() {
 }
 
 void CLEYERA::Manager::CameraManager::BindCommand(UINT num) {
-   if (!camera_.expired()) {
+   if (camera_.expired()) {
       // カメラをセットしていない
       assert(false);
    }
 
- commandManager_->GraphicsCommandCall(num, camera_.lock()->GetBuf());
+   commandManager_->GraphicsCommandCall(num, camera_.lock()->GetBuf());
 }
+
+void CLEYERA::Manager::CameraManager::BindComputeCommand(UINT num) { camera_.lock()->Call(num); }

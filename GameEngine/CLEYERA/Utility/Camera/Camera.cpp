@@ -34,4 +34,5 @@ void CLEYERA::Util::Camera::ConvertData() {
    forGpu_.mtxProjInv_ = mtxProjInv_;
    forGpu_.matView_ = matView_;
    forGpu_.mtxViewInv_ = mtxViewInv_;
+   forGpu_.mtxVP_ = Math::Matrix::Func::Multiply(matView_, matProj_);
 }

@@ -24,6 +24,8 @@ D3D12_GPU_DESCRIPTOR_HANDLE CLEYERA::Base::DX::DXDescripterManager::GetSRVGPUHan
 
 D3D12_CPU_DESCRIPTOR_HANDLE CLEYERA::Base::DX::DXDescripterManager::GetRTVCPUHandle(size_t index) { return rtvDescripter_.lock()->GetCPUHandle(index); }
 
+D3D12_CPU_DESCRIPTOR_HANDLE CLEYERA::Base::DX::DXDescripterManager::GetDSVCPUHandle(size_t index) { return dsvDescripter_.lock()->GetCPUHandle(index); }
+
 ID3D12Resource *CLEYERA::Base::DX::DXDescripterManager::GetRTVResource(size_t index) {
    index;
    return nullptr;

@@ -41,6 +41,7 @@ void CLEYERA::Graphics::Shader::system::ShaderCompornent::Init(ShaderCommon *man
    }
    if (tag.CS != none) {
       // Compute Shader の初期化処理
+      
       std::wstring path = ConvertString(Directory + tag.CS);
       shaders_[ShaderMode::CS] = CompilerShaderFanc(path, L"cs_6_0");
    }

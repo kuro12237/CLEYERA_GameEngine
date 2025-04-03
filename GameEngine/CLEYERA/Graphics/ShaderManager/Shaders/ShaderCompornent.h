@@ -1,9 +1,7 @@
 #pragma once
-#include "../../../pch/Pch.h"
 #include "../../RasterPipline/RasterEnum.h"
 #include "../ShaderEnum.h"
-
-#include "../../../SystemLogManager/SystemLogManager.h"
+#include"../../../SystemLogManager/ConvertString.h"
 
 namespace CLEYERA {
 
@@ -28,16 +26,17 @@ class ShaderCompornent {
 
    IDxcBlob *GetShader(Shader::ShaderMode mode) { return shaders_[mode].Get(); }
 
-   void SetRasterMode(RasterPipline_Mode mode) { rasterMode_ = mode; }
+   void SetRasterMode(CLEYERA::Graphics::RasterPipline_Mode mode) { rasterMode_ = mode; }
 
  private:
-   RasterPipline_Mode rasterMode_;
+   Graphics::RasterPipline_Mode rasterMode_;
+
 
    IDxcIncludeHandler *includeHandler_ = nullptr;
    IDxcUtils *utils_ = nullptr;
    IDxcCompiler3 *compiler_ = nullptr;
 
-   std::map<std::string, Shader::ShaderMode> shaderFilePath_;
+   std::map<std::string, CLEYERA::Graphics::Shader::ShaderMode> shaderFilePath_;
    std::map<CLEYERA::Graphics::Shader::ShaderMode, ComPtr<IDxcBlob>> shaders_;
 };
 } // namespace system

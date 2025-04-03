@@ -1,5 +1,7 @@
 #pragma once
 #include "Shaders/ShaderCompornent.h"
+#include "../RasterPipline/RasterEnum.h"
+
 
 namespace CLEYERA {
 
@@ -33,7 +35,9 @@ class ShaderCommon {
 
    void Init();
 
-   IDxcBlob *GetBlob(Graphics::RasterPipline_Mode pipMode, Shader::ShaderMode shaderMode) { return compornemts_[pipMode]->GetShader(shaderMode); };
+   
+
+   IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode pipMode, Shader::ShaderMode shaderMode) { return compornemts_[pipMode]->GetShader(shaderMode); };
 
    IDxcIncludeHandler *GetIncludeHandler() { return includeHandler_.Get(); }
    IDxcUtils *GetUtils() { return utils_.Get(); }

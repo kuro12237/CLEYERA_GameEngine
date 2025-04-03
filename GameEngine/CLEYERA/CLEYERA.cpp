@@ -36,8 +36,13 @@ void Engine::Init() {
 
    rasterPiplineManager_ = Raster::RasterPiplineManager::GetInstance();
    rasterPiplineManager_->SetCommon(rasterPiplineCommon_);
+   rasterPiplineManager_->Init();
 
    modelManager_ = CLEYERA::Manager::ModelManager::GetInstance();
+
+
+   CLEYERA::Manager::RenderManager::GetInstance()->Init();
+   CLEYERA::Manager::CameraManager::GetInstance()->Init();
 }
 
 void Engine::Finalize() {

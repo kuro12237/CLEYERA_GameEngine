@@ -129,6 +129,50 @@ void CLEYERA::Base::DX::DXCommandManager::GraphicsCommandCall(UINT number, ID3D1
    }
 }
 
+void CLEYERA::Base::DX::DXCommandManager::GraphicsRootSignature(ID3D12RootSignature *root) {
+
+   if (list_) {
+      list_->SetGraphicsRootSignature(root);
+   }
+}
+
+void CLEYERA::Base::DX::DXCommandManager::GraphicsPipelineState(ID3D12PipelineState *state) {
+   if (list_) {
+      list_->SetPipelineState(state);
+   }
+}
+
+void CLEYERA::Base::DX::DXCommandManager::VBCommandCall(const std::vector<D3D12_VERTEX_BUFFER_VIEW> &view) {
+
+   if (list_) {
+      list_->IASetVertexBuffers(0, view.size(), view.data());
+   }
+}
+
+void CLEYERA::Base::DX::DXCommandManager::IBCommandCall(const std::vector<D3D12_INDEX_BUFFER_VIEW> &view) {
+
+      if (list_) {
+      list_->IASetIndexBuffer(view.data());
+   }
+
+}
+
+void CLEYERA::Base::DX::DXCommandManager::SetTopology() {
+
+    if (list_) {
+      list_->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+   }
+
+}
+
+void CLEYERA::Base::DX::DXCommandManager::DrawIndexCall(UINT num) {
+
+    if (list_) {
+      list_->DrawIndexedInstanced(num, 1, 0, 0, 0);
+   }
+
+}
+
 void CLEYERA::Base::DX::DXCommandManager::CopyResource(ID3D12Resource *target, ID3D12Resource *source) {
    if (list_) {
 

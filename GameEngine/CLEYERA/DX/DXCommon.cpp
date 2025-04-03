@@ -128,6 +128,7 @@ void DXCommon::Create() {
    fence_->Create();
 
    depth_->Init();
+   dxManager_->SetDepth(depth_);
 
    barriers_.resize(1);
    barriers_[0] = std::make_unique<DXBarrier>();

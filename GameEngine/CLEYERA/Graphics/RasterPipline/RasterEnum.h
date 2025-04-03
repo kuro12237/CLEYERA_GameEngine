@@ -1,5 +1,6 @@
 #pragma once
 
+
 namespace CLEYERA {
 
 namespace Graphics {
@@ -11,3 +12,4 @@ enum class RasterPipline_Mode { NONE = 0, DF_MODEL3d = 1, kNum };
 
 } // namespace Graphics
 } // namespace CLEYERA
+

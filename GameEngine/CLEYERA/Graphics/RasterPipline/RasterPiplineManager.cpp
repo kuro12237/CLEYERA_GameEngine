@@ -10,3 +10,31 @@ RasterPiplineManager *CLEYERA::Graphics::Raster::RasterPiplineManager::GetInstan
    static RasterPiplineManager instance;
    return &instance;
 }
+
+void CLEYERA::Graphics::Raster::RasterPiplineManager::Init() { commandManager_ = Base::DX::DXCommandManager::GetInstace(); }
+
+void CLEYERA::Graphics::Raster::RasterPiplineManager::SetRootsignature(Graphics::RasterPipline_Mode mode) {
+   ID3D12RootSignature *root = nullptr;
+   auto common = common_.lock();
+   if (common) {
+      root = common->Getpipline<system::DFModel3dDraw>(mode).lock()->GetRootSignature();
+   }
+   if (!root) {
+      assert(0);
+   }
+   commandManager_->GraphicsRootSignature(root);
+}
+
+void CLEYERA::Graphics::Raster::RasterPiplineManager::SetPipline(Graphics::RasterPipline_Mode mode) {
+
+   ID3D12PipelineState *state = nullptr;
+
+   auto common = common_.lock();
+   if (common) {
+      state = common->Getpipline<system::DFModel3dDraw>(mode).lock()->GetPipline();
+   }
+   if (!state) {
+      assert(0);
+   }
+   commandManager_->GraphicsPipelineState(state);
+}

@@ -2,18 +2,19 @@
 
 void CLEYERA::Model3d::Model::Init() {
 
-
-   auto commandManager = Base::DX::DXCommandManager::GetInstace();
-   commandManager->CommandClose();
+   commandManager_= Base::DX::DXCommandManager::GetInstace();
+   commandManager_->CommandClose();
 }
 
-void CLEYERA::Model3d::Model::Update() {
+void CLEYERA::Model3d::Model::Update() {}
 
-}
+void CLEYERA::Model3d::Model::RasterDraw3d() {
 
-void CLEYERA::Model3d::Model::Render() {
+   mesh_->CommandBindVB();
+   mesh_->CommandBindIB();
 
- 
+   commandManager_->SetTopology();   
+
 }
 
 void CLEYERA::Model3d::Model::ImGuiUpdate() {

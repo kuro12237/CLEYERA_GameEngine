@@ -4,6 +4,8 @@
 #include "../../pch/Pch.h"
 #include"../Game3dObject.h"
 
+#include"../../Graphics/RaytracingManager/HitGroup.h"
+
 class ShaderTable {
  public:
    ShaderTable() {};

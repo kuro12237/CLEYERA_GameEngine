@@ -1,0 +1,52 @@
+#include "RenderManager.h"
+
+void CLEYERA::Manager::RenderManager::Init() {
+   commandManager_ = Base::DX::DXCommandManager::GetInstace();
+   piplineManager_ = CLEYERA::Graphics::Raster::RasterPiplineManager::GetInstance();
+   cameraManager_ = CLEYERA::Manager::CameraManager::GetInstance();
+
+}
+
+void CLEYERA::Manager::RenderManager::Update() {
+
+   // 空の weak_ptr を削除
+   for (auto &[mode, objList] : objs_) {
+      objList.erase(std::remove_if(objList.begin(), objList.end(), [](const std::weak_ptr<Model3d::Game3dObject> &obj) { return obj.expired(); }), objList.end());
+   }
+
+   // 新しいオブジェクトを登録
+   SettingObjs();
+
+   // knumに値があったらエラー
+   if (!objs_[Graphics::RasterPipline_Mode::kNum].empty()) {
+      assert(0);
+   }
+   if (!objs_[Graphics::RasterPipline_Mode::NONE].empty()) {
+      assert(0);
+   }
+}
+
+void CLEYERA::Manager::RenderManager::Draw3d() {
+
+   for(size_t i = 1; i < static_cast<size_t>(Graphics::RasterPipline_Mode::kNum); i++) {
+
+      piplineManager_->SetRootsignature(static_cast<Graphics::RasterPipline_Mode>(i));
+      piplineManager_->SetPipline(static_cast<Graphics::RasterPipline_Mode>(i));
+      
+      
+      for (auto obj : objs_[static_cast<Graphics::RasterPipline_Mode>(i)]) {
+         auto it = obj.lock();
+         it->DrawRaster3d();
+      }
+   }
+}
+
+void CLEYERA::Manager::RenderManager::SettingObjs() {
+
+   while (!newObjs_.empty()) {
+      auto obj = newObjs_.front().lock();
+
+      objs_[obj->GetRasterMode()].push_back(obj);
+      newObjs_.pop();
+   }
+}

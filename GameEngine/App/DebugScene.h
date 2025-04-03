@@ -1,6 +1,8 @@
 #pragma once
 
 #include "IScene.h"
+#include"../testCamera.h"
+
 
 class DebugScene : public SceneCompornent {
  public:
@@ -14,6 +16,8 @@ class DebugScene : public SceneCompornent {
    void ImGuiUpdate() override;
 
  private:
+   std::unique_ptr<TestCamera> camera = nullptr;
+
    std::shared_ptr<CLEYERA::Model3d::Game3dObject> gameObj_ = nullptr;
    Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
    Math::Vector::Vec3 rotate_ = {};

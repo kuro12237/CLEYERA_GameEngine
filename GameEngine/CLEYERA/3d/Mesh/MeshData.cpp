@@ -51,7 +51,7 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
 
    indexBuf_->RegisterSRV();
 
-   // Blas
+    //Blas
    blas_ = std::make_unique<system::Blas>();
    blas_->SetParamCount(this->data_.vertices.size());
    blas_->SetSize(sizeof(system::S2Vertex));
@@ -60,3 +60,11 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
 
    this->shaderName = CLEYERA::Graphics::HitGroup::ALL;
 }
+
+void CLEYERA::Model3d::MeshData::CommandBindVB() {
+
+    vertBuf_->VBCommand();
+
+}
+
+void CLEYERA::Model3d::MeshData::CommandBindIB() { indexBuf_->IBCommand(); }

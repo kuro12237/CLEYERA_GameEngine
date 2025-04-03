@@ -14,6 +14,7 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::Create() {
    this->CreateRootSignature();
 
    SettingInput();
+   SettingBlend();
    SettingRaster();
    SettingDepth();
    SettingPipline();
@@ -52,15 +53,10 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingRaster()
 }
 
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingDepth() {
+   despthStencilDesc_ = {};
    despthStencilDesc_.DepthEnable = true;
    despthStencilDesc_.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
    despthStencilDesc_.DepthFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;
-   despthStencilDesc_.FrontFace.StencilFailOp = D3D12_STENCIL_OP_KEEP; // ここを確認
-   despthStencilDesc_.FrontFace.StencilDepthFailOp = D3D12_STENCIL_OP_KEEP;
-   despthStencilDesc_.FrontFace.StencilPassOp = D3D12_STENCIL_OP_REPLACE;
-   despthStencilDesc_.FrontFace.StencilFunc = D3D12_COMPARISON_FUNC_ALWAYS;
-
-   despthStencilDesc_.BackFace = despthStencilDesc_.FrontFace; // BackFace も同じ設定
 }
 
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingPipline() {
@@ -98,4 +94,18 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingPipline(
 
    pipelineStateDesc_.SampleDesc.Count = 1;
    pipelineStateDesc_.SampleMask = D3D12_DEFAULT_SAMPLE_MASK;
+}
+
+void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingBlend() {
+
+   D3D12_RENDER_TARGET_BLEND_DESC &blenddesc = blendDesc_.RenderTarget[0];
+   blenddesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+   blenddesc.BlendEnable = true;
+
+   blenddesc.BlendOpAlpha = D3D12_BLEND_OP_ADD;
+   blenddesc.SrcBlendAlpha = D3D12_BLEND_ONE;
+   blenddesc.DestBlendAlpha = D3D12_BLEND_ZERO;
+   blenddesc.BlendOp = D3D12_BLEND_OP_ADD;
+   blenddesc.SrcBlend = D3D12_BLEND_SRC_ALPHA;
+   blenddesc.DestBlend = D3D12_BLEND_INV_SRC_ALPHA;
 }

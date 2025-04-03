@@ -36,6 +36,9 @@ template <typename T> class DXBufferResource {
    void UnMap();
 
    void ComputeRootDescripterTable(UINT num);
+   void GraphicsCommand(UINT num) { commandManager_->GraphicsCommandCall(num, buffer_.Get()); };
+   void VBCommand();
+   void IBCommand();
 
    void RegisterRTV(D3D12_RENDER_TARGET_VIEW_DESC desc) {
       rtvHandleIndex_ = descripterManager_->RTVAddPtr(buffer_.Get(), desc);
@@ -50,7 +53,7 @@ template <typename T> class DXBufferResource {
       srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
       srvDesc.Buffer.NumElements = static_cast<UINT>(instanceNum_);
       srvDesc.Buffer.FirstElement = 0;
-      srvDesc.Buffer.StructureByteStride =static_cast<UINT>(sizeof(T));
+      srvDesc.Buffer.StructureByteStride = static_cast<UINT>(sizeof(T));
 
       srvHandleIndex_ = descripterManager_->SRVAddCreatePtr(buffer_.Get(), srvDesc);
       isSrvUse_ = true;
@@ -74,7 +77,6 @@ template <typename T> class DXBufferResource {
    void SetDevice(ID3D12Device5 *device) { device_ = device; }
    void SetParam(T param) { *param_ptr_ = param; }
    void SetParam(std::vector<T> param);
-
    void SetResource(ComPtr<ID3D12Resource> resource) { buffer_ = std::move(resource); };
 #pragma endregion
 
@@ -117,6 +119,7 @@ template <typename T> class DXBufferResource {
 
    ComPtr<ID3D12Resource> buffer_ = nullptr;
 
+   DXCommandManager *commandManager_ = nullptr;
    DXDescripterManager *descripterManager_ = nullptr;
    ID3D12Device5 *device_;
 };
@@ -124,6 +127,7 @@ template <typename T> class DXBufferResource {
 template <typename T> inline void DXBufferResource<T>::Init(size_t instanceNum) {
    instanceNum_ = instanceNum;
    descripterManager_ = DXDescripterManager::GetInstance();
+   commandManager_ = DXCommandManager::GetInstace();
 }
 
 template <typename T> inline void DXBufferResource<T>::Update() {}
@@ -139,6 +143,16 @@ template <typename T> inline void DXBufferResource<T>::ComputeRootDescripterTabl
    auto list = Base::DX::DXCommandManager::GetInstace();
    D3D12_GPU_DESCRIPTOR_HANDLE handle = descripterManager_->GetSRVGPUHandle(srvHandleIndex_);
    list->ComputeDescripterTable(num, handle);
+}
+
+template <typename T> inline void DXBufferResource<T>::VBCommand() {
+   std::vector<D3D12_VERTEX_BUFFER_VIEW> view = {this->vertexBufferView_};
+   commandManager_->VBCommandCall(view);
+}
+
+template <typename T> inline void DXBufferResource<T>::IBCommand() {
+   std::vector<D3D12_INDEX_BUFFER_VIEW> view = {this->indexBufferView_};
+   commandManager_->IBCommandCall(view);
 }
 
 template <typename T> inline void DXBufferResource<T>::SetParam(std::vector<T> param) {

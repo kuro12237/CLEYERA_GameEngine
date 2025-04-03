@@ -1,6 +1,6 @@
 #pragma once
+#include "../../DX/DXBufferResource/DXBufferResource.h"
 #include "../../pch/Pch.h"
-#include"../../DX/DXBufferResource/DXBufferResource.h"
 
 namespace CLEYERA {
 
@@ -14,6 +14,12 @@ struct SCamera {
    Math::Matrix::Mat4x4 mtxProjInv_ = {};
    Math::Matrix::Mat4x4 matView_ = {};
    Math::Matrix::Mat4x4 mtxViewInv_ = {};
+   Math::Matrix::Mat4x4 mtxVP_ = {};
+};
+struct forWorldMat {
+   Math::Matrix::Mat4x4 worldMat_ = {};
+   Math::Matrix::Mat4x4 worldMatInv_ = {};
+   Math::Matrix::Mat4x4 VPV_ = {};
 };
 } // namespace system
 
@@ -21,8 +27,6 @@ class TransformBase {
  public:
    TransformBase();
    virtual ~TransformBase() {};
-
-   virtual void Init() {};
 
    void TransformUpdate();
 
@@ -48,7 +52,11 @@ class TransformBase {
 
    Math::Matrix::Mat4x4 mat_ = {};
 
+
  private:
+  
+ 
+   // ray
    Math::Matrix::Mat3x4 forGpumat_ = {};
 };
 

@@ -3,6 +3,7 @@
 #include "pipline/RasterPiplineCompornent.h"
 
 #include "pipline/DF/DFModel3dDraw.h"
+#include"../../SystemLogManager/ConvertString.h"
 
 namespace CLEYERA {
 
@@ -22,7 +23,7 @@ class RasterPiplineCommon {
 
    void Init();
 
-   template <typename T> std::weak_ptr<T> Getpipline(RasterPipline_Mode mode) { return dynamic_cast<T>(piplines_[mode]); }
+   template <typename T> std::weak_ptr<T> Getpipline(RasterPipline_Mode mode) { return dynamic_pointer_cast<T>(piplines_[mode]); }
 
  private:
    std::map<RasterPipline_Mode, std::shared_ptr<RasterPiplineCompornent>> piplines_;

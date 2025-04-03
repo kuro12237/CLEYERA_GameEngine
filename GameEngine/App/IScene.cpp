@@ -77,6 +77,6 @@ void SceneCompornent::Render() {
    auto IbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetIndexBufIndex());
 
    auto command = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
-   command->SetComputeRootDescriptorTable(2,IbIndex);
-   command->SetComputeRootDescriptorTable(3, VbIndex);
+   //command->SetComputeRootDescriptorTable(2,IbIndex);
+   //command->SetComputeRootDescriptorTable(3, VbIndex);
 }

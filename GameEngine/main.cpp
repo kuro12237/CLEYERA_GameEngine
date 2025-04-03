@@ -3,8 +3,6 @@
 
 #include "CLEYERA/CLEYERA.h"
 
-#include "testCamera.h"
-
 #include "App/DebugScene.h"
 #include "App/IScene.h"
 
@@ -21,9 +19,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
    CLEYERA::Base::Win::WinApp *winApp = CLEYERA::Base::Win::WinApp::GetInstance();
    auto imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
    auto raytracingManager = engine_->GetRaytracingManager();
-
-   std::unique_ptr<TestCamera> camera = std::make_unique<TestCamera>();
-   camera->Create();
 
    std::unique_ptr<SceneCompornent> scene_ = std::make_unique<DebugScene>();
    scene_->SetRaytracingmanager(raytracingManager);
@@ -57,7 +52,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       scene_->Update();
       scene_->RaytracigTransfar();
 
-      camera->Update();
+      CLEYERA::Manager::CameraManager::GetInstance()->Update();
+
+      CLEYERA::Manager::RenderManager::GetInstance()->Update();
 
 #pragma endregion
 
@@ -71,7 +68,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
       scene_->Render();
-      camera->Call(1);
+      CLEYERA::Manager::CameraManager::GetInstance()->BindComputeCommand(1);
 
       raytracingManager.lock()->DispachRay();
 
@@ -88,6 +85,26 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 #pragma region 3d
+      commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+      commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+
+      //std::vector<float> c = {0.0f, 1.0, 0.0f, 1.0f};
+      //std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> handles = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_)};
+     
+      //uint32_t depthindex = CLEYERA::Base::DX::DXManager::GetInstance()->GetDepth()->GetBuf()->GetDSVIndex();
+      //D3D12_CPU_DESCRIPTOR_HANDLE depth = CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetDSVCPUHandle(depthindex);
+
+      //commandManager->OMRenderTargets(handles,&depth);
+  
+      //commandManager
+      //    ->ClearRenderTargetView(CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_),c);
+      //commandManager->ClearDepthStencilView(depth, D3D12_CLEAR_FLAG_DEPTH);
+
+   
+      std::vector<ID3D12DescriptorHeap *> desc = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};
+      commandManager->SetDescripterHeap(desc);
+
+      CLEYERA::Manager::RenderManager::GetInstance()->Draw3d();
 
 #pragma endregion
 
@@ -106,7 +123,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-      std::vector<ID3D12DescriptorHeap *> desc = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};
       commandManager->SetDescripterHeap(desc);
 
       ImGui::ShowDemoWindow();
@@ -117,7 +133,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
    }
 
    scene_.reset();
-   camera.reset();
 
    engine_->Finalize();
 

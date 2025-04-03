@@ -1,11 +1,12 @@
 #pragma once
-#include "Blas/Blas.h"
-
 #include "Mesh/MeshData.h"
 
 namespace CLEYERA {
 namespace Model3d {
 
+/// <summary>
+/// モデルクラス
+/// </summary>
 class Model {
  public:
    Model() {};
@@ -15,7 +16,7 @@ class Model {
 
    void Update();
 
-   void Render();
+   void RasterDraw3d();
 
    void ImGuiUpdate();
 
@@ -30,6 +31,8 @@ class Model {
 
  private:
    std::unique_ptr<MeshData> mesh_ = nullptr;
+
+   Base::DX::DXCommandManager *commandManager_ = nullptr;
 
 };
 

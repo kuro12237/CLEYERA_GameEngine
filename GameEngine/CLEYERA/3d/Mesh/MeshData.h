@@ -1,9 +1,9 @@
 #pragma once
 #include "../../DX/DXBufferResource/DXBufferResource.h"
 #include "../../DX/DXManager.h"
-#include "../../Graphics/RaytracingManager/HitGroup.h"
 #include "../../pch/Pch.h"
 #include "../Blas/Blas.h"
+#include"../../Graphics/RaytracingManager/HitGroup.h"
 
 namespace CLEYERA {
 
@@ -44,6 +44,8 @@ class MeshData {
    /// </summary>
    void Create(aiMesh *mesh);
 
+   void CommandBindVB();
+   void CommandBindIB();
 #pragma region Get
 
    system::VertexData GetData() const { return data_; }
@@ -65,9 +67,9 @@ class MeshData {
 
    std::unique_ptr<Base::DX::DXBufferResource<system::S2Vertex>> vertBuf_ = nullptr;
    std::unique_ptr<Base::DX::DXBufferResource<uint32_t>> indexBuf_ = nullptr;
-
    std::unique_ptr<system::Blas> blas_ = nullptr;
 
+  
    uint32_t byteSize_ = 0;
    std::wstring shaderName = CLEYERA::Graphics::HitGroup::ALL;
 };

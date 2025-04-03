@@ -117,5 +117,6 @@ Vertex GetHitVertex(MyAttribute attrib)
 void mainCHS(inout Payload payload, MyAttribute attrib)
 {
     Vertex vtx = GetHitVertex(attrib);
-    payload.color.rgb = float32_t3(1.0f, 0.0f, 0.0f);
+    payload.color.rgb = float3(0.1f, 0.25f, 0.5f);
+
 }

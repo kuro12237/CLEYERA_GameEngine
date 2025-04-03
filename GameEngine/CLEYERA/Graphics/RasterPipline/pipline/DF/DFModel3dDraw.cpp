@@ -12,11 +12,11 @@ void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingRootParam() {
 
    this->rootParam_.resize(2);
 
-   // worldTransformvs
+   // かめら
    rootParam_[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
    rootParam_[0].ShaderVisibility = D3D12_SHADER_VISIBILITY_VERTEX;
    rootParam_[0].Descriptor.ShaderRegister = 0;
-   // view行列ps
+   // world
    rootParam_[1].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
    rootParam_[1].ShaderVisibility = D3D12_SHADER_VISIBILITY_VERTEX;
    rootParam_[1].Descriptor.ShaderRegister = 1;

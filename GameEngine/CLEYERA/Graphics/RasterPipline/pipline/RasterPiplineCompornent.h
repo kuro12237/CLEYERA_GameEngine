@@ -1,9 +1,7 @@
 #pragma once
 #include "../../../DX/DXManager.h"
 #include "../../../pch/Pch.h"
-#include "../../ShaderManager/ShaderEnum.h"
 #include "../../ShaderManager/ShaderManager.h"
-#include "../RasterEnum.h"
 
 namespace CLEYERA {
 
@@ -24,6 +22,12 @@ class RasterPiplineCompornent {
 
    void SetMode(RasterPipline_Mode mode) { mode_ = mode; }
 
+#pragma region Get
+   ID3D12PipelineState *GetPipline() { return GraphicsPipelineState_.Get(); }
+   ID3D12RootSignature *GetRootSignature() { return rootSignature_.Get(); }
+
+#pragma endregion
+
  private:
    void CreateRootSignature();
    void CreatePipline();
@@ -43,6 +47,8 @@ class RasterPiplineCompornent {
    virtual void SettingRaster();
    virtual void SettingDepth();
    virtual void SettingPipline();
+   virtual void SettingBlend();
+
    Shader::ShaderManager *shaderManager_ = nullptr;
    RasterPipline_Mode mode_;
 

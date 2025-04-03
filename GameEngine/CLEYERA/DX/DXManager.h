@@ -15,6 +15,7 @@
 #include "DXDescripter/DXSRVDescripter.h"
 
 #include "DXFence/DXFence.h"
+#include"DXDepth/DXDepth.h"
 
 namespace CLEYERA {
 namespace Base {
@@ -62,6 +63,7 @@ public:
   void SetRTVDescripter(const std::weak_ptr<DXRTVDescripter> &descripter) {
     rtvDescripter_ = descripter;
   }
+  void SetDepth(const std::weak_ptr<DXDepth> &depth) { depth_ = depth; }
 #pragma endregion
 
 #pragma region Get
@@ -71,6 +73,8 @@ public:
   IDXGIAdapter4 *GetAdapter() { return adapter_.lock()->GetAdapter(); }
 
   ID3D12InfoQueue *GetInfoQueue() { return infoQueue_.lock()->GetinfoQueue(); }
+
+  DXDepth *GetDepth() { return depth_.lock().get(); }
 
   ID3D12GraphicsCommandList4 *GetCommandList() {
     return commandList_.lock()->GetCommandList();
@@ -99,6 +103,7 @@ private:
   std::weak_ptr<DXRTVDescripter> rtvDescripter_;
   std::weak_ptr<DXDSVDescripter> dsvDescripter_;
   std::weak_ptr<DXSRVDescripter> srvDescripter_;
+  std::weak_ptr<DXDepth> depth_;
 
 #pragma region Single
 

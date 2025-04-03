@@ -9,6 +9,8 @@ namespace Manager {
 /// </summary>
 class CameraManager {
  public:
+   static CameraManager *GetInstance();
+
    void Init();
 
    void Update();
@@ -19,8 +21,14 @@ class CameraManager {
    /// <param name="num"></param>
    void BindCommand(UINT num);
 
+   void BindComputeCommand(UINT num);
+
 #pragma region Set
    void SetCamera(std::weak_ptr<Util::Camera> c) { camera_ = c; }
+#pragma endregion
+
+#pragma region Get
+   std::weak_ptr<Util::Camera> GetCamera() { return camera_; }
 #pragma endregion
 
  private:

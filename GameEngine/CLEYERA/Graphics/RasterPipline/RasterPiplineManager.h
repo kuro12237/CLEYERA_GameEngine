@@ -14,6 +14,11 @@ class RasterPiplineManager {
  public:
    static RasterPiplineManager *GetInstance();
 
+   void Init();
+
+   void SetRootsignature(Graphics::RasterPipline_Mode mode);
+   void SetPipline(Graphics::RasterPipline_Mode mode);
+
 #pragma region Set
    void SetCommon(std::weak_ptr<Raster::system::RasterPiplineCommon> c) { common_ = c; };
 #pragma endregion
@@ -22,6 +27,8 @@ class RasterPiplineManager {
 
  private:
    std::weak_ptr<Raster::system::RasterPiplineCommon> common_;
+
+   Base::DX::DXCommandManager *commandManager_ = nullptr;
 
 #pragma region Single
 
