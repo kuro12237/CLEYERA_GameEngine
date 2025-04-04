@@ -35,6 +35,7 @@ template <typename T> class DXBufferResource {
 
    void UnMap();
 
+   void GraphicsRootDescripterTable(UINT num) ;
    void ComputeRootDescripterTable(UINT num);
    void GraphicsCommand(UINT num) { commandManager_->GraphicsCommandCall(num, buffer_.Get()); };
    void VBCommand();
@@ -137,6 +138,12 @@ template <typename T> inline void DXBufferResource<T>::Map() { buffer_->Map(0, n
 template <typename T> inline void DXBufferResource<T>::Map(void **p) { buffer_->Map(0, nullptr, p); }
 
 template <typename T> inline void DXBufferResource<T>::UnMap() {}
+
+template <typename T> inline void DXBufferResource<T>::GraphicsRootDescripterTable(UINT num) {
+   auto list = Base::DX::DXCommandManager::GetInstace();
+   D3D12_GPU_DESCRIPTOR_HANDLE handle = descripterManager_->GetSRVGPUHandle(srvHandleIndex_);
+   list->GraphicsDescripterTable(num, handle);
+}
 
 template <typename T> inline void DXBufferResource<T>::ComputeRootDescripterTable(UINT num) {
 

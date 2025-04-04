@@ -21,7 +21,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
    auto raytracingManager = engine_->GetRaytracingManager();
 
    std::unique_ptr<SceneCompornent> scene_ = std::make_unique<DebugScene>();
-   scene_->SetRaytracingmanager(raytracingManager);
+   scene_->SetRaytracingManager(raytracingManager);
    scene_->Init();
 
    // 一旦クローズ

@@ -30,15 +30,25 @@ void DebugScene::Init() {
    gameObjCube_->TransformUpdate();
 
    this->objectList_.push_back(gameObjCube_);
+
+   line_ = std::make_shared<CLEYERA::Model3d::Line3d>();
+   line_->Init(64);
+   line_->SetLinePos(positions_);
+   positions_.resize(128);
+
+
+
    InitRaytracing();
 
    CLEYERA::Manager::RenderManager::GetInstance()->PushObj(gameObjCube_);
+   CLEYERA::Manager::RenderManager::GetInstance()->PushLine3d(line_);
 
    CLEYERA::Manager::RenderManager::GetInstance()->PushObj(gameObj_);
 }
 
 void DebugScene::Update() {
 
+	line_->Update();
    gameObjCube_->Update();
    camera->Update();
 }
@@ -50,4 +60,15 @@ void DebugScene::ImGuiUpdate() {
    ImGui::DragFloat3("t", &translate_.x, 0.5f);
 
    ImGui::End();
+
+   ImGui::Begin("lines");
+
+   for (size_t i = 0; i < positions_.size(); i++) {
+
+	   std::string name = "p" + std::to_string(i);
+      ImGui::DragFloat3(name.c_str(), &positions_[i].x, 0.5f);
+
+   }
+   ImGui::End();
+
 }

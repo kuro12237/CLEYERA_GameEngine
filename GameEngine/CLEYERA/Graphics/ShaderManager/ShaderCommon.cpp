@@ -14,7 +14,16 @@ void CLEYERA::Graphics::Shader::system::ShaderCommon::Init() {
    hr = utils_->CreateDefaultIncludeHandler(&includeHandler_);
    assert(SUCCEEDED(hr));
 
-   LoadJson();
+   //LoadJson();
+   fileNames_[RasterPipline_Mode::DF_MODEL3d].PiplineName = "DF_MODEL3d";
+   fileNames_[RasterPipline_Mode::DF_MODEL3d].PS = "Rasterization/DFDraw3d/DFDraw3d_PS.hlsl";
+   fileNames_[RasterPipline_Mode::DF_MODEL3d].VS = "Rasterization/DFDraw3d/DFDraw3d_VS.hlsl";
+
+
+   fileNames_[RasterPipline_Mode::LINE3d].PiplineName = "LINE3d";
+   fileNames_[RasterPipline_Mode::LINE3d].PS = "Rasterization/Line3d/LineDraw3d_PS.hlsl";
+   fileNames_[RasterPipline_Mode::LINE3d].VS = "Rasterization/Line3d/LineDraw3d_VS.hlsl";
+
 
    for (int i = 1; i < static_cast<int>(RasterPipline_Mode::kNum); i++) {
       auto mode = static_cast<RasterPipline_Mode>(i);
@@ -57,12 +66,22 @@ void CLEYERA::Graphics::Shader::system::ShaderCommon::LoadJson() {
 
    ifs >> root;
    ifs.close();
+   // デバッグ出力を追加して root の内容を確認
+   std::cout << "Root JSON content: " << root.dump(4) << std::endl;
+
    nlohmann::json::iterator itGroup = root.find("Shaders");
+
+   // デバッグ出力を追加して itGroup の内容を確認
+   if (itGroup == root.end()) {
+      std::cerr << "Shaders key not found in JSON file." << std::endl;
+      return;
+   }
+
+   std::cout << "Number of shader entries: " << itGroup->size() << std::endl;
 
    for (nlohmann::json::iterator itItem = itGroup->begin(); itItem != itGroup->end(); ++itItem) {
 
-      if (itItem->is_object() && itItem->size() == 12) {
-
+       if (itItem->is_object()) {
          ShaderTag tag = itItem.value();
          SetShaderName(tag);
       }
@@ -111,6 +130,9 @@ CLEYERA::Graphics::RasterPipline_Mode CLEYERA::Graphics::Shader::system::ShaderC
 
    if (tag == "DF_MODEL3d") {
       return RasterPipline_Mode::DF_MODEL3d;
+   }
+   if (tag == "ANOTHER_MODEL") {
+      return RasterPipline_Mode::LINE3d;
    }
 
    return RasterPipline_Mode::NONE;

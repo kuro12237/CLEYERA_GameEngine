@@ -40,8 +40,7 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::CreateRootSigna
 
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::CreatePipline() {
 
-   pipelineStateDesc_.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
-
+ 
    HRESULT hr = device_->CreateGraphicsPipelineState(&pipelineStateDesc_, IID_PPV_ARGS(&GraphicsPipelineState_));
    assert(SUCCEEDED(hr));
 }
@@ -88,6 +87,8 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::SettingPipline(
    pipelineStateDesc_.RasterizerState = rasterizerDesc_;
    pipelineStateDesc_.DepthStencilState = despthStencilDesc_;
    pipelineStateDesc_.DSVFormat = depthFormat_;
+   pipelineStateDesc_.PrimitiveTopologyType = primitiveType_;
+
 
    pipelineStateDesc_.NumRenderTargets = 1;
    pipelineStateDesc_.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;

@@ -27,4 +27,8 @@ class DebugScene : public SceneCompornent {
    Math::Vector::Vec3 scaleCube_ = {1.0f, 1.0f, 1.0f};
    Math::Vector::Vec3 rotateCube_ = {};
    Math::Vector::Vec3 translateCube_ = {3.0f, 0.0f, 0.0f};
+
+   std::shared_ptr<CLEYERA::Model3d::Line3d> line_ = nullptr;
+   std::vector<Math::Vector::Vec3> positions_;
+
 };

@@ -63,6 +63,7 @@ class RasterPiplineCompornent {
    D3D12_BLEND_DESC blendDesc_{};
    D3D12_DEPTH_STENCIL_DESC despthStencilDesc_;
    D3D12_GRAPHICS_PIPELINE_STATE_DESC pipelineStateDesc_{};
+   D3D12_PRIMITIVE_TOPOLOGY_TYPE primitiveType_ = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE;
 
    DXGI_FORMAT depthFormat_ = DXGI_FORMAT_D24_UNORM_S8_UINT;
 

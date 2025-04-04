@@ -1,7 +1,6 @@
 #pragma once
-#include "Shaders/ShaderCompornent.h"
 #include "../RasterPipline/RasterEnum.h"
-
+#include "Shaders/ShaderCompornent.h"
 
 namespace CLEYERA {
 
@@ -12,20 +11,20 @@ namespace Shader {
 namespace system {
 
 struct ShaderTag {
-   std::string PiplineName;
-   std::string PS;           // Pixel Shader
-   std::string VS;           // Vertex Shader
-   std::string DS;           // Domain Shader
-   std::string HS;           // Hull Shader
-   std::string GS;           // Geometry Shader
-   std::string CS;           // Compute Shader
-   std::string RAYGEN;       // Ray Generation Shader
-   std::string MISS;         // Miss Shader
-   std::string CLOSEST_HIT;  // Closest Hit Shader
-   std::string ANY_HIT;      // Any Hit Shader
-   std::string INTERSECTION; // Intersection Shader
+   std::string PiplineName = "NONE";
+   std::string PS = "NONE";           // Pixel Shader
+   std::string VS = "NONE";           // Vertex Shader
+   std::string DS = "NONE";           // Domain Shader
+   std::string HS = "NONE";           // Hull Shader
+   std::string GS = "NONE";           // Geometry Shader
+   std::string CS = "NONE";           // Compute Shader
+   std::string RAYGEN = "NONE";       // Ray Generation Shader
+   std::string MISS = "NONE";         // Miss Shader
+   std::string CLOSEST_HIT = "NONE";  // Closest Hit Shader
+   std::string ANY_HIT = "NONE";      // Any Hit Shader
+   std::string INTERSECTION = "NONE"; // Intersection Shader
 
-   NLOHMANN_DEFINE_TYPE_INTRUSIVE(ShaderTag,PiplineName, PS, VS, DS, HS, GS, CS, RAYGEN, MISS, CLOSEST_HIT, ANY_HIT, INTERSECTION)
+   NLOHMANN_DEFINE_TYPE_INTRUSIVE(ShaderTag, PiplineName, PS, VS, DS, HS, GS, CS, RAYGEN, MISS, CLOSEST_HIT, ANY_HIT, INTERSECTION)
 };
 
 class ShaderCommon {
@@ -35,8 +34,6 @@ class ShaderCommon {
 
    void Init();
 
-   
-
    IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode pipMode, Shader::ShaderMode shaderMode) { return compornemts_[pipMode]->GetShader(shaderMode); };
 
    IDxcIncludeHandler *GetIncludeHandler() { return includeHandler_.Get(); }
@@ -44,6 +41,7 @@ class ShaderCommon {
    IDxcCompiler3 *getCompiler() { return compiler_.Get(); }
 
    ShaderTag GetFIleName(RasterPipline_Mode mode) { return fileNames_[mode]; }
+
  private:
    void LoadJson();
 

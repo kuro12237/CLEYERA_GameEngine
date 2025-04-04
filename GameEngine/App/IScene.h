@@ -1,5 +1,7 @@
 #pragma once
 #include "../CLEYERA/3d/Game3dObject.h"
+#include "../CLEYERA/3d/Line3d/Line3d.h"
+
 #include "../CLEYERA/3d/GlobalRootSignature/GlobalRootSignature.h"
 #include "../CLEYERA/3d/ShaderTable/ShaderTable.h"
 #include "../CLEYERA/3d/StateObject/StateObject.h"
@@ -38,7 +40,7 @@ class SceneCompornent {
 #pragma endregion
 
 #pragma region Set
-   void SetRaytracingmanager(std::weak_ptr<CLEYERA::Graphics::RaytracingManager> m) { raytracingManager_ = m; }
+   void SetRaytracingManager(std::weak_ptr<CLEYERA::Graphics::RaytracingManager> m) { raytracingManager_ = m; }
 
 #pragma endregion
 

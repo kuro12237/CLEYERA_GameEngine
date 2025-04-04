@@ -2,8 +2,10 @@
 #include "RasterEnum.h"
 #include "pipline/RasterPiplineCompornent.h"
 
-#include "pipline/DF/DFModel3dDraw.h"
 #include"../../SystemLogManager/ConvertString.h"
+
+#include "pipline/DF/DFModel3dDraw.h"
+#include"pipline/Line/Line3dDraw.h"
 
 namespace CLEYERA {
 

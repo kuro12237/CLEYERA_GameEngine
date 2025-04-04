@@ -154,6 +154,7 @@
     <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
     <ClCompile Include="CLEYERA\3d\Game3dObject.cpp" />
     <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
+    <ClCompile Include="CLEYERA\3d\Line3d\Line3d.cpp" />
     <ClCompile Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.cpp" />
     <ClCompile Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.cpp" />
     <ClCompile Include="CLEYERA\3d\Mesh\MeshData.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.cpp" />
@@ -210,6 +212,7 @@
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
     <ClInclude Include="CLEYERA\3d\Game3dObject.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\Line3d\Line3d.h" />
     <ClInclude Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h" />
@@ -220,6 +223,7 @@
     <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
     <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterEnum.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.h" />
@@ -229,6 +233,7 @@
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h" />
     <ClInclude Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.h" />
+    <ClInclude Include="CLEYERA\ThreadedLoader.h\ThreadedLoader.h" />
     <ClInclude Include="CLEYERA\Utility\Camera\CameraManager.h" />
     <ClInclude Include="CLEYERA\Utility\RenderManager\RenderManager.h" />
     <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
@@ -275,6 +280,7 @@
     <None Include="Resources\Shaders\Common\Vert.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </None>
+    <None Include="Resources\Shaders\Rasterization\Line3d\LineDraw.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
   </ItemGroup>
@@ -288,6 +294,22 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_VS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_PS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_VS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

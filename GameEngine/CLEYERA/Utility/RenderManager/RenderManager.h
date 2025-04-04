@@ -1,5 +1,7 @@
 #pragma once
 #include "../../3d/Game3dObject.h"
+#include "../../3d/Line3d/Line3d.h"
+
 #include "../../Graphics/RasterPipline/RasterPiplineManager.h"
 
 #include "../Camera/CameraManager.h"
@@ -25,7 +27,8 @@ class RenderManager {
    void Draw3d();
 
    void PushObj(std::weak_ptr<Model3d::Game3dObject> obj) { newObjs_.push(obj); }
-
+   void PushLine3d(std::weak_ptr<Model3d::Line3d> obj) { line3ds_.push_back(obj); }
+ 
  private:
    /// <summary>
    /// newobjsに入っていたらobjvecに登録
@@ -35,6 +38,7 @@ class RenderManager {
    std::queue<std::weak_ptr<Model3d::Game3dObject>> newObjs_;
 
    std::map<Graphics::RasterPipline_Mode, std::list<std::weak_ptr<Model3d::Game3dObject>>> objs_;
+   std::list < std::weak_ptr < Model3d::Line3d>> line3ds_;
 
    CameraManager *cameraManager_ = nullptr;
    CLEYERA::Graphics::Raster::RasterPiplineManager *piplineManager_ = nullptr;

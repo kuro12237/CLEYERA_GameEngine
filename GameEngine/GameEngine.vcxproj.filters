@@ -177,6 +177,12 @@
     <ClCompile Include="App\DebugScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CLEYERA\3d\Line3d\Line3d.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h">
@@ -365,6 +371,15 @@
     <ClInclude Include="App\DebugScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CLEYERA\ThreadedLoader.h\ThreadedLoader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\3d\Line3d\Line3d.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
@@ -373,10 +388,13 @@
     <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
     <None Include="Resources\Shaders\Common\WtTransform.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Line3d\LineDraw.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl" />
     <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_VS.hlsl" />
     <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_PS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_PS.hlsl" />
   </ItemGroup>
 </Project>

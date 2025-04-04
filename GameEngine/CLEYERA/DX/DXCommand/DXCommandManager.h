@@ -31,6 +31,7 @@ class DXCommandManager {
 
    void ComputeRootSignature(ID3D12RootSignature *root);
    void ComputeDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle);
+   void GraphicsDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle);
 
    void GraphicsCommandCall(UINT number, ID3D12Resource *buf);
 
@@ -40,8 +41,9 @@ class DXCommandManager {
    void VBCommandCall(const std::vector<D3D12_VERTEX_BUFFER_VIEW> &view);
    void IBCommandCall(const std::vector<D3D12_INDEX_BUFFER_VIEW>& view);
 
-   void SetTopology();
+   void SetTopology(D3D_PRIMITIVE_TOPOLOGY type= D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
    void DrawIndexCall(UINT num);
+   void DrawCall(UINT vertNum, UINT instanceid);
 
    void DispachRay(const D3D12_DISPATCH_RAYS_DESC &desc);
 

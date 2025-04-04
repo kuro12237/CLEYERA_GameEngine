@@ -44,10 +44,18 @@ class MeshData {
    /// </summary>
    void Create(aiMesh *mesh);
 
+   /// <summary>
+   /// 商店データのみ生成
+   /// </summary>
+   void CreateVert(size_t size);
+
    void CommandBindVB();
    void CommandBindIB();
-#pragma region Get
 
+   void SetVertexData(system::VertexData vertices) {data_ = vertices; }
+
+
+#pragma region Get
    system::VertexData GetData() const { return data_; }
    uint32_t GetByteSize() { return byteSize_; }
 

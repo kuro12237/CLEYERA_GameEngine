@@ -121,6 +121,8 @@ void CLEYERA::Base::DX::DXCommandManager::ComputeRootSignature(ID3D12RootSignatu
 
 void CLEYERA::Base::DX::DXCommandManager::ComputeDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle) { list_->SetComputeRootDescriptorTable(num, handle); }
 
+void CLEYERA::Base::DX::DXCommandManager::GraphicsDescripterTable(UINT num, D3D12_GPU_DESCRIPTOR_HANDLE handle) { list_->SetGraphicsRootDescriptorTable(num, handle); }
+
 void CLEYERA::Base::DX::DXCommandManager::DispachRay(const D3D12_DISPATCH_RAYS_DESC &desc) { list_->DispatchRays(&desc); }
 
 void CLEYERA::Base::DX::DXCommandManager::GraphicsCommandCall(UINT number, ID3D12Resource *buf) {
@@ -151,26 +153,30 @@ void CLEYERA::Base::DX::DXCommandManager::VBCommandCall(const std::vector<D3D12_
 
 void CLEYERA::Base::DX::DXCommandManager::IBCommandCall(const std::vector<D3D12_INDEX_BUFFER_VIEW> &view) {
 
-      if (list_) {
+   if (list_) {
       list_->IASetIndexBuffer(view.data());
    }
-
 }
 
-void CLEYERA::Base::DX::DXCommandManager::SetTopology() {
+void CLEYERA::Base::DX::DXCommandManager::SetTopology(D3D_PRIMITIVE_TOPOLOGY type) {
 
-    if (list_) {
-      list_->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+   if (list_) {
+      list_->IASetPrimitiveTopology(type);
    }
-
 }
 
 void CLEYERA::Base::DX::DXCommandManager::DrawIndexCall(UINT num) {
 
-    if (list_) {
+   if (list_) {
       list_->DrawIndexedInstanced(num, 1, 0, 0, 0);
    }
+}
 
+void CLEYERA::Base::DX::DXCommandManager::DrawCall(UINT vertNum, UINT instanceid) {
+
+   if (list_) {
+      list_->DrawInstanced(vertNum, instanceid, 0, 0);
+   }
 }
 
 void CLEYERA::Base::DX::DXCommandManager::CopyResource(ID3D12Resource *target, ID3D12Resource *source) {

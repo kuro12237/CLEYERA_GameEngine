@@ -4,7 +4,6 @@ void CLEYERA::Manager::RenderManager::Init() {
    commandManager_ = Base::DX::DXCommandManager::GetInstace();
    piplineManager_ = CLEYERA::Graphics::Raster::RasterPiplineManager::GetInstance();
    cameraManager_ = CLEYERA::Manager::CameraManager::GetInstance();
-
 }
 
 void CLEYERA::Manager::RenderManager::Update() {
@@ -28,16 +27,23 @@ void CLEYERA::Manager::RenderManager::Update() {
 
 void CLEYERA::Manager::RenderManager::Draw3d() {
 
-   for(size_t i = 1; i < static_cast<size_t>(Graphics::RasterPipline_Mode::kNum); i++) {
+   for (size_t i = 1; i < static_cast<size_t>(Graphics::RasterPipline_Mode::kNum) - 1; i++) {
 
       piplineManager_->SetRootsignature(static_cast<Graphics::RasterPipline_Mode>(i));
       piplineManager_->SetPipline(static_cast<Graphics::RasterPipline_Mode>(i));
-      
-      
+
       for (auto obj : objs_[static_cast<Graphics::RasterPipline_Mode>(i)]) {
          auto it = obj.lock();
          it->DrawRaster3d();
       }
+   }
+
+   piplineManager_->SetRootsignature(Graphics::RasterPipline_Mode::LINE3d);
+   piplineManager_->SetPipline(Graphics::RasterPipline_Mode::LINE3d);
+
+   for (auto obj : line3ds_) {
+      auto it = obj.lock();
+      it->DrawLine3d();
    }
 }
 
