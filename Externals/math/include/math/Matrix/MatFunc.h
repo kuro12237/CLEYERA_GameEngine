@@ -18,6 +18,10 @@ Mat3x4 Identity3x4();
 /// <returns></returns>
 Mat4x4 Multiply(const Mat4x4 &mat1, const Mat4x4 &mat2);
 
+
+
+Mat4x4 Inverse(const Mat4x4 &m);
+
 /// <summary>
 /// ビューポート行列を作成する関数
 /// </summary>

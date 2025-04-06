@@ -59,6 +59,8 @@ template <typename T> class DXBufferResource {
       srvHandleIndex_ = descripterManager_->SRVAddCreatePtr(buffer_.Get(), srvDesc);
       isSrvUse_ = true;
    }
+ 
+
    void RegisterSRV(D3D12_SHADER_RESOURCE_VIEW_DESC desc) {
       srvHandleIndex_ = descripterManager_->SRVAddCreatePtr(buffer_.Get(), desc);
       isSrvUse_ = true;
@@ -96,7 +98,7 @@ template <typename T> class DXBufferResource {
 
    void CreateBuffer(D3D12_HEAP_TYPE heapType, D3D12_RESOURCE_STATES state);
 
-   void CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE *value);
+   void CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, D3D12_CLEAR_VALUE *value);
    void DFCreateBuffer(size_t size, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
    void CreateTexture2d(Math::Vector::Vec2 size, DXGI_FORMAT format, D3D12_RESOURCE_FLAGS flags, D3D12_RESOURCE_STATES initialState, D3D12_HEAP_TYPE heapType);
 
@@ -212,7 +214,7 @@ template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_T
    assert(SUCCEEDED(hr));
 }
 
-template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state, const D3D12_CLEAR_VALUE *value) {
+template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state,D3D12_CLEAR_VALUE *value) {
 
    HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, &pDesc, state, value, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));

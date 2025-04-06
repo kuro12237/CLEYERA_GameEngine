@@ -35,7 +35,7 @@ void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingSampler() {}
 void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingInput() {
 
    // Output
-   inputElementDesc_.resize(2);
+   inputElementDesc_.resize(4);
    inputElementDesc_[0].SemanticName = "POSITION";
    inputElementDesc_[0].SemanticIndex = 0;
    inputElementDesc_[0].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
@@ -45,6 +45,16 @@ void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingInput() {
    inputElementDesc_[1].SemanticIndex = 0;
    inputElementDesc_[1].Format = DXGI_FORMAT_R32G32B32_FLOAT;
    inputElementDesc_[1].AlignedByteOffset = D3D12_APPEND_ALIGNED_ELEMENT;
+
+   inputElementDesc_[2].SemanticName = "TEXCOORD";
+   inputElementDesc_[2].SemanticIndex = 0;
+   inputElementDesc_[2].Format = DXGI_FORMAT_R32G32_FLOAT;
+   inputElementDesc_[2].AlignedByteOffset = D3D12_APPEND_ALIGNED_ELEMENT;
+
+   inputElementDesc_[3].SemanticName = "INSTANCEID";
+   inputElementDesc_[3].SemanticIndex = 0;
+   inputElementDesc_[3].Format = DXGI_FORMAT_R8_UINT;
+   inputElementDesc_[3].AlignedByteOffset = D3D12_APPEND_ALIGNED_ELEMENT;
 
    inputLayoutDesc.pInputElementDescs = inputElementDesc_.data();
    inputLayoutDesc.NumElements = inputElementDesc_.size();

@@ -20,6 +20,9 @@ class DFModel3dDraw : public RasterPiplineCompornent {
    void SettingInput() override;
 
  private:
+
+	 
+   D3D12_DESCRIPTOR_RANGE descriptorRangeVertices[1] = {};
 };
 
 } // namespace system

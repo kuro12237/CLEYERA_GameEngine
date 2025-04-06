@@ -49,6 +49,10 @@
 #include <dxgi1_6.h>
 #include <dxgidebug.h>
 
+
+#include"../Externals/DirectXTex/DirectXTex/DirectXTex.h"
+#include"../Externals/DirectXTex/DirectXTex/d3dx12.h"
+
 #pragma comment(lib, "d3dcompiler.lib")
 
 #define DIRECTINPUT_VERSION 0x0800

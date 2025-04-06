@@ -23,8 +23,26 @@ uint32_t CLEYERA::Manager::ModelManager::LoadModel(const std::string &directory,
       // 頂点作成
       model->CreateMesh(mesh);
    }
+
+   // テクスチャ作成
+   // materialの解析
+   std::string path = "";
+   uint32_t texHandle = 0;
+   for (uint32_t materialIndex = 0; materialIndex < scene->mNumMaterials; materialIndex++) {
+      aiMaterial *material = scene->mMaterials[materialIndex];
+      if (material->GetTextureCount(aiTextureType_DIFFUSE) != 0) {
+         aiString texFilePath;
+         material->GetTexture(aiTextureType_DIFFUSE, 0, &texFilePath);
+
+         path = directory + "/" +  texFilePath.C_Str();
+         texManager_->UnUsedFilePath();
+         texHandle = texManager_->LoadPngTex(path);
+      }
+   }
+
    model->Init();
    data->SetHandle(handle_);
+   model->SetTexHandle(texHandle);
    data->SetModel(model);
 
    datas_[file] = std::move(data);
@@ -47,6 +65,9 @@ std::weak_ptr<CLEYERA::Model3d::Model> CLEYERA::Manager::ModelManager::GetModel(
    assert(false);
 
    return std::weak_ptr<CLEYERA::Model3d::Model>();
+}
+
+void CLEYERA::Manager::ModelManager::Init() { texManager_ = TexManager::GetInstance();
 }
 
 void CLEYERA::Manager::ModelManager::Finalize() { datas_.clear(); }

@@ -4,6 +4,7 @@ void TestCamera::Create() {
    camera_ = std::make_shared<CLEYERA::Util::Camera>();
    camera_->Init();
 
+   translate_.y = 4.0f;
    camera_->SetRotate(rotate_);
    camera_->SetTranslate(translate_);
 

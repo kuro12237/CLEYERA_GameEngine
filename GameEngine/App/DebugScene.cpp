@@ -7,7 +7,7 @@ void DebugScene::Init() {
 
    uint32_t handle = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/Tower", "Tower");
 
-   uint32_t handleCube = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/DfCube", "DfCube");
+   uint32_t handleCube = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/system/DebugSphere", "DebugSphere");
 
    gameObj_ = std::make_shared<CLEYERA::Model3d::Game3dObject>();
    gameObj_->Create(handleCube);
@@ -15,17 +15,17 @@ void DebugScene::Init() {
    gameObj_->SetScale(scale_);
    gameObj_->SetRotate(rotate_);
    gameObj_->SetTranslate(translate_);
-
+ 
    gameObj_->TransformUpdate();
 
-   this->objectList_.push_back(gameObj_);
+   // this->objectList_.push_back(gameObj_);
 
    gameObjCube_ = std::make_shared<CLEYERA::Model3d::Game3dObject>();
    gameObjCube_->Create(handle);
 
-   gameObjCube_->SetScale(scale_);
-   gameObjCube_->SetRotate(rotate_);
-   gameObjCube_->SetTranslate(translate_);
+   gameObjCube_->SetScale(scaleCube_);
+   gameObjCube_->SetRotate(rotateCube_);
+   gameObjCube_->SetTranslate(translateCube_);
 
    gameObjCube_->TransformUpdate();
 
@@ -35,8 +35,6 @@ void DebugScene::Init() {
    line_->Init(64);
    line_->SetLinePos(positions_);
    positions_.resize(128);
-
-
 
    InitRaytracing();
 
@@ -48,27 +46,28 @@ void DebugScene::Init() {
 
 void DebugScene::Update() {
 
-	line_->Update();
+   //line_->Update();
+   gameObj_->Update();
    gameObjCube_->Update();
    camera->Update();
 }
 
 void DebugScene::ImGuiUpdate() {
 
-   ImGui::Begin("a");
+   ImGui::Begin("Obj");
 
+   ImGui::DragFloat3("s", &scale_.x, 0.5f);
+   ImGui::DragFloat3("r", &rotate_.x, 0.5f);
    ImGui::DragFloat3("t", &translate_.x, 0.5f);
+   ImGui::End();
+
+   ImGui::Begin("ObjCube");
+
+   ImGui::DragFloat3("s", &scaleCube_.x, 0.5f);
+   ImGui::DragFloat3("r", &rotateCube_.x, 0.5f);
+   ImGui::DragFloat3("t", &translateCube_.x, 0.5f);
 
    ImGui::End();
 
-   ImGui::Begin("lines");
-
-   for (size_t i = 0; i < positions_.size(); i++) {
-
-	   std::string name = "p" + std::to_string(i);
-      ImGui::DragFloat3(name.c_str(), &positions_[i].x, 0.5f);
-
-   }
-   ImGui::End();
 
 }

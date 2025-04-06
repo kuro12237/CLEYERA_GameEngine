@@ -38,17 +38,47 @@ void Engine::Init() {
    rasterPiplineManager_->SetCommon(rasterPiplineCommon_);
    rasterPiplineManager_->Init();
 
+   CLEYERA::Manager::TexManager::GetInstance()->Init();
    modelManager_ = CLEYERA::Manager::ModelManager::GetInstance();
-
+   modelManager_->Init();
 
    CLEYERA::Manager::RenderManager::GetInstance()->Init();
    CLEYERA::Manager::CameraManager::GetInstance()->Init();
+
+   debugCamera_ = std::make_shared<CLEYERA::DebugTools::DebugCamera>();
+   debugCamera_->Init();
+
+   grid_ = CLEYERA::DebugTools::Grid::GetInstance();
+   grid_->Init();
+
+   lightManager_ = CLEYERA::Manager::LightManager::GetInstance();
+   lightManager_->Init();
+}
+
+void Engine::ImGuiUpdate() {
+
+   lightManager_->ImGuiUpdate();
+   debugCamera_->ImGuiUpdate();
+
+   grid_->ImGuiUpdate();
+}
+
+void Engine::Update() {
+   lightManager_->Update();
+   grid_->Update();
+   debugCamera_->Update();
 }
 
 void Engine::Finalize() {
 
+   lightManager_->Finalize();
+   grid_->Finalize();
+
+   debugCamera_.reset();
+
    modelManager_->Finalize();
 
+   CLEYERA::Manager::TexManager::GetInstance()->Finalize();
    shaderCommon_.reset();
    rasterPiplineCommon_.reset();
 
@@ -61,3 +91,5 @@ void Engine::Finalize() {
 void Engine::Begin() { dxCommon_->PreDraw(); }
 
 void Engine::End() { dxCommon_->PostDraw(); }
+
+void Engine::Draw() { grid_->DrawRaster3d(); }

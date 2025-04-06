@@ -30,6 +30,7 @@ void CLEYERA::Model3d::Line3d::Update() {
    lineBuf_->Map();
    lineBuf_->SetParam(*postions_);
 
+   this->TransformUpdate();
    this->ConvertMat();
    this->SetWorldTransfar();
 }

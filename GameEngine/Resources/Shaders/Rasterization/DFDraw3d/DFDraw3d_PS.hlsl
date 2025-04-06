@@ -5,12 +5,43 @@
 #include"../../Common/Vert.hlsli"
 #include"../../Common/WtTransform.hlsli"
 
+#include"../../Common/DirectionLight.hlsli"
+
+
+Texture2D<float32_t4> gTexture : register(t0);
+SamplerState gSampler : register(s0);
+
+ConstantBuffer<DirectionLight> gDirectionLight : register(b0);
+ConstantBuffer<WtTransform> gTransformform : register(b1);
+ConstantBuffer<SCamera> gCamera : register(b2);
 
 PSOutput main(VSOutput input)
 {
     PSOutput output;
  
-    output.color = float32_t4(0.0f, 0.0f, 1.0f, 1.0f);
+    float32_t3 lightDir = normalize(gDirectionLight.direction);
+    float32_t3 lightColor = gDirectionLight.color.rgb;
+    float32_t4 textureColor = gTexture.Sample(gSampler, input.texcoord);
+    
+    float32_t4 outColor;
+    
+    float32_t3 worldPos = input.worldPos;
+    float32_t3 cameraPos = gCamera.pos.xyz;
+    
+    float32_t3 toEye = normalize(cameraPos - worldPos);
+    float32_t3 reflectLight = reflect(lightDir, normalize(input.normal));
+    float RdotE = dot(reflectLight, toEye);
+    float spec = pow(saturate(RdotE), 90.0f);
+    
+    
+    float Ndol = saturate(dot(normalize(input.normal), -lightDir));
+    float cos = pow(Ndol * 0.5f + 0.5f, 2.0f);
+    
+    float32_t3 deffiseColor = textureColor.rgb * lightColor * cos * gDirectionLight.intencity;
+    float32_t3 specularColor = lightColor * gDirectionLight.intencity * spec;
+    outColor.rgb = deffiseColor + specularColor;
+    outColor.a = 1.0f;
+    output.color = outColor;
     
     return output;
 }

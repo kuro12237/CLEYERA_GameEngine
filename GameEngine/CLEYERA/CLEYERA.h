@@ -13,8 +13,14 @@
 #include "Graphics/ShaderManager/ShaderManager.h"
 
 #include "Graphics/RaytracingManager/RaytracingManager.h"
+#include "Graphics/TexManager/TexManager.h"
+
 #include "Utility/Camera/CameraManager.h"
 #include "Utility/RenderManager/RenderManager.h"
+#include"Utility/Light/LightManager.h"
+
+#include "DebugTools/DebugCamera.h"
+#include "DebugTools/Grid.h"
 
 class Engine {
  public:
@@ -23,11 +29,17 @@ class Engine {
 
    void Init();
 
+   void ImGuiUpdate();
+
+   void Update();
+
    void Finalize();
 
    void Begin();
 
    void End();
+
+   void Draw();
 
 #pragma region Get
 
@@ -39,6 +51,10 @@ class Engine {
    CLEYERA::Utility::ImGuiManager *imGuiManager_ = nullptr;
    CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
    CLEYERA::Graphics::Raster::RasterPiplineManager *rasterPiplineManager_ = nullptr;
+   CLEYERA::DebugTools::Grid *grid_ = nullptr;
+   CLEYERA::Manager::LightManager *lightManager_ = nullptr;
+
+   std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 
    std::shared_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_ = nullptr;
 

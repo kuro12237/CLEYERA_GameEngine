@@ -12,13 +12,18 @@ void CLEYERA::Util::WorldTransform::WTCreate(const uint32_t &instanceNum) {
    buf_->SetDevice(Base::DX::DXManager::GetInstance()->GetDevice());
    buf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
 
-   ConvertMat();
 }
 
 void CLEYERA::Util::WorldTransform::ConvertMat() {
+   camera_ = &Manager::CameraManager::GetInstance()->GetCamera().lock()->GetForGpu();
+
    forGpuWorldMat_.worldMat_ = mat_;
-   forGpuWorldMat_.worldMatInv_ = forGpuWorldMat_.worldMat_.Inverse();
-   forGpuWorldMat_.VPV_ = Math::Matrix::Func::Multiply(forGpuWorldMat_.worldMat_, camera_->mtxVP_);
+   //forGpuWorldMat_.worldMatInv_ = forGpuWorldMat_.worldMat_.Inverse();
+   if (camera_) {
+
+      forGpuWorldMat_.WPV_ = Math::Matrix::Func::Multiply(forGpuWorldMat_.worldMat_, camera_->mtxVP_);
+   }
+   SetWorldTransfar();
 }
 
 void CLEYERA::Util::WorldTransform::SetWorldTransfar() {

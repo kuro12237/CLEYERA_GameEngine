@@ -16,7 +16,7 @@ class Model3dPool {
    void SetModel(std::shared_ptr<Model> m) { model_ = std::move(m); }
    void SetKey(const std::string name) { key_ = name; }
    void SetHandle(uint32_t handle) { handle_ = handle; }
-
+  
    std::weak_ptr<Model> GetModel() { return model_; }
    std::string GetKey() { return key_; }
    uint32_t GetHandle() { return handle_; }

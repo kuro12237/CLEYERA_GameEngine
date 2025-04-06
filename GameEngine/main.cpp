@@ -36,15 +36,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
       imGuiManager->Begin();
 
 #pragma region ImGui
-      if (ImGui::BeginMainMenuBar()) {
-         if (ImGui::BeginMenu("Engine")) {
-            // Add menu items here
-            ImGui::EndMenu();
-         }
-         ImGui::EndMainMenuBar();
-      }
-      scene_->ImGuiUpdate();
 
+      scene_->ImGuiUpdate();
+      engine_->ImGuiUpdate();
 #pragma endregion
 
 #pragma region 更新
@@ -56,6 +50,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
       CLEYERA::Manager::RenderManager::GetInstance()->Update();
 
+      engine_->Update();
 #pragma endregion
 
 #pragma region レイトレーシング
@@ -85,24 +80,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 
 #pragma region 3d
+
+      std::vector<ID3D12DescriptorHeap *> desc = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};
+      commandManager->SetDescripterHeap(desc);
+
       commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-      //std::vector<float> c = {0.0f, 1.0, 0.0f, 1.0f};
-      //std::vector<D3D12_CPU_DESCRIPTOR_HANDLE> handles = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_)};
-     
-      //uint32_t depthindex = CLEYERA::Base::DX::DXManager::GetInstance()->GetDepth()->GetBuf()->GetDSVIndex();
-      //D3D12_CPU_DESCRIPTOR_HANDLE depth = CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetDSVCPUHandle(depthindex);
-
-      //commandManager->OMRenderTargets(handles,&depth);
-  
-      //commandManager
-      //    ->ClearRenderTargetView(CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_),c);
-      //commandManager->ClearDepthStencilView(depth, D3D12_CLEAR_FLAG_DEPTH);
-
-   
-      std::vector<ID3D12DescriptorHeap *> desc = {CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetSRV().lock()->GetDescripter()};
-      commandManager->SetDescripterHeap(desc);
+      //engine_->Draw();
 
       CLEYERA::Manager::RenderManager::GetInstance()->Draw3d();
 
@@ -119,9 +104,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma region ポストエフェクトの画像処理
 
 #pragma endregion
-
-      commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
-      commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
       commandManager->SetDescripterHeap(desc);
 

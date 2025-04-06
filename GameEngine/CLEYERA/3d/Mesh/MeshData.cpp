@@ -16,8 +16,10 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
          uint32_t vertexIndex = face.mIndices[element];
          aiVector3D &position = mesh->mVertices[vertexIndex];
          aiVector3D &normal = mesh->mNormals[vertexIndex];
-         //aiVector3D &texcoord = mesh->mTextureCoords[0][vertexIndex];
+         aiVector3D &texcoord = mesh->mTextureCoords[0][vertexIndex];
+
          data_.vertices[vertexIndex].pos = {-position.x, position.y, position.z, 1.0f};
+         data_.vertices[vertexIndex].texCooard = {texcoord.x,texcoord.y};
          data_.vertices[vertexIndex].normal = {normal.x, normal.y, normal.z};
          // Indexの解析
          data_.indecs.push_back(vertexIndex);

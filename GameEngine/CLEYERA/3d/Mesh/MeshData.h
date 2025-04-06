@@ -18,6 +18,8 @@ struct S2Vertex {
 
    Math::Vector::Vec4 pos = {};
    Math::Vector::Vec3 normal = {};
+   Math::Vector::Vec2 texCooard = {};
+   int32_t instanceId = 0;
 };
 
 /// <summary>

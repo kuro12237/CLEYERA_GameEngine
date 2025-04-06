@@ -3,6 +3,8 @@
 #include "../../pch/Pch.h"
 #include "Model3dPool.h"
 
+#include "../GameEngine/CLEYERA/Graphics/TexManager/TexManager.h"
+
 namespace CLEYERA {
 
 namespace Manager {
@@ -12,9 +14,7 @@ namespace Manager {
 /// </summary>
 class ModelManager {
  public:
-
-     static ModelManager *GetInstance();
-
+   static ModelManager *GetInstance();
 
    /// <summary>
    /// モデル読み込み
@@ -43,12 +43,16 @@ class ModelManager {
    [[nodiscard]]
    std::weak_ptr<Model3d::Model> GetModel(uint32_t key);
 
+   void Init();
+
    void Finalize();
 
  private:
    std::map<std::string, std::unique_ptr<Model3d::system::Model3dPool>> datas_;
 
    uint32_t handle_ = 0;
+
+   TexManager *texManager_ = nullptr;
 
 #pragma region Singlton
    ModelManager() = default;

@@ -15,11 +15,13 @@ struct SCamera {
    Math::Matrix::Mat4x4 matView_ = {};
    Math::Matrix::Mat4x4 mtxViewInv_ = {};
    Math::Matrix::Mat4x4 mtxVP_ = {};
+   Math::Matrix::Mat4x4 orthographic = {};
+   Math::Vector::Vec4 cameraPos_ = {};
 };
 struct forWorldMat {
    Math::Matrix::Mat4x4 worldMat_ = {};
    Math::Matrix::Mat4x4 worldMatInv_ = {};
-   Math::Matrix::Mat4x4 VPV_ = {};
+   Math::Matrix::Mat4x4 WPV_ = {};
 };
 } // namespace system
 

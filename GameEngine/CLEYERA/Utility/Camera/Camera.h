@@ -27,6 +27,8 @@ class Camera : public TransformBase {
  private:
    void ConvertData();
 
+   Math::Matrix::Mat4x4 PerspectiveFovMatrix2(float fovY, float aspectRatio, float nearClip, float farClip);
+
    std::shared_ptr<Base::DX::DXBufferResource<system::SCamera>> buf_ = nullptr;
 
    system::SCamera forGpu_;
