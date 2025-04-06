@@ -9,6 +9,11 @@ uint32_t CLEYERA::Manager::ModelManager::LoadModel(const std::string &directory,
    Assimp::Importer importer;
    std::string file = directory + "/" + fileName + ".obj";
 
+   //読み込み済みの場合
+   if (datas_.find(file) != datas_.end()) {
+      return handle_;
+   }
+
    const aiScene *scene = importer.ReadFile(file.c_str(), aiProcess_FlipWindingOrder | aiProcess_FlipUVs);
    assert(scene->HasMeshes());
 

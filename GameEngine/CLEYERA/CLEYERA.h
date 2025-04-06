@@ -22,6 +22,8 @@
 #include "DebugTools/DebugCamera.h"
 #include "DebugTools/Grid.h"
 
+#include"Utility/Object/ObjectManager.h"
+
 class Engine {
  public:
    Engine() {};
@@ -53,6 +55,7 @@ class Engine {
    CLEYERA::Graphics::Raster::RasterPiplineManager *rasterPiplineManager_ = nullptr;
    CLEYERA::DebugTools::Grid *grid_ = nullptr;
    CLEYERA::Manager::LightManager *lightManager_ = nullptr;
+   CLEYERA::Manager::ObjectManager *objectManager_ = nullptr;
 
    std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 

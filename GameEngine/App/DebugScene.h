@@ -2,7 +2,7 @@
 
 #include "IScene.h"
 #include"../testCamera.h"
-
+#include"TestObject.h"
 
 class DebugScene : public SceneCompornent {
  public:
@@ -18,17 +18,8 @@ class DebugScene : public SceneCompornent {
  private:
    std::unique_ptr<TestCamera> camera = nullptr;
 
-   std::shared_ptr<CLEYERA::Model3d::Game3dObject> gameObj_ = nullptr;
-   Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
-   Math::Vector::Vec3 rotate_ = {};
-   Math::Vector::Vec3 translate_ = {};
+ std::shared_ptr<TestObject> object = nullptr;
 
-   std::shared_ptr<CLEYERA::Model3d::Game3dObject> gameObjCube_ = nullptr;
-   Math::Vector::Vec3 scaleCube_ = {1.0f, 1.0f, 1.0f};
-   Math::Vector::Vec3 rotateCube_ = {};
-   Math::Vector::Vec3 translateCube_ = {3.0f, 0.0f, 0.0f};
 
-   std::shared_ptr<CLEYERA::Model3d::Line3d> line_ = nullptr;
-   std::vector<Math::Vector::Vec3> positions_;
 
 };

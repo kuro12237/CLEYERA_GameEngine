@@ -29,9 +29,12 @@ PSOutput main(VSOutput input)
     float32_t3 cameraPos = gCamera.pos.xyz;
     
     float32_t3 toEye = normalize(cameraPos - worldPos);
+    float32_t3 hallfVector = normalize(-lightDir + toEye);
+    float NdotH = saturate(dot(normalize(input.normal), hallfVector));
+    
     float32_t3 reflectLight = reflect(lightDir, normalize(input.normal));
-    float RdotE = dot(reflectLight, toEye);
-    float spec = pow(saturate(RdotE), 90.0f);
+  
+    float spec = pow(saturate(NdotH), 90.0f);
     
     
     float Ndol = saturate(dot(normalize(input.normal), -lightDir));

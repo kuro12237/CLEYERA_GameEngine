@@ -12,6 +12,7 @@
 #include "../CLEYERA/3d/LocalRootSignature/RayGenRootSignature.h"
 
 #include "../CLEYERA/Graphics/RaytracingManager/RaytracingManager.h"
+#include"../CLEYERA/CLEYERA.h"
 
 /// <summary>
 /// Scene抽象クラス

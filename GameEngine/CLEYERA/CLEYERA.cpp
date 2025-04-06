@@ -53,6 +53,9 @@ void Engine::Init() {
 
    lightManager_ = CLEYERA::Manager::LightManager::GetInstance();
    lightManager_->Init();
+
+   objectManager_ = CLEYERA::Manager::ObjectManager::GetInstance();
+   
 }
 
 void Engine::ImGuiUpdate() {
@@ -64,6 +67,7 @@ void Engine::ImGuiUpdate() {
 }
 
 void Engine::Update() {
+   objectManager_->Update();
    lightManager_->Update();
    grid_->Update();
    debugCamera_->Update();
