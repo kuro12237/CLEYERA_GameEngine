@@ -11,6 +11,8 @@ namespace system {
 
 namespace Func {
 
+std::array<Math::Vector::Vec3, 3> CreateOrientations(const Math::Vector::Vec3 &rotate);
+
 void MakeLinesFromOBB(std::vector<Math::Vector::Vec3> &outLines, const OBB &obb);
 
 bool OBBCheck(const OBB &obb1, const OBB &obb2);

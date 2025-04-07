@@ -11,7 +11,7 @@ uint32_t CLEYERA::Manager::ModelManager::LoadModel(const std::string &directory,
 
    //読み込み済みの場合
    if (datas_.find(file) != datas_.end()) {
-      return handle_;
+      return datas_[file]->GetHandle();
    }
 
    const aiScene *scene = importer.ReadFile(file.c_str(), aiProcess_FlipWindingOrder | aiProcess_FlipUVs);

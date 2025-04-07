@@ -216,6 +216,9 @@
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderSystem.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Collider.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h">

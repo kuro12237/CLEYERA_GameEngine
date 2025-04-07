@@ -1,5 +1,23 @@
 #include "ColliderFunc.h"
 
+std::array<Math::Vector::Vec3, 3> CLEYERA::Util::Collider::system::Func::CreateOrientations(const Math::Vector::Vec3 &rotate) {
+   float cx = std::cos(rotate.x);
+   float sx = std::sin(rotate.x);
+   float cy = std::cos(rotate.y);
+   float sy = std::sin(rotate.y);
+   float cz = std::cos(rotate.z);
+   float sz = std::sin(rotate.z);
+
+   // 回転行列 R = Rz * Ry * Rx の各軸を列ベクトルとして抽出
+   Math::Vector::Vec3 right = {cy * cz, sx * sy * cz - cx * sz, cx * sy * cz + sx * sz};
+
+   Math::Vector::Vec3 up = {cy * sz, sx * sy * sz + cx * cz, cx * sy * sz - sx * cz};
+
+   Math::Vector::Vec3 forward = {-sy, sx * cy, cx * cy};
+
+   return {right, up, forward};
+}
+
 void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(std::vector<Math::Vector::Vec3> &outLines, const OBB &obb) {
    using Vec3 = Math::Vector::Vec3;
 
@@ -14,11 +32,9 @@ void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(std::vector<Math::V
    for (int dy : {-1, 1}) {
       for (int dz : {-1, 1}) {
          for (int dx : {-1, 1}) {
-            Math::Vector::Vec3 pos = *obb.center;
 
             Math::Vector::Vec3 vec = right * static_cast<float>(dx) + up * static_cast<float>(dy) + forward * static_cast<float>(dz);
-            corners[i++] = vec;
-
+            corners[i++] = *obb.center /2 + vec;
          }
       }
    }
@@ -34,10 +50,12 @@ void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(std::vector<Math::V
    outLines.resize(48);
    int index = 0;
    for (auto &edge : edgeIndices) {
-      outLines[index++]=(corners[edge[0]]);
-      outLines[index++]=(corners[edge[1]]);
+      outLines[index++] = (corners[edge[0]]);
+      outLines[index++] = (corners[edge[1]]);
    }
 }
+
+
 
 bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB &obb2) {
 
@@ -89,9 +107,9 @@ std::pair<float, float> CLEYERA::Util::Collider::system::Func::OBBProjection(con
    std::array<Math::Vector::Vec3, 8> vertices{};
    for (int i = 0; i < 8; ++i) {
       Math::Vector::Vec3 sign = {(i & 1) ? 1.0f : -1.0f, (i & 2) ? 1.0f : -1.0f, (i & 4) ? 1.0f : -1.0f};
-      vertices[i] = {obb.center->x + obb.orientations[0].x * sign.x * obb.size.x + obb.orientations[1].x * sign.y * obb.size.y + obb.orientations[2].x * sign.z * obb.size.z,
-                     obb.center->y + obb.orientations[0].y * sign.x * obb.size.x + obb.orientations[1].y * sign.y * obb.size.y + obb.orientations[2].y * sign.z * obb.size.z,
-                     obb.center->z + obb.orientations[0].z * sign.x * obb.size.x + obb.orientations[1].z * sign.y * obb.size.y + obb.orientations[2].z * sign.z * obb.size.z};
+      vertices[i] = {obb.center->x + obb.orientations[0].x * sign.x * (obb.size.x/2) + obb.orientations[1].x * sign.y * (obb.size.y/2) + obb.orientations[2].x * sign.z * (obb.size.z/2),
+                     obb.center->y + obb.orientations[0].y * sign.x * (obb.size.x/2) + obb.orientations[1].y * sign.y * (obb.size.y/2) + obb.orientations[2].y * sign.z * (obb.size.z/2),
+                     obb.center->z + obb.orientations[0].z * sign.x * (obb.size.x/2) + obb.orientations[1].z * sign.y * (obb.size.y/2) + obb.orientations[2].z * sign.z * (obb.size.z/2)};
    }
 
    // 頂点を軸に射影

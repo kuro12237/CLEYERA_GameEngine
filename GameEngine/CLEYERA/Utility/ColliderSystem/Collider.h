@@ -18,7 +18,7 @@ class Collider {
    Collider() {};
    virtual ~Collider() {};
 
-   virtual bool HitCall(const Collider &other) = 0;
+   bool HitCall(const Collider &other);
 
    virtual void ColliderImGuiUpdate() = 0;
 
@@ -30,6 +30,10 @@ class Collider {
 
    std::shared_ptr<CLEYERA::Model3d::Line3d> GetLine() { return line_; }
 
+   virtual void ColliderImGuiUpdate(const std::string &name) = 0;
+
+   virtual void HitCallFunc(const Collider &other) = 0;
+
  private:
  protected:
    ColliderType type_ = ColliderType::OBB;
@@ -38,6 +42,8 @@ class Collider {
    std::vector<Math::Vector::Vec3> positions_ = {};
 
    std::vector<Math::Vector::Vec4> colors_ = {};
+
+   Math::Matrix::Mat4x4 worldMatrix_ = {};
 };
 
 } // namespace Collider

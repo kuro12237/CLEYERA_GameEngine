@@ -20,7 +20,7 @@ CLEYERA::Manager::ObjectComponent::ObjectComponent() {
    this->gameObject_->Update();
 
    objectManager_->AddObject(this->gameObject_);
-   //renderManager_->PushObj(this->gameObject_);
+   renderManager_->PushObj(this->gameObject_);
 }
 
 void CLEYERA::Manager::ObjectComponent::ImGuiUpdate() {
@@ -33,6 +33,10 @@ void CLEYERA::Manager::ObjectComponent::ImGuiUpdate() {
          ImGui::DragFloat3("Rotate", &rotate_.x);
          ImGui::DragFloat3("Translate", &translate_.x);
          ImGui::TreePop();
+      }
+
+      if (collider_) {
+         collider_->ColliderImGuiUpdate(name_);
       }
 
       ImGui::TreePop();

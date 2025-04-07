@@ -1,8 +1,7 @@
 #pragma once
-#include"../CLEYERA/CLEYERA.h"
+#include "../CLEYERA/CLEYERA.h"
 
-
-class TestObject :public CLEYERA::Manager::ObjectComponent{
+class TestObject : public CLEYERA::Manager::ObjectComponent {
  public:
    TestObject() {};
    ~TestObject() {};
@@ -11,6 +10,7 @@ class TestObject :public CLEYERA::Manager::ObjectComponent{
 
    void Update() override;
 
- 
+   void SetName(std::string name) { name_ = name; }
+
  private:
 };

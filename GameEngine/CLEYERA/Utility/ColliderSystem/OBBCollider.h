@@ -18,13 +18,14 @@ class OBBCollider : public Collider {
 
    const system::OBB &GetOBB() const { return obb_; }
 
-   bool HitCall(const Collider &other) override { return false; }
+   void HitCallFunc(const Collider &other) override {};
 
    void Create() override;
 
    void Update() override;
 
-   
+   void ColliderImGuiUpdate(const std::string &name) override;
+
    void SetCenter(Math::Vector::Vec3 *center) { obb_.center = center; }
    void SetRotate(Math::Vector::Vec3 *rotate) { obb_.rotate = rotate; }
    void SetWorldMatrix(Math::Matrix::Mat4x4 *worldMatrix) { obb_.worldMatrix = worldMatrix; }

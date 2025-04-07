@@ -9,7 +9,12 @@ void DebugScene::Init() {
 
  
    object = std::make_shared<TestObject>();
+   object->SetName("a");
    object->Init();
+
+   objectb = std::make_shared<TestObject>();
+   object->SetName("b");
+   objectb->Init();
 
    
    objectList_.push_back(object->GetGameObject());
@@ -19,6 +24,7 @@ void DebugScene::Init() {
 
 void DebugScene::Update() {
 
+	objectb->Update();
 	object->Update();
 
    camera->Update();

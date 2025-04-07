@@ -25,7 +25,6 @@ void CLEYERA::Manager::ColliderSystem::Update() {
          continue;
       }
       auto collider1 = itr1->lock();
-      collider1->Update();
 
       for (auto itr2 = std::next(itr1); itr2 != colliderList_.end(); ++itr2) {
          if (itr2->expired()) {
@@ -48,9 +47,15 @@ void CLEYERA::Manager::ColliderSystem::Update() {
                // 何か処理
                collider1->HitCall(*collider2);
                collider2->HitCall(*collider1);
+              
                continue;
             }
          }
       }
+   }
+
+   for ( auto c : colliderList_ )
+   {
+      c.lock()->Update();
    }
 }

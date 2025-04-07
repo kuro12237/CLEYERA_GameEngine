@@ -20,6 +20,8 @@ class DebugScene : public SceneCompornent {
 
  std::shared_ptr<TestObject> object = nullptr;
 
+   std::shared_ptr<TestObject> objectb = nullptr;
+
 
 
 };

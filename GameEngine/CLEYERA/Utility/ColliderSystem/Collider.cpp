@@ -1,0 +1,11 @@
+#include "Collider.h"
+
+bool CLEYERA::Util::Collider::Collider::HitCall(const Collider &other) {
+
+   for (size_t i = 0; i < colors_.size(); i++) {
+      colors_[i] = {0.0f, 1.0f, 0.0f, 1.0f};
+   }
+
+   HitCallFunc(other);
+   return true;
+}

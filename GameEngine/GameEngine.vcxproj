@@ -201,6 +201,7 @@
     <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Camera\Camera.cpp" />
     <ClCompile Include="CLEYERA\Utility\Camera\CameraManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Collider.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderFunc.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderSystem.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\OBBCollider.cpp" />
