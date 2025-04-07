@@ -74,7 +74,7 @@ void Engine::ImGuiUpdate() {
 
 void Engine::Update() {
    objectManager_->Update();
-   //colliderSystem_->Update();
+   colliderSystem_->Update();
    lightManager_->Update();
    grid_->Update();
    debugCamera_->Update();

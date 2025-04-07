@@ -45,9 +45,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
       scene_->Update();
       scene_->RaytracigTransfar();
-
+      
       CLEYERA::Manager::CameraManager::GetInstance()->Update();
-
+      
       CLEYERA::Manager::RenderManager::GetInstance()->Update();
 
       engine_->Update();
@@ -107,8 +107,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
       commandManager->SetDescripterHeap(desc);
 
-      ImGui::ShowDemoWindow();
-
+    
       imGuiManager->Render();
 
       engine_->End();

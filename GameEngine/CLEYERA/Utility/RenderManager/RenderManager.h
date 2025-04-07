@@ -29,6 +29,8 @@ class RenderManager {
    void PushObj(std::weak_ptr<Model3d::Game3dObject> obj) { newObjs_.push(obj); }
    void PushLine3d(std::weak_ptr<Model3d::Line3d> obj) { line3ds_.push_back(obj); }
  
+   void PopLine3d(std::weak_ptr<Model3d::Line3d> line);
+
  private:
    /// <summary>
    /// newobjsに入っていたらobjvecに登録

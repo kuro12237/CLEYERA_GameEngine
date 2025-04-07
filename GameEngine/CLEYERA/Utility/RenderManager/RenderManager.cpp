@@ -43,8 +43,25 @@ void CLEYERA::Manager::RenderManager::Draw3d() {
 
    for (auto obj : line3ds_) {
       auto it = obj.lock();
+      it;
       it->DrawLine3d();
    }
+}
+
+void CLEYERA::Manager::RenderManager::PopLine3d(std::weak_ptr<Model3d::Line3d> line) {
+
+      // 有効な shared_ptr にロック
+   auto linePtr = line.lock();
+   if (!linePtr) {
+      return; // 無効な weak_ptr の場合は何もしない
+   }
+
+   // line3ds_ リストから指定された Line3d オブジェクトを削除
+   line3ds_.remove_if([&linePtr](const std::weak_ptr<Model3d::Line3d> &obj) {
+      auto objPtr = obj.lock();
+      return objPtr && objPtr == linePtr;
+   });
+
 }
 
 void CLEYERA::Manager::RenderManager::SettingObjs() {

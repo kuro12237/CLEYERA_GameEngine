@@ -4,18 +4,38 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
 
    ImGui::Begin("collisionManager");
 
-   ImGui::Checkbox("LineDraw", &isLineDraw_);
-
+  
    ImGui::End();
 
- for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
-      if (itr->expired()) {
-         continue;
-      }
-      auto collider = itr->lock();
+    if (ImGui::Button("LineDraw")) {
+   
+        if (isLineDraw_) {
+       
+            for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
+              if (itr->expired()) {
+                 continue;
+              }
+              auto collider = itr->lock();
 
-      RenderManager::GetInstance()->PushLine3d(collider->GetLine());
-   }
+              RenderManager::GetInstance()->PushLine3d(collider->GetLine());
+            }
+            isLineDraw_ = false;
+        } else {
+           for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
+              if (itr->expired()) {
+                 continue;
+              }
+              auto collider = itr->lock();
+              RenderManager::GetInstance()->PopLine3d(collider->GetLine());
+           }
+           isLineDraw_ = true;
+        
+        }
+
+    }
+
+
+ 
 }
 
 void CLEYERA::Manager::ColliderSystem::Update() {
