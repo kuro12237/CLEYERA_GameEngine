@@ -133,6 +133,9 @@ void DXCommon::Create() {
    barriers_.resize(1);
    barriers_[0] = std::make_unique<DXBarrier>();
    barriers_[0]->Init();
+
+   flame_ = std::make_unique<Flame>();
+   flame_->Init();
 }
 
 void CLEYERA::Base::DX::DXCommon::Finalize() {
@@ -210,9 +213,13 @@ void CLEYERA::Base::DX::DXCommon::PostDraw() {
 
    fence_->End();
 
+   flame_->Update();
+
    hr = allocator->Reset();
    assert(SUCCEEDED(hr));
 
    hr = commandList->Reset(allocator, nullptr);
    assert(SUCCEEDED(hr));
 }
+
+void CLEYERA::Base::DX::DXCommon::ImGuiUpdate() { flame_->ImGuiUpdate(); }

@@ -33,6 +33,8 @@ public:
     return &instance;
   }
 
+  void ImGuiUpdate();
+
 #pragma region Set
   void SetDebugLayer(const std::weak_ptr<DXDebugLayer> &layer) {
     debugLayer_ = layer;

@@ -61,9 +61,12 @@ void Engine::Init() {
 
 void Engine::ImGuiUpdate() {
 
+	dxCommon_->ImGuiUpdate();
+
    lightManager_->ImGuiUpdate();
    debugCamera_->ImGuiUpdate();
 
+ 
    grid_->ImGuiUpdate();
    //objectManager_->ImGuiUpdate();
    colliderSystem_->ImGuiUpdate();
@@ -71,7 +74,7 @@ void Engine::ImGuiUpdate() {
 
 void Engine::Update() {
    objectManager_->Update();
-   colliderSystem_->Update();
+   //colliderSystem_->Update();
    lightManager_->Update();
    grid_->Update();
    debugCamera_->Update();
