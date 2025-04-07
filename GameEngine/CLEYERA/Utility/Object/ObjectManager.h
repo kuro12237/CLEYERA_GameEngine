@@ -1,28 +1,30 @@
 #pragma once
-#include"ObjectCompornent.h"
+#include "ObjectCompornent.h"
 
 namespace CLEYERA {
 
 namespace Manager {
 
+/// <summary>
+/// Objct管理クラス
+/// </summary>
 class ObjectManager {
  public:
-
-	 static ObjectManager *GetInstance() {
+   static ObjectManager *GetInstance() {
       static ObjectManager instance;
       return &instance;
    }
 
-	 void Update();
+   void Update();
 
-	 void AddObject(std::shared_ptr<Model3d::Game3dObject> object) { objectList_.push_back(object); }
+   void ImGuiUpdate();
 
+   void AddObject(std::shared_ptr<Model3d::Game3dObject> object) { objectList_.push_back(object); }
 
-	 const std::vector<std::weak_ptr<Model3d::Game3dObject>>& GetObjectList() const { return objectList_; }
+   const std::vector<std::weak_ptr<Model3d::Game3dObject>> &GetObjectList() const { return objectList_; }
 
  private:
-
-	 std::vector<std::weak_ptr<Model3d::Game3dObject>> objectList_ = {};
+   std::vector<std::weak_ptr<Model3d::Game3dObject>> objectList_ = {};
 
 #pragma region Singleton
 

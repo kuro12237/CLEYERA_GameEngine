@@ -38,7 +38,7 @@ class Camera : public TransformBase {
    Math::Matrix::Mat4x4 matView_ = {};
    Math::Matrix::Mat4x4 mtxViewInv_ = {};
 
-   const Math::Vector::Vec3 dfScale = {1.0f, 1.0f, 1.0f};
+   Math::Vector::Vec3 dfScale = {1.0f, 1.0f, 1.0f};
 
    float fov_ = 0.45f;
    float aspectRatio_ = static_cast<float>(CLEYERA::Base::Win::WinApp::GetKWindowWidth() / CLEYERA::Base::Win::WinApp::GetKWindowHeight());

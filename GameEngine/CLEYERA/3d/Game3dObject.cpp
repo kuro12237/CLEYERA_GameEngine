@@ -38,12 +38,29 @@ void CLEYERA::Model3d::Game3dObject::DrawRaster3d() {
    this->BindWT(4);
 
    cameraManager_->BindCommand(5);
-   //頂点、インデックス、形状設定
+   // 頂点、インデックス、形状設定
    model_->RasterDraw3d();
 
    auto data = texManager_->GetTexData(texHandle_);
    auto handle = Base::DX::DXDescripterManager::GetInstance()->GetSRVGPUHandle(data.lock()->GetSrvIndex());
-   commandManager_->GraphicsDescripterTable(2,handle);
+   commandManager_->GraphicsDescripterTable(2, handle);
 
-   commandManager_->DrawIndexCall(model_->GetMeshData()->GetData().indecs.size());
+   commandManager_->DrawIndexCall(UINT(model_->GetMeshData()->GetData().indecs.size()));
+}
+
+void CLEYERA::Model3d::Game3dObject::ImGuiUpdate() {
+
+   if (!name_) {
+      return;
+   }
+
+   if (*name_ == "") {
+      return;
+   }
+
+   if (ImGui::TreeNode(name_->c_str())) {
+      TransformImGuiUpdate();
+
+      ImGui::TreePop();
+   }
 }

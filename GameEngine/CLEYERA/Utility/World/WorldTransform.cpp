@@ -18,6 +18,10 @@ void CLEYERA::Util::WorldTransform::ConvertMat() {
    camera_ = &Manager::CameraManager::GetInstance()->GetCamera().lock()->GetForGpu();
 
    forGpuWorldMat_.worldMat_ = mat_;
+
+   Math::Vector::Vec3 pos = GetWorldPos();
+   forGpuWorldMat_.worldPos_ = Math::Vector::Vec4(pos.x, pos.y, pos.z, 1.0f);
+
    //forGpuWorldMat_.worldMatInv_ = forGpuWorldMat_.worldMat_.Inverse();
    if (camera_) {
 

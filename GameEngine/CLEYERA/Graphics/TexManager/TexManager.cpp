@@ -57,7 +57,7 @@ uint32_t CLEYERA::Manager::TexManager::LoadPngTex(const std::string &path) {
    data->SetTexPath(filePath);
    data->SetTexHandle(texHandle_);
 
-   Math::Vector::Vec2 size = {metadata.width, metadata.height};
+   Math::Vector::Vec2 size = {float(metadata.width), float(metadata.height)};
    data->SetSize(size);
 
    this->texs_[filePath] = std::move(data);

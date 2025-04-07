@@ -22,6 +22,7 @@ struct forWorldMat {
    Math::Matrix::Mat4x4 worldMat_ = {};
    Math::Matrix::Mat4x4 worldMatInv_ = {};
    Math::Matrix::Mat4x4 WPV_ = {};
+   Math::Vector::Vec4 worldPos_ = {};
 };
 } // namespace system
 
@@ -32,6 +33,8 @@ class TransformBase {
 
    void TransformUpdate();
 
+   void TransformImGuiUpdate();
+
    Math::Vector::Vec3 GetWorldPos();
    Math::Vector::Vec3 GetWorldRotate();
    Math::Vector::Vec3 GetWorldScale();
@@ -39,18 +42,18 @@ class TransformBase {
    Math::Vector::Vec3 GetScale() const { return *scale_; }
    Math::Vector::Vec3 GetRotate() const { return *rotate_; }
    Math::Vector::Vec3 GetTranslate() const { return *translate_; }
-   Math::Matrix::Mat4x4 GetMat() const { return mat_; }
-   const Math::Matrix::Mat3x4 &GetMat3x4() const { return forGpumat_; }
+   Math::Matrix::Mat4x4 &GetMat() { return mat_; }
+   Math::Matrix::Mat3x4 &GetMat3x4() { return forGpumat_; }
 
-   void SetScale(const Math::Vector::Vec3 &s) { scale_ = &s; }
-   void SetRotate(const Math::Vector::Vec3 &r) { rotate_ = &r; }
-   void SetTranslate(const Math::Vector::Vec3 &t) { translate_ = &t; }
-
+   void SetScale(Math::Vector::Vec3 &s) { scale_ = &s; }
+   void SetRotate(Math::Vector::Vec3 &r) { rotate_ = &r; }
+   void SetTranslate(Math::Vector::Vec3 &t) { translate_ = &t; }
+   void SetMat4x4(Math::Matrix::Mat4x4 &m) { mat_ = m; }
  protected:
-   const Math::Vector::Vec3 *scale_ = nullptr;
-   const Math::Vector::Vec3 *rotate_ = nullptr;
-   const Math::Quaternon::Qua *qua_ = nullptr;
-   const Math::Vector::Vec3 *translate_ = nullptr;
+   Math::Vector::Vec3 *scale_ = nullptr;
+   Math::Vector::Vec3 *rotate_ = nullptr;
+   Math::Quaternon::Qua *qua_ = nullptr;
+   Math::Vector::Vec3 *translate_ = nullptr;
 
    Math::Matrix::Mat4x4 mat_ = {};
 

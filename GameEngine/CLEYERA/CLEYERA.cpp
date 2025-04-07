@@ -55,7 +55,8 @@ void Engine::Init() {
    lightManager_->Init();
 
    objectManager_ = CLEYERA::Manager::ObjectManager::GetInstance();
-   
+   colliderSystem_ = CLEYERA::Manager::ColliderSystem::GetInstance();
+
 }
 
 void Engine::ImGuiUpdate() {
@@ -64,10 +65,13 @@ void Engine::ImGuiUpdate() {
    debugCamera_->ImGuiUpdate();
 
    grid_->ImGuiUpdate();
+   //objectManager_->ImGuiUpdate();
+   colliderSystem_->ImGuiUpdate();
 }
 
 void Engine::Update() {
    objectManager_->Update();
+   colliderSystem_->Update();
    lightManager_->Update();
    grid_->Update();
    debugCamera_->Update();

@@ -1,5 +1,9 @@
 #include "TestObject.h"
 
-void TestObject::Init() {}
+void TestObject::Init() {
+   name_ = "TestObject";
 
-void TestObject::Update() {}
+   CreateCollider(ColliderType::OBB);
+}
+
+void TestObject::Update() { ImGuiUpdate(); }

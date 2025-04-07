@@ -21,7 +21,7 @@ class Line3d : public Util::WorldTransform {
 
 #pragma region Set
    void SetLinePos(const std::vector<Math::Vector::Vec3> &pos) { postions_ = &pos; }
-
+   void SetLineColor(const std::vector<Math::Vector::Vec4> &color) { colors_ = &color; }
 #pragma endregion
 
  private:
@@ -34,6 +34,9 @@ class Line3d : public Util::WorldTransform {
 
    std::unique_ptr<Base::DX::DXBufferResource<Math::Vector::Vec3>> lineBuf_ = nullptr;
    const std::vector<Math::Vector::Vec3> *postions_ = nullptr;
+
+   std::unique_ptr<Base::DX::DXBufferResource<Math::Vector::Vec4>> lineColorBuf_ = nullptr;
+   const std::vector<Math::Vector::Vec4> *colors_ = nullptr;
 
    size_t lineMax_ = 128;
 };

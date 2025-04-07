@@ -6,10 +6,22 @@ using namespace Math::Vector;
 CLEYERA::Util::TransformBase::TransformBase() {}
 
 void CLEYERA::Util::TransformBase::TransformUpdate() {
-   mat_ = Math::Matrix::Func::AffineMatrix(*scale_, *rotate_, *translate_);
 
+   if (scale_ && rotate_ && translate_) {
+
+      mat_ = Math::Matrix::Func::AffineMatrix(*scale_, *rotate_, *translate_);
+   }
    forGpumat_.FromMat4x4(mat_);
- 
+}
+
+void CLEYERA::Util::TransformBase::TransformImGuiUpdate() {
+
+   if (ImGui::TreeNode("Transform")) {
+      ImGui::DragFloat3("Scale", &scale_->x, 0.5f);
+      ImGui::DragFloat3("Rotate", &rotate_->x, 0.5f);
+      ImGui::DragFloat3("Translate", &translate_->x, 0.5f);
+      ImGui::TreePop();
+   }
 }
 
 Math::Vector::Vec3 CLEYERA::Util::TransformBase::GetWorldPos() {
@@ -47,4 +59,3 @@ Math::Vector::Vec3 CLEYERA::Util::TransformBase::GetWorldScale() {
    return Vec3(sqrtf(mat_.m[0][0] * mat_.m[0][0] + mat_.m[0][1] * mat_.m[0][1] + mat_.m[0][2] * mat_.m[0][2]), sqrtf(mat_.m[1][0] * mat_.m[1][0] + mat_.m[1][1] * mat_.m[1][1] + mat_.m[1][2] * mat_.m[1][2]),
                sqrtf(mat_.m[2][0] * mat_.m[2][0] + mat_.m[2][1] * mat_.m[2][1] + mat_.m[2][2] * mat_.m[2][2]));
 }
-

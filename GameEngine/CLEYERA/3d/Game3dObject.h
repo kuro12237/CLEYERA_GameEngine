@@ -1,10 +1,10 @@
 #pragma once
 #include "../Graphics/RasterPipline/RasterEnum.h"
+#include "../Graphics/TexManager/TexManager.h"
+#include "../Utility/Light/LightManager.h"
 #include "../Utility/TransformBase/TransformBase.h"
 #include "../Utility/World/WorldTransform.h"
 #include "ModelManager/ModelManager.h"
-#include"../Graphics/TexManager/TexManager.h"
-#include"../Utility/Light/LightManager.h"
 
 namespace CLEYERA {
 
@@ -24,6 +24,8 @@ class Game3dObject : public CLEYERA::Util::WorldTransform {
 
    void DrawRaster3d();
 
+   void ImGuiUpdate();
+
 #pragma region Get
    std::weak_ptr<Model> GetModel() { return model_; }
    const Graphics::RasterPipline_Mode &GetRasterMode() const { return rasterMode_; }
@@ -31,9 +33,12 @@ class Game3dObject : public CLEYERA::Util::WorldTransform {
 
 #pragma region Set
    void SetTexHandle(uint32_t handle) { texHandle_ = handle; }
+   void SetName(const std::string &name) { name_ = &name; }
 #pragma endregion
 
  private:
+   const std::string *name_ = nullptr;
+
    Graphics::RasterPipline_Mode rasterMode_ = Graphics::RasterPipline_Mode::DF_MODEL3d;
 
    Manager::LightManager *lightManager = nullptr;

@@ -19,25 +19,26 @@ PSOutput main(VSOutput input)
 {
     PSOutput output;
  
+    
+    float32_t4 outColor;
+    
+    
+    float32_t3 N = normalize(input.normal);
+    float32_t3 worldPos = input.worldPos;
+    float32_t3 cameraPos = gCamera.pos.xyz;
+    
     float32_t3 lightDir = normalize(gDirectionLight.direction);
     float32_t3 lightColor = gDirectionLight.color.rgb;
     float32_t4 textureColor = gTexture.Sample(gSampler, input.texcoord);
     
-    float32_t4 outColor;
-    
-    float32_t3 worldPos = input.worldPos;
-    float32_t3 cameraPos = gCamera.pos.xyz;
     
     float32_t3 toEye = normalize(cameraPos - worldPos);
     float32_t3 hallfVector = normalize(-lightDir + toEye);
-    float NdotH = saturate(dot(normalize(input.normal), hallfVector));
     
-    float32_t3 reflectLight = reflect(lightDir, normalize(input.normal));
-  
+    float NdotH = saturate(dot(N, hallfVector));
     float spec = pow(saturate(NdotH), 90.0f);
-    
-    
-    float Ndol = saturate(dot(normalize(input.normal), -lightDir));
+ 
+    float Ndol = saturate(dot(N, -lightDir));
     float cos = pow(Ndol * 0.5f + 0.5f, 2.0f);
     
     float32_t3 deffiseColor = textureColor.rgb * lightColor * cos * gDirectionLight.intencity;

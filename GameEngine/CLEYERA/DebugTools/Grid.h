@@ -36,11 +36,12 @@ class Grid {
    Math::Vector::Vec3 rotate_ = {};
    Math::Vector::Vec3 translate_ = {0.0f, 0.0f, 0.0f};
 
-   size_t lineMax_ = 256;
-   size_t lineVertCount_ = 512;
+   size_t lineMax_ = 128;
+   size_t lineVertCount_ = 256;
 
    std::shared_ptr<CLEYERA::Model3d::Line3d> lines_ = nullptr;
    std::vector<Math::Vector::Vec3> positions_;
+   std::vector<Math::Vector::Vec4> colors_;
 
 #pragma region Singleton
 

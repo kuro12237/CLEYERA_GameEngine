@@ -23,6 +23,7 @@
 #include "DebugTools/Grid.h"
 
 #include"Utility/Object/ObjectManager.h"
+#include"Utility/ColliderSystem/ColliderSystem.h"
 
 class Engine {
  public:
@@ -56,6 +57,7 @@ class Engine {
    CLEYERA::DebugTools::Grid *grid_ = nullptr;
    CLEYERA::Manager::LightManager *lightManager_ = nullptr;
    CLEYERA::Manager::ObjectManager *objectManager_ = nullptr;
+   CLEYERA::Manager::ColliderSystem *colliderSystem_ = nullptr;
 
    std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 

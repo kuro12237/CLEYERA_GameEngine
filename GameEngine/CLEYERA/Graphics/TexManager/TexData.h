@@ -22,7 +22,7 @@ class TexData {
    const std::string &GetTexPath() const { return texPath_; }
    const Math::Vector::Vec2 &GetSize() const { return size_; }
 
-   const uint32_t &GetSrvIndex() { return texBuf_->GetSRVIndex(); }
+   uint32_t GetSrvIndex() { return uint32_t(texBuf_->GetSRVIndex()); }
 
  private:
    uint32_t texHandle_ = 0;

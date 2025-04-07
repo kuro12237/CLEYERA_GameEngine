@@ -1,5 +1,44 @@
 #include "ColliderFunc.h"
 
+void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(std::vector<Math::Vector::Vec3> &outLines, const OBB &obb) {
+   using Vec3 = Math::Vector::Vec3;
+
+   // 軸方向 × ハーフサイズ
+   Vec3 right = obb.orientations[0] * (obb.size.x * 0.5f);
+   Vec3 up = obb.orientations[1] * (obb.size.y * 0.5f);
+   Vec3 forward = obb.orientations[2] * (obb.size.z * 0.5f);
+
+   // 8頂点を計算
+   Vec3 corners[8];
+   int i = 0;
+   for (int dy : {-1, 1}) {
+      for (int dz : {-1, 1}) {
+         for (int dx : {-1, 1}) {
+            Math::Vector::Vec3 pos = *obb.center;
+
+            Math::Vector::Vec3 vec = right * static_cast<float>(dx) + up * static_cast<float>(dy) + forward * static_cast<float>(dz);
+            corners[i++] = vec;
+
+         }
+      }
+   }
+
+   // 辺（12本 × 2頂点）
+   constexpr int edgeIndices[12][2] = {
+       {0, 1}, {1, 3}, {3, 2}, {2, 0}, // 下面
+       {4, 5}, {5, 7}, {7, 6}, {6, 4}, // 上面
+       {0, 4}, {1, 5}, {2, 6}, {3, 7}  // 側面
+   };
+
+   outLines.clear();
+   outLines.resize(48);
+   int index = 0;
+   for (auto &edge : edgeIndices) {
+      outLines[index++]=(corners[edge[0]]);
+      outLines[index++]=(corners[edge[1]]);
+   }
+}
+
 bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB &obb2) {
 
    // 分離軸テスト
@@ -50,9 +89,9 @@ std::pair<float, float> CLEYERA::Util::Collider::system::Func::OBBProjection(con
    std::array<Math::Vector::Vec3, 8> vertices{};
    for (int i = 0; i < 8; ++i) {
       Math::Vector::Vec3 sign = {(i & 1) ? 1.0f : -1.0f, (i & 2) ? 1.0f : -1.0f, (i & 4) ? 1.0f : -1.0f};
-      vertices[i] = {obb.center.x + obb.orientations[0].x * sign.x * obb.size.x + obb.orientations[1].x * sign.y * obb.size.y + obb.orientations[2].x * sign.z * obb.size.z,
-                     obb.center.y + obb.orientations[0].y * sign.x * obb.size.x + obb.orientations[1].y * sign.y * obb.size.y + obb.orientations[2].y * sign.z * obb.size.z,
-                     obb.center.z + obb.orientations[0].z * sign.x * obb.size.x + obb.orientations[1].z * sign.y * obb.size.y + obb.orientations[2].z * sign.z * obb.size.z};
+      vertices[i] = {obb.center->x + obb.orientations[0].x * sign.x * obb.size.x + obb.orientations[1].x * sign.y * obb.size.y + obb.orientations[2].x * sign.z * obb.size.z,
+                     obb.center->y + obb.orientations[0].y * sign.x * obb.size.x + obb.orientations[1].y * sign.y * obb.size.y + obb.orientations[2].y * sign.z * obb.size.z,
+                     obb.center->z + obb.orientations[0].z * sign.x * obb.size.x + obb.orientations[1].z * sign.y * obb.size.y + obb.orientations[2].z * sign.z * obb.size.z};
    }
 
    // 頂点を軸に射影

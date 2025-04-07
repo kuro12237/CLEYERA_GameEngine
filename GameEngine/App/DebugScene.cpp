@@ -11,6 +11,7 @@ void DebugScene::Init() {
    object = std::make_shared<TestObject>();
    object->Init();
 
+   
    objectList_.push_back(object->GetGameObject());
    InitRaytracing();
 

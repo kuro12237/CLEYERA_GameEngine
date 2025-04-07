@@ -21,6 +21,8 @@ class Line3dDraw : public RasterPiplineCompornent {
 
  private:
    D3D12_DESCRIPTOR_RANGE descriptorRangeVertices[1] = {};
+
+   D3D12_DESCRIPTOR_RANGE descriptorRangeColors[1] = {};
 };
 
 } // namespace system

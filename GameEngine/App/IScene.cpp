@@ -39,7 +39,7 @@ void SceneCompornent::InitRaytracing() {
 
    // シェーダーテーブル
    shaderTable_ = std::make_unique<ShaderTable>();
-   shaderTable_->SetOutPutDescripterHandle(raytracingManager_.lock()->Gethandle());
+   shaderTable_->SetOutPutDescripterHandle(uint32_t(raytracingManager_.lock()->Gethandle()));
    shaderTable_->SetStateObj(stateObject_->GetStateObject());
    shaderTable_->Init();
 }
@@ -71,12 +71,12 @@ void SceneCompornent::Render() {
    // tlasのセット
    tlas_->BufferBind();
 
-   auto desc = Base::DX::DXDescripterManager::GetInstance();
+   //auto desc = Base::DX::DXDescripterManager::GetInstance();
 
-   auto VbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetVertexBufIndex());
-   auto IbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetIndexBufIndex());
+   //auto VbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetVertexBufIndex());
+   //auto IbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetIndexBufIndex());
 
-   auto command = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
+   //auto command = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
    //command->SetComputeRootDescriptorTable(2,IbIndex);
    //command->SetComputeRootDescriptorTable(3, VbIndex);
 }

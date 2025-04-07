@@ -11,6 +11,8 @@ namespace system {
 
 namespace Func {
 
+void MakeLinesFromOBB(std::vector<Math::Vector::Vec3> &outLines, const OBB &obb);
+
 bool OBBCheck(const OBB &obb1, const OBB &obb2);
 
 // 射影の重複チェック

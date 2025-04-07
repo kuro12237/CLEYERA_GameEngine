@@ -7,7 +7,7 @@ void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingShader() {
 }
 
 void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingRootParam() {
-   this->rootParam_.resize(3);
+   this->rootParam_.resize(4);
 
    // かめら
    rootParam_[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -28,6 +28,18 @@ void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingRootParam() {
    rootParam_[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_VERTEX;
    rootParam_[2].DescriptorTable.pDescriptorRanges = descriptorRangeVertices;
    rootParam_[2].DescriptorTable.NumDescriptorRanges = _countof(descriptorRangeVertices);
+   // LineColor
+
+   descriptorRangeColors[0].BaseShaderRegister = 0;
+   descriptorRangeColors[0].NumDescriptors = 1;
+   descriptorRangeColors[0].RangeType = D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+   descriptorRangeColors[0].OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
+   descriptorRangeColors[0].RegisterSpace = 0;
+
+   rootParam_[3].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+   rootParam_[3].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+   rootParam_[3].DescriptorTable.pDescriptorRanges = descriptorRangeColors;
+   rootParam_[3].DescriptorTable.NumDescriptorRanges = _countof(descriptorRangeColors);
 }
 
 void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingSampler() {}

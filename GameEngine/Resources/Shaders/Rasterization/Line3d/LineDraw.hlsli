@@ -6,6 +6,9 @@ struct VSInput
 struct VSOutput
 {
     float32_t4 position : SV_POSITION;
+    float32_t3 noamal : NORMAL0;
+    float32_t2 texCooad : TEXCOORD0;
+    uint32_t instanceId : INSTANCEID0;
 };
 
 struct PSOutput

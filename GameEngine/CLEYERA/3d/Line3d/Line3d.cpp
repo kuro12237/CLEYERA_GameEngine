@@ -23,12 +23,20 @@ void CLEYERA::Model3d::Line3d::Init(const size_t lineMax) {
    lineBuf_->Init(posMax);
    lineBuf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
    lineBuf_->RegisterSRV();
+
+   lineColorBuf_ = std::make_unique<Base::DX::DXBufferResource<Math::Vector::Vec4>>();
+   lineColorBuf_->SetDevice(Base::DX::DXManager::GetInstance()->GetDevice());
+   lineColorBuf_->Init(posMax);
+   lineColorBuf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
+   lineColorBuf_->RegisterSRV();
 }
 
 void CLEYERA::Model3d::Line3d::Update() {
 
    lineBuf_->Map();
    lineBuf_->SetParam(*postions_);
+   lineColorBuf_->Map();
+   lineColorBuf_->SetParam(*colors_);
 
    this->TransformUpdate();
    this->ConvertMat();
@@ -40,7 +48,8 @@ void CLEYERA::Model3d::Line3d::DrawLine3d() {
    cameraManager_->BindCommand(0);
    this->BindWT(1);
    lineBuf_->GraphicsRootDescripterTable(2);
+   lineColorBuf_->GraphicsRootDescripterTable(3);
    mesh_->CommandBindVB();
    commandManager_->SetTopology(D3D_PRIMITIVE_TOPOLOGY_LINELIST);
-   commandManager_->DrawCall(vertCount_, lineMax_);
+   commandManager_->DrawCall(UINT(vertCount_), UINT(lineMax_));
 }
