@@ -10,7 +10,6 @@ class TestObject : public CLEYERA::Manager::ObjectComponent {
 
    void Update() override;
 
-   void SetName(std::string name) { name_ = name; }
-
+  
  private:
 };

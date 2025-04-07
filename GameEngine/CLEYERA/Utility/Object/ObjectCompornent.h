@@ -4,8 +4,8 @@
 #include "../ColliderSystem/OBBCollider.h"
 #include "../RenderManager/RenderManager.h"
 
-#include"../ColliderSystem/Collider.h"
-#include"../ColliderSystem/ColliderSystem.h"
+#include "../ColliderSystem/Collider.h"
+#include "../ColliderSystem/ColliderSystem.h"
 
 namespace CLEYERA {
 namespace Manager {
@@ -29,6 +29,12 @@ class ObjectComponent {
 
 #pragma endregion
 
+#pragma region Set
+
+   void SetName(std::string name) { name_ = name; }
+
+#pragma endregion
+
  private:
    uint32_t modelHandle_ = 0;
    Manager::ModelManager *modelManager_ = nullptr;
@@ -45,12 +51,11 @@ class ObjectComponent {
    /// <param name="type"></param>
    void CreateCollider(ColliderType type);
 
-   std::string name_ = "obj";
+   std::string name_ = "";
 
    Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
    Math::Vector::Vec3 rotate_ = {};
    Math::Vector::Vec3 translate_ = {};
-   
 
    std::shared_ptr<Util::Collider::OBBCollider> collider_ = nullptr;
    std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;

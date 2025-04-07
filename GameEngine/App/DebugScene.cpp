@@ -12,7 +12,7 @@ void DebugScene::Init() {
    object->Init();
 
    objectb = std::make_shared<TestObject>();
-   object->SetName("b");
+   objectb->SetName("b");
    objectb->Init();
 
    objectList_.push_back(object->GetGameObject());
