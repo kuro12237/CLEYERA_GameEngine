@@ -6,6 +6,7 @@ CLEYERA::Manager::ObjectComponent::ObjectComponent() {
    this->modelManager_ = CLEYERA::Manager::ModelManager::GetInstance();
    this->objectManager_ = CLEYERA::Manager::ObjectManager::GetInstance();
    this->renderManager_ = CLEYERA::Manager::RenderManager::GetInstance();
+   this->inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
 
    uint32_t handleSphere = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/system/Sphere", "Sphere");
 

@@ -59,18 +59,20 @@ void Engine::Init() {
 
    terrain_ = CLEYERA::Manager::Terrain::GetInstance();
    terrain_->Init();
+
+   inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
+   inputManager_->Init();
 }
 
 void Engine::ImGuiUpdate() {
 
-	dxCommon_->ImGuiUpdate();
+   dxCommon_->ImGuiUpdate();
 
    lightManager_->ImGuiUpdate();
    debugCamera_->ImGuiUpdate();
 
-
    grid_->ImGuiUpdate();
-   //objectManager_->ImGuiUpdate();
+   // objectManager_->ImGuiUpdate();
    colliderSystem_->ImGuiUpdate();
 }
 
@@ -85,7 +87,8 @@ void Engine::Update() {
 
 void Engine::Finalize() {
 
-	terrain_->Finalize();
+   inputManager_->Finalize();
+   terrain_->Finalize();
    lightManager_->Finalize();
    grid_->Finalize();
 
@@ -103,7 +106,11 @@ void Engine::Finalize() {
    winApp_->Finalize();
 }
 
-void Engine::Begin() { dxCommon_->PreDraw(); }
+void Engine::Begin() {
+   dxCommon_->PreDraw();
+   inputManager_->Begin();
+
+}
 
 void Engine::End() { dxCommon_->PostDraw(); }
 

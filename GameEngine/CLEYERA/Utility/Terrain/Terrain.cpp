@@ -97,7 +97,7 @@ void CLEYERA::Manager::Terrain::Finalize() {
    line_.reset();
 }
 
-void CLEYERA::Manager::Terrain::CheckObjct(Math::Vector::Vec3 &pos) {
+void CLEYERA::Manager::Terrain::CheckObjct(Math::Vector::Vec3 &pos, const float &size) {
 
    using Vec3 = Math::Vector::Vec3;
 
@@ -105,7 +105,7 @@ void CLEYERA::Manager::Terrain::CheckObjct(Math::Vector::Vec3 &pos) {
 
       if (triCollider_[i].contains(pos)) {
 
-          pos.y = triCollider_[i].getY(pos);
+         pos.y = triCollider_[i].getY(pos) + size;
       }
    }
 }

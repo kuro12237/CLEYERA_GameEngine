@@ -35,6 +35,7 @@ public:
   static int32_t GetKWindowHeight() { return kWindowHeight; }
 
   HWND GetHWND() { return hwnd_; }
+  WNDCLASS GetWC() { return wc_; }
 #pragma endregion
 
 private:

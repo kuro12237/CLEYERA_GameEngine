@@ -209,6 +209,8 @@
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\SCollider.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Input\InputKeybord.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Input\InputManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Light\DIrectionLight.cpp" />
     <ClCompile Include="CLEYERA\Utility\Light\LightManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Object\ObjectCompornent.cpp" />
@@ -262,6 +264,7 @@
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\OBBCollider.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\SCollider.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\TerrainCollider.h" />
+    <ClInclude Include="CLEYERA\Utility\Input\InputKeybord.h" />
     <ClInclude Include="CLEYERA\Utility\Input\InputManager.h" />
     <ClInclude Include="CLEYERA\Utility\Light\DIrectionLight.h" />
     <ClInclude Include="CLEYERA\Utility\Light\LightManager.h" />

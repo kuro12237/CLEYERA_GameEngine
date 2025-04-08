@@ -2,7 +2,7 @@
 #include "../ColliderSystem/ColliderSystem.h"
 
 #include "../../3d/ModelManager/ModelManager.h"
-#include"../Object/ObjectManager.h"
+#include "../Object/ObjectManager.h"
 
 namespace CLEYERA {
 namespace Manager {
@@ -12,7 +12,6 @@ namespace Manager {
 /// </summary>
 class Terrain : public CLEYERA::Util::WorldTransform {
  public:
-
    static Terrain *GetInstance() {
       static Terrain instance;
       return &instance;
@@ -28,7 +27,7 @@ class Terrain : public CLEYERA::Util::WorldTransform {
 
    void CreateData(uint32_t modelHandle);
 
-   void CheckObjct(Math::Vector::Vec3 &pos);
+   void CheckObjct(Math::Vector::Vec3 &pos, const float &size = 0.0f);
 
  private:
    Manager::ModelManager *modelManager_ = nullptr;

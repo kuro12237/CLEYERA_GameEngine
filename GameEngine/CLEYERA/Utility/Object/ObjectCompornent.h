@@ -6,6 +6,7 @@
 
 #include "../ColliderSystem/Collider.h"
 #include "../ColliderSystem/ColliderSystem.h"
+#include"../Input/InputManager.h"
 
 namespace CLEYERA {
 namespace Manager {
@@ -41,8 +42,10 @@ class ObjectComponent {
    Manager::ObjectManager *objectManager_ = nullptr;
    Manager::RenderManager *renderManager_ = nullptr;
    Manager::ColliderSystem *colliderSystem_ = nullptr;
-
+  
  protected:
+   Manager::InputManager *inputManager_ = nullptr;
+
    using ColliderType = Util::Collider::ColliderType;
 
    /// <summary>
