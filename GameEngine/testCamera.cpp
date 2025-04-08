@@ -15,7 +15,13 @@ void TestCamera::Update() {
 
    ImGui::Begin("camera");
 
-   ImGui::DragFloat3("r", &rotate_.x, 0.1f);
+   ImGui::DragFloat3("r", &degreeRotate_.x, 1.0f);
+   rotate_.x = Math::Vector::Func::degreesToRadians(degreeRotate_.x);
+   rotate_.y = Math::Vector::Func::degreesToRadians(degreeRotate_.y);
+   rotate_.z = Math::Vector::Func::degreesToRadians(degreeRotate_.z);
+   
+
+
    ImGui::DragFloat3("t", &translate_.x, 1.0f);
 
    ImGui::End();

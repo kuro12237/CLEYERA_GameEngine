@@ -19,7 +19,7 @@
 /// </summary>
 class SceneCompornent {
  public:
-   SceneCompornent() {};
+   SceneCompornent();
    virtual ~SceneCompornent() {};
 
    virtual void Init() = 0;
@@ -46,6 +46,9 @@ class SceneCompornent {
 #pragma endregion
 
  protected:
+   CLEYERA::Manager::GravityManager *gravityManager_ = nullptr;
+   CLEYERA::Manager::Terrain *terrain_ = nullptr;
+
    std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 
  private:

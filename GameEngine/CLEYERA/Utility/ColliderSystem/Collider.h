@@ -44,6 +44,8 @@ class Collider {
    std::vector<Math::Vector::Vec4> colors_ = {};
 
    Math::Matrix::Mat4x4 worldMatrix_ = {};
+   bool isHit_ = false;
+
 };
 
 } // namespace Collider

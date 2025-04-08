@@ -97,15 +97,61 @@ void CLEYERA::Manager::Terrain::Finalize() {
    line_.reset();
 }
 
-void CLEYERA::Manager::Terrain::CheckObjct(Math::Vector::Vec3 &pos, const float &size) {
+void CLEYERA::Manager::Terrain::CheckObjct() {
+   for (size_t i = 0; i < triCollider_.size(); i++) {
 
+      triCollider_[i].edgeVec[0] = triCollider_[i].vertex[1] - triCollider_[i].vertex[0];
+      triCollider_[i].edgeVec[1] = triCollider_[i].vertex[2] - triCollider_[i].vertex[1];
+      triCollider_[i].edgeVec[2] = triCollider_[i].vertex[0] - triCollider_[i].vertex[2];
+      triCollider_[i].normal = Math::Vector::Func::Cross(triCollider_[i].edgeVec[0], triCollider_[i].edgeVec[1]);
+      triCollider_[i].dot = Math::Vector::Func::Dot(triCollider_[i].normal * -1, triCollider_[i].vertex[0]);
+   }
    using Vec3 = Math::Vector::Vec3;
 
    for (size_t i = 0; i < triCollider_.size(); i++) {
 
-      if (triCollider_[i].contains(pos)) {
+      for (auto obj : objList_) {
+         auto it = obj.lock();
+         if (!it)
+            continue;
 
-         pos.y = triCollider_[i].getY(pos) + size;
+         Vec3 pos = it->GetTranslate();
+
+         it->SetPrevTerrainHitFlag(it->GetTerrainHitFlag());
+
+         // === ① 接地判定用レイ（下方向にだけチェック） ===
+
+         // 線分の始点と終点を計算
+         Vec3 start = pos + Vec3{0.0f, 0.0f, 0.0f};
+         Vec3 end = pos + Vec3{0.0f, 4056.0f, 0.0f};
+
+         // 三角形の平面の法線とDを計算
+         Vec3 normal = triCollider_[i].normal;
+         float d = triCollider_[i].dot;
+
+         // 線分の始点と終点が三角形の平面のどちら側にあるかを判定
+         float startDist = Math::Vector::Func::Dot(normal, start) + d;
+         float endDist = Math::Vector::Func::Dot(normal, end) + d;
+
+         // 両点が同じ側にある場合、交差しない
+         if (startDist * endDist > 0) {
+            continue;
+         }
+
+         // 線分が平面と交差する場合、交点を計算
+         float t = startDist / (startDist - endDist);
+         Vec3 intersection = start + (end - start) * t;
+
+         if (triCollider_[i].contains(intersection)) {
+            if (!it->GetTerrainHitFlag() || it->GetPrevTerrainHitFlag()) {
+
+               it->SetTerrainHitFlag(true);
+            }
+            const float pushDistance = 0.01f;
+            Vec3 pushedPos = intersection + normal * pushDistance;
+            it->TerrainHit(pushedPos);
+         }
       }
+
    }
 }

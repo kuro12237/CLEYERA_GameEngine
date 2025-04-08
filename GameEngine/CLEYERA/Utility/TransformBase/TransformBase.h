@@ -31,7 +31,7 @@ class TransformBase {
    TransformBase();
    virtual ~TransformBase() {};
 
-   void TransformUpdate();
+   void WorldMatUpdate();
 
    void TransformImGuiUpdate();
 

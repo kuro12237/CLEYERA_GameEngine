@@ -27,9 +27,13 @@ class Terrain : public CLEYERA::Util::WorldTransform {
 
    void CreateData(uint32_t modelHandle);
 
-   void CheckObjct(Math::Vector::Vec3 &pos, const float &size = 0.0f);
+   void CheckObjct();
+
+   void PushData(std::weak_ptr<Manager::ObjectComponent> obj) { objList_.push_back(obj); };
 
  private:
+   std::list<std::weak_ptr<Manager::ObjectComponent>> objList_;
+
    Manager::ModelManager *modelManager_ = nullptr;
    Manager::RenderManager *renderManager_ = nullptr;
    Manager::ColliderSystem *colliderSystem_ = nullptr;

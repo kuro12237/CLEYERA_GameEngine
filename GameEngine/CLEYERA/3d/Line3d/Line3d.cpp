@@ -38,7 +38,7 @@ void CLEYERA::Model3d::Line3d::Update() {
    lineColorBuf_->Map();
    lineColorBuf_->SetParam(*colors_);
 
-   this->TransformUpdate();
+   this->WorldMatUpdate();
    this->ConvertMat();
    this->SetWorldTransfar();
 }

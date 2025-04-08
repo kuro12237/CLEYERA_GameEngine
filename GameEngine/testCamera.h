@@ -17,5 +17,6 @@ class TestCamera {
    std::shared_ptr<CLEYERA::Util::Camera> camera_ = nullptr;
 
    Math::Vector::Vec3 rotate_ = {};
+   Math::Vector::Vec3 degreeRotate_ = {};
    Math::Vector::Vec3 translate_ = {0.0f, 0.0f, -16.0f};
 };

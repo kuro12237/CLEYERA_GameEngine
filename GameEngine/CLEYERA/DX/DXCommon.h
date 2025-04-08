@@ -21,7 +21,6 @@
 #include "DXBarrier/DXBarrier.h"
 
 #include"DXDescripter/DXDescripterManager.h"
-#include"Flame/Flame.h"
 
 namespace CLEYERA {
 namespace Base {
@@ -46,6 +45,8 @@ public:
   void PostDraw();
 
   void ImGuiUpdate();
+
+  void CommandReset();
 
 #pragma region Get
 
@@ -82,7 +83,6 @@ private:
   std::shared_ptr<DXAdapter> adapter_ = nullptr;
   std::shared_ptr<DXDevice> device_ = nullptr;
 
-  std::unique_ptr<Flame> flame_ = nullptr;
 
   std::vector<std::unique_ptr<DXBarrier>> barriers_;
 

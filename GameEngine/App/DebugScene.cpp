@@ -13,6 +13,11 @@ void DebugScene::Init() {
    objectb->SetName("b");
    objectb->Init();
 
+   gravityManager_->PushData(object);
+   gravityManager_->PushData(objectb);
+   terrain_->PushData(object);
+   terrain_->PushData(objectb);
+
    objectList_.push_back(object->GetGameObject());
    InitRaytracing();
 }

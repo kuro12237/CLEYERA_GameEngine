@@ -69,7 +69,7 @@ void CLEYERA::Graphics::Raster::system::Line3dDraw::SettingInput() {
    inputElementDesc_[3].AlignedByteOffset = D3D12_APPEND_ALIGNED_ELEMENT;
 
    inputLayoutDesc.pInputElementDescs = inputElementDesc_.data();
-   inputLayoutDesc.NumElements = inputElementDesc_.size();
+   inputLayoutDesc.NumElements = UINT(inputElementDesc_.size());
 
    primitiveType_ = D3D12_PRIMITIVE_TOPOLOGY_TYPE_LINE;
 }

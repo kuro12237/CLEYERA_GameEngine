@@ -2,9 +2,9 @@
 
 using namespace std::chrono;
 
-void CLEYERA::Base::DX::Flame::Init() { reference_ = std::chrono::steady_clock::now(); }
+void CLEYERA::Util::Flame::Init() { reference_ = std::chrono::steady_clock::now(); }
 
-void CLEYERA::Base::DX::Flame::Update() {
+void CLEYERA::Util::Flame::Update() {
 
    const microseconds kMinTime(uint64_t(1000000.0f / 60.0f));
 
@@ -24,6 +24,6 @@ void CLEYERA::Base::DX::Flame::Update() {
    reference_ = steady_clock::now();
 }
 
-void CLEYERA::Base::DX::Flame::ImGuiUpdate() { ImGui::Text("fps::%f", fps_);
+void CLEYERA::Util::Flame::ImGuiUpdate() { ImGui::Text("fps::%f", fps_);
 
 }

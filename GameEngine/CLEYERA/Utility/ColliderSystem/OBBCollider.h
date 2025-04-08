@@ -18,7 +18,7 @@ class OBBCollider : public Collider {
 
    const system::OBB &GetOBB() const { return obb_; }
 
-   void HitCallFunc(const Collider &other) override {};
+   void HitCallFunc([[maybe_unused]]const Collider &other) override {};
 
    void Create() override;
 

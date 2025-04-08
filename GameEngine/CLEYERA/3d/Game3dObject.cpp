@@ -21,7 +21,7 @@ void CLEYERA::Model3d::Game3dObject::Create(uint32_t handle) {
 
 void CLEYERA::Model3d::Game3dObject::Update() {
 
-   this->TransformUpdate();
+   this->WorldMatUpdate();
 
    this->ConvertMat();
 }

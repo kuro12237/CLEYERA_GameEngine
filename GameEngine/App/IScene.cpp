@@ -3,6 +3,11 @@
 using namespace CLEYERA;
 using namespace CLEYERA::Model3d;
 
+SceneCompornent::SceneCompornent() {
+   gravityManager_ = Manager::GravityManager::GetInstance();
+   terrain_ = Manager::Terrain::GetInstance();
+}
+
 void SceneCompornent::InitRaytracing() {
 
    // tlas作成
@@ -11,22 +16,22 @@ void SceneCompornent::InitRaytracing() {
    tlas_->Init();
 
    // 汎用ルートシグネチャ
-   //globalにTlas
-   //Camera
+   // globalにTlas
+   // Camera
    globalrootsignature_ = std::make_unique<system::GlobalRootSignature>();
    globalrootsignature_->Init();
 
-   //IB,VB
-   //space1
+   // IB,VB
+   // space1
    this->closeHitRootSignature_ = std::make_unique<system::CloseHitRootSignature>();
    closeHitRootSignature_->Create();
-   
-   //output
-   //spcce2
+
+   // output
+   // spcce2
    this->rayGenRootSignature_ = std::make_unique<system::RayGenRootSignature>();
    rayGenRootSignature_->Create();
 
-   //一旦クローズ
+   // 一旦クローズ
    CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
 
    // パイプライン
@@ -71,12 +76,12 @@ void SceneCompornent::Render() {
    // tlasのセット
    tlas_->BufferBind();
 
-   //auto desc = Base::DX::DXDescripterManager::GetInstance();
+   // auto desc = Base::DX::DXDescripterManager::GetInstance();
 
-   //auto VbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetVertexBufIndex());
-   //auto IbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetIndexBufIndex());
+   // auto VbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetVertexBufIndex());
+   // auto IbIndex = desc->GetSRVGPUHandle(this->objectList_[0].lock()->GetModel().lock()->GetMeshData()->GetIndexBufIndex());
 
-   //auto command = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
-   //command->SetComputeRootDescriptorTable(2,IbIndex);
-   //command->SetComputeRootDescriptorTable(3, VbIndex);
+   // auto command = Base::DX::DXCommandManager::GetInstace()->GetCommandList();
+   // command->SetComputeRootDescriptorTable(2,IbIndex);
+   // command->SetComputeRootDescriptorTable(3, VbIndex);
 }

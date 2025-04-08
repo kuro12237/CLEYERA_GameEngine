@@ -219,7 +219,7 @@
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\Collider.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CLEYERA\DX\Flame\Flame.cpp">
+    <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CLEYERA\Utility\Terrain\Terrain.cpp">
@@ -232,6 +232,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CLEYERA\Utility\Input\InputManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\Utility\PhysicsForces\GravityManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -476,7 +479,7 @@
     <ClInclude Include="App\TestObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CLEYERA\DX\Flame\Flame.h">
+    <ClInclude Include="CLEYERA\Utility\Flame\Flame.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Utility\Terrain\Terrain.h">
@@ -489,6 +492,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Utility\Input\InputKeybord.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Utility\PhysicsForces\GravityManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

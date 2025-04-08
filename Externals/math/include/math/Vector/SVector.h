@@ -44,10 +44,22 @@ struct Vec3 {
     return Vec3{x + other.x, y + other.y, z + other.z};
   }
 
+    // 加算オペレーター
+  Vec3 operator+(const float &other) const {
+    return Vec3{x + other, y + other, z + other};
+  }
+  Vec3 operator+=(const float &other) const {
+    return Vec3{x + other, y + other, z + other};
+  }
   // 減算オペレーター
   Vec3 operator-(const Vec3 &other) const {
     return Vec3{x - other.x, y - other.y, z - other.z};
   }
+  // 加算オペレーター
+  Vec3 operator-(const float &other) const {
+    return Vec3{x - other, y - other, z - other};
+  }
+
 
   // 乗算オペレーター
   Vec3 operator*(const Vec3 &other) const {

@@ -57,15 +57,21 @@ void Engine::Init() {
    objectManager_ = CLEYERA::Manager::ObjectManager::GetInstance();
    colliderSystem_ = CLEYERA::Manager::ColliderSystem::GetInstance();
 
+   inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
+   inputManager_->Init();
+
+   flame_ = CLEYERA::Util::Flame::GetInstance();
+   flame_->Init();
+
    terrain_ = CLEYERA::Manager::Terrain::GetInstance();
    terrain_->Init();
 
-   inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
-   inputManager_->Init();
+   gravityManager_ = CLEYERA::Manager::GravityManager::GetInstance();
+   gravityManager_->Init();
 }
 
 void Engine::ImGuiUpdate() {
-
+   flame_->ImGuiUpdate();
    dxCommon_->ImGuiUpdate();
 
    lightManager_->ImGuiUpdate();
@@ -76,7 +82,14 @@ void Engine::ImGuiUpdate() {
    colliderSystem_->ImGuiUpdate();
 }
 
+void Engine::PhysiceForcesUpdate() {  
+	
+   terrain_->CheckObjct();
+   gravityManager_->Update();
+}
+
 void Engine::Update() {
+   
    terrain_->Update();
    objectManager_->Update();
    colliderSystem_->Update();
@@ -109,9 +122,12 @@ void Engine::Finalize() {
 void Engine::Begin() {
    dxCommon_->PreDraw();
    inputManager_->Begin();
-
 }
 
-void Engine::End() { dxCommon_->PostDraw(); }
+void Engine::End() {
+   dxCommon_->PostDraw();
+   flame_->Update();
+   dxCommon_->CommandReset();
+}
 
 void Engine::Draw() { grid_->DrawRaster3d(); }

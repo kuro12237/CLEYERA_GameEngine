@@ -93,5 +93,5 @@ void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingInput() {
    inputElementDesc_[4].AlignedByteOffset = D3D12_APPEND_ALIGNED_ELEMENT;
 
    inputLayoutDesc.pInputElementDescs = inputElementDesc_.data();
-   inputLayoutDesc.NumElements = inputElementDesc_.size();
+   inputLayoutDesc.NumElements = UINT(inputElementDesc_.size());
 }

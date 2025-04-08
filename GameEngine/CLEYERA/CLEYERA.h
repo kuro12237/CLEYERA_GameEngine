@@ -26,6 +26,8 @@
 #include"Utility/ColliderSystem/ColliderSystem.h"
 #include"Utility/Terrain/Terrain.h"
 #include"Utility/Input/InputManager.h"
+#include"Utility/Flame/Flame.h"
+#include"Utility/PhysicsForces/GravityManager.h"
 
 class Engine {
  public:
@@ -35,6 +37,9 @@ class Engine {
    void Init();
 
    void ImGuiUpdate();
+
+   void PhysiceForcesUpdate();
+
 
    void Update();
 
@@ -62,6 +67,11 @@ class Engine {
    CLEYERA::Manager::ColliderSystem *colliderSystem_ = nullptr;
    CLEYERA::Manager::Terrain *terrain_ = nullptr;
    CLEYERA::Manager::InputManager *inputManager_ = nullptr;
+   CLEYERA::Manager::GravityManager *gravityManager_ = nullptr;
+
+
+   CLEYERA::Util::Flame *flame_ = nullptr;
+
 
    std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 

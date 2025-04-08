@@ -20,7 +20,7 @@ void CLEYERA::Manager::CameraManager::Update() {
 
    auto camera = camera_.lock();
 
-   camera->TransformUpdate();
+   camera->WorldMatUpdate();
 }
 
 void CLEYERA::Manager::CameraManager::BindCommand(UINT num) {

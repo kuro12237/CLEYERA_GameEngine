@@ -43,6 +43,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 #pragma region 更新
 
+      engine_->PhysiceForcesUpdate();
+
       scene_->Update();
       scene_->RaytracigTransfar();
       

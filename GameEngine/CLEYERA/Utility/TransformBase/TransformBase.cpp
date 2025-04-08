@@ -5,7 +5,7 @@ using namespace Math::Vector;
 
 CLEYERA::Util::TransformBase::TransformBase() {}
 
-void CLEYERA::Util::TransformBase::TransformUpdate() {
+void CLEYERA::Util::TransformBase::WorldMatUpdate() {
 
    if (scale_ && rotate_ && translate_) {
 
