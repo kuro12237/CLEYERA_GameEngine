@@ -32,6 +32,19 @@ struct AABB {
    Math::Vector::Vec3 max{1.0f, 1.0f, 1.0f};
 };
 
+struct Triangle {
+
+   enum class VertName { TOP = 0, LEFT = 1, RIGHT = 2 };
+
+   std::array<Math::Vector::Vec3, 3> vertex;
+   std::array<Math::Vector::Vec3,3>edgeVec; // 辺ベクトル
+   Math::Vector::Vec3 normal;
+   float dot = 0; // 面の式ax+by+cz+d=0のd
+   bool contains(const Math::Vector::Vec3 &p);
+
+   float getY(const Math::Vector::Vec3 &p);
+};
+
 } // namespace system
 } // namespace Collider
 } // namespace Util

@@ -24,6 +24,7 @@
 
 #include"Utility/Object/ObjectManager.h"
 #include"Utility/ColliderSystem/ColliderSystem.h"
+#include"Utility/Terrain/Terrain.h"
 
 class Engine {
  public:
@@ -58,6 +59,8 @@ class Engine {
    CLEYERA::Manager::LightManager *lightManager_ = nullptr;
    CLEYERA::Manager::ObjectManager *objectManager_ = nullptr;
    CLEYERA::Manager::ColliderSystem *colliderSystem_ = nullptr;
+   CLEYERA::Manager::Terrain *terrain_ = nullptr;
+
 
    std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 

@@ -8,6 +8,11 @@
 namespace Math::Vector::Func {
 
 /// <summary>
+/// 2つの3次元ベクトルのドット積を計算する関数
+/// </summary>
+float Dot(const Vec3 &v1, const Vec3 &v2);
+
+/// <summary>
 /// コサインとサインの比を求める関数 (余接)
 /// </summary>
 /// <param name="theta"></param>
@@ -40,6 +45,14 @@ float Length(const Vec3 &v);
 Vec3 Normalize(const Vec3 &v);
 
 /// <summary>
+/// 2つの3次元ベクトルのクロス積を計算する関数
+/// </summary>
+/// <param name="v1"></param>
+/// <param name="v2"></param>
+/// <returns></returns>
+Vec3 Cross(const Vec3 &v1, const Vec3 &v2);
+
+/// <summary>
 /// 線形補間を行う関数
 /// </summary>
 template <typename T> T Lerp(const T &a, const T &b, const float t);
@@ -51,9 +64,9 @@ Vec3 TransformNormal(const Vec3 &v, const Matrix::Mat4x4 &m);
 
 template <typename T> T Lerp(const T &a, const T &b, const float t) {
 
-   T P = (b - a) * t;
-   P = a + P;
-   return P;
+  T P = (b - a) * t;
+  P = a + P;
+  return P;
 }
 
 } // namespace Math::Vector::Func

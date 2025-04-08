@@ -10,7 +10,7 @@ void CLEYERA::DebugTools::Grid::Init() {
    grid_->SetTranslate(translate_);
 
    scale_ = {2.0f, 2.0f, 2.0f};
-   CLEYERA::Manager::RenderManager::GetInstance()->PushObj(grid_);
+   //CLEYERA::Manager::RenderManager::GetInstance()->PushObj(grid_);
 
    lines_ = std::make_shared<CLEYERA::Model3d::Line3d>();
    lines_->Init(lineMax_);
@@ -23,7 +23,7 @@ void CLEYERA::DebugTools::Grid::Init() {
    positions_.resize(lineVertCount_);
    colors_.resize(lineVertCount_);
 
-   CLEYERA::Manager::RenderManager::GetInstance()->PushLine3d(lines_);
+   //CLEYERA::Manager::RenderManager::GetInstance()->PushLine3d(lines_);
    int half = lineMax_ / 4;
    float spacing = 1.0f; // 線の間隔（必要に応じて変更）
 

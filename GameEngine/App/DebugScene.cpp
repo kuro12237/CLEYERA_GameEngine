@@ -5,8 +5,6 @@ void DebugScene::Init() {
    camera = std::make_unique<TestCamera>();
    camera->Create();
 
-   // uint32_t handle = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/Tower", "Tower");
-
    object = std::make_shared<TestObject>();
    object->SetName("a");
    object->Init();
