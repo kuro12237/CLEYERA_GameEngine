@@ -12,7 +12,7 @@ void TestObject::Update() {
 
    float baseSpeed = 0.1f;
    if (inputManager_->PushKey(DIK_LSHIFT)) {
-      baseSpeed *= 12.0f;
+      baseSpeed *= 5.0f;
    }
 
    // 入力方向をベクトルで表現
@@ -32,8 +32,8 @@ void TestObject::Update() {
       direction.y /= len;
       direction.z /= len;
    }
-   velocity_.x=  direction.x * baseSpeed;
-   velocity_.z = direction.z * baseSpeed;
+   force_.x =  direction.x * baseSpeed;
+   force_.z = direction.z * baseSpeed;
 
    if (inputManager_->PushKeyPressed(DIK_SPACE)) {
      

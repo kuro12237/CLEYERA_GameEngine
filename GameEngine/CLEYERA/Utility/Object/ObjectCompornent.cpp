@@ -54,22 +54,22 @@ void CLEYERA::Manager::ObjectComponent::TransformUpdate() {
    //isTerrainHit_ = false;
    using Vec3 = Math::Vector::Vec3;
 
-   // Vec3 totalForce = force_;
+    Vec3 totalForce = force_;
    ////+gravityforce_;
 
    //// 加速度 = 力 / 質量（F = ma → a = F/m）
-   // Vec3 acceleration = {};
-   // if (mass_ != 0.0f && mass_ >= 0.0f) {
-   //    acceleration = totalForce * (1.0f / mass_);
-   // }
+    Vec3 acceleration = {};
+    if (mass_ != 0.0f && mass_ >= 0.0f) {
+       acceleration = totalForce * (1.0f / mass_);
+    }
 
    // 積分：速度と位置の更新
-   // velocity_ = velocity_ + acceleration; // v = v0 + at
+    velocity_ = velocity_ + acceleration; // v = v0 + at
    translate_.x += velocity_.x; // p = p0 + vt
    translate_.y += velocity_.y;
    translate_.z += velocity_.z;
    // 摩擦（速度減衰）
-   // velocity_ = velocity_ * std::pow(friction_, flame_); // FPS依存で調整
+   velocity_ = velocity_ * friction_; // FPS依存で調整
 }
 
 void CLEYERA::Manager::ObjectComponent::GravityUpdate(const float &g) {
@@ -79,7 +79,9 @@ void CLEYERA::Manager::ObjectComponent::GravityUpdate(const float &g) {
 }
 
 void CLEYERA::Manager::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &pos) {
-   velocity_.y = 0.0f;
+   velocity_.y = velocity_.y * -bounceFactor_;
+
+   // velocity_.y = 0.0f;
    translate_ = pos;
    // gameObject_->WorldMatUpdate();
    isTerrainHit_ = true;

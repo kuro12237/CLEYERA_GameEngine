@@ -90,6 +90,7 @@ class ObjectComponent {
    Math::Vector::Vec3 force_ = {};
    float friction_ = 1.0f;
    float mass_ = 1.0f;
+   float bounceFactor_ = 1.0f;
 
    std::shared_ptr<Util::Collider::OBBCollider> collider_ = nullptr;
    std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;
