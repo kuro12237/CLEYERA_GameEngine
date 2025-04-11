@@ -39,6 +39,7 @@ void CLEYERA::Manager::ObjectComponent::ImGuiUpdate() {
       if (ImGui::TreeNode("force")) {
          ImGui::DragFloat("friction", &friction_, 0.1f, 0.0f, 1.0f);
          ImGui::DragFloat("mass", &mass_, 0.1f, 0.1f, 20.0f);
+         ImGui::DragFloat("bounce", &bounceFactor_);
          ImGui::TreePop();
       }
 
@@ -64,10 +65,9 @@ void CLEYERA::Manager::ObjectComponent::TransformUpdate() {
     }
 
    // 積分：速度と位置の更新
-    velocity_ = velocity_ + acceleration; // v = v0 + at
-   translate_.x += velocity_.x; // p = p0 + vt
-   translate_.y += velocity_.y;
-   translate_.z += velocity_.z;
+    velocity_ += acceleration; // v = v0 + at
+   translate_ += velocity_; // p = p0 + vt
+
    // 摩擦（速度減衰）
    velocity_ = velocity_ * friction_; // FPS依存で調整
 }

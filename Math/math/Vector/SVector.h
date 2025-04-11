@@ -63,9 +63,43 @@ struct Vec3 {
   Vec3 operator*(float scalar) const {
     return Vec3{x * scalar, y * scalar, z * scalar};
   }
+
+
   // 新しい乗算オペレーター
   Vec3 operator/(float scalar) const {
     return Vec3{x / scalar, y / scalar, z / scalar};
+  }
+ 
+  // += オペレーター
+  Vec3 &operator+=(const Vec3 &other) {
+    x += other.x;
+    y += other.y;
+    z += other.z;
+    return *this;
+  }
+
+  // -= オペレーター
+  Vec3 &operator-=(const Vec3 &other) {
+    x -= other.x;
+    y -= other.y;
+    z -= other.z;
+    return *this;
+  }
+
+  // *= オペレーター
+  Vec3 &operator*=(const Vec3 &other) {
+    x *= other.x;
+    y *= other.y;
+    z *= other.z;
+    return *this;
+  }
+
+  // /= オペレーター
+  Vec3 &operator/=(const Vec3 &other) {
+    x /= other.x;
+    y /= other.y;
+    z /= other.z;
+    return *this;
   }
 };
 
