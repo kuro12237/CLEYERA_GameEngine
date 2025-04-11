@@ -69,7 +69,8 @@ void CLEYERA::Manager::ObjectComponent::TransformUpdate() {
    translate_ += velocity_; // p = p0 + vt
 
    // 摩擦（速度減衰）
-   velocity_ = velocity_ * friction_; // FPS依存で調整
+   velocity_.x = velocity_.x * friction_;
+   velocity_.z = velocity_.z * friction_;
 }
 
 void CLEYERA::Manager::ObjectComponent::GravityUpdate(const float &g) {

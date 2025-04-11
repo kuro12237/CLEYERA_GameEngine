@@ -81,6 +81,7 @@ using namespace Microsoft::WRL;
 #pragma region Math
 
 #include "math/MathInclude.h"
+
 #pragma comment(lib, "math.lib")
 
 #pragma endregion
