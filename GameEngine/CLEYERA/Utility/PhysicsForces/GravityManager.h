@@ -26,7 +26,7 @@ class GravityManager {
  private:
    std::list<std::weak_ptr<ObjectComponent>> objs_;
 
-   float gravity_ = -0.5f;
+   float gravity_ = -0.1f;
 
 #pragma region Singleton
 
