@@ -64,3 +64,12 @@ void CLEYERA::Model3d::Game3dObject::ImGuiUpdate() {
       ImGui::TreePop();
    }
 }
+
+void CLEYERA::Model3d::Game3dObject::ChangeModel(uint32_t modelHandle) {
+   modelHandle_ = modelHandle;
+   // modelmanagerの中にあるデータを基に新たに作成
+   std::weak_ptr<Model> model = modelManager_->GetModel(modelHandle);
+
+   model_ = std::shared_ptr<Model>(model);
+   texHandle_ = model_->GetTexHandle();
+}

@@ -6,6 +6,7 @@ using namespace CLEYERA::Model3d;
 SceneCompornent::SceneCompornent() {
    gravityManager_ = Manager::GravityManager::GetInstance();
    terrain_ = Manager::Terrain::GetInstance();
+   modelManager_ = Manager::ModelManager::GetInstance();
 }
 
 void SceneCompornent::InitRaytracing() {

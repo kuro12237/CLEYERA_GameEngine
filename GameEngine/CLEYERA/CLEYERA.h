@@ -16,18 +16,20 @@
 #include "Graphics/TexManager/TexManager.h"
 
 #include "Utility/Camera/CameraManager.h"
+#include "Utility/Light/LightManager.h"
 #include "Utility/RenderManager/RenderManager.h"
-#include"Utility/Light/LightManager.h"
 
 #include "DebugTools/DebugCamera.h"
 #include "DebugTools/Grid.h"
 
-#include"Utility/Object/ObjectManager.h"
-#include"Utility/ColliderSystem/ColliderSystem.h"
-#include"Utility/Terrain/Terrain.h"
-#include"Utility/Input/InputManager.h"
-#include"Utility/Flame/Flame.h"
-#include"Utility/PhysicsForces/GravityManager.h"
+#include "Utility/ColliderSystem/ColliderSystem.h"
+#include "Utility/Flame/Flame.h"
+#include "Utility/Input/InputManager.h"
+#include "Utility/Object/ObjectManager.h"
+#include "Utility/PhysicsForces/GravityManager.h"
+#include "Utility/Terrain/Terrain.h"
+
+#include "Compornent/ManagerCompornent.h"
 
 class Engine {
  public:
@@ -39,7 +41,6 @@ class Engine {
    void ImGuiUpdate();
 
    void PhysiceForcesUpdate();
-
 
    void Update();
 
@@ -69,9 +70,7 @@ class Engine {
    CLEYERA::Manager::InputManager *inputManager_ = nullptr;
    CLEYERA::Manager::GravityManager *gravityManager_ = nullptr;
 
-
    CLEYERA::Util::Flame *flame_ = nullptr;
-
 
    std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 

@@ -1,6 +1,5 @@
 #pragma once
-#include "CLEYERA/Utility/Camera/Camera.h"
-#include"CLEYERA/CLEYERA.h"
+#include"CLEYERA.h"
 
 class TestCamera {
  public:

@@ -7,7 +7,7 @@ CLEYERA::Manager::ObjectComponent::ObjectComponent() {
    this->objectManager_ = CLEYERA::Manager::ObjectManager::GetInstance();
    this->renderManager_ = CLEYERA::Manager::RenderManager::GetInstance();
    this->inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
-
+  
    uint32_t handleSphere = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/system/Sphere", "Sphere");
 
    modelHandle_ = handleSphere;
@@ -25,6 +25,9 @@ CLEYERA::Manager::ObjectComponent::ObjectComponent() {
 }
 
 void CLEYERA::Manager::ObjectComponent::ImGuiUpdate() {
+   if (name_ == "") {
+      return;
+   }
 
    if (ImGui::TreeNode(name_.c_str())) {
 

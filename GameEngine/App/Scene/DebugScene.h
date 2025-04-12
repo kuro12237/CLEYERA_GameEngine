@@ -1,8 +1,8 @@
 #pragma once
 
 #include "IScene.h"
-#include"../testCamera.h"
-#include"TestObject.h"
+#include "test/TestObject.h"
+#include "test/testCamera.h"
 
 class DebugScene : public SceneCompornent {
  public:
@@ -18,10 +18,7 @@ class DebugScene : public SceneCompornent {
  private:
    std::unique_ptr<TestCamera> camera = nullptr;
 
- std::shared_ptr<TestObject> object = nullptr;
+   std::shared_ptr<TestObject> object = nullptr;
 
    std::shared_ptr<TestObject> objectb = nullptr;
-
-
-
 };

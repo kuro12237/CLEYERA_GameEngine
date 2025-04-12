@@ -56,14 +56,13 @@ class ObjectComponent {
 
  private:
    uint32_t modelHandle_ = 0;
+
+   Math::Vector::Vec3 gravityforce_ = {};
+ protected:
    Manager::ModelManager *modelManager_ = nullptr;
    Manager::ObjectManager *objectManager_ = nullptr;
    Manager::RenderManager *renderManager_ = nullptr;
    Manager::ColliderSystem *colliderSystem_ = nullptr;
-
-   Math::Vector::Vec3 gravityforce_ = {};
- protected:
-
    Manager::InputManager *inputManager_ = nullptr;
 
    using ColliderType = Util::Collider::ColliderType;
@@ -88,9 +87,9 @@ class ObjectComponent {
    Math::Vector::Vec3 velocity_ = {};
    Math::Vector::Vec3 angleVelocity_{};
    Math::Vector::Vec3 force_ = {};
-   float friction_ = 1.0f;
+   float friction_ = 0.5f;
    float mass_ = 1.0f;
-   float bounceFactor_ = 1.0f;
+   float bounceFactor_ = 0.5f;
 
    std::shared_ptr<Util::Collider::OBBCollider> collider_ = nullptr;
    std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;

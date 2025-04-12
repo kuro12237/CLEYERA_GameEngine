@@ -26,6 +26,8 @@ class Game3dObject : public CLEYERA::Util::WorldTransform {
 
    void ImGuiUpdate();
 
+   void ChangeModel(uint32_t modelHandle);
+
 #pragma region Get
    std::weak_ptr<Model> GetModel() { return model_; }
    const Graphics::RasterPipline_Mode &GetRasterMode() const { return rasterMode_; }

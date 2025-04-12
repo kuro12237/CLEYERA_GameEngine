@@ -43,8 +43,11 @@ void CLEYERA::Manager::RenderManager::Draw3d() {
 
    for (auto obj : line3ds_) {
       auto it = obj.lock();
-      it;
-      it->DrawLine3d();
+      if (it) {
+
+         it->DrawLine3d();
+      } else {
+      }
    }
 }
 

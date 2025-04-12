@@ -34,7 +34,7 @@ void TestObject::Update() {
    }
    force_.x =  direction.x * baseSpeed;
    force_.z = direction.z * baseSpeed;
-
+   
    if (inputManager_->PushKeyPressed(DIK_SPACE)) {
      
       this->isTerrainHit_ = false;

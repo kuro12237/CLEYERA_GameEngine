@@ -25,11 +25,12 @@ class Terrain : public CLEYERA::Util::WorldTransform {
 
    void Finalize();
 
-   void CreateData(uint32_t modelHandle);
 
    void CheckObjct();
 
    void PushData(std::weak_ptr<Manager::ObjectComponent> obj) { objList_.push_back(obj); };
+
+   void ChengeData(uint32_t modelHandle);
 
  private:
    std::list<std::weak_ptr<Manager::ObjectComponent>> objList_;

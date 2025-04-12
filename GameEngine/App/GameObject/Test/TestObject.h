@@ -1,5 +1,5 @@
 #pragma once
-#include "../CLEYERA/CLEYERA.h"
+#include"CLEYERA.h"
 
 class TestObject : public CLEYERA::Manager::ObjectComponent {
  public:
@@ -10,6 +10,6 @@ class TestObject : public CLEYERA::Manager::ObjectComponent {
 
    void Update() override;
 
-  
+
  private:
 };
