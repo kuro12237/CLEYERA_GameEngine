@@ -2,7 +2,6 @@
 
 void CLEYERA::Util::Camera::Init() {
 
-	
    aspectRatio_ = float(1280.0f / 720.0f);
 
    matProj_ = Math::Matrix::Func::PerspectiveFovMatrix(fov_, aspectRatio_, nearClip_, farClip_);
@@ -18,8 +17,7 @@ void CLEYERA::Util::Camera::Init() {
 
 void CLEYERA::Util::Camera::Update() {
 
-
-   mat_ = Math::Matrix::Func::AffineMatrix(dfScale, *rotate_, *translate_);
+   WorldMatUpdate();
 
    mtxViewInv_ = mat_;
    matView_ = mat_.Inverse();
@@ -45,10 +43,9 @@ void CLEYERA::Util::Camera::ConvertData() {
    forGpu_.cameraPos_ = pos;
 }
 
-Math::Matrix::Mat4x4 CLEYERA::Util::Camera::PerspectiveFovMatrix2(float fovY, float aspectRatio, float nearClip, float farClip) { 
+Math::Matrix::Mat4x4 CLEYERA::Util::Camera::PerspectiveFovMatrix2(float fovY, float aspectRatio, float nearClip, float farClip) {
 
-
-	Math::Matrix::Mat4x4 result = {};
+   Math::Matrix::Mat4x4 result = {};
    float theta = fovY / 2.0f;
 
    result.m[0][0] = (1.0f / aspectRatio) * Math::Vector::Func::Cot(theta);
@@ -72,5 +69,4 @@ Math::Matrix::Mat4x4 CLEYERA::Util::Camera::PerspectiveFovMatrix2(float fovY, fl
    result.m[3][3] = 0;
 
    return result;
-
 }

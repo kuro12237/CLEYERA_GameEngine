@@ -2,7 +2,9 @@
 
 void GameScene::Init() {
 
-   managerCompornents_.push_back(std::make_shared<PlayerManager>());
+    playerManager_ = std::make_unique<PlayerManager>();
+
+   managerCompornents_.push_back(playerManager_);
 
    for (auto manager : managerCompornents_) {
       manager->Init();
@@ -16,7 +18,7 @@ void GameScene::Init() {
    }
 
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Terrain/","terrain");
-   //terrain_->ChengeData(modelHandle);
+   terrain_->ChengeData(modelHandle);
 
    InitRaytracing();
 }
@@ -30,4 +32,3 @@ void GameScene::Update() {
 
 }
 
-void GameScene::ImGuiUpdate() {}

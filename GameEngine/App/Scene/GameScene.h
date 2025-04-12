@@ -14,7 +14,8 @@ class GameScene : public SceneCompornent {
 
    void Update() override;
 
-   void ImGuiUpdate() override;
 
  private:
+
+	 std::shared_ptr<PlayerManager> playerManager_ = nullptr;
 };

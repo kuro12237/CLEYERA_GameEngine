@@ -9,6 +9,16 @@ SceneCompornent::SceneCompornent() {
    modelManager_ = Manager::ModelManager::GetInstance();
 }
 
+void SceneCompornent::ImGuiUpdate() {
+
+   // obj
+   ImGui::Begin("ManagerList");
+   for (auto m : this->managerCompornents_) {
+      m->ImGuiUpdate();
+   }
+   ImGui::End();
+}
+
 void SceneCompornent::InitRaytracing() {
 
    // tlas作成

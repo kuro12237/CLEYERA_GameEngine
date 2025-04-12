@@ -10,6 +10,11 @@ void CLEYERA::Util::TransformBase::WorldMatUpdate() {
    if (scale_ && rotate_ && translate_) {
 
       mat_ = Math::Matrix::Func::AffineMatrix(*scale_, *rotate_, *translate_);
+
+      if (parent_.lock()) {
+         mat_ = Math::Matrix::Func::Multiply(mat_, parent_.lock()->GetMat());
+
+      }
    }
    forGpumat_.FromMat4x4(mat_);
 }

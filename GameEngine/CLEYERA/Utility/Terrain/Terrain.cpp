@@ -147,7 +147,7 @@ void CLEYERA::Manager::Terrain::CheckObjct() {
 
                it->SetTerrainHitFlag(true);
             }
-            const float pushDistance = 0.01f;
+            const float pushDistance = 0.001f;
             Vec3 pushedPos = intersection + normal * pushDistance;
             it->TerrainHit(pushedPos);
          }

@@ -49,6 +49,8 @@ class TransformBase {
    void SetRotate(Math::Vector::Vec3 &r) { rotate_ = &r; }
    void SetTranslate(Math::Vector::Vec3 &t) { translate_ = &t; }
    void SetMat4x4(Math::Matrix::Mat4x4 &m) { mat_ = m; }
+
+   void SetParent(std::weak_ptr<TransformBase> p) { parent_ = p; };
  protected:
    Math::Vector::Vec3 *scale_ = nullptr;
    Math::Vector::Vec3 *rotate_ = nullptr;
@@ -57,7 +59,7 @@ class TransformBase {
 
    Math::Matrix::Mat4x4 mat_ = {};
 
-
+   std::weak_ptr<TransformBase> parent_;
  private:
   
  

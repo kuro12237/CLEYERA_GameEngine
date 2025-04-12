@@ -3,6 +3,7 @@
 #include "pch/Pch.h"
 
 #include "../Utility/Object/ObjectCompornent.h"
+#include"../Compornent/CameraCompornent.h"
 
 namespace CLEYERA {
 
@@ -17,7 +18,7 @@ class ManagerCompornent {
 
    virtual void Update() = 0;
 
-   virtual void ImGuiUpdate() {};
+   void ImGuiUpdate() ;
 
 #pragma region Get
 
@@ -26,12 +27,13 @@ class ManagerCompornent {
 
  private:
  protected:
-   void ObjListInit();
-   void ObjListUpdate();
+   void ListInit();
+   void ListUpdate();
 
    std::string name_ = "";
 
    std::list<std::shared_ptr<Manager::ObjectComponent>> objComponents_;
+   std::list<std::shared_ptr<Component::CameraCompornent>> cameraCompornents_;
 };
 
 } // namespace Component

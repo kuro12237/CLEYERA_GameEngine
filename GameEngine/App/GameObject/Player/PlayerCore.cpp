@@ -11,7 +11,6 @@ void PlayerCore::Init() {
 
    translate_.y = 0.0f;
    CreateCollider(ColliderType::OBB);
-
 }
 
 void PlayerCore::Update() {
@@ -43,11 +42,11 @@ void PlayerCore::Update() {
    force_.x = direction.x * baseSpeed;
    force_.z = direction.z * baseSpeed;
 
-      if (inputManager_->PushKeyPressed(DIK_SPACE)) {
+   if (inputManager_->PushKeyPressed(DIK_SPACE)) {
 
       this->isTerrainHit_ = false;
       velocity_.y += 3.0f;
    }
-   ImGuiUpdate();
+
    TransformUpdate();
 }

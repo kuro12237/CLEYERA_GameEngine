@@ -2,13 +2,25 @@
 
 void PlayerManager::Init() {
 
-   this->objComponents_.push_back(std::make_shared<PlayerCore>());
+	name_ = VAR_NAME(PlayerManager);
 
-   this->ObjListInit();
+   camera_ = std::make_shared<PlayerCamera>();
+   this->cameraCompornents_.push_back(camera_);
+
+   core_ = std::make_shared<PlayerCore>();
+   this->objComponents_.push_back(core_);
+
+   this->ListInit();
+
+   auto cameraObj = camera_->GetCamera().lock();
+   auto coreObj = core_->GetGameObject().lock();
+
+   cameraObj->SetParent(coreObj);
+
 }
 
 void PlayerManager::Update() {
 
    //
-   this->ObjListUpdate();
+   this->ListUpdate();
 }

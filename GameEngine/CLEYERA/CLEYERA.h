@@ -30,6 +30,7 @@
 #include "Utility/Terrain/Terrain.h"
 
 #include "Compornent/ManagerCompornent.h"
+#include"Compornent/CameraCompornent.h"
 
 class Engine {
  public:

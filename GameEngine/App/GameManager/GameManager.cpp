@@ -5,11 +5,11 @@ GameManager::GameManager() {
 
    engine_->Init();
 
-   scene_ = std::make_unique<DebugScene>();
+   scene_ = std::make_unique<GameScene>();
    auto raytracingManager = engine_->GetRaytracingManager();
 
    scene_->SetRaytracingManager(raytracingManager);
- 
+
    scene_->Init();
 }
 
@@ -36,7 +36,7 @@ void GameManager::Run() {
 #pragma region ImGui
 
       scene_->ImGuiUpdate();
-      engine_->ImGuiUpdate();
+      //engine_->ImGuiUpdate();
 #pragma endregion
 
 #pragma region 更新

@@ -252,6 +252,12 @@
     <ClCompile Include="CLEYERA\Compornent\ManagerCompornent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CLEYERA\Compornent\CameraCompornent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h">
@@ -528,6 +534,15 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Compornent\CameraCompornent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

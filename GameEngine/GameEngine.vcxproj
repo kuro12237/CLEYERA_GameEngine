@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\Scene\DebugScene.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="CLEYERA\3d\StateObject\StateObject.cpp" />
     <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp" />
     <ClCompile Include="CLEYERA\CLEYERA.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\CameraCompornent.cpp" />
     <ClCompile Include="CLEYERA\Compornent\ManagerCompornent.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\DebugCamera.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\Grid.cpp" />
@@ -233,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
+    <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
     <ClInclude Include="App\GameObject\Player\IPlayer.h" />
     <ClInclude Include="App\GameObject\Player\PlayerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
@@ -253,6 +256,7 @@
     <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
     <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
     <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />
+    <ClInclude Include="CLEYERA\Compornent\CameraCompornent.h" />
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
@@ -280,6 +284,7 @@
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\TerrainCollider.h" />
     <ClInclude Include="CLEYERA\Utility\Input\InputKeybord.h" />
     <ClInclude Include="CLEYERA\Utility\Input\InputManager.h" />
+    <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h" />
     <ClInclude Include="CLEYERA\Utility\Light\DIrectionLight.h" />
     <ClInclude Include="CLEYERA\Utility\Light\LightManager.h" />
     <ClInclude Include="CLEYERA\Utility\Object\ObjectCompornent.h" />
