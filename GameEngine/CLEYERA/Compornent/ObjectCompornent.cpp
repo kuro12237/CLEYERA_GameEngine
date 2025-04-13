@@ -59,12 +59,9 @@ void CLEYERA::Component::ObjectComponent::ImGuiUpdate() {
 }
 
 void CLEYERA::Component::ObjectComponent::TransformUpdate() {
-   // isTerrainHit_ = false;
    using Vec3 = Math::Vector::Vec3;
 
    Vec3 totalForce = force_;
-   ////+gravityforce_;
-
    //// 加速度 = 力 / 質量（F = ma → a = F/m）
    Vec3 acceleration = {};
    if (mass_ != 0.0f && mass_ >= 0.0f) {
@@ -88,7 +85,6 @@ void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &p
    // velocity_.y = 0.0f;
    translate_ = pos;
    // gameObject_->WorldMatUpdate();
-   isTerrainHit_ = true;
 }
 
 void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {

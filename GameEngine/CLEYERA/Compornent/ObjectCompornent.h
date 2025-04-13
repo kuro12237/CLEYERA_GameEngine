@@ -40,12 +40,8 @@ class ObjectComponent {
    /// </summary>
    /// <param name="g"></param>
    void GravityUpdate(const float &g);
-
-   void GravityForceReset() { gravityforce_ = {}; }
-
    void TerrainHit(const Math::Vector::Vec3 &pos);
-   void SetTerrainHitFlag(bool f) { isTerrainHit_ = f; }
-   void SetPrevTerrainHitFlag(bool f) { isPrevTerrainHit_ = f; }
+
 #pragma region Get
    std::weak_ptr<Model3d::Game3dObject> GetGameObject() { return gameObject_; }
    std::weak_ptr<Util::Collider::Collider> GetCollder() { return collider_; }
@@ -60,8 +56,6 @@ class ObjectComponent {
 
  private:
    uint32_t modelHandle_ = 0;
-
-   Math::Vector::Vec3 gravityforce_ = {};
 
  protected:
    Manager::ModelManager *modelManager_ = nullptr;
@@ -84,10 +78,7 @@ class ObjectComponent {
    void CreateJsonSystem(const std::string &fileGroupName);
 
    std::string name_ = "";
-   float flame_ = 1.0f / 60.0f;
 
-   bool isTerrainHit_ = false;
-   bool isPrevTerrainHit_ = false;
    Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
    Math::Vector::Vec3 rotate_ = {};
    Math::Vector::Vec3 translate_ = {};
