@@ -37,7 +37,6 @@ void TestObject::Update() {
    
    if (inputManager_->PushKeyPressed(DIK_SPACE)) {
      
-      this->isTerrainHit_ = false;
       velocity_.y += 3.0f;
    }
    ImGuiUpdate();

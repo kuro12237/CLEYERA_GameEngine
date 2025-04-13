@@ -104,6 +104,7 @@ void CLEYERA::Manager::Terrain::CheckObjct() {
       triCollider_[i].edgeVec[1] = triCollider_[i].vertex[2] - triCollider_[i].vertex[1];
       triCollider_[i].edgeVec[2] = triCollider_[i].vertex[0] - triCollider_[i].vertex[2];
       triCollider_[i].normal = Math::Vector::Func::Cross(triCollider_[i].edgeVec[0], triCollider_[i].edgeVec[1]);
+      triCollider_[i].normal = Math::Vector::Func::Normalize(triCollider_[i].normal);
       triCollider_[i].dot = Math::Vector::Func::Dot(triCollider_[i].normal * -1, triCollider_[i].vertex[0]);
    }
    using Vec3 = Math::Vector::Vec3;
@@ -115,14 +116,15 @@ void CLEYERA::Manager::Terrain::CheckObjct() {
          if (!it)
             continue;
 
+         //後で改善
          Vec3 pos = it->GetTranslate();
 
-  
          // === ① 接地判定用レイ（下方向にだけチェック） ===
 
          // 線分の始点と終点を計算
-         Vec3 start = pos + Vec3{0.0f, 0.0f, 0.0f};
-         Vec3 end = pos + Vec3{0.0f, 4056.0f, 0.0f};
+         //yにsizeの-値
+         Vec3 start = pos + Vec3{0.0f, -1.0f, 0.0f};
+         Vec3 end = pos + Vec3{0.0f, 5.0f, 0.0f};
 
          // 三角形の平面の法線とDを計算
          Vec3 normal = triCollider_[i].normal;
@@ -143,7 +145,7 @@ void CLEYERA::Manager::Terrain::CheckObjct() {
 
          if (triCollider_[i].contains(intersection)) {
       
-            const float pushDistance = 0.001f;
+            const float pushDistance = 0.01f;
             Vec3 pushedPos = intersection + normal * pushDistance;
             it->TerrainHit(pushedPos);
          }

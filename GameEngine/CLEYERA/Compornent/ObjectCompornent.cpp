@@ -75,6 +75,8 @@ void CLEYERA::Component::ObjectComponent::TransformUpdate() {
    // 摩擦（速度減衰）
    velocity_.x = velocity_.x * friction_;
    velocity_.z = velocity_.z * friction_;
+
+   gameObject_->WorldMatUpdate();
 }
 
 void CLEYERA::Component::ObjectComponent::GravityUpdate(const float &g) { velocity_.y += g; }
@@ -82,9 +84,8 @@ void CLEYERA::Component::ObjectComponent::GravityUpdate(const float &g) { veloci
 void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &pos) {
    velocity_.y = velocity_.y * -bounceFactor_;
 
-   // velocity_.y = 0.0f;
-   translate_ = pos;
-   // gameObject_->WorldMatUpdate();
+   translate_.y = pos.y;
+   translate_.y += 1.0f;
 }
 
 void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {

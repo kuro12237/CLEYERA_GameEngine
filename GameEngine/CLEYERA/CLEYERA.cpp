@@ -90,10 +90,11 @@ void Engine::PhysiceForcesUpdate() {
 void Engine::Update() {
    
    terrain_->Update();
-   objectManager_->Update();
-
+ 
    terrain_->CheckObjct();
    colliderSystem_->Update();
+   objectManager_->Update();
+
    lightManager_->Update();
    grid_->Update();
    debugCamera_->Update();
