@@ -11,6 +11,10 @@ void PlayerCore::Init() {
 
    translate_.y = 0.0f;
    CreateCollider(ColliderType::OBB);
+   this->CreateJsonSystem("Player/");
+
+   SetValue<Math::Vector::Vec3>("t", translate_);
+   translate_ = GetValue<Math::Vector::Vec3>("t");
 }
 
 void PlayerCore::Update() {

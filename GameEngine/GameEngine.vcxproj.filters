@@ -204,7 +204,7 @@
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\OBBCollider.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Object\ObjectCompornent.cpp">
+    <ClCompile Include="CLEYERA\Compornent\ObjectCompornent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="CLEYERA\Utility\Object\ObjectManager.cpp">
@@ -256,6 +256,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\Utility\Json\GlobalVariables.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CLEYERA\Compornent\JsonCompornent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -491,7 +497,7 @@
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\Collider.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Object\ObjectCompornent.h">
+    <ClInclude Include="CLEYERA\Compornent\ObjectCompornent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Utility\Object\ObjectManager.h">
@@ -543,6 +549,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Compornent\JsonCompornent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

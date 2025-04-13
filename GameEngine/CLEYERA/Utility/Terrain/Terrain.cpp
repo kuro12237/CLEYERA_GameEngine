@@ -117,8 +117,7 @@ void CLEYERA::Manager::Terrain::CheckObjct() {
 
          Vec3 pos = it->GetTranslate();
 
-         it->SetPrevTerrainHitFlag(it->GetTerrainHitFlag());
-
+  
          // === ① 接地判定用レイ（下方向にだけチェック） ===
 
          // 線分の始点と終点を計算
@@ -143,10 +142,7 @@ void CLEYERA::Manager::Terrain::CheckObjct() {
          Vec3 intersection = start + (end - start) * t;
 
          if (triCollider_[i].contains(intersection)) {
-            if (!it->GetTerrainHitFlag() || it->GetPrevTerrainHitFlag()) {
-
-               it->SetTerrainHitFlag(true);
-            }
+      
             const float pushDistance = 0.001f;
             Vec3 pushedPos = intersection + normal * pushDistance;
             it->TerrainHit(pushedPos);

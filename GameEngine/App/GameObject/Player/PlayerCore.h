@@ -1,7 +1,7 @@
 #pragma once
 #include"CLEYERA.h"
 
-class PlayerCore : public CLEYERA::Manager::ObjectComponent {
+class PlayerCore : public CLEYERA::Component::ObjectComponent {
  public:
    PlayerCore() {};
    ~PlayerCore() {};

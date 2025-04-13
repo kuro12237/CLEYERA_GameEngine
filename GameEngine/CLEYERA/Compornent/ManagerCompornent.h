@@ -2,7 +2,7 @@
 
 #include "pch/Pch.h"
 
-#include "../Utility/Object/ObjectCompornent.h"
+#include "ObjectCompornent.h"
 #include"../Compornent/CameraCompornent.h"
 
 namespace CLEYERA {
@@ -22,7 +22,7 @@ class ManagerCompornent {
 
 #pragma region Get
 
-   std::list<std::shared_ptr<Manager::ObjectComponent>> GetObjList() { return objComponents_; }
+   std::list<std::shared_ptr<Component::ObjectComponent>> GetObjList() { return objComponents_; }
 #pragma endregion
 
  private:
@@ -32,7 +32,7 @@ class ManagerCompornent {
 
    std::string name_ = "";
 
-   std::list<std::shared_ptr<Manager::ObjectComponent>> objComponents_;
+   std::list<std::shared_ptr<Component::ObjectComponent>> objComponents_;
    std::list<std::shared_ptr<Component::CameraCompornent>> cameraCompornents_;
 };
 

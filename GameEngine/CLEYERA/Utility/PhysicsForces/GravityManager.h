@@ -1,5 +1,5 @@
 #pragma once
-#include "../Object/ObjectCompornent.h"
+#include "Compornent/ObjectCompornent.h"
 
 namespace CLEYERA {
 
@@ -19,12 +19,12 @@ class GravityManager {
 
    void Update();
 
-   void PushData(std::weak_ptr<ObjectComponent> obj) { objs_.push_back(obj); };
+   void PushData(std::weak_ptr<Component::ObjectComponent> obj) { objs_.push_back(obj); };
 
    void RemoveData();
 
  private:
-   std::list<std::weak_ptr<ObjectComponent>> objs_;
+   std::list<std::weak_ptr<Component::ObjectComponent>> objs_;
 
    float gravity_ = -0.1f;
 

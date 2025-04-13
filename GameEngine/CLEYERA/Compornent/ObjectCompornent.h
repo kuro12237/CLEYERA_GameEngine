@@ -1,18 +1,23 @@
 #pragma once
-#include "../../3d/Game3dObject.h"
-#include "../../3d/ModelManager/ModelManager.h"
-#include "../ColliderSystem/OBBCollider.h"
-#include "../RenderManager/RenderManager.h"
+#include "../3d/Game3dObject.h"
+#include "../3d/ModelManager/ModelManager.h"
+#include "../Utility/ColliderSystem/OBBCollider.h"
+#include "../Utility/RenderManager/RenderManager.h"
 
-#include "../ColliderSystem/Collider.h"
-#include "../ColliderSystem/ColliderSystem.h"
-#include"../Input/InputManager.h"
-#include"../Flame/Flame.h"
+#include "../Utility/ColliderSystem/Collider.h"
+#include "../Utility/ColliderSystem/ColliderSystem.h"
+#include "../Utility/Input/InputManager.h"
+#include "Utility/Flame/Flame.h"
+
+#include "JsonCompornent.h"
 
 namespace CLEYERA {
 namespace Manager {
 
 class ObjectManager;
+}
+
+namespace Component {
 
 class ObjectComponent {
  public:
@@ -45,19 +50,19 @@ class ObjectComponent {
    std::weak_ptr<Model3d::Game3dObject> GetGameObject() { return gameObject_; }
    std::weak_ptr<Util::Collider::Collider> GetCollder() { return collider_; }
    Math::Vector::Vec3 &GetTranslate() { return translate_; }
-   bool GetTerrainHitFlag() { return isTerrainHit_; }
-   bool GetPrevTerrainHitFlag() { return isPrevTerrainHit_; }
+   template <typename T> T GetValue(const std::string &name) { return jsonSystem_->GetValue<T>(name); }
 #pragma endregion
 
 #pragma region Set
    void SetName(std::string name) { name_ = name; }
-   
+   template <typename T> void SetValue(const std::string &name, T t) { jsonSystem_->SetValue<T>(name, t); }
 #pragma endregion
 
  private:
    uint32_t modelHandle_ = 0;
 
    Math::Vector::Vec3 gravityforce_ = {};
+
  protected:
    Manager::ModelManager *modelManager_ = nullptr;
    Manager::ObjectManager *objectManager_ = nullptr;
@@ -73,11 +78,14 @@ class ObjectComponent {
    /// <param name="type"></param>
    void CreateCollider(ColliderType type);
 
+   /// <summary>
+   /// jsonの作成
+   /// </summary>
+   void CreateJsonSystem(const std::string &fileGroupName);
+
    std::string name_ = "";
    float flame_ = 1.0f / 60.0f;
 
-   
-   
    bool isTerrainHit_ = false;
    bool isPrevTerrainHit_ = false;
    Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
@@ -92,7 +100,9 @@ class ObjectComponent {
    float bounceFactor_ = 0.5f;
 
    std::shared_ptr<Util::Collider::OBBCollider> collider_ = nullptr;
+   std::shared_ptr<Component::JsonCompornent> jsonSystem_ = nullptr;
+
    std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;
 };
-} // namespace Manager
+} // namespace Component
 } // namespace CLEYERA

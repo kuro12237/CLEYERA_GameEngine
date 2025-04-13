@@ -31,6 +31,7 @@
 
 #include "Compornent/ManagerCompornent.h"
 #include"Compornent/CameraCompornent.h"
+#include"Compornent/ObjectCompornent.h"
 
 class Engine {
  public:

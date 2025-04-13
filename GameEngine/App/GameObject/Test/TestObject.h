@@ -1,7 +1,7 @@
 #pragma once
 #include"CLEYERA.h"
 
-class TestObject : public CLEYERA::Manager::ObjectComponent {
+class TestObject : public CLEYERA::Component::ObjectComponent {
  public:
    TestObject() {};
    ~TestObject() {};

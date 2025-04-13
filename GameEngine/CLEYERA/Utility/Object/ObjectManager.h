@@ -1,5 +1,5 @@
 #pragma once
-#include "ObjectCompornent.h"
+#include "Compornent/ObjectCompornent.h"
 
 namespace CLEYERA {
 

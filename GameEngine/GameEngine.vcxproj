@@ -173,6 +173,7 @@
     <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp" />
     <ClCompile Include="CLEYERA\CLEYERA.cpp" />
     <ClCompile Include="CLEYERA\Compornent\CameraCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\JsonCompornent.cpp" />
     <ClCompile Include="CLEYERA\Compornent\ManagerCompornent.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\DebugCamera.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\Grid.cpp" />
@@ -220,9 +221,10 @@
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Input\InputKeybord.cpp" />
     <ClCompile Include="CLEYERA\Utility\Input\InputManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Json\GlobalVariables.cpp" />
     <ClCompile Include="CLEYERA\Utility\Light\DIrectionLight.cpp" />
     <ClCompile Include="CLEYERA\Utility\Light\LightManager.cpp" />
-    <ClCompile Include="CLEYERA\Utility\Object\ObjectCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\ObjectCompornent.cpp" />
     <ClCompile Include="CLEYERA\Utility\Object\ObjectManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\PhysicsForces\GravityManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\RenderManager\RenderManager.cpp" />
@@ -257,6 +259,7 @@
     <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
     <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />
     <ClInclude Include="CLEYERA\Compornent\CameraCompornent.h" />
+    <ClInclude Include="CLEYERA\Compornent\JsonCompornent.h" />
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
@@ -287,7 +290,7 @@
     <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h" />
     <ClInclude Include="CLEYERA\Utility\Light\DIrectionLight.h" />
     <ClInclude Include="CLEYERA\Utility\Light\LightManager.h" />
-    <ClInclude Include="CLEYERA\Utility\Object\ObjectCompornent.h" />
+    <ClInclude Include="CLEYERA\Compornent\ObjectCompornent.h" />
     <ClInclude Include="CLEYERA\Utility\Object\ObjectManager.h" />
     <ClInclude Include="CLEYERA\Utility\PhysicsForces\GravityManager.h" />
     <ClInclude Include="CLEYERA\Utility\RenderManager\RenderManager.h" />

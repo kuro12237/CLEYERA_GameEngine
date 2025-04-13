@@ -1,13 +1,13 @@
 #include "ObjectCompornent.h"
-#include "ObjectManager.h"
+#include "Utility/Object/ObjectManager.h"
 
-CLEYERA::Manager::ObjectComponent::ObjectComponent() {
+CLEYERA::Component::ObjectComponent::ObjectComponent() {
 
    this->modelManager_ = CLEYERA::Manager::ModelManager::GetInstance();
    this->objectManager_ = CLEYERA::Manager::ObjectManager::GetInstance();
    this->renderManager_ = CLEYERA::Manager::RenderManager::GetInstance();
    this->inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
-  
+
    uint32_t handleSphere = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/system/Sphere", "Sphere");
 
    modelHandle_ = handleSphere;
@@ -24,7 +24,7 @@ CLEYERA::Manager::ObjectComponent::ObjectComponent() {
    renderManager_->PushObj(this->gameObject_);
 }
 
-void CLEYERA::Manager::ObjectComponent::ImGuiUpdate() {
+void CLEYERA::Component::ObjectComponent::ImGuiUpdate() {
    if (name_ == "") {
       return;
    }
@@ -50,39 +50,39 @@ void CLEYERA::Manager::ObjectComponent::ImGuiUpdate() {
          collider_->ColliderImGuiUpdate(name_);
       }
 
+      if (jsonSystem_) {
+         jsonSystem_->ImGuiUpdate();
+      }
+
       ImGui::TreePop();
    }
 }
 
-void CLEYERA::Manager::ObjectComponent::TransformUpdate() {
-   //isTerrainHit_ = false;
+void CLEYERA::Component::ObjectComponent::TransformUpdate() {
+   // isTerrainHit_ = false;
    using Vec3 = Math::Vector::Vec3;
 
-    Vec3 totalForce = force_;
+   Vec3 totalForce = force_;
    ////+gravityforce_;
 
    //// 加速度 = 力 / 質量（F = ma → a = F/m）
-    Vec3 acceleration = {};
-    if (mass_ != 0.0f && mass_ >= 0.0f) {
-       acceleration = totalForce * (1.0f / mass_);
-    }
+   Vec3 acceleration = {};
+   if (mass_ != 0.0f && mass_ >= 0.0f) {
+      acceleration = totalForce * (1.0f / mass_);
+   }
 
    // 積分：速度と位置の更新
-    velocity_ += acceleration; // v = v0 + at
-   translate_ += velocity_; // p = p0 + vt
+   velocity_ += acceleration; // v = v0 + at
+   translate_ += velocity_;   // p = p0 + vt
 
    // 摩擦（速度減衰）
    velocity_.x = velocity_.x * friction_;
    velocity_.z = velocity_.z * friction_;
 }
 
-void CLEYERA::Manager::ObjectComponent::GravityUpdate(const float &g) {
+void CLEYERA::Component::ObjectComponent::GravityUpdate(const float &g) { velocity_.y += g; }
 
-      velocity_.y += g;
-  
-}
-
-void CLEYERA::Manager::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &pos) {
+void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &pos) {
    velocity_.y = velocity_.y * -bounceFactor_;
 
    // velocity_.y = 0.0f;
@@ -91,7 +91,7 @@ void CLEYERA::Manager::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &pos
    isTerrainHit_ = true;
 }
 
-void CLEYERA::Manager::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {
+void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {
 
    if (type == Util::Collider::ColliderType::OBB) {
       collider_ = std::make_shared<CLEYERA::Util::Collider::OBBCollider>();
@@ -103,4 +103,11 @@ void CLEYERA::Manager::ObjectComponent::CreateCollider(Util::Collider::ColliderT
       colliderSystem_ = CLEYERA::Manager::ColliderSystem::GetInstance();
       colliderSystem_->PushCollider(collider_);
    }
+}
+
+void CLEYERA::Component::ObjectComponent::CreateJsonSystem(const std::string &fileGroupName) {
+
+   jsonSystem_ = std::make_unique<JsonCompornent>();
+
+   jsonSystem_->CreateJson(name_, fileGroupName);
 }

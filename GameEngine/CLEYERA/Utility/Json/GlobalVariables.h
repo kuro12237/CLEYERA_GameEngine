@@ -12,11 +12,18 @@ class GlobalVariables {
       return &ins;
    };
 
+   enum class ResourcesGroupDirectory {
+      SceneData = 0,
+      Entitiys = 1,
+
+   };
+
    /// <summary>
-   /// グループの生成
+   /// グループ作成
    /// </summary>
-   /// <param name="groupName">グループ名</param>
-   void CreateGroup(const std::string &groupName, const std::string &DirectoryPath = "");
+   /// <param name="ファイルパスの切替"></param>
+   /// <param name="ファイルの名前"></param>
+   void CreateGroup(const ResourcesGroupDirectory &d = ResourcesGroupDirectory::Entitiys,const std::string &name = "", std::string file = "");
 
    /// <summary>
    /// ファイルに書き出し
@@ -47,10 +54,7 @@ class GlobalVariables {
    /// <returns></returns>
    bool StartsWith(const std::string &input, const std::string &prefix) { return input.find(prefix) == 0; }
 
-   /// <summary>
-   /// 切替の際にvectorの中のDirectryを読む
-   /// </summary>
-   void ChangeSceneLoadFiles();
+   void ImGuiUpdate(const std::string name);
 
    /// <summary>
    /// dataの中を削除
@@ -59,6 +63,7 @@ class GlobalVariables {
 
 #pragma region Get
    bool GetIsSave() { return isSave_; }
+
    template <typename T> T GetValue(const std::string &groupName, const std::string &key);
 
    std::vector<std::string> GetAllDataKey();
@@ -68,10 +73,6 @@ class GlobalVariables {
 #pragma region Set
    template <typename T> void SetValue(const std::string &groupName, const std::string &key, T value);
    template <typename T> void AddItem(const std::string &groupName, const std::string &key, T value);
-
-   void unUseDirectryPathFlag(const bool &f) { isUseDirectryPath_ = f; };
-
-   void SetDirectoryFilePath(const std::string &filePath) { kDirectoryPath = filePath; }
 
 #pragma endregion
 

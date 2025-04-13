@@ -13,6 +13,7 @@
 
 #include "../../CLEYERA/Graphics/RaytracingManager/RaytracingManager.h"
 #include"../../CLEYERA/CLEYERA.h"
+#include"Utility/Json/GlobalVariables.h"
 
 /// <summary>
 /// Scene抽象クラス

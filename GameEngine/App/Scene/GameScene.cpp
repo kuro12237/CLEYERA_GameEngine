@@ -2,6 +2,8 @@
 
 void GameScene::Init() {
 
+    CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
+
     playerManager_ = std::make_unique<PlayerManager>();
 
    managerCompornents_.push_back(playerManager_);
