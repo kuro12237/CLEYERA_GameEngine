@@ -4,9 +4,7 @@
 #include <iostream>
 #include <lua.hpp>
 
-#include "math/MathInclude.h"
-#pragma comment(lib, "math.lib")
-
+#include "pch/Pch.h"
 
 
 // --- ヘルパー関数：Luaスタックへ値をプッシュ ---
@@ -31,14 +29,14 @@ inline void PushValue(lua_State* L, const char* value) {
     lua_pushstring(L, value);
 }
 
-inline void PushValue(lua_State* L, const Math::Vector::Vec2& value) {
+inline void PushValue(lua_State *L, const Math::Vector::Vec2 &value) {
     lua_newtable(L);                     // 新しいテーブルを作成
     lua_pushnumber(L, value.x);
     lua_setfield(L, -2, "x");
     lua_pushnumber(L, value.y);
     lua_setfield(L, -2, "y");
 }
-inline void PushValue(lua_State* L, const Vector3& value) {
+inline void PushValue(lua_State *L, const Math::Vector::Vec3 &value) {
     lua_newtable(L);                     // 新しいテーブルを作成
     lua_pushnumber(L, value.x);
     lua_setfield(L, -2, "x");
@@ -47,7 +45,7 @@ inline void PushValue(lua_State* L, const Vector3& value) {
     lua_pushnumber(L, value.z);
     lua_setfield(L, -2, "z");
 }
-inline void PushValue(lua_State* L, const Vector4& value) {
+inline void PushValue(lua_State* L, const Math::Vector::Vec4& value) {
     lua_newtable(L);                     // 新しいテーブルを作成
     lua_pushnumber(L, value.x);
     lua_setfield(L, -2, "x");

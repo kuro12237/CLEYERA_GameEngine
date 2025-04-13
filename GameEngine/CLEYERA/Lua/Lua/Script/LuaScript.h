@@ -1,4 +1,5 @@
 #pragma once
+#include"pch/Pch.h"
 
 #include <lua.hpp>
 #include <memory>
@@ -6,11 +7,8 @@
 #include <sstream>
 #include <string>
 #include <type_traits>
-#include<functional>
-
 
 #include "../Helpers/LuaHelpers.h"
-#include"math/MathInclude.h"
 
 
 /* 個々のスクリプトを管理するクラス */
@@ -239,9 +237,9 @@ template int LuaScript::GetVariable<int>(const std::string&);
 template float LuaScript::GetVariable<float>(const std::string&);
 template bool LuaScript::GetVariable<bool>(const std::string&);
 template std::string LuaScript::GetVariable<std::string>(const std::string&);
-template Vector2 LuaScript::GetVariable<Vector2>(const std::string&);
-template Vector3 LuaScript::GetVariable<Vector3>(const std::string&);
-template Vector4 LuaScript::GetVariable<Vector4>(const std::string&);
+template Math::Vector::Vec2 LuaScript::GetVariable<Math::Vector::Vec2>(const std::string &);
+template Math::Vector::Vec3 LuaScript::GetVariable<Math::Vector::Vec3>(const std::string &);
+template Math::Vector::Vec4 LuaScript::GetVariable<Math::Vector::Vec4>(const std::string &);
 
 
 /// <summary>

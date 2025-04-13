@@ -106,3 +106,11 @@ void LuaManager::MonitorScript()
         }
     }
 }
+
+std::string LuaManager::RemoveNameSuffix(const std::string &filePath) {
+   size_t lastDotPos = filePath.find_last_of('.');
+   if (lastDotPos != std::string::npos) {
+      return filePath.substr(0, lastDotPos); // 拡張子より前の部分を返す
+   }
+   return filePath; // 拡張子がなければそのまま返す
+}
