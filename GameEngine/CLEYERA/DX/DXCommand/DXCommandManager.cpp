@@ -147,7 +147,7 @@ void CLEYERA::Base::DX::DXCommandManager::GraphicsPipelineState(ID3D12PipelineSt
 void CLEYERA::Base::DX::DXCommandManager::VBCommandCall(const std::vector<D3D12_VERTEX_BUFFER_VIEW> &view) {
 
    if (list_) {
-      list_->IASetVertexBuffers(0, view.size(), view.data());
+      list_->IASetVertexBuffers(0, UINT(view.size()), view.data());
    }
 }
 

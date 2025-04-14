@@ -118,6 +118,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(SolutionDir)..\Lua\LuaJIT\src\</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,7 +130,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -139,7 +140,8 @@
       <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/utf-8 /Wv:18 %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -219,6 +221,7 @@
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\SCollider.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
     <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Input\InputComtroller.cpp" />
     <ClCompile Include="CLEYERA\Utility\Input\InputKeybord.cpp" />
     <ClCompile Include="CLEYERA\Utility\Input\InputManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Json\GlobalVariables.cpp" />
@@ -286,6 +289,7 @@
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\OBBCollider.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\SCollider.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\TerrainCollider.h" />
+    <ClInclude Include="CLEYERA\Utility\Input\InputComtroller.h" />
     <ClInclude Include="CLEYERA\Utility\Input\InputKeybord.h" />
     <ClInclude Include="CLEYERA\Utility\Input\InputManager.h" />
     <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h" />
