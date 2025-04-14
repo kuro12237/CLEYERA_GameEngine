@@ -20,8 +20,20 @@ public:
 
 private:
 
+	/// <summary>
+	/// ボスの持っているスキルなど
+	/// </summary>
+	struct Status {
+
+		//スキルの名前
+		std::string skillName;
 
 
+	};
+
+
+	//ステータス
+	Status status_ = {};
 
 
 };

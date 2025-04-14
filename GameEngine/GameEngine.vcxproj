@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Enemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="App\GameManager\GameManager.h" />
     <ClInclude Include="App\GameObject\Enemy\BaseEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Enemy.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />

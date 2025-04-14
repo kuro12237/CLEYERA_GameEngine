@@ -25,6 +25,9 @@
     <Filter Include="Project\Enemy\Normal">
       <UniqueIdentifier>{4c0ee6d2-7ebf-4f86-ab9c-6f9258fa6628}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project\Enemy\Normal\State">
+      <UniqueIdentifier>{f63e8779-b8b1-4762-909d-c0cef90b6ed5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -281,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="App\GameObject\Enemy\Enemy.cpp">
       <Filter>Project\Enemy\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -586,6 +592,9 @@
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\BaseEnemy.h">
       <Filter>Project\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
