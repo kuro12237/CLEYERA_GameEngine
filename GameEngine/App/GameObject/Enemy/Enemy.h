@@ -14,9 +14,15 @@
 /// </summary>
 class Enemy : public BaseEnemy {
 public:
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	void Init() override;
 
-  void Update() override;
+	/// <summary>
+	/// 更新
+	/// </summary>
+	void Update() override;
 
 private:
 
