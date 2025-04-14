@@ -263,7 +263,9 @@
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
-    <ClInclude Include="CLEYERA\Lua\kua.h" />
+    <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h" />
+    <ClInclude Include="CLEYERA\Lua\Manager\LuaManager.h" />
+    <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h" />
     <ClInclude Include="CLEYERA\Utility\Flame\Flame.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.h" />
