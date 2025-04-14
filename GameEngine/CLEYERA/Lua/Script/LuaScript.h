@@ -1,14 +1,103 @@
 #pragma once
 
+#include "pch/Pch.h"
+#include <lua.hpp>
 
+
+/* 個々のスクリプトを管理するクラス */
 class LuaScripit {
- public:
-   LuaScripit();
-   ~LuaScripit();
 
+ public:
+	
+   using ReloadCallback = std::function<void()>;
+
+   /// <summary>
+   /// コンストラクタ
+   /// </summary>
+   LuaScripit();
+
+   /// <summary>
+   /// デストラクタ
+   /// </summary>
+   ~LuaScripit() = default;
+
+   /// <summary>
+   /// スクリプトの読み込み
+   /// </summary>
+   bool LoadScript(const std::string &file);
+
+   /// <summary>
+   /// スクリプトの再評価
+   /// </summary>
+   bool Reload(const std::string &file);
+
+   /// <summary>
+   /// リロード時のコールバックの登録
+   /// </summary>
+   void SetReloadCallBack();
+
+   /// <summary>
+   /// Lua側の変数を取得
+   /// </summary>
+   /// <typeparam name="T"> 取得変数の型 </typeparam>
+   /// <param name="varName"> Lua側にある変数名 </param>
+   template <typename T> T GetVaruable(const std::string &varName);
+
+   /// <summary>
+   /// Lua側の関数を実行
+   /// </summary>
+   /// <param name="funcName"> Lua側にある関数名 </param>
+   /// <param name="...args"> 引数 </param>
+   template <typename... Args> bool ExeFunction(const std::string &funcName, Args... args);
+
+   
  private:
+
+   std::unique_ptr<lua_State, decltype(&lua_close)> L_;
+   ReloadCallback reloadCallback_ = nullptr; // コールバック関数
+
 };
 
-LuaScripit::LuaScripit() {}
 
-LuaScripit::~LuaScripit() {}
+
+/// <summary>
+/// コンストラクタ
+/// </summary>
+inline LuaScripit::LuaScripit() : L_(luaL_newstate(), &lua_close) 
+{
+   luaL_openlibs(L_.get()); // Luaライブラリを開く
+}
+
+
+/// <summary>
+/// スクリプトの読み込み
+/// </summary>
+inline bool LuaScripit::LoadScript(const std::string &file) { return false; }
+
+
+/// <summary>
+/// スクリプトの再評価
+/// </summary>
+inline bool LuaScripit::Reload(const std::string &file) { return false; }
+
+
+/// <summary>
+/// リロード時のコールバックの登録
+/// </summary>
+inline void LuaScripit::SetReloadCallBack() {}
+
+
+/// <summary>
+/// Lua側の変数を取得
+/// </summary>
+/// <typeparam name="T"> 取得変数の型 </typeparam>
+/// <param name="varName"> Lua側にある変数名 </param>
+template <typename T> inline T LuaScripit::GetVaruable(const std::string &varName) { return T(); }
+
+
+/// <summary>
+/// Lua側の関数を実行
+/// </summary>
+/// <param name="funcName"> Lua側にある関数名 </param>
+/// <param name="...args"> 引数 </param>
+template <typename... Args> inline bool LuaScripit::ExeFunction(const std::string &funcName, Args... args) { return false; }
