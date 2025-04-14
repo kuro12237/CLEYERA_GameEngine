@@ -19,6 +19,9 @@ class ObjectManager;
 
 namespace Component {
 
+/// <summary>
+/// objectのコンポーネント基本継承
+/// </summary>
 class ObjectComponent {
  public:
    ObjectComponent();
@@ -40,6 +43,11 @@ class ObjectComponent {
    /// </summary>
    /// <param name="g"></param>
    void GravityUpdate(const float &g);
+
+   /// <summary>
+   /// 地形の当たり判定呼び出し
+   /// </summary>
+   /// <param name="pos"></param>
    void TerrainHit(const Math::Vector::Vec3 &pos);
 
 #pragma region Get
@@ -84,15 +92,16 @@ class ObjectComponent {
    Math::Vector::Vec3 translate_ = {};
 
    Math::Vector::Vec3 velocity_ = {};
-   Math::Vector::Vec3 angleVelocity_{};
    Math::Vector::Vec3 force_ = {};
    float friction_ = 0.5f;
    float mass_ = 1.0f;
    float bounceFactor_ = 0.5f;
 
+   //当たり判定
    std::shared_ptr<Util::Collider::OBBCollider> collider_ = nullptr;
+   //jsonのシステム
    std::shared_ptr<Component::JsonCompornent> jsonSystem_ = nullptr;
-
+   //WorldTransform,GameObject等のクラス
    std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;
 };
 } // namespace Component

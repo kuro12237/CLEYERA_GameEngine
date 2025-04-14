@@ -8,18 +8,20 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
    this->renderManager_ = CLEYERA::Manager::RenderManager::GetInstance();
    this->inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
 
+   //デフォルトモデル
    uint32_t handleSphere = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/system/Sphere", "Sphere");
-
    modelHandle_ = handleSphere;
 
-   this->gameObject_ = std::make_shared<CLEYERA::Model3d::Game3dObject>();
+   //オブジェクトの生成、scaleなどのポインタセット
+   gameObject_ = std::make_shared<CLEYERA::Model3d::Game3dObject>();
    gameObject_->Create(modelHandle_);
    gameObject_->SetScale(scale_);
    gameObject_->SetRotate(rotate_);
    gameObject_->SetTranslate(translate_);
    gameObject_->SetName(name_);
-   this->gameObject_->Update();
-
+   gameObject_->Update();
+   
+   //各マネージャーへのセット
    objectManager_->AddObject(this->gameObject_);
    renderManager_->PushObj(this->gameObject_);
 }
@@ -90,6 +92,7 @@ void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &p
 
 void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {
 
+   colliderSystem_ = CLEYERA::Manager::ColliderSystem::GetInstance();
    if (type == Util::Collider::ColliderType::OBB) {
       collider_ = std::make_shared<CLEYERA::Util::Collider::OBBCollider>();
       collider_->SetCenter(&translate_);
@@ -97,7 +100,6 @@ void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::Collide
       collider_->SetWorldMatrix(&gameObject_->GetMat());
       collider_->Create();
 
-      colliderSystem_ = CLEYERA::Manager::ColliderSystem::GetInstance();
       colliderSystem_->PushCollider(collider_);
    }
 }
@@ -105,6 +107,5 @@ void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::Collide
 void CLEYERA::Component::ObjectComponent::CreateJsonSystem(const std::string &fileGroupName) {
 
    jsonSystem_ = std::make_unique<JsonCompornent>();
-
    jsonSystem_->CreateJson(name_, fileGroupName);
 }

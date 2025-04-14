@@ -3,16 +3,20 @@
 using namespace CLEYERA;
 
 void PlayerCore::Init() {
+    //基本クラス名をマクロ通して入れる
    name_ = VAR_NAME(PlayerCore);
 
+   //modelの設定
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
-
    gameObject_->ChangeModel(modelHandle);
 
-   translate_.y = 0.0f;
+   ///コライダー作成:現状OBB飲み
    CreateCollider(ColliderType::OBB);
+
+   //jsonのファイル等ヲ作成
    this->CreateJsonSystem("Player/");
 
+   //jsonに読み書きする変数の設定
    SetValue<Math::Vector::Vec3>("t", translate_);
    translate_ = GetValue<Math::Vector::Vec3>("t");
 }
