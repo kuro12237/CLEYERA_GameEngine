@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)..\generated\output\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\generated\obj\$(ProjectName)\</IntDir>
-    <IncludePath>$(SolutionDir)..\ImGui\</IncludePath>
+    <IncludePath>$(SolutionDir)..\ImGui\;$(SolutionDir)App\GameObject\;$(SolutionDir)CLEYERA\</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
