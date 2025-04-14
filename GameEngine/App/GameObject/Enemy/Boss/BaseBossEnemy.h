@@ -6,13 +6,13 @@
  * @author 茂木翼
  */
 
-#include "Enemy/BaseEnemy.h"
+#include "Enemy/IEnemy.h"
 
 
 /// <summary>
 /// ボスの基底クラス
 /// </summary>
-class BaseBossEnemy : public BaseEnemy {
+class BaseBossEnemy : public IEnemy {
 public:
 
 

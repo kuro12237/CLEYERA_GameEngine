@@ -288,6 +288,21 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyAttack.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyMove.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyTracking.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h">
@@ -590,11 +605,29 @@
     <ClInclude Include="App\GameObject\Enemy\Enemy.h">
       <Filter>Project\Enemy\Normal</Filter>
     </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\BaseEnemy.h">
-      <Filter>Project\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\BaseNormalEnemyState.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyAttack.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyMove.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyTracking.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\IEnemy.h">
+      <Filter>Project\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@
 /// <summary>
 /// 通常の敵
 /// </summary>
-class Enemy : public BaseEnemy {
+class Enemy : public IEnemy {
 public:
 	/// <summary>
 	/// 初期化

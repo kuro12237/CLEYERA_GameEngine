@@ -9,7 +9,6 @@
 #include <memory>
 #include <string>
 
-#include "Vector3.h"
 
 
 /// <summary>
