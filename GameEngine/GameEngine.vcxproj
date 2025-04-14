@@ -197,6 +197,7 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Lua\Manager\LuaManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.cpp" />

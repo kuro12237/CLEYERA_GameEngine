@@ -18,9 +18,8 @@ class LuaManager {
    const LuaManager &operator=(const LuaManager &) = delete;
 
  public:
-
-	 
-	/// <summary>
+     
+    /// <summary>
    /// インスタンス取得
    /// </summary>
    static LuaManager *GetInstance() {
@@ -54,6 +53,12 @@ class LuaManager {
    void MonitorScript();
 
 
+ private:
+
+     /// <summary>
+     /// ファイルパスからファイル名を抽出する関数
+     /// </summary>
+     std::string RemoveNameSuffix(const std::string &filePath);
 
 
  private:
@@ -64,8 +69,6 @@ class LuaManager {
    std::unordered_map<std::string, std::filesystem::path> scriptPaths_;
    // 最終更新時刻の保持
    std::unordered_map<std::string, std::filesystem::file_time_type> scriptUpdateTimes_;
-
-
 
 };
 

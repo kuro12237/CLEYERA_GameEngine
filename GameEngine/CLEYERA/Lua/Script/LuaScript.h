@@ -5,7 +5,7 @@
 
 
 /* 個々のスクリプトを管理するクラス */
-class LuaScripit {
+class LuaScript {
 
  public:
 	
@@ -14,12 +14,12 @@ class LuaScripit {
    /// <summary>
    /// コンストラクタ
    /// </summary>
-   LuaScripit();
+   LuaScript();
 
    /// <summary>
    /// デストラクタ
    /// </summary>
-   ~LuaScripit() = default;
+   ~LuaScript() = default;
 
    /// <summary>
    /// スクリプトの読み込み
@@ -63,7 +63,7 @@ class LuaScripit {
 /// <summary>
 /// コンストラクタ
 /// </summary>
-inline LuaScripit::LuaScripit() : L_(luaL_newstate(), &lua_close) 
+inline LuaScript::LuaScript() : L_(luaL_newstate(), &lua_close) 
 {
    luaL_openlibs(L_.get()); // Luaライブラリを開く
 }
@@ -72,19 +72,19 @@ inline LuaScripit::LuaScripit() : L_(luaL_newstate(), &lua_close)
 /// <summary>
 /// スクリプトの読み込み
 /// </summary>
-inline bool LuaScripit::LoadScript(const std::string &file) { return false; }
+inline bool LuaScript::LoadScript(const std::string &file) { return false; }
 
 
 /// <summary>
 /// スクリプトの再評価
 /// </summary>
-inline bool LuaScripit::Reload(const std::string &file) { return false; }
+inline bool LuaScript::Reload(const std::string &file) { return false; }
 
 
 /// <summary>
 /// リロード時のコールバックの登録
 /// </summary>
-inline void LuaScripit::SetReloadCallBack() {}
+inline void LuaScript::SetReloadCallBack() {}
 
 
 /// <summary>
@@ -92,7 +92,7 @@ inline void LuaScripit::SetReloadCallBack() {}
 /// </summary>
 /// <typeparam name="T"> 取得変数の型 </typeparam>
 /// <param name="varName"> Lua側にある変数名 </param>
-template <typename T> inline T LuaScripit::GetVaruable(const std::string &varName) { return T(); }
+template <typename T> inline T LuaScript::GetVaruable(const std::string &varName) { return T(); }
 
 
 /// <summary>
@@ -100,4 +100,4 @@ template <typename T> inline T LuaScripit::GetVaruable(const std::string &varNam
 /// </summary>
 /// <param name="funcName"> Lua側にある関数名 </param>
 /// <param name="...args"> 引数 </param>
-template <typename... Args> inline bool LuaScripit::ExeFunction(const std::string &funcName, Args... args) { return false; }
+template <typename... Args> inline bool LuaScript::ExeFunction(const std::string &funcName, Args... args) { return false; }
