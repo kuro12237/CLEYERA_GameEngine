@@ -31,3 +31,41 @@ Math::Vector::Vec2 CLEYERA::Util::InputController::GetJoyRStickPos(const float &
 
    return {};
 }
+
+bool CLEYERA::Util::InputController::PushBottonPressed(uint32_t GameBotton) {
+   bool preFlag = false;
+
+   if (preJoyState_.Gamepad.wButtons & GameBotton) {
+      preFlag = true;
+   }
+
+   if (!preFlag && joyState_.Gamepad.wButtons & GameBotton) {
+      return true;
+   }
+
+   return false;
+}
+
+bool CLEYERA::Util::InputController::PushBotton(uint32_t GameBotton) {
+
+if (joyState_.Gamepad.wButtons & GameBotton) {
+      return true;
+   }
+   return false;
+}
+
+uint8_t CLEYERA::Util::InputController::GetRightTriggerValue() { 
+
+  return joyState_.Gamepad.bRightTrigger; }
+
+bool CLEYERA::Util::InputController::IsRightTriggerPressed(uint8_t threshold) { 
+ // 右トリガーの押し込み具合が閾値を超えているかを判定
+   return joyState_.Gamepad.bRightTrigger > threshold;
+}
+
+uint8_t CLEYERA::Util::InputController::GetLeftTriggerValue() { return joyState_.Gamepad.bLeftTrigger; }
+
+bool CLEYERA::Util::InputController::IsLeftTriggerPressed(uint8_t threshold) { 
+ // 左トリガーの押し込み具合が閾値を超えているかを判定
+   return joyState_.Gamepad.bLeftTrigger > threshold;
+}

@@ -2,11 +2,18 @@
 
 #include "../Utility/Camera/Camera.h"
 #include "../Utility/Camera/CameraManager.h"
+#include "../Utility/Input/InputManager.h"
+#include "Utility/ColliderSystem/ColliderSystem.h"
+
+#include "JsonCompornent.h"
 
 namespace CLEYERA {
 
 namespace Component {
 
+/// <summary>
+/// カメラ
+/// </summary>
 class CameraCompornent {
  public:
    CameraCompornent();
@@ -20,13 +27,25 @@ class CameraCompornent {
 
    std::weak_ptr<Util::Camera> GetCamera() { return camera_; };
 
+   
+   template <typename T> T GetValue(const std::string &name) { return jsonSystem_->GetValue<T>(name); }
+   template <typename T> void SetValue(const std::string &name, T t) { jsonSystem_->SetValue<T>(name, t); }
+
  private:
    CLEYERA::Manager::CameraManager *cameraManager_ = nullptr;
 
  protected:
+   /// <summary>
+   /// jsonの作成
+   /// </summary>
+   void CreateJsonSystem(const std::string &fileGroupName);
+
    std::string name_ = "";
 
-   //std::function<void> ImGuiFunc_ = nullptr;
+   Manager::ColliderSystem *colliderSystem_ = nullptr;
+   Manager::InputManager *inputManager_ = nullptr;
+
+   // std::function<void> ImGuiFunc_ = nullptr;
 
    /// <summary>
    /// 切り替えたいときこの関数を呼び出す
@@ -34,6 +53,9 @@ class CameraCompornent {
    void CameraChange();
 
    std::shared_ptr<CLEYERA::Util::Camera> camera_ = nullptr;
+
+   // jsonのシステム
+   std::shared_ptr<Component::JsonCompornent> jsonSystem_ = nullptr;
 
    Math::Vector::Vec3 rotate_ = {};
    Math::Vector::Vec3 degreeRotate_ = {};
