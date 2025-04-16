@@ -51,14 +51,28 @@ class ObjectComponent {
    void TerrainHit(const Math::Vector::Vec3 &pos);
 
 #pragma region Get
+   const std::string &GetName() { return name_; }
    std::weak_ptr<Model3d::Game3dObject> GetGameObject() { return gameObject_; }
    std::weak_ptr<Util::Collider::Collider> GetCollder() { return collider_; }
    Math::Vector::Vec3 &GetTranslate() { return translate_; }
+
+   /// <summary>
+   /// jsonパラメータのGet
+   /// </summary>
    template <typename T> T GetValue(const std::string &name) { return jsonSystem_->GetValue<T>(name); }
 #pragma endregion
 
 #pragma region Set
+
    void SetName(std::string name) { name_ = name; }
+   
+   void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
+   void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
+   void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
+
+   /// <summary>
+   /// jsonパラメータSet
+   /// </summary>
    template <typename T> void SetValue(const std::string &name, T t) { jsonSystem_->SetValue<T>(name, t); }
 #pragma endregion
 

@@ -26,6 +26,25 @@ void SceneLoader::LoadSceneData(std::string path) {
    }
 }
 
+void SceneLoader::SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs) {
+
+   for (auto obj : objs) {
+      auto it = obj.lock();
+      std::string name = it->GetName();
+
+      if (objDatas_.find(name) != objDatas_.end()) {
+
+          auto data = objDatas_[name];
+
+          it->SetScale(data.scale);
+          it->SetRotate(data.rotate);
+          it->SetTranslate(data.translate);
+
+          objDatas_.erase(name);
+      }
+   }
+}
+
 SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, std::string name) {
 
    SceneObjData newData{};
@@ -72,6 +91,18 @@ SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, 
    newData.scale = scale;
    newData.rotate = rotate;
    newData.translate = translate;
+
+   // 子の読み込み
+   if (object.contains("children")) {
+      nlohmann::json &child = object["children"];
+      for (size_t i = 0; i < child.size(); i++) {
+         std::string childType = child[i]["type"].get<std::string>();
+
+         if (childType.compare("MESH") == 0) {
+            this->LoadobjData(child[i], newData, objectName);
+         }
+      }
+   }
 
    objDatas_[objectName] = newData;
 

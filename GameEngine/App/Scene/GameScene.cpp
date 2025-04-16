@@ -17,6 +17,7 @@ void GameScene::Init() {
       for (auto obj : manager->GetObjList()) {
 
          // 無視
+         objectComponents_.push_back(obj);
          objectList_.push_back(obj->GetGameObject());
 
          // 重力適用
@@ -25,6 +26,8 @@ void GameScene::Init() {
          terrain_->PushData(obj);
       }
    }
+
+   loader_->SettingData(objectComponents_);
 
    // 地形モデルの設定
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");

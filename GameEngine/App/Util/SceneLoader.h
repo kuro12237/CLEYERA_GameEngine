@@ -19,7 +19,7 @@ class SceneLoader {
 
    void LoadSceneData(std::string path);
 
-   void SettingData();
+   void SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs);
 
  private:
    nlohmann::json deserialized = nullptr;

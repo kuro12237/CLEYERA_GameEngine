@@ -45,15 +45,15 @@
         },
         {
             "type": "MESH",
-            "name": "t",
-            "file_name": "Enemy",
-            "Directory_name": "Enemy",
+            "name": "Terrain",
+            "file_name": "Terrain",
+            "Directory_name": "Terrain",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
                     0.0,
-                    8.589943885803223,
+                    0.0,
                     0.0
                 ],
                 "rotate": [
@@ -70,16 +70,16 @@
         },
         {
             "type": "MESH",
-            "name": "e",
+            "name": "PlayerCore",
             "file_name": "PlayerCore",
             "Directory_name": "Player",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
+                    -3.4657974243164062,
                     0.0,
-                    0.768651008605957,
-                    0.0
+                    3.20038104057312
                 ],
                 "rotate": [
                     0.0,
@@ -91,7 +91,34 @@
                     1.0,
                     1.0
                 ]
-            }
+            },
+            "children": [
+                {
+                    "type": "MESH",
+                    "name": "PlayerCore.001",
+                    "file_name": "PlayerCore",
+                    "Directory_name": "Player",
+                    "ModelFileType": "obj",
+                    "DrawType": "Normal",
+                    "transform": {
+                        "translate": [
+                            0.0,
+                            8.307981491088867,
+                            0.0
+                        ],
+                        "rotate": [
+                            0.0,
+                            -0.0,
+                            0.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    }
+                }
+            ]
         }
     ]
 }
