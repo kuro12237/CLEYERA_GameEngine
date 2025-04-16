@@ -282,7 +282,7 @@
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp">
       <Filter>Project\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\Enemy.cpp">
+    <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp">
       <Filter>Project\Enemy\Normal</Filter>
     </ClCompile>
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
@@ -602,7 +602,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h">
       <Filter>Project\Enemy\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\Enemy.h">
+    <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h">
       <Filter>Project\Enemy\Normal</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">

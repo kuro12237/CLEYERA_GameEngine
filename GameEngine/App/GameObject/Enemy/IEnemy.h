@@ -12,6 +12,8 @@
 /// 敵のインターフェイス
 /// </summary>
 class IEnemy : public CLEYERA::Component::ObjectComponent {
+ public:
+
 
 protected:
 

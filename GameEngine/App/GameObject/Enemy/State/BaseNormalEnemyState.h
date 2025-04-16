@@ -40,28 +40,6 @@ public:
 public:
 
 	/// <summary>
-	/// 方向を取得
-	/// </summary>
-	/// <returns></returns>
-	inline Vector3 GetDirection()const {
-		return direction_;
-	}
-
-	/// <summary>
-	/// X軸に方向を反転
-	/// </summary>
-	inline void InverseDirectionX(){
-		this->direction_.x *= -1.0f;
-	}
-
-	/// <summary>
-	/// Z軸に方向を反転
-	/// </summary>
-	inline void InverseDirectionZ() {
-		this->direction_.z *= -1.0f;
-	}
-
-	/// <summary>
 	/// 状態の名前を取得
 	/// </summary>
 	/// <returns></returns>
@@ -69,19 +47,10 @@ public:
 		return stateName_;
 	}
 
-protected:
-	//アニメーションしないようにするための時間
-	const float_t NO_ANIMATION_TIME_ = 0.0f;
-
 
 protected:
 	//状態の名前
 	std::string stateName_ = "";
-
-	//方向
-	Vector3 direction_ ={};
-	//スピード
-	Vector3 speed_ = {};
 
 	
 

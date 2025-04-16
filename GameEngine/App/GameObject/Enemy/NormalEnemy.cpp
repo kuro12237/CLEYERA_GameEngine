@@ -1,16 +1,16 @@
-#include "Enemy.h"
+#include "NormalEnemy.h"
 
-void Enemy::Init() {
+void NormalEnemy::Init() {
 
 	//名前の設定
-   name_ = VAR_NAME(Enemy);
+   name_ = VAR_NAME(NormalEnemy);
 
    //モデルの設定
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
    gameObject_->ChangeModel(modelHandle);
 
 
-   /// コライダー作成:現状OBB飲み
+   //コライダー作成
    CreateCollider(ColliderType::OBB);
 
    //座標の設定
@@ -18,7 +18,7 @@ void Enemy::Init() {
 
 }
 
-void Enemy::Update() {
+void NormalEnemy::Update() {
 
 
 

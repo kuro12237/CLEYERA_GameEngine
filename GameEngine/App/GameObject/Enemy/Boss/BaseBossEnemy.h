@@ -6,18 +6,13 @@
  * @author 茂木翼
  */
 
-#include "Enemy/IEnemy.h"
 
+#include"CLEYERA.h"
 
 /// <summary>
 /// ボスの基底クラス
 /// </summary>
-class BaseBossEnemy : public IEnemy {
-public:
-
-
-
-
+class BaseBossEnemy : public CLEYERA::Component::ObjectComponent {
 private:
 
 	/// <summary>
@@ -27,8 +22,6 @@ private:
 
 		//スキルの名前
 		std::string skillName;
-
-
 	};
 
 
