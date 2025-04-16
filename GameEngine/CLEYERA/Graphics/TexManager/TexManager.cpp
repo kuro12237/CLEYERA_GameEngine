@@ -116,4 +116,4 @@ DirectX::ScratchImage CLEYERA::Manager::TexManager::CreateMipImage(const std::st
    return mipImage;
 }
 
-DirectX::ScratchImage CLEYERA::Manager::TexManager::CreateDDSMipImage(const std::string &filePath) { return DirectX::ScratchImage(); }
+DirectX::ScratchImage CLEYERA::Manager::TexManager::CreateDDSMipImage([[maybe_unused]] const std::string &filePath) { return DirectX::ScratchImage(); }

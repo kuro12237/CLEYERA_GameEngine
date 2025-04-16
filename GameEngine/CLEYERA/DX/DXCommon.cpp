@@ -197,7 +197,6 @@ void CLEYERA::Base::DX::DXCommon::PostDraw() {
    ID3D12CommandList *list[] = {commandList_->GetCommandList()};
    ID3D12GraphicsCommandList *commandList = commandList_->GetCommandList();
    ID3D12CommandQueue *queue = commandQueue_->GetCommandQueue();
-   ID3D12CommandAllocator *allocator = commandAllcator_->GetCommandAllocator();
 
    IDXGISwapChain4 *swapChain = swapChain_->GetSwapChain();
 

@@ -24,7 +24,7 @@ void CLEYERA::DebugTools::Grid::Init() {
    colors_.resize(lineVertCount_);
 
    //CLEYERA::Manager::RenderManager::GetInstance()->PushLine3d(lines_);
-   int half = lineMax_ / 4;
+   int half = UINT(lineMax_) / 4;
    float spacing = 1.0f; // 線の間隔（必要に応じて変更）
 
    int index = 0;
