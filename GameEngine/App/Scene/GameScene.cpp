@@ -16,7 +16,7 @@ void GameScene::Init() {
       // マネージャーのGameObjListをSceneにも登録(weak)
       for (auto obj : manager->GetObjList()) {
 
-         // 無視
+         // 絶対に登録
          objectComponents_.push_back(obj);
          objectList_.push_back(obj->GetGameObject());
 
@@ -27,7 +27,9 @@ void GameScene::Init() {
       }
    }
 
-   loader_->SettingData(objectComponents_);
+   // エディタのデータを各オブジェクトにセット
+   enviromentObjs_ = loader_->SettingData(objectComponents_);
+   loader_.reset();
 
    // 地形モデルの設定
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
@@ -38,6 +40,12 @@ void GameScene::Init() {
 }
 
 void GameScene::Update() {
+
+    for ( auto obj : enviromentObjs_ )
+    {
+      obj->Update();
+
+    }
    for (auto manager : managerCompornents_) {
 
       manager->Update();

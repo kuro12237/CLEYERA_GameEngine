@@ -45,34 +45,9 @@
         },
         {
             "type": "MESH",
-            "name": "Terrain",
-            "file_name": "Terrain",
-            "Directory_name": "Terrain",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    0.0,
-                    0.0,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
             "name": "PlayerCore",
-            "file_name": "PlayerCore",
-            "Directory_name": "Player",
+            "file_name": "Core",
+            "Directory_name": "Resources/Model/Player/Core/",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
@@ -96,8 +71,8 @@
                 {
                     "type": "MESH",
                     "name": "PlayerCore.001",
-                    "file_name": "PlayerCore",
-                    "Directory_name": "Player",
+                    "file_name": "Core",
+                    "Directory_name": "Resources/Model/Player/Core/",
                     "ModelFileType": "obj",
                     "DrawType": "Normal",
                     "transform": {

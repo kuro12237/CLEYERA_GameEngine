@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
@@ -242,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
+    <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
     <ClInclude Include="App\GameObject\Player\IPlayer.h" />
     <ClInclude Include="App\GameObject\Player\PlayerCore.h" />

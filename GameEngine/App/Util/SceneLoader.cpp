@@ -26,23 +26,68 @@ void SceneLoader::LoadSceneData(std::string path) {
    }
 }
 
-void SceneLoader::SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs) {
+std::vector<std::shared_ptr<EnvironmentObject>> SceneLoader::SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs) {
 
+   std::vector<std::shared_ptr<EnvironmentObject>> enviObjs;
    for (auto obj : objs) {
       auto it = obj.lock();
+      if (!it) {
+         continue; // ロック失敗時はスキップ
+      }
       std::string name = it->GetName();
 
       if (objDatas_.find(name) != objDatas_.end()) {
 
-          auto data = objDatas_[name];
+         auto data = objDatas_[name];
 
-          it->SetScale(data.scale);
-          it->SetRotate(data.rotate);
-          it->SetTranslate(data.translate);
+         it->SetScale(data.scale);
+         it->SetRotate(data.rotate);
+         it->SetTranslate(data.translate);
+         it->SetModelHandle(data.modeHandle_);
 
-          objDatas_.erase(name);
+         auto gameObj = it->GetGameObject().lock();
+
+         for (std::string pName : data.parentObjName_) {
+
+            for (auto pObj : objs) {
+               if (pObj.lock()->GetName() == pName) {
+                  gameObj->SetParent(pObj.lock()->GetGameObject());
+                  break;
+               }
+            }
+         }
+         objDatas_.erase(name);
       }
    }
+
+   // objsに登録されている背景オブジェクトの作成
+   for (auto data : objDatas_) {
+      auto it = data.second;
+
+      std::shared_ptr<EnvironmentObject> enviObj = std::make_shared<EnvironmentObject>();
+      enviObj->Init();
+      enviObj->SetScale(it.scale);
+      enviObj->SetRotate(it.rotate);
+      enviObj->SetTranslate(it.translate);
+      enviObj->SetModelHandle(it.modeHandle_);
+      auto gameObj = enviObj->GetGameObject().lock();
+
+      // 子
+      for (std::string pName : it.parentObjName_) {
+
+         for (auto pObj : objs) {
+            if (pObj.lock()->GetName() == pName) {
+
+               gameObj->SetParent(pObj.lock()->GetGameObject());
+               break;
+            }
+         }
+      }
+
+      enviObjs.push_back(enviObj);
+   }
+   objDatas_.clear();
+   return enviObjs;
 }
 
 SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, std::string name) {
@@ -53,18 +98,22 @@ SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, 
    // object名前
    std::string objectName = object["name"].get<std::string>();
 
-   // uint32_t modelHandle = 0;
+   uint32_t modelHandle = 0;
 
    if (name != "") {
       newData.parentObjName_.push_back(name);
    }
 
    // モデルのパスの受け取り
-   if (object.contains("Directory_name") == 0) {
+   if (object.contains("Directory_name")) {
       newData.modelDirectoryPath = object["Directory_name"].get<std::string>();
    }
-   if (object.contains("file_name") == 0) {
+   if (object.contains("file_name")) {
       newData.modelName = object["file_name"].get<std::string>();
+   }
+
+   if (newData.modelName != "" && newData.modelDirectoryPath != "") {
+      modelHandle = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel(newData.modelDirectoryPath, newData.modelName);
    }
 
    // 座標
@@ -91,6 +140,7 @@ SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, 
    newData.scale = scale;
    newData.rotate = rotate;
    newData.translate = translate;
+   newData.modeHandle_ = modelHandle;
 
    // 子の読み込み
    if (object.contains("children")) {

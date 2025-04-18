@@ -1,10 +1,10 @@
 #pragma once
 
+#include "../Util/SceneLoader.h"
 #include "IScene.h"
-#include "test/TestObject.h"
-#include "test/testCamera.h"
-#include"Player/PlayerManager.h"
-#include"../Util/SceneLoader.h"
+
+#include "EnvironmentObject/EnvironmentObject.h"
+#include "Player/PlayerManager.h"
 
 class GameScene : public SceneCompornent {
  public:
@@ -15,10 +15,10 @@ class GameScene : public SceneCompornent {
 
    void Update() override;
 
-
  private:
+   std::unique_ptr<SceneLoader> loader_ = nullptr;
 
-	 std::unique_ptr<SceneLoader> loader_ = nullptr;
+   std::vector<std::shared_ptr<EnvironmentObject>> enviromentObjs_;
 
-	 std::shared_ptr<PlayerManager> playerManager_ = nullptr;
+   std::shared_ptr<PlayerManager> playerManager_ = nullptr;
 };

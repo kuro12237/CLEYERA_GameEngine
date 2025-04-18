@@ -72,6 +72,10 @@ void CLEYERA::Manager::RenderManager::SettingObjs() {
    while (!newObjs_.empty()) {
       auto obj = newObjs_.front().lock();
 
+      if (!obj) {
+         continue;
+      }
+
       objs_[obj->GetRasterMode()].push_back(obj);
       newObjs_.pop();
    }

@@ -65,10 +65,15 @@ class ObjectComponent {
 #pragma region Set
 
    void SetName(std::string name) { name_ = name; }
-   
+
    void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
    void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
    void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
+
+   void SetModelHandle(uint32_t handle) {
+      modelHandle_ = handle;
+      gameObject_->ChangeModel(handle);
+   }
 
    /// <summary>
    /// jsonパラメータSet
@@ -111,11 +116,11 @@ class ObjectComponent {
    float mass_ = 1.0f;
    float bounceFactor_ = 0.5f;
 
-   //当たり判定
+   // 当たり判定
    std::shared_ptr<Util::Collider::OBBCollider> collider_ = nullptr;
-   //jsonのシステム
+   // jsonのシステム
    std::shared_ptr<Component::JsonCompornent> jsonSystem_ = nullptr;
-   //WorldTransform,GameObject等のクラス
+   // WorldTransform,GameObject等のクラス
    std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;
 };
 } // namespace Component
