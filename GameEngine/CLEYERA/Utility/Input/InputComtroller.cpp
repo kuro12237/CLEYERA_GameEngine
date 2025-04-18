@@ -10,7 +10,7 @@ void CLEYERA::Util::InputController::Begin() {
 
 Math::Vector::Vec2 CLEYERA::Util::InputController::GetJoyLStickPos(const float &mode) {
 
-   float deadzone = 0.01f;
+   float deadzone = 0.1f;
 
    Math::Vector::Vec2 joyPos(joyState_.Gamepad.sThumbLX / mode, joyState_.Gamepad.sThumbLY / mode);
 
@@ -22,7 +22,7 @@ Math::Vector::Vec2 CLEYERA::Util::InputController::GetJoyLStickPos(const float &
 
 Math::Vector::Vec2 CLEYERA::Util::InputController::GetJoyRStickPos(const float &mode) {
 
-   float deadzone = 0.01f;
+   float deadzone = 0.1f;
    Math::Vector::Vec2 joyPos(joyState_.Gamepad.sThumbRX / mode, joyState_.Gamepad.sThumbRY / mode);
 
    if (std::abs(joyPos.x) > deadzone || std::abs(joyPos.y) > deadzone) {

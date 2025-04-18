@@ -25,7 +25,6 @@
 #include <variant>
 #include <vector>
 
-#include <chrono>
 #include <cstring>
 #include <fstream>
 #include <iomanip>

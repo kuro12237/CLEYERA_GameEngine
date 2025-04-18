@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="App\Scene\GameScene.cpp" />
     <ClCompile Include="App\Scene\IScene.cpp" />
     <ClCompile Include="App\GameObject\Test\TestObject.cpp" />
+    <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
     <ClCompile Include="CLEYERA\3d\Game3dObject.cpp" />
     <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
@@ -199,6 +201,7 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp" />
     <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.cpp" />
@@ -240,6 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
+    <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
     <ClInclude Include="App\GameObject\Player\IPlayer.h" />
     <ClInclude Include="App\GameObject\Player\PlayerCore.h" />
@@ -248,6 +252,7 @@
     <ClInclude Include="App\Scene\GameScene.h" />
     <ClInclude Include="App\Scene\IScene.h" />
     <ClInclude Include="App\GameObject\Test\TestObject.h" />
+    <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
     <ClInclude Include="CLEYERA\3d\Game3dObject.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
@@ -267,6 +272,7 @@
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
     <ClInclude Include="CLEYERA\Lua\kua.h" />
+    <ClInclude Include="CLEYERA\Utility\FileLoader\FileLoader.h" />
     <ClInclude Include="CLEYERA\Utility\Flame\Flame.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.h" />
