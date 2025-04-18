@@ -13,7 +13,7 @@ void PlayerCore::Init() {
    /// コライダー作成:現状OBB飲み
    CreateCollider(ColliderType::OBB);
 
-   // jsonのファイル等ヲ作成
+   // jsonのファイル作成
    this->CreateJsonSystem("Player/");
 
    // jsonに読み書きする変数の設定
