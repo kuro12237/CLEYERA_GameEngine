@@ -68,6 +68,10 @@ class InputController {
    /// <returns>押し込まれている場合はtrue</returns>
    bool IsLeftTriggerPressed(uint8_t threshold = 30);
 
+   bool IsLJoystickActive();
+
+   bool IsRJoystickActive();
+
  private:
    XINPUT_STATE joyState_{};
    XINPUT_STATE preJoyState_{};

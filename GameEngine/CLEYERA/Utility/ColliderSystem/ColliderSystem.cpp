@@ -67,15 +67,27 @@ void CLEYERA::Manager::ColliderSystem::Update() {
                // 何か処理
                collider1->HitCall(*collider2);
                collider2->HitCall(*collider1);
-              
+
                continue;
             }
          }
       }
    }
 
-   for ( auto c : colliderList_ )
-   {
-      c.lock()->Update();
+   for (auto c : colliderList_) {
+      if (!c.expired()) {
+
+         c.lock()->Update();
+      }
+   }
+   for (auto it = colliderList_.begin(); it != colliderList_.end();) {
+    
+      if (!(*it).expired()) {
+
+         (*it).lock()->Update();
+         ++it;
+      } else {
+         it = colliderList_.erase(it);
+      }
    }
 }

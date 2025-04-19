@@ -8,11 +8,11 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
    this->renderManager_ = CLEYERA::Manager::RenderManager::GetInstance();
    this->inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
 
-   //デフォルトモデル
+   // デフォルトモデル
    uint32_t handleSphere = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel("Resources/Model/system/Sphere", "Sphere");
    modelHandle_ = handleSphere;
 
-   //オブジェクトの生成、scaleなどのポインタセット
+   // オブジェクトの生成、scaleなどのポインタセット
    gameObject_ = std::make_shared<CLEYERA::Model3d::Game3dObject>();
    gameObject_->Create(modelHandle_);
    gameObject_->SetScale(scale_);
@@ -20,8 +20,8 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
    gameObject_->SetTranslate(translate_);
    gameObject_->SetName(name_);
    gameObject_->Update();
-   
-   //各マネージャーへのセット
+
+   // 各マネージャーへのセット
    objectManager_->AddObject(this->gameObject_);
    renderManager_->PushObj(this->gameObject_);
 }
@@ -64,6 +64,8 @@ void CLEYERA::Component::ObjectComponent::TransformUpdate() {
    using Vec3 = Math::Vector::Vec3;
 
    Vec3 totalForce = force_;
+   force_ = {};
+
    //// 加速度 = 力 / 質量（F = ma → a = F/m）
    Vec3 acceleration = {};
    if (mass_ != 0.0f && mass_ >= 0.0f) {

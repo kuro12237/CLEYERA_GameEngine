@@ -1,7 +1,8 @@
 #pragma once
-#include"CLEYERA.h"
+#include "CLEYERA.h"
+#include"../IPlayer.h"
 
-class PlayerCamera:public CLEYERA::Component::CameraCompornent {
+class PlayerCamera : public CLEYERA::Component::CameraCompornent ,public IPlayer{
  public:
    PlayerCamera() {};
    ~PlayerCamera() {};
@@ -10,5 +11,11 @@ class PlayerCamera:public CLEYERA::Component::CameraCompornent {
 
    void Update() override;
 
+   void SetTarget(const Math::Vector::Vec3 &target) { target_ = &target; };
+
  private:
+   void ImGuiFunc();
+
+   const Math::Vector::Vec3 *target_ = nullptr;
+   Math::Vector::Vec3 offset_{};
 };

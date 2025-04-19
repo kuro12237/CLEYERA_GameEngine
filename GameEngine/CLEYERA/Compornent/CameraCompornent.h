@@ -40,12 +40,14 @@ class CameraCompornent {
    /// </summary>
    void CreateJsonSystem(const std::string &fileGroupName);
 
+   void SetImGuiFunc(std::function<void(CameraCompornent &camera)> func) { imGuiFunc_ = func; }
+
    std::string name_ = "";
 
    Manager::ColliderSystem *colliderSystem_ = nullptr;
    Manager::InputManager *inputManager_ = nullptr;
 
-   // std::function<void> ImGuiFunc_ = nullptr;
+   std::function<void(CameraCompornent& camera)> imGuiFunc_ = nullptr;
 
    /// <summary>
    /// 切り替えたいときこの関数を呼び出す

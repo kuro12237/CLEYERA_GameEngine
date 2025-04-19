@@ -6,9 +6,5 @@ class IPlayer {
    IPlayer() {};
    virtual ~IPlayer() {};
 
-
-
-
-
  private:
 };
