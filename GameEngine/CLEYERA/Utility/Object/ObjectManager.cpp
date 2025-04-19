@@ -2,20 +2,29 @@
 
 void CLEYERA::Manager::ObjectManager::Update() {
 
-   for (auto object : objectList_) {
-      if (object.expired()) {
-         continue;
+
+   for (auto it = objectList_.begin(); it != objectList_.end();) {
+
+      if (!(*it).expired()) {
+
+         (*it).lock()->Update();
+         ++it;
+      } else {
+         it = objectList_.erase(it);
       }
-      object.lock()->Update();
    }
 }
 
 void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {
 
-   for (auto object : objectList_) {
-      if (object.expired()) {
-         continue;
+    for (auto it = objectList_.begin(); it != objectList_.end();) {
+
+      if (!(*it).expired()) {
+
+         (*it).lock()->ImGuiUpdate();
+         ++it;
+      } else {
+         it = objectList_.erase(it);
       }
-      object.lock()->ImGuiUpdate();
    }
 }

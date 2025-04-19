@@ -27,6 +27,12 @@ struct Vec2 {
   Vec2 operator*(const Vec2 &other) const {
     return Vec2{x * other.x, y * other.y};
   }
+  // *= オペレーター
+  Vec2 &operator*=(const Vec2 &other) {
+    x *= other.x;
+    y *= other.y;
+    return *this;
+  }
 
   // 割り算オペレーター
   Vec2 operator/(const Vec2 &other) const {

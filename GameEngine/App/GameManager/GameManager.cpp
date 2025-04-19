@@ -36,7 +36,7 @@ void GameManager::Run() {
 #pragma region ImGui
 
       scene_->ImGuiUpdate();
-      //engine_->ImGuiUpdate();
+      engine_->ImGuiUpdate();
 #pragma endregion
 
 #pragma region 更新

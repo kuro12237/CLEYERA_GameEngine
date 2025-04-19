@@ -28,6 +28,10 @@ void CLEYERA::Component::CameraCompornent::ImGuiUpdate() {
          jsonSystem_->ImGuiUpdate();
       }
 
+      if (imGuiFunc_) {
+         imGuiFunc_(*this);
+      }
+
       ImGui::TreePop();
    }
 }

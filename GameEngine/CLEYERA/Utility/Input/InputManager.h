@@ -84,6 +84,9 @@ class InputManager {
    /// <returns>押し込まれている場合はtrue</returns>
    bool IsRightTriggerPressed(uint8_t threshold = 30) { return controller_->IsRightTriggerPressed(threshold); }
 
+   bool IsLJoystickActive() { return controller_->IsLJoystickActive(); }
+   bool IsRJoystickActive() { return controller_->IsRJoystickActive(); }
+
  private:
    std::unique_ptr<Util::InputKeyBord> keyBord_ = nullptr;
    std::unique_ptr<Util::InputController> controller_ = nullptr;
