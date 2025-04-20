@@ -6,6 +6,7 @@
 #include "OBBCollider.h"
 
 #include "../RenderManager/RenderManager.h"
+#include"Octree/Octree.h"
 
 namespace CLEYERA {
 
@@ -31,6 +32,8 @@ class ColliderSystem {
    bool isLineDraw_ = true;
 
    std::list<std::weak_ptr<Util::Collider::Collider>> colliderList_;
+
+   std::unique_ptr<CLEYERA::Util::Collider::Octree> octree_;
 
 #pragma region Single
 

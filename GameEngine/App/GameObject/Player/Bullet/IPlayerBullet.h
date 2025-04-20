@@ -22,6 +22,6 @@ class IPlayerBullet : public CLEYERA::Component::ObjectComponent {
    bool isDeadFlag_ = false;
 
    uint32_t timer_ = 0;
-   uint32_t maxTimer_ = 2;
+   uint32_t maxTimer_ = 20;
    float flame_ = 0.0f;
 };
