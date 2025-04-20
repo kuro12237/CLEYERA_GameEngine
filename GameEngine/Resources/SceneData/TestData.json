@@ -2,6 +2,57 @@
     "name": "scene",
     "objects": [
         {
+            "type": "MESH",
+            "name": "球",
+            "file_name": "Sphere",
+            "Directory_name": "Resources/Model/Sphere/",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    0.0,
+                    0.0,
+                    4.992338180541992
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "House",
+            "file_name": "House",
+            "Directory_name": "Resources/Model/House/",
+            "ModelFileType": "obj",
+            "DrawType": "Instancing",
+            "InstancingObjName": "Map",
+            "transform": {
+                "translate": [
+                    17.156620025634766,
+                    0.0,
+                    -0.3276057243347168
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
             "type": "LIGHT",
             "name": "Light",
             "transform": {
