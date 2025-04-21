@@ -7,7 +7,7 @@ CLEYERA::Manager::ModelManager *CLEYERA::Manager::ModelManager::GetInstance() {
 
 uint32_t CLEYERA::Manager::ModelManager::LoadModel(const std::string &directory, const std::string fileName) {
    Assimp::Importer importer;
-   std::string file = directory + "/" + fileName + ".obj";
+   std::string file =  directory + "/" + fileName + ".obj";
 
    //読み込み済みの場合
    if (datas_.find(file) != datas_.end()) {

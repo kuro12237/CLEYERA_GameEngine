@@ -3,58 +3,68 @@
 using namespace CLEYERA;
 
 void PlayerCore::Init() {
-    //基本クラス名をマクロ通して入れる
+   // 基本クラス名をマクロ通して入れる
    name_ = VAR_NAME(PlayerCore);
 
-   //modelの設定
+   // modelの設定
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
    gameObject_->ChangeModel(modelHandle);
 
-   ///コライダー作成:現状OBB飲み
+   /// コライダー作成:現状OBB飲み
    CreateCollider(ColliderType::OBB);
 
-   //jsonのファイル等ヲ作成
+   // jsonのファイル作成
    this->CreateJsonSystem("Player/");
 
-   //jsonに読み書きする変数の設定
+   // jsonに読み書きする変数の設定
    SetValue<Math::Vector::Vec3>("t", translate_);
    translate_ = GetValue<Math::Vector::Vec3>("t");
 
+   this->ChangeState(std::make_unique<PlayerMoveState>());
 }
 
 void PlayerCore::Update() {
 
-   Math::Vector::Vec3 direction = {}; // 入力方向ベクトル
-
-   float baseSpeed = 0.1f;
-   if (inputManager_->PushKey(DIK_LSHIFT)) {
-      baseSpeed *= 5.0f;
-   }
-
-   // 入力方向をベクトルで表現
-   if (inputManager_->PushKey(DIK_W))
-      direction.z += 1.0f;
-   if (inputManager_->PushKey(DIK_S))
-      direction.z -= 1.0f;
-   if (inputManager_->PushKey(DIK_D))
-      direction.x += 1.0f;
-   if (inputManager_->PushKey(DIK_A))
-      direction.x -= 1.0f;
-
-   // 正規化（斜め移動を速くしすぎないように）
-   float len = std::sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
-   if (len > 0.0f) {
-      direction.x /= len;
-      direction.y /= len;
-      direction.z /= len;
-   }
-   force_.x = direction.x * baseSpeed;
-   force_.z = direction.z * baseSpeed;
-
-   if (inputManager_->PushKeyPressed(DIK_SPACE)) {
-
-      velocity_.y += 3.0f;
+   if (state_) {
+      state_->Update();
    }
 
    TransformUpdate();
+}
+
+void PlayerCore::ChangeState(std::unique_ptr<IPlayerState> newState) {
+
+   // 現在のステートと新しいのが同じステートだった場合
+   if (state_ && typeid(*state_) == typeid(*newState)) {
+      return;
+   }
+
+
+
+   state_.reset();
+   state_ = std::move(newState);
+   state_->SetCore(this);
+   state_->Init();
+   state_->Update();
+}
+
+void PlayerCore::Move(const Math::Vector::Vec2 &speed) {
+
+   Math::Vector::Vec2 joyR = inputManager_->JoyLPos();
+
+   Math::Vector::Vec2 result = joyR * speed;
+   force_.x = result.x;
+   force_.z = result.y;
+
+   if (inputManager_->PushBotton(XINPUT_GAMEPAD_RIGHT_SHOULDER)) {
+      force_.x *= 0.1f;
+      force_.z *= 0.1f;
+   }
+}
+
+void PlayerCore::Rotate() {
+
+   Math::Vector::Vec2 rot{};
+   rot.y = std::atan2(velocity_.x, velocity_.z);
+   rotate_.y = rot.y;
 }

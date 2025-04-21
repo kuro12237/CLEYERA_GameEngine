@@ -3,6 +3,8 @@
 CLEYERA::Component::CameraCompornent::CameraCompornent() {
 
    cameraManager_ = CLEYERA::Manager::CameraManager::GetInstance();
+   inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
+
 
    camera_ = std::make_shared<CLEYERA::Util::Camera>();
    camera_->Init();
@@ -22,8 +24,22 @@ void CLEYERA::Component::CameraCompornent::ImGuiUpdate() {
          ImGui::TreePop();
       }
 
+      if (jsonSystem_) {
+         jsonSystem_->ImGuiUpdate();
+      }
+
+      if (imGuiFunc_) {
+         imGuiFunc_(*this);
+      }
+
       ImGui::TreePop();
    }
+}
+
+void CLEYERA::Component::CameraCompornent::CreateJsonSystem(const std::string &fileGroupName) {
+
+   jsonSystem_ = std::make_unique<JsonCompornent>();
+   jsonSystem_->CreateJson(name_, fileGroupName);
 }
 
 void CLEYERA::Component::CameraCompornent::CameraChange() { cameraManager_->SetCamera(camera_); }

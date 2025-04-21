@@ -75,6 +75,7 @@ size_t CLEYERA::Base::DX::DXSRVDescripter::AddSRVCreatePtr(ID3D12Resource *buf, 
       indexFreeList_.pop_back();
    } else {
       newHandle = handleIndex_;
+      handleIndex_++;
    }
 
    // ずらして作成
@@ -93,6 +94,5 @@ size_t CLEYERA::Base::DX::DXSRVDescripter::AddSRVCreatePtr(ID3D12Resource *buf, 
       device_->CreateShaderResourceView(buf, &desc, cpuHandles_[newHandle]);
    }
 
-   handleIndex_++;
    return newHandle;
 }

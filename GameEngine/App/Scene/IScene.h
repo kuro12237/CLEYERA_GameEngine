@@ -52,6 +52,8 @@ class SceneCompornent {
    CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
 
    std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
+
+   std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objectComponents_;
    std::list<std::shared_ptr<CLEYERA::Component::ManagerCompornent>> managerCompornents_;
  private:
    std::weak_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_;

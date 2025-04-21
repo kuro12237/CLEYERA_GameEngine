@@ -24,7 +24,7 @@ void CLEYERA::Util::Collider::OBBCollider::Create() {
 }
 
 void CLEYERA::Util::Collider::OBBCollider::Update() {
-
+   center_ = *obb_.center;
  
    worldMatrix_ = Math::Matrix::Func::AffineMatrix(obb_.size, *obb_.rotate, *obb_.center);
 

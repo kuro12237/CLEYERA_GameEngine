@@ -6,6 +6,7 @@ void CLEYERA::Component::JsonCompornent::CreateJson(const std::string& name, con
    globalVariables_ = Manager::GlobalVariables::GetInstance();
 
    globalVariables_->CreateGroup(type, name,FileGroupName);
+
 }
 
 void CLEYERA::Component::JsonCompornent::ImGuiUpdate() { globalVariables_->ImGuiUpdate(*name_); }

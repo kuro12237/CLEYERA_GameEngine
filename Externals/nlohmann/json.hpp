@@ -6210,8 +6210,8 @@ class iterator_input_adapter
   public:
     using char_type = typename std::iterator_traits<IteratorType>::value_type;
 
-    iterator_input_adapter(IteratorType first, IteratorType last)
-        : current(std::move(first)), end(std::move(last))
+    iterator_input_adapter(IteratorType first, IteratorType alast)
+        : current(std::move(first)), end(std::move(alast))
     {}
 
     typename std::char_traits<char_type>::int_type get_character()
@@ -6416,9 +6416,9 @@ struct iterator_input_adapter_factory
     using char_type = typename std::iterator_traits<iterator_type>::value_type;
     using adapter_type = iterator_input_adapter<iterator_type>;
 
-    static adapter_type create(IteratorType first, IteratorType last)
+    static adapter_type create(IteratorType first, IteratorType alast)
     {
-        return adapter_type(std::move(first), std::move(last));
+        return adapter_type(std::move(first), std::move(alast));
     }
 };
 

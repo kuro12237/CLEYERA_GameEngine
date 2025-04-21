@@ -25,7 +25,6 @@
 #include <variant>
 #include <vector>
 
-#include <chrono>
 #include <cstring>
 #include <fstream>
 #include <iomanip>
@@ -49,7 +48,6 @@
 #include <dxgi1_5.h>
 #include <dxgi1_6.h>
 #include <dxgidebug.h>
-
 
 #include"../Externals/DirectXTex/DirectXTex/DirectXTex.h"
 #include"../Externals/DirectXTex/DirectXTex/d3dx12.h"
@@ -83,8 +81,6 @@ using namespace Microsoft::WRL;
 #include "math/MathInclude.h"
 #pragma comment(lib, "math.lib")
 
-
-
 #pragma endregion
 
 #pragma region assimp
@@ -98,6 +94,5 @@ using namespace Microsoft::WRL;
 #pragma region Json
 
 #include <json.hpp>
-
 
 #pragma endregion
