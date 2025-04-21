@@ -77,9 +77,6 @@ void EnemyManager::Init() {
       }
    }
 
-
-	//生成
-	
    
 }
 

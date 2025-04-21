@@ -250,6 +250,7 @@
     <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
     <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
     <ClInclude Include="App\GameObject\Enemy\State\BaseNormalEnemyState.h" />

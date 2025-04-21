@@ -8,6 +8,7 @@
 
 
 #include"CLEYERA.h"
+#include "Enemy/EnemyParameter.h"
 
 /// <summary>
 /// ボスの基底クラス
@@ -35,24 +36,8 @@ protected:
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};
 
-
-	/// <summary>
-	/// ボスの持っているスキルなど
-	/// </summary>
-	struct Status {
-
-		//体力
-        int32_t hp_ = 0;
-
-		//スキルの名前
-		std::string skillName;
-	};
-
-
-	//ステータス
-	Status status_ = {};
-
-
+	//パラメーター
+    EnemyParameter parameter_ = {};
 	//方向
     Math::Vector::Vec3 direction_ = {};
 

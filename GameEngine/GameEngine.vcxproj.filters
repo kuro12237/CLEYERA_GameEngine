@@ -647,6 +647,9 @@
     <ClInclude Include="App\Scene\EnemyDebugScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h">
+      <Filter>Project\Enemy\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />

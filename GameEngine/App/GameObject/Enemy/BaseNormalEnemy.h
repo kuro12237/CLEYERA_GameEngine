@@ -8,6 +8,7 @@
 
 #include"CLEYERA.h"
 #include "State/BaseNormalEnemyState.h"
+#include "Enemy/EnemyParameter.h"
 
 /// <summary>
 /// 敵の基底クラス
@@ -42,4 +43,6 @@ protected:
 	//状態
 	std::unique_ptr<BaseNormalEnemyState> currentState_ = nullptr;
 
+	// パラメーター
+        EnemyParameter parameter_ = {};
 };
