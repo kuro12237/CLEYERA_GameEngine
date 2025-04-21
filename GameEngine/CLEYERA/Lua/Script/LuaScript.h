@@ -72,13 +72,13 @@ inline LuaScript::LuaScript() : L_(luaL_newstate(), &lua_close)
 /// <summary>
 /// スクリプトの読み込み
 /// </summary>
-inline bool LuaScript::LoadScript(const std::string &file) { return false; }
+inline bool LuaScript::LoadScript([[maybe_unused]] const std::string &file) { return false; }
 
 
 /// <summary>
 /// スクリプトの再評価
 /// </summary>
-inline bool LuaScript::Reload(const std::string &file) { return false; }
+inline bool LuaScript::Reload([[maybe_unused]] const std::string &file) { return false; }
 
 
 /// <summary>
