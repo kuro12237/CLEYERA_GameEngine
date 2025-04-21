@@ -13,6 +13,6 @@ void NormalEnemyNoneMove::Initialize(){
 }
 
 
-void NormalEnemyNoneMove::Update(NormalEnemy* normalEnemy){
+void NormalEnemyNoneMove::Update([[maybe_unused]]NormalEnemy* normalEnemy){
 
 }
