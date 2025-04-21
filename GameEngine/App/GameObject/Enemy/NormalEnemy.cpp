@@ -12,9 +12,7 @@ void NormalEnemy::Init() {
 
    //コライダー作成
    CreateCollider(ColliderType::OBB);
-
    
-
 }
 
 void NormalEnemy::Update() {

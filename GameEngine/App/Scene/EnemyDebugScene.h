@@ -40,7 +40,6 @@ class EnemyDebugScene : public SceneCompornent {
  private:
 	//プレイヤー管理クラス
 	std::shared_ptr<PlayerManager> playerManager_ = nullptr;
-
 	//敵管理クラス
     std::shared_ptr<EnemyManager> enemyManager_ = nullptr;
 

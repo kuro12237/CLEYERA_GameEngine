@@ -26,7 +26,7 @@ public:
    /// <summary>
    /// 生成時の初期座標
    /// </summary>
-   /// <param name="position"></param>
+   /// <param name="position">座標</param>
    inline void SetInitialPosition(const Math::Vector::Vec3 &position) { 
 	   this->translate_ = position; 
    }

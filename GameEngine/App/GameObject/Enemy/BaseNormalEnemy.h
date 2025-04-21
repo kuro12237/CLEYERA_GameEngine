@@ -24,7 +24,7 @@ public:
    /// <summary>
    /// プレイヤーの座標
    /// </summary>
-   /// <param name="position"></param>
+   /// <param name="position">座標</param>
    inline void SetPlayerPosition(const Math::Vector::Vec3& position) { 
 	   this->playerPosition_ = position;
    }
@@ -32,7 +32,7 @@ public:
    /// <summary>
    /// 生成時の初期座標
    /// </summary>
-   /// <param name="position"></param>
+   /// <param name="position">座標</param>
    inline void SetInitialPosition(const Math::Vector::Vec3 & position) { 
 	   this->translate_ = position;
    }
@@ -44,5 +44,5 @@ protected:
 	std::unique_ptr<BaseNormalEnemyState> currentState_ = nullptr;
 
 	// パラメーター
-        EnemyParameter parameter_ = {};
+    EnemyParameter parameter_ = {};
 };
