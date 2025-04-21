@@ -18,7 +18,7 @@ class Collider {
    Collider() {};
    virtual ~Collider() {};
 
-   bool HitCall(const Collider &other);
+   bool HitCall(Collider *other);
 
    virtual void ColliderImGuiUpdate() = 0;
 
