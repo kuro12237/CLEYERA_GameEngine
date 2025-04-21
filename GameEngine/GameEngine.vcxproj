@@ -367,7 +367,6 @@
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
     <None Include="Resources\Shaders\Common\DirectionLight.hlsli" />
     <None Include="Resources\Shaders\Common\WtTransform.hlsli" />

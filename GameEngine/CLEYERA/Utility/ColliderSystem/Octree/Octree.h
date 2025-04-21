@@ -8,10 +8,10 @@ namespace Util {
 
 namespace Collider {
 
-class OctreeSpaceDivision {
+class Octree {
  public:
-   OctreeSpaceDivision() {};
-   ~OctreeSpaceDivision() {};
+   Octree() {};
+   ~Octree() {};
 
    // 初期化
    void Init();

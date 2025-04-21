@@ -87,7 +87,7 @@ void GameManager::Run() {
       commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-      // engine_->Draw();
+      //engine_->Draw();
 
       CLEYERA::Manager::RenderManager::GetInstance()->Draw3d();
 

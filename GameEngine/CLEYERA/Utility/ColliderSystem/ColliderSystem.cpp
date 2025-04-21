@@ -30,10 +30,38 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
          isLineDraw_ = true;
       }
    }
+
+   if (!isLineDraw_) {
+
+      for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
+         if (itr->expired()) {
+            continue;
+         }
+         auto collider = itr->lock();
+         RenderManager::GetInstance()->PopLine3d(collider->GetLine());
+      }
+      for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
+         if (itr->expired()) {
+            continue;
+         }
+         auto collider = itr->lock();
+
+         RenderManager::GetInstance()->PushLine3d(collider->GetLine());
+      }
+   }
 }
 void CLEYERA::Manager::ColliderSystem::Update() {
 
-   std::unique_ptr<Util::Collider::OctreeSpaceDivision> octree = std::make_unique<Util::Collider::OctreeSpaceDivision>();
+   // 各コライダーの更新
+   for (auto it = colliderList_.begin(); it != colliderList_.end();) {
+      if (!(*it).expired()) {
+         (*it).lock()->Update();
+         ++it;
+      } else {
+         it = colliderList_.erase(it);
+      }
+   }
+   std::unique_ptr<Util::Collider::Octree> octree = std::make_unique<Util::Collider::Octree>();
    octree->Init();
 
    std::unordered_map<int, std::vector<std::weak_ptr<Util::Collider::Collider>>> octreeGroups;
@@ -55,23 +83,22 @@ void CLEYERA::Manager::ColliderSystem::Update() {
             Util::Collider::system::OBB obbB = std::dynamic_pointer_cast<Util::Collider::OBBCollider>(group[j].lock())->GetOBB();
 
             if (Util::Collider::system::Func::OBBCheck(obbA, obbB)) {
-         
+
                group[i].lock()->HitCall(group[j].lock().get());
                group[j].lock()->HitCall(group[i].lock().get());
 
-
-               std::string message = "Failed open data file for write.";
-               MessageBoxA(nullptr, message.c_str(), "GlobalVariables", 0);
+               //std::string message = "Failed open data file for write.";
+               //MessageBoxA(nullptr, message.c_str(), "GlobalVariables", 0);
             }
          }
       }
    }
 
    //// 衝突判定
-   //for (auto &c : colliderList_) {
-   //   if (c.expired())
-   //      continue;
-   //   auto collider = c.lock();
+   // for (auto &c : colliderList_) {
+   //    if (c.expired())
+   //       continue;
+   //    auto collider = c.lock();
 
    //   // 範囲検索（中心点の周囲に存在するコライダーを取得）
    //   Math::Vector::Vec3 center = collider->GetCenter();
@@ -100,14 +127,4 @@ void CLEYERA::Manager::ColliderSystem::Update() {
    //      }
    //   }
    //}
-
-   // 各コライダーの更新
-   for (auto it = colliderList_.begin(); it != colliderList_.end();) {
-      if (!(*it).expired()) {
-         (*it).lock()->Update();
-         ++it;
-      } else {
-         it = colliderList_.erase(it);
-      }
-   }
 }
