@@ -218,7 +218,6 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
-    <ClCompile Include="CLEYERA\Lua\Manager\LuaManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp" />
     <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
@@ -301,7 +300,6 @@
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
     <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h" />
-    <ClInclude Include="CLEYERA\Lua\Manager\LuaManager.h" />
     <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h" />
     <ClInclude Include="CLEYERA\Utility\FileLoader\FileLoader.h" />
     <ClInclude Include="CLEYERA\Utility\Flame\Flame.h" />

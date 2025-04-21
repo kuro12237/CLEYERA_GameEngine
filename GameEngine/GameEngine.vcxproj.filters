@@ -300,9 +300,6 @@
     <ClCompile Include="App\Util\UtilFunc.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CLEYERA\Lua\Manager\LuaManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -597,9 +594,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Lua\Manager\LuaManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h">
