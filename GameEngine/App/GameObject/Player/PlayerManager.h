@@ -18,6 +18,15 @@ class PlayerManager : public CLEYERA::Component::ManagerCompornent {
 
    void Update() override;
 
+
+   /// <summary>
+   /// プレイヤーの基盤を取得
+   /// </summary>
+   /// <returns></returns>
+   inline PlayerCore* GetPlayerCore() const { 
+	   return core_.get();
+   }
+
  private:
    std::unique_ptr<PlayerCommandHandler> handler_ = nullptr;
 

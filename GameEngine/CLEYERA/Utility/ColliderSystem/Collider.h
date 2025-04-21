@@ -18,7 +18,7 @@ class Collider {
    Collider() {};
    virtual ~Collider() {};
 
-   bool HitCall(const Collider &other);
+   bool HitCall(Collider *other);
 
    virtual void ColliderImGuiUpdate() = 0;
 
@@ -34,6 +34,8 @@ class Collider {
 
    virtual void HitCallFunc(const Collider &other) = 0;
 
+   Math::Vector::Vec3 GetCenter() { return center_; }
+
  private:
  protected:
    ColliderType type_ = ColliderType::OBB;
@@ -42,6 +44,8 @@ class Collider {
    std::vector<Math::Vector::Vec3> positions_ = {};
 
    std::vector<Math::Vector::Vec4> colors_ = {};
+
+   Math::Vector::Vec3 center_{};
 
    Math::Matrix::Mat4x4 worldMatrix_ = {};
    bool isHit_ = false;

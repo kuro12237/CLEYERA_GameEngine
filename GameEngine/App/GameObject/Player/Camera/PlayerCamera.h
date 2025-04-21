@@ -12,7 +12,6 @@ class PlayerCamera : public CLEYERA::Component::CameraCompornent ,public IPlayer
    void Update() override;
 
    void SetTarget(const Math::Vector::Vec3 &target) { target_ = &target; };
-
  private:
    void ImGuiFunc();
 

@@ -13,6 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Project">
+      <UniqueIdentifier>{d1c52ae2-b5de-4c77-84be-ae4f03218801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy">
+      <UniqueIdentifier>{8801dd93-af59-412a-940d-cce9fcb56e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy\Boss">
+      <UniqueIdentifier>{06d3b70b-07fc-4b0e-b350-2720503a54b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy\Normal">
+      <UniqueIdentifier>{4c0ee6d2-7ebf-4f86-ab9c-6f9258fa6628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy\Normal\State">
+      <UniqueIdentifier>{f63e8779-b8b1-4762-909d-c0cef90b6ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy\Normal\Enemy1">
+      <UniqueIdentifier>{f38ae795-6b91-46c8-a2ce-6179045f280f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy\Boss\First">
+      <UniqueIdentifier>{ea414ee0-f78d-44a4-b6c6-f6c4aa97c0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\EnemyDebugScene">
+      <UniqueIdentifier>{c7c17e32-a2dc-498b-8071-16a2c842cdbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -264,6 +288,34 @@
     <ClCompile Include="CLEYERA\Compornent\JsonCompornent.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp">
+      <Filter>Project\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyAttack.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyMove.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyTracking.cpp">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp">
+      <Filter>Project\Enemy\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp">
+      <Filter>Project\Enemy\Normal\Enemy1</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
+      <Filter>Project\Enemy\Boss\First</Filter>
+    </ClCompile>
+    <ClCompile Include="App\Scene\EnemyDebugScene.cpp">
     <ClCompile Include="CLEYERA\Utility\Input\InputComtroller.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -300,6 +352,9 @@
     <ClCompile Include="App\Util\UtilFunc.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp">
+      <Filter>ソース ファイル</Filter>
+     </ClCompile>
     <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -641,12 +696,53 @@
     <ClInclude Include="App\Util\UtilFunc.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="CLEYERA\Utility\FileLoader\FileLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\EnemyManager.h">
+      <Filter>Project\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h">
+      <Filter>Project\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\BaseNormalEnemyState.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyAttack.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyMove.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyTracking.h">
+      <Filter>Project\Enemy\Normal\State</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h">
+      <Filter>Project\Enemy\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h">
+      <Filter>Project\Enemy\Normal\Enemy1</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">
+      <Filter>Project\Enemy\Boss\First</Filter>
+    </ClInclude>
+    <ClInclude Include="App\Scene\EnemyDebugScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h">
+      <Filter>Project\Enemy\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
     <None Include="Resources\Shaders\Common\Vert.hlsli" />
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
