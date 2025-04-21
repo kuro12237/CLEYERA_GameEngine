@@ -13,8 +13,6 @@
 /// 敵の基底クラス
 /// </summary>
 class BaseNormalEnemy : public CLEYERA::Component::ObjectComponent {
-
-
 public:
    /// <summary>
    /// 状態遷移
@@ -22,8 +20,17 @@ public:
    /// <param name="newState">新しい状態</param>
    void ChangeState(std::unique_ptr<BaseNormalEnemyState> newState);
 
-protected:
+   /// <summary>
+   /// プレイヤーの座標
+   /// </summary>
+   /// <param name="position"></param>
+   inline void SetPlayerPosition(const Math::Vector::Vec3& position) { 
+	   this->playerPosition_ = position;
+   }
 
+protected:
+   //プレイヤー座標
+   Math::Vector::Vec3 playerPosition_ = {};
 	//状態
 	std::unique_ptr<BaseNormalEnemyState> currentState_ = nullptr;
 

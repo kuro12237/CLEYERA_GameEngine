@@ -14,6 +14,11 @@
 
 
 /// <summary>
+/// プレイヤー管理クラス
+/// </summary>
+class PlayerManager;
+
+/// <summary>
 /// 敵管理クラス
 /// </summary>
 class EnemyManager : public CLEYERA::Component::ManagerCompornent {
@@ -42,6 +47,26 @@ class EnemyManager : public CLEYERA::Component::ManagerCompornent {
     void GenarateBossEnemyEnemy();
 
 private:
+    /// <summary>
+    /// ImGUiの表示
+    /// </summary>
+    void DisplayImGui();
+
+public:
+    /// <summary>
+    /// プレイヤー管理クラスの設定
+    /// </summary>
+    /// <param name="playerManager"></param>
+    inline void SetPlayerManager(PlayerManager *playerManager) { 
+		this->playerManager_ = playerManager;
+	}
+
+private:
+	//プレイヤー管理クラス
+    PlayerManager *playerManager_ = nullptr;
+	//座標
+    Math::Vector::Vec3 playerPosition_ = {};
+
 	//雑魚敵
 	std::list<std::unique_ptr<BaseNormalEnemy>> enemyList_;
 

@@ -19,6 +19,10 @@ void NormalEnemy::Init() {
 }
 
 void NormalEnemy::Update() {
+   // 方向を取得
+   const float_t SPEED = 0.005f;
+   velocity_ = (playerPosition_ - translate_) * SPEED;
+
 
 
 

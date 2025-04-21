@@ -10,6 +10,9 @@ void EnemyDebugScene::Init() {
 
    //敵管理クラスの生成
    enemyManager_ = std::make_unique<EnemyManager>();
+   //プレイヤー管理クラスの設定
+   enemyManager_->SetPlayerManager(playerManager_.get());
+   //コンポーネントに挿入
    managerCompornents_.push_back(enemyManager_);
 
 
