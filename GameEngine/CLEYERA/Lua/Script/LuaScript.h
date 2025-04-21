@@ -54,7 +54,7 @@ class LuaScript {
    /// <summary>
    /// スクリプトの読み込み＆エラーハンドリング処理
    /// </summary>
-   bool LoadFromFile(const string &file);
+   bool LoadFromFile(const std::string & file);
 
  private:
    // ステート
@@ -105,7 +105,7 @@ inline void LuaScript::SetReloadCallBack() {}
 /// <summary>
 /// スクリプトの読み込み＆エラーハンドリング処理
 /// </summary>
-inline bool LuaScript::LoadFromFile(const string &file) 
+inline bool LuaScript::LoadFromFile(const std::string &file) 
 { 
     if (luaL_dofile(L_.get(), file.c_str()) != LUA_OK) {
       std::cerr << "[Lua Error] Failed to load script: " << file << "\n" << lua_tostring(L_.get(), -1) << std::endl;
