@@ -32,15 +32,8 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
    }
 }
 void CLEYERA::Manager::ColliderSystem::Update() {
-   // Octree を初期化
-   octree_ = std::make_unique<Util::Collider::Octree>();
 
-   // Collider を Octree に登録
-   for (auto c : colliderList_) {
-      if (!c.expired()) {
-         octree_->Insert(c);
-      }
-   }
+
 
    using type = Util::Collider::ColliderType;
 
@@ -56,7 +49,7 @@ void CLEYERA::Manager::ColliderSystem::Update() {
       Math::Vector::Vec3 min = center - Math::Vector::Vec3(range,range,range);
       Math::Vector::Vec3 max = center + Math::Vector::Vec3(range,range,range);
 
-      auto candidates = octree_->Query(min, max);
+      auto candidates =colliderList_;
 
       for (const auto &other : candidates) {
          if (collider == other.lock())

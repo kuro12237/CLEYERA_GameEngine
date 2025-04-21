@@ -33,8 +33,7 @@ class ColliderSystem {
 
    std::list<std::weak_ptr<Util::Collider::Collider>> colliderList_;
 
-   std::unique_ptr<CLEYERA::Util::Collider::Octree> octree_;
-
+  
 #pragma region Single
 
    ColliderSystem() = default;
