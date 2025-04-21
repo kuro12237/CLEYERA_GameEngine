@@ -1,6 +1,8 @@
 #pragma once
-#include "CLEYERA.h"
 #include"../GameObject/EnvironmentObject/EnvironmentObject.h"
+
+
+#include <fstream>
 
 struct SceneObjData {
 

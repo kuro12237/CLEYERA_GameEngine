@@ -1,4 +1,5 @@
 #include "SceneLoader.h"
+#include"pch/Pch.h"
 
 void SceneLoader::LoadSceneData(std::string path) {
 
@@ -89,6 +90,11 @@ std::vector<std::shared_ptr<EnvironmentObject>> SceneLoader::SettingData(std::ve
    objDatas_.clear();
    return enviObjs;
 }
+
+void SceneLoader::SetParentObjects([[maybe_unused]] const std::shared_ptr<CLEYERA::Component::ObjectComponent> &obj, [[maybe_unused]] const std::vector<std::string> &parentNames, [[maybe_unused]] const std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs,
+                                   [[maybe_unused]] std::vector<std::shared_ptr<EnvironmentObject>> &environmentObjects) {}
+
+std::shared_ptr<EnvironmentObject> SceneLoader::CreateEnvironmentObject([[maybe_unused]] const SceneObjData &data, [[maybe_unused]] const std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs) { return std::shared_ptr<EnvironmentObject>(); }
 
 SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, std::string name) {
 
