@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(SolutionDir)..\Lua\LuaJIT\src\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(SolutionDir)..\Externals\LuaAssets\</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -123,9 +123,13 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)..\Externals\math\lib\Debug\</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\externals\assimp\lib\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc143-mtd.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)..\Externals\LuaAssets\lua51.dll" "$(TargetDir)lua51.dll"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -136,7 +140,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
@@ -146,9 +150,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\Math\lib\Release\;$(SolutionDir)..\Externals\assimp\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp-vc143-mt.lib;math.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\Math\lib\Release\;$(SolutionDir)..\Externals\assimp\lib\Release\;$(SolutionDir)..\Externals\LuaAssets\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc143-mt.lib;math.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(SolutionDir)..\Externals\LuaAssets\lua51.dll" "$(TargetDir)lua51.dll"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
