@@ -1,11 +1,11 @@
 #include "Collider.h"
 
-bool CLEYERA::Util::Collider::Collider::HitCall(const Collider &other) {
+bool CLEYERA::Util::Collider::Collider::HitCall(Collider *other) {
 
    for (size_t i = 0; i < colors_.size(); i++) {
       colors_[i] = {0.0f, 1.0f, 0.0f, 1.0f};
    }
    isHit_ = true;
-   HitCallFunc(other);
+   HitCallFunc(*other);
    return true;
 }

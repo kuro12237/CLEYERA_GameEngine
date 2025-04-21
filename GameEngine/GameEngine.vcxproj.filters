@@ -300,6 +300,9 @@
     <ClCompile Include="App\Util\UtilFunc.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp">
+      <Filter>ソース ファイル</Filter>
+     </ClCompile>
     <ClCompile Include="CLEYERA\Lua\Manager\LuaManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -647,12 +650,14 @@
     <ClInclude Include="App\Util\UtilFunc.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="CLEYERA\Utility\FileLoader\FileLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
     <None Include="Resources\Shaders\Common\Vert.hlsli" />
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />

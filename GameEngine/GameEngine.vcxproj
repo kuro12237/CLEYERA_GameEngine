@@ -218,6 +218,7 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp" />
     <ClCompile Include="CLEYERA\Lua\Manager\LuaManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp" />
     <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
@@ -300,6 +301,8 @@
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
+    <ClInclude Include="CLEYERA\Lua\kua.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h" />
     <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h" />
     <ClInclude Include="CLEYERA\Lua\Manager\LuaManager.h" />
     <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h" />
@@ -376,7 +379,6 @@
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
     <None Include="Resources\Shaders\Common\DirectionLight.hlsli" />
     <None Include="Resources\Shaders\Common\WtTransform.hlsli" />
