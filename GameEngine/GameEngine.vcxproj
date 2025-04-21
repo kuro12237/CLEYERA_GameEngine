@@ -228,6 +228,8 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.cpp" />
+    <ClCompile Include="CLEYERA\PostEffect\PostEffect.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp" />
     <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp" />
     <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
@@ -323,7 +325,9 @@
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.h" />
     <ClInclude Include="CLEYERA\Lua\kua.h" />
+    <ClInclude Include="CLEYERA\PostEffect\PostEffect.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h" />
     <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h" />
     <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h" />
@@ -406,11 +410,21 @@
     <None Include="Resources\Shaders\Common\Vert.hlsli">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </None>
+    <None Include="Resources\Shaders\PostEffect\Copy\PostEffectCopy_InOut.hlsli" />
+    <None Include="Resources\Shaders\PostEffect\Copy\PostEffectCopy_PS_Output.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Line3d\LineDraw.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
     <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Resources\Shaders\PostEffect\Copy\PostEffectCopy_VS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
     <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_PS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
