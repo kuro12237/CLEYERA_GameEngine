@@ -30,7 +30,7 @@ public:
 	/// <summary>
 	/// 更新
 	/// </summary>
-	virtual void Update(NormalEnemy* strongEnemy) = 0;
+	virtual void Update(NormalEnemy* normalEnemy) = 0;
 
 	/// <summary>
 	/// デストラクタ

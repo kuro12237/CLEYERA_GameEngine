@@ -13,8 +13,26 @@
 /// 最初の敵
 /// </summary>
 class FirstBossEnemy : public BaseBossEnemy {
+ public:
+	/// <summary>
+   /// 最初のボス
+   /// </summary>
+   FirstBossEnemy() = default;
 
+   /// <summary>
+   /// 初期化
+   /// </summary>
+   void Init() override;
 
+   /// <summary>
+   /// 更新
+   /// </summary>
+   void Update() override;
+
+   /// <summary>
+   /// デストラクタ
+   /// </summary>
+   ~FirstBossEnemy() override = default;
 
 
 

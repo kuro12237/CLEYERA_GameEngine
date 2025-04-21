@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
     <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyAttack.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="App\GameObject\Player\PlayerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\Scene\DebugScene.cpp" />
+    <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
     <ClCompile Include="App\Scene\GameScene.cpp" />
     <ClCompile Include="App\Scene\IScene.cpp" />
     <ClCompile Include="App\GameObject\Test\TestObject.cpp" />
@@ -245,7 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
-    <ClInclude Include="App\GameObject\Enemy\IEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h" />
@@ -261,6 +263,7 @@
     <ClInclude Include="App\GameObject\Player\PlayerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
     <ClInclude Include="App\Scene\DebugScene.h" />
+    <ClInclude Include="App\Scene\EnemyDebugScene.h" />
     <ClInclude Include="App\Scene\GameScene.h" />
     <ClInclude Include="App\Scene\IScene.h" />
     <ClInclude Include="App\GameObject\Test\TestObject.h" />

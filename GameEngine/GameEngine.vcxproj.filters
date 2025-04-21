@@ -28,6 +28,15 @@
     <Filter Include="Project\Enemy\Normal\State">
       <UniqueIdentifier>{f63e8779-b8b1-4762-909d-c0cef90b6ed5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Project\Enemy\Normal\Enemy1">
+      <UniqueIdentifier>{f38ae795-6b91-46c8-a2ce-6179045f280f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\Enemy\Boss\First">
+      <UniqueIdentifier>{ea414ee0-f78d-44a4-b6c6-f6c4aa97c0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Project\EnemyDebugScene">
+      <UniqueIdentifier>{c7c17e32-a2dc-498b-8071-16a2c842cdbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -282,12 +291,6 @@
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp">
       <Filter>Project\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp">
-      <Filter>Project\Enemy\Normal</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyAttack.cpp">
       <Filter>Project\Enemy\Normal\State</Filter>
     </ClCompile>
@@ -302,6 +305,18 @@
     </ClCompile>
     <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyTracking.cpp">
       <Filter>Project\Enemy\Normal\State</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp">
+      <Filter>Project\Enemy\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp">
+      <Filter>Project\Enemy\Normal\Enemy1</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
+      <Filter>Project\Enemy\Boss\First</Filter>
+    </ClCompile>
+    <ClCompile Include="App\Scene\EnemyDebugScene.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -602,12 +617,6 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h">
       <Filter>Project\Enemy\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h">
-      <Filter>Project\Enemy\Normal</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\State\BaseNormalEnemyState.h">
       <Filter>Project\Enemy\Normal\State</Filter>
     </ClInclude>
@@ -626,8 +635,17 @@
     <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyTracking.h">
       <Filter>Project\Enemy\Normal\State</Filter>
     </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\IEnemy.h">
-      <Filter>Project\Enemy</Filter>
+    <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h">
+      <Filter>Project\Enemy\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h">
+      <Filter>Project\Enemy\Normal\Enemy1</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">
+      <Filter>Project\Enemy\Boss\First</Filter>
+    </ClInclude>
+    <ClInclude Include="App\Scene\EnemyDebugScene.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

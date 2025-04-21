@@ -7,12 +7,12 @@
  */
 
 
-#include "IEnemy.h"
+#include "Enemy/BaseNormalEnemy.h"
 
 /// <summary>
 /// 通常の敵
 /// </summary>
-class NormalEnemy : public IEnemy {
+class NormalEnemy : public BaseNormalEnemy {
 public:
 	/// <summary>
 	/// 通常の敵

@@ -14,7 +14,7 @@ void NormalEnemy::Init() {
    CreateCollider(ColliderType::OBB);
 
    //座標の設定
-   translate_ = {.x = 0.0f, .y = 0.0f, .z = 5.0f};
+   translate_ = {.x = 0.0f, .y = 0.5f, .z = 5.0f};
 
 }
 

@@ -8,26 +8,27 @@
 
 #include <list>
 
-#include "NormalEnemy.h"
+#include "Enemy/BaseNormalEnemy.h"
 #include "Boss/BaseBossEnemy.h"
-
+#include "CLEYERA.h"
 
 
 /// <summary>
 /// 敵管理クラス
 /// </summary>
-class EnemyManager {
-public:
+class EnemyManager : public CLEYERA::Component::ManagerCompornent {
+ public:
+
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize();
+	void Init()override;
 
 	/// <summary>
 	/// 更新
 	/// </summary>
-	void Update();
+	void Update()override;
 
 
 	/// <summary>
@@ -42,7 +43,7 @@ public:
 
 private:
 	//雑魚敵
-	std::list<std::unique_ptr<IEnemy>> enemyList_;
+	std::list<std::unique_ptr<BaseNormalEnemy>> enemyList_;
 
 	//ボス敵
     std::list<std::unique_ptr<BaseBossEnemy>> bossEnemyList_;

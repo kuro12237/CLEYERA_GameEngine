@@ -3,15 +3,24 @@
 #include "NormalEnemy.h"
 #include "Boss/First/FirstBossEnemy.h"
 
-void EnemyManager::Initialize() {
+void EnemyManager::Init() {
 
-
-
-
+	//生成
+	GenarateEnemy();
+        GenarateBossEnemyEnemy();
 }
 
 void EnemyManager::Update() {
+   
+	for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
+		//通常の敵の更新
+		enemy->Update();
+	}
 
+	for (std::unique_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
+		//ボスの更新
+		enemy->Update();
+    }
 
 
 }
@@ -19,7 +28,7 @@ void EnemyManager::Update() {
 void EnemyManager::GenarateEnemy() {
 
 	// 敵の生成
-   std::unique_ptr<IEnemy> enemy = std::make_unique<NormalEnemy>();
+   std::unique_ptr<BaseNormalEnemy> enemy = std::make_unique<NormalEnemy>();
    // 初期化
    enemy->Init();
    // 挿入

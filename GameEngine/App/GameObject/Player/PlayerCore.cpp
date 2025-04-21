@@ -19,6 +19,7 @@ void PlayerCore::Init() {
    //jsonに読み書きする変数の設定
    SetValue<Math::Vector::Vec3>("t", translate_);
    translate_ = GetValue<Math::Vector::Vec3>("t");
+
 }
 
 void PlayerCore::Update() {
