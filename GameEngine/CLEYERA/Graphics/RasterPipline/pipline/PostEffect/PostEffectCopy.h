@@ -19,8 +19,8 @@ public:
   void SettingRootParam() override;
   void SettingSampler() override;
   void SettingInput() override;
+};
 
-}
 } // namespace system
 } // namespace Raster
 } // namespace Graphics
