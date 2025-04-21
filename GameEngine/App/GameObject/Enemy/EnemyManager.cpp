@@ -6,9 +6,85 @@
 
 void EnemyManager::Init() {
 
+	// 座標の設定
+   Math::Vector::Vec3 translate = {.x = 0.0f, .y = 0.5f, .z = 5.0f};
+   Math::Vector::Vec3 bossTranslate = {.x = -10.0f, .y = 0.5f, .z = 5.0f};
+
+
+   // CSVManagerクラスとか作ってまとめた方が賢いかも
+   // まとめたいね
+   std::ifstream file;
+   file.open(csvPath);
+   // 開かなかったら止まる
+   assert(file.is_open());
+
+   // ファイルの内容を文字列ストリームにコピー
+   enemyPositionsFromCSV_ << file.rdbuf();
+   // ファイルを閉じる
+   file.close();
+
+   // 1行分の文字列を入れる変数
+   std::string line;
+
+   // コマンド実行ループ
+   while (std::getline(enemyPositionsFromCSV_, line)) {
+
+      // 1行分の文字列をストリームに変換して解析しやすくする
+      std::istringstream lineStream(line);
+
+      std::string word;
+      //,区切りで行の先頭文字列を取得
+      std::getline(lineStream, word, ',');
+
+      // 「//」があった行の場合コメントなので飛ばす
+      if (word.find("//") == 0) {
+         // コメントは飛ばす
+         continue;
+      }
+
+      // 通常の敵の場合
+      if (word.find("NormalEnemy") == 0) {
+         Vector3 position = {};
+         // X座標
+         std::getline(lineStream, word, ',');
+         position.x = static_cast<float>(std::atof(word.c_str()));
+
+         // Y座標
+         std::getline(lineStream, word, ',');
+         position.y = static_cast<float>(std::atof(word.c_str()));
+
+         // Z座標
+         std::getline(lineStream, word, ',');
+         position.z = static_cast<float>(std::atof(word.c_str()));
+
+         // 生成
+         GenarateEnemy(translate);
+
+      }
+      // 強敵の場合
+      else if (word.find("StrongEnemy") == 0) {
+         Vector3 position = {};
+         // X座標
+         std::getline(lineStream, word, ',');
+         position.x = static_cast<float>(std::atof(word.c_str()));
+
+         // Y座標
+         std::getline(lineStream, word, ',');
+         position.y = static_cast<float>(std::atof(word.c_str()));
+
+         // Z座標
+         std::getline(lineStream, word, ',');
+         position.z = static_cast<float>(std::atof(word.c_str()));
+
+         // 生成
+         // GenarateBossEnemyEnemy(bossTranslate);
+      }
+   }
+
+
 	//生成
-	GenarateEnemy();
-    GenarateBossEnemyEnemy();
+	
+   
 }
 
 void EnemyManager::Update() {
@@ -40,21 +116,26 @@ void EnemyManager::Update() {
 
 }
 
-void EnemyManager::GenarateEnemy() {
+void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
 
 	// 敵の生成
    std::unique_ptr<BaseNormalEnemy> enemy = std::make_unique<NormalEnemy>();
    // 初期化
    enemy->Init();
+   //座標の設定
+   enemy->SetInitialPosition(position);
+
    // 挿入
    enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenarateBossEnemyEnemy() {
+void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
    // ボスの生成
    std::unique_ptr<BaseBossEnemy> enemy = std::make_unique<FirstBossEnemy>();
    // 初期化
    enemy->Init();
+   // 座標の設定
+   enemy->SetInitialPosition(position);
    // 挿入
    bossEnemyList_.push_back(std::move(enemy));
 }

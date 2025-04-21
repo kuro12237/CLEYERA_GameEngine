@@ -18,8 +18,17 @@ public:
    /// プレイヤーの座標
    /// </summary>
    /// <param name="position"></param>
-   inline void SetPlayerPosition(const Math::Vector::Vec3 &position) { this->playerPosition_ = position; }
+   inline void SetPlayerPosition(const Math::Vector::Vec3 &position) { 
+	   this->playerPosition_ = position; 
+   }
 
+   /// <summary>
+   /// 生成時の初期座標
+   /// </summary>
+   /// <param name="position"></param>
+   inline void SetInitialPosition(const Math::Vector::Vec3 &position) { 
+	   this->translate_ = position; 
+   }
 
 protected:
 

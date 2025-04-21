@@ -36,15 +36,17 @@ class EnemyManager : public CLEYERA::Component::ManagerCompornent {
 	void Update()override;
 
 
-	/// <summary>
-	/// 雑魚敵
-	/// </summary>
-	void GenarateEnemy();
+    /// <summary>
+    /// 雑魚敵
+    /// </summary>
+    /// <param name="position"></param>
+    void GenarateEnemy(const Math::Vector::Vec3 &position);
 
-	/// <summary>
-	/// ボス敵
-	/// </summary>
-    void GenarateBossEnemyEnemy();
+    /// <summary>
+    /// ボス敵
+    /// </summary>
+    /// <param name="position"></param>
+    void GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position);
 
 private:
     /// <summary>
@@ -73,6 +75,8 @@ private:
 	//ボス敵
     std::list<std::unique_ptr<BaseBossEnemy>> bossEnemyList_;
 
+    // 生成の文字列を入れる
+    std::stringstream enemyPositionsFromCSV_;
 
 
 };
