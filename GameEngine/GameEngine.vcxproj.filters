@@ -593,7 +593,13 @@
     <ClInclude Include="CLEYERA\Compornent\JsonCompornent.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CLEYERA\Lua\kua.h">
+    <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Lua\Manager\LuaManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CLEYERA\Utility\Input\InputComtroller.h">
