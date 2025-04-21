@@ -6,15 +6,10 @@
 
 void EnemyManager::Init() {
 
-	// 座標の設定
-   Math::Vector::Vec3 translate = {.x = 0.0f, .y = 0.5f, .z = 5.0f};
-   Math::Vector::Vec3 bossTranslate = {.x = -10.0f, .y = 0.5f, .z = 5.0f};
 
 
-   // CSVManagerクラスとか作ってまとめた方が賢いかも
-   // まとめたいね
    std::ifstream file;
-   file.open(csvPath);
+   file.open("Resources/Configs/Entitiys/Enemy/EnemyInitialPosition.csv");
    // 開かなかったら止まる
    assert(file.is_open());
 
@@ -44,7 +39,7 @@ void EnemyManager::Init() {
 
       // 通常の敵の場合
       if (word.find("NormalEnemy") == 0) {
-         Vector3 position = {};
+         Math::Vector::Vec3 position = {};
          // X座標
          std::getline(lineStream, word, ',');
          position.x = static_cast<float>(std::atof(word.c_str()));
@@ -57,13 +52,14 @@ void EnemyManager::Init() {
          std::getline(lineStream, word, ',');
          position.z = static_cast<float>(std::atof(word.c_str()));
 
+         position.y = 0.5f;
          // 生成
-         GenarateEnemy(translate);
+         GenarateEnemy(position);
 
       }
       // 強敵の場合
       else if (word.find("StrongEnemy") == 0) {
-         Vector3 position = {};
+         Math::Vector::Vec3 position = {};
          // X座標
          std::getline(lineStream, word, ',');
          position.x = static_cast<float>(std::atof(word.c_str()));
@@ -75,9 +71,9 @@ void EnemyManager::Init() {
          // Z座標
          std::getline(lineStream, word, ',');
          position.z = static_cast<float>(std::atof(word.c_str()));
-
+         position.y = 0.5f;
          // 生成
-         // GenarateBossEnemyEnemy(bossTranslate);
+         GenarateBossEnemyEnemy(position);
       }
    }
 
