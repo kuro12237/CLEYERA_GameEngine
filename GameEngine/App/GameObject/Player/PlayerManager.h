@@ -35,6 +35,4 @@ private:
 	std::shared_ptr<PlayerCamera> camera_ = nullptr;
 	std::shared_ptr<PlayerBulletManager> bulletManager_ = nullptr;
 
-	std::unique_ptr<LuaScript> testLua_;
-
 };

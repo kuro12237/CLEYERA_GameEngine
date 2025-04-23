@@ -27,8 +27,6 @@ void PlayerManager::Init() {
    // ペアレント
    camera_->SetTarget(core_->GetTranslate());
 
-   testLua_ = std::make_unique<LuaScript>();
-   testLua_->LoadScript("LuaScript/Dev", "Dev.lua");
 }
 
 void PlayerManager::Update() {
@@ -42,23 +40,4 @@ void PlayerManager::Update() {
 
    bulletManager_->Update();
 
-
-   ImGui::Begin("TestLua");
-   int hp = testLua_->GetVariable<int>("Data.hp");
-   float attack = testLua_->GetVariable<float>("Data.attack");
-   std::string state = testLua_->GetVariable<std::string>("Data.state");
-   
-   int num = testLua_->GetVariable<int>("Data.num");
-   std::optional<std::string> func = testLua_->CallFunction<std::string>("GetStageFileName", num);
-   
-   ImGui::Text("hp = %d", hp);
-   
-   ImGui::Text("attack = %f", attack);
-   ImGui::Text("state = %s", state.c_str());
-   ImGui::Text("num = %d", num);
-   ImGui::Text("string = %s", func.value().c_str());
-   
-   ImGui::End();
-   
-   testLua_->MonitorScript();
 }
