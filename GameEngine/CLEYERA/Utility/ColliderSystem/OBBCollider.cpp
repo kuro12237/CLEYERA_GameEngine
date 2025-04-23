@@ -54,3 +54,10 @@ void CLEYERA::Util::Collider::OBBCollider::ColliderImGuiUpdate(
     ImGui::TreePop();
   }
 }
+
+Math::Vector::Vec3 CLEYERA::Util::Collider::OBBCollider::CalcOverlapAABB(
+    std::weak_ptr<Collider> other) {
+  auto obbB = std::dynamic_pointer_cast<OBBCollider>(other.lock());
+
+  return Util::Collider::system::Func::PushOutAABB(this->obb_, obbB->GetOBB());
+}

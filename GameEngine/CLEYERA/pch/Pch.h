@@ -1,11 +1,13 @@
 #pragma once
 
 #define VAR_NAME(var) (#var)
+#define NOMINMAX
 
 /// コンパイルファイル
 
 #include <cassert>
 #include <thread>
+#include <algorithm>
 
 #include <cstdint>
 #include <format>

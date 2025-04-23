@@ -25,6 +25,12 @@ class PlayerCore : public CLEYERA::Component::ObjectComponent, public IPlayer {
 
    IPlayerState *GetState() { return state_.get(); }
 
+   /// <summary>
+   /// 当たった時に呼び出す関数
+   /// </summary>
+   void HitFunc(std::weak_ptr<CLEYERA::Component::ObjectComponent> other);
+
+
 #pragma region
 
    /// <summary>
