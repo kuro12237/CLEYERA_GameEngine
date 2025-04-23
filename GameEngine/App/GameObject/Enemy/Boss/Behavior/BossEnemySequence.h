@@ -1,9 +1,8 @@
 #pragma once
 
-
 /**
- * @file EnemyManager.h
- * @brief ボスの合成ノードクラス
+ * @file BossEnemySequence.h
+ * @brief ボスのシーケンスノードクラス
  * @author 茂木翼
  */
 
@@ -11,12 +10,12 @@
 #include "BossEnemyBehaviorNode.h"
 
 /// <summary>
-/// 合成ノード
+/// ボスのシーケンスノード
 /// </summary>
-class BossEnemySelector :BossEnemyBehaviorNode {
+class BossEnemySequence :BossEnemyBehaviorNode {
 public:
     /// <summary>
-    /// 子を追加
+    /// 追加
     /// </summary>
     /// <param name="child"></param>
     void AddChild(BossEnemyBehaviorNode * child) {
@@ -30,16 +29,14 @@ public:
     NodeState Tick() override {
         for ( auto & child : children_ ) {
             NodeState status = child->Tick();
-            if ( status != NodeState::Failure ) {
+            if ( status != NodeState::Success ) {
                 return status;
             }
         }
-        return NodeState::Failure;
+        return NodeState::Success;
     }
-
 
 private:
     //子ノード
     std::vector<BossEnemyBehaviorNode *> children_;
-
 };

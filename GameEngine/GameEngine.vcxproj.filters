@@ -251,6 +251,9 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h">
       <Filter>BossEnemy\Behavior</Filter>
     </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

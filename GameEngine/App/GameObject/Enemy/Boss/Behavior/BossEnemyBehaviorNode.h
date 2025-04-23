@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file BossEnemyBehaviorNode.h
+ * @brief ボスのノードクラス
+ * @author 茂木翼
+ */
+
+#include <vector>
 
 /// <summary>
 /// ノードの状態
