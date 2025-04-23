@@ -2,7 +2,6 @@
 
 #include "../Helpers/LuaHelpers.h"
 #include "pch/Pch.h"
-#include <lua.hpp>
 
 /* 個々のスクリプトを管理するクラス */
 class LuaScript {
