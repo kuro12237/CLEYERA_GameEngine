@@ -29,6 +29,21 @@ void PlayerCore::Update() {
       state_->Update();
    }
 
+   if ( inputManager_->PushKey(DIK_W) == true ) {
+       force_.z = 0.5f;
+   }
+   if ( inputManager_->PushKey(DIK_S) == true ) {
+       force_.z = -0.5f;
+   }
+   if ( inputManager_->PushKey(DIK_D) == true ) {
+       force_.x = 0.5f ;
+   }
+   if ( inputManager_->PushKey(DIK_A) == true ) {
+       force_.x = -0.5f;
+   }
+
+
+
    TransformUpdate();
 }
 
@@ -60,6 +75,9 @@ void PlayerCore::Move(const Math::Vector::Vec2 &speed) {
       force_.x *= 0.1f;
       force_.z *= 0.1f;
    }
+
+
+   
 }
 
 void PlayerCore::Rotate() {
