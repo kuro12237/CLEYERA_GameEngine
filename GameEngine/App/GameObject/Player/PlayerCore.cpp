@@ -21,6 +21,7 @@ void PlayerCore::Init() {
    translate_ = GetValue<Math::Vector::Vec3>("t");
 
    this->ChangeState(std::make_unique<PlayerMoveState>());
+
 }
 
 void PlayerCore::Update() {

@@ -28,7 +28,7 @@ class Collider {
 
    virtual void Update() = 0;
 
-   std::shared_ptr<CLEYERA::Model3d::Line3d> GetLine() { return line_; }
+   std::weak_ptr<CLEYERA::Model3d::Line3d> GetLine() const { return line_; }
 
    virtual void ColliderImGuiUpdate(const std::string &name) = 0;
 

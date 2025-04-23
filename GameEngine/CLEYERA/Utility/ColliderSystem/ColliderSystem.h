@@ -6,9 +6,13 @@
 #include "OBBCollider.h"
 
 #include "../RenderManager/RenderManager.h"
-#include"Octree/Octree.h"
+#include "Octree/Octree.h"
 
 namespace CLEYERA {
+
+namespace Component {
+class ObjectComponent;
+}
 
 namespace Manager {
 
@@ -16,30 +20,31 @@ namespace Manager {
 /// コライダーシステム
 /// </summary>
 class ColliderSystem {
- public:
-   static ColliderSystem *GetInstance() {
-      static ColliderSystem instance;
-      return &instance;
-   }
+public:
+  static ColliderSystem *GetInstance() {
+    static ColliderSystem instance;
+    return &instance;
+  }
 
-   void ImGuiUpdate();
+  void ImGuiUpdate();
 
-   void Update();
+  void Update();
 
-   void PushCollider(std::weak_ptr<Util::Collider::Collider> collider) { colliderList_.push_back(collider); }
+  void PushCollider(std::weak_ptr<Component::ObjectComponent> collider) {
+    objectList_.push_back(collider);
+  }
 
- private:
-   bool isLineDraw_ = true;
+private:
+  bool isLineDraw_ = true;
 
-   std::list<std::weak_ptr<Util::Collider::Collider>> colliderList_;
+  std::list<std::weak_ptr<Component::ObjectComponent>> objectList_;
 
-  
 #pragma region Single
 
-   ColliderSystem() = default;
-   ~ColliderSystem() = default;
-   ColliderSystem(const ColliderSystem &) = delete;
-   ColliderSystem &operator=(const ColliderSystem &) = delete;
+  ColliderSystem() = default;
+  ~ColliderSystem() = default;
+  ColliderSystem(const ColliderSystem &) = delete;
+  ColliderSystem &operator=(const ColliderSystem &) = delete;
 
 #pragma endregion
 };

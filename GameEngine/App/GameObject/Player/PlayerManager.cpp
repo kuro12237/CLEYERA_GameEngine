@@ -12,6 +12,7 @@ void PlayerManager::Init() {
    core_ = std::make_shared<PlayerCore>();
    this->objComponents_.push_back(core_);
 
+
    // 弾管理クラス
    bulletManager_ = std::make_shared<PlayerBulletManager>();
    bulletManager_->Init();
@@ -23,6 +24,8 @@ void PlayerManager::Init() {
 
    // 初期化
    this->ListInit();
+   // コライダーシステムに登録
+   colliderSystem_->PushCollider(core_);
 
    // ペアレント
    camera_->SetTarget(core_->GetTranslate());
