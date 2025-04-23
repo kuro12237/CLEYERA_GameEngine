@@ -22,7 +22,7 @@ public:
 	/// <summary>
 	/// スクリプトの読み込み
 	/// </summary>
-	bool LoadScript(const std::string & rootPath, const std::string & fileName);
+	void LoadScript(const std::string & rootPath, const std::string & fileName);
 
 	/// <summary>
 	/// スクリプトの変更を監視
@@ -82,7 +82,7 @@ private:
 /// <summary>
 /// コンストラクタ
 /// </summary>
-inline LuaScript::LuaScript() : L_(luaL_newstate(), &lua_close) 
+inline LuaScript::LuaScript() : L_(luaL_newstate(), &lua_close)
 {
 	luaL_openlibs(L_.get()); // Luaライブラリを開く
 }
@@ -90,25 +90,27 @@ inline LuaScript::LuaScript() : L_(luaL_newstate(), &lua_close)
 /// <summary>
 /// スクリプトの読み込み
 /// </summary>
-inline bool LuaScript::LoadScript(const std::string & rootPath, const std::string & fileName)
+inline void LuaScript::LoadScript(const std::string & rootPath, const std::string & fileName)
 {
-	// フルパス
+	// フルパスを構築
 	std::filesystem::path fullPath = std::filesystem::path("Resources") / rootPath / fileName;
 
 	// ファイルが存在するか確認
 	if ( !std::filesystem::exists(fullPath) ) {
-		std::cerr << "[Lua Error] Script file not found: " << fullPath << std::endl;
-		return;
+		std::string errorMsg = "[Lua Error] Script file not found: " + fullPath.string();
+		std::cerr << errorMsg << std::endl;
+		throw std::runtime_error(errorMsg);
 	}
 
+	// 実際のLuaファイルの読み込み
 	if ( !LoadFromFile(fullPath.string()) ) {
-		std::cerr << "[Lua Error] Failed to load script: " << fullPath << std::endl;
-		return;
+		std::string errorMsg = "[Lua Error] Failed to load script: " + fullPath.string();
+		std::cerr << errorMsg << std::endl;
+		throw std::runtime_error(errorMsg);
 	}
 
-	// フルパスを保存しておく
+	// 読み込み成功時の情報保存
 	fullPath_ = fullPath;
-	// ロード時を更新時刻にしておく
 	updateTime_ = std::filesystem::last_write_time(fullPath);
 }
 
@@ -234,9 +236,9 @@ template <typename T> inline T LuaScript::GetVariable(const std::string & varNam
 			return value;
 		}
 	}
-	else if constexpr ( std::is_same<T, Vector2>::value ) {
+	else if constexpr ( std::is_same<T, Math::Vector::Vec2>::value ) {
 		if ( lua_istable(L_.get(), -1) ) {
-			Vector2 vec;
+			Math::Vector::Vec2 vec;
 			lua_getfield(L_.get(), -1, "x");
 			vec.x = static_cast< float >(lua_tonumber(L_.get(), -1));
 			lua_pop(L_.get(), 1);
@@ -249,9 +251,9 @@ template <typename T> inline T LuaScript::GetVariable(const std::string & varNam
 			return vec;
 		}
 	}
-	else if constexpr ( std::is_same<T, Vector3>::value ) {
+	else if constexpr ( std::is_same<T, Math::Vector::Vec3>::value ) {
 		if ( lua_istable(L_.get(), -1) ) {
-			Vector3 vec;
+			Math::Vector::Vec3 vec;
 			lua_getfield(L_.get(), -1, "x");
 			vec.x = static_cast< float >(lua_tonumber(L_.get(), -1));
 			lua_pop(L_.get(), 1);
@@ -268,9 +270,9 @@ template <typename T> inline T LuaScript::GetVariable(const std::string & varNam
 			return vec;
 		}
 	}
-	else if constexpr ( std::is_same<T, Vector4>::value ) {
+	else if constexpr ( std::is_same<T, Math::Vector::Vec4>::value ) {
 		if ( lua_istable(L_.get(), -1) ) {
-			Vector4 vec;
+			Math::Vector::Vec4 vec;
 			lua_getfield(L_.get(), -1, "x");
 			vec.x = static_cast< float >(lua_tonumber(L_.get(), -1));
 			lua_pop(L_.get(), 1);
@@ -330,7 +332,6 @@ template <typename... Args> inline bool LuaScript::ExeFunction(const std::string
 	}
 	return true;
 }
-
 
 /// <summary>
 /// Lua側の関数を実行し、戻り値を受け取る
