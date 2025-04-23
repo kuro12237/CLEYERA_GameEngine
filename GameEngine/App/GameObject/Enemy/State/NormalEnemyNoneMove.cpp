@@ -14,5 +14,5 @@ void NormalEnemyNoneMove::Initialize(){
 
 
 void NormalEnemyNoneMove::Update(NormalEnemy* normalEnemy){
-
+	normalEnemy;
 }
