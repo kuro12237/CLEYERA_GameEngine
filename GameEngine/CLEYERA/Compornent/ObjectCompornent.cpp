@@ -13,9 +13,8 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
   this->inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
 
   // デフォルトモデル
-  uint32_t handleSphere =
-      CLEYERA::Manager::ModelManager::GetInstance()->LoadModel(
-          "Resources/Model/system/Sphere", "Sphere");
+  uint32_t handleSphere = CLEYERA::Manager::ModelManager::GetInstance()->LoadModel(
+      "Resources/Model/system/Sphere", "Sphere");
   modelHandle_ = handleSphere;
 
   // オブジェクトの生成、scaleなどのポインタセット
@@ -89,20 +88,16 @@ void CLEYERA::Component::ObjectComponent::TransformUpdate() {
   gameObject_->WorldMatUpdate();
 }
 
-void CLEYERA::Component::ObjectComponent::GravityUpdate(const float &g) {
-  velocity_.y += g;
-}
+void CLEYERA::Component::ObjectComponent::GravityUpdate(const float &g) { velocity_.y += g; }
 
-void CLEYERA::Component::ObjectComponent::TerrainHit(
-    const Math::Vector::Vec3 &pos) {
+void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &pos) {
   velocity_.y = velocity_.y * -bounceFactor_;
 
   translate_.y = pos.y;
   translate_.y += 1.0f;
 }
 
-void CLEYERA::Component::ObjectComponent::CreateCollider(
-    Util::Collider::ColliderType type) {
+void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {
 
   colliderSystem_ = CLEYERA::Manager::ColliderSystem::GetInstance();
   if (type == Util::Collider::ColliderType::OBB) {
@@ -113,12 +108,10 @@ void CLEYERA::Component::ObjectComponent::CreateCollider(
     c->SetRotate(&rotate_);
     c->SetWorldMatrix(&gameObject_->GetMat());
     collider_->Create();
-
   }
 }
 
-void CLEYERA::Component::ObjectComponent::CreateJsonSystem(
-    const std::string &fileGroupName) {
+void CLEYERA::Component::ObjectComponent::CreateJsonSystem(const std::string &fileGroupName) {
 
   jsonSystem_ = std::make_unique<JsonCompornent>();
   jsonSystem_->CreateJson(name_, fileGroupName);

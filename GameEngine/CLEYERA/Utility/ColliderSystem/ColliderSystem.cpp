@@ -37,20 +37,16 @@ void CLEYERA::Manager::ColliderSystem::Update() {
       it = objectList_.erase(it);
     }
   }
-  std::unique_ptr<Util::Collider::Octree> octree =
-      std::make_unique<Util::Collider::Octree>();
+  std::unique_ptr<Util::Collider::Octree> octree = std::make_unique<Util::Collider::Octree>();
   octree->Init();
 
-  std::unordered_map<int,
-                     std::vector<std::weak_ptr<Component::ObjectComponent>>>
-      octreeGroups;
+  std::unordered_map<int, std::vector<std::weak_ptr<Component::ObjectComponent>>> octreeGroups;
 
   for (auto obj : objectList_) {
     auto collider = obj.lock();
     Math::Vector::Vec3 min, max;
 
-    int morton =
-        octree->GetMortonNumber(collider->GetCollder().lock()->GetCenter());
+    int morton = octree->GetMortonNumber(collider->GetCollder().lock()->GetCenter());
     if (morton != -1) {
       octreeGroups[morton].push_back(collider);
     }
@@ -61,13 +57,12 @@ void CLEYERA::Manager::ColliderSystem::Update() {
   for (auto &[morton, group] : octreeGroups) {
     for (size_t i = 0; i < group.size(); ++i) {
       for (size_t j = i + 1; j < group.size(); ++j) {
-        Util::Collider::system::OBB obbA, obbB; 
+        Util::Collider::system::OBB obbA, obbB;
         if (!group[i].expired()) {
 
-          obbA =
-              std::dynamic_pointer_cast<Util::Collider::OBBCollider>(
-                  group[i].lock()->GetCollder().lock())
-                  ->GetOBB();
+          obbA = std::dynamic_pointer_cast<Util::Collider::OBBCollider>(
+                     group[i].lock()->GetCollder().lock())
+                     ->GetOBB();
         } else {
           continue;
         }

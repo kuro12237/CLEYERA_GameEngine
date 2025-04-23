@@ -26,8 +26,7 @@ void CLEYERA::Util::Collider::OBBCollider::Create() {
 void CLEYERA::Util::Collider::OBBCollider::Update() {
   center_ = *obb_.center;
 
-  worldMatrix_ =
-      Math::Matrix::Func::AffineMatrix(obb_.size, *obb_.rotate, *obb_.center);
+  worldMatrix_ = Math::Matrix::Func::AffineMatrix(obb_.size, *obb_.rotate, *obb_.center);
 
   obb_.CalculateOrientations();
   if (!isHit_) {
@@ -43,8 +42,7 @@ void CLEYERA::Util::Collider::OBBCollider::Update() {
   line_->Update();
 }
 
-void CLEYERA::Util::Collider::OBBCollider::ColliderImGuiUpdate(
-    const std::string &name) {
+void CLEYERA::Util::Collider::OBBCollider::ColliderImGuiUpdate(const std::string &name) {
   name;
 
   if (ImGui::TreeNode("Collider")) {
@@ -55,8 +53,8 @@ void CLEYERA::Util::Collider::OBBCollider::ColliderImGuiUpdate(
   }
 }
 
-Math::Vector::Vec3 CLEYERA::Util::Collider::OBBCollider::CalcOverlapAABB(
-    std::weak_ptr<Collider> other) {
+Math::Vector::Vec3
+CLEYERA::Util::Collider::OBBCollider::CalcOverlapAABB(std::weak_ptr<Collider> other) {
   auto obbB = std::dynamic_pointer_cast<OBBCollider>(other.lock());
 
   return Util::Collider::system::Func::PushOutAABB(this->obb_, obbB->GetOBB());
