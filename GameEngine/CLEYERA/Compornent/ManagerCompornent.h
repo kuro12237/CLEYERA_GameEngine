@@ -2,38 +2,44 @@
 
 #include "pch/Pch.h"
 
+#include "../Compornent/CameraCompornent.h"
 #include "ObjectCompornent.h"
-#include"../Compornent/CameraCompornent.h"
 
 namespace CLEYERA {
 
 namespace Component {
 
 class ManagerCompornent {
- public:
-   ManagerCompornent() {};
-   virtual ~ManagerCompornent() {};
+public:
+  ManagerCompornent() {
+    colliderSystem_ = Manager::ColliderSystem::GetInstance();
+  };
+  virtual ~ManagerCompornent() {};
 
-   virtual void Init() = 0;
+  virtual void Init() = 0;
 
-   virtual void Update() = 0;
+  virtual void Update() = 0;
 
-   void ImGuiUpdate() ;
+  void ImGuiUpdate();
 
 #pragma region Get
 
-   std::list<std::shared_ptr<Component::ObjectComponent>> GetObjList() { return objComponents_; }
+  std::list<std::shared_ptr<Component::ObjectComponent>> GetObjList() {
+    return objComponents_;
+  }
 #pragma endregion
 
- private:
- protected:
-   void ListInit();
-   void ListUpdate();
+private:
+protected:
+  Manager::ColliderSystem *colliderSystem_ = nullptr;
 
-   std::string name_ = "";
+  void ListInit();
+  void ListUpdate();
 
-   std::list<std::shared_ptr<Component::ObjectComponent>> objComponents_;
-   std::list<std::shared_ptr<Component::CameraCompornent>> cameraCompornents_;
+  std::string name_ = "";
+
+  std::list<std::shared_ptr<Component::ObjectComponent>> objComponents_;
+  std::list<std::shared_ptr<Component::CameraCompornent>> cameraCompornents_;
 };
 
 } // namespace Component

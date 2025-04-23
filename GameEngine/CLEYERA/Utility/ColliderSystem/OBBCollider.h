@@ -18,13 +18,13 @@ class OBBCollider : public Collider {
 
    const system::OBB &GetOBB() const { return obb_; }
 
-   void HitCallFunc([[maybe_unused]]const Collider &other) override {};
-
+  
    void Create() override;
 
    void Update() override;
 
    void ColliderImGuiUpdate(const std::string &name) override;
+   Math::Vector::Vec3 CalcOverlapAABB(std::weak_ptr<Collider> other) override;
 
    void SetCenter(Math::Vector::Vec3 *center) { obb_.center = center; }
    void SetRotate(Math::Vector::Vec3 *rotate) { obb_.rotate = rotate; }
