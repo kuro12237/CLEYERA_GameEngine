@@ -6,6 +6,7 @@
  * @author 茂木翼
  */
 
+#include <memory>
 #include <vector>
 
 /// <summary>
@@ -21,6 +22,11 @@ enum NodeState {
 };
 
 /// <summary>
+/// ボス敵
+/// </summary>
+class BaseBossEnemy;
+
+/// <summary>
 /// ボス用のノード
 /// </summary>
 class BossEnemyBehaviorNode {
@@ -29,7 +35,9 @@ public:
 	/// <summary>
 	/// 処理
 	/// </summary>
-	virtual NodeState Tick() = 0;
+	/// <param name="baseBossEnemy"></param>
+	/// <returns></returns>
+	virtual NodeState Execute(std::unique_ptr<BaseBossEnemy> baseBossEnemy) = 0;
 
 	/// <summary>
 	/// デストラクタ

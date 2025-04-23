@@ -1,4 +1,8 @@
 #include "FirstBossEnemy.h"
+#include <Enemy/Boss/Behavior/BossEnemySelector.h>
+#include "Enemy/Boss/Behavior/BossEnemySequence.h"
+#include <Enemy/Boss/Behavior/BossEnemyTracking.h>
+
 
 void FirstBossEnemy::Init() {
    // 名前の設定
@@ -15,6 +19,33 @@ void FirstBossEnemy::Init() {
    scale_ = {.x = 3.0f, .y = 3.0f, .z = 3.0f};
    // 座標の設定
    translate_ = {.x = 5.0f, .y = 0.5f, .z = 5.0f};
+
+
+
+
+
+
+
+
+
+
+   auto root = std::make_unique<BossEnemySelector>();
+
+   // 遠距離 → 近づく
+   auto approachSeq = std::make_unique<BossEnemySequence>();
+  // approachSeq->AddChild(std::make_unique<IsPlayerFar>());
+   approachSeq->AddChild(new BossEnemyTracking());
+
+   // 近距離 → 攻撃
+   auto attackSeq = std::make_unique<BossEnemySequence>();
+   attackSeq->AddChild(std::make_unique<IsPlayerNear>());
+   attackSeq->AddChild(std::make_unique<AttackPlayer>());
+
+   root->AddChild(std::move(approachSeq));
+   root->AddChild(std::move(attackSeq));
+
+   behaviorTree_ = std::move(root);
+
 }
 
 void FirstBossEnemy::Update() {
