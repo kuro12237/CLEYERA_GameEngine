@@ -181,6 +181,7 @@ inline bool LuaScript::LoadFromFile(const std::string & file)
 		return false;
 	}
 	return true;
+
 }
 
 /// <summary>
