@@ -14,7 +14,7 @@ namespace system {
 /// <summary>
 /// 頂点データ
 /// </summary>
-struct S2Vertex {
+struct VertexForGPU {
 
    Math::Vector::Vec4 pos = {};
    Math::Vector::Vec3 normal = {};
@@ -27,7 +27,7 @@ struct S2Vertex {
 /// </summary>
 struct VertexData {
 
-   std::vector<S2Vertex> vertices;
+   std::vector<VertexForGPU> vertices;
    std::vector<uint32_t> indecs;
 };
 
@@ -75,7 +75,7 @@ class MeshData {
 
    ID3D12Device5 *device_ = nullptr;
 
-   std::unique_ptr<Base::DX::DXBufferResource<system::S2Vertex>> vertBuf_ = nullptr;
+   std::unique_ptr<Base::DX::DXBufferResource<system::VertexForGPU>> vertBuf_ = nullptr;
    std::unique_ptr<Base::DX::DXBufferResource<uint32_t>> indexBuf_ = nullptr;
    std::unique_ptr<system::Blas> blas_ = nullptr;
 
