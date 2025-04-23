@@ -1,761 +1,272 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Project">
-      <UniqueIdentifier>{d1c52ae2-b5de-4c77-84be-ae4f03218801}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\Enemy">
-      <UniqueIdentifier>{8801dd93-af59-412a-940d-cce9fcb56e07}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\Enemy\Boss">
-      <UniqueIdentifier>{06d3b70b-07fc-4b0e-b350-2720503a54b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\Enemy\Normal">
-      <UniqueIdentifier>{4c0ee6d2-7ebf-4f86-ab9c-6f9258fa6628}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\Enemy\Normal\State">
-      <UniqueIdentifier>{f63e8779-b8b1-4762-909d-c0cef90b6ed5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\Enemy\Normal\Enemy1">
-      <UniqueIdentifier>{f38ae795-6b91-46c8-a2ce-6179045f280f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\Enemy\Boss\First">
-      <UniqueIdentifier>{ea414ee0-f78d-44a4-b6c6-f6c4aa97c0ca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Project\EnemyDebugScene">
-      <UniqueIdentifier>{c7c17e32-a2dc-498b-8071-16a2c842cdbc}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXCommon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\WIn\WinApp.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\CLEYERA.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandList.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandAllocator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXBarrier\DXBarrier.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXFence\DXFence.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDepth\DXDepth.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Model3d.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Camera\Camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\TransformBase\TransformBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Mesh\MeshData.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\ModelManager\ModelManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Test\testCamera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Game3dObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\Scene\IScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Camera\CameraManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\RenderManager\RenderManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\World\WorldTransform.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\StateObject\StateObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\ShaderTable\ShaderTable.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\Scene\DebugScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\3d\Line3d\Line3d.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Graphics\TexManager\TexManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DebugTools\Grid.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\DebugTools\DebugCamera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Light\DIrectionLight.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Light\LightManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderFunc.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ColliderSystem\OBBCollider.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Compornent\ObjectCompornent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Object\ObjectManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Test\TestObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderSystem.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Collider.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Terrain\Terrain.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ColliderSystem\SCollider.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Input\InputKeybord.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Input\InputManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\PhysicsForces\GravityManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameManager\GameManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\Scene\GameScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\PlayerCore.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\PlayerManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Compornent\ManagerCompornent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Compornent\CameraCompornent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\Json\GlobalVariables.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Compornent\JsonCompornent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp">
-      <Filter>Project\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyAttack.cpp">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyMove.cpp">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.cpp">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.cpp">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyTracking.cpp">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp">
-      <Filter>Project\Enemy\Normal</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp">
-      <Filter>Project\Enemy\Normal\Enemy1</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp">
-      <Filter>Project\Enemy\Boss\First</Filter>
-    </ClCompile>
-    <ClCompile Include="App\Scene\EnemyDebugScene.cpp">
-    <ClCompile Include="CLEYERA\Utility\Input\InputComtroller.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\Util\SceneLoader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\PlayerState\PlayerMoveState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Command\PlayerMoveCommand.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Command\PlayerCommandHandler.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\PlayerState\PlayerIdleState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Command\PlayerActionCommand.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Bullet\PlayerBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Bullet\PlayerBulletManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\GameObject\Player\Bullet\IPlayerBullet.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="App\Util\UtilFunc.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp">
-      <Filter>ソース ファイル</Filter>
-     </ClCompile>
-    <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\pch\Pch.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\SystemLogManager\SystemLogManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDevice\DXDevice.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXCommon.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\WIn\WinApp.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\CLEYERA.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandList.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandAllocator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXBufferResource\DXBufferResource.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXBarrier\DXBarrier.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXFence\DXFence.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDepth\DXDepth.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiCommon.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Model3d.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Camera\Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\ModelManager\ModelManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\ModelManager\Model3dPool.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Test\testCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Game3dObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\Scene\IScene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Camera\CameraManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\RenderManager\RenderManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\World\WorldTransform.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterEnum.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Blas\Blas.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RaytracingManager\HitGroup.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\Scene\DebugScene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\ThreadedLoader.h\ThreadedLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\3d\Line3d\Line3d.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\TexManager\TexManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Graphics\TexManager\TexData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ResourceFunc\ResourceFunc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DebugTools\Grid.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Light\DIrectionLight.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Light\LightManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\ColliderSystem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\ColliderFunc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\SCollider.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\OBBCollider.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Collider.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Compornent\ObjectCompornent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Object\ObjectManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Test\TestObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Flame\Flame.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Terrain\Terrain.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\TerrainCollider.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Input\InputManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Input\InputKeybord.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\PhysicsForces\GravityManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameManager\GameManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\Scene\GameScene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\PlayerCore.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\PlayerManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\PlayerState\IPlayerState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Compornent\CameraCompornent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Compornent\JsonCompornent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\Input\InputComtroller.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\Util\SceneLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\PlayerState\PlayerMoveState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Command\IPlayerCommand.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Command\PlayerCommandHandler.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Command\PlayerMoveCommand.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\IPlayer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\PlayerState\PlayerIdleState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Command\PlayerActionCommand.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Bullet\PlayerBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Bullet\IPlayerBullet.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Player\Bullet\PlayerBulletManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\Util\UtilFunc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CLEYERA\Utility\FileLoader\FileLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\EnemyManager.h">
-      <Filter>Project\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h">
-      <Filter>Project\Enemy\Boss</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\State\BaseNormalEnemyState.h">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyAttack.h">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyMove.h">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.h">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.h">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyTracking.h">
-      <Filter>Project\Enemy\Normal\State</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h">
-      <Filter>Project\Enemy\Normal</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h">
-      <Filter>Project\Enemy\Normal\Enemy1</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h">
-      <Filter>Project\Enemy\Boss\First</Filter>
-    </ClInclude>
-    <ClInclude Include="App\Scene\EnemyDebugScene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h">
-      <Filter>Project\Enemy\Boss</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Shaders\Common\Vert.hlsli" />
-    <None Include="Resources\Shaders\Common\Camera.hlsli" />
-    <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
-    <None Include="Resources\Shaders\Common\WtTransform.hlsli" />
-    <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
-    <None Include="Resources\Shaders\Rasterization\Line3d\LineDraw.hlsli" />
-    <None Include="Resources\Shaders\Common\DirectionLight.hlsli" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl" />
-    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_VS.hlsl" />
     <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_PS.hlsl" />
-    <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_VS.hlsl" />
     <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_PS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyAttack.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyMove.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyTracking.cpp" />
+    <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\IPlayerBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\PlayerBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\PlayerBulletManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\PlayerActionCommand.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\PlayerCommandHandler.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\PlayerMoveCommand.cpp" />
+    <ClCompile Include="App\GameObject\Player\PlayerCore.cpp" />
+    <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\PlayerState\PlayerIdleState.cpp" />
+    <ClCompile Include="App\GameObject\Player\PlayerState\PlayerMoveState.cpp" />
+    <ClCompile Include="App\Scene\DebugScene.cpp" />
+    <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
+    <ClCompile Include="App\Scene\GameScene.cpp" />
+    <ClCompile Include="App\Scene\IScene.cpp" />
+    <ClCompile Include="App\GameObject\Test\TestObject.cpp" />
+    <ClCompile Include="App\Util\SceneLoader.cpp" />
+    <ClCompile Include="App\Util\UtilFunc.cpp" />
+    <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
+    <ClCompile Include="CLEYERA\3d\Game3dObject.cpp" />
+    <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
+    <ClCompile Include="CLEYERA\3d\Line3d\Line3d.cpp" />
+    <ClCompile Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.cpp" />
+    <ClCompile Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.cpp" />
+    <ClCompile Include="CLEYERA\3d\Mesh\MeshData.cpp" />
+    <ClCompile Include="CLEYERA\3d\Model3d.cpp" />
+    <ClCompile Include="CLEYERA\3d\ModelManager\ModelManager.cpp" />
+    <ClCompile Include="CLEYERA\3d\ShaderTable\ShaderTable.cpp" />
+    <ClCompile Include="CLEYERA\3d\StateObject\StateObject.cpp" />
+    <ClCompile Include="CLEYERA\3d\Tlas\Tlas.cpp" />
+    <ClCompile Include="CLEYERA\CLEYERA.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\CameraCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\JsonCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\ManagerCompornent.cpp" />
+    <ClCompile Include="CLEYERA\DebugTools\DebugCamera.cpp" />
+    <ClCompile Include="CLEYERA\DebugTools\Grid.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXBarrier\DXBarrier.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandAllocator.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandList.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandManager.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommand\DXCommandQueue.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXCommon.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDepth\DXDepth.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDescripterManager.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXDevice\DXDevice.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXFactory\DXFactory.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXFence\DXFence.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
+    <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp" />
+    <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\ShaderManager\ShaderManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\TexManager\TexManager.cpp" />
+    <ClCompile Include="CLEYERA\SystemLogManager\ConvertString.cpp" />
+    <ClCompile Include="CLEYERA\SystemLogManager\SystemLogManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Camera\Camera.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Camera\CameraManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\Collider.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderFunc.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\ColliderSystem.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\OBBCollider.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\SCollider.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiCommon.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ImGui\ImGuiManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Input\InputComtroller.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Input\InputKeybord.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Input\InputManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Json\GlobalVariables.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Light\DIrectionLight.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Light\LightManager.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\ObjectCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Object\ObjectManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\PhysicsForces\GravityManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\RenderManager\RenderManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\Terrain\Terrain.cpp" />
+    <ClCompile Include="CLEYERA\Utility\TransformBase\TransformBase.cpp" />
+    <ClCompile Include="CLEYERA\Utility\World\WorldTransform.cpp" />
+    <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="App\GameObject\Test\testCamera.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App\GameManager\GameManager.h" />
+    <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
+    <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
+    <ClInclude Include="App\GameObject\Enemy\State\BaseNormalEnemyState.h" />
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyAttack.h" />
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyMove.h" />
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyNoneMove.h" />
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.h" />
+    <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyTracking.h" />
+    <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\PlayerBulletManager.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\IPlayerBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\PlayerBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
+    <ClInclude Include="App\GameObject\Player\Command\IPlayerCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\PlayerActionCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\PlayerCommandHandler.h" />
+    <ClInclude Include="App\GameObject\Player\Command\PlayerMoveCommand.h" />
+    <ClInclude Include="App\GameObject\Player\IPlayer.h" />
+    <ClInclude Include="App\GameObject\Player\PlayerState\IPlayerState.h" />
+    <ClInclude Include="App\GameObject\Player\PlayerState\PlayerIdleState.h" />
+    <ClInclude Include="App\GameObject\Player\PlayerState\PlayerMoveState.h" />
+    <ClInclude Include="App\GameObject\Player\PlayerCore.h" />
+    <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
+    <ClInclude Include="App\Scene\DebugScene.h" />
+    <ClInclude Include="App\Scene\EnemyDebugScene.h" />
+    <ClInclude Include="App\Scene\GameScene.h" />
+    <ClInclude Include="App\Scene\IScene.h" />
+    <ClInclude Include="App\GameObject\Test\TestObject.h" />
+    <ClInclude Include="App\Util\SceneLoader.h" />
+    <ClInclude Include="App\Util\UtilFunc.h" />
+    <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
+    <ClInclude Include="CLEYERA\3d\Game3dObject.h" />
+    <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\Line3d\Line3d.h" />
+    <ClInclude Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h" />
+    <ClInclude Include="CLEYERA\3d\Model3d.h" />
+    <ClInclude Include="CLEYERA\3d\ModelManager\Model3dPool.h" />
+    <ClInclude Include="CLEYERA\3d\ModelManager\ModelManager.h" />
+    <ClInclude Include="CLEYERA\3d\ShaderTable\ShaderTable.h" />
+    <ClInclude Include="CLEYERA\3d\StateObject\StateObject.h" />
+    <ClInclude Include="CLEYERA\3d\Tlas\Tlas.h" />
+    <ClInclude Include="CLEYERA\Compornent\CameraCompornent.h" />
+    <ClInclude Include="CLEYERA\Compornent\JsonCompornent.h" />
+    <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
+    <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
+    <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
+    <ClInclude Include="CLEYERA\Lua\kua.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h" />
+    <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h" />
+    <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h" />
+    <ClInclude Include="CLEYERA\Utility\FileLoader\FileLoader.h" />
+    <ClInclude Include="CLEYERA\Utility\Flame\Flame.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\DF\DFModel3dDraw.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\Line\Line3dDraw.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\RasterPiplineCompornent.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterEnum.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineCommon.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\RasterPiplineManager.h" />
+    <ClInclude Include="CLEYERA\Graphics\RaytracingManager\HitGroup.h" />
+    <ClInclude Include="CLEYERA\Graphics\RaytracingManager\RaytracingManager.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderCommon.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderEnum.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\Shaders\ShaderCompornent.h" />
+    <ClInclude Include="CLEYERA\Graphics\TexManager\TexData.h" />
+    <ClInclude Include="CLEYERA\Graphics\TexManager\TexManager.h" />
+    <ClInclude Include="CLEYERA\ThreadedLoader.h\ThreadedLoader.h" />
+    <ClInclude Include="CLEYERA\Utility\Camera\CameraManager.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\Collider.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\ColliderFunc.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\ColliderSystem.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\OBBCollider.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\SCollider.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\TerrainCollider.h" />
+    <ClInclude Include="CLEYERA\Utility\Input\InputComtroller.h" />
+    <ClInclude Include="CLEYERA\Utility\Input\InputKeybord.h" />
+    <ClInclude Include="CLEYERA\Utility\Input\InputManager.h" />
+    <ClInclude Include="CLEYERA\Utility\Json\GlobalVariables.h" />
+    <ClInclude Include="CLEYERA\Utility\Light\DIrectionLight.h" />
+    <ClInclude Include="CLEYERA\Utility\Light\LightManager.h" />
+    <ClInclude Include="CLEYERA\Compornent\ObjectCompornent.h" />
+    <ClInclude Include="CLEYERA\Utility\Object\ObjectManager.h" />
+    <ClInclude Include="CLEYERA\Utility\PhysicsForces\GravityManager.h" />
+    <ClInclude Include="CLEYERA\Utility\RenderManager\RenderManager.h" />
+    <ClInclude Include="CLEYERA\Utility\ResourceFunc\ResourceFunc.h" />
+    <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
+    <ClInclude Include="CLEYERA\Utility\Terrain\Terrain.h" />
+    <ClInclude Include="CLEYERA\Utility\World\WorldTransform.h" />
+    <ClInclude Include="App\GameObject\Test\testCamera.h" />
+    <ClInclude Include="CLEYERA\CLEYERA.h" />
+    <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />
+    <ClInclude Include="CLEYERA\DX\DXBarrier\DXBarrier.h" />
+    <ClInclude Include="CLEYERA\DX\DXBufferResource\DXBufferResource.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandAllocator.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandList.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandManager.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommand\DXCommandQueue.h" />
+    <ClInclude Include="CLEYERA\DX\DXCommon.h" />
+    <ClInclude Include="CLEYERA\DX\DXDebugLayer\DXDebugLayer.h" />
+    <ClInclude Include="CLEYERA\DX\DXDepth\DXDepth.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterManager.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDSVDescripter.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXDescripterComponent.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXRTVDescripter.h" />
+    <ClInclude Include="CLEYERA\DX\DXDescripter\DXSRVDescripter.h" />
+    <ClInclude Include="CLEYERA\DX\DXDevice\DXDevice.h" />
+    <ClInclude Include="CLEYERA\DX\DXFactory\DXFactory.h" />
+    <ClInclude Include="CLEYERA\DX\DXFence\DXFence.h" />
+    <ClInclude Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.h" />
+    <ClInclude Include="CLEYERA\DX\DXManager.h" />
+    <ClInclude Include="CLEYERA\DX\DXSwapChain\DXSwapChain.h" />
+    <ClInclude Include="CLEYERA\Graphics\ShaderManager\ShaderManager.h" />
+    <ClInclude Include="CLEYERA\pch\Pch.h" />
+    <ClInclude Include="CLEYERA\SystemLogManager\ConvertString.h" />
+    <ClInclude Include="CLEYERA\SystemLogManager\ISystemObserver.h" />
+    <ClInclude Include="CLEYERA\DX\DXComponent.h" />
+    <ClInclude Include="CLEYERA\SystemLogManager\SystemLogManager.h" />
+    <ClInclude Include="CLEYERA\Utility\Camera\Camera.h" />
+    <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiCommon.h" />
+    <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiManager.h" />
+    <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h" />
+    <ClInclude Include="CLEYERA\WIn\WinApp.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\Common\Camera.hlsli" />
+    <None Include="Resources\Shaders\Common\DirectionLight.hlsli" />
+    <None Include="Resources\Shaders\Common\WtTransform.hlsli" />
+    <None Include="Resources\Shaders\Common\Vert.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Line3d\LineDraw.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Ps_OutPut.hlsli" />
+    <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="BossEnemy">
+      <UniqueIdentifier>{b1ac3303-f825-47fc-a9f3-b35a84d46184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BossEnemy\Behavior">
+      <UniqueIdentifier>{2391fc1b-3e56-43da-9602-17186ccda492}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

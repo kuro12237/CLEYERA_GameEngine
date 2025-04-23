@@ -273,6 +273,8 @@
     <ClInclude Include="App\GameManager\GameManager.h" />
     <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
     <ClInclude Include="App\GameObject\Enemy\NormalEnemy.h" />

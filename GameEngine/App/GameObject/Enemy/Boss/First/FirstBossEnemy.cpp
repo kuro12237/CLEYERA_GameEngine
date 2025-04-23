@@ -22,7 +22,8 @@ void FirstBossEnemy::Update() {
 
 	//方向を取得
    const float_t SPEED = 0.005f;
-   velocity_ = (playerPosition_ - translate_) * SPEED;
+   velocity_.x = (playerPosition_.x - translate_.x) * SPEED;
+   velocity_.z = (playerPosition_.z - translate_.z) * SPEED;
 
 	// 更新
    TransformUpdate();
