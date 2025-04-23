@@ -2,8 +2,7 @@
 #include <algorithm>
 
 std::array<Math::Vector::Vec3, 3>
-CLEYERA::Util::Collider::system::Func::CreateOrientations(
-    const Math::Vector::Vec3 &rotate) {
+CLEYERA::Util::Collider::system::Func::CreateOrientations(const Math::Vector::Vec3 &rotate) {
   float cx = std::cos(rotate.x);
   float sx = std::sin(rotate.x);
   float cy = std::cos(rotate.y);
@@ -12,11 +11,9 @@ CLEYERA::Util::Collider::system::Func::CreateOrientations(
   float sz = std::sin(rotate.z);
 
   // 回転行列 R = Rz * Ry * Rx の各軸を列ベクトルとして抽出
-  Math::Vector::Vec3 right = {cy * cz, sx * sy * cz - cx * sz,
-                              cx * sy * cz + sx * sz};
+  Math::Vector::Vec3 right = {cy * cz, sx * sy * cz - cx * sz, cx * sy * cz + sx * sz};
 
-  Math::Vector::Vec3 up = {cy * sz, sx * sy * sz + cx * cz,
-                           cx * sy * sz - sx * cz};
+  Math::Vector::Vec3 up = {cy * sz, sx * sy * sz + cx * cz, cx * sy * sz - sx * cz};
 
   Math::Vector::Vec3 forward = {-sy, sx * cy, cx * cy};
 
@@ -39,8 +36,7 @@ void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(
     for (int dz : {-1, 1}) {
       for (int dx : {-1, 1}) {
 
-        Math::Vector::Vec3 vec = right * static_cast<float>(dx) +
-                                 up * static_cast<float>(dy) +
+        Math::Vector::Vec3 vec = right * static_cast<float>(dx) + up * static_cast<float>(dy) +
                                  forward * static_cast<float>(dz);
         corners[i++] = *obb.center / 2 + vec;
       }
@@ -63,8 +59,7 @@ void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(
   }
 }
 
-bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1,
-                                                     const OBB &obb2) {
+bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB &obb2) {
 
   // 分離軸テスト
   for (const auto &axis : obb1.orientations) {
@@ -98,8 +93,7 @@ bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1,
                            obb1.orientations[0].y * obb2.orientations[1].y -
                                obb1.orientations[1].y * obb2.orientations[0].y,
                            obb1.orientations[0].z * obb2.orientations[1].z -
-                               obb1.orientations[1].z *
-                                   obb2.orientations[0].z}}) {
+                               obb1.orientations[1].z * obb2.orientations[0].z}}) {
     if (!TestAxis(axis, obb1, obb2)) {
       return false;
     }
@@ -108,8 +102,8 @@ bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1,
   return true;
 }
 
-bool CLEYERA::Util::Collider::system::Func::TestAxis(
-    const Math::Vector::Vec3 &axis, const OBB &obb1, const OBB &obb2) {
+bool CLEYERA::Util::Collider::system::Func::TestAxis(const Math::Vector::Vec3 &axis,
+                                                     const OBB &obb1, const OBB &obb2) {
 
   // OBBの射影を計算
   auto projection1 = OBBProjection(obb1, axis);
@@ -119,11 +113,11 @@ bool CLEYERA::Util::Collider::system::Func::TestAxis(
   return ProjectionOverlap(projection1, projection2);
 }
 
-std::pair<float, float> CLEYERA::Util::Collider::system::Func::OBBProjection(
-    const OBB &obb, const Math::Vector::Vec3 &axis) {
+std::pair<float, float>
+CLEYERA::Util::Collider::system::Func::OBBProjection(const OBB &obb,
+                                                     const Math::Vector::Vec3 &axis) {
 
-  float val =
-      std::sqrt(axis.x * axis.x + axis.y * axis.y + axis.z * axis.z); // 正規化
+  float val = std::sqrt(axis.x * axis.x + axis.y * axis.y + axis.z * axis.z); // 正規化
   float newAxis = 0.0f;
   newAxis = newAxis / val;
 
@@ -132,23 +126,21 @@ std::pair<float, float> CLEYERA::Util::Collider::system::Func::OBBProjection(
   for (int i = 0; i < 8; ++i) {
     Math::Vector::Vec3 sign = {(i & 1) ? 1.0f : -1.0f, (i & 2) ? 1.0f : -1.0f,
                                (i & 4) ? 1.0f : -1.0f};
-    vertices[i] = {
-        obb.center->x + obb.orientations[0].x * sign.x * (obb.size.x / 2) +
-            obb.orientations[1].x * sign.y * (obb.size.y / 2) +
-            obb.orientations[2].x * sign.z * (obb.size.z / 2),
-        obb.center->y + obb.orientations[0].y * sign.x * (obb.size.x / 2) +
-            obb.orientations[1].y * sign.y * (obb.size.y / 2) +
-            obb.orientations[2].y * sign.z * (obb.size.z / 2),
-        obb.center->z + obb.orientations[0].z * sign.x * (obb.size.x / 2) +
-            obb.orientations[1].z * sign.y * (obb.size.y / 2) +
-            obb.orientations[2].z * sign.z * (obb.size.z / 2)};
+    vertices[i] = {obb.center->x + obb.orientations[0].x * sign.x * (obb.size.x / 2) +
+                       obb.orientations[1].x * sign.y * (obb.size.y / 2) +
+                       obb.orientations[2].x * sign.z * (obb.size.z / 2),
+                   obb.center->y + obb.orientations[0].y * sign.x * (obb.size.x / 2) +
+                       obb.orientations[1].y * sign.y * (obb.size.y / 2) +
+                       obb.orientations[2].y * sign.z * (obb.size.z / 2),
+                   obb.center->z + obb.orientations[0].z * sign.x * (obb.size.x / 2) +
+                       obb.orientations[1].z * sign.y * (obb.size.y / 2) +
+                       obb.orientations[2].z * sign.z * (obb.size.z / 2)};
   }
 
   // 頂点を軸に射影
   std::array<float, 8> projections{};
   for (int i = 0; i < 8; ++i) {
-    projections[i] = vertices[i].x * axis.x + vertices[i].y * axis.y +
-                     vertices[i].z * axis.z;
+    projections[i] = vertices[i].x * axis.x + vertices[i].y * axis.y + vertices[i].z * axis.z;
   }
 
   auto minmax = std::minmax_element(projections.begin(), projections.end());
@@ -156,24 +148,21 @@ std::pair<float, float> CLEYERA::Util::Collider::system::Func::OBBProjection(
 }
 
 bool CLEYERA::Util::Collider::system::Func::ProjectionOverlap(
-    const std::pair<float, float> &projection1,
-    const std::pair<float, float> &projection2) {
+    const std::pair<float, float> &projection1, const std::pair<float, float> &projection2) {
 
   // 射影の重なりをチェック
-  return (projection1.first <= projection2.second &&
-          projection2.first <= projection1.second);
+  return (projection1.first <= projection2.second && projection2.first <= projection1.second);
 }
 
-bool CLEYERA::Util::Collider::system::Func::CalculateMTV(
-    const Util::Collider::system::OBB &obbA,
-    const Util::Collider::system::OBB &obbB, Math::Vector::Vec3 &mtv,
-    float &penetrationDepth) // OBB の軸を取得
+bool CLEYERA::Util::Collider::system::Func::CalculateMTV(const Util::Collider::system::OBB &obbA,
+                                                         const Util::Collider::system::OBB &obbB,
+                                                         Math::Vector::Vec3 &mtv,
+                                                         float &penetrationDepth) // OBB の軸を取得
 {
-  std::vector<Math::Vector::Vec3> axes = {
-      obbA.orientations[0], obbA.orientations[1], obbA.orientations[2]};
+  std::vector<Math::Vector::Vec3> axes = {obbA.orientations[0], obbA.orientations[1],
+                                          obbA.orientations[2]};
 
-  const auto &axesB = {obbB.orientations[0], obbB.orientations[1],
-                       obbB.orientations[2]};
+  const auto &axesB = {obbB.orientations[0], obbB.orientations[1], obbB.orientations[2]};
 
   axes.insert(axes.end(), axesB.begin(), axesB.end());
 
@@ -225,8 +214,7 @@ void CLEYERA::Util::Collider::system::Func::ProjectOntoAxis(
 }
 
 std::vector<Math::Vector::Vec3>
-CLEYERA::Util::Collider::system::Func::GetVertices(
-    const Util::Collider::system::OBB &obb) {
+CLEYERA::Util::Collider::system::Func::GetVertices(const Util::Collider::system::OBB &obb) {
   std::vector<Math::Vector::Vec3> vertices;
 
   // 軸方向 × ハーフサイズ
@@ -241,8 +229,7 @@ CLEYERA::Util::Collider::system::Func::GetVertices(
     for (int dy : {-1, 1}) {
       for (int dz : {-1, 1}) {
         vertices[index++] = *obb.center + right * static_cast<float>(dx) +
-                            up * static_cast<float>(dy) +
-                            forward * static_cast<float>(dz);
+                            up * static_cast<float>(dy) + forward * static_cast<float>(dz);
       }
     }
   }
@@ -250,13 +237,13 @@ CLEYERA::Util::Collider::system::Func::GetVertices(
   return vertices;
 }
 
-Math::Vector::Vec3 CLEYERA::Util::Collider::system::Func::PushOutOBB(
-    Util::Collider::system::OBB &obbA, Util::Collider::system::OBB &obbB) {
+Math::Vector::Vec3
+CLEYERA::Util::Collider::system::Func::PushOutOBB(Util::Collider::system::OBB &obbA,
+                                                  Util::Collider::system::OBB &obbB) {
   Math::Vector::Vec3 mtv;
   float penetrationDepth;
 
-  if (Util::Collider::system::Func::CalculateMTV(obbA, obbB, mtv,
-                                                 penetrationDepth)) {
+  if (Util::Collider::system::Func::CalculateMTV(obbA, obbB, mtv, penetrationDepth)) {
     // MTV の方向を確認し、必要であれば反転
     if (Math::Vector::Func::Dot(mtv, *obbB.center - *obbA.center) < 0) {
       mtv = mtv * -1;
@@ -276,8 +263,9 @@ Math::Vector::Vec3 CLEYERA::Util::Collider::system::Func::PushOutOBB(
   return {};
 }
 
-Math::Vector::Vec3 CLEYERA::Util::Collider::system::Func::PushOutAABB(
-    Util::Collider::system::OBB &obbA, Util::Collider::system::OBB &obbB) {
+Math::Vector::Vec3
+CLEYERA::Util::Collider::system::Func::PushOutAABB(Util::Collider::system::OBB &obbA,
+                                                   Util::Collider::system::OBB &obbB) {
   Math::Vector::Vec3 overlap;
   Math::Vector::Vec3 halfSizeA = obbA.size * 0.5f;
   Math::Vector::Vec3 minA = *obbA.center - halfSizeA;
@@ -287,15 +275,12 @@ Math::Vector::Vec3 CLEYERA::Util::Collider::system::Func::PushOutAABB(
   Math::Vector::Vec3 minB = *obbB.center - halfSizeB;
   Math::Vector::Vec3 maxB = *obbB.center + halfSizeB;
 
-  using Vector3 =Math::Vector::Vec3;
+  using Vector3 = Math::Vector::Vec3;
 
-  // X軸でのオーバーラップチェック
   if (maxA.x > minB.x && minA.x < maxB.x) {
     float overlapX = std::min(maxA.x - minB.x, maxA.x - minB.x);
     overlap.x = overlapX;
   }
-
-  // Y軸でのオーバーラップチェック
   if (maxA.y > minB.y && minA.y < maxB.y) {
     float overlapY = std::min(maxA.y - minB.y, maxA.y - minB.y);
     overlap.y = overlapY;
@@ -305,38 +290,34 @@ Math::Vector::Vec3 CLEYERA::Util::Collider::system::Func::PushOutAABB(
     overlap.z = overlapZ;
   }
 
-  // オーバーラップがない場合、押し出しは必要ない
   if (overlap.x <= 0.0f || overlap.y <= 0.0f || overlap.z <= 0.0f) {
     return Vector3(); // オーバーラップなし
   }
 
-  // 最小のオーバーラップ量を基準に押し出しベクトルを決定
   Vector3 push = Vector3(0.0f, 0.0f, 0.0f);
 
-  // どの軸に沿って押し出すかを決定
+  // x
   if (overlap.x <= overlap.y && overlap.x <= overlap.z) {
-    // X軸での押し出し
+  
     if (obbA.center->x < obbB.center->x) {
-      push.x = -overlap.x; // aabb1 が aabb2 の右側にある
+      push.x = -overlap.x;
     } else {
-      push.x = overlap.x; // aabb1 が aabb2 の左側にある
+      push.x = overlap.x; 
     }
   } else if (overlap.y <= overlap.x && overlap.y <= overlap.z) {
-    // Y軸での押し出し
+      //y
     if (obbA.center->y < obbB.center->y) {
-      push.y = -overlap.y; // aabb1 が aabb2 の上側にある
+      push.y = -overlap.y; 
     } else {
-      push.y = overlap.y; // aabb1 が aabb2 の下側にある
+      push.y = overlap.y; 
     }
-  } else {
-    // Z軸での押し出し
+  } else {//z
     if (obbA.center->z < obbB.center->z) {
-      push.z = -overlap.z; // aabb1 が aabb2 の手前側にある
+      push.z = -overlap.z;
     } else {
-      push.z = overlap.z; // aabb1 が aabb2 の奥側にある
+      push.z = overlap.z; 
     }
   }
 
   return push;
-
 }

@@ -7,8 +7,7 @@ void PlayerCore::Init() {
   name_ = VAR_NAME(PlayerCore);
 
   // modelの設定
-  uint32_t modelHandle =
-      modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
   gameObject_->ChangeModel(modelHandle);
 
   /// コライダー作成:現状OBB飲み
@@ -23,11 +22,9 @@ void PlayerCore::Init() {
 
   this->ChangeState(std::make_unique<PlayerMoveState>());
 
-  //当たった時のコールバック関数をセットラムダ使用
+  // 当たった時のコールバック関数をセットラムダ使用
   collider_->SetHitCallFunc(
-      [this](std::weak_ptr<CLEYERA::Component::ObjectComponent> other) {
-        this->HitFunc(other);
-      });
+      [this](std::weak_ptr<CLEYERA::Component::ObjectComponent> other) { this->HitFunc(other); });
 }
 
 void PlayerCore::Update() {
@@ -53,9 +50,8 @@ void PlayerCore::ChangeState(std::unique_ptr<IPlayerState> newState) {
   state_->Update();
 }
 
-void PlayerCore::HitFunc(
-    std::weak_ptr<CLEYERA::Component::ObjectComponent> other) {
-    //OBBの値を基にAABBの押し出し処理を計算している
+void PlayerCore::HitFunc(std::weak_ptr<CLEYERA::Component::ObjectComponent> other) {
+  // OBBの値を基にAABBの押し出し処理を計算している
   translate_ += collider_->CalcOverlapAABB(other.lock()->GetCollder());
 }
 
