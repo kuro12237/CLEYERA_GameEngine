@@ -25,6 +25,7 @@ class Octree {
    // AABBからモートン番号を取得
    int GetMortonNumber(Math::Vector::Vec3 min, Math::Vector::Vec3 max);
 
+
  private:
    // モートンオーダー取得
    DWORD GetMortonOrder(const Math::Vector::Vec3 &point);
@@ -39,7 +40,7 @@ class Octree {
    int GetLinearIndexOffset(int level) const;
 
    // 空間サイズの1辺（全体空間は cube ）
-   float spaceSize = 500.0f;
+   float spaceSize = 1000.0f;
 
    // 空間の中心位置
    Math::Vector::Vec3 centerPosition;

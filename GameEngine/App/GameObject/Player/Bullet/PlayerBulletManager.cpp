@@ -23,4 +23,6 @@ void PlayerBulletManager::PushBullet(std::shared_ptr<IPlayerBullet> b, const Mat
    b->Init();
    b->SetTranslate(pos);
    bullets_.push_back(b);
+
+   colliderSystem_->PushCollider(b);
 }
