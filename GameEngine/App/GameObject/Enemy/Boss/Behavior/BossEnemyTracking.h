@@ -20,12 +20,20 @@ class BossEnemyTracking : public BossEnemyBehaviorNode {
 public:
 
     /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    BossEnemyTracking() = default;
+
+    /// <summary>
     /// 実行
     /// </summary>
     /// <returns></returns>
-    NodeState Execute(std::unique_ptr<BaseBossEnemy> baseBossEnemy) override {
+    NodeState Execute(BaseBossEnemy * baseBossEnemy) override;
 
-        return NodeState::Success;
-    }
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~BossEnemyTracking() = default;
+
 
 };

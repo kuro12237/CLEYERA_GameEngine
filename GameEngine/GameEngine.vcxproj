@@ -162,6 +162,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\NormalEnemy.cpp" />

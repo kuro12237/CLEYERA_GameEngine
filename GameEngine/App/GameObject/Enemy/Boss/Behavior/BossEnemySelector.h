@@ -16,14 +16,19 @@
 /// <summary>
 /// 合成ノード
 /// </summary>
-class BossEnemySelector :BossEnemyBehaviorNode {
+class BossEnemySelector :public BossEnemyBehaviorNode {
 public:
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    BossEnemySelector() = default;
+
     /// <summary>
     /// 子を追加
     /// </summary>
     /// <param name="child"></param>
-    void AddChild(std::unique_ptr<BossEnemyBehaviorNode> child) {
-        children_.push_back(child);
+    inline void AddChild(std::unique_ptr<BossEnemyBehaviorNode> child) {
+        children_.push_back(std::move(child));
     }
 
     /// <summary>
@@ -31,15 +36,23 @@ public:
     /// </summary>
     /// <param name="baseBossEnemy"></param>
     /// <returns></returns>
-    NodeState Execute(std::unique_ptr<BaseBossEnemy> baseBossEnemy) override {
+    inline NodeState Execute(BaseBossEnemy* baseBossEnemy) override {
+        //子ノードに入っているものを全て実行していく
         for ( auto & child : children_ ) {
-            NodeState status = child->Execute(std::move(baseBossEnemy));
+            NodeState status = child->Execute(baseBossEnemy);
+            //失敗ではなかったら状態を返す
             if ( status != NodeState::Failure ) {
                 return status;
             }
         }
         return NodeState::Failure;
     }
+
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~BossEnemySelector()override = default;
+
 
 
 private:

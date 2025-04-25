@@ -20,42 +20,44 @@ void FirstBossEnemy::Init() {
    // 座標の設定
    translate_ = {.x = 5.0f, .y = 0.5f, .z = 5.0f};
 
-
-
-
-
-
-
-
-
-
-   auto root = std::make_unique<BossEnemySelector>();
+   //ルート
+   std::unique_ptr<BossEnemySelector> root = std::make_unique<BossEnemySelector>();
 
    // 遠距離 → 近づく
-   auto approachSeq = std::make_unique<BossEnemySequence>();
-  // approachSeq->AddChild(std::make_unique<IsPlayerFar>());
-   approachSeq->AddChild(new BossEnemyTracking());
+   std::unique_ptr<BossEnemySequence> approachSeq = std::make_unique<BossEnemySequence>();
+   approachSeq->AddChild(std::make_unique<BossEnemyTracking>());
 
    // 近距離 → 攻撃
-   auto attackSeq = std::make_unique<BossEnemySequence>();
-   attackSeq->AddChild(std::make_unique<IsPlayerNear>());
-   attackSeq->AddChild(std::make_unique<AttackPlayer>());
+  // std::unique_ptr<BossEnemySequence> attackSeq = std::make_unique<BossEnemySequence>();
 
+   //今まで作ったものを入れていく
    root->AddChild(std::move(approachSeq));
-   root->AddChild(std::move(attackSeq));
-
+  // root->AddChild(std::move(attackSeq));
+   //本体に入れていく
    behaviorTree_ = std::move(root);
 
 }
 
 void FirstBossEnemy::Update() {
 
+	//ビヘイビアツリーの実行
+	behaviorTree_->Execute(this);
+	const float_t SPEED = 0.1f;
+	velocity_.x *= SPEED;
+	velocity_.z *= SPEED;
 
-	//方向を取得
-   const float_t SPEED = 0.005f;
-   velocity_.x = (playerPosition_.x - translate_.x) * SPEED;
-   velocity_.z = (playerPosition_.z - translate_.z) * SPEED;
 
 	// 更新
    TransformUpdate();
+
+
+#ifdef _DEBUG
+   ImGui::Begin("FirstBoss");
+   ImGui::InputFloat3("Translate", &translate_.x);
+   ImGui::InputFloat3("Velocity", &velocity_.x);
+   ImGui::End();
+
+#endif // _DEBUG
+
+
 }

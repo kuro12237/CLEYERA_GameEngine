@@ -7,7 +7,6 @@
  */
 
 #include "Enemy/Boss/BaseBossEnemy.h"
-#include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
 
 
 /// <summary>
@@ -34,13 +33,4 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// デストラクタ
    /// </summary>
    ~FirstBossEnemy() override = default;
-
-
-private:
-	//ビヘイビアツリー
-	std::unique_ptr<BossEnemyBehaviorNode> behaviorTree_;
-
-
-
-   
 };

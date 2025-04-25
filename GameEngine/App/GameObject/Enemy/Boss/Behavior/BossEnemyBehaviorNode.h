@@ -37,7 +37,7 @@ public:
 	/// </summary>
 	/// <param name="baseBossEnemy"></param>
 	/// <returns></returns>
-	virtual NodeState Execute(std::unique_ptr<BaseBossEnemy> baseBossEnemy) = 0;
+	virtual NodeState Execute(BaseBossEnemy* baseBossEnemy) = 0;
 
 	/// <summary>
 	/// デストラクタ
