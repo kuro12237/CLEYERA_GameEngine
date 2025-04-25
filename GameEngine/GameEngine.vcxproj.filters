@@ -104,6 +104,8 @@
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="App\GameObject\Test\testCamera.cpp" />
+    <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -220,6 +222,8 @@
     <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiManager.h" />
     <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h" />
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
+    <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
+    <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

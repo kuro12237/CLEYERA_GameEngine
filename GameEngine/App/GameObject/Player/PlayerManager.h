@@ -1,0 +1,48 @@
+#pragma once
+
+#include "CLEYERA.h"
+
+#include "Core/playerCore.h"
+
+
+/* Player関連の一元管理クラス */
+class PlayerManager : public CLEYERA::Component::ManagerCompornent {
+
+public:
+
+	/// <summary>
+	/// コンストラク
+	/// </summary>
+	PlayerManager() = default;
+
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~PlayerManager() = default;
+
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	void Init() override;
+
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	void Update() override;
+
+
+#pragma region Accessor
+
+	// CoreのweakPtrの取得
+	std::weak_ptr<PlayerCore> GetPlayerCore() const {
+		return this->core_;
+	}
+
+#pragma endregion
+
+
+private:
+
+	std::shared_ptr<PlayerCore> core_;
+
+};
