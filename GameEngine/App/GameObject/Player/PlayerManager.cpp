@@ -7,7 +7,17 @@
 /// </summary>
 void PlayerManager::Init()
 {
+	// クラス名
+	ManagerCompornent::name_ = VAR_NAME(PlayerManager);
 
+	// コア
+	core_ = std::make_shared<PlayerCore>();
+	ManagerCompornent::objComponents_.push_back(core_);
+
+
+
+	// 初期化
+	ManagerCompornent::ListInit();
 }
 
 
