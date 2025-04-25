@@ -12,6 +12,8 @@
 
 //Squenceについて
 //順番に子を実行するもの
+//全ての子が成功したら成功
+
 /// <summary>
 /// ボスのシーケンスノード
 /// </summary>
@@ -21,7 +23,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemySequence() = default;
+    BossEnemySequence();
 
     /// <summary>
     /// 追加

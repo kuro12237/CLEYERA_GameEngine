@@ -8,6 +8,7 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 
 /// <summary>
 /// ノードの状態
@@ -39,9 +40,23 @@ public:
 	/// <returns></returns>
 	virtual NodeState Execute(BaseBossEnemy* baseBossEnemy) = 0;
 
+	
+	/// <summary>
+	/// 状態の名前を取得
+	/// </summary>
+	/// <returns></returns>
+	inline virtual std::string GetConditionName()const{
+		return conditionName_;
+	}
+	
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
 	virtual ~BossEnemyBehaviorNode() = default;
+
+
+protected:
+	//状態の名前
+	std::string conditionName_ = "";
 
 };

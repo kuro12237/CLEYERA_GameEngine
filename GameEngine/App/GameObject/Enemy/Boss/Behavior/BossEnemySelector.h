@@ -9,7 +9,7 @@
 
 //Selector
 //成功する子が見つかるまで1つ1つ実行する
-
+//条件分岐はここでやるよ
 
 #include "BossEnemyBehaviorNode.h"
 

@@ -56,6 +56,13 @@ public:
 	   return playerPosition_;
    }
 
+   /// <summary>
+   /// パラメーターを取得
+   /// </summary>
+   /// <returns></returns>
+   inline EnemyParameter GetBossEnemyParameter()const {
+	   return parameter_;
+   }
 
 protected:
 	// プレイヤー座標
@@ -67,4 +74,6 @@ protected:
 	//ビヘイビアツリー
 	std::unique_ptr<BossEnemyBehaviorNode> behaviorTree_ = nullptr;
 
+
+	
 };

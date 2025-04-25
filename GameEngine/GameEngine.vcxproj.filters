@@ -116,6 +116,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="App\GameObject\Test\testCamera.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -256,6 +260,18 @@
       <Filter>BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyCondition.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.h">
       <Filter>BossEnemy\Behavior</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,6 +9,7 @@
 
 //Actionノードについて
 //このクラスのように実行するだけのクラス
+//つまり具体的な動きをここで行う
 //子を持つことができない
 
 #include "BossEnemyBehaviorNode.h"
@@ -22,7 +23,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemyTracking() = default;
+    BossEnemyTracking();
 
     /// <summary>
     /// 実行

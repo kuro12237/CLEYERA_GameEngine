@@ -162,6 +162,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\BaseNormalEnemy.cpp" />
@@ -275,6 +279,10 @@
     <ClInclude Include="App\GameObject\Enemy\BaseNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyCondition.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h" />
