@@ -3,6 +3,7 @@
 #include "CLEYERA.h"
 
 
+/* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
 
 public:

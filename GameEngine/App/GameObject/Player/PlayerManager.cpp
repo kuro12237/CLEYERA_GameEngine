@@ -26,4 +26,6 @@ void PlayerManager::Init()
 /// </summary>
 void PlayerManager::Update()
 {
+	// 更新
+	ManagerCompornent::Update();
 }
