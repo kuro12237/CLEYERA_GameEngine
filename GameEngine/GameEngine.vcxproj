@@ -275,6 +275,9 @@
     <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.h" />
     <ClInclude Include="App\GameObject\Enemy\State\NormalEnemyTracking.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Interface\IPlayerCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Move\PlayerMoveCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\PlayerCommandHandler.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
     <ClInclude Include="App\Scene\DebugScene.h" />

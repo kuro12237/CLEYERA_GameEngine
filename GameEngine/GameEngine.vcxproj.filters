@@ -224,6 +224,9 @@
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
+    <ClInclude Include="App\GameObject\Player\Command\PlayerCommandHandler.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Interface\IPlayerCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Move\PlayerMoveCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
