@@ -2,12 +2,6 @@
 
 #include "Enemy/Boss/BaseBossEnemy.h"
 
-BossEnemyTracking::BossEnemyTracking(){
-    //状態名を記録
-    conditionName_ = VAR_NAME(BossEnemyTracking);
-
-    
-}
 
 NodeState BossEnemyTracking::Execute(BaseBossEnemy * baseBossEnemy){
 

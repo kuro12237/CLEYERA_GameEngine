@@ -23,7 +23,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemySequence();
+    BossEnemySequence()=default;
 
     /// <summary>
     /// 追加

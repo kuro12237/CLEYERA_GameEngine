@@ -55,7 +55,7 @@ public:
 
 
 
-private:
+protected:
     //子ノード
     std::vector<std::unique_ptr<BossEnemyBehaviorNode>> children_;
 

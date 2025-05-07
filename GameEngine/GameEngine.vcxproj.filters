@@ -119,7 +119,9 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -274,6 +276,14 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.h">
       <Filter>BossEnemy\Behavior</Filter>
     </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyRandomAttackSelector.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.h">
+      <Filter>BossEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

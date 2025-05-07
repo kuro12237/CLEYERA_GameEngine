@@ -6,7 +6,6 @@
  * @author 茂木翼
  */
 
-
 //Actionノードについて
 //このクラスのように実行するだけのクラス
 //つまり具体的な動きをここで行う
@@ -15,15 +14,15 @@
 #include "BossEnemyBehaviorNode.h"
 
 /// <summary>
-/// 追跡
+/// 突進攻撃
 /// </summary>
-class BossEnemyTracking : public BossEnemyBehaviorNode {
+class BossEnemyThrustAttack : public BossEnemyBehaviorNode {
 public:
 
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemyTracking()=default;
+    BossEnemyThrustAttack() = default;
 
     /// <summary>
     /// 実行
@@ -34,7 +33,7 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~BossEnemyTracking() = default;
+    ~BossEnemyThrustAttack()override = default;
 
 
 };

@@ -6,12 +6,11 @@
 /// 何もしない
 /// </summary>
 class BossEnemyNoneBehavior : public BossEnemyBehaviorNode {
-
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemyNoneBehavior();
+    BossEnemyNoneBehavior()=default;
 
     /// <summary>
     /// 実行
