@@ -2,9 +2,12 @@
 
 #include "CLEYERA.h"
 
+#include "../Command/Interface/IPlayerCommand.h"
+
 
 // 前方宣言
-class IPlayerCommand;
+class PlayerCore;
+
 
 /* Player関連のCommandHandlerクラス */
 class PlayerCommandHandler {

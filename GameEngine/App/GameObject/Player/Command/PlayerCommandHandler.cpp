@@ -22,9 +22,8 @@ PlayerCommandHandler::PlayerCommandHandler(std::weak_ptr<PlayerCore> player)
 void PlayerCommandHandler::Init()
 {
 	// 入力タイするコマンドを登録
-	inputCommandMap_[ "Move" ] = []() {
-		return std::make_unique<PlayerMoveCommand>();
-	};
+	inputCommandMap_[ "Move" ] = []() 
+		{ return std::make_unique<PlayerMoveCommand>(); };
 }
 
 
@@ -55,3 +54,4 @@ void PlayerCommandHandler::Exec()
 		commands_.pop();
 	}
 }
+
