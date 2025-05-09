@@ -51,6 +51,16 @@ void PlayerCore::Update()
 /// </summary>
 void PlayerCore::Move()
 {
+	Math::Vector::Vec2 joyR = inputManager_->JoyLPos();
+	Math::Vector::Vec2 speed = { 1.0f, 1.0f };
+	Math::Vector::Vec2 result = joyR * speed;
+	force_.x = result.x;
+	force_.z = result.y;
+
+	if ( inputManager_->PushBotton(XINPUT_GAMEPAD_RIGHT_SHOULDER) ) {
+		force_.x *= 0.1f;
+		force_.z *= 0.1f;
+	}
 }
 
 

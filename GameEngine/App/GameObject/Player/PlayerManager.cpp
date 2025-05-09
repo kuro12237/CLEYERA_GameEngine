@@ -20,6 +20,7 @@ void PlayerManager::Init()
 
 	// コマンドハンドラー
 	commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
+	commandHandler_->Init();
 
 	// 初期化
 	ManagerCompornent::ListInit();
@@ -36,4 +37,8 @@ void PlayerManager::Update()
 {
 	// 更新
 	ManagerCompornent::ListUpdate();
+
+	// ハンドラー
+	commandHandler_->Handle();
+	commandHandler_->Exec();
 }
