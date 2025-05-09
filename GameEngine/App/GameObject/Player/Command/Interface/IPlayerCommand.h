@@ -11,6 +11,9 @@ public:
 	/// </summary>
 	virtual ~IPlayerCommand() = default;
 
-	virtual void Exec(class PlayerCore & player) = 0;
+	/// <summary>
+	/// 実行処理
+	/// </summary>
+	virtual void Exec() = 0;
 
 };

@@ -172,6 +172,7 @@
     <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyPreTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\State\NormalEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\PlayerCommandHandler.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\Scene\DebugScene.cpp" />
