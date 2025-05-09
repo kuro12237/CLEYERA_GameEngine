@@ -8,7 +8,6 @@
 
 #include <list>
 
-#include "Enemy/BaseNormalEnemy.h"
 #include "Boss/BaseBossEnemy.h"
 #include "CLEYERA.h"
 
@@ -70,7 +69,7 @@ private:
     Math::Vector::Vec3 playerPosition_ = {};
 
 	//雑魚敵
-	std::list<std::unique_ptr<BaseNormalEnemy>> enemyList_;
+	//std::list<std::unique_ptr<BaseNormalEnemy>> enemyList_;
 
 	//ボス敵
     std::list<std::unique_ptr<BaseBossEnemy>> bossEnemyList_;
