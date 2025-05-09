@@ -11,8 +11,7 @@ void PlayerCore::Init()
 	ObjectComponent::name_ = VAR_NAME(PlayerCore);
 
 	// Modelの設定
-	std::pair<std::string, std::string> str = {
-		"Resources/Model/Player/Core", "Core" };
+	std::pair<std::string, std::string> str = {	"Resources/Model/Player/Core", "Core" };
 	uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
 	ObjectComponent::gameObject_->ChangeModel(handle);
 

@@ -107,6 +107,7 @@
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\PlayerCommandHandler.cpp" />
+    <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -228,6 +229,7 @@
     <ClInclude Include="App\GameObject\Player\Command\PlayerCommandHandler.h" />
     <ClInclude Include="App\GameObject\Player\Command\Interface\IPlayerCommand.h" />
     <ClInclude Include="App\GameObject\Player\Command\Move\PlayerMoveCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

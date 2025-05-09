@@ -3,6 +3,7 @@
 #include "CLEYERA.h"
 
 #include "Core/playerCore.h"
+#include "Camera/PlayerCamera.h"
 
 
 /* Player関連の一元管理クラス */
@@ -43,6 +44,12 @@ public:
 
 private:
 
+	// カメラ
+	std::shared_ptr<PlayerCamera> camera_;
+
+	// コア
 	std::shared_ptr<PlayerCore> core_;
+
+	
 
 };

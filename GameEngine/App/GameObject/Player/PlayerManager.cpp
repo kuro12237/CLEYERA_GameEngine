@@ -10,14 +10,19 @@ void PlayerManager::Init()
 	// クラス名
 	ManagerCompornent::name_ = VAR_NAME(PlayerManager);
 
+	// カメラ
+	camera_ = std::make_shared<PlayerCamera>();
+	ManagerCompornent::cameraCompornents_.push_back(camera_);
+
 	// コア
 	core_ = std::make_shared<PlayerCore>();
 	ManagerCompornent::objComponents_.push_back(core_);
 
-
-
 	// 初期化
 	ManagerCompornent::ListInit();
+
+	// ペアレント
+	camera_->SetTarget(core_->GetTranslate());
 }
 
 
@@ -27,5 +32,5 @@ void PlayerManager::Init()
 void PlayerManager::Update()
 {
 	// 更新
-	ManagerCompornent::Update();
+	ManagerCompornent::ListUpdate();
 }
