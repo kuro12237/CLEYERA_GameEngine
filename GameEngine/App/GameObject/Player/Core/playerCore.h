@@ -29,6 +29,11 @@ public:
 	/// </summary>
 	void Update() override;
 
+	/// <summary>
+	/// 移動処理
+	/// </summary>
+	void Move();
+
 
 
 #pragma region Accessor

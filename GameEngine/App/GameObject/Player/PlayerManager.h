@@ -2,6 +2,7 @@
 
 #include "CLEYERA.h"
 
+#include "Command/PlayerCommandHandler.h"
 #include "Core/playerCore.h"
 #include "Camera/PlayerCamera.h"
 
@@ -50,6 +51,7 @@ private:
 	// コア
 	std::shared_ptr<PlayerCore> core_;
 
-	
+	// コマンドハンドラー
+	std::unique_ptr<PlayerCommandHandler> commandHandler_;
 
 };

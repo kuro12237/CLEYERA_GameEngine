@@ -47,6 +47,14 @@ void PlayerCore::Update()
 
 
 /// <summary>
+/// 移動処理
+/// </summary>
+void PlayerCore::Move()
+{
+}
+
+
+/// <summary>
 /// Luaからデータを抽出する
 /// </summary>
 void PlayerCore::LoadCoreDataFromLua()

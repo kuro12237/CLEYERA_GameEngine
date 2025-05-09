@@ -14,7 +14,7 @@ public:
 	/// <summary>
 	/// コンストラク
 	/// </summary>
-	PlayerCommandHandler();
+	PlayerCommandHandler(std::weak_ptr<PlayerCore> player);
 
 	/// <summary>
 	/// デストラクタ
@@ -22,21 +22,30 @@ public:
 	~PlayerCommandHandler() = default;
 
 	/// <summary>
-	/// 入力に基づいて実行
+	/// 初期化処理
 	/// </summary>
-	void HandleInput();
+	void Init();
 
 	/// <summary>
-	/// コマンドの設定
+	/// 入力チェックとキューへの積み込み
 	/// </summary>
-	void SetCommand(const std::string & key, std::unique_ptr<IPlayerCommand> & command);
+	void Handle();
+
+	/// <summary>
+	/// コマンド実行
+	/// </summary>
+	void Exec();
 
 private:
 
 	// 入力
 	CLEYERA::Manager::InputManager * input_ = nullptr;
 
-	// CommandMap
-	std::unordered_map<std::string, std::unique_ptr<IPlayerCommand>> commandsMap_;
+	std::queue<std::unique_ptr<IPlayerCommand>> commands_;
 
+	// 入力->コマンド生成用のマップ
+	std::unordered_map<std::string, std::function<std::unique_ptr<IPlayerCommand>()>> inputCommandMap_;
+
+	// Playerのweak_ptr
+	std::weak_ptr<PlayerCore> player_;
 };

@@ -18,6 +18,9 @@ void PlayerManager::Init()
 	core_ = std::make_shared<PlayerCore>();
 	ManagerCompornent::objComponents_.push_back(core_);
 
+	// コマンドハンドラー
+	commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
+
 	// 初期化
 	ManagerCompornent::ListInit();
 
