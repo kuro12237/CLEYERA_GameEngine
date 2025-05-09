@@ -22,7 +22,7 @@ void PlayerCamera::Init()
 	lua_->LoadScript("LuaScript/Player/Camera", "PlayerCamera.lua");
 	lua_->SetReloadCallBack([this]() {LoadCameraDataFromLua(); });
 
-	// Luaからデータの抽出
+	// Luaから抽出したデータの設定
 	LoadCameraDataFromLua();
 
 

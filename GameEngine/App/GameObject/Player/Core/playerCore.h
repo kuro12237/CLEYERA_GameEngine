@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CLEYERA.h"
+#include "Lua/Script/LuaScript.h"
 
 
 /* Playerの実体クラス */
@@ -11,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラク
 	/// </summary>
-	PlayerCore() = default;
+	PlayerCore();
 
 	/// <summary>
 	/// デストラクタ
@@ -38,6 +39,19 @@ public:
 	}
 
 #pragma endregion
+
+
+private:
+
+	/// <summary>
+	/// Luaからデータを抽出する
+	/// </summary>
+	void LoadCoreDataFromLua();
+
+
+private:
+
+	std::unique_ptr<LuaScript> lua_;
 
 
 };

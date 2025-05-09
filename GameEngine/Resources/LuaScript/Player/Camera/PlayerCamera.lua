@@ -5,5 +5,5 @@ PlayerCamera = {
 }
 
 return {
-    PlayerCamera = PlayerCamera;
+    PlayerCamera = PlayerCamera,
 }
