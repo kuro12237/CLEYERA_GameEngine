@@ -36,7 +36,7 @@ void PlayerCamera::Init()
 /// </summary>
 void PlayerCamera::Update()
 {
-	translate_ = *target_ * offset_;
+	translate_ = *target_ + offset_;
 }
 
 
