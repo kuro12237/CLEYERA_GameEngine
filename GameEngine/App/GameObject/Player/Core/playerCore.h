@@ -35,7 +35,6 @@ public:
 	void Move();
 
 
-
 #pragma region Accessor
 
 	// ワールド座標の取得
@@ -56,7 +55,7 @@ private:
 
 private:
 
+	// PlayerCoreのLua
 	std::unique_ptr<LuaScript> lua_;
-
 
 };
