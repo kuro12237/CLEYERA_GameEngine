@@ -39,6 +39,16 @@ public:
 private:
 
 	/// <summary>
+	/// 前方&右方のベクトルを求める
+	/// </summary>
+	void CalcForwardAndRightVec();
+
+	/// <summary>
+	/// Vector3にアフィン変換と透視補正を適用する
+	/// </summary>
+	Math::Vector::Vec3 TransformWithPerspective(const Math::Vector::Vec3 & v, const Math::Matrix::Mat4x4 & m);
+
+	/// <summary>
 	/// Luaからカメラのデータをロードする
 	/// </summary>
 	void LoadCameraDataFromLua();
@@ -51,8 +61,16 @@ private:
 
 private:
 
+	// カメラのLua
+	std::unique_ptr<LuaScript> lua_;
+
+	// ターゲット
 	const Math::Vector::Vec3 * target_ = nullptr;
+
+	// オフセット
 	Math::Vector::Vec3 offset_{};
 
-	std::unique_ptr<LuaScript> lua_;
+	// 前方&右方ベクトル
+	Math::Vector::Vec3 forwardVec_{};
+	Math::Vector::Vec3 rightVec_{};
 };

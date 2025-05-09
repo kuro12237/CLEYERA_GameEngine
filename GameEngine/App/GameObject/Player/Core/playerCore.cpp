@@ -65,6 +65,14 @@ void PlayerCore::Move()
 
 
 /// <summary>
+/// 進行方向に向く処理
+/// </summary>
+void PlayerCore::FaceMovementDirection()
+{
+}
+
+
+/// <summary>
 /// Luaからデータを抽出する
 /// </summary>
 void PlayerCore::LoadCoreDataFromLua()

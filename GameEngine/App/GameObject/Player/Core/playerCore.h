@@ -34,6 +34,13 @@ public:
 	/// </summary>
 	void Move();
 
+	/// <summary>
+	/// 進行方向に向く処理
+	/// </summary>
+	void FaceMovementDirection();
+
+
+
 
 #pragma region Accessor
 
