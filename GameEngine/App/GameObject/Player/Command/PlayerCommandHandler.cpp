@@ -26,7 +26,6 @@ void PlayerCommandHandler::HandleInput()
 	if ( input_->PushBottonPressed(XINPUT_GAMEPAD_A) ) {
 		commandsMap_[ "DashCommand" ]->Exec();
 	}
-
 }
 
 
@@ -37,3 +36,4 @@ void PlayerCommandHandler::SetCommand(const std::string & key, std::unique_ptr<I
 {
 	commandsMap_[ key ] = std::move(command);
 }
+
