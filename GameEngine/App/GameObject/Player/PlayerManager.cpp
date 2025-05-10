@@ -3,6 +3,17 @@
 
 
 /// <summary>
+/// コンストラク
+/// </summary>
+PlayerManager::PlayerManager()
+{
+	camera_ = std::make_shared<PlayerCamera>();
+	core_ = std::make_shared<PlayerCore>();
+	commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
+}
+
+
+/// <summary>
 /// 初期化処理
 /// </summary>
 void PlayerManager::Init()
@@ -11,15 +22,14 @@ void PlayerManager::Init()
 	ManagerCompornent::name_ = VAR_NAME(PlayerManager);
 
 	// カメラ
-	camera_ = std::make_shared<PlayerCamera>();
 	ManagerCompornent::cameraCompornents_.push_back(camera_);
 
 	// コア
-	core_ = std::make_shared<PlayerCore>();
+	core_->SetCameraPtr(camera_);
+	core_->Init();
 	ManagerCompornent::objComponents_.push_back(core_);
 
 	// コマンドハンドラー
-	commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
 	commandHandler_->Init();
 
 	// 初期化

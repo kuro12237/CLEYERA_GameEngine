@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CLEYERA.h"
-
 #include "../Command/Interface/IPlayerCommand.h"
 
 
@@ -38,6 +37,13 @@ public:
 	/// コマンド実行
 	/// </summary>
 	void Exec();
+
+private:
+
+	/// <summary>
+	/// コマンドのプッシュ
+	/// </summary>
+	void CommandPush(const std::string & key);
 
 private:
 

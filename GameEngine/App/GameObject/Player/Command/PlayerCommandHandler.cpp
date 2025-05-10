@@ -1,6 +1,8 @@
 #include "PlayerCommandHandler.h"
 #include "../Command/Interface/IPlayerCommand.h"
-#include "../Command/Move/PlayerMoveCommand.h"
+#include "../Command/Move/Pad/PlayerPadMoveCommand.h"
+#include "../Command/Move/Key/PlayerKeyMoveCommand.h"
+
 
 
 /// <summary>
@@ -22,8 +24,16 @@ PlayerCommandHandler::PlayerCommandHandler(std::weak_ptr<PlayerCore> player)
 void PlayerCommandHandler::Init()
 {
 	// 入力タイするコマンドを登録
-	inputCommandMap_[ "Move" ] = []() 
-		{ return std::make_unique<PlayerMoveCommand>(); };
+	inputCommandMap_[ "PadMove" ] = []() 
+		{ return std::make_unique<PlayerPadMoveCommand>(); };
+	inputCommandMap_[ "WKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f }); };
+	inputCommandMap_[ "AKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ -1.0f, 0.0f, 0.0f }); };
+	inputCommandMap_[ "SKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ 0.0f, 0.0f, -1.0f }); };
+	inputCommandMap_[ "DKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ 1.0f, 0.0f, 0.0f }); };
 }
 
 
@@ -34,10 +44,19 @@ void PlayerCommandHandler::Handle()
 {
 	// 入力がアクティブなときに、コマンドを積む
 	if ( input_->IsLJoystickActive() ) {
-		auto it = inputCommandMap_.find("Move");
-		if ( it != inputCommandMap_.end() ) {
-			commands_.push(it->second());
-		}
+		CommandPush("PadMove");
+	}
+	if ( input_->PushKey(DIK_W) ) {
+		CommandPush("WKeyMove");
+	}
+	if ( input_->PushKey(DIK_A) ) {
+		CommandPush("AKeyMove");
+	}
+	if ( input_->PushKey(DIK_S) ) {
+		CommandPush("SKeyMove");
+	}
+	if ( input_->PushKey(DIK_D) ) {
+		CommandPush("DKeyMove");
 	}
 }
 
@@ -52,6 +71,18 @@ void PlayerCommandHandler::Exec()
 		auto & command = commands_.front();
 		command->Exec(player_);
 		commands_.pop();
+	}
+}
+
+
+/// <summary>
+/// コマンドのプッシュ
+/// </summary>
+void PlayerCommandHandler::CommandPush(const std::string & key)
+{
+	auto it = inputCommandMap_.find(key.c_str());
+	if ( it != inputCommandMap_.end() ) {
+		commands_.push(it->second());
 	}
 }
 

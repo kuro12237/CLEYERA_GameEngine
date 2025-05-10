@@ -31,7 +31,13 @@ public:
 
 #pragma region Accessor
 
+	// ターゲットの設定
 	void SetTarget(const Math::Vector::Vec3 & target) { target_ = &target; };
+
+	// 前方ベクトルの取得
+	Math::Vector::Vec3 GetForwardVec() const { return forwardVec_; }
+	// 右方ベクトルの取得
+	Math::Vector::Vec3 GetRightVec() const { return rightVec_; }
 
 #pragma endregion
 

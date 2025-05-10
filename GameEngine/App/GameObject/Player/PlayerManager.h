@@ -15,7 +15,7 @@ public:
 	/// <summary>
 	/// コンストラク
 	/// </summary>
-	PlayerManager() = default;
+	PlayerManager();
 
 	/// <summary>
 	/// デストラクタ

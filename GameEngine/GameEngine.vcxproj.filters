@@ -108,7 +108,9 @@
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\PlayerCommandHandler.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
-    <ClCompile Include="App\GameObject\Player\Command\Move\PlayerMoveCommand.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Move\Pad\PlayerPadMoveCommand.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -229,8 +231,10 @@
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\Command\PlayerCommandHandler.h" />
     <ClInclude Include="App\GameObject\Player\Command\Interface\IPlayerCommand.h" />
-    <ClInclude Include="App\GameObject\Player\Command\Move\PlayerMoveCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Move\Pad\PlayerPadMoveCommand.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
+    <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
