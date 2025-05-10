@@ -80,6 +80,10 @@ public:
 	/// </summary>
 	float TurningSpeedScale(float angle);
 
+	/// <summary>
+	/// Luaからデータを読み込む
+	/// </summary>
+	void LoadDataFromLua();
 
 private:
 
@@ -94,6 +98,21 @@ private:
 
 	// スクリプト
 	std::unique_ptr<LuaScript> lua_;
+
+	// 速度力
+	Math::Vector::Vec3 currentForce_{};
+
+	// 最大速度
+	float maxSpeed_ = 0.0f;
+
+	// 慣性
+	float inertiaFactor_ = 0.0f;
+
+	// 方向転換時の最低速度スケール
+	float minSpeedScale_ = 0.0f;
+	
+	// 姿勢補間率
+	float rotateLerp = 0.0f;
 
 	// 入力状況
 	Math::Vector::Vec2 LStickInput_{};

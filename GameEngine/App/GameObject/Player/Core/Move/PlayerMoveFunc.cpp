@@ -25,6 +25,11 @@ PlayerMoveFunc::PlayerMoveFunc(PlayerCore * pPlayer)
 /// </summary>
 void PlayerMoveFunc::Init()
 {
+	// Luaの読み込み
+	lua_->LoadScript("LuyScript/Player/Move", "PlayerMove.lua");
+	lua_->SetReloadCallBack([this]() {LoadDataFromLua(); });
+	// データの設定
+	LoadDataFromLua();
 
 }
 
@@ -62,18 +67,20 @@ void PlayerMoveFunc::PadMove()
 			0.0f,
 			(LStickInput_.x * right.z) + (LStickInput_.y * forward.z),
 		};
-		
-		// 移動方向を正規化
-		Math::Vector::Vec3 force = Math::Vector::Func::Normalize(padDir_);
 
-		// 減速率を回転角から計算
-		float angle = CalcTurningAngle(force);
-		float speedScale = TurningSpeedScale(angle);  // 0.0〜1.0
+		// PlayerMoveFunc::PadMove などで移動力を補間して設定
+		Math::Vector::Vec3 targetForce = Math::Vector::Func::Normalize(padDir_);
+		float turningAngle = CalcTurningAngle(targetForce);
+		float speedScale = TurningSpeedScale(turningAngle);
 
-		force = force * speedScale; // 減速後の力にする
+		// スピードスケール適用
+		targetForce = targetForce * (speedScale * maxSpeed_);  // maxSpeed_ は最大移動速度
 
-		// forceに設定
-		p_player_->SetForce(force); 
+		// 現在の force を滑らかに補間
+		currentForce_ = Math::Vector::Func::Lerp(currentForce_, targetForce, inertiaFactor_);
+
+		// プレイヤーに設定
+		p_player_->SetForce(currentForce_);
 	}
 
 	// 姿勢を合わせる
@@ -100,18 +107,19 @@ void PlayerMoveFunc::KeyMove(const Math::Vector::Vec2 & input)
 		(keyInput_.x * right.z) + (keyInput_.y * forward.z),
 	};
 
-	// 移動方向を正規化
-	Math::Vector::Vec3 force = Math::Vector::Func::Normalize(keyDir_);
+	// PlayerMoveFunc::PadMove などで移動力を補間して設定
+	Math::Vector::Vec3 targetForce = Math::Vector::Func::Normalize(keyDir_);
+	float turningAngle = CalcTurningAngle(targetForce);
+	float speedScale = TurningSpeedScale(turningAngle);
 
-	// 減速率を回転角から計算
-	float angle = CalcTurningAngle(force);
-	float speedScale = TurningSpeedScale(angle);  // 0.0〜1.0
+	// スピードスケール適用
+	targetForce = targetForce * (speedScale * maxSpeed_);  // maxSpeed_ は最大移動速度
 
-	force = force * speedScale; // 減速後の力にする
+	// 現在の force を滑らかに補間
+	currentForce_ = Math::Vector::Func::Lerp(currentForce_, targetForce, inertiaFactor_);
 
-	// forceに設定
-	p_player_->SetForce(force);
-
+	// プレイヤーに設定
+	p_player_->SetForce(currentForce_);
 
 	// 姿勢を合わせる
 	CalcBodyOrientation(keyInput_, keyDir_);
@@ -152,7 +160,7 @@ void PlayerMoveFunc::CalcBodyOrientation(const Math::Vector::Vec2 & input, const
 		Math::Vector::Vec3 current = p_player_->GetGameObject().lock()->GetRotate();
 		float shortest = ShortestAngle(current.y, target);
 		// 現在の角度と最短角度の間を補間
-		current.y = Math::Vector::Func::Lerp(current.y, current.y + shortest, 0.1f);
+		current.y = Math::Vector::Func::Lerp(current.y, current.y + shortest, rotateLerp);
 		// 設定 
 		p_player_->SetRotate(current);
 	}
@@ -199,7 +207,19 @@ float PlayerMoveFunc::CalcTurningAngle(const Math::Vector::Vec3 & moveDir)
 float PlayerMoveFunc::TurningSpeedScale(float angle)
 {
 	const float maxAngle = 3.14159265f; // π = 180度
-	const float minSpeed = 0.3f; // 最低でもこれくらい動く
-	return std::lerp(1.0f, minSpeed, angle / maxAngle);
+	return std::lerp(1.0f, minSpeedScale_, angle / maxAngle);
+}
+
+
+/// <summary>
+/// Luaからデータを読み込む
+/// </summary>
+void PlayerMoveFunc::LoadDataFromLua()
+{
+	LStickDzone_ = lua_->GetVariable<float>("PlayerMove.LStickDeadZone");
+	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.maxSpeed");
+	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.inertiaFactor");
+	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.minSpeedScale");
+	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.rotateLerp");
 }
 
