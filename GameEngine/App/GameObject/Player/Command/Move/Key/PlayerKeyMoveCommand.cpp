@@ -5,9 +5,9 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-PlayerKeyMoveCommand::PlayerKeyMoveCommand(const Math::Vector::Vec3 & dir)
+PlayerKeyMoveCommand::PlayerKeyMoveCommand(const Math::Vector::Vec2 & input)
 {
-	direction_ = dir;
+	keyInput_ = input;
 }
 
 
@@ -16,5 +16,5 @@ PlayerKeyMoveCommand::PlayerKeyMoveCommand(const Math::Vector::Vec3 & dir)
 /// </summary>
 void PlayerKeyMoveCommand::Exec(const std::weak_ptr<PlayerCore> & player)
 {
-	player.lock()->KeyMove(direction_);
+	player.lock()->KeyMove(keyInput_);
 }

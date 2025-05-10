@@ -27,13 +27,13 @@ void PlayerCommandHandler::Init()
 	inputCommandMap_[ "PadMove" ] = []() 
 		{ return std::make_unique<PlayerPadMoveCommand>(); };
 	inputCommandMap_[ "WKeyMove" ] = []()
-		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f }); };
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ 0.0f, 1.0f }); };
 	inputCommandMap_[ "AKeyMove" ] = []()
-		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ -1.0f, 0.0f, 0.0f }); };
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ -1.0f, 0.0f }); };
 	inputCommandMap_[ "SKeyMove" ] = []()
-		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ 0.0f, 0.0f, -1.0f }); };
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ 0.0f, -1.0f }); };
 	inputCommandMap_[ "DKeyMove" ] = []()
-		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec3{ 1.0f, 0.0f, 0.0f }); };
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ 1.0f, 0.0f }); };
 }
 
 

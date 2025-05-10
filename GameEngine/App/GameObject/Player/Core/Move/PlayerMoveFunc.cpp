@@ -34,15 +34,13 @@ void PlayerMoveFunc::Init()
 /// </summary>
 void PlayerMoveFunc::Update()
 {
+	// Padの入力状況
+	LStickInput_ = inputManager_->JoyLPos();
+
 	// 移動方向の計算
 	CalcMoveDirection();
 
-#ifdef _DEBUG
-	//lua_->MonitorScript();
-	DrawImGui();
-#endif // _DEBUG
-
-	// 0で初期化
+	// 0で初期化 この処理は一番最後にやらないとダメ
 	keyDir_ = Math::Vector::Vec3{ 0.0f, 0.0f, 0.0f };
 }
 
@@ -52,18 +50,71 @@ void PlayerMoveFunc::Update()
 /// </summary>
 void PlayerMoveFunc::PadMove()
 {
-	// stickrの入力状況
-	Math::Vector::Vec2 joyL = inputManager_->JoyLPos();
-
-	if ( std::abs(joyL.x) > LStickDzone_ || std::abs(joyL.y) > LStickDzone_ ) {
-		// 移動
+	if ( std::abs(LStickInput_.x) > LStickDzone_ || std::abs(LStickInput_.y) > LStickDzone_ ) {
+		
+		// カメラの前方と右方
+		Math::Vector::Vec3 forward = weakpCamera_.lock()->GetForwardVec();
+		Math::Vector::Vec3 right = weakpCamera_.lock()->GetRightVec();
+		
+		// カメラの向きを考慮したDirectionを求める
+		padDir_ = {
+			(LStickInput_.x * right.x) + (LStickInput_.y * forward.x),
+			0.0f,
+			(LStickInput_.x * right.z) + (LStickInput_.y * forward.z),
+		};
+		
 		// 移動方向を正規化
 		Math::Vector::Vec3 force = Math::Vector::Func::Normalize(padDir_);
-		p_player_->SetForce(force);
+
+		// 減速率を回転角から計算
+		float angle = CalcTurningAngle(force);
+		float speedScale = TurningSpeedScale(angle);  // 0.0〜1.0
+
+		force = force * speedScale; // 減速後の力にする
+
+		// forceに設定
+		p_player_->SetForce(force); 
 	}
 
 	// 姿勢を合わせる
-	CalcBodyOrientation(joyL, padDir_);
+	CalcBodyOrientation(LStickInput_, padDir_);
+}
+
+
+/// <summary>
+/// Keyの移動処理
+/// </summary>
+void PlayerMoveFunc::KeyMove(const Math::Vector::Vec2 & input)
+{
+	// 入力状況の取得 引数のDirをそのまま入れて大丈夫
+	keyInput_ = input;
+
+	// カメラの前方と右方
+	Math::Vector::Vec3 forward = weakpCamera_.lock()->GetForwardVec();
+	Math::Vector::Vec3 right = weakpCamera_.lock()->GetRightVec();
+	
+	// カメラの向きを考慮したDirectionを求める
+	keyDir_ = {
+		(keyInput_.x * right.x) + (keyInput_.y * forward.x),
+		0.0f,
+		(keyInput_.x * right.z) + (keyInput_.y * forward.z),
+	};
+
+	// 移動方向を正規化
+	Math::Vector::Vec3 force = Math::Vector::Func::Normalize(keyDir_);
+
+	// 減速率を回転角から計算
+	float angle = CalcTurningAngle(force);
+	float speedScale = TurningSpeedScale(angle);  // 0.0〜1.0
+
+	force = force * speedScale; // 減速後の力にする
+
+	// forceに設定
+	p_player_->SetForce(force);
+
+
+	// 姿勢を合わせる
+	CalcBodyOrientation(keyInput_, keyDir_);
 }
 
 
@@ -75,17 +126,11 @@ void PlayerMoveFunc::CalcMoveDirection()
 	// カメラの前方と右方
 	Math::Vector::Vec3 forward = weakpCamera_.lock()->GetForwardVec();
 	Math::Vector::Vec3 right = weakpCamera_.lock()->GetRightVec();
-	// LStickの傾き
-	Math::Vector::Vec2 joyL = inputManager_->JoyLPos();
 
 	// LStickの移動方向を求める
 	padDir_ = {
-		(joyL.x * right.x) + (joyL.y * forward.x),
-		(joyL.x * right.z) + (joyL.y * forward.z),
-	};
-	keyDir_ = {
-		(keyDir_.x * right.x) + (keyDir_.z * forward.x),
-		(keyDir_.x * right.z) + (keyDir_.z * forward.z),
+		(LStickInput_.x * right.x) + (LStickInput_.y * forward.x),
+		(LStickInput_.x * right.z) + (LStickInput_.y * forward.z),
 	};
 }
 
@@ -107,7 +152,9 @@ void PlayerMoveFunc::CalcBodyOrientation(const Math::Vector::Vec2 & input, const
 		Math::Vector::Vec3 current = p_player_->GetGameObject().lock()->GetRotate();
 		float shortest = ShortestAngle(current.y, target);
 		// 現在の角度と最短角度の間を補間
-		current.y = Math::Vector::Func::Lerp(current.y, current.y + shortest, 1.0f);
+		current.y = Math::Vector::Func::Lerp(current.y, current.y + shortest, 0.1f);
+		// 設定 
+		p_player_->SetRotate(current);
 	}
 }
 
@@ -130,12 +177,29 @@ float PlayerMoveFunc::ShortestAngle(float current, float target)
 
 
 /// <summary>
-/// ImGuiの描画
+/// 現在の向きと移動方向の角度差を求める
 /// </summary>
-void PlayerMoveFunc::DrawImGui()
+float PlayerMoveFunc::CalcTurningAngle(const Math::Vector::Vec3 & moveDir)
 {
-	if ( ImGui::TreeNode("MoveFunc") ) {
-		ImGui::DragFloat2("KeyDir", &keyDir_.x, 0.0f, 0.0f, 1.0f);
-		ImGui::TreePop();
-	}
+	Math::Vector::Vec3 currentForward = p_player_->GetDirection();
+	Math::Vector::Vec3 moveNorm = Math::Vector::Func::Normalize(moveDir);
+
+	// 点積で角度を求める
+	float dot = Math::Vector::Func::Dot(currentForward, moveNorm);
+	dot = std::clamp(dot, -1.0f, 1.0f);
+
+	float angle = std::acos(dot); // ラジアン
+	return angle; // 0〜π
 }
+
+
+/// <summary>
+/// 角度に応じた速度スケールの計算
+/// </summary>
+float PlayerMoveFunc::TurningSpeedScale(float angle)
+{
+	const float maxAngle = 3.14159265f; // π = 180度
+	const float minSpeed = 0.3f; // 最低でもこれくらい動く
+	return std::lerp(1.0f, minSpeed, angle / maxAngle);
+}
+

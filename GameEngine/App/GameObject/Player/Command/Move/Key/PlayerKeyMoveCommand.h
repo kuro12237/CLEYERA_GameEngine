@@ -12,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	PlayerKeyMoveCommand(const Math::Vector::Vec2 & dir);
+	PlayerKeyMoveCommand(const Math::Vector::Vec2 & input);
 
 	/// <summary>
 	/// 実行処理
@@ -29,6 +29,6 @@ public:
 private:
 
 	// 移動方向
-	Math::Vector::Vec3 direction_{};
+	Math::Vector::Vec2 keyInput_{};
 
 };

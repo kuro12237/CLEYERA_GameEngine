@@ -37,6 +37,11 @@ public:
 	/// </summary>
 	void PadMove();
 
+	/// <summary>
+	/// Keyの移動処理
+	/// </summary>
+	void KeyMove(const Math::Vector::Vec2 & input);
+
 #pragma region Accessor
 
 	// カメラのweak_ptrの設定
@@ -66,9 +71,15 @@ public:
 	float ShortestAngle(float current, float target);
 
 	/// <summary>
-	/// ImGuiの描画
+	/// 現在の向きと移動方向の角度差を求める
 	/// </summary>
-	void DrawImGui();
+	float  CalcTurningAngle(const Math::Vector::Vec3 & moveDir);
+
+	/// <summary>
+	/// 角度に応じた速度スケールの計算
+	/// </summary>
+	float TurningSpeedScale(float angle);
+
 
 private:
 
