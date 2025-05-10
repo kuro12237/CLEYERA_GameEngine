@@ -47,6 +47,10 @@ void PlayerMoveFunc::Update()
 
 	// 0で初期化 この処理は一番最後にやらないとダメ
 	keyDir_ = Math::Vector::Vec3{ 0.0f, 0.0f, 0.0f };
+
+#ifdef _DEBUG
+	lua_->MonitorScript();
+#endif // _DEBUG
 }
 
 
@@ -218,8 +222,8 @@ void PlayerMoveFunc::LoadDataFromLua()
 {
 	LStickDzone_ = lua_->GetVariable<float>("PlayerMove.LStickDeadZone");
 	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.maxSpeed");
-	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.inertiaFactor");
-	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.minSpeedScale");
-	maxSpeed_ = lua_->GetVariable<float>("PlayerMove.rotateLerp");
+	inertiaFactor_ = lua_->GetVariable<float>("PlayerMove.inertiaFactor");
+	minSpeedScale_ = lua_->GetVariable<float>("PlayerMove.minSpeedScale");
+	rotateLerp = lua_->GetVariable<float>("PlayerMove.rotateLerp");
 }
 
