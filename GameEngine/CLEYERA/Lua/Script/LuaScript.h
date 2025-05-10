@@ -93,7 +93,7 @@ inline LuaScript::LuaScript() : L_(luaL_newstate(), &lua_close)
 inline void LuaScript::LoadScript(const std::string & rootPath, const std::string & fileName)
 {
 	// フルパスを構築
-	std::filesystem::path fullPath = std::filesystem::path("Resources") / rootPath / fileName;
+	std::filesystem::path fullPath = std::filesystem::path("Resources/LuaScript") / rootPath / (fileName + ".lua");
 
 	// ファイルが存在するか確認
 	if ( !std::filesystem::exists(fullPath) ) {

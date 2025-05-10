@@ -1,39 +1,88 @@
 #include "PlayerCommandHandler.h"
+#include "../Command/Interface/IPlayerCommand.h"
+#include "../Command/Move/Pad/PlayerPadMoveCommand.h"
+#include "../Command/Move/Key/PlayerKeyMoveCommand.h"
 
-void PlayerCommandHandler::Init() {
 
-   // コマンド作成
-   commandList_.push_back(std::make_unique<PlayerMoveCommand>());
-   commandList_.push_back(std::make_unique<PlayerActionCommand>());
+
+/// <summary>
+/// コンストラク
+/// </summary>
+PlayerCommandHandler::PlayerCommandHandler(std::weak_ptr<PlayerCore> player)
+{
+	// 入力デバイス
+	input_ = CLEYERA::Manager::InputManager::GetInstance();
+
+	// プレイヤーのポインタ
+	player_ = player;
 }
 
-void PlayerCommandHandler::Handler() {
 
-   if (input_->IsLJoystickActive()) {
-
-      for (const auto &command : commandList_) {
-         if (std::dynamic_pointer_cast<PlayerMoveCommand>(command)) {
-            commands_.push(command);
-            break;
-         }
-      }
-   }
-   if (input_->PushBottonPressed(XINPUT_GAMEPAD_A)) {
-
-      for (const auto &command : commandList_) {
-         if (std::dynamic_pointer_cast<PlayerActionCommand>(command)) {
-            commands_.push(command);
-            break;
-         }
-      }
-   }
+/// <summary>
+/// 初期化処理
+/// </summary>
+void PlayerCommandHandler::Init()
+{
+	// 入力タイするコマンドを登録
+	inputCommandMap_[ "PadMove" ] = []() 
+		{ return std::make_unique<PlayerPadMoveCommand>(); };
+	inputCommandMap_[ "WKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ 0.0f, 1.0f }); };
+	inputCommandMap_[ "AKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ -1.0f, 0.0f }); };
+	inputCommandMap_[ "SKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ 0.0f, -1.0f }); };
+	inputCommandMap_[ "DKeyMove" ] = []()
+		{return std::make_unique<PlayerKeyMoveCommand>(Math::Vector::Vec2{ 1.0f, 0.0f }); };
 }
 
-void PlayerCommandHandler::Exec() {
 
-   while (!commands_.empty()) {
-      auto c = commands_.front().lock();
-      c->Exec(players_);
-      commands_.pop();
-   }
+/// <summary>
+/// 入力に基づいてコマンドを積む
+/// </summary>
+void PlayerCommandHandler::Handle()
+{
+	// 入力がアクティブなときに、コマンドを積む
+	if ( input_->IsLJoystickActive() ) {
+		CommandPush("PadMove");
+	}
+	if ( input_->PushKey(DIK_W) ) {
+		CommandPush("WKeyMove");
+	}
+	if ( input_->PushKey(DIK_A) ) {
+		CommandPush("AKeyMove");
+	}
+	if ( input_->PushKey(DIK_S) ) {
+		CommandPush("SKeyMove");
+	}
+	if ( input_->PushKey(DIK_D) ) {
+		CommandPush("DKeyMove");
+	}
 }
+
+
+/// <summary>
+/// 実行
+/// </summary>
+void PlayerCommandHandler::Exec()
+{
+	// キュー内の全コマンドを順次実行
+	while ( !commands_.empty() ) {
+		auto & command = commands_.front();
+		command->Exec(player_);
+		commands_.pop();
+	}
+}
+
+
+/// <summary>
+/// コマンドのプッシュ
+/// </summary>
+void PlayerCommandHandler::CommandPush(const std::string & key)
+{
+	auto it = inputCommandMap_.find(key.c_str());
+	if ( it != inputCommandMap_.end() ) {
+		commands_.push(it->second());
+	}
+}
+

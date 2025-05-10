@@ -77,9 +77,10 @@ public:
 
   void SetName(std::string name) { name_ = name; }
 
-  void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
-  void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
-  void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
+   void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
+   void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
+   void SetTranslate(const Math::Vector::Vec3 & v) { translate_ = v; }
+   void SetForce(const Math::Vector::Vec3 &v) { force_ = v; }
 
   void SetModelHandle(uint32_t handle) {
     modelHandle_ = handle;
