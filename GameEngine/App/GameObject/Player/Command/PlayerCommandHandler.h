@@ -1,24 +1,60 @@
 #pragma once
-#include "PlayerMoveCommand.h"
-#include"PlayerActionCommand.h"
 
+#include "CLEYERA.h"
+#include "../Command/Interface/IPlayerCommand.h"
+
+
+// 前方宣言
+class PlayerCore;
+
+
+/* Player関連のCommandHandlerクラス */
 class PlayerCommandHandler {
- public:
-   PlayerCommandHandler() { input_ = CLEYERA::Manager::InputManager::GetInstance(); };
-   ~PlayerCommandHandler() {};
 
-   void Init();
+public:
 
-   void Handler();
+	/// <summary>
+	/// コンストラク
+	/// </summary>
+	PlayerCommandHandler(std::weak_ptr<PlayerCore> player);
 
-   void Exec();
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~PlayerCommandHandler() = default;
 
-   void SetPlayer(const std::weak_ptr<IPlayer> &p) { players_.push_back(p); }
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	void Init();
 
- private:
-   std::list<std::weak_ptr<IPlayer>> players_;
-   std::queue<std::weak_ptr<IPlayerCommand>> commands_;
-   std::list<std::shared_ptr<IPlayerCommand>> commandList_;
+	/// <summary>
+	/// 入力チェックとキューへの積み込み
+	/// </summary>
+	void Handle();
 
-   CLEYERA::Manager::InputManager *input_ = nullptr;
+	/// <summary>
+	/// コマンド実行
+	/// </summary>
+	void Exec();
+
+private:
+
+	/// <summary>
+	/// コマンドのプッシュ
+	/// </summary>
+	void CommandPush(const std::string & key);
+
+private:
+
+	// 入力
+	CLEYERA::Manager::InputManager * input_ = nullptr;
+
+	std::queue<std::unique_ptr<IPlayerCommand>> commands_;
+
+	// 入力->コマンド生成用のマップ
+	std::unordered_map<std::string, std::function<std::unique_ptr<IPlayerCommand>()>> inputCommandMap_;
+
+	// Playerのweak_ptr
+	std::weak_ptr<PlayerCore> player_;
 };
