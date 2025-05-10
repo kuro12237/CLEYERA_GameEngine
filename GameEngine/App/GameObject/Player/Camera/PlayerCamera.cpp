@@ -19,7 +19,7 @@ void PlayerCamera::Init()
 	name_ = VAR_NAME(PlayerCamera);
 
 	// Luaの読み込み
-	lua_->LoadScript("LuaScript/Player/Camera", "PlayerCamera.lua");
+	lua_->LoadScript("Player/Camera", "PlayerCamera");
 	lua_->SetReloadCallBack([this]() {LoadCameraDataFromLua(); });
 
 	// Luaから抽出したデータの設定

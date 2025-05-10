@@ -21,7 +21,7 @@ void PlayerCore::Init()
 	ObjectComponent::name_ = VAR_NAME(PlayerCore);
 
 	// Luaの読み込み
-	lua_->LoadScript("LuaScript/Player/Core", "PlayerCore.lua");
+	lua_->LoadScript("Player/Core", "PlayerCore");
 	lua_->SetReloadCallBack([this]() {LoadCoreDataFromLua(); });
 
 	// Luaから抽出したデータの設定

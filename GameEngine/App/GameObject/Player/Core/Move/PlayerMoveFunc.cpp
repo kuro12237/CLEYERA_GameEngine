@@ -26,7 +26,7 @@ PlayerMoveFunc::PlayerMoveFunc(PlayerCore * pPlayer)
 void PlayerMoveFunc::Init()
 {
 	// Luaの読み込み
-	lua_->LoadScript("LuyScript/Player/Move", "PlayerMove.lua");
+	lua_->LoadScript("Player/Move", "PlayerMove");
 	lua_->SetReloadCallBack([this]() {LoadDataFromLua(); });
 	// データの設定
 	LoadDataFromLua();
