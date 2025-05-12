@@ -35,4 +35,10 @@ class NormalEnemy1 : public BaseNormalEnemy {
    /// デストラクタ
    /// </summary>
    ~NormalEnemy1() override = default;
+
+private:
+	//攻撃開始距離
+	const float_t ATTACK_START_DISTANCE_ = 3.0f;
+	//追跡開始距離
+	const float_t TRACKING_START_DISTANCE_ = 40.0f;
 };

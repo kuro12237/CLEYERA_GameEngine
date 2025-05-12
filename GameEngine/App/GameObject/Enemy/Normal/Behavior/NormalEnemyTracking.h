@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file BossEnemyTracking.h
+ * @file NormalEnemyTracking.h
  * @brief 追跡ノードクラス
  * @author 茂木翼
  */

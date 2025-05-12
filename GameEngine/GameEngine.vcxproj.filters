@@ -10,7 +10,6 @@
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\IPlayerBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\PlayerBullet.cpp" />
@@ -144,12 +143,13 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp">
       <Filter>Enemy\BossEnemy</Filter>
     </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
-    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
-    <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
     <ClInclude Include="App\GameObject\Player\Bullet\PlayerBulletManager.h" />
     <ClInclude Include="App\GameObject\Player\Bullet\IPlayerBullet.h" />
@@ -335,6 +335,12 @@
       <Filter>Enemy\BossEnemy</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\EnemyManager.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h">
       <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>

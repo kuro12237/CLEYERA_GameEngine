@@ -21,23 +21,22 @@ void NormalEnemy1::Init() {
 
    //スケールの設定
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
-   // 座標の設定
-   translate_ = {.x = -5.0f, .y = 0.5f, .z = -15.0f};
+   translate_.y = 0.5f;
 
    //ルート
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
 #pragma region 攻撃シーケンス
-	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
-	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(5.0f));
-	root->AddChild(std::move(attackSequence));
+	//std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
+	////プレイヤーが設定した範囲内にいるかどうか(攻撃用)
+	//attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(ATTACK_START_DISTANCE_));
+	//root->AddChild(std::move(attackSequence));
 #pragma endregion
 
 #pragma region 通常状態のシーケンス
    std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(40.0f));
+   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(TRACKING_START_DISTANCE_));
    //追跡
    approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
    //作ったものを入れる
@@ -46,7 +45,7 @@ void NormalEnemy1::Init() {
 
 
    //無し
-   root->AddChild(std::make_unique<NormalEnemyNoneBehavior>());
+   //root->AddChild(std::make_unique<NormalEnemyNoneBehavior>());
 
 
 
