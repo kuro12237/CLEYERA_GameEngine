@@ -16,7 +16,7 @@ public:
     /// 実行
     /// </summary>
     /// <returns></returns>
-    NodeState Execute(BaseBossEnemy * baseBossEnemy) override;
+    EnemyNodeState Execute(BaseBossEnemy * baseBossEnemy) override;
 
     /// <summary>
     /// デストラクタ

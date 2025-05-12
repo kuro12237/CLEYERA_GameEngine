@@ -108,17 +108,45 @@
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="App\GameObject\Test\testCamera.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.cpp">
+      <Filter>Enemy\NormalEnemy\1</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.cpp">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInRange.cpp">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyNoneBehavior.cpp">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyTracking.cpp">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
-    <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
@@ -238,39 +266,76 @@
     <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h" />
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyCondition.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyNoneBehavior.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyRandomAttackSelector.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.h">
-      <Filter>BossEnemy\Behavior</Filter>
+      <Filter>Enemy\BossEnemy\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.h">
-      <Filter>NormalEnemy</Filter>
+      <Filter>Enemy\NormalEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.h">
+      <Filter>Enemy\NormalEnemy\1</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyBehaviorNode.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyCondition.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInRange.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyNoneBehavior.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemySelector.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemySequence.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyTracking.h">
+      <Filter>Enemy\NormalEnemy\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.h">
+      <Filter>Enemy\BossEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -283,14 +348,23 @@
     <None Include="Resources\Shaders\Rasterization\Vs_InOut.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="BossEnemy">
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{537aeebf-5b0a-4402-953d-586e8be6f02f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\BossEnemy">
       <UniqueIdentifier>{b1ac3303-f825-47fc-a9f3-b35a84d46184}</UniqueIdentifier>
     </Filter>
-    <Filter Include="BossEnemy\Behavior">
+    <Filter Include="Enemy\BossEnemy\Behavior">
       <UniqueIdentifier>{2391fc1b-3e56-43da-9602-17186ccda492}</UniqueIdentifier>
     </Filter>
-    <Filter Include="NormalEnemy">
+    <Filter Include="Enemy\NormalEnemy">
       <UniqueIdentifier>{24196705-366c-4688-a1e8-76ed99efafb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\NormalEnemy\1">
+      <UniqueIdentifier>{df6332c7-22a8-42ff-a742-04be6a7badbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\NormalEnemy\Behavior">
+      <UniqueIdentifier>{c3362286-8d63-4338-af51-e12e5fdfa1b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

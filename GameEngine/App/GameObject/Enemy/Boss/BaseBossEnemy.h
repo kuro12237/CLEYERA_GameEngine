@@ -11,7 +11,6 @@
 #include "Enemy/EnemyParameter.h"
 #include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
 
-
 /// <summary>
 /// ボスの基底クラス
 /// </summary>

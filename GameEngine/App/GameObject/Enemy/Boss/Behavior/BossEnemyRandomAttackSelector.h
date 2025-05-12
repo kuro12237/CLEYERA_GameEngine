@@ -7,11 +7,11 @@
 /// </summary>
 class BossEnemyRandomAttackSelector : public BossEnemySelector {
 public:
-    NodeState Execute(BaseBossEnemy * baseBossEnemy) override {
+    EnemyNodeState Execute(BaseBossEnemy * baseBossEnemy) override {
         //ランダムで攻撃選択
         int32_t attackIndex = rand() % static_cast<int32_t >(children_.size());
 
-        NodeState state = children_[attackIndex]->Execute(baseBossEnemy);
+        EnemyNodeState state = children_[attackIndex]->Execute(baseBossEnemy);
         return state;
     }
 };

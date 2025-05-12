@@ -1,7 +1,8 @@
-#include "BossEnemyAttack.h"
+#include "NormalEnemyAttack.h"
+
 #include <imgui.h>
 
-EnemyNodeState BossEnemyAttack::Execute(BaseBossEnemy * baseBossEnemy){
+EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseBossEnemy){
 
 #ifdef _DEBUG
     ImGui::Begin("Attack");

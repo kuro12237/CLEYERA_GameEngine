@@ -2,8 +2,8 @@
 
 
 /**
- * @file EnemyManager.h
- * @brief ボスの合成ノードクラス
+ * @file NormalEnemySelector.h
+ * @brief 雑魚敵セレクターのクラス
  * @author 茂木翼
  */
 
@@ -11,23 +11,23 @@
 //成功する子が見つかるまで1つ1つ実行する
 //条件分岐はここでやるよ
 
-#include "BossEnemyBehaviorNode.h"
+#include "NormalEnemyBehaviorNode.h"
 
 /// <summary>
-/// 合成ノード
+/// 雑魚敵セレクター
 /// </summary>
-class BossEnemySelector :public BossEnemyBehaviorNode {
+class NormalEnemySelector :public NormalEnemyBehaviorNode {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemySelector() = default;
+    NormalEnemySelector() = default;
 
     /// <summary>
     /// 子を追加
     /// </summary>
     /// <param name="child"></param>
-    inline void AddChild(std::unique_ptr<BossEnemyBehaviorNode> child) {
+    inline void AddChild(std::unique_ptr<NormalEnemyBehaviorNode> child) {
         children_.push_back(std::move(child));
     }
 
@@ -36,9 +36,9 @@ public:
     /// </summary>
     /// <param name="baseBossEnemy"></param>
     /// <returns></returns>
-    inline EnemyNodeState Execute(BaseBossEnemy* baseBossEnemy) override {
+    inline EnemyNodeState Execute(BaseNormalEnemy * baseBossEnemy) override {
         //子ノードに入っているものを全て実行していく
-        for ( auto & child : children_ ) {
+        for (const auto & child : children_ ) {
             EnemyNodeState status = child->Execute(baseBossEnemy);
             //失敗ではなかったら状態を返す
             if ( status != EnemyNodeState::Failure ) {
@@ -51,12 +51,12 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~BossEnemySelector()override = default;
+    ~NormalEnemySelector()override = default;
 
 
 
 protected:
     //子ノード
-    std::vector<std::unique_ptr<BossEnemyBehaviorNode>> children_;
+    std::vector<std::unique_ptr<NormalEnemyBehaviorNode>> children_;
 
 };

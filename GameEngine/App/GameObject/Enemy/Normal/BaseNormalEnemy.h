@@ -9,8 +9,7 @@
 
 #include"CLEYERA.h"
 #include "Enemy/EnemyParameter.h"
-#include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
-
+#include "Enemy/Normal/Behavior/NormalEnemyBehaviorNode.h"
 
 /// <summary>
 /// 雑魚敵の基底クラス
@@ -72,7 +71,7 @@ protected:
 	//方向
     Math::Vector::Vec3 direction_ = {};
 	//ビヘイビアツリー
-	std::unique_ptr<BossEnemyBehaviorNode> behaviorTree_ = nullptr;
+	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
 
 
 	

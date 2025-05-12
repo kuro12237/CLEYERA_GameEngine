@@ -1,9 +1,8 @@
 #pragma once
 
-
 /**
- * @file BossEnemyMagicAttack.h
- * @brief 魔法攻撃クラス
+ * @file NormalEnemyAttack.h
+ * @brief 攻撃ノードクラス
  * @author 茂木翼
  */
 
@@ -13,30 +12,28 @@
  //つまり具体的な動きをここで行う
  //子を持つことができない
 
-#include "BossEnemyBehaviorNode.h"
+#include "NormalEnemyCondition.h"
 
 /// <summary>
-/// 魔法攻撃
+/// 攻撃
 /// </summary>
-class BossEnemyMagicAttack : public BossEnemyBehaviorNode {
+class NormalEnemyAttack : public NormalEnemyCondition {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemyMagicAttack() = default;
+    NormalEnemyAttack() = default;
 
     /// <summary>
     /// 実行
     /// </summary>
     /// <param name="baseBossEnemy"></param>
     /// <returns></returns>
-    EnemyNodeState Execute(BaseBossEnemy * baseBossEnemy) override;
+    EnemyNodeState Execute(BaseNormalEnemy * baseBossEnemy) override;
 
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~BossEnemyMagicAttack()override = default;
-
-
+    ~NormalEnemyAttack() = default;
 };
 

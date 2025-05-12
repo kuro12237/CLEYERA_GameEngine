@@ -1,25 +1,34 @@
 #pragma once
 
-#include "BossEnemyBehaviorNode.h"
+/**
+ * @file NormalEnemyCondition.h
+ * @brief 雑魚敵の状態クラス
+ * @author 茂木翼
+ */
 
-class BossEnemyCondition : public BossEnemyBehaviorNode {
+#include "NormalEnemyBehaviorNode.h"
+
+/// <summary>
+/// 雑魚敵の状態
+/// </summary>
+class NormalEnemyCondition : public NormalEnemyBehaviorNode {
 public:
     /// <summary>
     /// 状態を確認
     /// </summary>
     /// <param name="baseBossEnemy"></param>
     /// <returns></returns>
-    virtual bool CheckCondition(BaseBossEnemy * baseBossEnemy) = 0;
+    virtual bool CheckCondition(BaseNormalEnemy * baseBossEnemy) = 0;
 
     /// <summary>
     /// 実行
     /// </summary>
     /// <param name="baseBossEnemy"></param>
     /// <returns></returns>
-    inline EnemyNodeState Execute(BaseBossEnemy * baseBossEnemy) override {
+    inline EnemyNodeState Execute(BaseNormalEnemy * baseBossEnemy) override {
 
         //trueだった場合成功
-        if ( CheckCondition(baseBossEnemy) ) {
+        if ( CheckCondition(baseBossEnemy)==true ) {
             return EnemyNodeState::Success;
         }
         else {
@@ -30,6 +39,6 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~BossEnemyCondition()override = default;
+    ~NormalEnemyCondition()override = default;
 
 };

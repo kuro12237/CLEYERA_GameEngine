@@ -3,7 +3,7 @@
 #include "Enemy/Boss/BaseBossEnemy.h"
 
 
-NodeState BossEnemyTracking::Execute(BaseBossEnemy * baseBossEnemy){
+EnemyNodeState BossEnemyTracking::Execute(BaseBossEnemy * baseBossEnemy){
 
     //方向を求める
     Math::Vector::Vec3 velocity = {
@@ -17,7 +17,7 @@ NodeState BossEnemyTracking::Execute(BaseBossEnemy * baseBossEnemy){
     baseBossEnemy->SetVelocity(Math::Vector::Func::Normalize(velocity));
     
     //成功
-    return NodeState::Success;
+    return EnemyNodeState::Success;
 
     
 }

@@ -10,17 +10,7 @@
 #include <vector>
 #include <string>
 
-/// <summary>
-/// ノードの状態
-/// </summary>
-enum NodeState {
-	//成功
-	Success,
-	//失敗
-	Failure,
-	//実行
-	Running,
-};
+#include "Enemy/EnemyNodeState.h"
 
 /// <summary>
 /// ボス敵
@@ -38,7 +28,7 @@ public:
 	/// </summary>
 	/// <param name="baseBossEnemy"></param>
 	/// <returns></returns>
-	virtual NodeState Execute(BaseBossEnemy* baseBossEnemy) = 0;
+	virtual EnemyNodeState Execute(BaseBossEnemy* baseBossEnemy) = 0;
 	
 	/// <summary>
 	/// デストラクタ
