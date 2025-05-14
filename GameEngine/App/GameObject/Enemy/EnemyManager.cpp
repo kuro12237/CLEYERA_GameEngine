@@ -84,12 +84,12 @@ void EnemyManager::Update() {
 	//プレイヤーの座標を取得
 	playerPosition_ = playerManager_->GetPlayerCore()->GetWorldPosition();
 
-	//for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
-	//	//プレイヤーの座標を設定
-    //    enemy->SetPlayerPosition(playerPosition_);
-    //       // 通常の敵の更新
-	//	enemy->Update();
-	//}
+	for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
+		//プレイヤーの座標を設定
+        enemy->SetPlayerPosition(playerPosition_);
+           // 通常の敵の更新
+		enemy->Update();
+	}
 
 	for (std::unique_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
            // プレイヤーの座標を設定
