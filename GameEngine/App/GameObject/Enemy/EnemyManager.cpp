@@ -1,12 +1,10 @@
 #include "EnemyManager.h"
 
 #include "Player/PlayerManager.h"
-#include "NormalEnemy.h"
 #include "Boss/First/FirstBossEnemy.h"
+#include "Normal/Normal1/NormalEnemy1.h"
 
 void EnemyManager::Init() {
-
-
 
    std::ifstream file;
    file.open("Resources/Configs/Entitiys/Enemy/EnemyInitialPosition.csv");
@@ -73,7 +71,7 @@ void EnemyManager::Init() {
          position.z = static_cast<float>(std::atof(word.c_str()));
          position.y = 0.5f;
          // 生成
-         GenarateBossEnemyEnemy(position);
+         //GenarateBossEnemyEnemy(position);
       }
    }
 
@@ -84,7 +82,7 @@ void EnemyManager::Init() {
 void EnemyManager::Update() {
    
 	//プレイヤーの座標を取得
-    playerPosition_ = playerManager_->GetPlayerCore().lock()->GetWorldPos();
+	playerPosition_ = playerManager_->GetPlayerCore()->GetWorldPosition();
 
 	for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
 		//プレイヤーの座標を設定
@@ -112,15 +110,14 @@ void EnemyManager::Update() {
 
 void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
 
-	// 敵の生成
-   std::unique_ptr<BaseNormalEnemy> enemy = std::make_unique<NormalEnemy>();
-   // 初期化
-   enemy->Init();
-   //座標の設定
-   enemy->SetInitialPosition(position);
-
-   // 挿入
-   enemyList_.push_back(std::move(enemy));
+	//// 敵の生成
+    std::unique_ptr<NormalEnemy1> enemy = std::make_unique<NormalEnemy1>();
+    //座標の設定
+    enemy->SetInitialPosition(position);
+    // 初期化
+    enemy->Init();
+    //挿入
+    enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {

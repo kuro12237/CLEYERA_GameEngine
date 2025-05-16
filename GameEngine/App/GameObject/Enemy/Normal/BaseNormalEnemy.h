@@ -1,20 +1,26 @@
 #pragma once
 
 /**
- * @file BaseBossEnemy.h
- * @brief ボスの基底クラス
+ * @file BaseNormalEnemy.h
+ * @brief 雑魚敵の基底クラス
  * @author 茂木翼
  */
 
 
 #include"CLEYERA.h"
 #include "Enemy/EnemyParameter.h"
-#include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
+#include "Enemy/Normal/Behavior/NormalEnemyBehaviorNode.h"
 
 /// <summary>
-/// ボスの基底クラス
+/// 雑魚敵の基底クラス
 /// </summary>
-class BaseBossEnemy : public CLEYERA::Component::ObjectComponent {
+class BaseNormalEnemy : public CLEYERA::Component::ObjectComponent {
+protected:
+	/// <summary>
+	/// ImGui表示用
+	/// </summary>
+	virtual void DisplayImGui()=0;
+
 public:
    /// <summary>
    /// プレイヤーの座標
@@ -71,7 +77,7 @@ protected:
 	//方向
     Math::Vector::Vec3 direction_ = {};
 	//ビヘイビアツリー
-	std::unique_ptr<BossEnemyBehaviorNode> behaviorTree_ = nullptr;
+	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
 
 
 	
