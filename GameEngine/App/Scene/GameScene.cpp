@@ -10,6 +10,11 @@ void GameScene::Init() {
    playerManager_ = std::make_unique<PlayerManager>();
    managerCompornents_.push_back(playerManager_);
 
+   enemyManager_ = std::make_unique<EnemyManager>();
+   enemyManager_->SetPlayerManager(playerManager_.get());
+   managerCompornents_.push_back(enemyManager_);
+
+
    // 初期化
    for (auto manager : managerCompornents_) {
       manager->Init();
