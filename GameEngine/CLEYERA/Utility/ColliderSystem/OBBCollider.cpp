@@ -29,6 +29,7 @@ void CLEYERA::Util::Collider::OBBCollider::Update() {
   worldMatrix_ = Math::Matrix::Func::AffineMatrix(obb_.size, *obb_.rotate, *obb_.center);
 
   obb_.CalculateOrientations();
+
   if (!isHit_) {
 
     for (size_t i = 0; i < 48; i++) {
@@ -40,6 +41,16 @@ void CLEYERA::Util::Collider::OBBCollider::Update() {
   }
 
   line_->Update();
+}
+
+void CLEYERA::Util::Collider::OBBCollider::MortonUpdate() {
+
+  Math::Vector::Vec3 min = *obb_.center;
+  min -= obb_.size;
+  Math::Vector::Vec3 max = *obb_.center;
+  max += obb_.size;
+
+  mortonNum_ = octree_->GetMortonNumber(min, max);
 }
 
 void CLEYERA::Util::Collider::OBBCollider::ColliderImGuiUpdate(const std::string &name) {

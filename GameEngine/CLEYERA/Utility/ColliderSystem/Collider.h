@@ -1,6 +1,7 @@
 #pragma once
 #include "../../3d/Line3d/Line3d.h"
 #include "ColliderFunc.h"
+#include"Octree/Octree.h"
 
 namespace CLEYERA {
 
@@ -20,7 +21,10 @@ enum class ColliderType { OBB };
 /// </summary>
 class Collider {
 public:
-  Collider() {};
+  Collider() {
+    octree_ = std::make_unique<Octree>();
+    octree_->Init();
+  };
   virtual ~Collider() {};
 
   bool HitCall(std::weak_ptr<Component::ObjectComponent> other);
@@ -36,6 +40,10 @@ public:
 
   std::weak_ptr<CLEYERA::Model3d::Line3d> GetLine() const { return line_; }
   Math::Vector::Vec3 GetCenter() { return center_; }
+
+  virtual void MortonUpdate();
+  int32_t GetMortonNum() { return mortonNum_; }
+  Octree *GetOctree() { return octree_.get(); }
 
   /// <summary>
   /// 当たった時の関数ポインタのセッター
@@ -54,13 +62,15 @@ protected:
 
   std::shared_ptr<CLEYERA::Model3d::Line3d> line_ = nullptr;
   std::vector<Math::Vector::Vec3> positions_ = {};
-
   std::vector<Math::Vector::Vec4> colors_ = {};
 
   Math::Vector::Vec3 center_{};
-
   Math::Matrix::Mat4x4 worldMatrix_ = {};
   bool isHit_ = false;
+
+  int32_t mortonNum_ = 0;
+  std::unique_ptr<Octree> octree_ = nullptr;
+
 };
 
 } // namespace Collider

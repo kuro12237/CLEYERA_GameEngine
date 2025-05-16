@@ -22,6 +22,8 @@ public:
 
   void Update() override;
 
+  void MortonUpdate() override;
+
   void ColliderImGuiUpdate(const std::string &name) override;
   Math::Vector::Vec3 CalcOverlapAABB(std::weak_ptr<Collider> other) override;
 
