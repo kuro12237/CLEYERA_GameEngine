@@ -32,8 +32,8 @@ void GameScene::Init() {
    loader_.reset();
 
    // 地形モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
-   terrain_->ChengeData(modelHandle);
+   //uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
+   //terrain_->ChengeData(modelHandle);
 
    // 無視
    InitRaytracing();

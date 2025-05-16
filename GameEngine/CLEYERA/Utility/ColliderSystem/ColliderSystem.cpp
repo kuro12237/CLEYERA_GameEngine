@@ -1,130 +1,132 @@
 #include "ColliderSystem.h"
+#include "Compornent/ObjectCompornent.h"
 
 void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
 
-   ImGui::Begin("collisionManager");
+  if (ImGui::Button("LineDraw")) {
 
-   ImGui::End();
+    if (isLineDraw_) {
 
-   if (ImGui::Button("LineDraw")) {
+      for (auto itr = objectList_.begin(); itr != objectList_.end(); ++itr) {
+        if (itr->expired()) {
+          continue;
+        }
+        const auto &collider = itr->lock()->GetCollder().lock();
 
-      if (isLineDraw_) {
-
-         for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
-            if (itr->expired()) {
-               continue;
-            }
-            auto collider = itr->lock();
-
-            RenderManager::GetInstance()->PushLine3d(collider->GetLine());
-         }
-         isLineDraw_ = false;
-      } else {
-         for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
-            if (itr->expired()) {
-               continue;
-            }
-            auto collider = itr->lock();
-            RenderManager::GetInstance()->PopLine3d(collider->GetLine());
-         }
-         isLineDraw_ = true;
+        RenderManager::GetInstance()->PushLine3d(collider->GetLine());
       }
-   }
-
-   if (!isLineDraw_) {
-
-      for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
-         if (itr->expired()) {
-            continue;
-         }
-         auto collider = itr->lock();
-         RenderManager::GetInstance()->PopLine3d(collider->GetLine());
+      isLineDraw_ = false;
+    } else {
+      for (auto itr = objectList_.begin(); itr != objectList_.end(); ++itr) {
+        if (itr->expired()) {
+          continue;
+        }
+        const auto &collider = itr->lock()->GetCollder().lock();
+        RenderManager::GetInstance()->PopLine3d(collider->GetLine());
       }
-      for (auto itr = colliderList_.begin(); itr != colliderList_.end(); ++itr) {
-         if (itr->expired()) {
-            continue;
-         }
-         auto collider = itr->lock();
-
-         RenderManager::GetInstance()->PushLine3d(collider->GetLine());
-      }
-   }
+      isLineDraw_ = true;
+    }
+  }
 }
 void CLEYERA::Manager::ColliderSystem::Update() {
 
-   // 各コライダーの更新
-   for (auto it = colliderList_.begin(); it != colliderList_.end();) {
-      if (!(*it).expired()) {
-         (*it).lock()->Update();
-         ++it;
-      } else {
-         it = colliderList_.erase(it);
+  for (auto it = objectList_.begin(); it != objectList_.end();) {
+    if (!(*it).expired()) {
+      ++it;
+    } else {
+      it = objectList_.erase(it);
+    }
+  }
+  std::unique_ptr<Util::Collider::Octree> octree = std::make_unique<Util::Collider::Octree>();
+  octree->Init();
+  std::map<int, std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>>> map;
+  std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>>
+      stackList; // 上位空間のコリジョンをまとめたデータ
+  int maxResolution = 5;
+  // 空間の最大分割数
+
+  int currentNum = 0; // 現在検証中のモートン序列番号
+
+  	// 全体を更新
+  for (auto obj : this->objectList_) {
+    
+      auto c = obj.lock()->GetCollder().lock();
+      map[c->GetMortonNum()].push_back(obj); // mapに配置
+  }
+
+  while (true) {
+    // 現在の空間に存在するコリジョンの数
+    int size = static_cast<int>(map[currentNum].size());
+    // 現在の空間内に登録されているオブジェクト同士を衝突
+    for (int i = 0; i < size; i++) {
+      for (int j = i + 1; j < size; j++) {
+
+          //ここ
+        auto obbA = map[currentNum][i].lock()->GetCollder().lock();
+        auto obbB = map[currentNum][j].lock()->GetCollder().lock();
+
+        auto typeA = dynamic_cast<Util::Collider::OBBCollider *>(obbA.get());
+       
+        auto typeB = dynamic_cast<Util::Collider::OBBCollider *>(obbB.get());
+        // 判定
+        if (Util::Collider::system::Func::OBBCheck(typeA->GetOBB(), typeB->GetOBB())) {
+
+          obbA->HitCall(map[currentNum][j].lock());
+
+          obbB->HitCall(map[currentNum][i].lock());
+        }
       }
-   }
-   std::unique_ptr<Util::Collider::Octree> octree = std::make_unique<Util::Collider::Octree>();
-   octree->Init();
+    }
 
-   std::unordered_map<int, std::vector<std::weak_ptr<Util::Collider::Collider>>> octreeGroups;
+    // -- 次の空間検索開始 -- //
 
-   for (auto obj : colliderList_) {
-      int morton = octree->GetMortonNumber(obj.lock()->GetCenter());
-      if (morton != -1) {
-         octreeGroups[morton].push_back(obj);
+    // 次の小空間が8分木分割数を超えていなければ移動
+    if ((currentNum << 3) + 1 < maxResolution) {
+      // スタックリストにこの空間のデータを追加
+      for (int i = 0; i < size; i++) {
+        stackList.push_back(map[currentNum][i]);
       }
-   }
+      currentNum = (currentNum << 3) + 1;
+      // 最初に戻る
+      continue;
+    }
+    // そうでない場合は次のモートン番号に移動する
+    else if (currentNum % 8 != 0) {
+      currentNum++;
+      // 最初に戻る
+      continue;
+    }
 
-   using type = Util::Collider::ColliderType;
+    // 下の空間に所属する小空間をすべて検証し終わった場合
 
-   for (auto &[morton, group] : octreeGroups) {
-      for (size_t i = 0; i < group.size(); ++i) {
-         for (size_t j = i + 1; j < group.size(); ++j) {
-
-            Util::Collider::system::OBB obbA = std::dynamic_pointer_cast<Util::Collider::OBBCollider>(group[i].lock())->GetOBB();
-            Util::Collider::system::OBB obbB = std::dynamic_pointer_cast<Util::Collider::OBBCollider>(group[j].lock())->GetOBB();
-
-            if (Util::Collider::system::Func::OBBCheck(obbA, obbB)) {
-
-               group[i].lock()->HitCall(group[j].lock().get());
-               group[j].lock()->HitCall(group[i].lock().get());
-
-               //std::string message = "Failed open data file for write.";
-               //MessageBoxA(nullptr, message.c_str(), "GlobalVariables", 0);
-            }
-         }
+    // １つ上の空間に戻る
+    do {
+      currentNum = (currentNum - 1) >> 3;
+      // currentNumが実数値の場合 -> スタックからオブジェクトを外す
+      if (currentNum >= 0) {
+        size_t PopNum = map[currentNum].size();
+        for (int i = 0; i < PopNum; i++) {
+          stackList.pop_back();
+        }
       }
-   }
+      // 戻った空間がその空間の最後の数値の場合 -> もう一度戻る
+    } while (currentNum % 8 == 0);
 
-   //// 衝突判定
-   // for (auto &c : colliderList_) {
-   //    if (c.expired())
-   //       continue;
-   //    auto collider = c.lock();
+    // 次のモートン番号へ進む
+    currentNum++;
 
-   //   // 範囲検索（中心点の周囲に存在するコライダーを取得）
-   //   Math::Vector::Vec3 center = collider->GetCenter();
-   //   float range = 320.0f; // 判定に使う半径。適宜調整
-   //   Math::Vector::Vec3 min = center - Math::Vector::Vec3(range, range, range);
-   //   Math::Vector::Vec3 max = center + Math::Vector::Vec3(range, range, range);
+    // 戻った空間が場外（-1）だった場合 -> ループ終了
+    if (currentNum == 0) {
+      break;
+    }
+  }
 
-   //   auto candidates = colliderList_;
-
-   //   for (const auto &other : candidates) {
-   //      if (collider == other.lock())
-   //         continue;
-
-   //      if (collider->GetColliderType() == type::OBB && other.lock()->GetColliderType() == type::OBB) {
-
-   //         Util::Collider::system::OBB obbA = std::dynamic_pointer_cast<Util::Collider::OBBCollider>(collider)->GetOBB();
-   //         Util::Collider::system::OBB obbB = std::dynamic_pointer_cast<Util::Collider::OBBCollider>(other.lock())->GetOBB();
-
-   //         if (Util::Collider::system::Func::OBBCheck(obbA, obbB)) {
-   //            // collider->HitCall(*other.lock());
-   //            other.lock()->HitCall(*collider);
-
-   //            std::string message = "Failed open data file for write.";
-   //            MessageBoxA(nullptr, message.c_str(), "GlobalVariables", 0);
-   //         }
-   //      }
-   //   }
-   //}
+  // 各コライダーの更新
+  for (auto it = objectList_.begin(); it != objectList_.end();) {
+    if (!(*it).expired()) {
+      (*it).lock()->GetCollder().lock()->MortonUpdate();
+      (*it).lock()->GetCollder().lock()->Update();
+      ++it;
+    }
+  }
 }

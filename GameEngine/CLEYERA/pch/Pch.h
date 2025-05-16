@@ -1,11 +1,13 @@
 #pragma once
 
 #define VAR_NAME(var) (#var)
+#define NOMINMAX
 
 /// コンパイルファイル
 
 #include <cassert>
 #include <thread>
+#include <algorithm>
 
 #include <cstdint>
 #include <format>
@@ -96,3 +98,9 @@ using namespace Microsoft::WRL;
 #include <json.hpp>
 
 #pragma endregion
+
+#pragma region Lua
+
+#include <lua.hpp>
+
+#pragma endregion 

@@ -31,6 +31,8 @@ class RenderManager {
  
    void PopLine3d(std::weak_ptr<Model3d::Line3d> line);
 
+   void SetPipline(Graphics::PostEffect_Mode mode);
+
  private:
    /// <summary>
    /// newobjsに入っていたらobjvecに登録

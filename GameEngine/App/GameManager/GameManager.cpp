@@ -7,7 +7,7 @@ GameManager::GameManager() {
 
    engine_->Init();
 
-   scene_ = std::make_unique<EnemyDebugScene>();
+   scene_ = std::make_unique<GameScene>();
    auto raytracingManager = engine_->GetRaytracingManager();
 
    scene_->SetRaytracingManager(raytracingManager);
@@ -89,8 +89,7 @@ void GameManager::Run() {
       commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
       commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-      //engine_->Draw();
-
+     
       CLEYERA::Manager::RenderManager::GetInstance()->Draw3d();
 
 #pragma endregion

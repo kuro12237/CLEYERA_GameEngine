@@ -7,7 +7,7 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
    /// データ確保
    data_.vertices.resize(mesh->mNumVertices);
    // 合計のサイズ
-   byteSize_ = static_cast<uint32_t>(sizeof(system::S2Vertex) * data_.vertices.size());
+   byteSize_ = static_cast<uint32_t>(sizeof(system::VertexForGPU) * data_.vertices.size());
 
    for (uint32_t faceIndex = 0; faceIndex < mesh->mNumFaces; ++faceIndex) {
       aiFace &face = mesh->mFaces[faceIndex];
@@ -26,7 +26,7 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
       }
    }
 
-   vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::S2Vertex>>();
+   vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::VertexForGPU>>();
    vertBuf_->SetDevice(device_);
 
    // バッファの作成
@@ -56,7 +56,7 @@ void CLEYERA::Model3d::MeshData::Create(aiMesh *mesh) {
     //Blas
    blas_ = std::make_unique<system::Blas>();
    blas_->SetParamCount(this->data_.vertices.size());
-   blas_->SetSize(sizeof(system::S2Vertex));
+   blas_->SetSize(sizeof(system::VertexForGPU));
    blas_->SetVertexBuf(vertBuf_->GetResource());
    blas_->Init();
 
@@ -68,7 +68,7 @@ void CLEYERA::Model3d::MeshData::CreateVert(size_t size) {
 
    data_.vertices.resize(size);
 
-   vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::S2Vertex>>();
+   vertBuf_ = std::make_unique<Base::DX::DXBufferResource<system::VertexForGPU>>();
    vertBuf_->SetDevice(device_);
 
    // バッファの作成
