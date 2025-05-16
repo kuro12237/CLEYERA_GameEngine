@@ -82,7 +82,7 @@ void EnemyManager::Init() {
 void EnemyManager::Update() {
    
 	//プレイヤーの座標を取得
-  playerPosition_ = playerManager_->GetPlayerCore().lock()->GetWorldPos();
+    playerPosition_ = playerManager_->GetPlayerCore().lock()->GetWorldPos();
 
 	for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
 		//プレイヤーの座標を設定

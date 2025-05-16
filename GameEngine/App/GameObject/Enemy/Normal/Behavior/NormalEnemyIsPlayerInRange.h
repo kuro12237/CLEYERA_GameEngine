@@ -28,7 +28,7 @@ public:
     /// </summary>
     /// <param name="baseNormalEnemy">通常の敵</param>
     /// <returns></returns>
-    bool CheckCondition(BaseNormalEnemy *baseBossEnemy) override;
+    bool CheckCondition(BaseNormalEnemy * baseNormalEnemy) override;
 
 private:
     //範囲
