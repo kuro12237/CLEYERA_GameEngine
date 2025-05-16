@@ -8,7 +8,7 @@
 
 #include <list>
 
-#include "Enemy/BaseNormalEnemy.h"
+#include "Normal/BaseNormalEnemy.h"
 #include "Boss/BaseBossEnemy.h"
 #include "CLEYERA.h"
 

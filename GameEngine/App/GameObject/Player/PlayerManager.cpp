@@ -39,6 +39,12 @@ void PlayerManager::Init()
 	camera_->SetTarget(core_->GetTranslate());
 }
 
+void PlayerManager::Update() {
+
+
+   handler_->Handler();
+
+   handler_->Exec();
 
 /// <summary>
 /// 更新処理

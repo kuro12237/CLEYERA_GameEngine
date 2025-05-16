@@ -33,6 +33,4 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// デストラクタ
    /// </summary>
    ~FirstBossEnemy() override = default;
-
-
 };
