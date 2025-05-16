@@ -39,11 +39,13 @@ EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
 
 
     // 攻撃中か終了したかを判断
-    if ( !bullets_.empty() ) {
-        return EnemyNodeState::Running;  // 弾が残ってる → 攻撃中
+    if (!bullets_.empty() ) {
+        // 弾が残ってる → 攻撃中
+        return EnemyNodeState::Running;
     }
     else {
-        return EnemyNodeState::Success;  // 弾が全部消えた → 攻撃終了
+        // 弾が全部消えた → 攻撃終了
+        return EnemyNodeState::Success;
     }
     
 }
