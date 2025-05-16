@@ -15,6 +15,12 @@
 /// 雑魚敵の基底クラス
 /// </summary>
 class BaseNormalEnemy : public CLEYERA::Component::ObjectComponent {
+protected:
+	/// <summary>
+	/// ImGui表示用
+	/// </summary>
+	virtual void DisplayImGui()=0;
+
 public:
    /// <summary>
    /// プレイヤーの座標

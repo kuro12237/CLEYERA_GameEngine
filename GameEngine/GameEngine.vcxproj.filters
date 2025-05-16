@@ -146,6 +146,7 @@
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemyBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -343,6 +344,7 @@
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h">
       <Filter>Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemyBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
@@ -371,6 +373,9 @@
     </Filter>
     <Filter Include="Enemy\NormalEnemy\Behavior">
       <UniqueIdentifier>{c3362286-8d63-4338-af51-e12e5fdfa1b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\NormalEnemy\1\Bullet">
+      <UniqueIdentifier>{7cc60d74-9908-4e3c-92b7-20146ca1ccf2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

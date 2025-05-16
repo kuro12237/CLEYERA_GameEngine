@@ -28,8 +28,9 @@ public:
     /// <summary>
     /// 実行
     /// </summary>
+    /// <param name="baseNormalEnemy"></param>
     /// <returns></returns>
-    EnemyNodeState Execute(BaseNormalEnemy * baseBossEnemy) override;
+    EnemyNodeState Execute(BaseNormalEnemy * baseNormalEnemy) override;
 
     /// <summary>
     /// デストラクタ

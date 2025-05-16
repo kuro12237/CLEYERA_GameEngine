@@ -27,10 +27,12 @@ void NormalEnemy1::Init() {
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
 #pragma region 攻撃シーケンス
-	//std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
-	////プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	//attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(ATTACK_START_DISTANCE_));
-	//root->AddChild(std::move(attackSequence));
+	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
+	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
+	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(ATTACK_START_DISTANCE_));
+	//攻撃
+	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
+	root->AddChild(std::move(attackSequence));
 #pragma endregion
 
 #pragma region 通常状態のシーケンス
@@ -42,12 +44,6 @@ void NormalEnemy1::Init() {
    //作ったものを入れる
    root->AddChild(std::move(approachSequence));
 #pragma endregion
-
-
-   //無し
-   //root->AddChild(std::make_unique<NormalEnemyNoneBehavior>());
-
-
 
    //本体に入れていく
    behaviorTree_ = std::move(root);
@@ -62,18 +58,22 @@ void NormalEnemy1::Update() {
 	velocity_.x *= SPEED;
 	velocity_.z *= SPEED;
 
-
 	// 更新
    TransformUpdate();
 
 
 #ifdef _DEBUG
-   ImGui::Begin("FirstBoss");
-   ImGui::InputFloat3("Translate", &translate_.x);
-   ImGui::InputFloat3("Velocity", &velocity_.x);
-   ImGui::End();
+   //ImGui表示用
+   DisplayImGui();
 
 #endif // _DEBUG
 
 
+}
+
+void NormalEnemy1::DisplayImGui(){
+	ImGui::Begin("FirstBoss");
+	ImGui::InputFloat3("Translate", &translate_.x);
+	ImGui::InputFloat3("Velocity", &velocity_.x);
+	ImGui::End();
 }
