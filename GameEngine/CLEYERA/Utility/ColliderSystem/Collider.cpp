@@ -13,4 +13,10 @@ bool CLEYERA::Util::Collider::Collider::HitCall(std::weak_ptr<Component::ObjectC
    return true;
 }
 
+void CLEYERA::Util::Collider::Collider::MortonUpdate() {
+
+
+
+}
+
 

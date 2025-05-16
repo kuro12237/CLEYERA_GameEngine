@@ -1,5 +1,4 @@
 #pragma once
-#include "../Collider.h"
 #include "pch/Pch.h"
 
 namespace CLEYERA {
