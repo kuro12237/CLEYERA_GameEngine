@@ -5,6 +5,7 @@
 
 #include "EnvironmentObject/EnvironmentObject.h"
 #include "Player/PlayerManager.h"
+#include "Enemy/EnemyManager.h"
 
 class GameScene : public SceneCompornent {
  public:
@@ -21,4 +22,7 @@ class GameScene : public SceneCompornent {
    std::vector<std::shared_ptr<EnvironmentObject>> enviromentObjs_;
 
    std::shared_ptr<PlayerManager> playerManager_ = nullptr;
+   //敵管理クラス
+   std::shared_ptr<EnemyManager> enemyManager_ = nullptr;
+
 };
