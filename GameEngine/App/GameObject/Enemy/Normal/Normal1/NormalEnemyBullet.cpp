@@ -29,7 +29,8 @@ void NormalEnemyBullet::Update(){
 
 	//線形補間でXZ
         t_ +=  1.0f/(ATTACK_ALL_TIME_ * FPS_VALUE_);
-        float startY = normalEnemyPosition_.y;
+        t_ = std::clamp(t_, 0.0f, 1.0f);
+		float startY = normalEnemyPosition_.y;
         float endY = playerPosition_.y;
 
         float baseY = std::lerp(startY, endY, t_);

@@ -13,7 +13,8 @@ void NormalEnemy1::Init() {
    name_ = VAR_NAME(FirstBossEnemy);
 
    // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Sphere","Sphere");
+   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+   
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
@@ -85,9 +86,9 @@ void NormalEnemy1::Update() {
 
 	// 弾の更新
   for (const auto &bullet : bullets_) {
-    
+    bullet;
    
-    bullet->Update();
+   // bullet->Update();
   }
 
   // 弾の削除

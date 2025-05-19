@@ -2,6 +2,7 @@
 //速度はランダムで決める予定なので無し。,,,
 //この下は敵の種類,X座標,Y座標,Z座標
 NormalEnemy,5.0f,0.0f,5.0f
-//NormalEnemy,-5,0,15
-//NormalEnemy,-10,0,4
-StrongEnemy,-10.0f,0.0f,5.0f
+NormalEnemy,-10,0,0.0f,15.0f
+NormalEnemy,-30.0f,0.0f,4.0f,
+NormalEnemy,-30.0f,0.0f,-15.0f
+NormalEnemy,-10.0f,0.0f,-14.0f
