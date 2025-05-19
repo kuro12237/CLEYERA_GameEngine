@@ -69,6 +69,22 @@ public:
 	   return parameter_;
    }
 
+   /// <summary>
+   /// 攻撃中かどうかの設定
+   /// </summary>
+   /// <param name="isAttack"></param>
+   inline void SetIsAttack(const bool & isAttack) { 
+	   this->isAttack_ = isAttack;
+   }
+
+   /// <summary>
+   /// 攻撃中かどうかの設定
+   /// </summary>
+   /// <returns></returns>
+   inline bool GetIsAttack() const { 
+	   return isAttack_;
+   }
+
 protected:
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};
@@ -78,7 +94,8 @@ protected:
     Math::Vector::Vec3 direction_ = {};
 	//ビヘイビアツリー
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
-
+	//攻撃中かどうか
+    bool isAttack_ = false;
 
 	
 };

@@ -5,8 +5,8 @@
 #include "Enemy/Normal/BaseNormalEnemy.h"
 #include "Enemy/Normal/Normal1/NormalEnemyBullet.h"
 
-NormalEnemyAttack::NormalEnemyAttack() {
-
+NormalEnemyAttack::NormalEnemyAttack() { 
+    isAttack_ = true; 
 }
 
 EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
@@ -16,6 +16,8 @@ EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
         //弾を生成
         GenerateBullet();
         isAttack_ = false;
+        // 攻撃中フラグON（BaseNormalEnemy側に追加）
+        baseNormalEnemy->SetIsAttack(true);
     }
 
     //弾の更新
@@ -41,10 +43,12 @@ EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
     // 攻撃中か終了したかを判断
     if (!bullets_.empty() ) {
         // 弾が残ってる → 攻撃中
+        
         return EnemyNodeState::Running;
     }
     else {
         // 弾が全部消えた → 攻撃終了
+      baseNormalEnemy->SetIsAttack(false);
         return EnemyNodeState::Success;
     }
     
