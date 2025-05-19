@@ -185,6 +185,8 @@
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Shoot\Basic\Test\TestBasicShoot.cpp" />
+    <ClCompile Include="App\GameObject\Player\Shoot\Bullet\PlayerBullet.cpp" />
     <ClCompile Include="App\Scene\DebugScene.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
     <ClCompile Include="App\Scene\GameScene.cpp" />
@@ -312,6 +314,9 @@
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
+    <ClInclude Include="App\GameObject\Player\Shoot\Basic\Test\TestBasicShoot.h" />
+    <ClInclude Include="App\GameObject\Player\Shoot\Bullet\PlayerBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Shoot\Interface\IShootStrategy.h" />
     <ClInclude Include="App\Scene\DebugScene.h" />
     <ClInclude Include="App\Scene\EnemyDebugScene.h" />
     <ClInclude Include="App\Scene\GameScene.h" />
