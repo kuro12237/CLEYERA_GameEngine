@@ -9,7 +9,10 @@
 //詳しい挙動とかはここにあるよ
 //https://docs.google.com/presentation/d/1LTi0n_xoAkvzk13g5KMXGNqeEhtBJlnYJjtetUjhM7M/edit#slide=id.p
 
+#include <list>
+
 #include "Enemy/Normal/BaseNormalEnemy.h"
+#include "NormalEnemyBullet.h"
 
 /// <summary>
 /// 最初の敵
@@ -50,5 +53,11 @@ private:
 
 private:
 	bool isAttacking_ = false;
+
+
+
+	// 弾のリスト
+    std::list<std::unique_ptr<NormalEnemyBullet>> bullets_;
+    bool isAttack_ = false;
 
 };
