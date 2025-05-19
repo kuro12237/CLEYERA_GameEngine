@@ -96,7 +96,8 @@ void SceneLoader::SetParentObjects([[maybe_unused]] const std::shared_ptr<CLEYER
 
 std::shared_ptr<EnvironmentObject> SceneLoader::CreateEnvironmentObject([[maybe_unused]] const SceneObjData &data, [[maybe_unused]] const std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs) { return std::shared_ptr<EnvironmentObject>(); }
 
-SceneObjData SceneLoader::LoadobjData(nlohmann::json object, SceneObjData data, std::string name) {
+SceneObjData SceneLoader::LoadobjData(nlohmann::json object, [[maybe_unused]] SceneObjData data,
+                                      std::string name) {
 
    SceneObjData newData{};
    // insか通常
