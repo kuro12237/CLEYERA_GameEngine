@@ -5,60 +5,53 @@
 #include "Enemy/Normal/BaseNormalEnemy.h"
 #include "Enemy/Normal/Normal1/NormalEnemyBullet.h"
 
-NormalEnemyAttack::NormalEnemyAttack() { 
-    isAttack_ = true; 
-}
 
 EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
+  float_t distance = Math::Vector::Func::Length(baseNormalEnemy->GetPosition() -
+                                                baseNormalEnemy->GetPlayerPosition());
 
-    //時間変化
-    if (isAttack_ == true ) {
-        //弾を生成
-        GenerateBullet();
-        isAttack_ = false;
-        // 攻撃中フラグON（BaseNormalEnemy側に追加）
-        baseNormalEnemy->SetIsAttack(true);
-    }
+  // 攻撃範囲内かつ前回の攻撃が完了していたら、新たな攻撃を準備
+  if (distance < baseNormalEnemy->GetAttackStartDistance() && isAttackFinished_) {
+    isReadyForAttack_ = true;
+  }
 
-    //弾の更新
-    for (const auto & bullet : bullets_ ) {
-        //雑魚敵の座標を設定
-        bullet->SetNormalEnemyPosition(baseNormalEnemy->GetPlayerPosition());
-        //プレイヤーの座標を設定
-        bullet->SetPlayerPosition(baseNormalEnemy->GetPlayerPosition());
-        //更新
-        bullet->Update();
-    }
+  // 攻撃準備完了時、弾を生成し、フラグを更新
+  if (isReadyForAttack_) {
+    GenerateBullet();
+    isReadyForAttack_ = false;
+    isAttackFinished_ = false;
+    baseNormalEnemy->SetIsAttack(true);
+  }
 
-    //isDeleteがtrueになったら消す
-    bullets_.remove_if([=](const auto & bullet) {
-        return bullet->GetIsDelete();
-    });
+  // 弾の更新
+  for (const auto &bullet : bullets_) {
+    bullet->SetNormalEnemyPosition(baseNormalEnemy->GetPlayerPosition());
+    bullet->SetPlayerPosition(baseNormalEnemy->GetPlayerPosition());
+    bullet->Update();
+  }
+
+  // 弾の削除
+  bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
 
 #ifdef _DEBUG
     DisplayImGui();
 #endif // _DEBUG
 
-
-    // 攻撃中か終了したかを判断
-    if (!bullets_.empty() ) {
-        // 弾が残ってる → 攻撃中
-        
-        return EnemyNodeState::Running;
-    }
-    else {
-        // 弾が全部消えた → 攻撃終了
+// 弾がすべて消えたときに攻撃終了とみなす
+    if (bullets_.empty()) {
       baseNormalEnemy->SetIsAttack(false);
-        return EnemyNodeState::Success;
+      isAttackFinished_ = true; // ここ重要：次の攻撃を許可
+      return EnemyNodeState::Success;
+    } else {
+      return EnemyNodeState::Running;
     }
-    
 }
 
 void NormalEnemyAttack::DisplayImGui(){
     int32_t newSize = static_cast<int32_t>(bullets_.size());
 
     ImGui::Begin("NormalEnemyAttack"); 
-    ImGui::Checkbox("isAttack", &isAttack_);
+    ImGui::Checkbox("isAttack", &isReadyForAttack_);
     ImGui::InputInt("Number", &newSize);
     ImGui::End();
 }

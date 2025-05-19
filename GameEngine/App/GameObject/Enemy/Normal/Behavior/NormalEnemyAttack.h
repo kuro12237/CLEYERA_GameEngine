@@ -25,7 +25,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    NormalEnemyAttack();
+    NormalEnemyAttack()=default;
 
     /// <summary>
     /// 実行
@@ -65,8 +65,9 @@ private:
     //弾のリスト
     std::list<std::unique_ptr<NormalEnemyBullet>> bullets_;
 
-    bool isAttack_ = true;
-    bool isEndAttack_ = false;
+    //攻撃準備
+    bool isReadyForAttack_ = true;
+    bool isAttackFinished_ = false;
 
     //プレイヤーの座標を一瞬取得
     Math::Vector::Vec3 playerPosition_ = {};

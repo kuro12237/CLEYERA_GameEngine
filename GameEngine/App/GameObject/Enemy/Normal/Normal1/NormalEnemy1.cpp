@@ -72,7 +72,7 @@ void NormalEnemy1::Update() {
 }
 
 void NormalEnemy1::DisplayImGui(){
-	ImGui::Begin("FirstBoss");
+	ImGui::Begin("NormalEnemy1");
 	ImGui::InputFloat3("Translate", &translate_.x);
 	ImGui::InputFloat3("Velocity", &velocity_.x);
 	ImGui::End();

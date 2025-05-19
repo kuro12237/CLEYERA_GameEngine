@@ -36,6 +36,7 @@ class NormalEnemy1 : public BaseNormalEnemy {
    /// </summary>
    ~NormalEnemy1() override = default;
 
+
 private:
 	/// <summary>
 	/// ImGui表示用
@@ -43,8 +44,7 @@ private:
 	void DisplayImGui();
 
 private:
-	//攻撃開始距離
-	const float_t ATTACK_START_DISTANCE_ = 3.0f;
+	
 	//追跡開始距離
 	const float_t TRACKING_START_DISTANCE_ = 40.0f;
 

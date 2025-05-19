@@ -85,6 +85,14 @@ public:
 	   return isAttack_;
    }
 
+   public:
+   /// <summary>
+   /// 攻撃開始距離を取得
+   /// </summary>
+   /// <returns></returns>
+   float_t GetAttackStartDistance() const { return ATTACK_START_DISTANCE_; }
+
+
 protected:
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};
@@ -97,5 +105,9 @@ protected:
 	//攻撃中かどうか
     bool isAttack_ = false;
 
-	
+protected:
+    // 攻撃開始距離
+    const float_t ATTACK_START_DISTANCE_ = 3.0f;
+
+
 };

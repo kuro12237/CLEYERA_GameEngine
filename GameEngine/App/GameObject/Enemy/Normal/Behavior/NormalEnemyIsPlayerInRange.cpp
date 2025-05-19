@@ -5,9 +5,10 @@
 
 bool NormalEnemyIsPlayerInRange::CheckCondition(BaseNormalEnemy * baseNormalEnemy){
 
+    //攻撃中は問答無用でtrue
     if (baseNormalEnemy->GetIsAttack()==true) {
-    return true; // 攻撃中なら無条件で進める
-  }
+        return true; 
+    }
 
     //プレイヤーの座標
     Math::Vector::Vec3 playerPosition = baseNormalEnemy->GetPlayerPosition();
