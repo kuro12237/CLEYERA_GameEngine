@@ -67,6 +67,8 @@ void NormalEnemy1::Update() {
 
       // 弾
       std::unique_ptr<NormalEnemyBullet> bullet = std::make_unique<NormalEnemyBullet>();
+      bullet->SetNormalEnemyPosition(GetPosition());
+      bullet->SetPlayerPosition(GetPlayerPosition());
       bullet->Init();
       // 挿入
       bullets_.push_back(std::move(bullet));
@@ -83,8 +85,8 @@ void NormalEnemy1::Update() {
 
 	// 弾の更新
   for (const auto &bullet : bullets_) {
-    bullet->SetNormalEnemyPosition(GetPosition());
-    bullet->SetPlayerPosition(GetPlayerPosition());
+    
+   
     bullet->Update();
   }
 
