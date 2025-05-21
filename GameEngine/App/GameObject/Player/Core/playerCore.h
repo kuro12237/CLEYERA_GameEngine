@@ -5,9 +5,12 @@
 
 #include "Move/PlayerMoveFunc.h"
 
+#include "../Attack/Interface/IPlayerAttack.h"
+#include "../Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
 
 // 前方宣言
 class PlayerCamera;
+
 
 /* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
@@ -43,6 +46,22 @@ public:
 	/// Keyの移動処理
 	/// </summary>
 	void KeyMove(const Math::Vector::Vec2 & input);
+
+	/// <summary>
+	/// ベーシック攻撃
+	/// </summary>
+	void BasicAttack();
+
+	/// <summary>
+	/// スタンダード攻撃
+	/// </summary>
+	void StandardAttack();
+
+	/// <summary>
+	/// シグネチャー攻撃
+	/// </summary>
+	void SignatureAttack();
+
 
 #pragma region Accessor
 
@@ -87,4 +106,7 @@ private:
 
 	// 移動処理
 	std::unique_ptr<PlayerMoveFunc> moveFunc_;
+
+	// 攻撃コマンド
+    std::array<std::unique_ptr<IPlayerAttack>, 3> attacks_;
 };

@@ -5,76 +5,106 @@
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerCore::PlayerCore()
+PlayerCore::PlayerCore() 
 {
-	lua_ = std::make_unique<LuaScript>();
-	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
+  lua_ = std::make_unique<LuaScript>();
+  moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 }
 
 
 /// <summary>
 /// 初期化処理
 /// </summary>
-void PlayerCore::Init()
+void PlayerCore::Init() 
 {
-	// クラス名
-	ObjectComponent::name_ = VAR_NAME(PlayerCore);
+  // クラス名
+  ObjectComponent::name_ = VAR_NAME(PlayerCore);
 
-	// Luaの読み込み
-	lua_->LoadScript("Player/Core", "PlayerCore");
-	lua_->SetReloadCallBack([this]() {LoadCoreDataFromLua(); });
+  // Luaの読み込み
+  lua_->LoadScript("Player/Core", "PlayerCore");
+  lua_->SetReloadCallBack([this]() { LoadCoreDataFromLua(); });
 
-	// Luaから抽出したデータの設定
-	LoadCoreDataFromLua();
+  // Luaから抽出したデータの設定
+  LoadCoreDataFromLua();
 
-	// Modelの設定
-	std::pair<std::string, std::string> str = { "Resources/Model/Player/Core", "Core" };
-	uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
-	ObjectComponent::gameObject_->ChangeModel(handle);
+  // Modelの設定
+  std::pair<std::string, std::string> str = {"Resources/Model/Player/Core", "Core"};
+  uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
+  ObjectComponent::gameObject_->ChangeModel(handle);
 
-	// コライダー作成
-	ObjectComponent::CreateCollider(ColliderType::OBB);
+  // コライダー作成
+  ObjectComponent::CreateCollider(ColliderType::OBB);
 
-	// 移動処理クラスの初期化
-	moveFunc_->Init();
+  // 移動処理クラスの初期化
+  moveFunc_->Init();
 
+  // 初期攻撃スロット
+  attacks_[ToIndex(AttackType::Basic)] = std::make_unique<PlayerAttackDemoBasic>();
 }
 
 
 /// <summary>
 /// 更新処理
 /// </summary>
-void PlayerCore::Update()
+void PlayerCore::Update() 
 {
-	TransformUpdate();
+  TransformUpdate();
 
-	// 移動処理クラス
-	moveFunc_->Update();
+  // 移動処理クラス
+  moveFunc_->Update();
 }
 
 
 /// <summary>
 /// Padの移動処理
 /// </summary>
-void PlayerCore::PadMove()
-{
-	moveFunc_->PadMove();
+void PlayerCore::PadMove() 
+{ 
+	moveFunc_->PadMove(); 
 }
 
 
 /// <summary>
 /// Keyの移動処理
 /// </summary>
-void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
+void PlayerCore::KeyMove(const Math::Vector::Vec2 &input) 
+{ 
+	moveFunc_->KeyMove(input); 
+}
+
+
+/// <summary>
+/// ベーシック攻撃
+/// </summary>
+void PlayerCore::BasicAttack() 
+{ 
+	attacks_[ToIndex(AttackType::Basic)]->IsAttack();
+}
+
+
+/// <summary>
+/// スタンダード攻撃
+/// </summary>
+void PlayerCore::StandardAttack() 
 {
-	moveFunc_->KeyMove(input);
+
+
+}
+
+
+/// <summary>
+/// シグネチャー攻撃
+/// </summary>
+void PlayerCore::SignatureAttack() 
+{
+
 }
 
 
 /// <summary>
 /// Luaからデータを抽出する
 /// </summary>
-void PlayerCore::LoadCoreDataFromLua()
+void PlayerCore::LoadCoreDataFromLua() 
 {
-	translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
+  translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
 }

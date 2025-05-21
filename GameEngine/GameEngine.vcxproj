@@ -178,6 +178,7 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Move\Pad\PlayerPadMoveCommand.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Interface\IPlayerAttack.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
     <ClInclude Include="App\GameObject\Player\Command\Interface\IPlayerCommand.h" />
