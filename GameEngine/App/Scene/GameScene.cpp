@@ -7,10 +7,10 @@ void GameScene::Init() {
 
    CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
 
-   playerManager_ = std::make_unique<PlayerManager>();
+   playerManager_ = std::make_shared<PlayerManager>();
    managerCompornents_.push_back(playerManager_);
 
-   enemyManager_ = std::make_unique<EnemyManager>();
+   enemyManager_ = std::make_shared<EnemyManager>();
    enemyManager_->SetPlayerManager(playerManager_.get());
    managerCompornents_.push_back(enemyManager_);
 

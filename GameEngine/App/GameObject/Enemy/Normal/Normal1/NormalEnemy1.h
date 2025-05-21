@@ -57,7 +57,7 @@ private:
 
 
 	// 弾のリスト
-    std::list<std::unique_ptr<NormalEnemyBullet>> bullets_;
+        std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;
     bool isAttack_ = false;
 
 };

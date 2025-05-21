@@ -10,11 +10,11 @@
 
 void NormalEnemy1::Init() {
    // 名前の設定
-   name_ = VAR_NAME(FirstBossEnemy);
+   name_ = VAR_NAME(NormalEnemy1);
 
    // モデルの設定
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
-   
+   //"Resources/Model/Sphere", "Sphere"
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
@@ -66,13 +66,13 @@ void NormalEnemy1::Update() {
     // 攻撃範囲内の時
     if (distance < GetAttackStartDistance()) {
 
-      //// 弾
-      //std::unique_ptr<NormalEnemyBullet> bullet = std::make_unique<NormalEnemyBullet>();
-      //bullet->SetNormalEnemyPosition(GetPosition());
-      //bullet->SetPlayerPosition(GetPlayerPosition());
-      //bullet->Init();
+      // 弾
+      std::shared_ptr<NormalEnemyBullet> bullet = std::make_shared<NormalEnemyBullet>();
+      bullet->SetNormalEnemyPosition(GetPosition());
+      bullet->SetPlayerPosition(GetPlayerPosition());
+      bullet->Init();
       // 挿入
-     // bullets_.push_back(std::move(bullet));
+      bullets_.push_back(std::move(bullet));
 
       isAttack_ = true;
     } else if (distance >= GetAttackStartDistance()&& distance < TRACKING_START_DISTANCE_) {
@@ -88,7 +88,7 @@ void NormalEnemy1::Update() {
   for (const auto &bullet : bullets_) {
     bullet;
    
-   // bullet->Update();
+    bullet->Update();
   }
 
   // 弾の削除
