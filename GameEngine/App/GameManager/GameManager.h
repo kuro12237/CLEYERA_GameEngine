@@ -1,6 +1,5 @@
 #pragma once
 #include"../Scene/IScene.h"
-#include"../Scene/DebugScene.h"
 #include"../Scene/GameScene.h"
 
 class GameManager {

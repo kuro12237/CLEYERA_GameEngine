@@ -185,11 +185,9 @@
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
-    <ClCompile Include="App\Scene\DebugScene.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
     <ClCompile Include="App\Scene\GameScene.cpp" />
     <ClCompile Include="App\Scene\IScene.cpp" />
-    <ClCompile Include="App\GameObject\Test\TestObject.cpp" />
     <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="App\Util\UtilFunc.cpp" />
     <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
@@ -271,7 +269,6 @@
     <ClCompile Include="CLEYERA\Utility\World\WorldTransform.cpp" />
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="App\GameObject\Test\testCamera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -312,11 +309,9 @@
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
-    <ClInclude Include="App\Scene\DebugScene.h" />
     <ClInclude Include="App\Scene\EnemyDebugScene.h" />
     <ClInclude Include="App\Scene\GameScene.h" />
     <ClInclude Include="App\Scene\IScene.h" />
-    <ClInclude Include="App\GameObject\Test\TestObject.h" />
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
@@ -380,7 +375,6 @@
     <ClInclude Include="CLEYERA\Utility\SceneFactory\SceneFactory.h" />
     <ClInclude Include="CLEYERA\Utility\Terrain\Terrain.h" />
     <ClInclude Include="CLEYERA\Utility\World\WorldTransform.h" />
-    <ClInclude Include="App\GameObject\Test\testCamera.h" />
     <ClInclude Include="CLEYERA\CLEYERA.h" />
     <ClInclude Include="CLEYERA\DX\DXAdapter\DXAdapter.h" />
     <ClInclude Include="CLEYERA\DX\DXBarrier\DXBarrier.h" />
