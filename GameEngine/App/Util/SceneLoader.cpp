@@ -66,6 +66,7 @@ std::vector<std::shared_ptr<EnvironmentObject>> SceneLoader::SettingData(std::ve
       auto it = data.second;
 
       std::shared_ptr<EnvironmentObject> enviObj = std::make_shared<EnvironmentObject>();
+      enviObj->SetName(data.first);
       enviObj->Init();
       enviObj->SetScale(it.scale);
       enviObj->SetRotate(it.rotate);

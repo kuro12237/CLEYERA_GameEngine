@@ -6,7 +6,9 @@ void GameScene::Init() {
    loader_->LoadSceneData("TestData");
 
    CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
-
+   uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+   bulletNum;
+   
    playerManager_ = std::make_shared<PlayerManager>();
    managerCompornents_.push_back(playerManager_);
 

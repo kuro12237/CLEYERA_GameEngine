@@ -101,6 +101,13 @@ void EnemyManager::Update() {
 
 
 	#ifdef _DEBUG
+
+    if (ImGui::Button("enemySpown"))
+    {
+      GenarateEnemy({0, 0, 0});
+
+    }
+
     DisplayImGui();
 #endif // _DEBUG
     
@@ -116,8 +123,12 @@ void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
     enemy->SetInitialPosition(position);
     // 初期化
     enemy->Init();
+    
+    
+    //objComponents_.push_back(enemy);
     //挿入
     enemyList_.push_back(std::move(enemy));
+
 }
 
 void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {

@@ -66,7 +66,7 @@ void NormalEnemy1::Update() {
     // 攻撃範囲内の時
     if (distance < GetAttackStartDistance()) {
 
-      // 弾
+      //// 弾
       std::shared_ptr<NormalEnemyBullet> bullet = std::make_shared<NormalEnemyBullet>();
       bullet->SetNormalEnemyPosition(GetPosition());
       bullet->SetPlayerPosition(GetPlayerPosition());
@@ -84,12 +84,7 @@ void NormalEnemy1::Update() {
     }
   }
 
-	// 弾の更新
-  for (const auto &bullet : bullets_) {
-    bullet;
-   
-    bullet->Update();
-  }
+
 
   // 弾の削除
   bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
@@ -109,7 +104,10 @@ void NormalEnemy1::Update() {
 	// 更新
    TransformUpdate();
 
-
+   	// 弾の更新
+   for (const auto &bullet : bullets_) {
+     bullet->Update();
+   }
 #ifdef _DEBUG
    //ImGui表示用
    DisplayImGui();
