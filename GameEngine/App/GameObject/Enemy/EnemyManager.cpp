@@ -84,14 +84,14 @@ void EnemyManager::Update() {
 	//プレイヤーの座標を取得
     playerPosition_ = playerManager_->GetPlayerCore().lock()->GetWorldPos();
 
-	for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
+	for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
 		//プレイヤーの座標を設定
         enemy->SetPlayerPosition(playerPosition_);
            // 通常の敵の更新
 		enemy->Update();
 	}
 
-	for (std::unique_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
+	for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
            // プレイヤーの座標を設定
            enemy->SetPlayerPosition(playerPosition_);
 		//ボスの更新
@@ -111,7 +111,7 @@ void EnemyManager::Update() {
 void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
 
 	//// 敵の生成
-    std::unique_ptr<NormalEnemy1> enemy = std::make_unique<NormalEnemy1>();
+  std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
     //座標の設定
     enemy->SetInitialPosition(position);
     // 初期化
@@ -122,7 +122,7 @@ void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
 
 void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
    // ボスの生成
-   std::unique_ptr<BaseBossEnemy> enemy = std::make_unique<FirstBossEnemy>();
+  std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<FirstBossEnemy>();
    // 初期化
    enemy->Init();
    // 座標の設定

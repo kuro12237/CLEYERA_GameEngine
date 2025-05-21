@@ -80,7 +80,7 @@ private:
 	//高さ
     float_t HEIGHT_ = 4.0f;
 	//消える時間
-	const float_t DELETE_TIME_ = 3.0f;
+	const float_t DELETE_TIME_ = 1.0f;
 
 
 private:
