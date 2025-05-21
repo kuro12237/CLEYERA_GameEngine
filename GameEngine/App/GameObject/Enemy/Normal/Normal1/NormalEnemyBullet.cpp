@@ -13,8 +13,8 @@ void NormalEnemyBullet::Init(){
 
 	//スケールの設定
 	scale_ = { .x = SCALE_SIZE_, .y = SCALE_SIZE_, .z = SCALE_SIZE_ };
+        translate_ = normalEnemyPosition_;
 
-	translate_.y = 0.5f;
 }
 
 void NormalEnemyBullet::Update(){
@@ -27,7 +27,27 @@ void NormalEnemyBullet::Update(){
 	velocityY_ += accel_;
 	translate_.y += velocityY_;
 
+	//線形補間でXZ
+        t_ +=  1.0f/(ATTACK_ALL_TIME_ * FPS_VALUE_);
+        t_ = std::clamp(t_, 0.0f, 1.0f);
+		float startY = normalEnemyPosition_.y;
+        float endY = playerPosition_.y;
+
+        float baseY = std::lerp(startY, endY, t_);
+        translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+	translate_.x = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
+        translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
+
 	// 更新
 	TransformUpdate();
+
+	#ifdef _DEBUG
+        ImGui::Begin("Bullet");
+        ImGui::InputFloat3("座標", &translate_.x);
+        ImGui::InputFloat("T", &t_);
+        ImGui::End();
+#endif // _DEBUG
+        
+
 
 }

@@ -9,7 +9,10 @@
 //詳しい挙動とかはここにあるよ
 //https://docs.google.com/presentation/d/1LTi0n_xoAkvzk13g5KMXGNqeEhtBJlnYJjtetUjhM7M/edit#slide=id.p
 
+#include <list>
+
 #include "Enemy/Normal/BaseNormalEnemy.h"
+#include "NormalEnemyBullet.h"
 
 /// <summary>
 /// 最初の敵
@@ -36,6 +39,7 @@ class NormalEnemy1 : public BaseNormalEnemy {
    /// </summary>
    ~NormalEnemy1() override = default;
 
+
 private:
 	/// <summary>
 	/// ImGui表示用
@@ -43,12 +47,17 @@ private:
 	void DisplayImGui();
 
 private:
-	//攻撃開始距離
-	const float_t ATTACK_START_DISTANCE_ = 3.0f;
+	
 	//追跡開始距離
 	const float_t TRACKING_START_DISTANCE_ = 40.0f;
 
 private:
 	bool isAttacking_ = false;
+
+
+
+	// 弾のリスト
+    std::list<std::unique_ptr<NormalEnemyBullet>> bullets_;
+    bool isAttack_ = false;
 
 };

@@ -13,7 +13,8 @@ void NormalEnemy1::Init() {
    name_ = VAR_NAME(FirstBossEnemy);
 
    // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Sphere","Sphere");
+   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+   
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
@@ -21,7 +22,6 @@ void NormalEnemy1::Init() {
 
    //スケールの設定
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
-   translate_.y = 0.5f;
 
    //ルート
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
@@ -51,11 +51,59 @@ void NormalEnemy1::Init() {
 }
 
 void NormalEnemy1::Update() {
+  float_t distance = Math::Vector::Func::Length(GetPosition() -
+                                                GetPlayerPosition());
+
+
+  // 方向を求める
+  Math::Vector::Vec3 velocity = GetPlayerPosition() - GetPosition();
+
+
+
+	//攻撃していない時
+  if (isAttack_ == false) {
+    
+    // 攻撃範囲内の時
+    if (distance < GetAttackStartDistance()) {
+
+      // 弾
+      std::unique_ptr<NormalEnemyBullet> bullet = std::make_unique<NormalEnemyBullet>();
+      bullet->SetNormalEnemyPosition(GetPosition());
+      bullet->SetPlayerPosition(GetPlayerPosition());
+      bullet->Init();
+      // 挿入
+      bullets_.push_back(std::move(bullet));
+
+      isAttack_ = true;
+    } else if (distance >= GetAttackStartDistance()&& distance < TRACKING_START_DISTANCE_) {
+      
+
+      // 本体に設定
+      SetVelocity(Math::Vector::Func::Normalize(velocity));
+
+    }
+  }
+
+	// 弾の更新
+  for (const auto &bullet : bullets_) {
+    bullet;
+   
+   // bullet->Update();
+  }
+
+  // 弾の削除
+  bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+
+  if (isAttack_ == true && bullets_.empty()) {
+    isAttack_ = false;
+  }
+
 
 	//ビヘイビアツリーの実行
-	behaviorTree_->Execute(this);
+	////behaviorTree_->Execute(this);
 	const float_t SPEED = 0.1f;
 	velocity_.x *= SPEED;
+        velocity_.y *= SPEED;
 	velocity_.z *= SPEED;
 
 	// 更新
@@ -72,7 +120,7 @@ void NormalEnemy1::Update() {
 }
 
 void NormalEnemy1::DisplayImGui(){
-	ImGui::Begin("FirstBoss");
+	ImGui::Begin("NormalEnemy1");
 	ImGui::InputFloat3("Translate", &translate_.x);
 	ImGui::InputFloat3("Velocity", &velocity_.x);
 	ImGui::End();
