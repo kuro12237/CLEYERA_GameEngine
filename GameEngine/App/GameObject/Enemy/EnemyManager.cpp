@@ -123,9 +123,6 @@ void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
     enemy->SetInitialPosition(position);
     // 初期化
     enemy->Init();
-    
-    
-    //objComponents_.push_back(enemy);
     //挿入
     enemyList_.push_back(std::move(enemy));
 
@@ -144,10 +141,10 @@ void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
 
 void EnemyManager::DisplayImGui() { 
 	
-	ImGui::Begin("敵管理クラス");
+	ImGui::Begin("EnemyManager");
    
-	if (ImGui::TreeNode("プレイヤー関係") == true) {
-           ImGui::InputFloat3("座標", &playerPosition_.x);
+	if (ImGui::TreeNode("Player") == true) {
+           ImGui::InputFloat3("Position", &playerPosition_.x);
 		ImGui::TreePop();
 
     }
