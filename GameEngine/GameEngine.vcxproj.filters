@@ -467,6 +467,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Interface\IPlayerAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
