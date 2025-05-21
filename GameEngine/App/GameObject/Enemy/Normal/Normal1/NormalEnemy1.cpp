@@ -66,13 +66,13 @@ void NormalEnemy1::Update() {
     // 攻撃範囲内の時
     if (distance < GetAttackStartDistance()) {
 
-      // 弾
-      std::unique_ptr<NormalEnemyBullet> bullet = std::make_unique<NormalEnemyBullet>();
-      bullet->SetNormalEnemyPosition(GetPosition());
-      bullet->SetPlayerPosition(GetPlayerPosition());
-      bullet->Init();
+      //// 弾
+      //std::unique_ptr<NormalEnemyBullet> bullet = std::make_unique<NormalEnemyBullet>();
+      //bullet->SetNormalEnemyPosition(GetPosition());
+      //bullet->SetPlayerPosition(GetPlayerPosition());
+      //bullet->Init();
       // 挿入
-      bullets_.push_back(std::move(bullet));
+     // bullets_.push_back(std::move(bullet));
 
       isAttack_ = true;
     } else if (distance >= GetAttackStartDistance()&& distance < TRACKING_START_DISTANCE_) {
