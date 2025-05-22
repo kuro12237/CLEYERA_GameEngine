@@ -42,6 +42,7 @@ void CLEYERA::Manager::RenderManager::Draw3d() {
 
     for (auto obj : objs_[static_cast<Graphics::RasterPipline_Mode>(i)]) {
       auto it = obj.lock();
+      it;
       it->DrawRaster3d();
     }
   }

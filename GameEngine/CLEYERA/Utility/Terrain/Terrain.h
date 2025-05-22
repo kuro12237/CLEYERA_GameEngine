@@ -19,8 +19,6 @@ class Terrain : public CLEYERA::Util::WorldTransform {
 
    void Init();
 
-   void ImGuiUpdate();
-
    void Update();
 
    void Finalize();

@@ -218,9 +218,9 @@ CLEYERA::Util::Collider::system::Func::GetVertices(const Util::Collider::system:
   std::vector<Math::Vector::Vec3> vertices;
 
   // 軸方向 × ハーフサイズ
-  Math::Vector::Vec3 right = obb.orientations[0] * (obb.size.x * 0.5f);
-  Math::Vector::Vec3 up = obb.orientations[1] * (obb.size.y * 0.5f);
-  Math::Vector::Vec3 forward = obb.orientations[2] * (obb.size.z * 0.5f);
+  Math::Vector::Vec3 right = obb.orientations[0] * (obb.size.x );
+  Math::Vector::Vec3 up = obb.orientations[1] * (obb.size.y );
+  Math::Vector::Vec3 forward = obb.orientations[2] * (obb.size.z);
 
   // 8 頂点を計算
   int index = 0;

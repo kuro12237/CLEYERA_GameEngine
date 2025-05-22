@@ -37,6 +37,7 @@ void CLEYERA::Manager::ColliderSystem::Update() {
       it = objectList_.erase(it);
     }
   }
+
   std::unique_ptr<Util::Collider::Octree> octree = std::make_unique<Util::Collider::Octree>();
   octree->Init();
   std::map<int, std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>>> map;
@@ -66,13 +67,12 @@ void CLEYERA::Manager::ColliderSystem::Update() {
         auto obbB = map[currentNum][j].lock()->GetCollder().lock();
 
         auto typeA = dynamic_cast<Util::Collider::OBBCollider *>(obbA.get());
-       
         auto typeB = dynamic_cast<Util::Collider::OBBCollider *>(obbB.get());
+
         // 判定
         if (Util::Collider::system::Func::OBBCheck(typeA->GetOBB(), typeB->GetOBB())) {
 
           obbA->HitCall(map[currentNum][j].lock());
-
           obbB->HitCall(map[currentNum][i].lock());
         }
       }
