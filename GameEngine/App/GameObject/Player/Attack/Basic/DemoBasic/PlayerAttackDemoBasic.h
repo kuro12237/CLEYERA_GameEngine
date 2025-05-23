@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CLEYERA.h"
-#include "../../Interface/IPlayerAttack.h"
+#include "../../Interface/IMagicAttack.h"
 
 
 /* ベーシック攻撃 : Demo */
-class PlayerAttackDemoBasic : public IPlayerAttack {
+class PlayerAttackDemoBasic : public IMagicAttack {
 
 public:
 

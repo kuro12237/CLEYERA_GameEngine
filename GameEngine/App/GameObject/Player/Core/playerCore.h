@@ -5,7 +5,7 @@
 
 #include "Move/PlayerMoveFunc.h"
 
-#include "../Attack/Interface/IPlayerAttack.h"
+#include "../Attack/Interface/IMagicAttack.h"
 #include "../Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
 
 // 前方宣言
@@ -108,5 +108,5 @@ private:
 	std::unique_ptr<PlayerMoveFunc> moveFunc_;
 
 	// 攻撃コマンド
-    std::array<std::unique_ptr<IPlayerAttack>, 3> attacks_;
+    std::array<std::unique_ptr<IMagicAttack>, 3> attacks_;
 };

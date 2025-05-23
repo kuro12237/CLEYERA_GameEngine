@@ -306,8 +306,11 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.h" />
-    <ClInclude Include="App\GameObject\Player\Attack\Interface\IPlayerAttack.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Interface\IMagicAttack.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Attack\Standard\PlayerStandardAttackCommand.h" />
     <ClInclude Include="App\GameObject\Player\Command\Interface\IPlayerCommand.h" />
     <ClInclude Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.h" />
     <ClInclude Include="App\GameObject\Player\Command\Move\Pad\PlayerPadMoveCommand.h" />

@@ -468,8 +468,11 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyThrustAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h" />
-    <ClInclude Include="App\GameObject\Player\Attack\Interface\IPlayerAttack.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Interface\IMagicAttack.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Attack\Standard\PlayerStandardAttackCommand.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

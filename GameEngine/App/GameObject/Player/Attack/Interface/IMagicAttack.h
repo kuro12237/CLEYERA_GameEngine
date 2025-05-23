@@ -4,6 +4,8 @@
 
 // 前方宣言
 class PlayerCore;
+class InputManager;
+class IPlayerCommand;
 
 // 攻撃のタイプ
 enum class AttackType {
@@ -16,19 +18,19 @@ inline size_t ToIndex(AttackType type) { return static_cast<size_t>(type); }
 
 
 /* プレイヤー攻撃の基底クラス */
-class IPlayerAttack {
+class IMagicAttack {
 
 public:
 
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  IPlayerAttack() { name_ = "default"; }
+  IMagicAttack() { name_ = "default"; }
 
   /// <summary>
   /// デストラクタ
   /// </summary>
-  virtual ~IPlayerAttack() = default;
+  virtual ~IMagicAttack() = default;
 
   /// <summary>
   ///  攻撃処理 : 純粋仮想関数
