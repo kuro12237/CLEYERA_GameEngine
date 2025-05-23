@@ -46,17 +46,9 @@ private:
 	void DisplayImGui();
 
 private:
-	
-	//追跡開始距離
-	const float_t TRACKING_START_DISTANCE_ = 40.0f;
-
-private:
 	bool isAttacking_ = false;
 
-
-
 	// 弾のリスト
-        std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;
-    bool isAttack_ = false;
+    std::list<std::shared_ptr<NormalEnemy2Bullet>> bullets_;
 
 };

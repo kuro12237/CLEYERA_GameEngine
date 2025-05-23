@@ -29,7 +29,7 @@ void NormalEnemy1::Init() {
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(ATTACK_START_DISTANCE_));
+	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(attackStartDistance_));
 	//攻撃
 	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
 	root->AddChild(std::move(attackSequence));
@@ -38,7 +38,7 @@ void NormalEnemy1::Init() {
 #pragma region 通常状態のシーケンス
    std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(TRACKING_START_DISTANCE_));
+   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
    //追跡
    approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
    //作ったものを入れる
@@ -48,17 +48,19 @@ void NormalEnemy1::Init() {
    //本体に入れていく
    behaviorTree_ = std::move(root);
 
+
+   // 追跡開始距離
+   trackingStartDistance_ = 40.0f;
+   // 攻撃開始距離
+   attackStartDistance_ = 3.0f;
 }
 
 void NormalEnemy1::Update() {
-  float_t distance = Math::Vector::Func::Length(GetPosition() -
-                                                GetPlayerPosition());
-
+    //距離を求める
+  float_t distance = Math::Vector::Func::Length(GetPosition() - GetPlayerPosition());
 
   // 方向を求める
   Math::Vector::Vec3 velocity = GetPlayerPosition() - GetPosition();
-
-
 
 	//攻撃していない時
   if (isAttack_ == false) {
@@ -75,7 +77,7 @@ void NormalEnemy1::Update() {
       bullets_.push_back(std::move(bullet));
 
       isAttack_ = true;
-    } else if (distance >= GetAttackStartDistance()&& distance < TRACKING_START_DISTANCE_) {
+    } else if (distance >= GetAttackStartDistance()&& distance < trackingStartDistance_) {
       
 
       // 本体に設定

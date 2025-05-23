@@ -13,8 +13,7 @@ void NormalEnemy2::Init() {
    name_ = VAR_NAME(NormalEnemy1);
 
    // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
-   //"Resources/Model/Sphere", "Sphere"
+   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
@@ -26,10 +25,15 @@ void NormalEnemy2::Init() {
    //ルート
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
+    // 追跡開始距離
+   trackingStartDistance_ = 70.0f;
+   // 攻撃開始距離
+   attackStartDistance_ = 5.0f;
+
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(ATTACK_START_DISTANCE_));
+	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(attackStartDistance_));
 	//攻撃
 	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
 	root->AddChild(std::move(attackSequence));
@@ -38,7 +42,7 @@ void NormalEnemy2::Init() {
 #pragma region 通常状態のシーケンス
    std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(TRACKING_START_DISTANCE_));
+   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
    //追跡
    approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
    //作ったものを入れる
@@ -48,6 +52,7 @@ void NormalEnemy2::Init() {
    //本体に入れていく
    behaviorTree_ = std::move(root);
 
+  
 }
 
 void NormalEnemy2::Update() {
@@ -67,7 +72,7 @@ void NormalEnemy2::Update() {
     if (distance < GetAttackStartDistance()) {
 
       //// 弾
-      std::shared_ptr<NormalEnemyBullet> bullet = std::make_shared<NormalEnemyBullet>();
+      std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
       bullet->SetNormalEnemyPosition(GetPosition());
       bullet->SetPlayerPosition(GetPlayerPosition());
       bullet->Init();
@@ -75,7 +80,7 @@ void NormalEnemy2::Update() {
       bullets_.push_back(std::move(bullet));
 
       isAttack_ = true;
-    } else if (distance >= GetAttackStartDistance()&& distance < TRACKING_START_DISTANCE_) {
+    } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
       
 
       // 本体に設定
@@ -94,23 +99,32 @@ void NormalEnemy2::Update() {
   }
 
 
+
+    Math::Vector::Vec3 newVelocity = Math::Vector::Func::Normalize(velocity); // 正規化関数
+
+  // atan2 で回転角を求める（ラジアン）
+    float_t angle = std::atan2(-newVelocity.z, newVelocity.x); // 注意：xとzの順番
+
+  // 角度を敵の回転に設定
+  rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
+
 	//ビヘイビアツリーの実行
 	////behaviorTree_->Execute(this);
 	const float_t SPEED = 0.1f;
 	velocity_.x *= SPEED;
-        velocity_.y *= SPEED;
+    velocity_.y *= SPEED;
 	velocity_.z *= SPEED;
 
 	// 更新
-   TransformUpdate();
+    TransformUpdate();
 
    	// 弾の更新
-   for (const auto &bullet : bullets_) {
-     bullet->Update();
-   }
+    for (const auto &bullet : bullets_) {
+      bullet->Update();
+    }
 #ifdef _DEBUG
-   //ImGui表示用
-   DisplayImGui();
+    //ImGui表示用
+    DisplayImGui();
 
 #endif // _DEBUG
 
@@ -118,7 +132,7 @@ void NormalEnemy2::Update() {
 }
 
 void NormalEnemy2::DisplayImGui() {
-	ImGui::Begin("NormalEnemy1");
+	ImGui::Begin("NormalEnemy2");
 	ImGui::InputFloat3("Translate", &translate_.x);
 	ImGui::InputFloat3("Velocity", &velocity_.x);
 	ImGui::End();

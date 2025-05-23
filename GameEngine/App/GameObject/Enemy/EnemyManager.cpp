@@ -3,6 +3,7 @@
 #include "Player/PlayerManager.h"
 #include "Boss/First/FirstBossEnemy.h"
 #include "Normal/Normal1/NormalEnemy1.h"
+#include "Normal/Normal2/NormalEnemy2.h"
 
 void EnemyManager::Init() {
 
@@ -36,7 +37,7 @@ void EnemyManager::Init() {
       }
 
       // 通常の敵の場合
-      if (word.find("NormalEnemy") == 0) {
+      if (word == "NormalEnemy") {
          Math::Vector::Vec3 position = {};
          // X座標
          std::getline(lineStream, word, ',');
@@ -52,11 +53,32 @@ void EnemyManager::Init() {
 
          position.y = 0.5f;
          // 生成
-         GenarateEnemy(position);
+         GenerateEnemy(position);
+
+
+      } 
+      //雑魚敵2の場合
+      else if (word == "NormalEnemy2") {
+        Math::Vector::Vec3 position = {};
+        // X座標
+        std::getline(lineStream, word, ',');
+        position.x = static_cast<float>(std::atof(word.c_str()));
+
+        // Y座標
+        std::getline(lineStream, word, ',');
+        position.y = static_cast<float>(std::atof(word.c_str()));
+
+        // Z座標
+        std::getline(lineStream, word, ',');
+        position.z = static_cast<float>(std::atof(word.c_str()));
+
+        position.y = 0.5f;
+        // 生成
+        GenerateEnemy2(position);
 
       }
       // 強敵の場合
-      else if (word.find("StrongEnemy") == 0) {
+      else if (word == "StrongEnemy") {
          Math::Vector::Vec3 position = {};
          // X座標
          std::getline(lineStream, word, ',');
@@ -71,7 +93,7 @@ void EnemyManager::Init() {
          position.z = static_cast<float>(std::atof(word.c_str()));
          position.y = 0.5f;
          // 生成
-         //GenarateBossEnemyEnemy(position);
+         //GenerateBossEnemyEnemy(position);
       }
    }
 
@@ -104,7 +126,7 @@ void EnemyManager::Update() {
 
     if (ImGui::Button("enemySpown"))
     {
-      GenarateEnemy({0, 0, 0});
+      GenerateEnemy({0, 0, 0});
 
     }
 
@@ -115,10 +137,10 @@ void EnemyManager::Update() {
 
 }
 
-void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateEnemy(const Math::Vector::Vec3 &position) {
 
-	//// 敵の生成
-  std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
+	// 敵の生成
+    std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
     //座標の設定
     enemy->SetInitialPosition(position);
     // 初期化
@@ -128,7 +150,19 @@ void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
 
 }
 
-void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateEnemy2(const Math::Vector::Vec3 &position) {
+    // 敵の生成
+    std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
+    // 座標の設定
+    enemy->SetInitialPosition(position);
+    // 初期化
+    enemy->Init();
+    // 挿入
+    enemyList_.push_back(std::move(enemy));
+
+}
+
+void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
    // ボスの生成
   std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<FirstBossEnemy>();
    // 初期化
