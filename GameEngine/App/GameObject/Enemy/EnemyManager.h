@@ -41,13 +41,13 @@ class EnemyManager : public CLEYERA::Component::ManagerCompornent {
     /// 雑魚敵を生成
     /// </summary>
     /// <param name="position">座標</param>
-    void GenerateEnemy1(const Math::Vector::Vec3 &position);
+    void GenerateNormalEnemy1(const Math::Vector::Vec3 &position);
 
     /// <summary>
     /// 雑魚敵2を生成
     /// </summary>
     /// <param name="position">座標</param>
-    void GenerateEnemy2(const Math::Vector::Vec3 &position);
+    void GenerateNormalEnemy2(const Math::Vector::Vec3 &position);
 
     /// <summary>
     /// ボス敵

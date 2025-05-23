@@ -1,9 +1,14 @@
 #include "EnemyManager.h"
 
 #include "Player/PlayerManager.h"
-#include "Boss/First/FirstBossEnemy.h"
+
+//雑魚敵
 #include "Normal/Normal1/NormalEnemy1.h"
 #include "Normal/Normal2/NormalEnemy2.h"
+
+//ボス
+#include "Boss/First/FirstBossEnemy.h"
+
 
 void EnemyManager::Init() {
 
@@ -19,23 +24,19 @@ void EnemyManager::Init() {
    uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
    uint32_t enemy2Count = lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
 
-
+   //雑魚敵1の生成
    for (uint32_t i = 1u; i <= enemy1Count; ++i) {
      std::string varName = "Enemy1GeneratePositions.translate" + std::to_string(i);
      Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
-     GenerateEnemy1(pos);
+     GenerateNormalEnemy1(pos);
    }
 
+   //雑魚敵2の生成
    for (uint32_t i = 1u; i <= enemy2Count; ++i) {
      std::string varName = "Enemy2GeneratePositions.translate" + std::to_string(i);
      Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
-     GenerateEnemy2(pos);
+     GenerateNormalEnemy2(pos);
    }
-
-   
-
-
-   
 
 }
 
@@ -47,35 +48,33 @@ void EnemyManager::Update() {
 	for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
 		//プレイヤーの座標を設定
         enemy->SetPlayerPosition(playerPosition_);
-           // 通常の敵の更新
+        //雑魚敵の更新
 		enemy->Update();
 	}
 
 	for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
-           // プレイヤーの座標を設定
-           enemy->SetPlayerPosition(playerPosition_);
+        // プレイヤーの座標を設定
+        enemy->SetPlayerPosition(playerPosition_);
 		//ボスの更新
 		enemy->Update();
     }
 
 
 
-	#ifdef _DEBUG
+#ifdef _DEBUG
 
     if (ImGui::Button("enemySpown"))
     {
-      GenerateEnemy1({0, 0, 0});
+      GenerateNormalEnemy1({0, 0, 0});
 
     }
 
     DisplayImGui();
 #endif // _DEBUG
     
-
-
 }
 
-void EnemyManager::GenerateEnemy1(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
 
 	// 敵の生成
     std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
@@ -88,7 +87,7 @@ void EnemyManager::GenerateEnemy1(const Math::Vector::Vec3 &position) {
 
 }
 
-void EnemyManager::GenerateEnemy2(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position) {
     // 敵の生成
     std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
     // 座標の設定
