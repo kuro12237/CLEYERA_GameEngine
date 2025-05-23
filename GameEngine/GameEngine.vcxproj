@@ -186,6 +186,7 @@
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Projectile\PlayerProjectileManager.cpp" />
     <ClCompile Include="App\Scene\DebugScene.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
     <ClCompile Include="App\Scene\GameScene.cpp" />

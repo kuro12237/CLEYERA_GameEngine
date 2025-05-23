@@ -35,7 +35,7 @@ public:
   /// <summary>
   /// データの読み込み
   /// </summary>
-  void LoadParameters(std::weak_ptr<LuaScript> lua_) override;
+  void LoadParameters(std::weak_ptr<LuaScript> lua) override;
 
 
 
