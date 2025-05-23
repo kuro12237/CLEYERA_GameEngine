@@ -27,7 +27,7 @@ void PlayerManager::Init()
 	// コア
 	core_->SetCameraPtr(camera_);
 	core_->Init();
-	ManagerCompornent::objComponents_.push_back(core_);
+	objComponents_.push_back(core_);
 
 	// コマンドハンドラー
 	commandHandler_->Init();

@@ -37,16 +37,22 @@ class EnemyManager : public CLEYERA::Component::ManagerCompornent {
 
 
     /// <summary>
-    /// 雑魚敵
+    /// 雑魚敵を生成
     /// </summary>
-    /// <param name="position"></param>
-    void GenarateEnemy(const Math::Vector::Vec3 &position);
+    /// <param name="position">座標</param>
+    void GenerateEnemy(const Math::Vector::Vec3 &position);
+
+    /// <summary>
+    /// 雑魚敵2を生成
+    /// </summary>
+    /// <param name="position">座標</param>
+    void GenerateEnemy2(const Math::Vector::Vec3 &position);
 
     /// <summary>
     /// ボス敵
     /// </summary>
-    /// <param name="position"></param>
-    void GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position);
+    /// <param name="position">座標</param>
+    void GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position);
 
 private:
     /// <summary>
@@ -58,7 +64,7 @@ public:
     /// <summary>
     /// プレイヤー管理クラスの設定
     /// </summary>
-    /// <param name="playerManager"></param>
+    /// <param name="playerManager">プレイヤー管理クラス</param>
     inline void SetPlayerManager(PlayerManager *playerManager) { 
 		this->playerManager_ = playerManager;
 	}
@@ -70,10 +76,10 @@ private:
     Math::Vector::Vec3 playerPosition_ = {};
 
 	//雑魚敵
-	std::list<std::unique_ptr<BaseNormalEnemy>> enemyList_;
+	std::list<std::shared_ptr<BaseNormalEnemy>> enemyList_;
 
 	//ボス敵
-    std::list<std::unique_ptr<BaseBossEnemy>> bossEnemyList_;
+    std::list<std::shared_ptr<BaseBossEnemy>> bossEnemyList_;
 
     // 生成の文字列を入れる
     std::stringstream enemyPositionsFromCSV_;

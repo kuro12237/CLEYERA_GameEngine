@@ -3,6 +3,7 @@
 #include "Player/PlayerManager.h"
 #include "Boss/First/FirstBossEnemy.h"
 #include "Normal/Normal1/NormalEnemy1.h"
+#include "Normal/Normal2/NormalEnemy2.h"
 
 void EnemyManager::Init() {
 
@@ -36,7 +37,7 @@ void EnemyManager::Init() {
       }
 
       // 通常の敵の場合
-      if (word.find("NormalEnemy") == 0) {
+      if (word == "NormalEnemy") {
          Math::Vector::Vec3 position = {};
          // X座標
          std::getline(lineStream, word, ',');
@@ -52,11 +53,32 @@ void EnemyManager::Init() {
 
          position.y = 0.5f;
          // 生成
-         GenarateEnemy(position);
+         GenerateEnemy(position);
+
+
+      } 
+      //雑魚敵2の場合
+      else if (word == "NormalEnemy2") {
+        Math::Vector::Vec3 position = {};
+        // X座標
+        std::getline(lineStream, word, ',');
+        position.x = static_cast<float>(std::atof(word.c_str()));
+
+        // Y座標
+        std::getline(lineStream, word, ',');
+        position.y = static_cast<float>(std::atof(word.c_str()));
+
+        // Z座標
+        std::getline(lineStream, word, ',');
+        position.z = static_cast<float>(std::atof(word.c_str()));
+
+        position.y = 0.5f;
+        // 生成
+        GenerateEnemy2(position);
 
       }
       // 強敵の場合
-      else if (word.find("StrongEnemy") == 0) {
+      else if (word == "StrongEnemy") {
          Math::Vector::Vec3 position = {};
          // X座標
          std::getline(lineStream, word, ',');
@@ -71,7 +93,7 @@ void EnemyManager::Init() {
          position.z = static_cast<float>(std::atof(word.c_str()));
          position.y = 0.5f;
          // 生成
-         //GenarateBossEnemyEnemy(position);
+         //GenerateBossEnemyEnemy(position);
       }
    }
 
@@ -84,14 +106,14 @@ void EnemyManager::Update() {
 	//プレイヤーの座標を取得
     playerPosition_ = playerManager_->GetPlayerCore().lock()->GetWorldPos();
 
-	for (std::unique_ptr<BaseNormalEnemy> &enemy : enemyList_) {
+	for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
 		//プレイヤーの座標を設定
         enemy->SetPlayerPosition(playerPosition_);
            // 通常の敵の更新
 		enemy->Update();
 	}
 
-	for (std::unique_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
+	for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
            // プレイヤーの座標を設定
            enemy->SetPlayerPosition(playerPosition_);
 		//ボスの更新
@@ -101,6 +123,13 @@ void EnemyManager::Update() {
 
 
 	#ifdef _DEBUG
+
+    if (ImGui::Button("enemySpown"))
+    {
+      GenerateEnemy({0, 0, 0});
+
+    }
+
     DisplayImGui();
 #endif // _DEBUG
     
@@ -108,21 +137,34 @@ void EnemyManager::Update() {
 
 }
 
-void EnemyManager::GenarateEnemy(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateEnemy(const Math::Vector::Vec3 &position) {
 
-	//// 敵の生成
-    std::unique_ptr<NormalEnemy1> enemy = std::make_unique<NormalEnemy1>();
+	// 敵の生成
+    std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
     //座標の設定
     enemy->SetInitialPosition(position);
     // 初期化
     enemy->Init();
     //挿入
     enemyList_.push_back(std::move(enemy));
+
 }
 
-void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateEnemy2(const Math::Vector::Vec3 &position) {
+    // 敵の生成
+    std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
+    // 座標の設定
+    enemy->SetInitialPosition(position);
+    // 初期化
+    enemy->Init();
+    // 挿入
+    enemyList_.push_back(std::move(enemy));
+
+}
+
+void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
    // ボスの生成
-   std::unique_ptr<BaseBossEnemy> enemy = std::make_unique<FirstBossEnemy>();
+  std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<FirstBossEnemy>();
    // 初期化
    enemy->Init();
    // 座標の設定
@@ -133,10 +175,10 @@ void EnemyManager::GenarateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
 
 void EnemyManager::DisplayImGui() { 
 	
-	ImGui::Begin("敵管理クラス");
+	ImGui::Begin("EnemyManager");
    
-	if (ImGui::TreeNode("プレイヤー関係") == true) {
-           ImGui::InputFloat3("座標", &playerPosition_.x);
+	if (ImGui::TreeNode("Player") == true) {
+           ImGui::InputFloat3("Position", &playerPosition_.x);
 		ImGui::TreePop();
 
     }
