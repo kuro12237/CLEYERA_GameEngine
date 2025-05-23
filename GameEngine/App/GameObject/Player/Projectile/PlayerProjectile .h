@@ -20,7 +20,7 @@ public:
   /// <summary>
   /// 初期化処理
   /// </summary>
-  void Init() override;
+  void Init() override {}
 
   /// <summary>
   /// 更新処理
