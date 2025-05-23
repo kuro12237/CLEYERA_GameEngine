@@ -232,6 +232,7 @@
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.cpp" />
     <ClCompile Include="CLEYERA\PostEffect\PostEffect.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\AABBCollider.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.cpp" />
     <ClCompile Include="CLEYERA\Utility\FileLoader\FileLoader.cpp" />
     <ClCompile Include="CLEYERA\Utility\Flame\Flame.cpp" />
@@ -339,6 +340,7 @@
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.h" />
     <ClInclude Include="CLEYERA\Lua\kua.h" />
     <ClInclude Include="CLEYERA\PostEffect\PostEffect.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\AABBCollider.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\Octree\Octree.h" />
     <ClInclude Include="CLEYERA\Lua\Helpers\LuaHelpers.h" />
     <ClInclude Include="CLEYERA\Lua\Script\LuaScript.h" />

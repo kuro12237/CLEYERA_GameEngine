@@ -11,10 +11,9 @@ class ObjectComponent;
 }
 
 namespace Util {
-
 namespace Collider {
 
-enum class ColliderType { OBB };
+enum class ColliderType { OBB ,AABB};
 
 /// <summary>
 /// コライダー

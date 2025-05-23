@@ -4,6 +4,7 @@
 
 #include "../Utility/ColliderSystem/Collider.h"
 #include "../Utility/ColliderSystem/OBBCollider.h"
+#include"../Utility/ColliderSystem/AABBCollider.h"
 
 CLEYERA::Component::ObjectComponent::ObjectComponent() {
 
@@ -107,6 +108,13 @@ void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::Collide
     c->SetCenter(&translate_);
     c->SetRotate(&rotate_);
     c->SetWorldMatrix(&gameObject_->GetMat());
+    collider_->Create();
+  }
+  if (type == Util::Collider::ColliderType::AABB) {
+    collider_ = std::make_shared<CLEYERA::Util::Collider::AABBCollider>();
+    auto c = std::dynamic_pointer_cast<Util::Collider::AABBCollider>(collider_);
+
+    c->SetCenter(&translate_);
     collider_->Create();
   }
 }

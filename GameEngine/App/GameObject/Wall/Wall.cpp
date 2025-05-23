@@ -8,7 +8,7 @@ void Wall::Init() {
   ObjectComponent::gameObject_->ChangeModel(handle);
 
   // コライダー作成
-  ObjectComponent::CreateCollider(ColliderType::OBB);
+  ObjectComponent::CreateCollider(ColliderType::AABB);
 
   
 }

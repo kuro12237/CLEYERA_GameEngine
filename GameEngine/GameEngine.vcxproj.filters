@@ -213,6 +213,7 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
+    <ClCompile Include="CLEYERA\Utility\ColliderSystem\AABBCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -459,6 +460,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h" />
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
     <ClInclude Include="App\GameObject\Wall\WallManager.h" />
+    <ClInclude Include="CLEYERA\Utility\ColliderSystem\AABBCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

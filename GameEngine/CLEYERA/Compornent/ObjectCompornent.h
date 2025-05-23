@@ -17,6 +17,7 @@ namespace Collider {
 enum class ColliderType;
 class Collider;
 class OBBCollider;
+class AABBCollider;
 
 } // namespace Collider
 } // namespace Util
