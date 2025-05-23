@@ -6,6 +6,8 @@
 #include "Core/playerCore.h"
 #include "Camera/PlayerCamera.h"
 
+#include "Projectile/PlayerProjectileManager.h"
+
 
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {

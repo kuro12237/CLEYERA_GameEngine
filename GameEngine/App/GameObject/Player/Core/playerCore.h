@@ -5,8 +5,8 @@
 
 #include "Move/PlayerMoveFunc.h"
 
-#include "../Attack/Interface/IMagicAttack.h"
-#include "../Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
+#include "Attack/Interface/IMagicAttack.h"
+#include "Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
 
 // 前方宣言
 class PlayerCamera;

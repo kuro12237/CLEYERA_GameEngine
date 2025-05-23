@@ -1,6 +1,8 @@
 #pragma once
 
-#include "CLEYERA.h"
+#include "CLEYERA.h" 
+#include "Lua/Script/LuaScript.h"
+
 
 // 前方宣言
 class PlayerCore;
@@ -38,24 +40,43 @@ public:
   virtual void IsAttack() = 0;
 
   /// <summary>
-  /// 技の名前の取得
+  /// 更新処理
   /// </summary>
-  virtual std::string GetName() { return name_; }
+  virtual void Update() {};
+
+  /// <summary>
+  /// 攻撃のリセット
+  /// </summary>
+  virtual void Reset() {};
+
+  /// <summary>
+  /// データの読み込み
+  /// </summary>
+  virtual void LoadParameters(std::weak_ptr<LuaScript> lua_) = 0;
 
 
-#pragma region
+#pragma region Accessor
 
   // 親の設定
   void SetOwner(std::weak_ptr<PlayerCore> ptr) { owner_ = ptr; }
 
+  // 技の名前の取得
+  virtual std::string GetName() { return name_; }
+
 #pragma endregion
 
 
-private:
+protected:
 
   // 技名
   std::string name_ = "default";
 
   // 親
   std::weak_ptr<PlayerCore> owner_;
+
+  // ダメージ
+  float damage_ = 0.0f;
+
+  // クールダウン
+  float coolDown_ = 0.0f;
 };
