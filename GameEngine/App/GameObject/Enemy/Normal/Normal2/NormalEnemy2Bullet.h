@@ -74,7 +74,7 @@ public:
 
 private:
 	//スケールサイズ
-	const float_t SCALE_SIZE_ = 0.5f;
+	const float_t SCALE_SIZE_ = 1.0f;
 	//弾の速さ
     const float_t SPEED_ = 0.1f;
 	//時間変化

@@ -23,7 +23,7 @@ void NormalEnemy2Bullet::Init() {
 void NormalEnemy2Bullet::Update() {
 
 	//最大5秒まで表示その後に消える
-  displayTime_ += DELTA_TIME_;
+	displayTime_ += DELTA_TIME_;
 	if (displayTime_ > MAX_DISPLAY_TIME_) {
           isDelete_ = true;
 	}

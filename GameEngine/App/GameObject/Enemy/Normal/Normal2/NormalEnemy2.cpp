@@ -28,7 +28,7 @@ void NormalEnemy2::Init() {
     // 追跡開始距離
    trackingStartDistance_ = 70.0f;
    // 攻撃開始距離
-   attackStartDistance_ = 5.0f;
+   attackStartDistance_ = 15.0f;
 
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
@@ -56,57 +56,53 @@ void NormalEnemy2::Init() {
 }
 
 void NormalEnemy2::Update() {
-  float_t distance = Math::Vector::Func::Length(GetPosition() -
-                                                GetPlayerPosition());
-
-
-  // 方向を求める
-  Math::Vector::Vec3 velocity = GetPlayerPosition() - GetPosition();
-
-
+    //距離を求める
+    float_t distance = Math::Vector::Func::Length(GetPosition() -GetPlayerPosition());
+    // 方向を求める
+    Math::Vector::Vec3 velocity = GetPlayerPosition() - GetPosition();
 
 	//攻撃していない時
-  if (isAttack_ == false) {
-    
-    // 攻撃範囲内の時
-    if (distance < GetAttackStartDistance()) {
-
-      //// 弾
-      std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
-      bullet->SetNormalEnemyPosition(GetPosition());
-      bullet->SetPlayerPosition(GetPlayerPosition());
-      bullet->Init();
-      // 挿入
-      bullets_.push_back(std::move(bullet));
-
-      isAttack_ = true;
-    } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
+    if (isAttack_ == false) {
       
-
-      // 本体に設定
-      SetVelocity(Math::Vector::Func::Normalize(velocity));
-
+      // 攻撃範囲内の時
+      if (distance < GetAttackStartDistance()) {
+    
+        //// 弾
+        std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
+        bullet->SetNormalEnemyPosition(GetPosition());
+        bullet->SetPlayerPosition(GetPlayerPosition());
+        bullet->Init();
+        // 挿入
+        bullets_.push_back(std::move(bullet));
+    
+        isAttack_ = true;
+      } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
+        
+    
+        // 本体に設定
+        SetVelocity(Math::Vector::Func::Normalize(velocity));
+    
+      }
     }
-  }
 
 
 
-  // 弾の削除
-  bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    // 弾の削除
+    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    
+    if (isAttack_ == true && bullets_.empty()) {
+      isAttack_ = false;
+    }
 
-  if (isAttack_ == true && bullets_.empty()) {
-    isAttack_ = false;
-  }
 
 
+    velocity= Math::Vector::Func::Normalize(velocity); 
 
-    Math::Vector::Vec3 newVelocity = Math::Vector::Func::Normalize(velocity); // 正規化関数
+    // atan2 で回転角を求める（ラジアン）
+    float_t angle = std::atan2(-velocity.z, velocity.x); 
 
-  // atan2 で回転角を求める（ラジアン）
-    float_t angle = std::atan2(-newVelocity.z, newVelocity.x); // 注意：xとzの順番
-
-  // 角度を敵の回転に設定
-  rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
+    // 角度を敵の回転に設定
+    rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
 
 	//ビヘイビアツリーの実行
 	////behaviorTree_->Execute(this);
