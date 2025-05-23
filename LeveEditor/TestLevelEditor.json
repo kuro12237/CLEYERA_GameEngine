@@ -3,16 +3,16 @@
     "objects": [
         {
             "type": "MESH",
-            "name": "wall",
-            "file_name": "core",
-            "Directory_name": "Resources/Model/Player/Core/",
+            "name": "立方体",
+            "file_name": "PlayerCore",
+            "Directory_name": "Player",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    30.575721740722656,
+                    -51.59226608276367,
                     0.0,
-                    3.20038104057312
+                    0.0
                 ],
                 "rotate": [
                     0.0,
@@ -20,8 +20,8 @@
                     0.0
                 ],
                 "scale": [
-                    5.570301532745361,
-                    5.9706339836120605,
+                    9.962970733642578,
+                    40.2220458984375,
                     1.0
                 ]
             }
@@ -70,14 +70,39 @@
         },
         {
             "type": "MESH",
-            "name": "PlayerCore",
-            "file_name": "core",
-            "Directory_name": "Resources/Model/Player/Core/",
+            "name": "Terrain",
+            "file_name": "Terrain",
+            "Directory_name": "Terrain",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    -26.531166076660156,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "PlayerCore",
+            "file_name": "PlayerCore",
+            "Directory_name": "Player",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    16.426494598388672,
                     0.0,
                     3.20038104057312
                 ],
@@ -91,7 +116,34 @@
                     1.0,
                     1.0
                 ]
-            }
+            },
+            "children": [
+                {
+                    "type": "MESH",
+                    "name": "PlayerCore.001",
+                    "file_name": "PlayerCore",
+                    "Directory_name": "Player",
+                    "ModelFileType": "obj",
+                    "DrawType": "Normal",
+                    "transform": {
+                        "translate": [
+                            0.0,
+                            8.307981491088867,
+                            0.0
+                        ],
+                        "rotate": [
+                            0.0,
+                            -0.0,
+                            0.0
+                        ],
+                        "scale": [
+                            1.0,
+                            1.0,
+                            1.0
+                        ]
+                    }
+                }
+            ]
         }
     ]
 }
