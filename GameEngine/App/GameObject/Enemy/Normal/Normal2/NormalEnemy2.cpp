@@ -81,21 +81,14 @@ void NormalEnemy2::Update() {
     
         // 本体に設定
         SetVelocity(Math::Vector::Func::Normalize(velocity));
-    
+        
       }
     }
 
 
 
-    // 弾の削除
-    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
     
-    if (isAttack_ == true && bullets_.empty()) {
-      isAttack_ = false;
-    }
-
-
-
+    //正規化
     velocity= Math::Vector::Func::Normalize(velocity); 
 
     // atan2 で回転角を求める（ラジアン）
@@ -118,6 +111,14 @@ void NormalEnemy2::Update() {
     for (const auto &bullet : bullets_) {
       bullet->Update();
     }
+
+    // 弾の削除
+    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+
+    if (isAttack_ == true && bullets_.empty()) {
+      isAttack_ = false;
+    }
+
 #ifdef _DEBUG
     //ImGui表示用
     DisplayImGui();
