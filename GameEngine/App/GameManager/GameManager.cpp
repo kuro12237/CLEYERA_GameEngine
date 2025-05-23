@@ -23,7 +23,6 @@ void GameManager::Run() {
    auto imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
    auto raytracingManager = engine_->GetRaytracingManager();
 
-
    // 一旦クローズ
    CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
 
