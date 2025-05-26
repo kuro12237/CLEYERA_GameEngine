@@ -94,6 +94,13 @@ public:
 	   return attackStartDistance_; 
    }
 
+   /// <summary>
+   /// 追跡開始距離を取得
+   /// </summary>
+   /// <returns></returns>
+   float_t GetTrackingStartDistance() const { 
+	   return trackingStartDistance_;
+   }
 
 protected:
 	// プレイヤー座標

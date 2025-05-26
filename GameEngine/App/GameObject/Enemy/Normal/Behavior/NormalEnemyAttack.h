@@ -30,7 +30,7 @@ public:
     /// <summary>
     /// 実行
     /// </summary>
-    /// <param name="baseNormalEnemy"></param>
+    /// <param name="baseNormalEnemy"雑魚敵></param>
     /// <returns></returns>
     EnemyNodeState Execute(BaseNormalEnemy * baseNormalEnemy) override;
 

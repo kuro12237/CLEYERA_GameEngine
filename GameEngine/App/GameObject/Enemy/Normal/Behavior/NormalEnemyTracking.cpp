@@ -13,8 +13,9 @@ EnemyNodeState NormalEnemyTracking::Execute(BaseNormalEnemy * baseNormalEnemy){
 
     };
 
+    const float_t SPEED = 0.1f;
     //本体に設定
-    baseNormalEnemy->SetVelocity(Math::Vector::Func::Normalize(velocity));
+    baseNormalEnemy->SetVelocity(Math::Vector::Func::Normalize(velocity) * SPEED);
     
     //成功
     return EnemyNodeState::Success;

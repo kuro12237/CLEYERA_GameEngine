@@ -7,12 +7,12 @@
  */
 
 
-#include "Enemy/Normal/Behavior/NormalEnemyCondition.h"
+#include "Enemy/Normal/Behavior/NormalEnemyBehaviorNode.h"
 
 /// <summary>
 /// 範囲内にいるかどうか
 /// </summary>
-class NormalEnemyIsPlayerInRange : public NormalEnemyCondition {
+class NormalEnemyIsPlayerInRange : public NormalEnemyBehaviorNode {
 public:
     /// <summary>
     /// コンストラクタ
@@ -24,13 +24,18 @@ public:
     }
 
     /// <summary>
-    /// 状態を確認
+    /// 実行
     /// </summary>
-    /// <param name="baseNormalEnemy">通常の敵</param>
+    /// <param name="baseNormalEnemy">雑魚敵</param>
     /// <returns></returns>
-    bool CheckCondition(BaseNormalEnemy * baseNormalEnemy) override;
+    EnemyNodeState Execute(BaseNormalEnemy *baseNormalEnemy) override;
 
-private:
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~NormalEnemyIsPlayerInRange() = default;
+
+  private:
     //範囲
     float_t range_ = 0.0f;
 
