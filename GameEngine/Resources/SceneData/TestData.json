@@ -2,6 +2,809 @@
     "name": "scene",
     "objects": [
         {
+            "type": "MESH",
+            "name": "立方体.022",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    100.11282348632812,
+                    0.5464919805526733,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    99.447509765625,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.021",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -0.4527401924133301,
+                    100.71768951416016,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9030449986457825,
+                    102.87615203857422,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.020",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -101.03074645996094,
+                    0.5464919805526733,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    99.447509765625,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.019",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -0.9027500152587891,
+                    -99.55401611328125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.8999999761581421,
+                    102.87615203857422,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.001",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    77.89391326904297,
+                    -55.6519775390625,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    21.65172576904297,
+                    23.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.031",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    14.728751182556152,
+                    50.50144577026367,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    6.938351154327393,
+                    9.82303524017334,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.026",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    3.3427300453186035,
+                    79.35285949707031,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    8.989851951599121,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.025",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    83.3495101928711,
+                    83.9782485961914,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    9.511975288391113,
+                    6.07688570022583,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.024",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    45.48170852661133,
+                    89.1873550415039,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    35.109928131103516,
+                    10.244998931884766,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.008",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    21.847087860107422,
+                    19.08258628845215,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    9.511975288391113,
+                    11.614250183105469,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.007",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    64.9928207397461,
+                    28.533235549926758,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    35.109928131103516,
+                    20.80013084411621,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.006",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    89.5931396484375,
+                    -8.383071899414062,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    9.642857551574707,
+                    34.00680923461914,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.005",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    35.168216705322266,
+                    -13.556148529052734,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    28.912843704223633,
+                    5.490106582641602,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.004",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    51.37389373779297,
+                    -81.30404663085938,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    3.656073570251465,
+                    12.769168853759766,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.003",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    32.050289154052734,
+                    -90.96585083007812,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    23.61243438720703,
+                    3.7018139362335205,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.002",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    32.050289154052734,
+                    -69.226806640625,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    25.4281005859375,
+                    9.526891708374023,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.023",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -12.97452163696289,
+                    49.15985870361328,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    9.016722679138184,
+                    38.83909225463867,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.012",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -24.306440353393555,
+                    -8.121057510375977,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.8535381555557251,
+                    2.9460341930389404,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.011",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -9.32635498046875,
+                    -53.499332427978516,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    16.151334762573242,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.010",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "paramFileNames": {
+                "File 0": ""
+            },
+            "transform": {
+                "translate": [
+                    -26.806196212768555,
+                    -30.925737380981445,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.3434802293777466,
+                    23.502592086791992,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.009",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -12.97452163696289,
+                    -23.370586395263672,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    9.016722679138184,
+                    16.017202377319336,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.032",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -73.88226318359375,
+                    34.05563735961914,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    12.539226531982422,
+                    42.88407516479492,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.030",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -53.91814422607422,
+                    89.95672607421875,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    11.083006858825684,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.029",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -44.54158020019531,
+                    79.35285949707031,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    8.989851951599121,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.028",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -56.08478546142578,
+                    -26.50773048400879,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.3434802293777466,
+                    9.976250648498535,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.027",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -34.16999435424805,
+                    51.93758773803711,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.3434802293777466,
+                    42.23324203491211,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.018",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -79.24568176269531,
+                    -35.59307098388672,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    21.75800323486328,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.017",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -79.44991302490234,
+                    -64.69871520996094,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    20.579261779785156,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.016",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -87.30462646484375,
+                    -53.40756607055664,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    12.994489669799805,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.015",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -49.01287841796875,
+                    -53.57882308959961,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    90.00000762939453
+                ],
+                "scale": [
+                    0.9098916053771973,
+                    16.151334762573242,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.014",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -34.16999435424805,
+                    -76.5812759399414,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.253480315208435,
+                    22.069913864135742,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "立方体.013",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -39.079193115234375,
+                    -30.925737380981445,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.3434802293777466,
+                    23.502592086791992,
+                    4.0
+                ]
+            }
+        },
+        {
             "type": "LIGHT",
             "name": "Light",
             "transform": {
@@ -42,58 +845,6 @@
                     1.0
                 ]
             }
-        },
-        {
-            "type": "MESH",
-            "name": "PlayerCore",
-            "file_name": "Core",
-            "Directory_name": "Resources/Model/Player/Core/",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -3.4657974243164062,
-                    0.0,
-                    3.20038104057312
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "children": [
-                {
-                    "type": "MESH",
-                    "name": "PlayerCore.001",
-                    "file_name": "Core",
-                    "Directory_name": "Resources/Model/Player/Core/",
-                    "ModelFileType": "obj",
-                    "DrawType": "Normal",
-                    "transform": {
-                        "translate": [
-                            0.0,
-                            8.307981491088867,
-                            0.0
-                        ],
-                        "rotate": [
-                            0.0,
-                            -0.0,
-                            0.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ]
-                    }
-                }
-            ]
         }
     ]
 }
