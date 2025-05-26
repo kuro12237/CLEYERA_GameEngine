@@ -5,8 +5,7 @@
 /// </summary>
 std::weak_ptr<PlayerProjectile>
 PlayerProjectileManager::CreateProjectile(const Math::Vector::Vec3 &pos,
-                                          const Math::Vector::Vec3 &vel, float lifeTime) 
-{
+                                          const Math::Vector::Vec3 &vel, float lifeTime) {
   std::shared_ptr<PlayerProjectile> newProj = std::make_shared<PlayerProjectile>();
   newProj->Init();
   newProj->SetPosition(pos);
@@ -20,19 +19,14 @@ PlayerProjectileManager::CreateProjectile(const Math::Vector::Vec3 &pos,
 /// <summary>
 /// 初期化処理
 /// </summary>
-void PlayerProjectileManager::Init() 
-{
-
-}
+void PlayerProjectileManager::Init() {}
 
 /// <summary>
 /// 更新処理
 /// </summary>
 void PlayerProjectileManager::Update() {
-
-  // イテレータを使った安全なループ中削除 (C++20未満でも動作)
-  for (auto it = projectiles_.begin(); it != projectiles_.end();) 
-  {
+  // イテレータを使った安全なループ中削除
+  for (auto it = projectiles_.begin(); it != projectiles_.end();) {
 
     // 更新処理
     (*it)->Update();
@@ -43,5 +37,17 @@ void PlayerProjectileManager::Update() {
     } else {
       ++it; // アクティブなら次の要素へ
     }
+  }
+}
+
+/// <summary>
+/// ImGuiの描画
+/// </summary>
+void PlayerProjectileManager::DrawImGui() {
+  if (ImGui::TreeNode("ProjectileManager")) {
+
+    size_t count = projectiles_.size();
+    ImGui::Text("Projectile Count = %d", count);
+    ImGui::TreePop();
   }
 }

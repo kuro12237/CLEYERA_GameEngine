@@ -1,14 +1,22 @@
 #include "PlayerAttackDemoBasic.h"
+#include "../../../playerCore.h"
+#include "../../../../Projectile/PlayerProjectileManager.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-PlayerAttackDemoBasic::PlayerAttackDemoBasic() {}
+PlayerAttackDemoBasic::PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerProjectileManager* projManagerPtr)
+{
+  IMagicAttack::SetPre(corePtr, projManagerPtr);
+}
 
 /// <summary>
-/// 攻撃処理
+/// 初期化処理
 /// </summary>
-void PlayerAttackDemoBasic::IsAttack() {}
+void PlayerAttackDemoBasic::Init()
+{
+
+}
 
 /// <summary>
 /// 更新処理
@@ -21,6 +29,11 @@ void PlayerAttackDemoBasic::Update() {}
 void PlayerAttackDemoBasic::Reset() {}
 
 /// <summary>
-/// データの読み込み
+/// 攻撃処理
 /// </summary>
-void PlayerAttackDemoBasic::LoadParameters(std::weak_ptr<LuaScript> lua) { lua; }
+void PlayerAttackDemoBasic::IsAttack() 
+{
+  if (projManager_) {
+    projManager_->CreateProjectile(owner_->GetWorldPos(), Math::Vector::Vec3(0.0f, 0.0f, 1.0f), 1.0f * 60.0f);
+  }
+}

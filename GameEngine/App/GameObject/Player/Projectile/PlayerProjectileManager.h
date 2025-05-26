@@ -34,7 +34,11 @@ public:
   /// 新しいProjectileを生成
   /// </summary>
   std::weak_ptr<PlayerProjectile> CreateProjectile(const Math::Vector::Vec3 &pos, const Math::Vector::Vec3 &vel, float lifeTime);
-
+  
+  /// <summary>
+  /// ImGuiの描画
+  /// </summary>
+  void DrawImGui();
 
 private:
 

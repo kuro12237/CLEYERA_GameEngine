@@ -40,14 +40,16 @@ public:
   // 速度の設定
   inline void SetVelocity(const Math::Vector::Vec3 &vel) { force_ = vel; }
 
-  // 生存時間の設定
+  // 起動中か
   inline bool IsActive() const { return isActive_; }
+
+  // 起動時間の設定
   inline void SetLifeTime(float time) { lifeTime_ = time; }
 
 #pragma endregion
 
 private:
-  float lifeTime_;       // 生存期間 (秒)
-  int damage_;           // ダメージ量
+  float lifeTime_ = 0.0f; // 生存期間 (秒)
+  float damage_ = 0.0f; // ダメージ量
   bool isActive_ = true; // アクティブかどうか
 };

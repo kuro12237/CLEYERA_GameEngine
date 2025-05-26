@@ -10,7 +10,7 @@ public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  PlayerAttackDemoBasic();
+  PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerProjectileManager* projManagerPtr);
 
   /// <summary>
   /// デストラクタ
@@ -18,9 +18,9 @@ public:
   ~PlayerAttackDemoBasic() = default;
 
   /// <summary>
-  /// 攻撃処理
+  /// 初期化処理
   /// </summary>
-  void IsAttack() override;
+  void Init() override;
 
   /// <summary>
   /// 更新処理
@@ -33,10 +33,9 @@ public:
   void Reset() override;
 
   /// <summary>
-  /// データの読み込み
+  /// 攻撃処理
   /// </summary>
-  void LoadParameters(std::weak_ptr<LuaScript> lua) override;
-
+  void IsAttack() override;
 
 
 private:

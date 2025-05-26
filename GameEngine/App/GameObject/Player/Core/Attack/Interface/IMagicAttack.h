@@ -1,23 +1,22 @@
 #pragma once
 
-#include "CLEYERA.h" 
+#include "CLEYERA.h"
 #include "Lua/Script/LuaScript.h"
-
 
 // 前方宣言
 class PlayerCore;
 class InputManager;
 class IPlayerCommand;
+class PlayerProjectileManager;
 
 // 攻撃のタイプ
 enum class AttackType {
-	None = -1,
-	Basic,
-	Standard,
-	Signature,
+  None = -1,
+  Basic,
+  Standard,
+  Signature,
 };
 inline size_t ToIndex(AttackType type) { return static_cast<size_t>(type); }
-
 
 /* プレイヤー攻撃の基底クラス */
 class IMagicAttack {
@@ -25,19 +24,14 @@ class IMagicAttack {
 public:
 
   /// <summary>
-  /// コンストラクタ
-  /// </summary>
-  IMagicAttack() { name_ = "default"; }
-
-  /// <summary>
   /// デストラクタ
   /// </summary>
   virtual ~IMagicAttack() = default;
 
   /// <summary>
-  ///  攻撃処理 : 純粋仮想関数
+  /// 初期化処理
   /// </summary>
-  virtual void IsAttack() = 0;
+  virtual void Init() {};
 
   /// <summary>
   /// 更新処理
@@ -50,21 +44,31 @@ public:
   virtual void Reset() {};
 
   /// <summary>
-  /// データの読み込み
+  ///  攻撃処理 : 純粋仮想関数
   /// </summary>
-  virtual void LoadParameters(std::weak_ptr<LuaScript> lua_) = 0;
+  virtual void IsAttack() = 0;
 
+  /// <summary>
+  /// Ptrの設定
+  /// </summary>
+  void SetPre(PlayerCore* corePtr, PlayerProjectileManager* projManagerPtr)
+  {
+    owner_ = corePtr;
+    projManager_ = projManagerPtr;
+  }
 
 #pragma region Accessor
 
   // 親の設定
-  void SetOwner(std::weak_ptr<PlayerCore> ptr) { owner_ = ptr; }
+  void SetOwner(PlayerCore* ptr) { owner_ = ptr; }
+
+  // ProjectileManagerの設定
+  void SetProjectileManager(PlayerProjectileManager* ptr) { projManager_ = ptr; }
 
   // 技の名前の取得
   virtual std::string GetName() { return name_; }
 
 #pragma endregion
-
 
 protected:
 
@@ -72,7 +76,10 @@ protected:
   std::string name_ = "default";
 
   // 親
-  std::weak_ptr<PlayerCore> owner_;
+  PlayerCore *owner_ = nullptr;
+
+  // 発射物管理クラスのweakPtr
+  PlayerProjectileManager *projManager_ = nullptr;
 
   // ダメージ
   float damage_ = 0.0f;

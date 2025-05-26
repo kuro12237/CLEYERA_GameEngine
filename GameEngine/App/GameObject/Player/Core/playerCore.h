@@ -7,6 +7,7 @@
 
 #include "Attack/Interface/IMagicAttack.h"
 #include "Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
+#include "../Projectile/PlayerProjectileManager.h"
 
 // 前方宣言
 class PlayerCamera;
@@ -109,4 +110,7 @@ private:
 
 	// 攻撃コマンド
     std::array<std::unique_ptr<IMagicAttack>, 3> attacks_;
+
+	// 発射物管理クラス
+    std::unique_ptr<PlayerProjectileManager> projManager_;
 };
