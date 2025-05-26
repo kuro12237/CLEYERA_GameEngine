@@ -5,7 +5,7 @@ void NormalEnemy2Bullet::Init() {
 	name_ = VAR_NAME(NormalEnemyBullet);
 
 	// モデルの設定
-        uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
 	gameObject_->ChangeModel(modelHandle);
 
 	// コライダー作成

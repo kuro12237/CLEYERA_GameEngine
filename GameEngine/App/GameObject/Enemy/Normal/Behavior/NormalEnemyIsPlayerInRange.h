@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file NormalEnemyIsPlayerInRange.h
+ * @file NormalEnemyIsPlayerInRangeAndIsAttack.h
  * @brief 範囲内にいるかどうかのクラス
  * @author 茂木翼
  */
@@ -12,13 +12,13 @@
 /// <summary>
 /// 範囲内にいるかどうか
 /// </summary>
-class NormalEnemyIsPlayerInRange : public NormalEnemyBehaviorNode {
+class NormalEnemyIsPlayerInRangeAndIsAttack : public NormalEnemyBehaviorNode {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="range">距離を追加</param>
-    NormalEnemyIsPlayerInRange(const float_t& range){
+    NormalEnemyIsPlayerInRangeAndIsAttack(const float_t& range){
         //範囲を設定
         this->range_ = range;
     }
@@ -33,7 +33,7 @@ public:
     /// <summary>
     /// デストラクタ
     /// </summary>
-    ~NormalEnemyIsPlayerInRange() = default;
+    ~NormalEnemyIsPlayerInRangeAndIsAttack() = default;
 
   private:
     //範囲

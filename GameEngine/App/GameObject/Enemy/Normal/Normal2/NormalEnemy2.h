@@ -46,8 +46,6 @@ private:
 	void DisplayImGui();
 
 private:
-	//攻撃中かどうか
-	bool isAttacking_ = false;
 
 	// 弾のリスト
     std::list<std::shared_ptr<NormalEnemy2Bullet>> bullets_;

@@ -25,6 +25,7 @@ void NormalEnemy2::Init() {
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
 
    //ルート
+   //セレクターは一つでもSucceesすればいいよ
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
     // 追跡開始距離
@@ -32,28 +33,22 @@ void NormalEnemy2::Init() {
    // 攻撃開始距離
    attackStartDistance_ = 15.0f;
 
+   //シーケンスは全てSucceesしないとだめだよ
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
-	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	//attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(attackStartDistance_));
-	////攻撃
-	//attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
-	//root->AddChild(std::move(attackSequence));
-    
-    attackSequence->AddChild(std::make_unique<NormalEnemyIsNotAttacking>());
-    attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
+    attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRangeAndIsAttack>());
     attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
     root->AddChild(std::move(attackSequence));
 #pragma endregion
 
 #pragma region 通常状態のシーケンス
-   std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
-   //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
-   //追跡
-   approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
-   //作ったものを入れる
-   root->AddChild(std::move(approachSequence));
+   //std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
+   ////プレイヤーが設定した範囲内にいるかどうか
+   //approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(trackingStartDistance_));
+   ////追跡
+   //approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
+   ////作ったものを入れる
+   //root->AddChild(std::move(approachSequence));
 #pragma endregion
 
    //本体に入れていく
@@ -64,9 +59,9 @@ void NormalEnemy2::Init() {
 
 void NormalEnemy2::Update() {
     //距離を求める
-    //float_t distance = Math::Vector::Func::Length(GetPosition() -GetPlayerPosition());
+    //float_t distance = Math::Vector::Func::Length(GetWorldPosition() -GetPlayerPosition());
     // 方向を求める
-    Math::Vector::Vec3 velocity = GetPlayerPosition() - GetPosition();
+    Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
 	////攻撃していない時
     //if (isAttack_ == false) {
@@ -76,7 +71,7 @@ void NormalEnemy2::Update() {
     //
     //    //// 弾
     //    std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
-    //    bullet->SetNormalEnemyPosition(GetPosition());
+    //    bullet->SetNormalEnemyPosition(GetWorldPosition());
     //    bullet->SetPlayerPosition(GetPlayerPosition());
     //    bullet->Init();
     //    // 挿入
@@ -114,17 +109,17 @@ void NormalEnemy2::Update() {
 	// 更新
     TransformUpdate();
 
-   	// 弾の更新
-    for (const auto &bullet : bullets_) {
-      bullet->Update();
-    }
+   	//// 弾の更新
+    //for (const auto &bullet : bullets_) {
+    //  bullet->Update();
+    //}
 
-    // 弾の削除
-    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-
-    if (isAttack_ == true && bullets_.empty()) {
-      isAttack_ = false;
-    }
+    //// 弾の削除
+    //bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    //
+    //if (isAttack_ == true && bullets_.empty()) {
+    //  isAttack_ = false;
+    //}
 
 #ifdef _DEBUG
     //ImGui表示用

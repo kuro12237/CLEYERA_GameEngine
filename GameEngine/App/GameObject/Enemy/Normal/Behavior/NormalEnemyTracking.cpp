@@ -7,9 +7,9 @@ EnemyNodeState NormalEnemyTracking::Execute(BaseNormalEnemy * baseNormalEnemy){
 
     //方向を求める
     Math::Vector::Vec3 velocity = {
-        .x = baseNormalEnemy->GetPlayerPosition().x - baseNormalEnemy->GetPosition().x,
+        .x = baseNormalEnemy->GetPlayerPosition().x - baseNormalEnemy->GetWorldPosition().x,
         .y = 0.0f,
-        .z = baseNormalEnemy->GetPlayerPosition().z - baseNormalEnemy->GetPosition().z,
+        .z = baseNormalEnemy->GetPlayerPosition().z - baseNormalEnemy->GetWorldPosition().z,
 
     };
 

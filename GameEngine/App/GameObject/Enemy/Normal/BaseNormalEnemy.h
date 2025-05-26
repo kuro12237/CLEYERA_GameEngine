@@ -49,7 +49,7 @@ public:
    /// 座標の取得
    /// </summary>
    /// <returns>座標</returns>
-   inline Math::Vector::Vec3 GetPosition()const {
+   inline Math::Vector::Vec3 GetWorldPosition()const {
 	   return translate_;
    }
 
