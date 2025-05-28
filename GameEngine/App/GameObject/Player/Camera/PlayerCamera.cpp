@@ -40,6 +40,8 @@ void PlayerCamera::Update()
 
 	// 前方&右方のベクトルを求める
 	CalcForwardAndRightVec();
+
+	lua_->MonitorScript();
 }
 
 
