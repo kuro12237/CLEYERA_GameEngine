@@ -59,52 +59,52 @@ void NormalEnemy2::Init() {
 
 void NormalEnemy2::Update() {
     //距離を求める
-    float_t distance = Math::Vector::Func::Length(GetWorldPosition() -GetPlayerPosition());
+    //float_t distance = Math::Vector::Func::Length(GetWorldPosition() -GetPlayerPosition());
     // 方向を求める
     Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
-	//攻撃していない時
-    if (isAttack_ == false) {
-      
-      // 攻撃範囲内の時
-      if (distance < GetAttackStartDistance()) {
-    
-        //// 弾
-        std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
-        bullet->SetNormalEnemyPosition(GetWorldPosition());
-        bullet->SetPlayerPosition(GetPlayerPosition());
-        bullet->Init();
-        // 挿入
-        bullets_.push_back(std::move(bullet));
-    
-        isAttack_ = true;
-      } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
-        
-    
-        // 本体に設定
-        SetVelocity(Math::Vector::Func::Normalize(velocity));
-        
-      }
-    }
+	////攻撃していない時
+    //if (isAttack_ == false) {
+    //  
+    //  // 攻撃範囲内の時
+    //  if (distance < GetAttackStartDistance()) {
+    //
+    //    //// 弾
+    //    std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
+    //    bullet->SetNormalEnemyPosition(GetWorldPosition());
+    //    bullet->SetPlayerPosition(GetPlayerPosition());
+    //    bullet->Init();
+    //    // 挿入
+    //    bullets_.push_back(std::move(bullet));
+    //
+    //    isAttack_ = true;
+    //  } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
+    //    
+    //
+    //    // 本体に設定
+    //    SetVelocity(Math::Vector::Func::Normalize(velocity));
+    //    
+    //  }
+    //}
 
 
 
     
     //正規化
-    velocity= Math::Vector::Func::Normalize(velocity); 
+   // velocity= Math::Vector::Func::Normalize(velocity); 
 
     // atan2 で回転角を求める（ラジアン）
-    float_t angle = std::atan2(-velocity.z, velocity.x); 
+    //float_t angle = std::atan2(-velocity.z, velocity.x); 
 
     // 角度を敵の回転に設定
-    rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
+    //rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
 
 	//ビヘイビアツリーの実行
-	//behaviorTree_->Execute(this);
-	const float_t SPEED = 0.1f;
-	velocity_.x *= SPEED;
-    velocity_.y *= SPEED;
-	velocity_.z *= SPEED;
+	behaviorTree_->Execute(this);
+	//const float_t SPEED = 0.1f;
+	//velocity_.x *= SPEED;
+    //velocity_.y *= SPEED;
+	//velocity_.z *= SPEED;
 
 	// 更新
     TransformUpdate();
