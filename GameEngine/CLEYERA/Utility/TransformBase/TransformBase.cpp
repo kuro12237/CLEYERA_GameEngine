@@ -29,9 +29,8 @@ void CLEYERA::Util::TransformBase::TransformImGuiUpdate() {
    }
 }
 
-Math::Vector::Vec3 CLEYERA::Util::TransformBase::GetWorldPos() {
+Math::Vector::Vec3 CLEYERA::Util::TransformBase::GetWorldPos(){
    Math::Vector::Vec3 pos = Vec3(mat_.m[3][0], mat_.m[3][1], mat_.m[3][2]);
-
    return pos;
 }
 

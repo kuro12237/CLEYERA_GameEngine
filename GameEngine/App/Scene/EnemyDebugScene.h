@@ -7,8 +7,6 @@
  */
 
 #include "IScene.h"
-#include "test/TestObject.h"
-#include "test/testCamera.h"
 #include "Player/PlayerManager.h"
 #include "Enemy/EnemyManager.h"
 
