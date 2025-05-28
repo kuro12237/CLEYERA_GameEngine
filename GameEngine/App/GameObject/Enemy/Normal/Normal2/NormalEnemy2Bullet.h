@@ -74,9 +74,13 @@ public:
 
 private:
 	//スケールサイズ
-	const float_t SCALE_SIZE_ = 0.5f;
+	const float_t SCALE_SIZE_ = 1.0f;
 	//弾の速さ
     const float_t SPEED_ = 0.1f;
+	//時間変化
+    const float_t DELTA_TIME_ = 1.0f/60.0f;
+	//最大表示時間
+    const float_t MAX_DISPLAY_TIME_ = 5.0f;
 
 private:
 	// 雑魚敵本体の座標
@@ -93,6 +97,8 @@ private:
 	//方向
     Math::Vector::Vec3 direction_ = {};
 
+	// 表示時間
+    float_t displayTime_ = 0.0f;
 	//決めたかどうか
     bool isDelete_ = false;
 

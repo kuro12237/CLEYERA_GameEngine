@@ -49,7 +49,7 @@ public:
    /// 座標の取得
    /// </summary>
    /// <returns>座標</returns>
-   inline Math::Vector::Vec3 GetPosition()const {
+   inline Math::Vector::Vec3 GetWorldPosition()const {
 	   return translate_;
    }
 
@@ -90,8 +90,17 @@ public:
    /// 攻撃開始距離を取得
    /// </summary>
    /// <returns></returns>
-   float_t GetAttackStartDistance() const { return attackStartDistance_; }
+   float_t GetAttackStartDistance() const { 
+	   return attackStartDistance_; 
+   }
 
+   /// <summary>
+   /// 追跡開始距離を取得
+   /// </summary>
+   /// <returns></returns>
+   float_t GetTrackingStartDistance() const { 
+	   return trackingStartDistance_;
+   }
 
 protected:
 	// プレイヤー座標
@@ -105,6 +114,7 @@ protected:
 	//攻撃中かどうか
     bool isAttack_ = false;
 
+	//攻撃範囲内カどうか
 
 	// 攻撃開始距離
     float_t attackStartDistance_ = 3.0f;

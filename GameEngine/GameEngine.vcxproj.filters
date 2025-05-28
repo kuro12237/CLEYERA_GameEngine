@@ -216,6 +216,8 @@
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\AABBCollider.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -465,6 +467,8 @@
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\AABBCollider.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

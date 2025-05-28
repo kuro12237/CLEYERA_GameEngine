@@ -10,6 +10,7 @@
 
 #include "Normal/BaseNormalEnemy.h"
 #include "Boss/BaseBossEnemy.h"
+#include "Lua/Script/LuaScript.h"
 #include "CLEYERA.h"
 
 
@@ -40,13 +41,13 @@ class EnemyManager : public CLEYERA::Component::ManagerCompornent {
     /// 雑魚敵を生成
     /// </summary>
     /// <param name="position">座標</param>
-    void GenerateEnemy(const Math::Vector::Vec3 &position);
+    void GenerateNormalEnemy1(const Math::Vector::Vec3 &position);
 
     /// <summary>
     /// 雑魚敵2を生成
     /// </summary>
     /// <param name="position">座標</param>
-    void GenerateEnemy2(const Math::Vector::Vec3 &position);
+    void GenerateNormalEnemy2(const Math::Vector::Vec3 &position);
 
     /// <summary>
     /// ボス敵
@@ -59,6 +60,11 @@ private:
     /// ImGUiの表示
     /// </summary>
     void DisplayImGui();
+
+    /// <summary>
+    /// Luaの読み込み
+    /// </summary>
+    void LoadEnemy2DataFromLua();
 
 public:
     /// <summary>
@@ -77,6 +83,9 @@ private:
 
 	//雑魚敵
 	std::list<std::shared_ptr<BaseNormalEnemy>> enemyList_;
+
+    // PlayerCoreのLua
+    std::unique_ptr<LuaScript> lua_;
 
 	//ボス敵
     std::list<std::shared_ptr<BaseBossEnemy>> bossEnemyList_;

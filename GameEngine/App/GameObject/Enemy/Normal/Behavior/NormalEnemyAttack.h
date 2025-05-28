@@ -16,6 +16,7 @@
 
 #include "NormalEnemyCondition.h"
 #include "Enemy/Normal/Normal1/NormalEnemyBullet.h"
+#include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
 
 /// <summary>
 /// 攻撃
@@ -30,7 +31,7 @@ public:
     /// <summary>
     /// 実行
     /// </summary>
-    /// <param name="baseNormalEnemy"></param>
+    /// <param name="baseNormalEnemy"雑魚敵></param>
     /// <returns></returns>
     EnemyNodeState Execute(BaseNormalEnemy * baseNormalEnemy) override;
 
@@ -63,7 +64,7 @@ private:
 
 private:
     //弾のリスト
-  std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;
+  std::list<std::shared_ptr<NormalEnemy2Bullet>> bullets_;
 
     //攻撃準備
     bool isReadyForAttack_ = true;
@@ -73,5 +74,12 @@ private:
     Math::Vector::Vec3 playerPosition_ = {};
     bool isGetPlayerPosition_ = false;
 
+
+    //
+    float_t generateTime_ = 0.0f;
+
+    bool isRelease_ = false;
+
+    float_t distance_ = 0.0f;
 };
 

@@ -1,103 +1,47 @@
 #include "EnemyManager.h"
 
 #include "Player/PlayerManager.h"
-#include "Boss/First/FirstBossEnemy.h"
+
+//雑魚敵
 #include "Normal/Normal1/NormalEnemy1.h"
 #include "Normal/Normal2/NormalEnemy2.h"
 
+//ボス
+#include "Boss/First/FirstBossEnemy.h"
+
+
 void EnemyManager::Init() {
 
-   std::ifstream file;
-   file.open("Resources/Configs/Entitiys/Enemy/EnemyInitialPosition.csv");
-   // 開かなかったら止まる
-   assert(file.is_open());
+   // Luaの読み込み
+   lua_ = std::make_unique<LuaScript>();
+   lua_->LoadScript("Enemy/Normal/1/GeneratePosition", "Enemy1GeneratePositions");
+   lua_->LoadScript("Enemy/Normal/2/GeneratePosition","Enemy2GeneratePositions");
+   lua_->SetReloadCallBack([this]() { LoadEnemy2DataFromLua(); });
+   
+   // Luaから抽出したデータの設定
+   LoadEnemy2DataFromLua();
+   // 生成
+   uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
+   uint32_t enemy2Count = lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
 
-   // ファイルの内容を文字列ストリームにコピー
-   enemyPositionsFromCSV_ << file.rdbuf();
-   // ファイルを閉じる
-   file.close();
-
-   // 1行分の文字列を入れる変数
-   std::string line;
-
-   // コマンド実行ループ
-   while (std::getline(enemyPositionsFromCSV_, line)) {
-
-      // 1行分の文字列をストリームに変換して解析しやすくする
-      std::istringstream lineStream(line);
-
-      std::string word;
-      //,区切りで行の先頭文字列を取得
-      std::getline(lineStream, word, ',');
-
-      // 「//」があった行の場合コメントなので飛ばす
-      if (word.find("//") == 0) {
-         // コメントは飛ばす
-         continue;
-      }
-
-      // 通常の敵の場合
-      if (word == "NormalEnemy") {
-         Math::Vector::Vec3 position = {};
-         // X座標
-         std::getline(lineStream, word, ',');
-         position.x = static_cast<float>(std::atof(word.c_str()));
-
-         // Y座標
-         std::getline(lineStream, word, ',');
-         position.y = static_cast<float>(std::atof(word.c_str()));
-
-         // Z座標
-         std::getline(lineStream, word, ',');
-         position.z = static_cast<float>(std::atof(word.c_str()));
-
-         position.y = 0.5f;
-         // 生成
-         GenerateEnemy(position);
+#ifdef _DEBUG
+   enemy2Count = 1u;
+#endif // _DEBUG
 
 
-      } 
-      //雑魚敵2の場合
-      else if (word == "NormalEnemy2") {
-        Math::Vector::Vec3 position = {};
-        // X座標
-        std::getline(lineStream, word, ',');
-        position.x = static_cast<float>(std::atof(word.c_str()));
-
-        // Y座標
-        std::getline(lineStream, word, ',');
-        position.y = static_cast<float>(std::atof(word.c_str()));
-
-        // Z座標
-        std::getline(lineStream, word, ',');
-        position.z = static_cast<float>(std::atof(word.c_str()));
-
-        position.y = 0.5f;
-        // 生成
-        GenerateEnemy2(position);
-
-      }
-      // 強敵の場合
-      else if (word == "StrongEnemy") {
-         Math::Vector::Vec3 position = {};
-         // X座標
-         std::getline(lineStream, word, ',');
-         position.x = static_cast<float>(std::atof(word.c_str()));
-
-         // Y座標
-         std::getline(lineStream, word, ',');
-         position.y = static_cast<float>(std::atof(word.c_str()));
-
-         // Z座標
-         std::getline(lineStream, word, ',');
-         position.z = static_cast<float>(std::atof(word.c_str()));
-         position.y = 0.5f;
-         // 生成
-         //GenerateBossEnemyEnemy(position);
-      }
+   //雑魚敵1の生成
+   for (uint32_t i = 1u; i <= enemy1Count; ++i) {
+     std::string varName = "Enemy1GeneratePositions.translate" + std::to_string(i);
+     Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
+     //GenerateNormalEnemy1(pos);
    }
 
-   
+   //雑魚敵2の生成
+   for (uint32_t i = 1u; i <= enemy2Count; ++i) {
+     std::string varName = "Enemy2GeneratePositions.translate" + std::to_string(i);
+     Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
+     GenerateNormalEnemy2(pos);
+   }
 
 }
 
@@ -109,35 +53,33 @@ void EnemyManager::Update() {
 	for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
 		//プレイヤーの座標を設定
         enemy->SetPlayerPosition(playerPosition_);
-           // 通常の敵の更新
+        //雑魚敵の更新
 		enemy->Update();
 	}
 
 	for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
-           // プレイヤーの座標を設定
-           enemy->SetPlayerPosition(playerPosition_);
+        // プレイヤーの座標を設定
+        enemy->SetPlayerPosition(playerPosition_);
 		//ボスの更新
 		enemy->Update();
     }
 
 
 
-	#ifdef _DEBUG
+#ifdef _DEBUG
 
     if (ImGui::Button("enemySpown"))
     {
-      GenerateEnemy({0, 0, 0});
+      GenerateNormalEnemy1({0, 0, 0});
 
     }
 
     DisplayImGui();
 #endif // _DEBUG
     
-
-
 }
 
-void EnemyManager::GenerateEnemy(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
 
 	// 敵の生成
     std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
@@ -150,7 +92,7 @@ void EnemyManager::GenerateEnemy(const Math::Vector::Vec3 &position) {
 
 }
 
-void EnemyManager::GenerateEnemy2(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position) {
     // 敵の生成
     std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
     // 座標の設定
@@ -183,4 +125,11 @@ void EnemyManager::DisplayImGui() {
 
     }
 	ImGui::End();
+}
+
+void EnemyManager::LoadEnemy2DataFromLua() {
+  //translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
+
+
+
 }

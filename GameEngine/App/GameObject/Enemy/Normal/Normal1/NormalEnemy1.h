@@ -47,12 +47,6 @@ private:
 	void DisplayImGui();
 
 private:
-	
-	
-private:
-	bool isAttacking_ = false;
-
-
 
 	// 弾のリスト
         std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;

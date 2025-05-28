@@ -46,9 +46,10 @@ private:
 	void DisplayImGui();
 
 private:
-	bool isAttacking_ = false;
 
 	// 弾のリスト
     std::list<std::shared_ptr<NormalEnemy2Bullet>> bullets_;
 
+	bool isInAttackRange_ = false;
+	
 };

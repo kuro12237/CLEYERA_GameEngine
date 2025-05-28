@@ -1,36 +1,41 @@
 #pragma once
 
 /**
- * @file NormalEnemyIsPlayerInRange.h
+ * @file NormalEnemyIsPlayerInRangeAndIsAttack.h
  * @brief 範囲内にいるかどうかのクラス
  * @author 茂木翼
  */
 
 
-#include "Enemy/Normal/Behavior/NormalEnemyCondition.h"
+#include "Enemy/Normal/Behavior/NormalEnemyBehaviorNode.h"
 
 /// <summary>
 /// 範囲内にいるかどうか
 /// </summary>
-class NormalEnemyIsPlayerInRange : public NormalEnemyCondition {
+class NormalEnemyIsPlayerInRangeAndIsAttack : public NormalEnemyBehaviorNode {
 public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
     /// <param name="range">距離を追加</param>
-    NormalEnemyIsPlayerInRange(const float_t& range){
+    NormalEnemyIsPlayerInRangeAndIsAttack(const float_t& range){
         //範囲を設定
         this->range_ = range;
     }
 
     /// <summary>
-    /// 状態を確認
+    /// 実行
     /// </summary>
-    /// <param name="baseNormalEnemy">通常の敵</param>
+    /// <param name="baseNormalEnemy">雑魚敵</param>
     /// <returns></returns>
-    bool CheckCondition(BaseNormalEnemy * baseNormalEnemy) override;
+    EnemyNodeState Execute(BaseNormalEnemy *baseNormalEnemy) override;
 
-private:
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~NormalEnemyIsPlayerInRangeAndIsAttack() = default;
+
+  private:
     //範囲
     float_t range_ = 0.0f;
 

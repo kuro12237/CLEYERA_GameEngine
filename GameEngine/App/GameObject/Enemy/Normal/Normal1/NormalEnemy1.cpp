@@ -29,7 +29,7 @@ void NormalEnemy1::Init() {
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(attackStartDistance_));
+	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(attackStartDistance_));
 	//攻撃
 	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
 	root->AddChild(std::move(attackSequence));
@@ -38,7 +38,7 @@ void NormalEnemy1::Init() {
 #pragma region 通常状態のシーケンス
    std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
+   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(trackingStartDistance_));
    //追跡
    approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
    //作ったものを入れる
@@ -57,10 +57,10 @@ void NormalEnemy1::Init() {
 
 void NormalEnemy1::Update() {
     //距離を求める
-  float_t distance = Math::Vector::Func::Length(GetPosition() - GetPlayerPosition());
+  float_t distance = Math::Vector::Func::Length(GetWorldPosition() - GetPlayerPosition());
 
   // 方向を求める
-  Math::Vector::Vec3 velocity = GetPlayerPosition() - GetPosition();
+  Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
 	//攻撃していない時
   if (isAttack_ == false) {
@@ -70,7 +70,7 @@ void NormalEnemy1::Update() {
 
       //// 弾
       std::shared_ptr<NormalEnemyBullet> bullet = std::make_shared<NormalEnemyBullet>();
-      bullet->SetNormalEnemyPosition(GetPosition());
+      bullet->SetNormalEnemyPosition(GetWorldPosition());
       bullet->SetPlayerPosition(GetPlayerPosition());
       bullet->Init();
       // 挿入

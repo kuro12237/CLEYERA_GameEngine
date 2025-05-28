@@ -5,7 +5,7 @@ void NormalEnemy2Bullet::Init() {
 	name_ = VAR_NAME(NormalEnemyBullet);
 
 	// モデルの設定
-        uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
 	gameObject_->ChangeModel(modelHandle);
 
 	// コライダー作成
@@ -22,6 +22,15 @@ void NormalEnemy2Bullet::Init() {
 
 void NormalEnemy2Bullet::Update() {
 
+	//最大5秒まで表示その後に消える
+	displayTime_ += DELTA_TIME_;
+	if (displayTime_ > MAX_DISPLAY_TIME_) {
+          isDelete_ = true;
+	}
+
+	// 方向を決める
+    direction_ = playerPosition_ - translate_;
+    direction_ = Math::Vector::Func::Normalize(direction_);
 	//座標の加算
 	translate_ += direction_ * SPEED_;
 
@@ -35,6 +44,7 @@ void NormalEnemy2Bullet::Update() {
 
 void NormalEnemy2Bullet::DisplayImGui() {
   ImGui::Begin("Bullet2");
+  ImGui::InputFloat3("Direction", &direction_.x);
   ImGui::InputFloat3("Position", &translate_.x);
   ImGui::End();
 	
