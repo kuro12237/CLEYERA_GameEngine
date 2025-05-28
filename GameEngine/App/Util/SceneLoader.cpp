@@ -62,27 +62,29 @@ SceneLoader::SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectCom
     }
   }
 
-  // objsに登録されている背景オブジェクトの作成
-  for (auto data : objDatas_) {
-    auto it = data.second;
+   // objsに登録されている背景オブジェクトの作成
+   for (auto data : objDatas_) {
+      auto it = data.second;
 
-    std::shared_ptr<EnvironmentObject> enviObj = std::make_shared<EnvironmentObject>();
-    enviObj->Init();
-    enviObj->SetScale(it.scale);
-    enviObj->SetRotate(it.rotate);
-    enviObj->SetTranslate(it.translate);
-    enviObj->SetModelHandle(it.modeHandle_);
-    auto gameObj = enviObj->GetGameObject().lock();
+      std::shared_ptr<EnvironmentObject> enviObj = std::make_shared<EnvironmentObject>();
+      enviObj->SetName(data.first);
+      enviObj->Init();
+      enviObj->SetScale(it.scale);
+      enviObj->SetRotate(it.rotate);
+      enviObj->SetTranslate(it.translate);
+      enviObj->SetModelHandle(it.modeHandle_);
+      auto gameObj = enviObj->GetGameObject().lock();
 
-    // 子
-    for (std::string pName : it.parentObjName_) {
+      // 子
+      for (std::string pName : it.parentObjName_) {
 
-      for (auto pObj : objs) {
-        if (pObj.lock()->GetName() == pName) {
+         for (auto pObj : objs) {
+            if (pObj.lock()->GetName() == pName) {
 
-          gameObj->SetParent(pObj.lock()->GetGameObject());
-          break;
-        }
+               gameObj->SetParent(pObj.lock()->GetGameObject());
+               break;
+            }
+         }
       }
     }
 

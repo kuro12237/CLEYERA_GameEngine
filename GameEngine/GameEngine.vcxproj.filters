@@ -214,6 +214,8 @@
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\AABBCollider.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -461,6 +463,8 @@
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
     <ClInclude Include="App\GameObject\Wall\WallManager.h" />
     <ClInclude Include="CLEYERA\Utility\ColliderSystem\AABBCollider.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

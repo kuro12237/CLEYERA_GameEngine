@@ -1,28 +1,27 @@
 #pragma once
 
 /**
- * @file NormalEnemy1.h
- * @brief 雑魚敵1クラス
+ * @file NormalEnemy2Bullet.h
+ * @brief 雑魚敵2クラス
  * @author 茂木翼
  */
 
-//詳しい挙動とかはここにあるよ
-//https://docs.google.com/presentation/d/1LTi0n_xoAkvzk13g5KMXGNqeEhtBJlnYJjtetUjhM7M/edit#slide=id.p
+//一直線
 
 #include <list>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "NormalEnemyBullet.h"
+#include "NormalEnemy2Bullet.h"
 
 /// <summary>
 /// 最初の敵
 /// </summary>
-class NormalEnemy1 : public BaseNormalEnemy {
+class NormalEnemy2 : public BaseNormalEnemy {
  public:
 	/// <summary>
    /// 最初のボス
    /// </summary>
-	 NormalEnemy1() = default;
+   NormalEnemy2() = default;
 
    /// <summary>
    /// 初期化
@@ -37,7 +36,7 @@ class NormalEnemy1 : public BaseNormalEnemy {
    /// <summary>
    /// デストラクタ
    /// </summary>
-   ~NormalEnemy1() override = default;
+   ~NormalEnemy2() override = default;
 
 
 private:
@@ -47,15 +46,9 @@ private:
 	void DisplayImGui();
 
 private:
-	
-	
-private:
 	bool isAttacking_ = false;
 
-
-
 	// 弾のリスト
-        std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;
-    bool isAttack_ = false;
+    std::list<std::shared_ptr<NormalEnemy2Bullet>> bullets_;
 
 };

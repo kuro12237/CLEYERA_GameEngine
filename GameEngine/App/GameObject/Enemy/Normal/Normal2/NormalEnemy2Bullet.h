@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file NormalEnemyBullet.h
+ * @file NormalEnemy2Bullet.h
  * @brief 雑魚敵の弾クラス
  * @author 茂木翼
  */
@@ -12,12 +12,12 @@
 /// <summary>
 /// 雑魚敵の弾
 /// </summary>
-class NormalEnemyBullet : public CLEYERA::Component::ObjectComponent {
+class NormalEnemy2Bullet : public CLEYERA::Component::ObjectComponent {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	NormalEnemyBullet() = default;
+  NormalEnemy2Bullet() = default;
 
 	/// <summary>
 	/// 初期化
@@ -32,7 +32,13 @@ public:
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~NormalEnemyBullet()=default;
+    ~NormalEnemy2Bullet() = default;
+
+private:
+    /// <summary>
+    /// ImGui表示用
+    /// </summary>
+    void DisplayImGui();
 
 public:
 	/// <summary>
@@ -69,25 +75,12 @@ public:
 private:
 	//スケールサイズ
 	const float_t SCALE_SIZE_ = 0.5f;
-	//地面の高さ
-	const float_t GROUND_HEIGHT_ = 0.0f;
-	//FPS
-    const float_t FPS_VALUE_ = 60.0f;
-	//時間変化
-    const float_t DELTA_TIME_ = 1.0f / FPS_VALUE_;
-	//攻撃時間
-    const float_t ATTACK_ALL_TIME_ = 1.0f;
-	//高さ
-    float_t HEIGHT_ = 4.0f;
-	//消える時間
-	const float_t DELETE_TIME_ = 1.0f;
-
+	//弾の速さ
+    const float_t SPEED_ = 0.1f;
 
 private:
 	// 雑魚敵本体の座標
 	Math::Vector::Vec3 normalEnemyPosition_ = {};
-	
-
 	//取得し終わったかどうか
 	bool isGetNormalEnemyPosition_ = false;
 
@@ -96,16 +89,12 @@ private:
 	//取得し終わったかどうか
 	bool isGetPlayerPosition_ = false;
 
-	//時間
-	float_t aliveTime_ = 0.0f;
-	//消去されたか
-	bool isDelete_ = false;
 
-	//加速度
-	float_t velocityY_ = 0.5f;
-	float_t accel_ = -0.01f;
+	//方向
+    Math::Vector::Vec3 direction_ = {};
 
-	const float_t INCREASE_T_VALUE_ = 0.01f;
-	float_t t_ = 0.0f;
+	//決めたかどうか
+    bool isDelete_ = false;
+
 };
 
