@@ -40,7 +40,7 @@ void PlayerCore::Init() {
   attacks_[ToIndex(AttackType::Basic)] =
       std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
 
-  // あたりはんてい関数セット
+  // 当たり判定関数セット
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 }
