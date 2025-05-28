@@ -3,7 +3,7 @@
 #include "../../Interface/IPlayerCommand.h"
 
 
-/* Playerの移動処理 */
+/* Playerの移動 */
 class PlayerPadMoveCommand : public IPlayerCommand {
 
 public:
@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// 実行処理
 	/// </summary>
-	void Exec(const std::weak_ptr<PlayerCore> & player) override;
+	void Exec(const std::weak_ptr<PlayerCore>& player) override;
 
 	/// <summary>
 	/// クローン関数

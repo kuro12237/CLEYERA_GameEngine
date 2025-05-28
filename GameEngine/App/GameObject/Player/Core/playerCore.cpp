@@ -8,6 +8,7 @@
 PlayerCore::PlayerCore() {
   lua_ = std::make_unique<LuaScript>();
   moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
+  projManager_ = std::make_unique<PlayerProjectileManager>();
 }
 
 /// <summary>
@@ -30,12 +31,14 @@ void PlayerCore::Init() {
   ObjectComponent::gameObject_->ChangeModel(handle);
 
   // コライダー作成
-  ObjectComponent::CreateCollider(ColliderType::AABB);
+  ObjectComponent::CreateCollider(ColliderType::OBB);
 
   // 移動処理クラスの初期化
   moveFunc_->Init();
-  collider_->SetHitCallFunc(
-      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+
+  // 初期攻撃スロット
+  attacks_[ToIndex(AttackType::Basic)] =
+      std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
 }
 
 /// <summary>
@@ -46,6 +49,13 @@ void PlayerCore::Update() {
 
   // 移動処理クラス
   moveFunc_->Update();
+
+  // 発射物管理クラス
+  projManager_->Update();
+
+#ifdef _DEBUG
+  projManager_->DrawImGui();
+#endif // _DEBUG
 }
 
 /// <summary>
@@ -58,19 +68,20 @@ void PlayerCore::PadMove() { moveFunc_->PadMove(); }
 /// </summary>
 void PlayerCore::KeyMove(const Math::Vector::Vec2 &input) { moveFunc_->KeyMove(input); }
 
-void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
+/// <summary>
+/// ベーシック攻撃
+/// </summary>
+void PlayerCore::BasicAttack() { attacks_[ToIndex(AttackType::Basic)]->IsAttack(); }
 
-  if (auto obj = other.lock()) {
-    // Wall 型にキャストできるかをチェック
-    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
-      // Wall にぶつかったときの処理
-      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
-          wall->GetCollder().lock());
-      //押し出し
-      this->translate_ -= aabb->GetAABB().push;
-    }
-  }
-}
+/// <summary>
+/// スタンダード攻撃
+/// </summary>
+void PlayerCore::StandardAttack() { attacks_[ToIndex(AttackType::Standard)]->IsAttack(); }
+
+/// <summary>
+/// シグネチャー攻撃
+/// </summary>
+void PlayerCore::SignatureAttack() { attacks_[ToIndex(AttackType::Signature)]->IsAttack(); }
 
 /// <summary>
 /// Luaからデータを抽出する
