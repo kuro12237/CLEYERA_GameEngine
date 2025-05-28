@@ -132,12 +132,13 @@ bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB 
 }
 
 bool CLEYERA::Util::Collider::system::Func::AABBCheck(const AABB &aabb1, const AABB &aabb2) {
-  return (aabb1.min.x + aabb1.pos->x <= aabb2.max.x + aabb2.pos->x &&
-          aabb1.max.x + aabb1.pos->x >= aabb2.min.x + aabb2.pos->x) &&
-         (aabb1.min.y + aabb1.pos->y <= aabb2.max.y + aabb2.pos->y &&
-          aabb1.max.y + aabb1.pos->y >= aabb2.min.y + aabb2.pos->y) &&
-         (aabb1.min.z + aabb1.pos->z <= aabb2.max.z + aabb2.pos->z &&
-          aabb1.max.z + aabb1.pos->z >= aabb2.min.z + aabb2.pos->z);
+  Math::Vector::Vec3 aMin = aabb1.min + *aabb1.pos;
+  Math::Vector::Vec3 aMax = aabb1.max + *aabb1.pos;
+  Math::Vector::Vec3 bMin = aabb2.min + *aabb2.pos;
+  Math::Vector::Vec3 bMax = aabb2.max + *aabb2.pos;
+
+  return (aMin.x <= bMax.x && aMax.x >= bMin.x) && (aMin.y <= bMax.y && aMax.y >= bMin.y) &&
+         (aMin.z <= bMax.z && aMax.z >= bMin.z);
 }
 
 Math::Vector::Vec3
