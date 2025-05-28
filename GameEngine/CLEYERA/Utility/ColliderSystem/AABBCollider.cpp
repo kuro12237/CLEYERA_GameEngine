@@ -8,7 +8,7 @@ void CLEYERA::Util::Collider::AABBCollider::ColliderImGuiUpdate() {
 
 void CLEYERA::Util::Collider::AABBCollider::Create() {}
 
-void CLEYERA::Util::Collider::AABBCollider::Update() {}
+void CLEYERA::Util::Collider::AABBCollider::Update() { aabb_.push = {}; }
 
 void CLEYERA::Util::Collider::AABBCollider::MortonUpdate() {}
 

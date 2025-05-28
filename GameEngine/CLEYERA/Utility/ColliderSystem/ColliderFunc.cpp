@@ -1,8 +1,10 @@
 #include "ColliderFunc.h"
 #include <algorithm>
 
-std::array<Math::Vector::Vec3, 3>
-CLEYERA::Util::Collider::system::Func::CreateOrientations(const Math::Vector::Vec3 &rotate) {
+using namespace CLEYERA::Util::Collider::system::Func;
+using namespace CLEYERA::Util::Collider::system;
+
+std::array<Math::Vector::Vec3, 3> CreateOrientations(const Math::Vector::Vec3 &rotate) {
   float cx = std::cos(rotate.x);
   float sx = std::sin(rotate.x);
   float cy = std::cos(rotate.y);
@@ -103,8 +105,40 @@ bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB 
 }
 
 bool CLEYERA::Util::Collider::system::Func::AABBCheck(const AABB &aabb1, const AABB &aabb2) {
-  return (aabb1.min.x <= aabb2.max.x && aabb1.max.x >= aabb2.min.x) && (aabb1.min.y <= aabb2.max.y && aabb1.max.y >= aabb2.min.y) &&
-         (aabb1.min.z <= aabb2.max.z && aabb1.max.z >= aabb2.min.z);
+  return (aabb1.min.x + aabb1.pos->x <= aabb2.max.x + aabb2.pos->x &&
+          aabb1.max.x + aabb1.pos->x >= aabb2.min.x + aabb2.pos->x) &&
+         (aabb1.min.y + aabb1.pos->y <= aabb2.max.y + aabb2.pos->y &&
+          aabb1.max.y + aabb1.pos->y >= aabb2.min.y + aabb2.pos->y) &&
+         (aabb1.min.z + aabb1.pos->z <= aabb2.max.z + aabb2.pos->z &&
+          aabb1.max.z + aabb1.pos->z >= aabb2.min.z + aabb2.pos->z);
+}
+
+Math::Vector::Vec3
+CLEYERA::Util::Collider::system::Func::AABBComputePushOutVector(const AABB &aabb1,
+                                                                const AABB &aabb2) {
+  auto aCenter = aabb1.GetWorldCenter();
+  auto bCenter = aabb2.GetWorldCenter();
+  auto aHalf = aabb1.HalfSize();
+  auto bHalf = aabb2.HalfSize();
+
+  float dx = bCenter.x - aCenter.x;
+  float dy = bCenter.y - aCenter.y;
+  float dz = bCenter.z - aCenter.z;
+
+  float px = (aHalf.x + bHalf.x) - std::abs(dx);
+  float py = (aHalf.y + bHalf.y) - std::abs(dy);
+  float pz = (aHalf.z + bHalf.z) - std::abs(dz);
+
+  Math::Vector::Vec3 push(0, 0, 0);
+  if (px < py && px < pz) {
+    push.x = (dx < 0) ? -px : px;
+  } else if (py < px && py < pz) {
+    push.y = (dy < 0) ? -py : py;
+  } else {
+    push.z = (dz < 0) ? -pz : pz;
+  }
+
+  return push;
 }
 
 bool CLEYERA::Util::Collider::system::Func::TestAxis(const Math::Vector::Vec3 &axis,
@@ -223,8 +257,8 @@ CLEYERA::Util::Collider::system::Func::GetVertices(const Util::Collider::system:
   std::vector<Math::Vector::Vec3> vertices;
 
   // 軸方向 × ハーフサイズ
-  Math::Vector::Vec3 right = obb.orientations[0] * (obb.size.x );
-  Math::Vector::Vec3 up = obb.orientations[1] * (obb.size.y );
+  Math::Vector::Vec3 right = obb.orientations[0] * (obb.size.x);
+  Math::Vector::Vec3 up = obb.orientations[1] * (obb.size.y);
   Math::Vector::Vec3 forward = obb.orientations[2] * (obb.size.z);
 
   // 8 頂点を計算
@@ -303,24 +337,24 @@ CLEYERA::Util::Collider::system::Func::PushOutAABB(Util::Collider::system::OBB &
 
   // x
   if (overlap.x <= overlap.y && overlap.x <= overlap.z) {
-  
+
     if (obbA.center->x < obbB.center->x) {
       push.x = -overlap.x;
     } else {
-      push.x = overlap.x; 
+      push.x = overlap.x;
     }
   } else if (overlap.y <= overlap.x && overlap.y <= overlap.z) {
-      //y
+    // y
     if (obbA.center->y < obbB.center->y) {
-      push.y = -overlap.y; 
+      push.y = -overlap.y;
     } else {
-      push.y = overlap.y; 
+      push.y = overlap.y;
     }
-  } else {//z
+  } else { // z
     if (obbA.center->z < obbB.center->z) {
       push.z = -overlap.z;
     } else {
-      push.z = overlap.z; 
+      push.z = overlap.z;
     }
   }
 

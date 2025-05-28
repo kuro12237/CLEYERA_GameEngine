@@ -34,6 +34,15 @@ struct AABB {
   Math::Vector::Vec3 *pos = nullptr;
   Math::Vector::Vec3 min{-1.0f, -1.0f, -1.0f};
   Math::Vector::Vec3 max{1.0f, 1.0f, 1.0f};
+
+  Math::Vector::Vec3 push{};
+
+  void SetPush(Math::Vector::Vec3 &p) { push = p; }
+
+  Math::Vector::Vec3 HalfSize() const { return (max - min) * 0.5f; }
+  Math::Vector::Vec3 GetWorldMin() const { return *pos + min; }
+  Math::Vector::Vec3 GetWorldMax() const { return *pos + max; }
+  Math::Vector::Vec3 GetWorldCenter() const { return *pos + (min + max) * 0.5f; }
 };
 
 struct Triangle {

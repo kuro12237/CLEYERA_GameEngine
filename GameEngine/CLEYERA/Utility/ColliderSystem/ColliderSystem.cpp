@@ -1,6 +1,8 @@
 #include "ColliderSystem.h"
 #include "Compornent/ObjectCompornent.h"
 
+using namespace CLEYERA::Util::Collider::system::Func;
+
 void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
 
   if (ImGui::Button("LineDraw")) {
@@ -62,27 +64,31 @@ void CLEYERA::Manager::ColliderSystem::Update() {
     int size = static_cast<int>(group.size());
 
     for (int i = 0; i < size; ++i) {
-      auto obbA = group[i].lock();
-      if (!obbA)
+      auto aabb2 = group[i].lock();
+      if (!aabb2)
         continue;
 
-      auto colA = obbA->GetCollder().lock();
+      auto colA = aabb2->GetCollder().lock();
       auto typeA = dynamic_cast<Util::Collider::AABBCollider *>(colA.get());
       if (!typeA)
         continue;
 
       for (int j = i + 1; j < size; ++j) {
-        auto obbB = group[j].lock();
-        if (!obbB)
+        auto aabb1 = group[j].lock();
+        if (!aabb1)
           continue;
-        auto colB = obbB->GetCollder().lock();
+        auto colB = aabb1->GetCollder().lock();
         auto typeB = dynamic_cast<Util::Collider::AABBCollider *>(colB.get());
         if (!typeB)
           continue;
 
-        if (Util::Collider::system::Func::AABBCheck(typeA->GetAABB(),typeB->GetAABB())) {
-          colA->HitCall(group[j].lock());
-          colB->HitCall(group[i].lock());
+        if (Util::Collider::system::Func::AABBCheck(typeA->GetAABB(), typeB->GetAABB())) {
+          Math::Vector::Vec3 push = AABBComputePushOutVector(typeA->GetAABB(), typeB->GetAABB());
+          typeA->GetAABB_().SetPush(push);
+          typeB->GetAABB_().SetPush(push);
+
+          colA->HitCall(aabb1);
+          colB->HitCall(aabb2);
         }
       }
     }

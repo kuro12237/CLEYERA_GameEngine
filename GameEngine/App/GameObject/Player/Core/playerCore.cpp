@@ -1,80 +1,80 @@
 #include "playerCore.h"
 #include "../Camera/PlayerCamera.h"
-
+#include "Wall/Wall.h"
 
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerCore::PlayerCore()
-{
-	lua_ = std::make_unique<LuaScript>();
-	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
+PlayerCore::PlayerCore() {
+  lua_ = std::make_unique<LuaScript>();
+  moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 }
-
 
 /// <summary>
 /// 初期化処理
 /// </summary>
-void PlayerCore::Init()
-{
-	// クラス名
-	ObjectComponent::name_ = VAR_NAME(PlayerCore);
+void PlayerCore::Init() {
+  // クラス名
+  ObjectComponent::name_ = VAR_NAME(PlayerCore);
 
-	// Luaの読み込み
-	lua_->LoadScript("Player/Core", "PlayerCore");
-	lua_->SetReloadCallBack([this]() {LoadCoreDataFromLua(); });
+  // Luaの読み込み
+  lua_->LoadScript("Player/Core", "PlayerCore");
+  lua_->SetReloadCallBack([this]() { LoadCoreDataFromLua(); });
 
-	// Luaから抽出したデータの設定
-	LoadCoreDataFromLua();
+  // Luaから抽出したデータの設定
+  LoadCoreDataFromLua();
 
-	// Modelの設定
-	std::pair<std::string, std::string> str = { "Resources/Model/Player/Core", "Core" };
-	uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
-	ObjectComponent::gameObject_->ChangeModel(handle);
+  // Modelの設定
+  std::pair<std::string, std::string> str = {"Resources/Model/Player/Core", "Core"};
+  uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
+  ObjectComponent::gameObject_->ChangeModel(handle);
 
-	// コライダー作成
-	ObjectComponent::CreateCollider(ColliderType::AABB);
+  // コライダー作成
+  ObjectComponent::CreateCollider(ColliderType::AABB);
 
-	// 移動処理クラスの初期化
-	moveFunc_->Init();
-
+  // 移動処理クラスの初期化
+  moveFunc_->Init();
+  collider_->SetHitCallFunc(
+      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 }
-
 
 /// <summary>
 /// 更新処理
 /// </summary>
-void PlayerCore::Update()
-{
-	TransformUpdate();
+void PlayerCore::Update() {
+  TransformUpdate();
 
-	// 移動処理クラス
-	moveFunc_->Update();
+  // 移動処理クラス
+  moveFunc_->Update();
 }
-
 
 /// <summary>
 /// Padの移動処理
 /// </summary>
-void PlayerCore::PadMove()
-{
-	moveFunc_->PadMove();
-}
-
+void PlayerCore::PadMove() { moveFunc_->PadMove(); }
 
 /// <summary>
 /// Keyの移動処理
 /// </summary>
-void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
-{
-	moveFunc_->KeyMove(input);
-}
+void PlayerCore::KeyMove(const Math::Vector::Vec2 &input) { moveFunc_->KeyMove(input); }
 
+void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
+
+  if (auto obj = other.lock()) {
+    // Wall 型にキャストできるかをチェック
+    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
+      // Wall にぶつかったときの処理
+      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
+          wall->GetCollder().lock());
+      //押し出し
+      this->translate_ -= aabb->GetAABB().push;
+    }
+  }
+}
 
 /// <summary>
 /// Luaからデータを抽出する
 /// </summary>
-void PlayerCore::LoadCoreDataFromLua()
-{
-	translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
+void PlayerCore::LoadCoreDataFromLua() {
+  translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
 }

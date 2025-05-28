@@ -9,8 +9,13 @@ void Wall::Init() {
 
   // コライダー作成
   ObjectComponent::CreateCollider(ColliderType::AABB);
-
-  
 }
 
-void Wall::Update() { this->TransformUpdate(); }
+void Wall::Update() {
+  auto c = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
+  auto &aabb = c->GetAABB_();
+  aabb.min = scale_*-1;
+  aabb.max = scale_;
+
+  this->TransformUpdate();
+}
