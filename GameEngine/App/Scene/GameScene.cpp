@@ -17,6 +17,8 @@ void GameScene::Init() {
    enemyManager_->SetPlayerManager(playerManager_.get());
    managerCompornents_.push_back(enemyManager_);
 
+   wallManager_ = std::make_shared<WallManager>();
+   managerCompornents_.push_back(wallManager_);
 
    // 初期化
    for (auto manager : managerCompornents_) {
@@ -27,11 +29,16 @@ void GameScene::Init() {
          // 絶対に登録
          objectComponents_.push_back(obj);
          objectList_.push_back(obj->GetGameObject());
+         
 
          // 重力適用
          gravityManager_->PushData(obj);
          // 地形当たり判定適用
          terrain_->PushData(obj);
+
+         if (obj->GetCollder().lock()) {
+           collidersystem_->PushCollider(obj);
+         }
       }
    }
 
@@ -40,8 +47,8 @@ void GameScene::Init() {
    loader_.reset();
 
    // 地形モデルの設定
-   //uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
-   //terrain_->ChengeData(modelHandle);
+   uint32_t modelHandlet = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
+   terrain_->ChengeData(modelHandlet);
 
    // 無視
    InitRaytracing();

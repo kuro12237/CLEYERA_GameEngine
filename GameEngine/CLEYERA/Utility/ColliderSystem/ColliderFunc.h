@@ -19,6 +19,10 @@ void MakeLinesFromOBB(std::vector<Math::Vector::Vec3> &outLines,
                       const OBB &obb);
 
 bool OBBCheck(const OBB &obb1, const OBB &obb2);
+bool AABBCheck(const AABB &aabb1, const AABB &aabb2);
+
+Math::Vector::Vec3 AABBComputePushOutVector(const AABB &aabb1, const AABB &aabb2);
+
 
 // 射影の重複チェック
 bool TestAxis(const Math::Vector::Vec3 &axis, const OBB &obb1, const OBB &obb2);

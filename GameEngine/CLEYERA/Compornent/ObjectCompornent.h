@@ -17,6 +17,7 @@ namespace Collider {
 enum class ColliderType;
 class Collider;
 class OBBCollider;
+class AABBCollider;
 
 } // namespace Collider
 } // namespace Util
@@ -120,7 +121,7 @@ protected:
 
   std::string name_ = "";
 
-  Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
+  Math::Vector::Vec3 scale_ = {2.0f, 2.0f, 2.0f};
   Math::Vector::Vec3 rotate_ = {};
   Math::Vector::Vec3 translate_ = {};
 
