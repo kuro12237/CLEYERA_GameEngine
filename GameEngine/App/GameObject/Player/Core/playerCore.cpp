@@ -87,6 +87,9 @@ void PlayerCore::StandardAttack() { attacks_[ToIndex(AttackType::Standard)]->IsA
 /// </summary>
 void PlayerCore::SignatureAttack() { attacks_[ToIndex(AttackType::Signature)]->IsAttack(); }
 
+/// <summary>
+/// 衝突時コールバック
+/// </summary>
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
 
   if (auto obj = other.lock()) {

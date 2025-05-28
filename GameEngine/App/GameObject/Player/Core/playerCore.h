@@ -63,6 +63,9 @@ public:
 	/// </summary>
 	void SignatureAttack();
 
+	/// <summary>
+	/// 衝突時コールバック
+	/// </summary>
 	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 #pragma region Accessor
