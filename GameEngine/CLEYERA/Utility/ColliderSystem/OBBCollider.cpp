@@ -19,7 +19,7 @@ void CLEYERA::Util::Collider::OBBCollider::Create() {
 
   obb_.CalculateOrientations();
   Util::Collider::system::Func::MakeLinesFromOBB(positions_, obb_);
-
+ 
   line_->Update();
 }
 

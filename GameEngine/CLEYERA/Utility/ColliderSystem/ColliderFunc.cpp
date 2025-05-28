@@ -61,6 +61,33 @@ void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(
   }
 }
 
+void CLEYERA::Util::Collider::system::Func::MakeLinesFromAABB(
+    std::vector<Math::Vector::Vec3> &outLines, const Math::Vector::Vec3 &min,
+                       const Math::Vector::Vec3 &max) {
+  using Vec3 = Math::Vector::Vec3;
+
+  // 8 頂点（min/max から生成）
+  Vec3 corners[8] = {
+      {min.x, min.y, min.z}, {max.x, min.y, min.z}, {min.x, min.y, max.z}, {max.x, min.y, max.z},
+      {min.x, max.y, min.z}, {max.x, max.y, min.z}, {min.x, max.y, max.z}, {max.x, max.y, max.z},
+  };
+
+  // エッジのインデックス（12本のライン）
+  constexpr int edgeIndices[12][2] = {
+      {0, 1}, {1, 3}, {3, 2}, {2, 0}, // 下の面
+      {4, 5}, {5, 7}, {7, 6}, {6, 4}, // 上の面
+      {0, 4}, {1, 5}, {2, 6}, {3, 7}  // 側面
+  };
+
+  outLines.clear();
+  outLines.reserve(24); // 12本 × 2頂点
+
+  for (const auto &edge : edgeIndices) {
+    outLines.push_back(corners[edge[0]]);
+    outLines.push_back(corners[edge[1]]);
+  }
+}
+
 bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB &obb2) {
 
   // 分離軸テスト
