@@ -3,7 +3,7 @@
     "objects": [
         {
             "type": "MESH",
-            "name": "立方体.022",
+            "name": "wall.022",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -28,7 +28,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.021",
+            "name": "wall.021",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -53,7 +53,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.020",
+            "name": "wall.020",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -78,7 +78,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.019",
+            "name": "wall.019",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -103,7 +103,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.001",
+            "name": "wall.001",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -128,7 +128,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.031",
+            "name": "wall.031",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -153,7 +153,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.026",
+            "name": "wall.026",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -178,7 +178,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.025",
+            "name": "wall.025",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -203,7 +203,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.024",
+            "name": "wall.024",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -228,7 +228,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.008",
+            "name": "wall.008",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -253,7 +253,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.007",
+            "name": "wall.007",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -278,7 +278,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.006",
+            "name": "wall.006",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -303,7 +303,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.005",
+            "name": "wall.005",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -328,7 +328,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.004",
+            "name": "wall.004",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -353,7 +353,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.003",
+            "name": "wall.003",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -378,7 +378,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.002",
+            "name": "wall.002",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -403,7 +403,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.023",
+            "name": "wall.023",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -428,7 +428,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.012",
+            "name": "wall.012",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -453,7 +453,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.011",
+            "name": "wall.011",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -478,7 +478,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.010",
+            "name": "wall.010",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -506,7 +506,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.009",
+            "name": "wall.009",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -531,7 +531,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.032",
+            "name": "wall.032",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -556,7 +556,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.030",
+            "name": "wall.030",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -581,7 +581,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.029",
+            "name": "wall.029",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -606,7 +606,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.028",
+            "name": "wall.028",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -631,7 +631,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.027",
+            "name": "wall.027",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -656,7 +656,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.018",
+            "name": "wall.018",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -681,7 +681,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.017",
+            "name": "wall.017",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -706,7 +706,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.016",
+            "name": "wall.016",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -731,7 +731,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.015",
+            "name": "wall.015",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -756,7 +756,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.014",
+            "name": "wall.014",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -781,7 +781,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.013",
+            "name": "wall.013",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
