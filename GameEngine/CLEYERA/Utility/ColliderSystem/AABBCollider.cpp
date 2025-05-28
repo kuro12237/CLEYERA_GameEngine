@@ -38,5 +38,6 @@ void CLEYERA::Util::Collider::AABBCollider::ColliderImGuiUpdate(const std::strin
 
 Math::Vector::Vec3
 CLEYERA::Util::Collider::AABBCollider::CalcOverlapAABB(std::weak_ptr<Collider> other) {
+  other;
   return Math::Vector::Vec3();
 }
