@@ -219,6 +219,7 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.cpp" />
     <ClCompile Include="App\GameObject\Player\Projectile\PlayerProjectileManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />

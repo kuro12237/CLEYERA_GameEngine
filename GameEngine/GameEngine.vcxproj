@@ -178,6 +178,7 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.cpp" />
