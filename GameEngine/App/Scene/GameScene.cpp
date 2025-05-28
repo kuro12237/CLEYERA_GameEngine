@@ -36,6 +36,7 @@ void GameScene::Init() {
          // 地形当たり判定適用
          terrain_->PushData(obj);
 
+
          if (obj->GetCollder().lock()) {
            collidersystem_->PushCollider(obj);
          }
