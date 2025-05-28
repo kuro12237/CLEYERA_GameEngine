@@ -4,14 +4,14 @@ void WallManager::Init() {
 
     name_ = VAR_NAME(WallManager);
 
-  for (size_t i = 0; i < 2; i++) {
+  for (size_t i = 0; i < 32; i++) {
 
     std::shared_ptr<Wall> wall = std::make_shared<Wall>();
     if (i == 0) {
-      wall->SetName("Wall");
+      wall->SetName("wall");
     } else {
       char name[16];
-      std::snprintf(name, sizeof(name), "Wall.%03zu", i);
+      std::snprintf(name, sizeof(name), "wall.%03zu", i);
       wall->SetName(name);
     }
     wall->Init();
