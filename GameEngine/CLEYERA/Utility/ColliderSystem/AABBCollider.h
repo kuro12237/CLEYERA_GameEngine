@@ -35,6 +35,8 @@ public:
 
 private:
   system::AABB aabb_ = {};
+  Math::Vector::Vec3 lineRotate_{};
+  Math::Vector::Vec3 scale_ = {1.0f, 1.0f, 1.0f};
 };
 
 } // namespace Collider

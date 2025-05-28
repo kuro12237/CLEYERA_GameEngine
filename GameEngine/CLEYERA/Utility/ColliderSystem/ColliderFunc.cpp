@@ -61,6 +61,33 @@ void CLEYERA::Util::Collider::system::Func::MakeLinesFromOBB(
   }
 }
 
+void CLEYERA::Util::Collider::system::Func::MakeLinesFromAABB(
+    std::vector<Math::Vector::Vec3> &outLines, const Math::Vector::Vec3 &min,
+                       const Math::Vector::Vec3 &max) {
+  using Vec3 = Math::Vector::Vec3;
+
+  // 8 頂点（min/max から生成）
+  Vec3 corners[8] = {
+      {min.x, min.y, min.z}, {max.x, min.y, min.z}, {min.x, min.y, max.z}, {max.x, min.y, max.z},
+      {min.x, max.y, min.z}, {max.x, max.y, min.z}, {min.x, max.y, max.z}, {max.x, max.y, max.z},
+  };
+
+  // エッジのインデックス（12本のライン）
+  constexpr int edgeIndices[12][2] = {
+      {0, 1}, {1, 3}, {3, 2}, {2, 0}, // 下の面
+      {4, 5}, {5, 7}, {7, 6}, {6, 4}, // 上の面
+      {0, 4}, {1, 5}, {2, 6}, {3, 7}  // 側面
+  };
+
+  outLines.clear();
+  outLines.reserve(24); // 12本 × 2頂点
+
+  for (const auto &edge : edgeIndices) {
+    outLines.push_back(corners[edge[0]]);
+    outLines.push_back(corners[edge[1]]);
+  }
+}
+
 bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB &obb2) {
 
   // 分離軸テスト
@@ -105,12 +132,13 @@ bool CLEYERA::Util::Collider::system::Func::OBBCheck(const OBB &obb1, const OBB 
 }
 
 bool CLEYERA::Util::Collider::system::Func::AABBCheck(const AABB &aabb1, const AABB &aabb2) {
-  return (aabb1.min.x + aabb1.pos->x <= aabb2.max.x + aabb2.pos->x &&
-          aabb1.max.x + aabb1.pos->x >= aabb2.min.x + aabb2.pos->x) &&
-         (aabb1.min.y + aabb1.pos->y <= aabb2.max.y + aabb2.pos->y &&
-          aabb1.max.y + aabb1.pos->y >= aabb2.min.y + aabb2.pos->y) &&
-         (aabb1.min.z + aabb1.pos->z <= aabb2.max.z + aabb2.pos->z &&
-          aabb1.max.z + aabb1.pos->z >= aabb2.min.z + aabb2.pos->z);
+  Math::Vector::Vec3 aMin = aabb1.min + *aabb1.pos;
+  Math::Vector::Vec3 aMax = aabb1.max + *aabb1.pos;
+  Math::Vector::Vec3 bMin = aabb2.min + *aabb2.pos;
+  Math::Vector::Vec3 bMax = aabb2.max + *aabb2.pos;
+
+  return (aMin.x <= bMax.x && aMax.x >= bMin.x) && (aMin.y <= bMax.y && aMax.y >= bMin.y) &&
+         (aMin.z <= bMax.z && aMax.z >= bMin.z);
 }
 
 Math::Vector::Vec3
