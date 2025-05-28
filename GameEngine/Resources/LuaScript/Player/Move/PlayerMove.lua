@@ -3,7 +3,7 @@ PlayerMove = {
     LStickDeadZone = 0.15,
 
     -- 最大移動速度
-    maxSpeed = 2.0,
+    maxSpeed = 1.0,
 
     -- 慣性（0:即時反映 〜 1:非常に滑らか）
     inertiaFactor = 1.0,
