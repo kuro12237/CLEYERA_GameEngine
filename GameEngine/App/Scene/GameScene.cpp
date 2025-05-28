@@ -43,6 +43,7 @@ void GameScene::Init() {
       }
    }
 
+
    // エディタのデータを各オブジェクトにセット
    enviromentObjs_ = loader_->SettingData(objectComponents_);
    loader_.reset();
