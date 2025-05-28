@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../pch/Pch.h"
+#include "AABBCollider.h"
 #include "Collider.h"
 #include "ColliderFunc.h"
 #include "OBBCollider.h"

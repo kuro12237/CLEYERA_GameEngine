@@ -68,6 +68,7 @@ public:
 
 #pragma endregion
 
+	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 private:
 

@@ -66,34 +66,7 @@
                     1.0,
                     1.0
                 ]
-            },
-            "children": [
-                {
-                    "type": "MESH",
-                    "name": "PlayerCore.001",
-                    "file_name": "Core",
-                    "Directory_name": "Resources/Model/Player/Core/",
-                    "ModelFileType": "obj",
-                    "DrawType": "Normal",
-                    "transform": {
-                        "translate": [
-                            0.0,
-                            8.307981491088867,
-                            0.0
-                        ],
-                        "rotate": [
-                            0.0,
-                            -0.0,
-                            0.0
-                        ],
-                        "scale": [
-                            1.0,
-                            1.0,
-                            1.0
-                        ]
-                    }
-                }
-            ]
+            }
         }
     ]
 }

@@ -50,6 +50,7 @@ class SceneCompornent {
    CLEYERA::Manager::GravityManager *gravityManager_ = nullptr;
    CLEYERA::Manager::Terrain *terrain_ = nullptr;
    CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
+   CLEYERA::Manager::ColliderSystem *collidersystem_ = nullptr;
 
    std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 

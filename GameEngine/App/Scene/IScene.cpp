@@ -7,6 +7,7 @@ SceneCompornent::SceneCompornent() {
    gravityManager_ = Manager::GravityManager::GetInstance();
    terrain_ = Manager::Terrain::GetInstance();
    modelManager_ = Manager::ModelManager::GetInstance();
+   collidersystem_ = Manager::ColliderSystem::GetInstance();
 }
 
 void SceneCompornent::ImGuiUpdate() {
