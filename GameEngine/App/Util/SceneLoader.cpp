@@ -86,10 +86,11 @@ SceneLoader::SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectCom
             }
          }
       }
-    }
 
-    enviObjs.push_back(enviObj);
-  }
+      enviObjs.push_back(enviObj); 
+   }
+
+  
   objDatas_.clear();
   return enviObjs;
 }
