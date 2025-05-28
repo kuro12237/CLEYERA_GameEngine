@@ -79,5 +79,7 @@ private:
     float_t generateTime_ = 0.0f;
 
     bool isRelease_ = false;
+
+    float_t distance_ = 0.0f;
 };
 

@@ -31,7 +31,7 @@ void NormalEnemy2::Init() {
     // 追跡開始距離
    trackingStartDistance_ = 70.0f;
    // 攻撃開始距離
-   attackStartDistance_ = 15.0f;
+   attackStartDistance_ = 20.0f;
 
    //シーケンスは全てSucceesしないとだめだよ
 #pragma region 攻撃シーケンス
@@ -59,33 +59,33 @@ void NormalEnemy2::Init() {
 
 void NormalEnemy2::Update() {
     //距離を求める
-    //float_t distance = Math::Vector::Func::Length(GetWorldPosition() -GetPlayerPosition());
+    float_t distance = Math::Vector::Func::Length(GetWorldPosition() -GetPlayerPosition());
     // 方向を求める
     Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
-	////攻撃していない時
-    //if (isAttack_ == false) {
-    //  
-    //  // 攻撃範囲内の時
-    //  if (distance < GetAttackStartDistance()) {
-    //
-    //    //// 弾
-    //    std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
-    //    bullet->SetNormalEnemyPosition(GetWorldPosition());
-    //    bullet->SetPlayerPosition(GetPlayerPosition());
-    //    bullet->Init();
-    //    // 挿入
-    //    bullets_.push_back(std::move(bullet));
-    //
-    //    isAttack_ = true;
-    //  } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
-    //    
-    //
-    //    // 本体に設定
-    //    SetVelocity(Math::Vector::Func::Normalize(velocity));
-    //    
-    //  }
-    //}
+	//攻撃していない時
+    if (isAttack_ == false) {
+      
+      // 攻撃範囲内の時
+      if (distance < GetAttackStartDistance()) {
+    
+        //// 弾
+        std::shared_ptr<NormalEnemy2Bullet> bullet = std::make_shared<NormalEnemy2Bullet>();
+        bullet->SetNormalEnemyPosition(GetWorldPosition());
+        bullet->SetPlayerPosition(GetPlayerPosition());
+        bullet->Init();
+        // 挿入
+        bullets_.push_back(std::move(bullet));
+    
+        isAttack_ = true;
+      } else if (distance >= GetAttackStartDistance() && distance < trackingStartDistance_) {
+        
+    
+        // 本体に設定
+        SetVelocity(Math::Vector::Func::Normalize(velocity));
+        
+      }
+    }
 
 
 
@@ -100,26 +100,26 @@ void NormalEnemy2::Update() {
     rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
 
 	//ビヘイビアツリーの実行
-	behaviorTree_->Execute(this);
-	//const float_t SPEED = 0.1f;
-	//velocity_.x *= SPEED;
-    //velocity_.y *= SPEED;
-	//velocity_.z *= SPEED;
+	//behaviorTree_->Execute(this);
+	const float_t SPEED = 0.1f;
+	velocity_.x *= SPEED;
+    velocity_.y *= SPEED;
+	velocity_.z *= SPEED;
 
 	// 更新
     TransformUpdate();
 
-   	//// 弾の更新
-    //for (const auto &bullet : bullets_) {
-    //  bullet->Update();
-    //}
+   	// 弾の更新
+    for (const auto &bullet : bullets_) {
+      bullet->Update();
+    }
 
-    //// 弾の削除
-    //bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-    //
-    //if (isAttack_ == true && bullets_.empty()) {
-    //  isAttack_ = false;
-    //}
+    // 弾の削除
+    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    
+    if (isAttack_ == true && bullets_.empty()) {
+      isAttack_ = false;
+    }
 
 #ifdef _DEBUG
     //ImGui表示用

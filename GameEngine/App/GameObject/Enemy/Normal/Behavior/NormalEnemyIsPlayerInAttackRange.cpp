@@ -13,6 +13,7 @@ EnemyNodeState NormalEnemyIsPlayerInAttackRangeAndIsAttack::Execute(BaseNormalEn
         return EnemyNodeState::Success;
     } 
     else {
+      baseNormalEnemy->SetIsAttack(false);
         return EnemyNodeState::Failure;
     }
 }

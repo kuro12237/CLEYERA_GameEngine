@@ -7,18 +7,17 @@
 
 
 EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
-    float_t distance = Math::Vector::Func::Length(baseNormalEnemy->GetWorldPosition() -
+    distance_ = Math::Vector::Func::Length(baseNormalEnemy->GetWorldPosition() -
                                                   baseNormalEnemy->GetPlayerPosition());
 
 
     generateTime_ += (1.0f / 60.0f);
-    if (isRelease_==false) {
+    if (generateTime_ > 3.0f&&
+        baseNormalEnemy->GetIsAttack()==true) {
       GenerateBullet();
-      isRelease_ = true;
       generateTime_ = 0.0f;
     }
 
-    distance;
     // 弾の更新
     for (const std::shared_ptr<NormalEnemy2Bullet> &bullet : bullets_) {
       bullet->SetNormalEnemyPosition(baseNormalEnemy->GetPlayerPosition());
@@ -29,11 +28,7 @@ EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy * baseNormalEnemy){
 
     // 弾の削除
     bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-    if (bullets_.size() == 0u) {
-      baseNormalEnemy->SetIsAttack(false);
-    } else {
-      baseNormalEnemy->SetIsAttack(true);
-    }
+    
 
 #ifdef _DEBUG
     DisplayImGui();
@@ -48,8 +43,9 @@ void NormalEnemyAttack::DisplayImGui(){
     int32_t newSize = static_cast<int32_t>(bullets_.size());
 
     ImGui::Begin("NormalEnemyAttack"); 
+    ImGui::InputFloat("Distance", &distance_);
     ImGui::Checkbox("isAttack", &isReadyForAttack_);
-    ImGui::InputFloat("攻撃時間", &generateTime_);
+    ImGui::InputFloat("AttackTime", &generateTime_);
     ImGui::InputInt("Number", &newSize);
     ImGui::End();
 }

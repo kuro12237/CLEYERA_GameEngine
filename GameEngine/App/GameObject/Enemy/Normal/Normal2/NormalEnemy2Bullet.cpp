@@ -28,6 +28,9 @@ void NormalEnemy2Bullet::Update() {
           isDelete_ = true;
 	}
 
+	// 方向を決める
+    direction_ = playerPosition_ - translate_;
+    direction_ = Math::Vector::Func::Normalize(direction_);
 	//座標の加算
 	translate_ += direction_ * SPEED_;
 
@@ -41,6 +44,7 @@ void NormalEnemy2Bullet::Update() {
 
 void NormalEnemy2Bullet::DisplayImGui() {
   ImGui::Begin("Bullet2");
+  ImGui::InputFloat3("Direction", &direction_.x);
   ImGui::InputFloat3("Position", &translate_.x);
   ImGui::End();
 	

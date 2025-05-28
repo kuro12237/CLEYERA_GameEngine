@@ -114,6 +114,7 @@ protected:
 	//攻撃中かどうか
     bool isAttack_ = false;
 
+	//攻撃範囲内カどうか
 
 	// 攻撃開始距離
     float_t attackStartDistance_ = 3.0f;
