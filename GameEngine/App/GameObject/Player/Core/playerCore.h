@@ -63,6 +63,7 @@ public:
 	/// </summary>
 	void SignatureAttack();
 
+	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 #pragma region Accessor
 
@@ -87,8 +88,6 @@ public:
 	}
 
 #pragma endregion
-
-	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 private:
 

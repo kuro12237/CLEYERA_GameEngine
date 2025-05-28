@@ -31,7 +31,7 @@ void PlayerCore::Init() {
   ObjectComponent::gameObject_->ChangeModel(handle);
 
   // コライダー作成
-  ObjectComponent::CreateCollider(ColliderType::OBB);
+  ObjectComponent::CreateCollider(ColliderType::AABB);
 
   // 移動処理クラスの初期化
   moveFunc_->Init();
@@ -39,6 +39,10 @@ void PlayerCore::Init() {
   // 初期攻撃スロット
   attacks_[ToIndex(AttackType::Basic)] =
       std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
+
+  // あたりはんてい関数セット
+  collider_->SetHitCallFunc(
+      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 }
 
 /// <summary>
@@ -82,6 +86,20 @@ void PlayerCore::StandardAttack() { attacks_[ToIndex(AttackType::Standard)]->IsA
 /// シグネチャー攻撃
 /// </summary>
 void PlayerCore::SignatureAttack() { attacks_[ToIndex(AttackType::Signature)]->IsAttack(); }
+
+void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
+
+  if (auto obj = other.lock()) {
+    // Wall 型にキャストできるかをチェック
+    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
+      // Wall にぶつかったときの処理
+      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
+          wall->GetCollder().lock());
+      // 押し出し
+      this->translate_ -= aabb->GetAABB().push;
+    }
+  }
+}
 
 /// <summary>
 /// Luaからデータを抽出する
