@@ -64,12 +64,6 @@ void NormalEnemy1::Init() {
 }
 
 void NormalEnemy1::Update() {
-    //距離を求める
-  float_t distance = Math::Vector::Func::Length(GetWorldPosition() - GetPlayerPosition());
-    distance;
-  // 方向を求める
-  Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
-
 
   // 弾の更新
   for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
@@ -82,13 +76,13 @@ void NormalEnemy1::Update() {
   // ビヘイビアツリーの実行
   behaviorTree_->Execute(this);
 
-	//ビヘイビアツリーの実行
-	////behaviorTree_->Execute(this);
-	const float_t SPEED = 0.1f;
-	velocity_.x *= SPEED;
-        velocity_.y *= SPEED;
-	velocity_.z *= SPEED;
+// 速度を計算
+  Math::Vector::Vec3 newDirection = {};
+  if (isAttack_ == false) {
+    newDirection = direction_;
+  }
 
+  velocity_ = newDirection * speed_;
 	// 更新
    TransformUpdate();
 
