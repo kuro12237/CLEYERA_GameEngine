@@ -15,6 +15,7 @@ void NormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
 	scale_ = { .x = SCALE_SIZE_, .y = SCALE_SIZE_, .z = SCALE_SIZE_ };
     //本体の座標を設定
     normalEnemyPosition_ = enemyPosition;
+    translate_ = normalEnemyPosition_;
     //プレイヤーの座標を設定
 	playerPosition_ = playerPosition;
 }
@@ -25,9 +26,7 @@ void NormalEnemy1Bullet::Update(){
 	if (aliveTime_ > DELETE_TIME_ ) {
 		isDelete_ = true;
 	}
-	//加速度の計算
-	velocityY_ += accel_;
-	translate_.y += velocityY_;
+
 
 	//線形補間でXZ
     t_ +=  1.0f/(ATTACK_ALL_TIME_ * FPS_VALUE_);

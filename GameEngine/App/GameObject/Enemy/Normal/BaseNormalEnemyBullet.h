@@ -32,8 +32,7 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	virtual void Initialize(const Math::Vector::Vec3 &enemyPosition,
-                          const Math::Vector::Vec3 &playerPosition ) = 0;
+	virtual void Initialize(const Math::Vector::Vec3 &enemyPosition, const Math::Vector::Vec3 &playerPosition ) = 0;
 
 	/// <summary>
 	/// 更新

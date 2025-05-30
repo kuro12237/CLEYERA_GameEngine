@@ -39,5 +39,5 @@ public:
 
 private:
     //スピード
-    const float_t SPEED_ = 0.1f;
+    const float_t SPEED_ = 0.5f;
 };
