@@ -2,7 +2,7 @@
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
 
-EnemyNodeState NormalEnemyIsPlayerInAttackRangeAndIsAttack::Execute(BaseNormalEnemy *baseNormalEnemy) {
+EnemyNodeState NormalEnemyIsPlayerInAttackRange::Execute(BaseNormalEnemy *baseNormalEnemy) {
 	//距離を求める
 	float_t disttance = Math::Vector::Func::Length(baseNormalEnemy->GetWorldPosition() - baseNormalEnemy->GetPlayerPosition());
 	

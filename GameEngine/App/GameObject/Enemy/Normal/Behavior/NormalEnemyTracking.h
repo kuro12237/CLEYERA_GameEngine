@@ -37,5 +37,7 @@ public:
     /// </summary>
     ~NormalEnemyTracking() = default;
 
-
+private:
+    //スピード
+    const float_t SPEED_ = 0.1f;
 };

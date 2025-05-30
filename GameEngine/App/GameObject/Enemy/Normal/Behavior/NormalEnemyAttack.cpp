@@ -3,7 +3,6 @@
 #include <imgui.h>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "Enemy/Normal/Normal1/NormalEnemyBullet.h"
 
 
 NormalEnemyAttack::NormalEnemyAttack(const uint32_t &bulletType) { 
@@ -13,7 +12,7 @@ NormalEnemyAttack::NormalEnemyAttack(const uint32_t &bulletType) {
 EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy *baseNormalEnemy) {
 
     //弾を生成
-    generateTime_ += (1.0f / 60.0f);
+  generateTime_ += DELTA_TIME_;
     if (generateTime_ > 3.0f) {
       baseNormalEnemy->GenerateBullet(bulletType_);
       generateTime_ = 0.0f;

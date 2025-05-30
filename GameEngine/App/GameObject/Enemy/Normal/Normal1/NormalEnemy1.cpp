@@ -7,6 +7,7 @@
 #include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInRange.h"
 #include "Enemy/Normal/Behavior/NormalEnemyNoneBehavior.h"
 #include "Enemy/Normal/Behavior/NormalEnemyAttack.h"
+#include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h"
 
 void NormalEnemy1::Init() {
    // 名前の設定
@@ -17,6 +18,10 @@ void NormalEnemy1::Init() {
    //"Resources/Model/Sphere", "Sphere"
    gameObject_->ChangeModel(modelHandle);
 
+   // これが無いと描画エラーになる
+   uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+   modelHandle2;
+
    // コライダー作成
    CreateCollider(ColliderType::OBB);
 
@@ -26,19 +31,25 @@ void NormalEnemy1::Init() {
    //ルート
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
+   // 追跡開始距離
+   trackingStartDistance_ = 40.0f;
+   // 攻撃開始距離
+   attackStartDistance_ = 3.0f;
+
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(attackStartDistance_));
+        attackSequence->AddChild(
+            std::make_unique<NormalEnemyIsPlayerInAttackRange>());
 	//攻撃
-        attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2));
+        attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1));
 	root->AddChild(std::move(attackSequence));
 #pragma endregion
 
 #pragma region 通常状態のシーケンス
    std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(trackingStartDistance_));
+   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
    //追跡
    approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
    //作ったものを入れる
@@ -49,10 +60,7 @@ void NormalEnemy1::Init() {
    behaviorTree_ = std::move(root);
 
 
-   // 追跡開始距離
-   trackingStartDistance_ = 40.0f;
-   // 攻撃開始距離
-   attackStartDistance_ = 3.0f;
+   
 }
 
 void NormalEnemy1::Update() {
@@ -62,37 +70,17 @@ void NormalEnemy1::Update() {
   // 方向を求める
   Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
-	//攻撃していない時
-  //if (isAttack_ == false) {
-  //  
-  //  // 攻撃範囲内の時
-  //  if (distance < GetAttackStartDistance()) {
-  //
-  //    //// 弾
-  //    std::shared_ptr<NormalEnemy1Bullet> bullet = std::make_shared<NormalEnemy1Bullet>();
-  //    bullet->Init();
-  //    // 挿入
-  //    bullets_.push_back(std::move(bullet));
-  //
-  //    isAttack_ = true;
-  //  } else if (distance >= GetAttackStartDistance()&& distance < trackingStartDistance_) {
-  //    
-  //
-  //    // 本体に設定
-  //    SetVelocity(Math::Vector::Func::Normalize(velocity));
-  //
-  //  }
-  //}
 
-
+  // 弾の更新
+  for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+    bullet->Update();
+  }
 
   // 弾の削除
   bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
 
-  if (isAttack_ == true && bullets_.empty()) {
-    isAttack_ = false;
-  }
-
+  // ビヘイビアツリーの実行
+  behaviorTree_->Execute(this);
 
 	//ビヘイビアツリーの実行
 	////behaviorTree_->Execute(this);
@@ -104,10 +92,7 @@ void NormalEnemy1::Update() {
 	// 更新
    TransformUpdate();
 
-   	// 弾の更新
-   for (const auto &bullet : bullets_) {
-     bullet->Update();
-   }
+
 #ifdef _DEBUG
    //ImGui表示用
    DisplayImGui();

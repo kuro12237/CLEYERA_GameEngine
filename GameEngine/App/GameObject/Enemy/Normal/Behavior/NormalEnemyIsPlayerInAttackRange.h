@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file NormalEnemyIsPlayerInAttackRangeAndIsAttack.h
+ * @file NormalEnemyIsPlayerInAttackRange.h
  * @brief 攻撃の範囲内のクラス
  * @author 茂木翼
  */
@@ -12,12 +12,12 @@
 /// <summary>
 /// 攻撃の範囲内
 /// </summary>
-class NormalEnemyIsPlayerInAttackRangeAndIsAttack : public NormalEnemyBehaviorNode {
+class NormalEnemyIsPlayerInAttackRange : public NormalEnemyBehaviorNode {
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  NormalEnemyIsPlayerInAttackRangeAndIsAttack() = default;
+  NormalEnemyIsPlayerInAttackRange() = default;
 
   /// <summary>
   /// 実行
@@ -29,7 +29,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemyIsPlayerInAttackRangeAndIsAttack() = default;
+  ~NormalEnemyIsPlayerInAttackRange() = default;
 
 
 

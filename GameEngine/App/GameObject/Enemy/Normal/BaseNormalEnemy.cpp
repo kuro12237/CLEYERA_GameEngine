@@ -9,12 +9,11 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
 	switch ( selection ) { 
 	case NormalBullet1:
           // 弾1
-          //bullet = std::make_unique<NormalEnemy1Bullet>();
-          //bullet->Initialize(translate_,playerPosition_);
-          //// 挿入
-          //bullets_.push_back(std::move(bullet));
+          bullet = std::make_unique<NormalEnemy1Bullet>();
+          bullet->Initialize(translate_,playerPosition_);
+          // 挿入
+          bullets_.push_back(std::move(bullet));
 
-		
 		break;
 
 	case NormalBullet2:
@@ -25,8 +24,5 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
           bullets_.push_back(std::move(bullet));
 
         break;
-
 	}
-
-
 }

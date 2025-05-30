@@ -18,7 +18,7 @@ void NormalEnemy2::Init() {
    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
    gameObject_->ChangeModel(modelHandle);
 
-   //分からない
+   //これが無いと描画エラーになる
    uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
    modelHandle2;
    // コライダー作成
@@ -39,7 +39,7 @@ void NormalEnemy2::Init() {
    //シーケンスは全てSucceesしないとだめだよ
 #pragma region 攻撃シーケンス
 	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
-    attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRangeAndIsAttack>());
+    attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
     attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2));
     root->AddChild(std::move(attackSequence));
 #pragma endregion
@@ -47,7 +47,7 @@ void NormalEnemy2::Init() {
 #pragma region 通常状態のシーケンス
    std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(trackingStartDistance_));
+   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
    //追跡
    approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
    //作ったものを入れる
@@ -88,10 +88,10 @@ void NormalEnemy2::Update() {
 
 	//ビヘイビアツリーの実行
 	behaviorTree_->Execute(this);
-	//const float_t SPEED = 0.1f;
-	//velocity_.x *= SPEED;
-    //velocity_.y *= SPEED;
-	//velocity_.z *= SPEED;
+	//const float_t SPEED_ = 0.1f;
+	//velocity_.x *= SPEED_;
+    //velocity_.y *= SPEED_;
+	//velocity_.z *= SPEED_;
 
 	// 更新
     TransformUpdate();
