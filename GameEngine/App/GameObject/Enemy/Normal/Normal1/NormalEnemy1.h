@@ -12,7 +12,7 @@
 #include <list>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "NormalEnemyBullet.h"
+#include "NormalEnemy1Bullet.h"
 
 /// <summary>
 /// 最初の敵
@@ -46,10 +46,6 @@ private:
 	/// </summary>
 	void DisplayImGui();
 
-private:
-
-	// 弾のリスト
-        std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;
-    bool isAttack_ = false;
+    
 
 };
