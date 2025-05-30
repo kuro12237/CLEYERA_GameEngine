@@ -1,28 +1,30 @@
 #pragma once
 
 /**
- * @file NormalEnemyBullet.h
+ * @file NormalEnemy1Bullet.h
  * @brief 雑魚敵の弾クラス
  * @author 茂木翼
  */
 
 
 #include"CLEYERA.h"
+#include "Enemy/Normal/BaseNormalEnemyBullet.h"
 
 /// <summary>
 /// 雑魚敵の弾
 /// </summary>
-class NormalEnemyBullet : public CLEYERA::Component::ObjectComponent {
+class NormalEnemy1Bullet : public BaseNormalEnemyBullet {
 public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	NormalEnemyBullet() = default;
+	NormalEnemy1Bullet() = default;
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Init()override;
+    void Initialize(const Math::Vector::Vec3 &enemyPosition,
+                        const Math::Vector::Vec3 &playerPosition) override;
 
 	/// <summary>
 	/// 更新
@@ -32,39 +34,8 @@ public:
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~NormalEnemyBullet()=default;
+	~NormalEnemy1Bullet()=default;
 
-public:
-	/// <summary>
-	/// 本体の座標を設定
-	/// </summary>
-	/// <param name="position">座標</param>
-	inline void SetNormalEnemyPosition(const Math::Vector::Vec3 & position) {
-		//1回だけ取得
-		if ( isGetNormalEnemyPosition_ == false ) {
-			this->normalEnemyPosition_ = position;
-			this->isGetNormalEnemyPosition_ = true;
-		}
-	}
-
-	/// <summary>
-	/// プレイヤーの座標
-	/// </summary>
-	/// <param name="position">座標</param>
-	inline void SetPlayerPosition(const Math::Vector::Vec3 & position) {
-		if ( isGetPlayerPosition_ == false ) {
-			this->playerPosition_ = position;
-			this->isGetPlayerPosition_ = true;
-		}
-	}
-
-	/// <summary>
-	/// 消去されたかどうか
-	/// </summary>
-	/// <returns></returns>
-	inline bool GetIsDelete()const {
-		return isDelete_;
-	}
 
 private:
 	//スケールサイズ
@@ -84,22 +55,15 @@ private:
 
 
 private:
-	// 雑魚敵本体の座標
-	Math::Vector::Vec3 normalEnemyPosition_ = {};
-	
-
 	//取得し終わったかどうか
 	bool isGetNormalEnemyPosition_ = false;
 
-	//プレイヤー
-	Math::Vector::Vec3 playerPosition_ = {};
 	//取得し終わったかどうか
 	bool isGetPlayerPosition_ = false;
 
 	//時間
 	float_t aliveTime_ = 0.0f;
-	//消去されたか
-	bool isDelete_ = false;
+	
 
 	//加速度
 	float_t velocityY_ = 0.5f;

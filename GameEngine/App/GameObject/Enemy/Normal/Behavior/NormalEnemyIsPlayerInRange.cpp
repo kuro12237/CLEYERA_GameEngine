@@ -10,8 +10,7 @@ EnemyNodeState NormalEnemyIsPlayerInRangeAndIsAttack::Execute(BaseNormalEnemy *b
 
     // 範囲内かつ攻撃中かどうか
     if ((disttance <= baseNormalEnemy->GetTrackingStartDistance() &&
-         disttance > baseNormalEnemy->GetAttackStartDistance()) ||
-        baseNormalEnemy->GetIsAttack() ==false) {
+         disttance > baseNormalEnemy->GetAttackStartDistance())) {
         return EnemyNodeState::Success;
     } 
     else {

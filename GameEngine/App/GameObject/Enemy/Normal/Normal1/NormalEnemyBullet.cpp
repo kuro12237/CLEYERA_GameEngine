@@ -1,23 +1,24 @@
 #include "NormalEnemyBullet.h"
 
-void NormalEnemyBullet::Init(){
+void NormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
+                                    const Math::Vector::Vec3 &playerPosition) {
 	// 名前の設定
-	name_ = VAR_NAME(NormalEnemyBullet);
+	name_ = VAR_NAME(NormalEnemy1Bullet);
 
 	// モデルの設定
-        uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+    uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
 	gameObject_->ChangeModel(modelHandle);
 
 	// コライダー作成
 	CreateCollider(ColliderType::OBB);
-
+        playerPosition;
 	//スケールの設定
 	scale_ = { .x = SCALE_SIZE_, .y = SCALE_SIZE_, .z = SCALE_SIZE_ };
-        translate_ = normalEnemyPosition_;
+        translate_ = enemyPosition;
 
 }
 
-void NormalEnemyBullet::Update(){
+void NormalEnemy1Bullet::Update(){
 	//時間
 	aliveTime_ += DELTA_TIME_;
 	if (aliveTime_ > DELETE_TIME_ ) {

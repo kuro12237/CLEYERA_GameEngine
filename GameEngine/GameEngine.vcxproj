@@ -171,6 +171,7 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.cpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyBehaviorNode.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyCondition.h" />

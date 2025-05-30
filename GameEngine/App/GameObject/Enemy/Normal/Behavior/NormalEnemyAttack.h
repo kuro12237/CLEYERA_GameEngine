@@ -26,7 +26,8 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    NormalEnemyAttack()=default;
+    /// <param name="bulletType">弾の種類</param>
+    NormalEnemyAttack(const uint32_t&bulletType);
 
     /// <summary>
     /// 実行
@@ -46,11 +47,7 @@ private:
     /// </summary>
     void DisplayImGui();
 
-    /// <summary>
-    /// 弾を生成
-    /// </summary>
-    void GenerateBullet();
-
+    
 private:
     //時間変化
     const float_t DELTA_TIME_ = 1.0f / 60.0f;
@@ -63,8 +60,8 @@ private:
     const float_t BULLET_MAX_HEIGHT_ = 1.0f;
 
 private:
-    //弾のリスト
-  std::list<std::shared_ptr<NormalEnemy2Bullet>> bullets_;
+    //弾の種類
+    uint32_t bulletType_ = 0u;
 
     //攻撃準備
     bool isReadyForAttack_ = true;
@@ -74,12 +71,8 @@ private:
     Math::Vector::Vec3 playerPosition_ = {};
     bool isGetPlayerPosition_ = false;
 
-
-    //
+    //生成時間
     float_t generateTime_ = 0.0f;
 
-    bool isRelease_ = false;
-
-    float_t distance_ = 0.0f;
 };
 

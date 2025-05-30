@@ -31,7 +31,7 @@ void NormalEnemy1::Init() {
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
 	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRangeAndIsAttack>(attackStartDistance_));
 	//攻撃
-	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>());
+        attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2));
 	root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -58,33 +58,31 @@ void NormalEnemy1::Init() {
 void NormalEnemy1::Update() {
     //距離を求める
   float_t distance = Math::Vector::Func::Length(GetWorldPosition() - GetPlayerPosition());
-
+    distance;
   // 方向を求める
   Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
 	//攻撃していない時
-  if (isAttack_ == false) {
-    
-    // 攻撃範囲内の時
-    if (distance < GetAttackStartDistance()) {
-
-      //// 弾
-      std::shared_ptr<NormalEnemyBullet> bullet = std::make_shared<NormalEnemyBullet>();
-      bullet->SetNormalEnemyPosition(GetWorldPosition());
-      bullet->SetPlayerPosition(GetPlayerPosition());
-      bullet->Init();
-      // 挿入
-      bullets_.push_back(std::move(bullet));
-
-      isAttack_ = true;
-    } else if (distance >= GetAttackStartDistance()&& distance < trackingStartDistance_) {
-      
-
-      // 本体に設定
-      SetVelocity(Math::Vector::Func::Normalize(velocity));
-
-    }
-  }
+  //if (isAttack_ == false) {
+  //  
+  //  // 攻撃範囲内の時
+  //  if (distance < GetAttackStartDistance()) {
+  //
+  //    //// 弾
+  //    std::shared_ptr<NormalEnemy1Bullet> bullet = std::make_shared<NormalEnemy1Bullet>();
+  //    bullet->Init();
+  //    // 挿入
+  //    bullets_.push_back(std::move(bullet));
+  //
+  //    isAttack_ = true;
+  //  } else if (distance >= GetAttackStartDistance()&& distance < trackingStartDistance_) {
+  //    
+  //
+  //    // 本体に設定
+  //    SetVelocity(Math::Vector::Func::Normalize(velocity));
+  //
+  //  }
+  //}
 
 
 

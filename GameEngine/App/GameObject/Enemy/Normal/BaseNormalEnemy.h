@@ -10,6 +10,10 @@
 #include"CLEYERA.h"
 #include "Enemy/EnemyParameter.h"
 #include "Enemy/Normal/Behavior/NormalEnemyBehaviorNode.h"
+#include "BaseNormalEnemyBullet.h"
+
+
+
 
 /// <summary>
 /// 雑魚敵の基底クラス
@@ -102,7 +106,16 @@ public:
 	   return trackingStartDistance_;
    }
 
+	/// <summary>
+   /// 弾を生成
+   /// </summary>
+   virtual void GenerateBullet(const uint32_t &selection);
+
+
 protected:
+	//弾のリスト 
+	std::list<std::shared_ptr<BaseNormalEnemyBullet>> bullets_;
+
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};
 	//パラメーター
@@ -114,7 +127,6 @@ protected:
 	//攻撃中かどうか
     bool isAttack_ = false;
 
-	//攻撃範囲内カどうか
 
 	// 攻撃開始距離
     float_t attackStartDistance_ = 3.0f;

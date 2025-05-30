@@ -1,6 +1,7 @@
 #include "NormalEnemy2Bullet.h"
 
-void NormalEnemy2Bullet::Init() {
+void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
+                                    const Math::Vector::Vec3 &playerPositio) {
 	// 名前の設定
 	name_ = VAR_NAME(NormalEnemyBullet);
 
@@ -13,23 +14,23 @@ void NormalEnemy2Bullet::Init() {
 
 	//スケールの設定
 	scale_ = { .x = SCALE_SIZE_, .y = SCALE_SIZE_, .z = SCALE_SIZE_ };
-    translate_ = normalEnemyPosition_;
+    translate_ = enemyPosition;
 
 	//方向を決める
-	direction_ = playerPosition_ - translate_;
+    direction_ = playerPositio - translate_;
 
 }
 
 void NormalEnemy2Bullet::Update() {
 
-	//最大5秒まで表示その後に消える
-	displayTime_ += DELTA_TIME_;
-	if (displayTime_ > MAX_DISPLAY_TIME_) {
-          isDelete_ = true;
-	}
+	////最大5秒まで表示その後に消える
+	//displayTime_ += DELTA_TIME_;
+	//if (displayTime_ > MAX_DISPLAY_TIME_) {
+    //      isDelete_ = true;
+	//}
 
 	// 方向を決める
-    direction_ = playerPosition_ - translate_;
+   // direction_ = playerPosition_ - translate_;
     direction_ = Math::Vector::Func::Normalize(direction_);
 	//座標の加算
 	translate_ += direction_ * SPEED_;
@@ -38,7 +39,7 @@ void NormalEnemy2Bullet::Update() {
 	TransformUpdate();
 
 #ifdef _DEBUG
-        DisplayImGui();
+    DisplayImGui();
 #endif // _DEBUG
 }
 

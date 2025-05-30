@@ -49,7 +49,7 @@ private:
 private:
 
 	// 弾のリスト
-        std::list<std::shared_ptr<NormalEnemyBullet>> bullets_;
+        std::list<std::shared_ptr<NormalEnemy1Bullet>> bullets_;
     bool isAttack_ = false;
 
 };
