@@ -7,9 +7,9 @@ EnemyNodeState NormalEnemyIsPlayerInAttackRange::Execute(BaseNormalEnemy *baseNo
 	float_t disttance = Math::Vector::Func::Length(baseNormalEnemy->GetWorldPosition() - baseNormalEnemy->GetPlayerPosition());
 	
     //判定
-    //攻撃範囲内にいるかどうか、攻撃中かどうか
-    if (disttance < baseNormalEnemy->GetAttackStartDistance() ||
-        baseNormalEnemy->GetIsAttack() == true) {
+    //攻撃範囲内にいるかどうか
+    if (disttance < baseNormalEnemy->GetAttackStartDistance()) {
+          baseNormalEnemy->SetIsAttack(true);
         return EnemyNodeState::Success;
     } 
     else {

@@ -5,17 +5,15 @@
 
 EnemyNodeState NormalEnemyTracking::Execute(BaseNormalEnemy * baseNormalEnemy){
 
-    //方向を求める
-    Math::Vector::Vec3 velocity = {
+    //差分を求める
+    Math::Vector::Vec3 difference = {
         .x = baseNormalEnemy->GetPlayerPosition().x - baseNormalEnemy->GetWorldPosition().x,
         .y = 0.0f,
         .z = baseNormalEnemy->GetPlayerPosition().z - baseNormalEnemy->GetWorldPosition().z,
-
     };
-
     
-    //本体に設定
-    baseNormalEnemy->SetVelocity(Math::Vector::Func::Normalize(velocity) * SPEED_);
+    //正規化し本体に設定
+    baseNormalEnemy->SetDirection(Math::Vector::Func::Normalize(difference));
     
     //成功
     return EnemyNodeState::Success;

@@ -34,14 +34,14 @@ void EnemyManager::Init() {
    for (uint32_t i = 1u; i <= enemy1Count; ++i) {
      std::string varName = "Enemy1GeneratePositions.translate" + std::to_string(i);
      Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
-     GenerateNormalEnemy1(pos);
+     //GenerateNormalEnemy1(pos);
    }
 
    //雑魚敵2の生成
    for (uint32_t i = 1u; i <= enemy2Count; ++i) {
      std::string varName = "Enemy2GeneratePositions.translate" + std::to_string(i);
      Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
-     //GenerateNormalEnemy2(pos);
+     GenerateNormalEnemy2(pos);
    }
 
 }

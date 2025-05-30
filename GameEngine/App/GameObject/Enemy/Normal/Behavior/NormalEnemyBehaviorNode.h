@@ -14,7 +14,7 @@
 
 
 /// <summary>
-/// ボス敵
+/// 雑魚敵の基底クラス
 /// </summary>
 class BaseNormalEnemy;
 

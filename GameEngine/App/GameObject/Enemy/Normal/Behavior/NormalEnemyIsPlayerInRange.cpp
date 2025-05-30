@@ -11,6 +11,7 @@ EnemyNodeState NormalEnemyIsPlayerInRange::Execute(BaseNormalEnemy *baseNormalEn
     // 範囲内かつ攻撃中かどうか
     if ((disttance <= baseNormalEnemy->GetTrackingStartDistance() &&
          disttance > baseNormalEnemy->GetAttackStartDistance())) {
+      
         return EnemyNodeState::Success;
     } 
     else {

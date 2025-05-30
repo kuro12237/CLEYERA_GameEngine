@@ -12,7 +12,7 @@ NormalEnemyAttack::NormalEnemyAttack(const uint32_t &bulletType) {
 EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy *baseNormalEnemy) {
 
     //弾を生成
-  generateTime_ += DELTA_TIME_;
+    generateTime_ += DELTA_TIME_;
     if (generateTime_ > 3.0f) {
       baseNormalEnemy->GenerateBullet(bulletType_);
       generateTime_ = 0.0f;
@@ -20,15 +20,12 @@ EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy *baseNormalEnemy) {
       return EnemyNodeState::Success;
     }
 
-
 #ifdef _DEBUG
     DisplayImGui();
 #endif // _DEBUG
 
     //実行中
     return EnemyNodeState::Running;
-
-    
 }
 
 void NormalEnemyAttack::DisplayImGui(){

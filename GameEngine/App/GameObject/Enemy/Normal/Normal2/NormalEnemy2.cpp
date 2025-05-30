@@ -61,10 +61,6 @@ void NormalEnemy2::Init() {
 }
 
 void NormalEnemy2::Update() {
-    //距離を求める
-    //float_t distance = Math::Vector::Func::Length(GetWorldPosition() -GetPlayerPosition());
-    // 方向を求める
-    Math::Vector::Vec3 velocity = GetPlayerPosition() - GetWorldPosition();
 
     
     // 弾の更新
@@ -77,21 +73,19 @@ void NormalEnemy2::Update() {
     
 
     
-    //正規化
-   // velocity= Math::Vector::Func::Normalize(velocity); 
-
-    // atan2 で回転角を求める（ラジアン）
-    //float_t angle = std::atan2(-velocity.z, velocity.x); 
-
-    // 角度を敵の回転に設定
-    //rotate_.y = angle-std::numbers::pi_v<float_t>/2.0f;
-
 	//ビヘイビアツリーの実行
 	behaviorTree_->Execute(this);
-	//const float_t SPEED_ = 0.1f;
-	//velocity_.x *= SPEED_;
-    //velocity_.y *= SPEED_;
-	//velocity_.z *= SPEED_;
+    // atan2 で回転角を求める（ラジアン）
+    float_t angle = std::atan2(-direction_.z, direction_.x);
+    // 角度を敵の回転に設定
+    rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
+    //速度を計算
+    Math::Vector::Vec3 newDirection = {};
+    if (isAttack_ == false) {
+      newDirection = direction_;
+    }
+
+	velocity_ = newDirection * speed_;
 
 	// 更新
     TransformUpdate();

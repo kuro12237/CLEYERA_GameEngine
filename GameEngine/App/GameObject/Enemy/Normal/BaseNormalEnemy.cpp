@@ -1,6 +1,6 @@
 #include "BaseNormalEnemy.h"
 
-#include "Normal1/NormalEnemyBullet.h"
+#include "Normal1/NormalEnemy1Bullet.h"
 #include "Normal2/NormalEnemy2Bullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {

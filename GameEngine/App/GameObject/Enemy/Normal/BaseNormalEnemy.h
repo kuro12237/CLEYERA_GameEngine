@@ -41,13 +41,14 @@ public:
    inline void SetInitialPosition(const Math::Vector::Vec3 &position) { 
 	   this->translate_ = position; 
    }
+
    /// <summary>
-   /// ベロシティの設定
+   /// 方向を設定
    /// </summary>
-   /// <param name="velocity">ベロシティ</param>
-   inline void SetVelocity(const Math::Vector::Vec3 & velocity) {
-	   this->velocity_ = velocity;
-	}
+   /// <param name="direction"></param>
+   inline void SetDirection(const Math::Vector::Vec3 &direction) { 
+	   this->direction_ = direction;
+   }
 
    /// <summary>
    /// 座標の取得
@@ -73,22 +74,6 @@ public:
 	   return parameter_;
    }
 
-   /// <summary>
-   /// 攻撃中かどうかの設定
-   /// </summary>
-   /// <param name="isAttack"></param>
-   inline void SetIsAttack(const bool & isAttack) { 
-	   this->isAttack_ = isAttack;
-   }
-
-   /// <summary>
-   /// 攻撃中かどうかの設定
-   /// </summary>
-   /// <returns></returns>
-   inline bool GetIsAttack() const { 
-	   return isAttack_;
-   }
-
 public:
    /// <summary>
    /// 攻撃開始距離を取得
@@ -106,6 +91,22 @@ public:
 	   return trackingStartDistance_;
    }
 
+   /// <summary>
+   /// 攻撃をしているかを取得
+   /// </summary>
+   /// <returns></returns>
+   inline bool GetIsAttack() const { 
+	   return isAttack_;
+   }
+
+   /// <summary>
+   /// 攻撃のフラグを設定
+   /// </summary>
+   /// <param name="isAttack"></param>
+   inline void SetIsAttack(const bool & isAttack) { 
+	   this->isAttack_ = isAttack;
+   }
+
 	/// <summary>
    /// 弾を生成
    /// </summary>
@@ -115,23 +116,23 @@ public:
 protected:
 	//弾のリスト 
 	std::list<std::shared_ptr<BaseNormalEnemyBullet>> bullets_;
-
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};
-	//パラメーター
-    EnemyParameter parameter_ = {};
 	//方向
     Math::Vector::Vec3 direction_ = {};
 	//ビヘイビアツリー
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
-	//攻撃中かどうか
+	//攻撃したかどうか
     bool isAttack_ = false;
 
-
+protected:
+	// パラメーター
+    EnemyParameter parameter_ = {};
 	// 攻撃開始距離
     float_t attackStartDistance_ = 3.0f;
 	// 追跡開始距離
     float_t trackingStartDistance_ = 40.0f;
-
+	//スピード
+    float_t speed_ = 0.1f;
 
 };

@@ -46,8 +46,6 @@ private:
 	/// </summary>
 	void DisplayImGui();
 
-private:
-
-    bool isAttack_ = false;
+    
 
 };

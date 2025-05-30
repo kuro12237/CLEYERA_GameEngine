@@ -18,20 +18,17 @@ void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
 
 	//方向を決める
     direction_ = playerPositio - translate_;
-
+    direction_ = Math::Vector::Func::Normalize(direction_);
 }
 
 void NormalEnemy2Bullet::Update() {
 
-	////最大5秒まで表示その後に消える
-	//displayTime_ += DELTA_TIME_;
-	//if (displayTime_ > MAX_DISPLAY_TIME_) {
-    //      isDelete_ = true;
-	//}
+	//最大5秒まで表示その後に消える
+	displayTime_ += DELTA_TIME_;
+	if (displayTime_ > MAX_DISPLAY_TIME_) {
+          isDelete_ = true;
+	}
 
-	// 方向を決める
-   // direction_ = playerPosition_ - translate_;
-    direction_ = Math::Vector::Func::Normalize(direction_);
 	//座標の加算
 	translate_ += direction_ * SPEED_;
 

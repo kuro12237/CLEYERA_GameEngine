@@ -45,9 +45,5 @@ private:
 	/// </summary>
 	void DisplayImGui();
 
-private:
-
-	
-	bool isInAttackRange_ = false;
 	
 };
