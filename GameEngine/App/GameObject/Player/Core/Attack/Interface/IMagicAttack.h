@@ -7,7 +7,7 @@
 class PlayerCore;
 class InputManager;
 class IPlayerCommand;
-class PlayerProjectileManager;
+class PlayerBulletManager;
 
 // 攻撃のタイプ
 enum class AttackType {
@@ -51,7 +51,7 @@ public:
   /// <summary>
   /// Ptrの設定
   /// </summary>
-  void SetPre(PlayerCore* corePtr, PlayerProjectileManager* projManagerPtr)
+  void SetPre(PlayerCore* corePtr, PlayerBulletManager* projManagerPtr)
   {
     owner_ = corePtr;
     projManager_ = projManagerPtr;
@@ -63,7 +63,7 @@ public:
   void SetOwner(PlayerCore* ptr) { owner_ = ptr; }
 
   // ProjectileManagerの設定
-  void SetProjectileManager(PlayerProjectileManager* ptr) { projManager_ = ptr; }
+  void SetProjectileManager(PlayerBulletManager* ptr) { projManager_ = ptr; }
 
   // 技の名前の取得
   virtual std::string GetName() { return name_; }
@@ -79,7 +79,7 @@ protected:
   PlayerCore *owner_ = nullptr;
 
   // 発射物管理クラスのweakPtr
-  PlayerProjectileManager *projManager_ = nullptr;
+  PlayerBulletManager *projManager_ = nullptr;
 
   // ダメージ
   float damage_ = 0.0f;

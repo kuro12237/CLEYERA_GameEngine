@@ -1,11 +1,11 @@
 #include "PlayerAttackDemoBasic.h"
 #include "../../../playerCore.h"
-#include "../../../../Projectile/PlayerProjectileManager.h"
+#include "../../../../Bullet/Manager/PlayerBulletManager.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-PlayerAttackDemoBasic::PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerProjectileManager* projManagerPtr)
+PlayerAttackDemoBasic::PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerBulletManager* projManagerPtr)
 {
   IMagicAttack::SetPre(corePtr, projManagerPtr);
 }

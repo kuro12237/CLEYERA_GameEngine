@@ -191,7 +191,7 @@
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
-    <ClCompile Include="App\GameObject\Player\Projectile\PlayerProjectileManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\Manager\PlayerBulletManager.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
@@ -315,8 +315,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
-    <ClInclude Include="App\GameObject\Player\Projectile\PlayerProjectileManager.h" />
-    <ClInclude Include="App\GameObject\Player\Projectile\PlayerProjectile .h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\Manager\PlayerBulletManager.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\Interface\IPlayerBullet.h" />
     <ClInclude Include="App\GameObject\Player\Core\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.h" />
     <ClInclude Include="App\GameObject\Player\Core\Attack\Interface\IMagicAttack.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />

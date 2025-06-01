@@ -10,7 +10,7 @@ public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerProjectileManager* projManagerPtr);
+  PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerBulletManager* projManagerPtr);
 
   /// <summary>
   /// デストラクタ

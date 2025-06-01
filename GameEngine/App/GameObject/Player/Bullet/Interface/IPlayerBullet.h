@@ -4,18 +4,18 @@
 #include "Lua/Script/LuaScript.h"
 
 /* プレイヤーの攻撃の覇者物クラス */
-class PlayerProjectile : public CLEYERA::Component::ObjectComponent {
+class IPlayerBullet : public CLEYERA::Component::ObjectComponent {
 
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  PlayerProjectile() = default;
+  IPlayerBullet() = default;
 
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~PlayerProjectile() = default;
+  ~IPlayerBullet() = default;
 
   /// <summary>
   /// 初期化処理

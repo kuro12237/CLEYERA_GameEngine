@@ -8,7 +8,7 @@
 PlayerCore::PlayerCore() {
   lua_ = std::make_unique<LuaScript>();
   moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
-  projManager_ = std::make_unique<PlayerProjectileManager>();
+  projManager_ = std::make_unique<PlayerBulletManager>();
 }
 
 /// <summary>

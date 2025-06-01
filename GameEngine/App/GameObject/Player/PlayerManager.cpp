@@ -7,7 +7,7 @@ PlayerManager::PlayerManager() {
   camera_ = std::make_shared<PlayerCamera>();
   core_ = std::make_shared<PlayerCore>();
   commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
-  projectileManager_ = std::make_unique<PlayerProjectileManager>();
+  projectileManager_ = std::make_unique<PlayerBulletManager>();
 }
 
 /// <summary>
