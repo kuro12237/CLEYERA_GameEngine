@@ -14,6 +14,8 @@
 #include "Enemy/Normal/BaseNormalEnemy.h"
 #include "NormalEnemy1Bullet.h"
 
+#include"Wall/Wall.h"
+
 /// <summary>
 /// 最初の敵
 /// </summary>
@@ -38,6 +40,8 @@ class NormalEnemy1 : public BaseNormalEnemy {
    /// デストラクタ
    /// </summary>
    ~NormalEnemy1() override = default;
+
+   	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 
 private:

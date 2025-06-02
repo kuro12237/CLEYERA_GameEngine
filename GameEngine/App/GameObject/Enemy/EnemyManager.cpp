@@ -44,6 +44,10 @@ void EnemyManager::Init() {
      GenerateNormalEnemy2(pos);
    }
 
+   for (auto obj : enemyList_) {
+
+     objComponents_.push_back(obj);
+   }
 }
 
 void EnemyManager::Update() {

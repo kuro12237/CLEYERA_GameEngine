@@ -22,7 +22,7 @@ void NormalEnemy2::Init() {
    uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
    modelHandle2;
    // コライダー作成
-   CreateCollider(ColliderType::OBB);
+   CreateCollider(ColliderType::AABB);
 
    //スケールの設定
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
@@ -57,7 +57,9 @@ void NormalEnemy2::Init() {
    //本体に入れていく
    behaviorTree_ = std::move(root);
 
-  
+    // あたりはんてい関数セット
+   collider_->SetHitCallFunc(
+       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 }
 
 void NormalEnemy2::Update() {
@@ -98,6 +100,20 @@ void NormalEnemy2::Update() {
 #endif // _DEBUG
 
 
+}
+
+void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
+
+  if (auto obj = other.lock()) {
+    // Wall 型にキャストできるかをチェック
+    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
+      // Wall にぶつかったときの処理
+      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
+          wall->GetCollder().lock());
+      // 押し出し
+      this->translate_ -= aabb->GetAABB().push;
+    }
+  }
 }
 
 void NormalEnemy2::DisplayImGui() {
