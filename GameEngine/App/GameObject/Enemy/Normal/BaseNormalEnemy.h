@@ -129,6 +129,12 @@ public:
    /// </summary>
    virtual void GenerateBullet(const uint32_t &selection);
 
+protected:
+   const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
+	//時間変化
+   const float_t DELTA_TIME_ = 1.0f / 60.0f;
+   //線形補間
+   const float_t INCREASE_T_VALUE_ = 0.01f;
 
 protected:
 	//弾のリスト 
@@ -144,6 +150,12 @@ protected:
 
 	//ノックバック
 	bool isKnockBack_ = false;
+	//時間
+	float_t knockBackTime_ = 0.0f;
+	//線形補間
+    float_t knockbackT_ = 0.0f;
+
+
 	//生存かどうか
 	bool isAlive_ = true;
 	//消えるかどうか

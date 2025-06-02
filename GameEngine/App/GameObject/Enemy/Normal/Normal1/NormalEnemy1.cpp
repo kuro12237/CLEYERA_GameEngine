@@ -1,5 +1,6 @@
 #include "NormalEnemy1.h"
 
+#include "Utility/Easing.h"
 
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
@@ -120,6 +121,34 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
 }
 
 void NormalEnemy1::KnockBack() {
+
+
+    // ランダムの値で位置を決める
+  // SRは固定
+  std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
+    // ランダムエンジン
+    std::random_device seedGenerator;
+    std::mt19937 randomEngine(seedGenerator());
+    if (isKnockBack_ == true) {
+        //ノックバックの時間
+        knockBackTime_ += DELTA_TIME_;
+        //線形補間
+        knockbackT_ += INCREASE_T_VALUE_;
+         Math::Vector::Vec3 knockBackDirection = {
+            .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+
+         const float_t DISTANCE = 3.0f;
+         translate_ += (knockBackDirection * DISTANCE);
+
+        //制限を超えたら0に戻る
+        if (knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+          knockBackTime_ = 0.0f;
+          isKnockBack_ = false;
+        }
+
+
+        
+    }
 
 }
 

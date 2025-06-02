@@ -65,28 +65,28 @@ void NormalEnemy2::Init() {
 void NormalEnemy2::Update() {
 
     if (isAlive_ == true) {
-    // 弾の更新
-    for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-      bullet->Update();
+        // 弾の更新
+        for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+          bullet->Update();
+        }
+    
+        // 弾の削除
+        bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    
+        // ビヘイビアツリーの実行
+        behaviorTree_->Execute(this);
+        // atan2 で回転角を求める（ラジアン）
+        float_t angle = std::atan2(-direction_.z, direction_.x);
+        // 角度を敵の回転に設定
+        rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
+        // 速度を計算
+        Math::Vector::Vec3 newDirection = {};
+        if (isAttack_ == false) {
+          newDirection = direction_;
+        }
+    
+        velocity_ = newDirection * speed_;
     }
-
-    // 弾の削除
-    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-
-    // ビヘイビアツリーの実行
-    behaviorTree_->Execute(this);
-    // atan2 で回転角を求める（ラジアン）
-    float_t angle = std::atan2(-direction_.z, direction_.x);
-    // 角度を敵の回転に設定
-    rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
-    // 速度を計算
-    Math::Vector::Vec3 newDirection = {};
-    if (isAttack_ == false) {
-      newDirection = direction_;
-    }
-
-    velocity_ = newDirection * speed_;
-  }
 
 	// 更新
     TransformUpdate();

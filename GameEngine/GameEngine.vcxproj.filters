@@ -483,6 +483,7 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
+    <ClInclude Include="CLEYERA\Utility\Easing.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
