@@ -227,6 +227,7 @@ void CLEYERA::Manager::GlobalVariables::ImGuiUpdate(const std::string name) {
          }
       }
 
+
       ImGui::Separator();
       
       // 改行
