@@ -52,7 +52,8 @@ void CLEYERA::Base::DX::DXSwapChain::CreateResources() {
       ComPtr<ID3D12Resource> resource = nullptr;
       resources_[i] = std::make_unique<DXBufferResource<uint32_t>>();
       resources_[i]->Init();
-      HRESULT hr = swapChain_->GetBuffer(static_cast<UINT>(i), IID_PPV_ARGS(&resource));
+      [[maybe_unused]] HRESULT hr =
+          swapChain_->GetBuffer(static_cast<UINT>(i), IID_PPV_ARGS(&resource));
       D3D12_RENDER_TARGET_VIEW_DESC desc;
 
       desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM_SRGB;
