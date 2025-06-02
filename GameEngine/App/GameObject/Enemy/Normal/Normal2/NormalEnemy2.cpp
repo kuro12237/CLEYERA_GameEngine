@@ -64,7 +64,7 @@ void NormalEnemy2::Init() {
 
 void NormalEnemy2::Update() {
 
-    
+    if (isAlive_ == true) {
     // 弾の更新
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
       bullet->Update();
@@ -72,25 +72,26 @@ void NormalEnemy2::Update() {
 
     // 弾の削除
     bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-    
 
-    
-	//ビヘイビアツリーの実行
-	behaviorTree_->Execute(this);
+    // ビヘイビアツリーの実行
+    behaviorTree_->Execute(this);
     // atan2 で回転角を求める（ラジアン）
     float_t angle = std::atan2(-direction_.z, direction_.x);
     // 角度を敵の回転に設定
     rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
-    //速度を計算
+    // 速度を計算
     Math::Vector::Vec3 newDirection = {};
     if (isAttack_ == false) {
       newDirection = direction_;
     }
 
-	velocity_ = newDirection * speed_;
+    velocity_ = newDirection * speed_;
+  }
 
 	// 更新
     TransformUpdate();
+    //倒された
+    Killed();
 
 
 #ifdef _DEBUG
@@ -116,8 +117,36 @@ void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 }
 
+
+void NormalEnemy2::KnockBack() {
+
+}
+
+void NormalEnemy2::Killed() { 
+    if (isAlive_ == false) {
+        //縮小
+        const float_t SCALE_DOWN = 0.05f;
+        scale_ -= {SCALE_DOWN, SCALE_DOWN, SCALE_DOWN};
+    
+        if (scale_.x < 0.0f && 
+            scale_.y < 0.0f && 
+            scale_.z < 0.0f) {
+            //スケール固定
+            scale_.x = 0.0f;
+            scale_.y = 0.0f;
+            scale_.z = 0.0f;
+            //消す
+            isDelete_ = true;
+        }
+
+    }
+}
+
 void NormalEnemy2::DisplayImGui() {
 	ImGui::Begin("NormalEnemy2");
+  ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::Checkbox("IsAlive", &isAlive_);
+    ImGui::Checkbox("IsDelete", &isDelete_);
 	ImGui::InputFloat3("Translate", &translate_.x);
 	ImGui::InputFloat3("Velocity", &velocity_.x);
 	ImGui::End();

@@ -25,6 +25,16 @@ protected:
 	/// </summary>
 	virtual void DisplayImGui()=0;
 
+	/// <summary>
+	/// ノックバック
+	/// </summary>
+	virtual void KnockBack() = 0;
+
+	/// <summary>
+	/// 倒された
+	/// </summary>
+	virtual void Killed() = 0;
+
 public:
    /// <summary>
    /// プレイヤーの座標
@@ -107,6 +117,13 @@ public:
 	   this->isAttack_ = isAttack;
    }
 
+   /// <summary>
+   /// 消えているかどうかを取得
+   /// </summary>
+   inline bool GetIsDelete() const{ 
+	   return isDelete_;
+   }
+
 	/// <summary>
    /// 弾を生成
    /// </summary>
@@ -124,6 +141,13 @@ protected:
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
 	//攻撃したかどうか
     bool isAttack_ = false;
+
+	//ノックバック
+	bool isKnockBack_ = false;
+	//生存かどうか
+	bool isAlive_ = true;
+	//消えるかどうか
+    bool isDelete_ = false;
 
 protected:
 	// パラメーター

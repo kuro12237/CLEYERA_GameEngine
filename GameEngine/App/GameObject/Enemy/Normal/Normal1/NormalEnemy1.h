@@ -41,8 +41,23 @@ class NormalEnemy1 : public BaseNormalEnemy {
    /// </summary>
    ~NormalEnemy1() override = default;
 
+
+public:
+   	/// <summary>
+   	/// 衝突
+   	/// </summary>
+   	/// <param name="other"></param>
    	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
+	/// <summary>
+    /// ノックバック
+    /// </summary>
+    void KnockBack()override;
+
+    /// <summary>
+    /// 倒された
+    /// </summary>
+    void Killed() override;
 
 private:
 	/// <summary>

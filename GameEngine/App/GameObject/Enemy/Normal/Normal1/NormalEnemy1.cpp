@@ -66,28 +66,34 @@ void NormalEnemy1::Init() {
 }
 
 void NormalEnemy1::Update() {
-
-  // 弾の更新
-  for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-    bullet->Update();
-  }
-
-  // 弾の削除
-  bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-
-  // ビヘイビアツリーの実行
-  behaviorTree_->Execute(this);
-
-// 速度を計算
-  Math::Vector::Vec3 newDirection = {};
-  if (isAttack_ == false) {
-    newDirection = direction_;
-  }
-
-  velocity_ = newDirection * speed_;
+  // 生存時
+    if (isAlive_ == true) {
+      // 弾の更新
+      for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+        bullet->Update();
+      }
+    
+      // 弾の削除
+      bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    
+      // ビヘイビアツリーの実行
+      behaviorTree_->Execute(this);
+    
+      // 速度を計算
+      Math::Vector::Vec3 newDirection = {};
+      if (isAttack_ == false) {
+        newDirection = direction_;
+      }
+    
+      velocity_ = newDirection * speed_;
+    }
 	// 更新
    TransformUpdate();
 
+   // 更新
+   TransformUpdate();
+   // 倒された
+   Killed();
 
 #ifdef _DEBUG
    //ImGui表示用
@@ -113,10 +119,34 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
 }
 
+void NormalEnemy1::KnockBack() {
+
+}
+
+void NormalEnemy1::Killed() {
+  if (isAlive_ == false) {
+    // 縮小
+    const float_t SCALE_DOWN = 0.05f;
+    scale_ -= {SCALE_DOWN, SCALE_DOWN, SCALE_DOWN};
+
+    if (scale_.x < 0.0f && scale_.y < 0.0f && scale_.z < 0.0f) {
+      // スケール固定
+      scale_.x = 0.0f;
+      scale_.y = 0.0f;
+      scale_.z = 0.0f;
+      // 消す
+      isDelete_ = true;
+    }
+  }
+}
+
 void NormalEnemy1::DisplayImGui(){
-	ImGui::Begin("NormalEnemy1");
-	ImGui::InputFloat3("Translate", &translate_.x);
-	ImGui::InputFloat3("Velocity", &velocity_.x);
-	ImGui::End();
+  ImGui::Begin("NormalEnemy1");
+  ImGui::InputFloat3("Scele", &scale_.x);
+  ImGui::Checkbox("IsAlive", &isAlive_);
+  ImGui::Checkbox("IsDelete", &isDelete_);
+  ImGui::InputFloat3("Translate", &translate_.x);
+  ImGui::InputFloat3("Velocity", &velocity_.x);
+  ImGui::End();
 }
 
