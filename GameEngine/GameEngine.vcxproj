@@ -162,6 +162,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
@@ -284,6 +285,7 @@
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyCondition.h" />
