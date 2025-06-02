@@ -504,6 +504,9 @@
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Math\Math.vcxproj">
+      <Project>{98573c11-ed56-44a2-9517-cbd8c1f06b2b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

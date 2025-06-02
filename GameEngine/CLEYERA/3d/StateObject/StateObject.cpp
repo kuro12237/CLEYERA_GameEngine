@@ -92,6 +92,7 @@ void CLEYERA::Model3d::system::PiplineStateObject::Init() {
    stateObjDesc.NumSubobjects = UINT(subobjects.size());
    stateObjDesc.pSubobjects = subobjects.data();
 
-   HRESULT hr = device_->CreateStateObject(&stateObjDesc, IID_PPV_ARGS(this->stateObject_.ReleaseAndGetAddressOf()));
+   [[maybe_unused]] HRESULT hr = device_->CreateStateObject(
+       &stateObjDesc, IID_PPV_ARGS(this->stateObject_.ReleaseAndGetAddressOf()));
    assert(SUCCEEDED(hr));
 }

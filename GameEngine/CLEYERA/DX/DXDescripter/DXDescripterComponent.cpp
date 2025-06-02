@@ -16,7 +16,8 @@ void CLEYERA::Base::DX::DXDescripterComponent::CreateDescripter(
                                  ? D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE
                                  : D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 
-  HRESULT hr = device->CreateDescriptorHeap(&descriptorHeapDesc,
+  [[maybe_unused]] HRESULT hr =
+      device->CreateDescriptorHeap(&descriptorHeapDesc,
                                             IID_PPV_ARGS(&descripter_));
   assert(SUCCEEDED(hr));
 }
