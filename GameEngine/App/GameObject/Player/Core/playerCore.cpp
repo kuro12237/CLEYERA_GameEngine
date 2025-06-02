@@ -26,9 +26,11 @@ void PlayerCore::Init() {
   LoadCoreDataFromLua();
 
   // Modelの設定
-  std::pair<std::string, std::string> str = {"Resources/Model/Player/Core", "Core"};
-  uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
+  uint32_t handle =
+      ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
   ObjectComponent::gameObject_->ChangeModel(handle);
+  uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
+  demo;
 
   // コライダー作成
   ObjectComponent::CreateCollider(ColliderType::AABB);
@@ -49,13 +51,17 @@ void PlayerCore::Init() {
 /// 更新処理
 /// </summary>
 void PlayerCore::Update() {
-  TransformUpdate();
+  ObjectComponent::TransformUpdate();
 
   // 移動処理クラス
   moveFunc_->Update();
 
   // 発射物管理クラス
   projManager_->Update();
+
+  if (translate_.y <= -2.0f) {
+    translate_ = {0.0f, 1.0f, 0.0f};
+  }
 
 #ifdef _DEBUG
   projManager_->DrawImGui();

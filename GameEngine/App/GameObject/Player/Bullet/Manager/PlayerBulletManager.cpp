@@ -1,22 +1,6 @@
 #include "PlayerBulletManager.h"
 
 /// <summary>
-/// 新しいProjectileを生成
-/// </summary>
-std::weak_ptr<IPlayerBullet>
-PlayerBulletManager::CreateProjectile(const Math::Vector::Vec3 &pos,
-                                          const Math::Vector::Vec3 &vel, float lifeTime) {
-  std::shared_ptr<IPlayerBullet> newProj = std::make_shared<IPlayerBullet>();
-  newProj->Init();
-  newProj->SetPosition(pos);
-  newProj->SetVelocity(vel);
-  newProj->SetLifeTime(lifeTime);
-
-  projectiles_.push_back(newProj);
-  return newProj;
-}
-
-/// <summary>
 /// 初期化処理
 /// </summary>
 void PlayerBulletManager::Init() {}
@@ -26,17 +10,26 @@ void PlayerBulletManager::Init() {}
 /// </summary>
 void PlayerBulletManager::Update() {
   // イテレータを使った安全なループ中削除
-  for (auto it = projectiles_.begin(); it != projectiles_.end();) {
+  for (auto it = bullets_.begin(); it != bullets_.end();) {
 
     // 更新処理
     (*it)->Update();
 
     // 非アクティブなら削除し、次の有効なイテレータを取得
     if (!(*it)->IsActive()) {
-      it = projectiles_.erase(it);
+      it = bullets_.erase(it);
     } else {
       ++it; // アクティブなら次の要素へ
     }
+  }
+}
+
+/// <summary>
+/// 新しいBulletを生成
+/// </summary>
+void PlayerBulletManager::CreateBullet(std::shared_ptr<IPlayerBullet> newBul) {
+  if (newBul) {
+    bullets_.push_back(std::move(newBul));
   }
 }
 
@@ -46,7 +39,7 @@ void PlayerBulletManager::Update() {
 void PlayerBulletManager::DrawImGui() {
   if (ImGui::TreeNode("ProjectileManager")) {
 
-    size_t count = projectiles_.size();
+    size_t count = bullets_.size();
     ImGui::Text("Projectile Count = %d", count);
     ImGui::TreePop();
   }

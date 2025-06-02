@@ -2,6 +2,7 @@
 
 #include "../../Interface/IMagicAttack.h"
 #include "CLEYERA.h"
+#include "../../../../Bullet/Demo/PlayerDemoBullet.h"
 
 /* ベーシック攻撃 : Demo */
 class PlayerAttackDemoBasic : public IMagicAttack {

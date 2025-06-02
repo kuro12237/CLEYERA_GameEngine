@@ -34,6 +34,9 @@ void PlayerAttackDemoBasic::Reset() {}
 void PlayerAttackDemoBasic::IsAttack() 
 {
   if (projManager_) {
-    projManager_->CreateProjectile(owner_->GetWorldPos(), Math::Vector::Vec3(0.0f, 0.0f, 1.0f), 1.0f * 60.0f);
+    auto newBul = std::make_shared<PlayerDemoBullet>();
+    newBul->Init();
+    newBul->SetPosition(owner_->GetWorldPos());
+    projManager_->CreateBullet(std::move(newBul));
   }
 }

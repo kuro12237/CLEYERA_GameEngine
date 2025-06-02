@@ -48,8 +48,20 @@ public:
 
 #pragma endregion
 
-private:
+protected:
+  /// <summary>
+  /// 生存時間の更新
+  /// </summary>
+  void Update_LifeTime() {
+    lifeTime_--;
+    if (lifeTime_ <= 0.0f) {
+      lifeTime_ = 0.0f;
+      isActive_ = false;
+    }
+  }
+
+protected:
   float lifeTime_ = 0.0f; // 生存期間 (秒)
-  float damage_ = 0.0f; // ダメージ量
-  bool isActive_ = true; // アクティブかどうか
+  float damage_ = 0.0f;   // ダメージ量
+  bool isActive_ = true;  // アクティブかどうか
 };

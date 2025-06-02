@@ -9,7 +9,6 @@
 class PlayerBulletManager {
 
 public:
-
   /// <summary>
   /// コンストラクタ
   /// </summary>
@@ -31,17 +30,16 @@ public:
   void Update();
 
   /// <summary>
-  /// 新しいProjectileを生成
+  /// 新しいBulletを生成
   /// </summary>
-  std::weak_ptr<IPlayerBullet> CreateProjectile(const Math::Vector::Vec3 &pos, const Math::Vector::Vec3 &vel, float lifeTime);
-  
+  void CreateBullet(std::shared_ptr<IPlayerBullet> newBul);
+
   /// <summary>
   /// ImGuiの描画
   /// </summary>
   void DrawImGui();
 
 private:
-
   // 発射物の配列
-  std::list<std::shared_ptr<IPlayerBullet>> projectiles_;
+  std::list<std::shared_ptr<IPlayerBullet>> bullets_;
 };
