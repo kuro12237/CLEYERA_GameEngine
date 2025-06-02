@@ -221,6 +221,7 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.cpp" />
+    <ClCompile Include="CLEYERA\Utility\SkyBox\SkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -479,6 +480,7 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.h" />
+    <ClInclude Include="CLEYERA\Utility\SkyBox\SkyBox.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

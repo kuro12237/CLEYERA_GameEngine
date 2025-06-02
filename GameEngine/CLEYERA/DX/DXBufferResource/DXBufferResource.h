@@ -216,7 +216,7 @@ template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_T
 
 template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state,D3D12_CLEAR_VALUE *value) {
 
-   HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, &pDesc, state, value, IID_PPV_ARGS(&buffer_));
+   [[maybe_unused]]HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, &pDesc, state, value, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
 }
 

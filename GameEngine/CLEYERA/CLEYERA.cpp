@@ -67,6 +67,9 @@ void Engine::Init() {
   terrain_ = CLEYERA::Manager::Terrain::GetInstance();
   terrain_->Init();
 
+  skyBox_ = CLEYERA::Manager::SkyBox::GetInstance();
+  skyBox_->Init();
+
   gravityManager_ = CLEYERA::Manager::GravityManager::GetInstance();
   gravityManager_->Init();
 }
@@ -88,6 +91,7 @@ void Engine::PhysiceForcesUpdate() { gravityManager_->Update(); }
 void Engine::Update() {
 
   terrain_->Update();
+  skyBox_->Update();
 
   terrain_->CheckObjct();
   colliderSystem_->Update();
@@ -102,6 +106,8 @@ void Engine::Finalize() {
 
   inputManager_->Finalize();
   terrain_->Finalize();
+  skyBox_->Finalize();
+
   lightManager_->Finalize();
   grid_->Finalize();
 

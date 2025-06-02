@@ -29,6 +29,7 @@
 #include "Utility/Object/ObjectManager.h"
 #include "Utility/PhysicsForces/GravityManager.h"
 #include "Utility/Terrain/Terrain.h"
+#include"Utility/SkyBox/SkyBox.h"
 
 #include "Compornent/CameraCompornent.h"
 #include "Compornent/ManagerCompornent.h"
@@ -75,6 +76,7 @@ private:
   CLEYERA::Manager::Terrain *terrain_ = nullptr;
   CLEYERA::Manager::InputManager *inputManager_ = nullptr;
   CLEYERA::Manager::GravityManager *gravityManager_ = nullptr;
+  CLEYERA::Manager::SkyBox *skyBox_ = nullptr;
 
   CLEYERA::Util::Flame *flame_ = nullptr;
 

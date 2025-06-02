@@ -18,8 +18,6 @@ void CLEYERA::Manager::Terrain::Init() {
   this->gameObj_->Update();
 
   renderManager_->PushObj(gameObj_);
-  renderManager_->PushObj(gameObj_);
-  renderManager_->PushObj(gameObj_);
   objectManager_->AddObject(gameObj_);
 
   CLEYERA::Model3d::MeshData *meshData = gameObj_->GetModel().lock()->GetMeshData();

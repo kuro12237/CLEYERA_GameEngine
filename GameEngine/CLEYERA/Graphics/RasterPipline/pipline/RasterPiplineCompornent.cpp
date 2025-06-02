@@ -41,7 +41,7 @@ void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::CreateRootSigna
 void CLEYERA::Graphics::Raster::system::RasterPiplineCompornent::CreatePipline() {
 
  
-   HRESULT hr = device_->CreateGraphicsPipelineState(&pipelineStateDesc_, IID_PPV_ARGS(&GraphicsPipelineState_));
+   [[maybe_unused]]HRESULT hr = device_->CreateGraphicsPipelineState(&pipelineStateDesc_, IID_PPV_ARGS(&GraphicsPipelineState_));
    assert(SUCCEEDED(hr));
 }
 
