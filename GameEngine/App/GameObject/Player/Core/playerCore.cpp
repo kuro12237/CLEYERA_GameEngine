@@ -7,8 +7,9 @@
 /// </summary>
 PlayerCore::PlayerCore() {
   lua_ = std::make_unique<LuaScript>();
+  health_ = std::make_unique<PlayerHealth>(this);
   moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
-  projManager_ = std::make_unique<PlayerBulletManager>();
+  bulletManager_ = std::make_unique<PlayerBulletManager>();
 }
 
 /// <summary>
@@ -39,6 +40,8 @@ void PlayerCore::Init() {
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+  // 体力クラスの初期化
+  health_->Init(100.0f); // 初期体力を適当に入れておく
   // 移動処理クラスの初期化
   moveFunc_->Init();
 
@@ -52,18 +55,20 @@ void PlayerCore::Init() {
 void PlayerCore::Update() {
   ObjectComponent::TransformUpdate();
 
+  // 体力クラス
+  health_->Update();
   // 移動処理クラス
   moveFunc_->Update();
 
   // 発射物管理クラス
-  projManager_->Update();
+  bulletManager_->Update();
 
   if (translate_.y <= -2.0f) {
     translate_ = {0.0f, 1.0f, 0.0f};
   }
 
 #ifdef _DEBUG
-  projManager_->DrawImGui();
+  bulletManager_->DrawImGui();
 #endif // _DEBUG
 }
 
@@ -116,11 +121,11 @@ void PlayerCore::InitAttackSlot() {
 
   // 初期攻撃スロット
   attacks_[ToIndex(AttackType::Basic)] =
-      std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
+      std::make_unique<PlayerAttackDemoBasic>(this, bulletManager_.get());
   attacks_[ToIndex(AttackType::Standard)] =
-      std::make_unique<PlayerAttackDemoStandard>(this, projManager_.get());
+      std::make_unique<PlayerAttackDemoStandard>(this, bulletManager_.get());
   attacks_[ToIndex(AttackType::Signature)] =
-      std::make_unique<PlayerAttackDemoSignature>(this, projManager_.get());
+      std::make_unique<PlayerAttackDemoSignature>(this, bulletManager_.get());
 }
 
 /// <summary>
