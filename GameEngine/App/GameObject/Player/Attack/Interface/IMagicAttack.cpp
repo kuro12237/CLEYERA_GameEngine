@@ -1,5 +1,5 @@
 #include "IMagicAttack.h"
-#include "../../playerCore.h"
+#include "../../Core/playerCore.h"
 
 /// <summary>
 /// 速度を求める

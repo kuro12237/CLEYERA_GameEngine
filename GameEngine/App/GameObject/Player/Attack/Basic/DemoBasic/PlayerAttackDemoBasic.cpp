@@ -1,6 +1,6 @@
 #include "PlayerAttackDemoBasic.h"
-#include "../../../../Bullet/Manager/PlayerBulletManager.h"
-#include "../../../playerCore.h"
+#include "../../../Bullet/Manager/PlayerBulletManager.h"
+#include "../../../Core/playerCore.h"
 
 /// <summary>
 /// コンストラクタ
