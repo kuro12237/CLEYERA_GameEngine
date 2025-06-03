@@ -30,9 +30,9 @@ public:
   void Update();
 
   /// <summary>
-  /// 新しいBulletを生成
+  /// 新しいBulletを追加
   /// </summary>
-  void CreateBullet(std::shared_ptr<IPlayerBullet> newBul);
+  void PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul);
 
   /// <summary>
   /// ImGuiの描画

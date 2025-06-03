@@ -14,12 +14,15 @@ void PlayerDemoBullet::Init() {
   ObjectComponent::name_ = VAR_NAME(PlayerDemoBullet);
 
   // Modelの設定
-  uint32_t handle =
-      ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
+  uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
+                                                              "PlayerDemoBullet");
   ObjectComponent::gameObject_->ChangeModel(handle);
 
   // 生存時間を適当に設定 1秒
   lifeTime_ = 1.0f * 60.0f;
+
+  // ForceからY軸を求める
+  CalcRotateFromVelocity();
 }
 
 /// <summary>
@@ -28,10 +31,5 @@ void PlayerDemoBullet::Init() {
 void PlayerDemoBullet::Update() {
   ObjectComponent::TransformUpdate();
   IPlayerBullet::Update_LifeTime();
-  Move();
+  force_ = initVel_;
 }
-
-/// <summary>
-/// 移動処理
-/// </summary>
-void PlayerDemoBullet::Move() { force_.z = 0.5f; }

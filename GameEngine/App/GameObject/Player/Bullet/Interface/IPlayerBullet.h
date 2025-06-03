@@ -38,7 +38,7 @@ public:
   inline void SetPosition(const Math::Vector::Vec3 &pos) { translate_ = pos; }
 
   // 速度の設定
-  inline void SetVelocity(const Math::Vector::Vec3 &vel) { force_ = vel; }
+  inline void SetVelocity(const Math::Vector::Vec3 &vel) { initVel_ = vel; }
 
   // 起動中か
   inline bool IsActive() const { return isActive_; }
@@ -60,8 +60,19 @@ protected:
     }
   }
 
+  /// <summary>
+  /// VelocityからY軸回転を求める
+  /// </summary>
+  void CalcRotateFromVelocity() {
+    rotate_.y = std::atan2(initVel_.x, initVel_.z);
+    float velZ = std::sqrt((initVel_.x * initVel_.x) + (initVel_.z * initVel_.z));
+    float height = -initVel_.y;
+    rotate_.x = std::atan2(height, velZ);
+  }
+
 protected:
   float lifeTime_ = 0.0f; // 生存期間 (秒)
   float damage_ = 0.0f;   // ダメージ量
   bool isActive_ = true;  // アクティブかどうか
+  Math::Vector::Vec3 initVel_{};
 };

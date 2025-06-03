@@ -7,6 +7,8 @@
 
 #include "Attack/Interface/IMagicAttack.h"
 #include "Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
+#include "Attack/Standard/DemoStandard/PlayerAttackDemoStandard.h"
+#include "Attack/Signature/DemoSignature/PlayerAttackDemoSignature.h"
 #include "../Bullet/Manager/PlayerBulletManager.h"
 
 // 前方宣言
@@ -93,6 +95,11 @@ public:
 #pragma endregion
 
 private:
+
+	/// <summary>
+	/// 攻撃スロットの初期化
+	/// </summary>
+	void InitAttackSlot();
 
 	/// <summary>
 	/// Luaからデータを抽出する

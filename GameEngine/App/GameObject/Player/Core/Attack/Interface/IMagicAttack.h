@@ -51,10 +51,10 @@ public:
   /// <summary>
   /// Ptrの設定
   /// </summary>
-  void SetPre(PlayerCore* corePtr, PlayerBulletManager* projManagerPtr)
+  void SetPre(PlayerCore* corePtr, PlayerBulletManager* bulManagerPtr)
   {
     owner_ = corePtr;
-    projManager_ = projManagerPtr;
+    bulManager_ = bulManagerPtr;
   }
 
 #pragma region Accessor
@@ -63,12 +63,21 @@ public:
   void SetOwner(PlayerCore* ptr) { owner_ = ptr; }
 
   // ProjectileManagerの設定
-  void SetProjectileManager(PlayerBulletManager* ptr) { projManager_ = ptr; }
+  void SetProjectileManager(PlayerBulletManager* ptr) { bulManager_ = ptr; }
 
   // 技の名前の取得
   virtual std::string GetName() { return name_; }
 
 #pragma endregion
+
+
+  protected:
+
+      /// <summary>
+      /// 速度を求める
+      /// </summary>
+      Math::Vector::Vec3 CalcVelocity(const Math::Vector::Vec3& vel);
+
 
 protected:
 
@@ -79,7 +88,7 @@ protected:
   PlayerCore *owner_ = nullptr;
 
   // 発射物管理クラスのweakPtr
-  PlayerBulletManager *projManager_ = nullptr;
+  PlayerBulletManager *bulManager_ = nullptr;
 
   // ダメージ
   float damage_ = 0.0f;

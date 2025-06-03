@@ -29,22 +29,21 @@ void PlayerCore::Init() {
   uint32_t handle =
       ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
   ObjectComponent::gameObject_->ChangeModel(handle);
-  uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
+  uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
+                                                            "PlayerDemoBullet");
   demo;
 
   // コライダー作成
   ObjectComponent::CreateCollider(ColliderType::AABB);
+  // 当たり判定関数セット
+  collider_->SetHitCallFunc(
+      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
   // 移動処理クラスの初期化
   moveFunc_->Init();
 
-  // 初期攻撃スロット
-  attacks_[ToIndex(AttackType::Basic)] =
-      std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
-
-  // 当たり判定関数セット
-  collider_->SetHitCallFunc(
-      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+  // 攻撃スロットの初期化
+  InitAttackSlot();
 }
 
 /// <summary>
@@ -108,6 +107,20 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
       this->translate_ -= aabb->GetAABB().push;
     }
   }
+}
+
+/// <summary>
+/// 攻撃スロットの初期化
+/// </summary>
+void PlayerCore::InitAttackSlot() {
+
+  // 初期攻撃スロット
+  attacks_[ToIndex(AttackType::Basic)] =
+      std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
+  attacks_[ToIndex(AttackType::Standard)] =
+      std::make_unique<PlayerAttackDemoStandard>(this, projManager_.get());
+  attacks_[ToIndex(AttackType::Signature)] =
+      std::make_unique<PlayerAttackDemoSignature>(this, projManager_.get());
 }
 
 /// <summary>

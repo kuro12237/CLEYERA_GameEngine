@@ -1,22 +1,22 @@
 #pragma once
 
+#include "../../../../Bullet/Demo/PlayerDemoBullet.h"
 #include "../../Interface/IMagicAttack.h"
 #include "CLEYERA.h"
-#include "../../../../Bullet/Demo/PlayerDemoBullet.h"
 
-/* ベーシック攻撃 : Demo */
-class PlayerAttackDemoBasic : public IMagicAttack {
+/* スタンダード攻撃 : Demo */
+class PlayerAttackDemoStandard : public IMagicAttack {
 
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  PlayerAttackDemoBasic(PlayerCore* corePtr, PlayerBulletManager* bulManagerPtr);
+  PlayerAttackDemoStandard(PlayerCore *corePtr, PlayerBulletManager *bulManagerPtr);
 
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~PlayerAttackDemoBasic() = default;
+  ~PlayerAttackDemoStandard() = default;
 
   /// <summary>
   /// 初期化処理
@@ -37,8 +37,6 @@ public:
   /// 攻撃処理
   /// </summary>
   void IsAttack() override;
-  
 
 private:
-
 };

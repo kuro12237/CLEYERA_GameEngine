@@ -25,9 +25,9 @@ void PlayerBulletManager::Update() {
 }
 
 /// <summary>
-/// 新しいBulletを生成
+/// 新しいBulletを追加
 /// </summary>
-void PlayerBulletManager::CreateBullet(std::shared_ptr<IPlayerBullet> newBul) {
+void PlayerBulletManager::PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul) {
   if (newBul) {
     bullets_.push_back(std::move(newBul));
   }

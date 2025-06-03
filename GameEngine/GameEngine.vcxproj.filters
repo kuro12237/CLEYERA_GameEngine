@@ -222,6 +222,11 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Demo\PlayerDemoBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\Attack\Interface\IMagicAttack.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\Attack\Standard\DemoStandard\PlayerAttackDemoStandard.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\Attack\Signature\DemoSignature\PlayerAttackDemoSignature.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Attack\Standard\PlayerStandardAttackCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -481,6 +486,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsNotAttacking.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.h" />
     <ClInclude Include="App\GameObject\Player\Bullet\Demo\PlayerDemoBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Core\Attack\Standard\DemoStandard\PlayerAttackDemoStandard.h" />
+    <ClInclude Include="App\GameObject\Player\Core\Attack\Signature\DemoSignature\PlayerAttackDemoSignature.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

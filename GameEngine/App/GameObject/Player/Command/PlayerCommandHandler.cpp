@@ -1,5 +1,7 @@
 #include "PlayerCommandHandler.h"
 #include "../Command/Attack/Basic/PlayerBasicAttackCommand.h"
+#include "../Command/Attack/Signature/PlayerSignatureAttackCommand.h"
+#include "../Command/Attack/Standard/PlayerStandardAttackCommand.h"
 #include "../Command/Interface/IPlayerCommand.h"
 #include "../Command/Move/Key/PlayerKeyMoveCommand.h"
 #include "../Command/Move/Pad/PlayerPadMoveCommand.h"
@@ -36,16 +38,16 @@ void PlayerCommandHandler::Init() {
   };
 
   // 攻撃コマンド
-  inputCommandMap_["BasicAttack"] = []() { 
-      return std::make_unique<PlayerBasicAttackCommand>(); 
-  };
+  inputCommandMap_["BasicAttack"] = []() { return std::make_unique<PlayerBasicAttackCommand>(); };
+  inputCommandMap_["SignatureAttack"] = []() { return std::make_unique<PlayerSignatureAttackCommand>(); };
+  inputCommandMap_["StandardAttack"] = []() { return std::make_unique<PlayerStandardAttackCommand>(); };
 }
 
 /// <summary>
 /// 入力に基づいてコマンドを積む
 /// </summary>
 void PlayerCommandHandler::Handle() {
-  
+
   // 入力がアクティブなときに、コマンドを積む
   // 移動コマンド
   if (input_->IsLJoystickActive()) {
@@ -65,8 +67,14 @@ void PlayerCommandHandler::Handle() {
   }
 
   // 攻撃コマンド
-  if (input_->PushBottonPressed(XINPUT_GAMEPAD_A)) {
-    CommandPush("BasicAttack");  
+  if (input_->PushBottonPressed(XINPUT_GAMEPAD_X)) {
+    CommandPush("BasicAttack");
+  }
+  if (input_->PushBottonPressed(XINPUT_GAMEPAD_Y)) {
+    CommandPush("StandardAttack");
+  }
+  if (input_->PushBottonPressed(XINPUT_GAMEPAD_B)) {
+    CommandPush("SignatureAttack");
   }
 }
 

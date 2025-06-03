@@ -1,34 +1,34 @@
-#include "PlayerAttackDemoBasic.h"
+#include "PlayerAttackDemoStandard.h"
 #include "../../../../Bullet/Manager/PlayerBulletManager.h"
 #include "../../../playerCore.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
-PlayerAttackDemoBasic::PlayerAttackDemoBasic(PlayerCore *corePtr,
-                                             PlayerBulletManager *bulManagerPtr) {
+PlayerAttackDemoStandard::PlayerAttackDemoStandard(PlayerCore *corePtr,
+                                                   PlayerBulletManager *bulManagerPtr) {
   IMagicAttack::SetPre(corePtr, bulManagerPtr);
 }
 
 /// <summary>
 /// 初期化処理
 /// </summary>
-void PlayerAttackDemoBasic::Init() {}
+void PlayerAttackDemoStandard::Init() {};
 
 /// <summary>
 /// 更新処理
 /// </summary>
-void PlayerAttackDemoBasic::Update() {}
+void PlayerAttackDemoStandard::Update() {}
 
 /// <summary>
 /// リセット
 /// </summary>
-void PlayerAttackDemoBasic::Reset() {}
+void PlayerAttackDemoStandard::Reset() {}
 
 /// <summary>
 /// 攻撃処理
 /// </summary>
-void PlayerAttackDemoBasic::IsAttack() {
+void PlayerAttackDemoStandard::IsAttack() {
   if (bulManager_) {
 
     // Bullet生成
