@@ -134,7 +134,7 @@ protected:
 	//時間変化
    const float_t DELTA_TIME_ = 1.0f / 60.0f;
    //線形補間
-   const float_t INCREASE_T_VALUE_ = 0.01f;
+   const float_t INCREASE_T_VALUE_ = 0.1f;
    //ノックバック距離
    const float_t KNOCK_BACK_DISTANCE_ = 3.0f;
 
@@ -145,6 +145,8 @@ protected:
 	Math::Vector::Vec3 playerPosition_ = {};
 	//方向
     Math::Vector::Vec3 direction_ = {};
+	//プレイヤーへの方向
+    Math::Vector::Vec3 directionToPlayer_ = {};
 	//ビヘイビアツリー
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
 	//攻撃したかどうか

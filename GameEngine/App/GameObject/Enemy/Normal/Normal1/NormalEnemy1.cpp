@@ -31,7 +31,9 @@ void NormalEnemy1::Init() {
 
    // 体力
    parameter_.maxHp_ = 3u;
-
+   parameter_.hp_ = parameter_.maxHp_;
+   //ノックバックの距離
+   parameter_.knockBackDistance_ = 1.0f;
    //ルート
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
@@ -90,14 +92,26 @@ void NormalEnemy1::Update() {
       }
     
       velocity_ = newDirection * speed_;
+
+      // 体力無し
+      if (parameter_.hp_ <= 0) {
+        isAlive_ = false;
+      }
+
+      // プレイヤーへの方向を計算
+      directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+
+      // ノックバック
+      KnockBack();
+      
     }
+
+    // 倒された
+    Killed();
 	// 更新
    TransformUpdate();
 
-   // ノックバック
-   KnockBack();
-   // 倒された
-   Killed();
+   
 
 #ifdef _DEBUG
    //ImGui表示用
@@ -136,9 +150,9 @@ void NormalEnemy1::KnockBack() {
       Math::Vector::Vec3 knockBackDirection = {}; 
         if (isDesidePosition_ == false) {
             knockBackDirection = { .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
-            isDesidePosition_ = true;
             beforeKnockBackPosition_ = translate_;
-            afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection;
+            afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection*parameter_.knockBackDistance_;
+            isDesidePosition_ = true;
             
         }
         //ノックバックの時間
@@ -184,11 +198,20 @@ void NormalEnemy1::DisplayImGui(){
     ImGui::Begin("NormalEnemy1");
 
     if (ImGui::TreeNode("KnockBack") == true) {
+      ImGui::InputFloat3("DirectionToPlayer", &directionToPlayer_.x);
       ImGui::InputFloat("T", &knockbackT_);
         ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
         ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
         ImGui::TreePop();
     }
+
+    if (ImGui::TreeNode("Parameter") == true) {
+      ImGui::SliderInt("MaxHP", &parameter_.maxHp_,0,10);
+      ImGui::SliderInt("HP", &parameter_.hp_,0,10);
+      ImGui::SliderFloat("MaxHP", &parameter_.knockBackDistance_, 0.0, 5.0f);
+      ImGui::TreePop();
+    }
+    
 
     ImGui::Checkbox("isKnockBack", &isKnockBack_);
     ImGui::InputFloat3("Scele", &scale_.x);
