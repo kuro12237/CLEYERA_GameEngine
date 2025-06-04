@@ -64,9 +64,4 @@ public:
   /// </summary>
   void Killed() override;
 
-private:
-  /// <summary>
-  /// ImGui表示用
-  /// </summary>
-  void DisplayImGui();
 };

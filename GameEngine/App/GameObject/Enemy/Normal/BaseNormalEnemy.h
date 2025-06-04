@@ -22,11 +22,6 @@
 class BaseNormalEnemy : public CLEYERA::Component::ObjectComponent {
 protected:
 	/// <summary>
-	/// ImGui表示用
-	/// </summary>
-	virtual void DisplayImGui()=0;
-
-	/// <summary>
 	/// ノックバック
 	/// </summary>
 	virtual void KnockBack() = 0;
