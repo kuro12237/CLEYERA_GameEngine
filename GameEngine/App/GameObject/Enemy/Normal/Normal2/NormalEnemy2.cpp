@@ -75,37 +75,40 @@ void NormalEnemy2::Init() {
 
 void NormalEnemy2::Update() {
 
-    if (isAlive_ == true) {
-        // 弾の更新
-        for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-          bullet->Update();
-        }
-    
-        // 弾の削除
-        bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-    
+  // hp処理
+  hp_->Update();
+  if (hp_->GetIsDead()) {
+  }
 
-        // 向きを計算しモデルを回転させる
-        float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
-        // 回転のオフセット
-        // 元々のモデルの回転が変だったのでこれを足している
-        const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
-        rotate_.y = directionToRotateY + ROTATE_OFFSET;
+  if (isAlive_ == true) {
+    // 弾の更新
+    for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+      bullet->Update();
+    }
 
+    // 弾の削除
+    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
 
-        // ビヘイビアツリーの実行
-        behaviorTree_->Execute(this);
-        // atan2 で回転角を求める（ラジアン）
-        float_t angle = std::atan2(-direction_.z, direction_.x);
-        // 角度を敵の回転に設定
-        rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
-        // 速度を計算
-        Math::Vector::Vec3 newDirection = {};
-        if (isAttack_ == false) {
-          newDirection = direction_;
-        }
-    
-        velocity_ = newDirection * speed_;
+    // 向きを計算しモデルを回転させる
+    float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
+    // 回転のオフセット
+    // 元々のモデルの回転が変だったのでこれを足している
+    const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
+    rotate_.y = directionToRotateY + ROTATE_OFFSET;
+
+    // ビヘイビアツリーの実行
+    behaviorTree_->Execute(this);
+    // atan2 で回転角を求める（ラジアン）
+    float_t angle = std::atan2(-direction_.z, direction_.x);
+    // 角度を敵の回転に設定
+    rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
+    // 速度を計算
+    Math::Vector::Vec3 newDirection = {};
+    if (isAttack_ == false) {
+      newDirection = direction_;
+    }
+
+    velocity_ = newDirection * speed_;
 
     // 体力無し
     if (parameter_.hp_ <= 0) {
@@ -158,6 +161,10 @@ void NormalEnemy2::ImGuiUpdate() {
     ImGui::InputFloat3("Translate", &translate_.x);
     ImGui::InputFloat3("Velocity", &velocity_.x);
 
+    ImGui::Separator();
+    hp_->ImGuiUpdate();
+
+
     ImGui::TreePop();
   }
 }
@@ -182,8 +189,7 @@ void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
   // Player型にキャストできるかをチェック
   if (auto p = std::dynamic_pointer_cast<PlayerCore>(obj)) {
     // Player にぶつかったときの処理
-  //parameter_.hp_ -=p
-
+    // parameter_.hp_ -=p
   }
 }
 
