@@ -153,8 +153,9 @@ void NormalEnemy1::KnockBack() {
             beforeKnockBackPosition_ = translate_;
             afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection*parameter_.knockBackDistance_;
             isDesidePosition_ = true;
-            
         }
+
+
         //ノックバックの時間
         knockBackTime_ += DELTA_TIME_;
         //線形補間

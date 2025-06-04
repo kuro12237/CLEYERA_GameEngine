@@ -82,6 +82,8 @@ void EnemyManager::Update() {
 
     }
 
+    
+
     DisplayImGui();
 #endif // _DEBUG
     
@@ -127,6 +129,13 @@ void EnemyManager::DisplayImGui() {
 	
 	ImGui::Begin("EnemyManager");
    
+    if (ImGui::Button("AllDelete")) {
+          for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
+            // 消す
+            enemy->SetDelete();
+          }
+        }
+
     int32_t normalEnemyNumber = static_cast<int32_t>(enemyList_.size());
         int32_t bossEnemyNumber = static_cast<int32_t>(bossEnemyList_.size());
     ImGui::InputInt("雑魚敵", &normalEnemyNumber);

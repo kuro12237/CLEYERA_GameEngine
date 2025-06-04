@@ -75,6 +75,23 @@ public:
 		this->playerManager_ = playerManager;
 	}
 
+    /// <summary>
+    /// 敵が存在しているかどうか
+    /// </summary>
+    /// <returns></returns>
+    inline bool GetIsExist() const { 
+        //雑魚敵の数を調べる
+        if (enemyList_.size() != 0u) {
+            return true;
+        }
+        //ボス敵の数を調べる
+        if (bossEnemyList_.size() != 0u) {
+            return true;
+        }
+        return false;
+
+    }
+
 private:
 	//プレイヤー管理クラス
     PlayerManager *playerManager_ = nullptr;

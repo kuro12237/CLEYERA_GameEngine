@@ -124,6 +124,14 @@ public:
 	   return isDelete_;
    }
 
+   /// <summary>
+   /// 消す
+   /// </summary>
+   inline void SetDelete() { 
+	   this->isAlive_ = false;
+   }
+
+
 	/// <summary>
    /// 弾を生成
    /// </summary>
