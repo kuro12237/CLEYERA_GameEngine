@@ -3,8 +3,8 @@
 
 class AttackPower {
 public:
-  AttackPower();
-  ~AttackPower();
+  AttackPower() {};
+  ~AttackPower() {};
 
   void Init();
 

@@ -231,6 +231,7 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
+    <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
