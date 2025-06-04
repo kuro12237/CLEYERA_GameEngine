@@ -145,6 +145,8 @@ protected:
 	Math::Vector::Vec3 playerPosition_ = {};
 	//方向
     Math::Vector::Vec3 direction_ = {};
+	//プレイヤーへの方向
+    Math::Vector::Vec3 directionToPlayer_ = {};
 	//ビヘイビアツリー
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
 	//攻撃したかどうか

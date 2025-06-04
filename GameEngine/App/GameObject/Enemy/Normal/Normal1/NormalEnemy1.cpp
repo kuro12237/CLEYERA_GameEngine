@@ -98,6 +98,8 @@ void NormalEnemy1::Update() {
         isAlive_ = false;
       }
 
+      // プレイヤーへの方向を計算
+      directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
 
       // ノックバック
       KnockBack();
@@ -196,6 +198,7 @@ void NormalEnemy1::DisplayImGui(){
     ImGui::Begin("NormalEnemy1");
 
     if (ImGui::TreeNode("KnockBack") == true) {
+      ImGui::InputFloat3("DirectionToPlayer", &directionToPlayer_.x);
       ImGui::InputFloat("T", &knockbackT_);
         ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
         ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);

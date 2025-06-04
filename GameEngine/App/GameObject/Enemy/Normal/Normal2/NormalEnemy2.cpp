@@ -98,6 +98,10 @@ void NormalEnemy2::Update() {
           isAlive_ = false;
         }
 
+        //プレイヤーへの方向を計算
+        directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+
+
         // ノックバック
         KnockBack();
         
@@ -144,7 +148,7 @@ void NormalEnemy2::KnockBack() {
     Math::Vector::Vec3 knockBackDirection = {};
     if (isDesidePosition_ == false) {
       knockBackDirection = {
-          .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+          .x = (1.0f - directionToPlayer_.x), .y = 0.0f, .z = (1.0f - directionToPlayer_.z)};
       beforeKnockBackPosition_ = translate_;
       afterKnockBackPosition_ =
           beforeKnockBackPosition_ + knockBackDirection * parameter_.knockBackDistance_;
@@ -191,12 +195,13 @@ void NormalEnemy2::Killed() {
 
 void NormalEnemy2::DisplayImGui() {
 	ImGui::Begin("NormalEnemy2");
-  if (ImGui::TreeNode("KnockBack") == true) {
-    ImGui::InputFloat("T", &knockbackT_);
-    ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
-    ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
-    ImGui::TreePop();
-  }
+     if (ImGui::TreeNode("KnockBack") == true) {
+          ImGui::InputFloat3("DirectionToPlayer", &directionToPlayer_.x);
+        ImGui::InputFloat("T", &knockbackT_);
+        ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
+        ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
+        ImGui::TreePop();
+    }
     if (ImGui::TreeNode("Parameter") == true) {
           ImGui::SliderInt("MaxHP", &parameter_.maxHp_, 0, 10);
             ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
