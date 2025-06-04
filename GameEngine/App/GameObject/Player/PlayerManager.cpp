@@ -9,7 +9,7 @@ PlayerManager::PlayerManager() {
   commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   projectileManager_ = std::make_unique<PlayerProjectileManager>();
 
-  hp_ = std::make_unique<PlayerHp>();
+  hp_ = std::make_unique<HealthComponent>();
 }
 
 /// <summary>
@@ -40,7 +40,9 @@ void PlayerManager::Init() {
   camera_->SetTarget(core_->GetTranslate());
 
   // Hp
+  hp_->SetName(VAR_NAME(PlayerCore));
   hp_->Init();
+
   //関数セット
   core_->SetHpCalcfunc([this](int32_t attackPower) { hp_->CalcHp(attackPower); });
 }

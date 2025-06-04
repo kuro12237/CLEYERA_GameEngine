@@ -2,8 +2,8 @@
 #include "../Camera/PlayerCamera.h"
 #include "Wall/Wall.h"
 
-#include"Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
-#include"Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
+#include "Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
+#include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
 
 /// <summary>
 /// コンストラク
@@ -15,7 +15,6 @@ PlayerCore::PlayerCore() {
 
   this->friction_ = 0.9f;
   this->mass_ = 20.0f;
-
 }
 
 /// <summary>
@@ -100,24 +99,22 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
   if (!obj) {
     return;
   }
+  //今後dynamicから変更する
 
-    // Wall 型にキャストできるかをチェック
-    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
-      // Wall にぶつかったときの処理
-      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
-          wall->GetCollder().lock());
-      // 押し出し
-      this->translate_ -= aabb->GetAABB().push;
-    }
-  
-
-  if (auto enemyBullet = std::dynamic_pointer_cast<NormalEnemy2Bullet>(obj)) {
-  
-      int power = enemyBullet->GetAttackPower();
-      this->hpCalcFunc_(power);
-
+  // Wall 型にキャストできるかをチェック
+  if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
+    // Wall にぶつかったときの処理
+    auto aabb =
+        std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall->GetCollder().lock());
+    // 押し出し
+    this->translate_ -= aabb->GetAABB().push;
   }
 
+  if (auto enemyBullet = std::dynamic_pointer_cast<NormalEnemy2Bullet>(obj)) {
+
+    int power = enemyBullet->GetAttackPower();
+    this->hpCalcFunc_(power);
+  }
 }
 
 /// <summary>

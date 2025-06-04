@@ -192,7 +192,7 @@
     <ClCompile Include="App\GameObject\Player\Command\PlayerCommandHandler.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
-    <ClCompile Include="App\GameObject\Player\Hp\PlayerHp.cpp" />
+    <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Projectile\PlayerProjectileManager.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
@@ -285,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
+    <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
@@ -320,7 +321,7 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
-    <ClInclude Include="App\GameObject\Player\Hp\PlayerHp.h" />
+    <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
     <ClInclude Include="App\GameObject\Player\Projectile\PlayerProjectileManager.h" />
     <ClInclude Include="App\GameObject\Player\Projectile\PlayerProjectile .h" />
     <ClInclude Include="App\GameObject\Player\Core\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.h" />

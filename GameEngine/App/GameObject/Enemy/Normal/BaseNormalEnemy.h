@@ -12,7 +12,8 @@
 #include "Enemy/Normal/Behavior/NormalEnemyBehaviorNode.h"
 #include "BaseNormalEnemyBullet.h"
 
-
+//
+#include"Component/Hp/HealthComponent.h"
 
 
 /// <summary>
@@ -129,6 +130,16 @@ public:
    /// </summary>
    virtual void GenerateBullet(const uint32_t &selection);
 
+   /// <summary>
+   /// コンストラクタ
+   /// </summary>
+   BaseNormalEnemy() { hp_ = std::make_unique<HealthComponent>(); };
+
+   /// <summary>
+   /// デストラクタ
+   /// </summary>
+   ~BaseNormalEnemy() {};
+
 protected:
    const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 	//時間変化
@@ -181,5 +192,8 @@ protected:
     float_t trackingStartDistance_ = 40.0f;
 	//スピード
     float_t speed_ = 0.1f;
+
+	std::string hpJsonDirectory_ = "Enemys/";
+	std::unique_ptr<HealthComponent> hp_=nullptr;
 
 };

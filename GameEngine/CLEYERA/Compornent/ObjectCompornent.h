@@ -78,10 +78,10 @@ public:
 
   void SetName(std::string name) { name_ = name; }
 
-   void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
-   void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
-   void SetTranslate(const Math::Vector::Vec3 & v) { translate_ = v; }
-   void SetForce(const Math::Vector::Vec3 &v) { force_ = v; }
+  void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
+  void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
+  void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
+  void SetForce(const Math::Vector::Vec3 &v) { force_ = v; }
 
   void SetModelHandle(uint32_t handle) {
     modelHandle_ = handle;
@@ -100,6 +100,11 @@ private:
   uint32_t modelHandle_ = 0;
 
 protected:
+  /// <summary>
+  /// 基礎機能表示(内容Transform,json,collider)
+  /// </summary>
+  void BaseParamImGuiDisply();
+
   Manager::ModelManager *modelManager_ = nullptr;
   Manager::ObjectManager *objectManager_ = nullptr;
   Manager::RenderManager *renderManager_ = nullptr;

@@ -8,7 +8,7 @@
 
 #include "Projectile/PlayerProjectileManager.h"
 
-#include"Hp/PlayerHp.h"
+#include"Component/Hp/HealthComponent.h"
 
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {
@@ -56,6 +56,7 @@ private:
   // 発射物管理クラス
   std::unique_ptr<PlayerProjectileManager> projectileManager_;
 
-  std::unique_ptr<PlayerHp> hp_;
+  //Hp
+  std::unique_ptr<HealthComponent> hp_;
 
 };

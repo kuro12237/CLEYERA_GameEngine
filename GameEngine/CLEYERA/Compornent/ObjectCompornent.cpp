@@ -39,28 +39,7 @@ void CLEYERA::Component::ObjectComponent::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
-    if (ImGui::TreeNode("Transform")) {
-
-      ImGui::DragFloat3("Scale", &scale_.x, 0.01f);
-      ImGui::DragFloat3("Rotate", &rotate_.x, 0.01f);
-      ImGui::DragFloat3("Translate", &translate_.x, 0.01f);
-      ImGui::TreePop();
-    }
-
-    if (ImGui::TreeNode("force")) {
-      ImGui::DragFloat("friction", &friction_, 0.1f, 0.0f, 1.0f);
-      ImGui::DragFloat("mass", &mass_, 0.1f, 0.1f, 20.0f);
-      ImGui::DragFloat("bounce", &bounceFactor_);
-      ImGui::TreePop();
-    }
-
-    if (collider_) {
-      collider_->ColliderImGuiUpdate(name_);
-    }
-
-    if (jsonSystem_) {
-      jsonSystem_->JsonImGuiUpdate();
-    }
+  
 
     ImGui::TreePop();
   }
@@ -96,6 +75,32 @@ void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &p
 
   translate_.y = pos.y;
   translate_.y += 1.0f;
+}
+
+
+void CLEYERA::Component::ObjectComponent::BaseParamImGuiDisply() {
+  if (ImGui::TreeNode("Transform")) {
+
+    ImGui::DragFloat3("Scale", &scale_.x, 0.01f);
+    ImGui::DragFloat3("Rotate", &rotate_.x, 0.01f);
+    ImGui::DragFloat3("Translate", &translate_.x, 0.01f);
+    ImGui::TreePop();
+  }
+
+  if (ImGui::TreeNode("force")) {
+    ImGui::DragFloat("friction", &friction_, 0.1f, 0.0f, 1.0f);
+    ImGui::DragFloat("mass", &mass_, 0.1f, 0.1f, 20.0f);
+    ImGui::DragFloat("bounce", &bounceFactor_);
+    ImGui::TreePop();
+  }
+
+  if (collider_) {
+    collider_->ColliderImGuiUpdate(name_);
+  }
+
+  if (jsonSystem_) {
+    jsonSystem_->JsonImGuiUpdate();
+  }
 }
 
 void CLEYERA::Component::ObjectComponent::CreateCollider(Util::Collider::ColliderType type) {
