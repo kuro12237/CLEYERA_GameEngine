@@ -25,6 +25,16 @@ protected:
 	/// </summary>
 	virtual void DisplayImGui()=0;
 
+	/// <summary>
+	/// ノックバック
+	/// </summary>
+	virtual void KnockBack() = 0;
+
+	/// <summary>
+	/// 倒された
+	/// </summary>
+	virtual void Killed() = 0;
+
 public:
    /// <summary>
    /// プレイヤーの座標
@@ -107,13 +117,28 @@ public:
 	   this->isAttack_ = isAttack;
    }
 
+   /// <summary>
+   /// 消えているかどうかを取得
+   /// </summary>
+   inline bool GetIsDelete() const{ 
+	   return isDelete_;
+   }
+
 	/// <summary>
    /// 弾を生成
    /// </summary>
    virtual void GenerateBullet(const uint32_t &selection);
 
-
 protected:
+   const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
+	//時間変化
+   const float_t DELTA_TIME_ = 1.0f / 60.0f;
+   //線形補間
+   const float_t INCREASE_T_VALUE_ = 0.01f;
+   //ノックバック距離
+   const float_t KNOCK_BACK_DISTANCE_ = 3.0f;
+
+ protected:
 	//弾のリスト 
 	std::list<std::shared_ptr<BaseNormalEnemyBullet>> bullets_;
 	// プレイヤー座標
@@ -124,6 +149,26 @@ protected:
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
 	//攻撃したかどうか
     bool isAttack_ = false;
+
+	//ノックバック
+	bool isKnockBack_ = false;
+	//時間
+	float_t knockBackTime_ = 0.0f;
+	//線形補間
+    float_t knockbackT_ = 0.0f;
+	//方向を決める
+    bool isDesidePosition_ = false;
+
+	//ノックバック前の座標
+	Math::Vector::Vec3 beforeKnockBackPosition_ = {};
+    // ノックバック後の座標
+    Math::Vector::Vec3 afterKnockBackPosition_ = {};
+
+
+	//生存かどうか
+	bool isAlive_ = true;
+	//消えるかどうか
+    bool isDelete_ = false;
 
 protected:
 	// パラメーター

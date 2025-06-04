@@ -62,6 +62,9 @@ void EnemyManager::Update() {
 		enemy->Update();
 	}
 
+    // 雑魚敵の削除
+    enemyList_.remove_if([](const std::shared_ptr<BaseNormalEnemy> &enemy) { return enemy->GetIsDelete(); });
+
 	for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
         // プレイヤーの座標を設定
         enemy->SetPlayerPosition(playerPosition_);
@@ -124,6 +127,12 @@ void EnemyManager::DisplayImGui() {
 	
 	ImGui::Begin("EnemyManager");
    
+    int32_t normalEnemyNumber = static_cast<int32_t>(enemyList_.size());
+        int32_t bossEnemyNumber = static_cast<int32_t>(bossEnemyList_.size());
+    ImGui::InputInt("雑魚敵", &normalEnemyNumber);
+    ImGui::InputInt("ボス敵", &bossEnemyNumber);
+
+
 	if (ImGui::TreeNode("Player") == true) {
            ImGui::InputFloat3("Position", &playerPosition_.x);
 		ImGui::TreePop();

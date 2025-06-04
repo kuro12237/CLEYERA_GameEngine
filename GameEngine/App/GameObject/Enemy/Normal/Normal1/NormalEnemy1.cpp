@@ -1,5 +1,6 @@
 #include "NormalEnemy1.h"
 
+#include "Utility/Easing.h"
 
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
@@ -27,6 +28,9 @@ void NormalEnemy1::Init() {
 
    //スケールの設定
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
+
+   // 体力
+   parameter_.maxHp_ = 3u;
 
    //ルート
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
@@ -66,28 +70,34 @@ void NormalEnemy1::Init() {
 }
 
 void NormalEnemy1::Update() {
-
-  // 弾の更新
-  for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-    bullet->Update();
-  }
-
-  // 弾の削除
-  bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-
-  // ビヘイビアツリーの実行
-  behaviorTree_->Execute(this);
-
-// 速度を計算
-  Math::Vector::Vec3 newDirection = {};
-  if (isAttack_ == false) {
-    newDirection = direction_;
-  }
-
-  velocity_ = newDirection * speed_;
+  // 生存時
+    if (isAlive_ == true) {
+      // 弾の更新
+      for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+        bullet->Update();
+      }
+    
+      // 弾の削除
+      bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    
+      // ビヘイビアツリーの実行
+      behaviorTree_->Execute(this);
+    
+      // 速度を計算
+      Math::Vector::Vec3 newDirection = {};
+      if (isAttack_ == false) {
+        newDirection = direction_;
+      }
+    
+      velocity_ = newDirection * speed_;
+    }
 	// 更新
    TransformUpdate();
 
+   // ノックバック
+   KnockBack();
+   // 倒された
+   Killed();
 
 #ifdef _DEBUG
    //ImGui表示用
@@ -113,10 +123,79 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
 }
 
+void NormalEnemy1::KnockBack() {
+
+
+    // ランダムの値で位置を決める
+  // SRは固定
+  std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
+    // ランダムエンジン
+    std::random_device seedGenerator;
+    std::mt19937 randomEngine(seedGenerator());
+    if (isKnockBack_ == true) {
+      Math::Vector::Vec3 knockBackDirection = {}; 
+        if (isDesidePosition_ == false) {
+            knockBackDirection = { .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+            isDesidePosition_ = true;
+            beforeKnockBackPosition_ = translate_;
+            afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection;
+            
+        }
+        //ノックバックの時間
+        knockBackTime_ += DELTA_TIME_;
+        //線形補間
+        knockbackT_ += INCREASE_T_VALUE_;
+        //座標を線形補間でやるよ！
+        translate_ = Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_,knockbackT_);
+        //knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
+
+        //制限を超えたら0に戻る
+        if (knockbackT_>1.0f&&knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+          knockBackTime_ = 0.0f;
+          knockbackT_ = 0.0f;
+          isKnockBack_ = false;
+          isDesidePosition_ = false;
+        }
+
+
+        
+    }
+
+}
+
+void NormalEnemy1::Killed() {
+  if (isAlive_ == false) {
+    // 縮小
+    const float_t SCALE_DOWN = 0.05f;
+    scale_ -= {SCALE_DOWN, SCALE_DOWN, SCALE_DOWN};
+
+    if (scale_.x < 0.0f && scale_.y < 0.0f && scale_.z < 0.0f) {
+      // スケール固定
+      scale_.x = 0.0f;
+      scale_.y = 0.0f;
+      scale_.z = 0.0f;
+      // 消す
+      isDelete_ = true;
+    }
+  }
+}
+
 void NormalEnemy1::DisplayImGui(){
-	ImGui::Begin("NormalEnemy1");
-	ImGui::InputFloat3("Translate", &translate_.x);
-	ImGui::InputFloat3("Velocity", &velocity_.x);
-	ImGui::End();
+    ImGui::Begin("NormalEnemy1");
+
+    if (ImGui::TreeNode("KnockBack") == true) {
+      ImGui::InputFloat("T", &knockbackT_);
+        ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
+        ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
+        ImGui::TreePop();
+    }
+
+    ImGui::Checkbox("isKnockBack", &isKnockBack_);
+    ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::Checkbox("IsAlive", &isAlive_);
+    ImGui::Checkbox("IsDelete", &isDelete_);
+    ImGui::InputFloat3("Translate", &translate_.x);
+    ImGui::InputFloat3("Velocity", &velocity_.x);
+    ImGui::End();
 }
 
