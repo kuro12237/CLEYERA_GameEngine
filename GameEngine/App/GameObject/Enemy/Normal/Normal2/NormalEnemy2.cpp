@@ -100,10 +100,10 @@ void NormalEnemy2::Update() {
 
         // ノックバック
         KnockBack();
-        // 倒された
-        Killed();
+        
     }
-
+    // 倒された
+    Killed();
 	// 更新
     TransformUpdate();
     
