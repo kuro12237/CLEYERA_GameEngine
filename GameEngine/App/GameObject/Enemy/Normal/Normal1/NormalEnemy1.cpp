@@ -149,7 +149,8 @@ void NormalEnemy1::KnockBack() {
     if (isKnockBack_ == true) {
       Math::Vector::Vec3 knockBackDirection = {}; 
         if (isDesidePosition_ == false) {
-            knockBackDirection = { .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+        knockBackDirection = {
+            .x = (1.0f - directionToPlayer_.x), .y = 0.0f, .z = (1.0f - directionToPlayer_.z)};
             beforeKnockBackPosition_ = translate_;
             afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection*parameter_.knockBackDistance_;
             isDesidePosition_ = true;
@@ -165,7 +166,7 @@ void NormalEnemy1::KnockBack() {
         knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
         //制限を超えたら0に戻る
-        if (knockbackT_>1.0f&&knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+        if (knockbackT_>=1.0f&&knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
           knockBackTime_ = 0.0f;
           knockbackT_ = 0.0f;
           isKnockBack_ = false;
