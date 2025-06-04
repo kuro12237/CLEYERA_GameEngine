@@ -27,6 +27,10 @@ void NormalEnemy2::Init() {
    //スケールの設定
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
 
+   //体力
+   parameter_.maxHp_ = 3u;
+
+
    //ルート
    //セレクターは一つでもSucceesすればいいよ
    std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
