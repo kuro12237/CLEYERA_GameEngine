@@ -93,7 +93,7 @@ void FirstBossEnemy::Update() {
 
 
 void FirstBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
-
+  other;
   //if (auto obj = other.lock()) {
   //  // Wall 型にキャストできるかをチェック
   //  if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
