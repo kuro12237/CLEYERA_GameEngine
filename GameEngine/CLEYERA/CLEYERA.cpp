@@ -79,8 +79,8 @@ void Engine::ImGuiUpdate() {
   debugCamera_->ImGuiUpdate();
 
   grid_->ImGuiUpdate();
-  // objectManager_->ImGuiUpdate();
   colliderSystem_->ImGuiUpdate();
+ 
 }
 
 void Engine::PhysiceForcesUpdate() { gravityManager_->Update(); }
@@ -92,9 +92,9 @@ void Engine::Update() {
   terrain_->CheckObjct();
   colliderSystem_->Update();
   objectManager_->Update();
-
-  lightManager_->Update();
   grid_->Update();
+  lightManager_->Update();
+
   debugCamera_->Update();
 }
 
