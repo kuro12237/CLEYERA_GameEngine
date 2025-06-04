@@ -79,6 +79,15 @@ void NormalEnemy2::Update() {
         // 弾の削除
         bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
     
+
+        // 向きを計算しモデルを回転させる
+        float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
+        // 回転のオフセット
+        // 元々のモデルの回転が変だったのでこれを足している
+        const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
+        rotate_.y = directionToRotateY + ROTATE_OFFSET;
+
+
         // ビヘイビアツリーの実行
         behaviorTree_->Execute(this);
         // atan2 で回転角を求める（ラジアン）
