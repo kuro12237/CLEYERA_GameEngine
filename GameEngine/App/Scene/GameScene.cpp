@@ -55,7 +55,7 @@ void GameScene::Init() {
   InitRaytracing();
 }
 
-void GameScene::Update() {
+void GameScene::Update([[maybe_unused]]GameManager *g) {
 
   for (auto obj : enviromentObjs_) {
     obj->Update();

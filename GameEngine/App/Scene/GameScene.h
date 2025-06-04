@@ -15,7 +15,7 @@ public:
 
   void Init() override;
 
-  void Update() override;
+  void Update(GameManager *g) override;
 
 private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;

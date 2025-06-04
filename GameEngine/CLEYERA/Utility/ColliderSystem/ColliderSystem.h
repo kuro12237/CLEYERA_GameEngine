@@ -31,6 +31,8 @@ public:
 
   void Update();
 
+  void Clear() { objectList_.clear(); }
+
   void PushCollider(std::weak_ptr<Component::ObjectComponent> collider) {
     objectList_.push_back(collider);
   }

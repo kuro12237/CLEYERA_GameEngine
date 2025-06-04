@@ -16,9 +16,6 @@ void PlayerHealth::Init(float initHealth) { health_ = initHealth; }
 void PlayerHealth::Update() {
 
 #ifdef _DEBUG
-  if (ImGui::TreeNode("PlayerHealth")) {
-    ImGui::Text("Health = %.1f", health_);
-    ImGui::TreePop();
-  }
+
 #endif // _DEBUG
 }

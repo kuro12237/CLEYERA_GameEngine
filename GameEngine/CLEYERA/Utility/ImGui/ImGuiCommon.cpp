@@ -44,3 +44,7 @@ void CLEYERA::Utility::ImGuiCommon::Render() {
    ImGui::Render();
    ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), commandList_);
 }
+
+void CLEYERA::Utility::ImGuiCommon::End() {
+  ImGui_ImplDX12_RenderDrawData(ImGui::GetDrawData(), commandList_);
+}

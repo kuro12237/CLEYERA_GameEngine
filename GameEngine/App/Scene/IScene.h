@@ -15,6 +15,8 @@
 #include"../../CLEYERA/CLEYERA.h"
 #include"Utility/Json/GlobalVariables.h"
 
+class GameManager;
+
 /// <summary>
 /// Scene抽象クラス
 /// </summary>
@@ -25,7 +27,7 @@ class SceneCompornent {
 
    virtual void Init() = 0;
 
-   virtual void Update() = 0;
+   virtual void Update(GameManager * g) = 0;
 
    virtual void ImGuiUpdate();
 
@@ -51,6 +53,8 @@ class SceneCompornent {
    CLEYERA::Manager::Terrain *terrain_ = nullptr;
    CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
    CLEYERA::Manager::ColliderSystem *collidersystem_ = nullptr;
+
+
 
    std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 

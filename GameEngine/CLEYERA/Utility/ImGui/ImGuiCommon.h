@@ -23,6 +23,8 @@ class ImGuiCommon {
 
    void Render();
 
+   void End();
+
  private:
    Base::Win::WinApp *winApp_ = nullptr;
    Base::DX::DXManager *dxManager_ = nullptr;

@@ -7,7 +7,7 @@ GameManager::GameManager() {
 
   engine_->Init();
 
-  scene_ = std::make_unique<GameScene>();
+  scene_ = std::make_unique<EnemyDebugScene>();
   auto raytracingManager = engine_->GetRaytracingManager();
 
   scene_->SetRaytracingManager(raytracingManager);
@@ -32,9 +32,22 @@ void GameManager::Run() {
     engine_->Begin();
     auto swap = CLEYERA::Base::DX::DXManager::GetInstance()->GetSwapChain();
 
-    imGuiManager->Begin();
-
 #pragma region ImGui
+
+#pragma endregion
+
+#pragma region 更新
+
+    engine_->PhysiceForcesUpdate();
+
+    scene_->Update(this);
+
+    if (isChange_) {
+      isChange_ = false;
+      continue;
+    }
+
+    imGuiManager->Begin();
 
 #ifdef _DEBUG
 
@@ -43,13 +56,6 @@ void GameManager::Run() {
 
 #endif // _DEBUG
 
-#pragma endregion
-
-#pragma region 更新
-
-    engine_->PhysiceForcesUpdate();
-
-    scene_->Update();
     scene_->RaytracigTransfar();
 
     CLEYERA::Manager::CameraManager::GetInstance()->Update();
@@ -120,4 +126,25 @@ void GameManager::Run() {
   scene_.reset();
 
   engine_->Finalize();
+}
+
+void GameManager::ChangeScene(std::unique_ptr<SceneCompornent> newScene) {
+
+  CLEYERA::Manager::ColliderSystem::GetInstance()->Clear();
+  CLEYERA::Manager::GravityManager::GetInstance()->Clear();
+  scene_.reset();
+
+  scene_ = std::move(newScene);
+  auto raytracingManager = engine_->GetRaytracingManager();
+
+  scene_->SetRaytracingManager(raytracingManager);
+
+  scene_->Init();
+
+  scene_->Update(this);
+
+  engine_->End();
+
+  this->isChange_ = true;
+  return;
 }

@@ -18,7 +18,6 @@ void CLEYERA::Util::Collider::AABBCollider::Create() {
 
   Util::Collider::system::Func::MakeLinesFromAABB(positions_, aabb_.min, aabb_.max);
 
-  line_->Update();
 }
 
 void CLEYERA::Util::Collider::AABBCollider::Update() {

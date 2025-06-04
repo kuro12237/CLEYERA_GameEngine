@@ -15,6 +15,8 @@ void ImGuiManager::Begin() { common_.lock()->Begin(); }
 
 void ImGuiManager::Render() { common_.lock()->Render(); }
 
+void ImGuiManager::End() { common_.lock()->End(); }
+
 void ImGuiManager::BeginParamsList() {
 
    ImGui::SetNextWindowPos(ImVec2(1280-320, 0), ImGuiCond_Always);

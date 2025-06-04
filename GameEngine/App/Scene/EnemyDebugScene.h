@@ -9,6 +9,8 @@
 #include "IScene.h"
 #include "Player/PlayerManager.h"
 #include "Enemy/EnemyManager.h"
+#include"../GameManager/GameManager.h"
+#include"GameScene.h"
 
 /// <summary>
 /// 敵のデバッグシーン
@@ -28,12 +30,14 @@ class EnemyDebugScene : public SceneCompornent {
    /// <summary>
    /// 更新
    /// </summary>
-   void Update() override;
+   void Update(GameManager *g) override;
 
    /// <summary>
    /// デストラクタ
    /// </summary>
    ~EnemyDebugScene()override=default;
+
+   void ImGuiUpdate()override;
 
  private:
 	//プレイヤー管理クラス
@@ -41,5 +45,5 @@ class EnemyDebugScene : public SceneCompornent {
 	//敵管理クラス
     std::shared_ptr<EnemyManager> enemyManager_ = nullptr;
 
-
+	bool changeScene_ = false;
 };

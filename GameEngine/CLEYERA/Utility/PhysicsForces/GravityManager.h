@@ -23,6 +23,8 @@ class GravityManager {
 
    void RemoveData();
 
+   void Clear() { return objs_.clear(); }
+
  private:
    std::list<std::weak_ptr<Component::ObjectComponent>> objs_;
 
