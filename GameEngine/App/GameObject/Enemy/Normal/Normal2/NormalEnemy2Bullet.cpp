@@ -1,6 +1,6 @@
 #include "NormalEnemy2Bullet.h"
-#include"Player/Core/playerCore.h"
-#include"Wall/Wall.h"
+#include "Player/Core/playerCore.h"
+#include "Wall/Wall.h"
 
 void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPositio) {
@@ -29,6 +29,13 @@ void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
   // あたりはんてい関数セット
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+
+
+  // 攻撃力
+  attackPower_ = std::make_unique<AttackPower>();
+  attackPower_->Init();
+  // jsonで変更できるように
+  attackPower_->SetPower(10);
 }
 
 void NormalEnemy2Bullet::Update() {
@@ -52,7 +59,7 @@ void NormalEnemy2Bullet::Update() {
 
 void NormalEnemy2Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
-    auto obj = other.lock();
+  auto obj = other.lock();
 
   if (!obj) {
     return;
@@ -61,14 +68,13 @@ void NormalEnemy2Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
   // Wall 型にキャストできるかをチェック
   if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
 
-      isDelete_ = true;
+    isDelete_ = true;
   }
 
   if (auto enemyBullet = std::dynamic_pointer_cast<PlayerCore>(obj)) {
 
     isDelete_ = true;
   }
-
 }
 
 void NormalEnemy2Bullet::DisplayImGui() {

@@ -132,6 +132,18 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
     // 押し出し
     this->translate_ -= aabb->GetAABB().push;
   }
+
+  // bullet1 型にキャストできるかをチェック
+  if (auto bullet1 = std::dynamic_pointer_cast<NormalEnemy1Bullet>(obj)) {
+
+    hpCalcFunc_(bullet1->GetAttackPower());
+  }
+
+  // bullet2 型にキャストできるかをチェック
+  if (auto bullet2 = std::dynamic_pointer_cast<NormalEnemy2Bullet>(obj)) {
+
+    hpCalcFunc_(bullet2->GetAttackPower());
+  }
 }
 
 /// <summary>

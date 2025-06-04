@@ -7,6 +7,7 @@
  */
 
 #include "CLEYERA.h"
+#include "Component/AttackPower/AttackPower.h"
 #include "Enemy/Normal/BaseNormalEnemyBullet.h"
 
 /// <summary>
@@ -35,15 +36,13 @@ public:
   /// </summary>
   ~NormalEnemy2Bullet() = default;
 
-  
   void OnCollision(std::weak_ptr<ObjectComponent> other);
 
-
 #pragma region Get
-
-  int32_t GetAttackPower() { return attackPower_; }
+  int32_t GetAttackPower() { return attackPower_->GetPower(); }
 
 #pragma endregion
+
 
 private:
   /// <summary>
@@ -68,8 +67,5 @@ private:
   // 表示時間
   float_t displayTime_ = 0.0f;
 
-  /// <summary>
-  /// 攻撃力
-  /// </summary>
-  int32_t attackPower_ = 10;
+  std::unique_ptr<AttackPower> attackPower_ = nullptr;
 };
