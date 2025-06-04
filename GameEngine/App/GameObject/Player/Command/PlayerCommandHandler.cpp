@@ -65,7 +65,7 @@ void PlayerCommandHandler::Handle() {
   }
 
   // 攻撃コマンド
-  if (input_->PushBottonPressed(XINPUT_GAMEPAD_A)) {
+  if (input_->PushBottonPressed(XINPUT_GAMEPAD_A) || input_->PushKey(DIK_RETURN)) {
     CommandPush("BasicAttack");  
   }
 }

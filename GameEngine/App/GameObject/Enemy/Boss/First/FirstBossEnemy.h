@@ -33,4 +33,8 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// デストラクタ
    /// </summary>
    ~FirstBossEnemy() override = default;
+
+   void OnCollision(std::weak_ptr<ObjectComponent> other);
+
+
 };
