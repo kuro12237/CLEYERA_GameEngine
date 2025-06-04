@@ -57,10 +57,6 @@ public:
   void ImGuiUpdate() override;
 
 private:
-  /// <summary>
-  /// ImGUiの表示
-  /// </summary>
-  void DisplayImGui();
 
   /// <summary>
   /// Luaの読み込み

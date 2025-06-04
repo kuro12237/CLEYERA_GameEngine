@@ -84,7 +84,6 @@ void EnemyManager::Update() {
       GenerateNormalEnemy2({0, 0, 0});
     }
 
-  DisplayImGui();
 #endif // _DEBUG
 }
 
@@ -124,29 +123,6 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   bossEnemyList_.push_back(std::move(enemy));
 }
 
-
-void EnemyManager::DisplayImGui() {
-
-	ImGui::Begin("EnemyManager");
-
-    if (ImGui::Button("AllDelete")) {
-          for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
-            // 消す
-            enemy->SetDelete();
-          }
-        }
-
-    int32_t normalEnemyNumber = static_cast<int32_t>(enemyList_.size());
-        int32_t bossEnemyNumber = static_cast<int32_t>(bossEnemyList_.size());
-    ImGui::InputInt("雑魚敵", &normalEnemyNumber);
-    ImGui::InputInt("ボス敵", &bossEnemyNumber);
-
-  if (ImGui::TreeNode("Player") == true) {
-    ImGui::InputFloat3("Position", &playerPosition_.x);
-    ImGui::TreePop();
-  }
-  ImGui::End();
-}
 
 void EnemyManager::LoadEnemy2DataFromLua() {
   // translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
