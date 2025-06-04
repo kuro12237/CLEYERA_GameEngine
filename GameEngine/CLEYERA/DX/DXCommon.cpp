@@ -203,7 +203,7 @@ void CLEYERA::Base::DX::DXCommon::PostDraw() {
    barriers_[0]->SetBarrierState(0, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
    barriers_[0]->Barrier();
 
-   HRESULT hr = commandList->Close();
+ [[maybe_unused]] HRESULT hr = commandList->Close();
    assert(SUCCEEDED(hr));
 
    queue->ExecuteCommandLists(1, list);

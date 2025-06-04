@@ -28,6 +28,19 @@ void PlayerCamera::Init()
 
 	CameraChange();
 	this->SetImGuiFunc(std::bind(&PlayerCamera::ImGuiFunc, this));
+
+	
+   // jsonのファイル等ヲ作成
+        this->CreateJsonSystem("PlayerCamera/");
+
+        // jsonに読み書きする変数の設定
+        SetValue<Math::Vector::Vec3>("rotate", rotate_);
+        rotate_ = GetValue<Math::Vector::Vec3>("rotate");
+        SetValue<Math::Vector::Vec3>("translate", translate_);
+        translate_ = GetValue<Math::Vector::Vec3>("translate");
+        SetValue<Math::Vector::Vec3>("offset", offset_);
+        offset_ = GetValue<Math::Vector::Vec3>("offset");
+
 }
 
 
@@ -107,5 +120,10 @@ void PlayerCamera::LoadCameraDataFromLua()
 /// </summary>
 void PlayerCamera::ImGuiFunc()
 {
-	ImGui::DragFloat3("Offset", &offset_.x, 0.1f);
+	//ImGui::DragFloat3("Offset", &offset_.x, 0.1f);
+
+  // jsonに読み書きする変数の設定
+  rotate_ = GetValue<Math::Vector::Vec3>("rotate");
+  translate_ = GetValue<Math::Vector::Vec3>("translate");
+  offset_ = GetValue<Math::Vector::Vec3>("offset");
 }

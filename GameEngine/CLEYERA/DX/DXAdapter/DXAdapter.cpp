@@ -13,7 +13,7 @@ void DXAdapter::Create() {
                        IID_PPV_ARGS(&adapter_)) != DXGI_ERROR_NOT_FOUND;
        i++) {
     DXGI_ADAPTER_DESC3 adapterDesc{};
-    HRESULT hr = adapter_->GetDesc3(&adapterDesc);
+    [[maybe_unused]] HRESULT hr = adapter_->GetDesc3(&adapterDesc);
     assert(SUCCEEDED(hr));
 
     if (!(adapterDesc.Flags & DXGI_ADAPTER_FLAG3_SOFTWARE)) {

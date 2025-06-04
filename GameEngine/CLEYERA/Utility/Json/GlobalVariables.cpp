@@ -219,13 +219,14 @@ void CLEYERA::Manager::GlobalVariables::ImGuiUpdate(const std::string name) {
          } // Vector3の値を保持している場合
          else if (std::holds_alternative<Vector3>(item.value)) {
             Vector3 *ptr = std::get_if<Vector3>(&item.value);
-            ImGui::DragFloat3(itemName.c_str(), &ptr->x, -10.0f, 10.0f);
+            ImGui::DragFloat3(itemName.c_str(), &ptr->x, -0.10f, 0.1f);
          } // Vector4の値を保持している場合
          else if (std::holds_alternative<Vector4>(item.value)) {
             Vector4 *ptr = std::get_if<Vector4>(&item.value);
             ImGui::ColorEdit4(itemName.c_str(), reinterpret_cast<float *>(ptr));
          }
       }
+
 
       ImGui::Separator();
       

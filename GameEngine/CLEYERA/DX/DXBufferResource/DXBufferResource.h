@@ -209,14 +209,15 @@ template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_T
    ResourceDesc.SampleDesc.Count = 1;
    ResourceDesc.Layout = D3D12_TEXTURE_LAYOUT_ROW_MAJOR;
 
-   HRESULT hr = {};
+   [[maybe_unused]] HRESULT hr = {};
    hr = device_->CreateCommittedResource(&heapProps, D3D12_HEAP_FLAG_NONE, &ResourceDesc, state, nullptr, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
 }
 
 template <typename T> inline void DXBufferResource<T>::CreateBuffer(D3D12_HEAP_PROPERTIES heapParam, D3D12_HEAP_FLAGS HeapFlags, D3D12_RESOURCE_DESC pDesc, D3D12_RESOURCE_STATES state,D3D12_CLEAR_VALUE *value) {
 
-   HRESULT hr = device_->CreateCommittedResource(&heapParam, HeapFlags, &pDesc, state, value, IID_PPV_ARGS(&buffer_));
+   [[maybe_unused]] HRESULT hr = device_->CreateCommittedResource(
+      &heapParam, HeapFlags, &pDesc, state, value, IID_PPV_ARGS(&buffer_));
    assert(SUCCEEDED(hr));
 }
 
