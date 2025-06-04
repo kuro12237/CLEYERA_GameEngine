@@ -55,10 +55,10 @@ void NormalEnemy1Bullet::Update() {
   TransformUpdate();
 
 #ifdef _DEBUG
-  ImGui::Begin("Bullet");
-  ImGui::InputFloat3("Translate_", &translate_.x);
-  ImGui::InputFloat("T", &t_);
-  ImGui::End();
+  //ImGui::Begin("Bullet");
+  //ImGui::InputFloat3("Translate_", &translate_.x);
+  //ImGui::InputFloat("T", &t_);
+  //ImGui::End();
 #endif // _DEBUG
 }
 

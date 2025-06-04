@@ -73,18 +73,18 @@ void EnemyManager::Update() {
     enemy->Update();
   }
 
-#ifdef _DEBUG
-
-    if (ImGui::Button("enemy1Spown"))
-    {
-      GenerateNormalEnemy1({0, 0, 0});
-
-    }
-    if (ImGui::Button("enemy2Spown")) {
-      GenerateNormalEnemy2({0, 0, 0});
-    }
-
-#endif // _DEBUG
+//#ifdef _DEBUG
+//
+//    if (ImGui::Button("enemy1Spown"))
+//    {
+//      GenerateNormalEnemy1({0, 0, 0});
+//
+//    }
+//    if (ImGui::Button("enemy2Spown")) {
+//      GenerateNormalEnemy2({0, 0, 0});
+//    }
+//
+//#endif // _DEBUG
 }
 
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {

@@ -17,6 +17,9 @@ void CLEYERA::Graphics::RaytracingManager::PreRaytracing() {
    barrier_.Transition.StateAfter = D3D12_RESOURCE_STATE_COPY_DEST;
    barrier_.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
    commandManager_->Barrier(barrier_);
+
+
+
 }
 
 void CLEYERA::Graphics::RaytracingManager::PostRaytracing() {

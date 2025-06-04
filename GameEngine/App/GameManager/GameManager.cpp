@@ -70,8 +70,8 @@ void GameManager::Run() {
         swap.lock()->GetSwapChainResource(backBufferIndex_));
     raytracingManager.lock()->PreRaytracing();
 
-    //commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
-    //commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+    commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+    commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
     //scene_->Render();
     //CLEYERA::Manager::CameraManager::GetInstance()->BindComputeCommand(1);
@@ -80,8 +80,17 @@ void GameManager::Run() {
 
     //// レイトレのoutput結果をレンダーターゲットにコピー
     //swap.lock()->RTVCopyBuf(raytracingManager.lock()->GetOutputResource());
+    
+    auto command = CLEYERA::Base::DX::DXCommandManager::GetInstace();
+    auto handle =
+        CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_);
+    auto dsvhandle =
+        CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetDSVCPUHandle(0);
+
     raytracingManager.lock()->PostRaytracing();
 
+    command->ClearRenderTargetView(handle, {1.0f, 0.0f, 0.0f, 1.0f});
+    command->ClearDepthStencilView(dsvhandle, D3D12_CLEAR_FLAG_STENCIL);
 #pragma endregion
 
 #pragma region ラスタ描画

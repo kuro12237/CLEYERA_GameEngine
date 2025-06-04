@@ -78,8 +78,8 @@ void NormalEnemy2Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
 }
 
 void NormalEnemy2Bullet::DisplayImGui() {
-  ImGui::Begin("Bullet2");
+  /*ImGui::Begin("Bullet2");
   ImGui::InputFloat3("Direction", &direction_.x);
   ImGui::InputFloat3("Position", &translate_.x);
-  ImGui::End();
+  ImGui::End();*/
 }
