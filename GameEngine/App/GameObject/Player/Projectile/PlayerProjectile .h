@@ -25,7 +25,7 @@ public:
   /// <summary>
   /// 更新処理
   /// </summary>
-  void Update() override {}
+  void Update() override;
 
 #pragma region Accessor
 
@@ -38,7 +38,7 @@ public:
   inline void SetPosition(const Math::Vector::Vec3 &pos) { translate_ = pos; }
 
   // 速度の設定
-  inline void SetVelocity(const Math::Vector::Vec3 &vel) { force_ = vel; }
+  inline void SetVelocity(const Math::Vector::Vec3 &vel) { velocity_ = vel; }
 
   // 起動中か
   inline bool IsActive() const { return isActive_; }
@@ -49,6 +49,13 @@ public:
 #pragma endregion
 
 private:
+    //スピード
+  const float_t SPEED_ = 1.0f;
+
+private:
+    //方向
+  Math::Vector::Vec3 velocity_ = {};
+
   float lifeTime_ = 0.0f; // 生存期間 (秒)
   float damage_ = 0.0f; // ダメージ量
   bool isActive_ = true; // アクティブかどうか

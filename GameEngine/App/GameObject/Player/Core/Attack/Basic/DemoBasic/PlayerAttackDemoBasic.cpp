@@ -34,6 +34,6 @@ void PlayerAttackDemoBasic::Reset() {}
 void PlayerAttackDemoBasic::IsAttack() 
 {
   if (projManager_) {
-    projManager_->CreateProjectile(owner_->GetWorldPos(), Math::Vector::Vec3(0.0f, 0.0f, 1.0f), 1.0f * 60.0f);
+    projManager_->CreateProjectile(owner_->GetWorldPos(), owner_->GetDirection(), 1.0f * 60.0f);
   }
 }
