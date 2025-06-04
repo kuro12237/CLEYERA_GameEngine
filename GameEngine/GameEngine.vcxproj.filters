@@ -232,6 +232,7 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\Interface\IPlayerBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />

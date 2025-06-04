@@ -3,15 +3,31 @@
 #include "CLEYERA.h"
 #include "Lua/Script/LuaScript.h"
 
+#include "Component/AttackPower/AttackPower.h"
+
 /* プレイヤーの攻撃の覇者物クラス */
 class IPlayerBullet : public CLEYERA::Component::ObjectComponent {
 
 public:
+  IPlayerBullet() {
+    attackPower_ = std::make_unique<AttackPower>();
+    // 仮設定
+    attackPower_->SetPower(50);
+
+    CreateCollider(ColliderType::AABB);
+    auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
+    aabb->SetSize({-2.0f, -2.0f, -2.0f},{2.0f, 2.0f, 2.0f});
+  }
 
   /// <summary>
   /// デストラクタ
   /// </summary>
   virtual ~IPlayerBullet() = default;
+
+  /// <summary>
+  /// 衝突時コールバック
+  /// </summary>
+  virtual void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 #pragma region Accessor
 
@@ -31,6 +47,8 @@ public:
 
   // 起動時間の設定
   inline void SetLifeTime(float time) { lifeTime_ = time; }
+
+  int32_t GetAttackPower() { return this->attackPower_->GetPower(); }
 
 #pragma endregion
 
@@ -61,4 +79,6 @@ protected:
   float damage_ = 0.0f;   // ダメージ量
   bool isActive_ = true;  // アクティブかどうか
   Math::Vector::Vec3 initVel_{};
+
+  std::unique_ptr<AttackPower> attackPower_ = nullptr;
 };

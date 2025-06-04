@@ -8,8 +8,8 @@ void GameScene::Init() {
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
   uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   bulletNum;
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
-  modelHandle;
+ /* uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
+  modelHandle;*/
 
 
   playerManager_ = std::make_shared<PlayerManager>();

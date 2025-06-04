@@ -29,6 +29,8 @@ void PlayerBulletManager::Update() {
 /// </summary>
 void PlayerBulletManager::PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul) {
   if (newBul) {
+
+    colliderSystem_->PushCollider(newBul);
     bullets_.push_back(std::move(newBul));
   }
 }

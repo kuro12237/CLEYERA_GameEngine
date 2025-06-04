@@ -11,6 +11,8 @@
 
 #include "Player/Core/playerCore.h"
 
+#include"Player/Bullet/Interface/IPlayerBullet.h"
+
 void NormalEnemy2::Init() {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemy2);
@@ -80,6 +82,7 @@ void NormalEnemy2::Update() {
   hp_->Update();
   if (hp_->GetIsDead()) {
     // 倒された
+    isAlive_ = false;
     Killed();
   }
 
@@ -183,9 +186,9 @@ void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 
   // Player型にキャストできるかをチェック
-  if (auto p = std::dynamic_pointer_cast<PlayerCore>(obj)) {
+  if (auto p = std::dynamic_pointer_cast<IPlayerBullet>(obj)) {
     // Player にぶつかったときの処理
-    // parameter_.hp_ -=p
+    hp_->CalcHp(p->GetAttackPower());
   }
 }
 

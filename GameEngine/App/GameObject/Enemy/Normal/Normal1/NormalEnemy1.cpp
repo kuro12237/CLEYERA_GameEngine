@@ -10,6 +10,8 @@
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
 
+#include "Player/Bullet/Interface/IPlayerBullet.h"
+
 void NormalEnemy1::Init() {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemy1);
@@ -78,6 +80,7 @@ void NormalEnemy1::Update() {
   // hp処理
   hp_->Update();
   if (hp_->GetIsDead()) {
+    isAlive_ = false;
     // 倒された
     Killed();
   }
@@ -122,10 +125,8 @@ void NormalEnemy1::Update() {
     KnockBack();
   }
 
-  
   // 更新
   TransformUpdate();
-
 }
 
 void NormalEnemy1::ImGuiUpdate() {
@@ -165,15 +166,24 @@ void NormalEnemy1::ImGuiUpdate() {
 
 void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
-  if (auto obj = other.lock()) {
-    // Wall 型にキャストできるかをチェック
-    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
-      // Wall にぶつかったときの処理
-      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
-          wall->GetCollder().lock());
-      // 押し出し
-      this->translate_ -= aabb->GetAABB().push;
-    }
+  auto obj = other.lock();
+
+  if (!obj) {
+    return;
+  }
+  // Wall 型にキャストできるかをチェック
+  if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
+    // Wall にぶつかったときの処理
+    auto aabb =
+        std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall->GetCollder().lock());
+    // 押し出し
+    this->translate_ -= aabb->GetAABB().push;
+  }
+
+  // Player型にキャストできるかをチェック
+  if (auto p = std::dynamic_pointer_cast<IPlayerBullet>(obj)) {
+    // Player にぶつかったときの処理
+    hp_->CalcHp(p->GetAttackPower());
   }
 }
 

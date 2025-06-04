@@ -186,6 +186,7 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Demo\PlayerDemoBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\Interface\IPlayerBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Standard\PlayerStandardAttackCommand.cpp" />
