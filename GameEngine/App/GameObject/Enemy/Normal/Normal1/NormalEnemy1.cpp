@@ -78,6 +78,8 @@ void NormalEnemy1::Update() {
   // hp処理
   hp_->Update();
   if (hp_->GetIsDead()) {
+    // 倒された
+    Killed();
   }
 
   // 生存時
@@ -120,16 +122,10 @@ void NormalEnemy1::Update() {
     KnockBack();
   }
 
-  // 倒された
-  Killed();
+  
   // 更新
   TransformUpdate();
 
-#ifdef _DEBUG
-  // ImGui表示用
-  DisplayImGui();
-
-#endif // _DEBUG
 }
 
 void NormalEnemy1::ImGuiUpdate() {
@@ -233,41 +229,5 @@ void NormalEnemy1::Killed() {
       // 消す
       isDelete_ = true;
     }
-  }
-}
-
-void NormalEnemy1::DisplayImGui() {
-
-  if (ImGui::TreeNode(name_.c_str())) {
-
-    // 基礎機能の表示
-    this->BaseParamImGuiDisply();
-
-    if (ImGui::TreeNode("KnockBack") == true) {
-      ImGui::InputFloat3("DirectionToPlayer", &directionToPlayer_.x);
-      ImGui::InputFloat("T", &knockbackT_);
-      ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
-      ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
-      ImGui::TreePop();
-    }
-
-    if (ImGui::TreeNode("Parameter") == true) {
-      ImGui::SliderInt("MaxHP", &parameter_.maxHp_, 0, 10);
-      ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
-      ImGui::SliderFloat("MaxHP", &parameter_.knockBackDistance_, 0.0, 5.0f);
-      ImGui::TreePop();
-    }
-
-    ImGui::Checkbox("isKnockBack", &isKnockBack_);
-    ImGui::InputFloat3("Scele", &scale_.x);
-    ImGui::Checkbox("IsAlive", &isAlive_);
-    ImGui::Checkbox("IsDelete", &isDelete_);
-    ImGui::InputFloat3("Translate", &translate_.x);
-    ImGui::InputFloat3("Velocity", &velocity_.x);
-
-    ImGui::Separator();
-    hp_->ImGuiUpdate();
-
-    ImGui::TreePop();
   }
 }
