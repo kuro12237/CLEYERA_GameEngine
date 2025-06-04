@@ -162,7 +162,7 @@ void NormalEnemy1::KnockBack() {
         knockbackT_ += INCREASE_T_VALUE_;
         //座標を線形補間でやるよ！
         translate_ = Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_,knockbackT_);
-        //knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
+        knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
         //制限を超えたら0に戻る
         if (knockbackT_>1.0f&&knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
@@ -171,8 +171,6 @@ void NormalEnemy1::KnockBack() {
           isKnockBack_ = false;
           isDesidePosition_ = false;
         }
-
-
         
     }
 

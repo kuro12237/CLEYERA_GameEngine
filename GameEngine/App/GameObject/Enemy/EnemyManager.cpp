@@ -76,13 +76,14 @@ void EnemyManager::Update() {
 
 #ifdef _DEBUG
 
-    if (ImGui::Button("enemySpown"))
+    if (ImGui::Button("enemy1Spown"))
     {
       GenerateNormalEnemy1({0, 0, 0});
 
     }
-
-    
+    if (ImGui::Button("enemy2Spown")) {
+      GenerateNormalEnemy2({0, 0, 0});
+    }
 
     DisplayImGui();
 #endif // _DEBUG
