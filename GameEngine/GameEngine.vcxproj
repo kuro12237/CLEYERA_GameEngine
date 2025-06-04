@@ -339,6 +339,7 @@
     <ClInclude Include="App\Scene\IScene.h" />
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
+    <ClInclude Include="CLEYERA\2d\Sprite.h" />
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
     <ClInclude Include="CLEYERA\3d\Game3dObject.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />

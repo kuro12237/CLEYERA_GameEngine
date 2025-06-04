@@ -481,6 +481,7 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.h" />
+    <ClInclude Include="CLEYERA\2d\Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
