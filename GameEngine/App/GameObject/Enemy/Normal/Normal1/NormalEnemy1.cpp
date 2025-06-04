@@ -74,34 +74,39 @@ void NormalEnemy1::Init() {
 }
 
 void NormalEnemy1::Update() {
+
+  // hp処理
+  hp_->Update();
+  if (hp_->GetIsDead()) {
+  }
+
   // 生存時
-    if (isAlive_ == true) {
-      // 弾の更新
-      for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-        bullet->Update();
-      }
-    
-      // 弾の削除
-      bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
-    
-      // 向きを計算しモデルを回転させる
-      float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
-      // 回転のオフセット
-      // 元々のモデルの回転が変だったのでこれを足している
-      const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
-      rotate_.y = directionToRotateY + ROTATE_OFFSET;
+  if (isAlive_ == true) {
+    // 弾の更新
+    for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+      bullet->Update();
+    }
 
+    // 弾の削除
+    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
 
-      // ビヘイビアツリーの実行
-      behaviorTree_->Execute(this);
-    
-      // 速度を計算
-      Math::Vector::Vec3 newDirection = {};
-      if (isAttack_ == false) {
-        newDirection = direction_;
-      }
-    
-      velocity_ = newDirection * speed_;
+    // 向きを計算しモデルを回転させる
+    float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
+    // 回転のオフセット
+    // 元々のモデルの回転が変だったのでこれを足している
+    const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
+    rotate_.y = directionToRotateY + ROTATE_OFFSET;
+
+    // ビヘイビアツリーの実行
+    behaviorTree_->Execute(this);
+
+    // 速度を計算
+    Math::Vector::Vec3 newDirection = {};
+    if (isAttack_ == false) {
+      newDirection = direction_;
+    }
+
+    velocity_ = newDirection * speed_;
 
     // 体力無し
     if (parameter_.hp_ <= 0) {
@@ -174,9 +179,6 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
       this->translate_ -= aabb->GetAABB().push;
     }
   }
-
-
-
 }
 
 void NormalEnemy1::KnockBack() {
@@ -184,38 +186,37 @@ void NormalEnemy1::KnockBack() {
   // ランダムの値で位置を決める
   // SRは固定
   std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
-    // ランダムエンジン
-    std::random_device seedGenerator;
-    std::mt19937 randomEngine(seedGenerator());
-    if (isKnockBack_ == true) {
-      Math::Vector::Vec3 knockBackDirection = {}; 
-        if (isDesidePosition_ == false) {
-        knockBackDirection = {
-            .x = (1.0f - directionToPlayer_.x), .y = 0.0f, .z = (1.0f - directionToPlayer_.z)};
-            beforeKnockBackPosition_ = translate_;
-            afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection*parameter_.knockBackDistance_;
-            isDesidePosition_ = true;
-        }
-
-
-        //ノックバックの時間
-        knockBackTime_ += DELTA_TIME_;
-        //線形補間
-        knockbackT_ += INCREASE_T_VALUE_;
-        //座標を線形補間でやるよ！
-        translate_ = Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_,knockbackT_);
-        knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
-
-        //制限を超えたら0に戻る
-        if (knockbackT_>=1.0f&&knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
-          knockBackTime_ = 0.0f;
-          knockbackT_ = 0.0f;
-          isKnockBack_ = false;
-          isDesidePosition_ = false;
-        }
-        
+  // ランダムエンジン
+  std::random_device seedGenerator;
+  std::mt19937 randomEngine(seedGenerator());
+  if (isKnockBack_ == true) {
+    Math::Vector::Vec3 knockBackDirection = {};
+    if (isDesidePosition_ == false) {
+      knockBackDirection = {
+          .x = (1.0f - directionToPlayer_.x), .y = 0.0f, .z = (1.0f - directionToPlayer_.z)};
+      beforeKnockBackPosition_ = translate_;
+      afterKnockBackPosition_ =
+          beforeKnockBackPosition_ + knockBackDirection * parameter_.knockBackDistance_;
+      isDesidePosition_ = true;
     }
 
+    // ノックバックの時間
+    knockBackTime_ += DELTA_TIME_;
+    // 線形補間
+    knockbackT_ += INCREASE_T_VALUE_;
+    // 座標を線形補間でやるよ！
+    translate_ =
+        Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_, knockbackT_);
+    knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
+
+    // 制限を超えたら0に戻る
+    if (knockbackT_ >= 1.0f && knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+      knockBackTime_ = 0.0f;
+      knockbackT_ = 0.0f;
+      isKnockBack_ = false;
+      isDesidePosition_ = false;
+    }
+  }
 }
 
 void NormalEnemy1::Killed() {
@@ -264,6 +265,7 @@ void NormalEnemy1::DisplayImGui() {
     ImGui::InputFloat3("Translate", &translate_.x);
     ImGui::InputFloat3("Velocity", &velocity_.x);
 
+    ImGui::Separator();
     hp_->ImGuiUpdate();
 
     ImGui::TreePop();

@@ -498,6 +498,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="CLEYERA\Utility\Easing.h" />
     <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
+    <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
