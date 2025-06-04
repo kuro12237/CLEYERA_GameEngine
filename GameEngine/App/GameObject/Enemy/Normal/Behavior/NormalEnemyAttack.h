@@ -42,13 +42,6 @@ public:
     ~NormalEnemyAttack() = default;
 
 private:
-    /// <summary>
-    /// ImGuiの表示
-    /// </summary>
-    void DisplayImGui();
-
-    
-private:
     //時間変化
     const float_t DELTA_TIME_ = 1.0f / 60.0f;
     //クールタイムの長さ

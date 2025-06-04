@@ -20,17 +20,6 @@ EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy *baseNormalEnemy) {
       return EnemyNodeState::Success;
     }
 
-#ifdef _DEBUG
-    DisplayImGui();
-#endif // _DEBUG
-
     //実行中
     return EnemyNodeState::Running;
-}
-
-void NormalEnemyAttack::DisplayImGui(){
-    ImGui::Begin("NormalEnemyAttack"); 
-    ImGui::Checkbox("isAttack", &isReadyForAttack_);
-    ImGui::InputFloat("AttackTime", &generateTime_);
-    ImGui::End();
 }
