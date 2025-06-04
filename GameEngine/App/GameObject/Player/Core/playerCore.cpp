@@ -79,13 +79,6 @@ void PlayerCore::Update() {
   // ノックバック
   KnockBack();
 
-#ifdef _DEBUG
-  bulletManager_->DrawImGui();
-  ImGui::Begin("PlayerCore");
-  ImGui::Checkbox("IsKockBack", &isKnockBack_);
-  ImGui::End();
-
-#endif // _DEBUG
 }
 
 /// <summary>

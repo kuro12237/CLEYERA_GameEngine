@@ -25,8 +25,7 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
   gameObject_->SetRotate(rotate_);
   gameObject_->SetTranslate(translate_);
   gameObject_->SetName(name_);
-  gameObject_->Update();
-
+ 
   // 各マネージャーへのセット
   objectManager_->AddObject(this->gameObject_);
   renderManager_->PushObj(this->gameObject_);

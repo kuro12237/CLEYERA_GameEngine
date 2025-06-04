@@ -18,6 +18,8 @@ class ImGuiManager {
    void Begin();
 
    void Render();
+   
+   void End();
 
    void SetImGuiCommon(std::weak_ptr<ImGuiCommon> common) { common_ = common; }
 
