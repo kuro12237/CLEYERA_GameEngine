@@ -17,6 +17,7 @@ void NormalEnemy2::Init() {
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
+  //"C:\Lesson\TD4\GameEngine\Resources\Model\Leef\Leef.obj"
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
