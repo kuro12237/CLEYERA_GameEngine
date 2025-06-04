@@ -59,7 +59,7 @@ void CLEYERA::Component::ObjectComponent::ImGuiUpdate() {
     }
 
     if (jsonSystem_) {
-      jsonSystem_->ImGuiUpdate();
+      jsonSystem_->JsonImGuiUpdate();
     }
 
     ImGui::TreePop();

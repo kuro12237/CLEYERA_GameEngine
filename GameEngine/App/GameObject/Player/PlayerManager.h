@@ -8,6 +8,8 @@
 
 #include "Projectile/PlayerProjectileManager.h"
 
+#include"Hp/PlayerHp.h"
+
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {
 
@@ -32,6 +34,8 @@ public:
   /// </summary>
   void Update() override;
 
+  void ImGuiUpdate() override;
+
 #pragma region Accessor
 
   // CoreのweakPtrの取得
@@ -51,4 +55,7 @@ private:
 
   // 発射物管理クラス
   std::unique_ptr<PlayerProjectileManager> projectileManager_;
+
+  std::unique_ptr<PlayerHp> hp_;
+
 };

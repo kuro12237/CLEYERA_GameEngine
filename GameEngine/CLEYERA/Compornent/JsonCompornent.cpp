@@ -9,4 +9,4 @@ void CLEYERA::Component::JsonCompornent::CreateJson(const std::string& name, con
 
 }
 
-void CLEYERA::Component::JsonCompornent::ImGuiUpdate() { globalVariables_->ImGuiUpdate(*name_); }
+void CLEYERA::Component::JsonCompornent::JsonImGuiUpdate() { globalVariables_->ImGuiUpdate(*name_); }

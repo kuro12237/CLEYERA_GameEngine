@@ -8,6 +8,8 @@ PlayerManager::PlayerManager() {
   core_ = std::make_shared<PlayerCore>();
   commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   projectileManager_ = std::make_unique<PlayerProjectileManager>();
+
+  hp_ = std::make_unique<PlayerHp>();
 }
 
 /// <summary>
@@ -36,6 +38,11 @@ void PlayerManager::Init() {
 
   // ペアレント
   camera_->SetTarget(core_->GetTranslate());
+
+  // Hp
+  hp_->Init();
+  //関数セット
+  core_->SetHpCalcfunc([this](int32_t attackPower) { hp_->CalcHp(attackPower); });
 }
 
 /// <summary>
@@ -51,4 +58,26 @@ void PlayerManager::Update() {
 
   // 発射物管理クラス
   projectileManager_->Update();
+}
+
+void PlayerManager::ImGuiUpdate() {
+
+  if (name_ == "") {
+    return;
+  }
+
+  if (ImGui::TreeNode(name_.c_str())) {
+
+    for (auto obj : objComponents_) {
+
+      obj->ImGuiUpdate();
+    }
+    for (auto obj : cameraCompornents_) {
+      obj->ImGuiUpdate();
+    }
+
+    hp_->ImGuiUpdate();
+
+    ImGui::TreePop();
+  }
 }

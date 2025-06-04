@@ -2,6 +2,9 @@
 #include "../Camera/PlayerCamera.h"
 #include "Wall/Wall.h"
 
+#include"Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
+#include"Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
+
 /// <summary>
 /// コンストラク
 /// </summary>
@@ -9,6 +12,10 @@ PlayerCore::PlayerCore() {
   lua_ = std::make_unique<LuaScript>();
   moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
   projManager_ = std::make_unique<PlayerProjectileManager>();
+
+  this->friction_ = 0.9f;
+  this->mass_ = 20.0f;
+
 }
 
 /// <summary>
@@ -88,8 +95,12 @@ void PlayerCore::StandardAttack() { attacks_[ToIndex(AttackType::Standard)]->IsA
 void PlayerCore::SignatureAttack() { attacks_[ToIndex(AttackType::Signature)]->IsAttack(); }
 
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
+  auto obj = other.lock();
 
-  if (auto obj = other.lock()) {
+  if (!obj) {
+    return;
+  }
+
     // Wall 型にキャストできるかをチェック
     if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
       // Wall にぶつかったときの処理
@@ -98,7 +109,15 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
       // 押し出し
       this->translate_ -= aabb->GetAABB().push;
     }
+  
+
+  if (auto enemyBullet = std::dynamic_pointer_cast<NormalEnemy2Bullet>(obj)) {
+  
+      int power = enemyBullet->GetAttackPower();
+      this->hpCalcFunc_(power);
+
   }
+
 }
 
 /// <summary>
