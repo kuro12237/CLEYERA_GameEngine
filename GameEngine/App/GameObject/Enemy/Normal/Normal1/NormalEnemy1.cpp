@@ -91,8 +91,8 @@ void NormalEnemy1::Update() {
 	// 更新
    TransformUpdate();
 
-   // 更新
-   TransformUpdate();
+   // ノックバック
+   KnockBack();
    // 倒された
    Killed();
 
@@ -130,20 +130,28 @@ void NormalEnemy1::KnockBack() {
     std::random_device seedGenerator;
     std::mt19937 randomEngine(seedGenerator());
     if (isKnockBack_ == true) {
+      Math::Vector::Vec3 knockBackDirection = {}; 
+        if (isDesidePosition_ == false) {
+            knockBackDirection = { .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+            isDesidePosition_ = true;
+            beforeKnockBackPosition_ = translate_;
+            afterKnockBackPosition_ = beforeKnockBackPosition_ + knockBackDirection;
+            
+        }
         //ノックバックの時間
         knockBackTime_ += DELTA_TIME_;
         //線形補間
         knockbackT_ += INCREASE_T_VALUE_;
-         Math::Vector::Vec3 knockBackDirection = {
-            .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
-
-         const float_t DISTANCE = 3.0f;
-         translate_ += (knockBackDirection * DISTANCE);
+        //座標を線形補間でやるよ！
+        translate_ = Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_,knockbackT_);
+        //knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
         //制限を超えたら0に戻る
-        if (knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+        if (knockbackT_>1.0f&&knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
           knockBackTime_ = 0.0f;
+          knockbackT_ = 0.0f;
           isKnockBack_ = false;
+          isDesidePosition_ = false;
         }
 
 
@@ -170,12 +178,21 @@ void NormalEnemy1::Killed() {
 }
 
 void NormalEnemy1::DisplayImGui(){
-  ImGui::Begin("NormalEnemy1");
-  ImGui::InputFloat3("Scele", &scale_.x);
-  ImGui::Checkbox("IsAlive", &isAlive_);
-  ImGui::Checkbox("IsDelete", &isDelete_);
-  ImGui::InputFloat3("Translate", &translate_.x);
-  ImGui::InputFloat3("Velocity", &velocity_.x);
-  ImGui::End();
+    ImGui::Begin("NormalEnemy1");
+
+    if (ImGui::TreeNode("KnockBack") == true) {
+      ImGui::InputFloat("T", &knockbackT_);
+        ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
+        ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
+        ImGui::TreePop();
+    }
+
+    ImGui::Checkbox("isKnockBack", &isKnockBack_);
+    ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::Checkbox("IsAlive", &isAlive_);
+    ImGui::Checkbox("IsDelete", &isDelete_);
+    ImGui::InputFloat3("Translate", &translate_.x);
+    ImGui::InputFloat3("Velocity", &velocity_.x);
+    ImGui::End();
 }
 

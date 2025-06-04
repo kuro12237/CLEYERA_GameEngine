@@ -144,7 +144,8 @@ void NormalEnemy2::Killed() {
 
 void NormalEnemy2::DisplayImGui() {
 	ImGui::Begin("NormalEnemy2");
-  ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::Checkbox("isKnockBack", &isKnockBack_);
     ImGui::Checkbox("IsAlive", &isAlive_);
     ImGui::Checkbox("IsDelete", &isDelete_);
 	ImGui::InputFloat3("Translate", &translate_.x);

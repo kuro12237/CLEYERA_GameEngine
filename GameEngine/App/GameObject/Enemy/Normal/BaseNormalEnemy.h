@@ -135,8 +135,10 @@ protected:
    const float_t DELTA_TIME_ = 1.0f / 60.0f;
    //線形補間
    const float_t INCREASE_T_VALUE_ = 0.01f;
+   //ノックバック距離
+   const float_t KNOCK_BACK_DISTANCE_ = 3.0f;
 
-protected:
+ protected:
 	//弾のリスト 
 	std::list<std::shared_ptr<BaseNormalEnemyBullet>> bullets_;
 	// プレイヤー座標
@@ -154,6 +156,13 @@ protected:
 	float_t knockBackTime_ = 0.0f;
 	//線形補間
     float_t knockbackT_ = 0.0f;
+	//方向を決める
+    bool isDesidePosition_ = false;
+
+	//ノックバック前の座標
+	Math::Vector::Vec3 beforeKnockBackPosition_ = {};
+    // ノックバック後の座標
+    Math::Vector::Vec3 afterKnockBackPosition_ = {};
 
 
 	//生存かどうか
