@@ -65,12 +65,45 @@ void PlayerAttackDemoBasic::FireBullet() {
     auto newBul = std::make_shared<PlayerDemoBullet>();
     // 数値の設定
     newBul->SetPosition(owner_->GetWorldPos());
-    newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 0.1f}));
+    newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 20.0f}));
+    newBul->SetParams(GetBulletParams());
     // 初期化処理
     newBul->Init();
     // Managerに追加
     bulManager_->PushbackNewBullet(std::move(newBul));
   }
+}
+
+/// <summary>
+/// Bulletのパラメータの取得
+/// </summary>
+PlayerDemoBullet::BulletCurveParams PlayerAttackDemoBasic::GetBulletParams() {
+
+    PlayerDemoBullet::BulletCurveParams result{};
+  switch (comboStep_) {
+  case 0:
+    result.horizontalCurve = 4.0f;
+    result.verticalCurve = 0.0f;
+    result.curveDistance = 35.0f;
+    break;
+
+  case 1:
+    result.horizontalCurve = -4.0f;
+    result.verticalCurve = 0.0f;
+    result.curveDistance = 35.0f;
+    break;
+
+  case 2:
+    result.verticalCurve = 0.0f;
+    result.verticalCurve = 0.0f;
+    result.curveDistance = 15.0f;
+    break;
+
+  default:
+    break;
+  }
+
+  return result;
 }
 
 /// <summary>
