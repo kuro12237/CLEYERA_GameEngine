@@ -2,6 +2,9 @@
 #include "../Camera/PlayerCamera.h"
 #include "Wall/Wall.h"
 
+#include "Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
+#include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
+
 /// <summary>
 /// コンストラク
 /// </summary>
@@ -115,6 +118,12 @@ void PlayerCore::SignatureAttack() { attacks_[ToIndex(AttackType::Signature)]->I
 /// 衝突時コールバック
 /// </summary>
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
+  auto obj = other.lock();
+
+  if (!obj) {
+    return;
+  }
+  //今後dynamicから変更する
 
   if (auto obj = other.lock()) {
     // Wall 型にキャストできるかをチェック

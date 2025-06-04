@@ -8,6 +8,8 @@
 
 #include "Bullet/Manager/PlayerBulletManager.h"
 
+#include"Component/Hp/HealthComponent.h"
+
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {
 
@@ -31,6 +33,8 @@ public:
   /// 更新処理
   /// </summary>
   void Update() override;
+
+  void ImGuiUpdate() override;
 
 #pragma region Accessor
 

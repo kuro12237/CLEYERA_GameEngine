@@ -91,6 +91,11 @@ public:
     };
   }
 
+  /// <summary>
+  /// hp計算関数をセット
+  /// </summary>
+  void SetHpCalcfunc(std::function<void(int32_t)> hpCalcFunc) { hpCalcFunc_ = hpCalcFunc; };
+
 #pragma endregion
 
 private:
@@ -110,6 +115,12 @@ private:
   void KnockBack();
 
 private:
+  /// <summary>
+  /// hp計算関数ポインタ
+  /// </summary>
+  /// <param name="power"></param>
+  /// <returns></returns>
+  std::function<void(int32_t)> hpCalcFunc_;
   // ノックバックの距離
   const float_t KNOCK_BACK_DISTANCE_ = 5.0f;
   // 時間変化

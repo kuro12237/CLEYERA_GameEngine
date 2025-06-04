@@ -20,7 +20,7 @@ public:
 
   virtual void Update() = 0;
 
-  void ImGuiUpdate();
+  virtual void ImGuiUpdate();
 
 #pragma region Get
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -199,6 +199,7 @@
     <ClCompile Include="App\GameObject\Player\Core\Health\PlayerHealth.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
+    <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Manager\PlayerBulletManager.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
@@ -291,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
+    <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />

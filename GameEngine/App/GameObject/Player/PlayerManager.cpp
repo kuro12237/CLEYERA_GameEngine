@@ -36,6 +36,13 @@ void PlayerManager::Init() {
 
   // ペアレント
   camera_->SetTarget(core_->GetTranslate());
+
+  // Hp
+  hp_->SetName(VAR_NAME(PlayerCore));
+  hp_->Init();
+
+  //関数セット
+  core_->SetHpCalcfunc([this](int32_t attackPower) { hp_->CalcHp(attackPower); });
 }
 
 /// <summary>
@@ -51,4 +58,26 @@ void PlayerManager::Update() {
 
   // 発射物管理クラス
   projectileManager_->Update();
+}
+
+void PlayerManager::ImGuiUpdate() {
+
+  if (name_ == "") {
+    return;
+  }
+
+  if (ImGui::TreeNode(name_.c_str())) {
+
+    for (auto obj : objComponents_) {
+
+      obj->ImGuiUpdate();
+    }
+    for (auto obj : cameraCompornents_) {
+      obj->ImGuiUpdate();
+    }
+
+    hp_->ImGuiUpdate();
+
+    ImGui::TreePop();
+  }
 }

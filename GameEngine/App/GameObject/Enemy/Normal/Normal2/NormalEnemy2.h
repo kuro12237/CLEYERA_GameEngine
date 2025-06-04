@@ -40,6 +40,11 @@ public:
   /// </summary>
   ~NormalEnemy2() override = default;
 
+  /// <summary>
+  /// imGUi
+  /// </summary>
+  void ImGuiUpdate() override;
+
 public:
 
   /// <summary>

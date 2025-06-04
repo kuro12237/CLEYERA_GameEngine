@@ -6,8 +6,7 @@
  * @author 茂木翼
  */
 
-
-#include"CLEYERA.h"
+#include "CLEYERA.h"
 #include "Enemy/Normal/BaseNormalEnemyBullet.h"
 
 /// <summary>
@@ -15,50 +14,62 @@
 /// </summary>
 class NormalEnemy2Bullet : public BaseNormalEnemyBullet {
 public:
-	/// <summary>
-	/// コンストラクタ
-	/// </summary>
+  /// <summary>
+  /// コンストラクタ
+  /// </summary>
   NormalEnemy2Bullet() = default;
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
+  /// <summary>
+  /// 初期化
+  /// </summary>
   void Initialize(const Math::Vector::Vec3 &enemyPosition,
                   const Math::Vector::Vec3 &playerPositio) override;
 
-	/// <summary>
-	/// 更新
-	/// </summary>
-	void Update()override;
+  /// <summary>
+  /// 更新
+  /// </summary>
+  void Update() override;
 
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-    ~NormalEnemy2Bullet() = default;
+  /// <summary>
+  /// デストラクタ
+  /// </summary>
+  ~NormalEnemy2Bullet() = default;
 
-private:
-    /// <summary>
-    /// ImGui表示用
-    /// </summary>
-    void DisplayImGui();
+  
+  void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 
-private:
-	//スケールサイズ
-	const float_t SCALE_SIZE_ = 1.0f;
-	//弾の速さ
-    const float_t SPEED_ = 0.5f;
-	//時間変化
-    const float_t DELTA_TIME_ = 1.0f/60.0f;
-	//最大表示時間
-    const float_t MAX_DISPLAY_TIME_ = 5.0f;
+#pragma region Get
+
+  int32_t GetAttackPower() { return attackPower_; }
+
+#pragma endregion
 
 private:
-	//方向
-    Math::Vector::Vec3 direction_ = {};
+  /// <summary>
+  /// ImGui表示用
+  /// </summary>
+  void DisplayImGui();
 
-	// 表示時間
-    float_t displayTime_ = 0.0f;
+private:
+  // スケールサイズ
+  const float_t SCALE_SIZE_ = 1.0f;
+  // 弾の速さ
+  const float_t SPEED_ = 0.5f;
+  // 時間変化
+  const float_t DELTA_TIME_ = 1.0f / 60.0f;
+  // 最大表示時間
+  const float_t MAX_DISPLAY_TIME_ = 5.0f;
 
+private:
+  // 方向
+  Math::Vector::Vec3 direction_ = {};
+
+  // 表示時間
+  float_t displayTime_ = 0.0f;
+
+  /// <summary>
+  /// 攻撃力
+  /// </summary>
+  int32_t attackPower_ = 10;
 };
-

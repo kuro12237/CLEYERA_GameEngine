@@ -2,73 +2,75 @@
 
 #include "Utility/Easing.h"
 
+#include "Enemy/Normal/Behavior/NormalEnemyAttack.h"
+#include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h"
+#include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInRange.h"
+#include "Enemy/Normal/Behavior/NormalEnemyNoneBehavior.h"
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
-#include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInRange.h"
-#include "Enemy/Normal/Behavior/NormalEnemyNoneBehavior.h"
-#include "Enemy/Normal/Behavior/NormalEnemyAttack.h"
-#include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h"
 
 void NormalEnemy1::Init() {
-   // 名前の設定
-   name_ = VAR_NAME(NormalEnemy1);
+  // 名前の設定
+  name_ = VAR_NAME(NormalEnemy1);
 
-   // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
-   //"Resources/Model/Sphere", "Sphere"
-   gameObject_->ChangeModel(modelHandle);
+  // モデルの設定
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+  //"Resources/Model/Sphere", "Sphere"
+  gameObject_->ChangeModel(modelHandle);
 
-   // これが無いと描画エラーになる
-   uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
-   modelHandle2;
+  // これが無いと描画エラーになる
+  uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  modelHandle2;
 
-   // コライダー作成
-   CreateCollider(ColliderType::AABB);
+  // コライダー作成
+  CreateCollider(ColliderType::AABB);
 
-   //スケールの設定
-   scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
+  // スケールの設定
+  scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
 
-   // 体力
-   parameter_.maxHp_ = 3u;
-   parameter_.hp_ = parameter_.maxHp_;
-   //ノックバックの距離
-   parameter_.knockBackDistance_ = 1.0f;
-   //ルート
-   std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
+  // 体力
+  parameter_.maxHp_ = 3u;
+  parameter_.hp_ = parameter_.maxHp_;
+  // ノックバックの距離
+  parameter_.knockBackDistance_ = 1.0f;
+  // ルート
+  std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
-   // 追跡開始距離
-   trackingStartDistance_ = 40.0f;
-   // 攻撃開始距離
-   attackStartDistance_ = 3.0f;
+  // 追跡開始距離
+  trackingStartDistance_ = 40.0f;
+  // 攻撃開始距離
+  attackStartDistance_ = 3.0f;
 
 #pragma region 攻撃シーケンス
-	std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
-	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-        attackSequence->AddChild(
-            std::make_unique<NormalEnemyIsPlayerInAttackRange>());
-	//攻撃
-        attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1));
-	root->AddChild(std::move(attackSequence));
+  std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
+  // プレイヤーが設定した範囲内にいるかどうか(攻撃用)
+  attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
+  // 攻撃
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1));
+  root->AddChild(std::move(attackSequence));
 #pragma endregion
 
 #pragma region 通常状態のシーケンス
-   std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
-   //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
-   //追跡
-   approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
-   //作ったものを入れる
-   root->AddChild(std::move(approachSequence));
+  std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
+  // プレイヤーが設定した範囲内にいるかどうか
+  approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
+  // 追跡
+  approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
+  // 作ったものを入れる
+  root->AddChild(std::move(approachSequence));
 #pragma endregion
 
-   //本体に入れていく
-   behaviorTree_ = std::move(root);
+  // 本体に入れていく
+  behaviorTree_ = std::move(root);
 
+  // あたりはんてい関数セット
+  collider_->SetHitCallFunc(
+      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
-     // あたりはんてい関数セット
-   collider_->SetHitCallFunc(
-       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+  hpJsonDirectory_ = name_;
+  hp_->SetName(this->name_);
+  hp_->Init();
 }
 
 void NormalEnemy1::Update() {
@@ -101,33 +103,63 @@ void NormalEnemy1::Update() {
     
       velocity_ = newDirection * speed_;
 
-      // 体力無し
-      if (parameter_.hp_ <= 0) {
-        isAlive_ = false;
-      }
-
-      // プレイヤーへの方向を計算
-      directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
-
-      // ノックバック
-      KnockBack();
-      
+    // 体力無し
+    if (parameter_.hp_ <= 0) {
+      isAlive_ = false;
     }
 
-    // 倒された
-    Killed();
-	// 更新
-   TransformUpdate();
+    // プレイヤーへの方向を計算
+    directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
 
-   
+    // ノックバック
+    KnockBack();
+  }
+
+  // 倒された
+  Killed();
+  // 更新
+  TransformUpdate();
 
 #ifdef _DEBUG
-   //ImGui表示用
-   DisplayImGui();
+  // ImGui表示用
+  DisplayImGui();
 
 #endif // _DEBUG
+}
 
+void NormalEnemy1::ImGuiUpdate() {
 
+  if (ImGui::TreeNode(name_.c_str())) {
+
+    // 基礎機能の表示
+    this->BaseParamImGuiDisply();
+
+    if (ImGui::TreeNode("KnockBack") == true) {
+      ImGui::InputFloat3("DirectionToPlayer", &directionToPlayer_.x);
+      ImGui::InputFloat("T", &knockbackT_);
+      ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
+      ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
+      ImGui::TreePop();
+    }
+
+    if (ImGui::TreeNode("Parameter") == true) {
+      ImGui::SliderInt("MaxHP", &parameter_.maxHp_, 0, 10);
+      ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
+      ImGui::SliderFloat("MaxHP", &parameter_.knockBackDistance_, 0.0, 5.0f);
+      ImGui::TreePop();
+    }
+
+    ImGui::Checkbox("isKnockBack", &isKnockBack_);
+    ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::Checkbox("IsAlive", &isAlive_);
+    ImGui::Checkbox("IsDelete", &isDelete_);
+    ImGui::InputFloat3("Translate", &translate_.x);
+    ImGui::InputFloat3("Velocity", &velocity_.x);
+
+    hp_->ImGuiUpdate();
+
+    ImGui::TreePop();
+  }
 }
 
 void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
@@ -143,12 +175,13 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
     }
   }
 
+
+
 }
 
 void NormalEnemy1::KnockBack() {
 
-
-    // ランダムの値で位置を決める
+  // ランダムの値で位置を決める
   // SRは固定
   std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
     // ランダムエンジン
@@ -202,24 +235,27 @@ void NormalEnemy1::Killed() {
   }
 }
 
-void NormalEnemy1::DisplayImGui(){
-    ImGui::Begin("NormalEnemy1");
+void NormalEnemy1::DisplayImGui() {
+
+  if (ImGui::TreeNode(name_.c_str())) {
+
+    // 基礎機能の表示
+    this->BaseParamImGuiDisply();
 
     if (ImGui::TreeNode("KnockBack") == true) {
       ImGui::InputFloat3("DirectionToPlayer", &directionToPlayer_.x);
       ImGui::InputFloat("T", &knockbackT_);
-        ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
-        ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
-        ImGui::TreePop();
+      ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
+      ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
+      ImGui::TreePop();
     }
 
     if (ImGui::TreeNode("Parameter") == true) {
-      ImGui::SliderInt("MaxHP", &parameter_.maxHp_,0,10);
-      ImGui::SliderInt("HP", &parameter_.hp_,0,10);
+      ImGui::SliderInt("MaxHP", &parameter_.maxHp_, 0, 10);
+      ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
       ImGui::SliderFloat("MaxHP", &parameter_.knockBackDistance_, 0.0, 5.0f);
       ImGui::TreePop();
     }
-    
 
     ImGui::Checkbox("isKnockBack", &isKnockBack_);
     ImGui::InputFloat3("Scele", &scale_.x);
@@ -227,6 +263,9 @@ void NormalEnemy1::DisplayImGui(){
     ImGui::Checkbox("IsDelete", &isDelete_);
     ImGui::InputFloat3("Translate", &translate_.x);
     ImGui::InputFloat3("Velocity", &velocity_.x);
-    ImGui::End();
-}
 
+    hp_->ImGuiUpdate();
+
+    ImGui::TreePop();
+  }
+}

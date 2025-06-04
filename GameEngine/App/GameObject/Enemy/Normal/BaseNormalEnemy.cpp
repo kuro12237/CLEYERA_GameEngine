@@ -4,12 +4,12 @@
 #include "Normal2/NormalEnemy2Bullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
-  std::unique_ptr<BaseNormalEnemyBullet> bullet = nullptr;
+  std::shared_ptr<BaseNormalEnemyBullet> bullet = nullptr;
 
 	switch ( selection ) { 
 	case NormalBullet1:
           // 弾1
-          bullet = std::make_unique<NormalEnemy1Bullet>();
+          bullet = std::make_shared<NormalEnemy1Bullet>();
           bullet->Initialize(translate_,playerPosition_);
           // 挿入
           bullets_.push_back(std::move(bullet));
@@ -18,8 +18,10 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
 
 	case NormalBullet2:
           // 弾2
-          bullet = std::make_unique<NormalEnemy2Bullet>();
+          bullet = std::make_shared<NormalEnemy2Bullet>();
           bullet->Initialize(translate_, playerPosition_);
+
+          colliderSystem_->PushCollider(bullet);
           // 挿入
           bullets_.push_back(std::move(bullet));
 

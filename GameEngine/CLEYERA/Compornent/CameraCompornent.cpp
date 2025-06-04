@@ -25,7 +25,7 @@ void CLEYERA::Component::CameraCompornent::ImGuiUpdate() {
       }
 
       if (jsonSystem_) {
-         jsonSystem_->ImGuiUpdate();
+         jsonSystem_->JsonImGuiUpdate();
       }
 
       if (imGuiFunc_) {

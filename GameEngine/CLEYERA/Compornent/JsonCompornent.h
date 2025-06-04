@@ -12,7 +12,7 @@ class JsonCompornent {
 
    void CreateJson(const std::string &name,const std::string &FileGroupName,Manager::GlobalVariables::ResourcesGroupDirectory type=Manager::GlobalVariables::ResourcesGroupDirectory::Entitiys);
 
-   void ImGuiUpdate();
+   void JsonImGuiUpdate();
 
 
    /// <summary>
