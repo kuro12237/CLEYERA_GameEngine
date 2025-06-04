@@ -7,25 +7,11 @@
 class IPlayerBullet : public CLEYERA::Component::ObjectComponent {
 
 public:
-  /// <summary>
-  /// コンストラクタ
-  /// </summary>
-  IPlayerBullet() = default;
 
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~IPlayerBullet() = default;
-
-  /// <summary>
-  /// 初期化処理
-  /// </summary>
-  void Init() override {}
-
-  /// <summary>
-  /// 更新処理
-  /// </summary>
-  void Update() override;
+  virtual ~IPlayerBullet() = default;
 
 #pragma region Accessor
 

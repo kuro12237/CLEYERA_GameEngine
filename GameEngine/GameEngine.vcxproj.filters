@@ -230,7 +230,6 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
-    <ClCompile Include="App\GameObject\Player\Projectile\PlayerProjectile .cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />

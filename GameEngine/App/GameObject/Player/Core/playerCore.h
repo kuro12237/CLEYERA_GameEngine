@@ -104,16 +104,14 @@ private:
   /// </summary>
   void LoadCoreDataFromLua();
 
-	/// <summary>
-	/// ノックバック
-	/// </summary>
-	void KnockBack();
+  /// <summary>
+  /// ノックバック
+  /// </summary>
+  void KnockBack();
 
 private:
-  // Cameraのweak_ptr
-  std::weak_ptr<PlayerCamera> weakpCamera_;
-	//ノックバックの距離
-        const float_t KNOCK_BACK_DISTANCE_ = 5.0f;
+  // ノックバックの距離
+  const float_t KNOCK_BACK_DISTANCE_ = 5.0f;
   // 時間変化
   const float_t DELTA_TIME_ = 1.0f / 60.0f;
   // 線形補間
@@ -122,9 +120,8 @@ private:
   const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 
 private:
-
-	// Cameraのweak_ptr
-	std::weak_ptr<PlayerCamera> weakpCamera_;
+  // Cameraのweak_ptr
+  std::weak_ptr<PlayerCamera> weakpCamera_;
 
   // PlayerCoreのLua
   std::unique_ptr<LuaScript> lua_;
@@ -139,20 +136,18 @@ private:
 
   // 弾管理クラス
   std::unique_ptr<PlayerBulletManager> bulletManager_;
-	// 発射物管理クラス
-    std::unique_ptr<PlayerProjectileManager> projManager_;
 
-	// ノックバック
-    bool isKnockBack_ = false;
-    // 時間
-    float_t knockBackTime_ = 0.0f;
-    // 線形補間
-    float_t knockbackT_ = 0.0f;
-    // 方向を決める
-    bool isDesidePosition_ = false;
+  // ノックバック
+  bool isKnockBack_ = false;
+  // 時間
+  float_t knockBackTime_ = 0.0f;
+  // 線形補間
+  float_t knockbackT_ = 0.0f;
+  // 方向を決める
+  bool isDesidePosition_ = false;
 
-	// ノックバック前の座標
-    Math::Vector::Vec3 beforeKnockBackPosition_ = {};
-    // ノックバック後の座標
-    Math::Vector::Vec3 afterKnockBackPosition_ = {};
+  // ノックバック前の座標
+  Math::Vector::Vec3 beforeKnockBackPosition_ = {};
+  // ノックバック後の座標
+  Math::Vector::Vec3 afterKnockBackPosition_ = {};
 };

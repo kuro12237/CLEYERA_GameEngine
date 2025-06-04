@@ -83,7 +83,6 @@ void PlayerCore::Update() {
   ImGui::Checkbox("IsKockBack", &isKnockBack_);
   ImGui::End();
 
-  projManager_->DrawImGui();
 #endif // _DEBUG
 }
 
