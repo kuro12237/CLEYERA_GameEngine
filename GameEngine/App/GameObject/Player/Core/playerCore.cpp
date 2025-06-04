@@ -57,7 +57,15 @@ void PlayerCore::Update() {
   // 発射物管理クラス
   projManager_->Update();
 
+
+  //ノックバック
+  KnockBack();
+
 #ifdef _DEBUG
+  ImGui::Begin("PlayerCore");
+  ImGui::Checkbox("IsKockBack", &isKnockBack_);
+  ImGui::End();
+
   projManager_->DrawImGui();
 #endif // _DEBUG
 }
@@ -106,4 +114,44 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 /// </summary>
 void PlayerCore::LoadCoreDataFromLua() {
   translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
+}
+
+void PlayerCore::KnockBack() {
+  // ランダムの値で位置を決める
+  // SRは固定
+  std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
+  // ランダムエンジン
+  std::random_device seedGenerator;
+  std::mt19937 randomEngine(seedGenerator());
+  if (isKnockBack_ == true) {
+    Math::Vector::Vec3 knockBackDirection = {};
+    if (isDesidePosition_ == false) {
+      knockBackDirection = {
+          .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+      beforeKnockBackPosition_ = translate_;
+      afterKnockBackPosition_ =
+          beforeKnockBackPosition_ + knockBackDirection * KNOCK_BACK_DISTANCE_;
+      isDesidePosition_ = true;
+    }
+
+    // ノックバックの時間
+    knockBackTime_ += DELTA_TIME_;
+    // 線形補間
+    knockbackT_ += INCREASE_T_VALUE_;
+    // 座標を線形補間でやるよ！
+    translate_ =
+        Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_, knockbackT_);
+    knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
+
+    // 制限を超えたら0に戻る
+    if (knockbackT_ >= 1.0f ) {
+      beforeKnockBackPosition_ = {};
+      afterKnockBackPosition_ = {};
+
+      knockBackTime_ = 0.0f;
+      knockbackT_ = 0.0f;
+      isKnockBack_ = false;
+      isDesidePosition_ = false;
+    }
+  }
 }

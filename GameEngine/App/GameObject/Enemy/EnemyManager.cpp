@@ -76,10 +76,13 @@ void EnemyManager::Update() {
 
 #ifdef _DEBUG
 
-    if (ImGui::Button("enemySpown"))
+    if (ImGui::Button("enemy1Spown"))
     {
       GenerateNormalEnemy1({0, 0, 0});
 
+    }
+    if (ImGui::Button("enemy2Spown")) {
+      GenerateNormalEnemy2({0, 0, 0});
     }
 
     DisplayImGui();
@@ -127,6 +130,13 @@ void EnemyManager::DisplayImGui() {
 	
 	ImGui::Begin("EnemyManager");
    
+    if (ImGui::Button("AllDelete")) {
+          for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
+            // 消す
+            enemy->SetDelete();
+          }
+        }
+
     int32_t normalEnemyNumber = static_cast<int32_t>(enemyList_.size());
         int32_t bossEnemyNumber = static_cast<int32_t>(bossEnemyList_.size());
     ImGui::InputInt("雑魚敵", &normalEnemyNumber);

@@ -124,12 +124,21 @@ public:
 	   return isDelete_;
    }
 
+   /// <summary>
+   /// 消す
+   /// </summary>
+   inline void SetDelete() { 
+	   this->isAlive_ = false;
+   }
+
+
 	/// <summary>
    /// 弾を生成
    /// </summary>
    virtual void GenerateBullet(const uint32_t &selection);
 
 protected:
+	//最大ノックバック時間
    const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 	//時間変化
    const float_t DELTA_TIME_ = 1.0f / 60.0f;

@@ -161,10 +161,10 @@ void NormalEnemy2::KnockBack() {
     // 座標を線形補間でやるよ！
     translate_ =
         Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_, knockbackT_);
-    // knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
+    knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
     // 制限を超えたら0に戻る
-    if (knockbackT_ > 1.0f && knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+    if (knockbackT_ >= 1.0f && knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
       knockBackTime_ = 0.0f;
       knockbackT_ = 0.0f;
       isKnockBack_ = false;

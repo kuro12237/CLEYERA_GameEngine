@@ -96,6 +96,20 @@ private:
 	/// </summary>
 	void LoadCoreDataFromLua();
 
+	/// <summary>
+	/// ノックバック
+	/// </summary>
+	void KnockBack();
+
+private:
+	//ノックバックの距離
+        const float_t KNOCK_BACK_DISTANCE_ = 5.0f;
+  // 時間変化
+  const float_t DELTA_TIME_ = 1.0f / 60.0f;
+  // 線形補間
+  const float_t INCREASE_T_VALUE_ = 0.1f;
+  // 最大ノックバック時間
+  const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 
 private:
 
@@ -113,4 +127,18 @@ private:
 
 	// 発射物管理クラス
     std::unique_ptr<PlayerProjectileManager> projManager_;
+
+	// ノックバック
+    bool isKnockBack_ = false;
+    // 時間
+    float_t knockBackTime_ = 0.0f;
+    // 線形補間
+    float_t knockbackT_ = 0.0f;
+    // 方向を決める
+    bool isDesidePosition_ = false;
+
+	// ノックバック前の座標
+    Math::Vector::Vec3 beforeKnockBackPosition_ = {};
+    // ノックバック後の座標
+    Math::Vector::Vec3 afterKnockBackPosition_ = {};
 };
