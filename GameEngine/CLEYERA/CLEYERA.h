@@ -53,6 +53,8 @@ public:
 
   void End();
 
+  void PreDraw();
+
   void Draw();
 
 #pragma region Get

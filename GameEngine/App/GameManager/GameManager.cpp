@@ -42,10 +42,9 @@ void GameManager::Run() {
 
     scene_->Update(this);
 
-    if (isChange_) {
-      isChange_ = false;
-      continue;
-    }
+ 
+
+    engine_->PreDraw();
 
     imGuiManager->Begin();
 
@@ -56,7 +55,7 @@ void GameManager::Run() {
 
 #endif // _DEBUG
 
-    scene_->RaytracigTransfar();
+    //scene_->RaytracigTransfar();
 
     CLEYERA::Manager::CameraManager::GetInstance()->Update();
     CLEYERA::Manager::RenderManager::GetInstance()->Update();
@@ -71,16 +70,16 @@ void GameManager::Run() {
         swap.lock()->GetSwapChainResource(backBufferIndex_));
     raytracingManager.lock()->PreRaytracing();
 
-    commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
-    commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+    //commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
+    //commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-    scene_->Render();
-    CLEYERA::Manager::CameraManager::GetInstance()->BindComputeCommand(1);
+    //scene_->Render();
+    //CLEYERA::Manager::CameraManager::GetInstance()->BindComputeCommand(1);
 
-    raytracingManager.lock()->DispachRay();
+    //raytracingManager.lock()->DispachRay();
 
-    // レイトレのoutput結果をレンダーターゲットにコピー
-    swap.lock()->RTVCopyBuf(raytracingManager.lock()->GetOutputResource());
+    //// レイトレのoutput結果をレンダーターゲットにコピー
+    //swap.lock()->RTVCopyBuf(raytracingManager.lock()->GetOutputResource());
     raytracingManager.lock()->PostRaytracing();
 
 #pragma endregion
@@ -143,8 +142,8 @@ void GameManager::ChangeScene(std::unique_ptr<SceneCompornent> newScene) {
 
   scene_->Update(this);
 
-  engine_->End();
-
+  //engine_->End();
+  CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
   this->isChange_ = true;
   return;
 }

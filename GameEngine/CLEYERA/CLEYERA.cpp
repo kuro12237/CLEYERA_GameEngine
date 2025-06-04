@@ -123,7 +123,6 @@ void Engine::Finalize() {
 }
 
 void Engine::Begin() {
-  dxCommon_->PreDraw();
   inputManager_->Begin();
 }
 
@@ -132,5 +131,7 @@ void Engine::End() {
   flame_->Update();
   dxCommon_->CommandReset();
 }
+
+void Engine::PreDraw() { dxCommon_->PreDraw(); }
 
 void Engine::Draw() { grid_->DrawRaster3d(); }
