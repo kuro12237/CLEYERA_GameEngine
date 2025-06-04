@@ -134,7 +134,7 @@ protected:
 	//時間変化
    const float_t DELTA_TIME_ = 1.0f / 60.0f;
    //線形補間
-   const float_t INCREASE_T_VALUE_ = 0.01f;
+   const float_t INCREASE_T_VALUE_ = 0.1f;
    //ノックバック距離
    const float_t KNOCK_BACK_DISTANCE_ = 3.0f;
 

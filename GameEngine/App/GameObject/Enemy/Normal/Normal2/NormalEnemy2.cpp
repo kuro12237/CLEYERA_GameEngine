@@ -27,9 +27,11 @@ void NormalEnemy2::Init() {
    //スケールの設定
    scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
 
-   //体力
+   // 体力
    parameter_.maxHp_ = 3u;
-
+   parameter_.hp_ = parameter_.maxHp_;
+   // ノックバックの距離
+   parameter_.knockBackDistance_ = 1.0f;
 
    //ルート
    //セレクターは一つでもSucceesすればいいよ
@@ -90,12 +92,21 @@ void NormalEnemy2::Update() {
         }
     
         velocity_ = newDirection * speed_;
+
+        //体力無し
+        if (parameter_.hp_ <= 0) {
+          isAlive_ = false;
+        }
+
+        // ノックバック
+        KnockBack();
+        // 倒された
+        Killed();
     }
 
 	// 更新
     TransformUpdate();
-    //倒された
-    Killed();
+    
 
 
 #ifdef _DEBUG
@@ -123,7 +134,39 @@ void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
 
 void NormalEnemy2::KnockBack() {
+  // ランダムの値で位置を決める
+  // SRは固定
+  std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
+  // ランダムエンジン
+  std::random_device seedGenerator;
+  std::mt19937 randomEngine(seedGenerator());
+  if (isKnockBack_ == true) {
+    Math::Vector::Vec3 knockBackDirection = {};
+    if (isDesidePosition_ == false) {
+      knockBackDirection = {
+          .x = distribute(randomEngine), .y = 0.0f, .z = distribute(randomEngine)};
+      beforeKnockBackPosition_ = translate_;
+      afterKnockBackPosition_ =
+          beforeKnockBackPosition_ + knockBackDirection * parameter_.knockBackDistance_;
+      isDesidePosition_ = true;
+    }
+    // ノックバックの時間
+    knockBackTime_ += DELTA_TIME_;
+    // 線形補間
+    knockbackT_ += INCREASE_T_VALUE_;
+    // 座標を線形補間でやるよ！
+    translate_ =
+        Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_, knockbackT_);
+    // knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
+    // 制限を超えたら0に戻る
+    if (knockbackT_ > 1.0f && knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+      knockBackTime_ = 0.0f;
+      knockbackT_ = 0.0f;
+      isKnockBack_ = false;
+      isDesidePosition_ = false;
+    }
+  }
 }
 
 void NormalEnemy2::Killed() { 
@@ -148,6 +191,19 @@ void NormalEnemy2::Killed() {
 
 void NormalEnemy2::DisplayImGui() {
 	ImGui::Begin("NormalEnemy2");
+  if (ImGui::TreeNode("KnockBack") == true) {
+    ImGui::InputFloat("T", &knockbackT_);
+    ImGui::InputFloat3("BeforePosition", &beforeKnockBackPosition_.x);
+    ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
+    ImGui::TreePop();
+  }
+    if (ImGui::TreeNode("Parameter") == true) {
+          ImGui::SliderInt("MaxHP", &parameter_.maxHp_, 0, 10);
+            ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
+          ImGui::SliderFloat("MaxHP", &parameter_.knockBackDistance_, 0.0, 5.0f);
+          ImGui::TreePop();
+        }
+
     ImGui::InputFloat3("Scele", &scale_.x);
     ImGui::Checkbox("isKnockBack", &isKnockBack_);
     ImGui::Checkbox("IsAlive", &isAlive_);
