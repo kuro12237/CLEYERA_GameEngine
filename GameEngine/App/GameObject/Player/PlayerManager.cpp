@@ -8,6 +8,7 @@ PlayerManager::PlayerManager() {
   core_ = std::make_shared<PlayerCore>();
   commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   projectileManager_ = std::make_unique<PlayerBulletManager>();
+  hp_ = std::make_unique<HealthComponent>();
 }
 
 /// <summary>

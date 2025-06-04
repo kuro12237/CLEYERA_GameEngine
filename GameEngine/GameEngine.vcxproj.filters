@@ -497,7 +497,6 @@
     <ClInclude Include="CLEYERA\2d\Sprite.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="CLEYERA\Utility\Easing.h" />
-    <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
     <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
   </ItemGroup>
   <ItemGroup>

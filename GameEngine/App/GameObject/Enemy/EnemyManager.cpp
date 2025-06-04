@@ -99,7 +99,7 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
   // 挿入
   objComponents_.push_back(enemy);
   enemyList_.push_back(std::move(enemy));
-  
+
 }
 
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position) {
@@ -124,18 +124,11 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   bossEnemyList_.push_back(std::move(enemy));
 }
 
+
 void EnemyManager::DisplayImGui() {
 
-  ImGui::Begin("EnemyManager");
-
-  int32_t normalEnemyNumber = static_cast<int32_t>(enemyList_.size());
-  int32_t bossEnemyNumber = static_cast<int32_t>(bossEnemyList_.size());
-  ImGui::InputInt("雑魚敵", &normalEnemyNumber);
-  ImGui::InputInt("ボス敵", &bossEnemyNumber);
-void EnemyManager::DisplayImGui() { 
-	
 	ImGui::Begin("EnemyManager");
-   
+
     if (ImGui::Button("AllDelete")) {
           for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
             // 消す

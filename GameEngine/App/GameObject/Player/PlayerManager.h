@@ -55,4 +55,6 @@ private:
 
   // 発射物管理クラス
   std::unique_ptr<PlayerBulletManager> projectileManager_;
+
+  std::unique_ptr<HealthComponent> hp_ = nullptr;
 };

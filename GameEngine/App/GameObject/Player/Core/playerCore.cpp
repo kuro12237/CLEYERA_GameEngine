@@ -76,8 +76,7 @@ void PlayerCore::Update() {
     translate_ = {0.0f, 1.0f, 0.0f};
   }
 
-
-  //ノックバック
+  // ノックバック
   KnockBack();
 
 #ifdef _DEBUG
@@ -123,17 +122,15 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
   if (!obj) {
     return;
   }
-  //今後dynamicから変更する
+  // 今後dynamicから変更する
 
-  if (auto obj = other.lock()) {
-    // Wall 型にキャストできるかをチェック
-    if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
-      // Wall にぶつかったときの処理
-      auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
-          wall->GetCollder().lock());
-      // 押し出し
-      this->translate_ -= aabb->GetAABB().push;
-    }
+  // Wall 型にキャストできるかをチェック
+  if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
+    // Wall にぶつかったときの処理
+    auto aabb =
+        std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall->GetCollder().lock());
+    // 押し出し
+    this->translate_ -= aabb->GetAABB().push;
   }
 }
 
@@ -191,7 +188,7 @@ void PlayerCore::KnockBack() {
     knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
     // 制限を超えたら0に戻る
-    if (knockbackT_ >= 1.0f ) {
+    if (knockbackT_ >= 1.0f) {
       beforeKnockBackPosition_ = {};
       afterKnockBackPosition_ = {};
 
