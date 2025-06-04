@@ -49,11 +49,6 @@ private:
   /// </summary>
   void FireBullet();
 
-  /// <summary>
-  /// パラメーターの取得
-  /// </summary>
-  PlayerDemoBulletParam GetBulletParam();
-
 private:
   // コンボの段階
   int comboStep_ = 0;

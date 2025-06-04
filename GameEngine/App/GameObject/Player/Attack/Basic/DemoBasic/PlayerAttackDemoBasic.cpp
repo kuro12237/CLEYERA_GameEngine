@@ -65,45 +65,12 @@ void PlayerAttackDemoBasic::FireBullet() {
     auto newBul = std::make_shared<PlayerDemoBullet>();
     // 数値の設定
     newBul->SetPosition(owner_->GetWorldPos());
-    newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 1.0f}));
-    newBul->SetParam(GetBulletParam());
+    newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 0.1f}));
     // 初期化処理
     newBul->Init();
     // Managerに追加
     bulManager_->PushbackNewBullet(std::move(newBul));
   }
-}
-
-/// <summary>
-/// パラメーターの取得
-/// </summary>
-PlayerDemoBulletParam PlayerAttackDemoBasic::GetBulletParam() {
-  PlayerDemoBulletParam result{};
-
-  if (comboStep_ == 0) {
-    result.horizontalCurve = 0.5f;
-    result.verticalCurve = 0.0f;
-    result.curveDistance = 5.0f;
-    result.useDistance = true;
-    result.curveTime = 1.0f;
-    result.type = PlayerDemoBulletParam::CurveType::SinWave;
-  } else if (comboStep_ == 1) {
-    result.horizontalCurve = -0.5f;
-    result.verticalCurve = 0.0f;
-    result.curveDistance = 5.0f;
-    result.useDistance = true;
-    result.curveTime = 1.0f;
-    result.type = PlayerDemoBulletParam::CurveType::Linear;
-  } else if (comboStep_ == 2) {
-    result.horizontalCurve = 0.0f;
-    result.verticalCurve = 0.3f;
-    result.curveDistance = 4.0f;
-    result.useDistance = true;
-    result.curveTime = 1.0f;
-    result.type = PlayerDemoBulletParam::CurveType::EaseInOut;
-  }
-
-  return result;
 }
 
 /// <summary>
