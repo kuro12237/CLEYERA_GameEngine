@@ -7,8 +7,9 @@
 /// </summary>
 PlayerCore::PlayerCore() {
   lua_ = std::make_unique<LuaScript>();
+  health_ = std::make_unique<PlayerHealth>(this);
   moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
-  projManager_ = std::make_unique<PlayerProjectileManager>();
+  bulletManager_ = std::make_unique<PlayerBulletManager>();
 }
 
 /// <summary>
@@ -26,42 +27,58 @@ void PlayerCore::Init() {
   LoadCoreDataFromLua();
 
   // Modelの設定
-  std::pair<std::string, std::string> str = {"Resources/Model/Player/Core", "Core"};
-  uint32_t handle = ObjectComponent::modelManager_->LoadModel(str.first, str.second);
+  uint32_t handle =
+      ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
   ObjectComponent::gameObject_->ChangeModel(handle);
+  uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
+                                                            "PlayerDemoBullet");
+  demo;
 
   // コライダー作成
   ObjectComponent::CreateCollider(ColliderType::AABB);
+  // 当たり判定関数セット
+  collider_->SetHitCallFunc(
+      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+  // 体力クラスの初期化
+  health_->Init(100.0f); // 初期体力を適当に入れておく
   // 移動処理クラスの初期化
   moveFunc_->Init();
 
-  // 初期攻撃スロット
-  attacks_[ToIndex(AttackType::Basic)] =
-      std::make_unique<PlayerAttackDemoBasic>(this, projManager_.get());
-
-  // あたりはんてい関数セット
-  collider_->SetHitCallFunc(
-      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+  // 攻撃スロットの初期化
+  InitAttackSlot();
 }
 
 /// <summary>
 /// 更新処理
 /// </summary>
 void PlayerCore::Update() {
-  TransformUpdate();
+  ObjectComponent::TransformUpdate();
 
+  // 体力クラス
+  health_->Update();
   // 移動処理クラス
   moveFunc_->Update();
 
+  // 攻撃クラスの更新
+  for (auto &atk : attacks_) {
+    if (atk)
+      atk->Update();
+  }
+
   // 発射物管理クラス
-  projManager_->Update();
+  bulletManager_->Update();
+
+  if (translate_.y <= -2.0f) {
+    translate_ = {0.0f, 1.0f, 0.0f};
+  }
 
 
   //ノックバック
   KnockBack();
 
 #ifdef _DEBUG
+  bulletManager_->DrawImGui();
   ImGui::Begin("PlayerCore");
   ImGui::Checkbox("IsKockBack", &isKnockBack_);
   ImGui::End();
@@ -95,6 +112,9 @@ void PlayerCore::StandardAttack() { attacks_[ToIndex(AttackType::Standard)]->IsA
 /// </summary>
 void PlayerCore::SignatureAttack() { attacks_[ToIndex(AttackType::Signature)]->IsAttack(); }
 
+/// <summary>
+/// 衝突時コールバック
+/// </summary>
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
 
   if (auto obj = other.lock()) {
@@ -106,6 +126,25 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
       // 押し出し
       this->translate_ -= aabb->GetAABB().push;
     }
+  }
+}
+
+/// <summary>
+/// 攻撃スロットの初期化
+/// </summary>
+void PlayerCore::InitAttackSlot() {
+
+  // 初期攻撃スロット
+  attacks_[ToIndex(AttackType::Basic)] =
+      std::make_unique<PlayerAttackDemoBasic>(this, bulletManager_.get());
+  attacks_[ToIndex(AttackType::Standard)] =
+      std::make_unique<PlayerAttackDemoStandard>(this, bulletManager_.get());
+  attacks_[ToIndex(AttackType::Signature)] =
+      std::make_unique<PlayerAttackDemoSignature>(this, bulletManager_.get());
+
+  // 初期化
+  for (auto &atk : attacks_) {
+    atk->Init();
   }
 }
 

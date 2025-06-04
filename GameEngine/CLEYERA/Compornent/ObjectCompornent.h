@@ -65,6 +65,10 @@ public:
   std::weak_ptr<Model3d::Game3dObject> GetGameObject() { return gameObject_; }
   std::weak_ptr<Util::Collider::Collider> GetCollder() { return collider_; }
   Math::Vector::Vec3 &GetTranslate() { return translate_; }
+  Math::Matrix::Mat4x4 GetMatWorld() const {
+
+    return Math::Matrix::Func::AffineMatrix(scale_, rotate_, translate_);
+  }
 
   /// <summary>
   /// jsonパラメータのGet

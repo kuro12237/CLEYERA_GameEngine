@@ -6,7 +6,7 @@
 #include "Command/PlayerCommandHandler.h"
 #include "Core/playerCore.h"
 
-#include "Projectile/PlayerProjectileManager.h"
+#include "Bullet/Manager/PlayerBulletManager.h"
 
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {
@@ -50,5 +50,5 @@ private:
   std::unique_ptr<PlayerCommandHandler> commandHandler_;
 
   // 発射物管理クラス
-  std::unique_ptr<PlayerProjectileManager> projectileManager_;
+  std::unique_ptr<PlayerBulletManager> projectileManager_;
 };
