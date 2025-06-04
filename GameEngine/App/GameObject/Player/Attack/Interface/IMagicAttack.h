@@ -57,6 +57,11 @@ public:
     bulManager_ = bulManagerPtr;
   }
 
+  /// <summary>
+  /// ImGuiの描画
+  /// </summary>
+  virtual void DrwaImGui() {};
+
 #pragma region Accessor
 
   // 親の設定

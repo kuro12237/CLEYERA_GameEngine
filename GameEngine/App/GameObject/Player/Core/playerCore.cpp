@@ -73,16 +73,17 @@ void PlayerCore::Update() {
     translate_ = {0.0f, 1.0f, 0.0f};
   }
 
-
-  //ノックバック
+  // ノックバック
   KnockBack();
 
 #ifdef _DEBUG
-  bulletManager_->DrawImGui();
   ImGui::Begin("PlayerCore");
+  bulletManager_->DrawImGui();
+  for (auto &atk : attacks_) {
+    atk->DrwaImGui();
+  }
   ImGui::Checkbox("IsKockBack", &isKnockBack_);
   ImGui::End();
-
 #endif // _DEBUG
 }
 
@@ -182,7 +183,7 @@ void PlayerCore::KnockBack() {
     knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
     // 制限を超えたら0に戻る
-    if (knockbackT_ >= 1.0f ) {
+    if (knockbackT_ >= 1.0f) {
       beforeKnockBackPosition_ = {};
       afterKnockBackPosition_ = {};
 

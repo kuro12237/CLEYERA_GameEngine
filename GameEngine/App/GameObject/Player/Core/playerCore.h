@@ -109,6 +109,7 @@ private:
   /// </summary>
   void KnockBack();
 
+
 private:
   // ノックバックの距離
   const float_t KNOCK_BACK_DISTANCE_ = 5.0f;

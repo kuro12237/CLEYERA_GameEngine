@@ -7,7 +7,7 @@
 /// </summary>
 PlayerAttackDemoBasic::PlayerAttackDemoBasic(PlayerCore *corePtr,
                                              PlayerBulletManager *bulManagerPtr) {
-    // Ptrの設定
+  // Ptrの設定
   IMagicAttack::SetPre(corePtr, bulManagerPtr);
   lua_ = std::make_unique<LuaScript>();
 }
@@ -17,9 +17,8 @@ PlayerAttackDemoBasic::PlayerAttackDemoBasic(PlayerCore *corePtr,
 /// </summary>
 void PlayerAttackDemoBasic::Init() {
 
-    // 読み込み
+  // 読み込み
   lua_->LoadScript("Player/Attack/DemoBasic", "PlayerDemoAttackPram");
-
 }
 
 /// <summary>
@@ -78,33 +77,42 @@ void PlayerAttackDemoBasic::FireBullet() {
 /// <summary>
 /// パラメーターの取得
 /// </summary>
-PlayerDemoBulletParam PlayerAttackDemoBasic::GetBulletParam() { 
-    PlayerDemoBulletParam result{};
+PlayerDemoBulletParam PlayerAttackDemoBasic::GetBulletParam() {
+  PlayerDemoBulletParam result{};
 
-    if (comboStep_ == 1) {
-      result.horizontalCurve = 0.5f;
-      result.verticalCurve = 0.0f;
-      result.curveDistance = 5.0f;
-      result.useDistance = true;
-      result.curveTime = 1.0f;
-      result.type = PlayerDemoBulletParam::CurveType::SinWave;
-    } 
-    else if (comboStep_ == 2) {
-      result.horizontalCurve = -0.5f;
-      result.verticalCurve = 0.0f;
-      result.curveDistance = 5.0f;
-      result.useDistance = true;
-      result.curveTime = 1.0f;
-      result.type = PlayerDemoBulletParam::CurveType::Linear;
-    } 
-    else if (comboStep_ == 3) {
-      result.horizontalCurve = 0.0f;
-      result.verticalCurve = 0.3f;
-      result.curveDistance = 4.0f;
-      result.useDistance = true;
-      result.curveTime = 1.0f;
-      result.type = PlayerDemoBulletParam::CurveType::EaseInOut;
-    }
+  if (comboStep_ == 0) {
+    result.horizontalCurve = 0.5f;
+    result.verticalCurve = 0.0f;
+    result.curveDistance = 5.0f;
+    result.useDistance = true;
+    result.curveTime = 1.0f;
+    result.type = PlayerDemoBulletParam::CurveType::SinWave;
+  } else if (comboStep_ == 1) {
+    result.horizontalCurve = -0.5f;
+    result.verticalCurve = 0.0f;
+    result.curveDistance = 5.0f;
+    result.useDistance = true;
+    result.curveTime = 1.0f;
+    result.type = PlayerDemoBulletParam::CurveType::Linear;
+  } else if (comboStep_ == 2) {
+    result.horizontalCurve = 0.0f;
+    result.verticalCurve = 0.3f;
+    result.curveDistance = 4.0f;
+    result.useDistance = true;
+    result.curveTime = 1.0f;
+    result.type = PlayerDemoBulletParam::CurveType::EaseInOut;
+  }
 
-    return result;
+  return result;
+}
+
+/// <summary>
+/// ImGuiの描画
+/// </summary>
+void PlayerAttackDemoBasic::DrwaImGui() {
+  if (ImGui::TreeNode("DemoBasic")) {
+
+    ImGui::Text("ComboStep : %d", comboStep_);
+    ImGui::TreePop();
+  }
 }
