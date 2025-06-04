@@ -60,6 +60,12 @@ void PlayerCore::Update() {
   // 移動処理クラス
   moveFunc_->Update();
 
+  // 攻撃クラスの更新
+  for (auto &atk : attacks_) {
+    if (atk)
+      atk->Update();
+  }
+
   // 発射物管理クラス
   bulletManager_->Update();
 
@@ -126,6 +132,11 @@ void PlayerCore::InitAttackSlot() {
       std::make_unique<PlayerAttackDemoStandard>(this, bulletManager_.get());
   attacks_[ToIndex(AttackType::Signature)] =
       std::make_unique<PlayerAttackDemoSignature>(this, bulletManager_.get());
+
+  // 初期化
+  for (auto &atk : attacks_) {
+    atk->Init();
+  }
 }
 
 /// <summary>
