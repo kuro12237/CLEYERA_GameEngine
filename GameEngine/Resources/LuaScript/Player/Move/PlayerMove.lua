@@ -3,13 +3,13 @@ PlayerMove = {
     LStickDeadZone = 0.15,
 
     -- 最大移動速度
-    maxSpeed = 1.0,
+    maxSpeed = 0.5,
 
     -- 慣性（0:即時反映 〜 1:非常に滑らか）
     inertiaFactor = 1.0,
 
     -- 方向転換時の最低速度スケール（0.0〜1.0）
-    minSpeedScale = 0.3,
+    minSpeedScale = 1.0,
 
     -- 姿勢補間率（回転角補間用）
     rotateLerp = 0.1,
