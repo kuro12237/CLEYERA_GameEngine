@@ -12,6 +12,7 @@ constexpr float BULLET_EPSILON = 0.001f;
 class IPlayerBullet : public CLEYERA::Component::ObjectComponent {
 
 public:
+
   IPlayerBullet() {
     attackPower_ = std::make_unique<AttackPower>();
     // 仮設定
@@ -20,6 +21,8 @@ public:
     CreateCollider(ColliderType::AABB);
     auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
     aabb->SetSize({-2.0f, -2.0f, -2.0f},{2.0f, 2.0f, 2.0f});
+    collider_->SetHitCallFunc(
+        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
   }
 
   /// <summary>

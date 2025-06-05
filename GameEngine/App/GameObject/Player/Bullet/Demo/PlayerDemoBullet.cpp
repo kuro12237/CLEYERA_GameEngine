@@ -3,7 +3,16 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-PlayerDemoBullet::PlayerDemoBullet() {}
+PlayerDemoBullet::PlayerDemoBullet() {
+
+  //attackPower_ = std::make_unique<AttackPower>();
+  //// 仮設定
+  //attackPower_->SetPower(50);
+
+  //CreateCollider(ColliderType::AABB);
+  //auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
+  //aabb->SetSize({-2.0f, -2.0f, -2.0f}, {2.0f, 2.0f, 2.0f});
+}
 
 /// <summary>
 /// 初期化処理
