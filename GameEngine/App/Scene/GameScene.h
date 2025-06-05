@@ -8,6 +8,9 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
+#include"TestPlayGui/TestPlayGui.h"
+
+
 class GameScene : public SceneCompornent {
 public:
   GameScene() {}
@@ -27,4 +30,7 @@ private:
   std::shared_ptr<EnemyManager> enemyManager_ = nullptr;
 
   std::shared_ptr<WallManager> wallManager_ = nullptr;
+
+  std::shared_ptr<TestPlayGui> imgui_ = nullptr;
+
 };

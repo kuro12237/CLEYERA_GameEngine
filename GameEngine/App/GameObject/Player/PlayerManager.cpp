@@ -72,10 +72,10 @@ void PlayerManager::ImGuiUpdate() {
 
     for (auto obj : objComponents_) {
 
-      obj->ImGuiUpdate();
+      obj.lock()->ImGuiUpdate();
     }
     for (auto obj : cameraCompornents_) {
-      obj->ImGuiUpdate();
+      obj.lock()->ImGuiUpdate();
     }
 
     hp_->ImGuiUpdate();

@@ -21,7 +21,7 @@ void EnemyDebugScene::Init() {
     for (auto &obj : manager->GetObjList()) {
 
       // 無視
-      objectList_.push_back(obj->GetGameObject());
+      objectList_.push_back(obj.lock()->GetGameObject());
 
       // 重力適用
       gravityManager_->PushData(obj);

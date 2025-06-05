@@ -21,6 +21,8 @@ public:
 
   bool GetIsDead() { return isDead_; }
 
+  const int32_t &GetHp() const { return hp_; }
+
 private:
   bool isDead_ = false;
   int32_t hp_;

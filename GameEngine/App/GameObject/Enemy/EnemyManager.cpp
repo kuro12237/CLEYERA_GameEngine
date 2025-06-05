@@ -52,6 +52,8 @@ void EnemyManager::Init() {
 
 void EnemyManager::Update() {
 
+  enemyCount_ = enemyList_.size();
+
   // プレイヤーの座標を取得
   playerPosition_ = playerManager_->GetPlayerCore().lock()->GetWorldPos();
 
@@ -72,19 +74,6 @@ void EnemyManager::Update() {
     // ボスの更新
     enemy->Update();
   }
-
-//#ifdef _DEBUG
-//
-//    if (ImGui::Button("enemy1Spown"))
-//    {
-//      GenerateNormalEnemy1({0, 0, 0});
-//
-//    }
-//    if (ImGui::Button("enemy2Spown")) {
-//      GenerateNormalEnemy2({0, 0, 0});
-//    }
-//
-//#endif // _DEBUG
 }
 
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
@@ -127,7 +116,6 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   bossEnemyList_.push_back(std::move(enemy));
 }
 
-
 void EnemyManager::LoadEnemy2DataFromLua() {
   // translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
 }
@@ -154,7 +142,7 @@ void EnemyManager::ImGuiUpdate() {
 
     for (auto obj : objComponents_) {
 
-      obj->ImGuiUpdate();
+      obj.lock()->ImGuiUpdate();
     }
 
     ImGui::TreePop();

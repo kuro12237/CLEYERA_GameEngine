@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "../GameManager/GameManager.h"
 
 void GameScene::Init() {
 
@@ -8,9 +9,8 @@ void GameScene::Init() {
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
   uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   bulletNum;
- /* uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
-  modelHandle;*/
-
+  /* uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
+   modelHandle;*/
 
   playerManager_ = std::make_shared<PlayerManager>();
   managerCompornents_.push_back(playerManager_);
@@ -22,6 +22,12 @@ void GameScene::Init() {
   wallManager_ = std::make_shared<WallManager>();
   managerCompornents_.push_back(wallManager_);
 
+  imgui_ = std::make_shared<TestPlayGui>();
+  imgui_->SetPlayerHp(playerManager_->GetHp());
+  imgui_->SetEnemyCount(enemyManager_->GetEnemyCount());
+
+  managerCompornents_.push_back(imgui_);
+
   // 初期化
   for (auto manager : managerCompornents_) {
     manager->Init();
@@ -30,14 +36,14 @@ void GameScene::Init() {
 
       // 絶対に登録
       objectComponents_.push_back(obj);
-      objectList_.push_back(obj->GetGameObject());
+      objectList_.push_back(obj.lock()->GetGameObject());
 
       // 重力適用
       gravityManager_->PushData(obj);
       // 地形当たり判定適用
       terrain_->PushData(obj);
 
-      if (obj->GetCollder().lock()) {
+      if (obj.lock()->GetCollder().lock()) {
         collidersystem_->PushCollider(obj);
       }
     }
@@ -55,7 +61,13 @@ void GameScene::Init() {
   InitRaytracing();
 }
 
-void GameScene::Update([[maybe_unused]]GameManager *g) {
+void GameScene::Update([[maybe_unused]] GameManager *g) {
+
+  if (imgui_->ResetScene()) {
+    g->ChangeScene(std::make_unique<GameScene>());
+
+    return;
+  }
 
   for (auto obj : enviromentObjs_) {
     obj->Update();
