@@ -84,13 +84,13 @@ void PlayerCore::Update() {
   KnockBack();
 
 #ifdef _DEBUG
-  ImGui::Begin("PlayerCore");
+  /*ImGui::Begin("PlayerCore");
   bulletManager_->DrawImGui();
   for (auto &atk : attacks_) {
     atk->DrwaImGui();
   }
   ImGui::Checkbox("IsKockBack", &isKnockBack_);
-  ImGui::End();
+  ImGui::End();*/
 #endif // _DEBUG
 }
 
