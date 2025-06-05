@@ -3,7 +3,6 @@
 #include "CLEYERA.h"
 #include "Lua/Script/LuaScript.h"
 
-#include "Health/PlayerHealth.h"
 #include "Move/PlayerMoveFunc.h"
 
 #include "../Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
@@ -154,8 +153,6 @@ private:
   // PlayerCoreのLua
   std::unique_ptr<LuaScript> lua_;
 
-  // 体力
-  std::unique_ptr<PlayerHealth> health_;
   // 移動処理
   std::unique_ptr<PlayerMoveFunc> moveFunc_;
 

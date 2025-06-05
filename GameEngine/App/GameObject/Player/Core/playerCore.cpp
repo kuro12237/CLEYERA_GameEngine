@@ -10,7 +10,6 @@
 /// </summary>
 PlayerCore::PlayerCore() {
   lua_ = std::make_unique<LuaScript>();
-  health_ = std::make_unique<PlayerHealth>(this);
   moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
   bulletManager_ = std::make_unique<PlayerBulletManager>();
 }
@@ -43,8 +42,6 @@ void PlayerCore::Init() {
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
-  // 体力クラスの初期化
-  health_->Init(100.0f); // 初期体力を適当に入れておく
   // 移動処理クラスの初期化
   moveFunc_->Init();
 
@@ -58,8 +55,6 @@ void PlayerCore::Init() {
 void PlayerCore::Update() {
   ObjectComponent::TransformUpdate();
 
-  // 体力クラス
-  health_->Update();
   // 移動処理クラス
   moveFunc_->Update();
 
