@@ -82,21 +82,14 @@ PlayerDemoBullet::BulletCurveParams PlayerAttackDemoBasic::GetBulletParams() {
     PlayerDemoBullet::BulletCurveParams result{};
   switch (comboStep_) {
   case 0:
-    result.horizontalCurve = 4.0f;
-    result.verticalCurve = 0.0f;
-    result.curveDistance = 35.0f;
+    result.horizontalCurve = 3.0f;
     break;
 
   case 1:
-    result.horizontalCurve = -4.0f;
-    result.verticalCurve = 0.0f;
-    result.curveDistance = 35.0f;
+    result.horizontalCurve = -3.0f;
     break;
 
   case 2:
-    result.verticalCurve = 0.0f;
-    result.verticalCurve = 0.0f;
-    result.curveDistance = 15.0f;
     break;
 
   default:

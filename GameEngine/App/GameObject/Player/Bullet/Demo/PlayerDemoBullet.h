@@ -6,9 +6,9 @@ class PlayerDemoBullet : public IPlayerBullet {
 
 public:
   struct BulletCurveParams {
-    float horizontalCurve = 0.0f; // 左右の膨らみ量（負：左、正：右）
-    float verticalCurve = 0.0f;   // 上下の膨らみ量（負：下、正：上）
-    float curveDistance = 10.0f;  // 曲がりの終点までの距離
+    float horizontalCurve = 0.0f;
+    float verticalCurve = 0.0f;
+    float curveDistance = 0.0f;
   };
 
 public:
@@ -45,14 +45,10 @@ private:
   /// </summary>
   void Move();
 
-  /// <summary>
-  /// 球面補間
-  /// </summary>
-  Math::Vector::Vec3 Slerp(const Math::Vector::Vec3 &a, const Math::Vector::Vec3 &b, float t);
-
 private:
   BulletCurveParams params_{}; // パラメータ
-  Math::Vector::Vec3 direction_; // 基本の進行方向（正規化）
-  float travelDistance_ = 0.0f;  // 累計移動距離
-  Math::Vector::Vec3 startPos_;  // 発射位置
+  float travelDistance_ = 0.0f;
+  Math::Vector::Vec3 direction_{};
+  Math::Vector::Vec3 startPos_{};
+  float elapsedTime_ = 0.0f; // 経過時間（毎フレーム加算）
 };
