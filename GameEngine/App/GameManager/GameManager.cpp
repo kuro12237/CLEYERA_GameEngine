@@ -48,12 +48,12 @@ void GameManager::Run() {
 
     imGuiManager->Begin();
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 
     scene_->ImGuiUpdate();
-    engine_->ImGuiUpdate();
+//    engine_->ImGuiUpdate();
 
-#endif // _DEBUG
+//い#endif // _DEBUG
 
     //scene_->RaytracigTransfar();
 
