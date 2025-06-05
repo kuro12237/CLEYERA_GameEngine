@@ -73,4 +73,3 @@ void PlayerDemoBullet::Move() {
     isActive_ = false;
   }
 }
-

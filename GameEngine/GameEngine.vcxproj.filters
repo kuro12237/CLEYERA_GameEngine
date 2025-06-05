@@ -230,6 +230,7 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\DemoStandard\PlayerDemoStandardBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -496,6 +497,7 @@
     <ClInclude Include="CLEYERA\2d\Sprite.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="CLEYERA\Utility\Easing.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\DemoStandard\PlayerDemoStandardBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
