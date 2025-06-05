@@ -97,8 +97,8 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
   enemy->Init();
   // 挿入
   objComponents_.push_back(enemy);
+  colliderSystem_->PushCollider(enemy);
   enemyList_.push_back(std::move(enemy));
-
 }
 
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position) {
@@ -109,6 +109,8 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position) {
   // 初期化
   enemy->Init();
   // 挿入
+  objComponents_.push_back(enemy);
+  colliderSystem_->PushCollider(enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -120,6 +122,8 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 挿入
+  objComponents_.push_back(enemy);
+  colliderSystem_->PushCollider(enemy);
   bossEnemyList_.push_back(std::move(enemy));
 }
 

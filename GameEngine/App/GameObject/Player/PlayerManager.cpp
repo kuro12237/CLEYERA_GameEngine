@@ -25,6 +25,7 @@ void PlayerManager::Init() {
   core_->SetCameraPtr(camera_);
   core_->Init();
   ManagerCompornent::objComponents_.push_back(core_);
+  colliderSystem_->PushCollider(core_);
 
   // コマンドハンドラー
   commandHandler_->Init();
