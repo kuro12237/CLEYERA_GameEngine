@@ -23,6 +23,7 @@ class Terrain : public CLEYERA::Util::WorldTransform {
 
    void Finalize();
 
+   void Clear() { objList_.clear(); }
 
    void CheckObjct();
 

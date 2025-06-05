@@ -41,6 +41,9 @@ public:
   // CoreのweakPtrの取得
   std::weak_ptr<PlayerCore> GetPlayerCore() const { return this->core_; }
 
+  
+    const int32_t &GetHp() const { return hp_->GetHp(); }
+
 #pragma endregion
 
 private:

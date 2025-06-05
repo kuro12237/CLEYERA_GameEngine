@@ -24,7 +24,7 @@ public:
 
 #pragma region Get
 
-  std::list<std::shared_ptr<Component::ObjectComponent>> GetObjList() {
+  std::list<std::weak_ptr<Component::ObjectComponent>> GetObjList() {
     return objComponents_;
   }
 #pragma endregion
@@ -38,8 +38,8 @@ protected:
 
   std::string name_ = "";
 
-  std::list<std::shared_ptr<Component::ObjectComponent>> objComponents_;
-  std::list<std::shared_ptr<Component::CameraCompornent>> cameraCompornents_;
+  std::list<std::weak_ptr<Component::ObjectComponent>> objComponents_;
+  std::list<std::weak_ptr<Component::CameraCompornent>> cameraCompornents_;
 };
 
 } // namespace Component

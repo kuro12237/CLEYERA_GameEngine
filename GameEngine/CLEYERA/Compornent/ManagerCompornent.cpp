@@ -10,10 +10,10 @@ void CLEYERA::Component::ManagerCompornent::ImGuiUpdate() {
 
       for (auto obj : objComponents_) {
 
-         obj->ImGuiUpdate();
+         obj.lock()->ImGuiUpdate();
       }
       for (auto obj : cameraCompornents_) {
-         obj->ImGuiUpdate();
+        obj.lock()->ImGuiUpdate();
       }
 
       ImGui::TreePop();
@@ -24,19 +24,19 @@ void CLEYERA::Component::ManagerCompornent::ListInit() {
 
    for (auto obj : objComponents_) {
 
-      obj->Init();
+      obj.lock()->Init();
    }
    for (auto obj : cameraCompornents_) {
-      obj->Init();
+      obj.lock()->Init();
    }
 }
 
 void CLEYERA::Component::ManagerCompornent::ListUpdate() {
 
    for (auto obj : objComponents_) {
-      obj->Update();
+    obj.lock()->Update();
    }
    for (auto obj : cameraCompornents_) {
-      obj->Update();
+      obj.lock()->Update();
    }
 }

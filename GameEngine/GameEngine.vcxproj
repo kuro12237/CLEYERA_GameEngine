@@ -206,6 +206,7 @@
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Manager\PlayerBulletManager.cpp" />
+    <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
@@ -354,6 +355,7 @@
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
+    <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
     <ClInclude Include="App\GameObject\Wall\WallManager.h" />
     <ClInclude Include="App\Scene\EnemyDebugScene.h" />
