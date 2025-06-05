@@ -185,6 +185,8 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\DemoSignature\PlayerDemoSignatureBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Bullet\DemoStandard\PlayerDemoStandardBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Demo\PlayerDemoBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Interface\IPlayerBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.cpp" />
@@ -331,6 +333,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\DemoSignature\PlayerDemoSignatureBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Bullet\DemoStandard\PlayerDemoStandardBullet.h" />
     <ClInclude Include="App\GameObject\Player\Bullet\Demo\PlayerDemoBullet.h" />
     <ClInclude Include="App\GameObject\Player\Bullet\Manager\PlayerBulletManager.h" />
     <ClInclude Include="App\GameObject\Player\Bullet\Interface\IPlayerBullet.h" />

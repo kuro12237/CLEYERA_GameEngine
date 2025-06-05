@@ -38,6 +38,11 @@ public:
   /// </summary>
   void IsAttack() override;
 
+  /// <summary>
+  /// ImGuiの描画
+  /// </summary>
+  void DrwaImGui() override;
+
 private:
   /// <summary>
   /// Bulletを生成
@@ -45,9 +50,9 @@ private:
   void FireBullet();
 
   /// <summary>
-  /// パラメーターの取得
+  /// Bulletのパラメータの取得
   /// </summary>
-  PlayerDemoBulletParam GetBulletParam();
+  PlayerDemoBullet::BulletCurveParams GetBulletParams();
 
 private:
   // コンボの段階
@@ -57,7 +62,7 @@ private:
   // コンボのタイマー
   float comboTimer_ = 0.0f;
   // コンボインターバル
-  float comboInterval_ = 0.0f;
+  float comboInterval_ = 60.0f;
 
   // Luaスクリプト
   std::unique_ptr<LuaScript> lua_;

@@ -96,6 +96,11 @@ public:
   /// </summary>
   void SetHpCalcfunc(std::function<void(int32_t)> hpCalcFunc) { hpCalcFunc_ = hpCalcFunc; };
 
+  // 前方ベクトルの取得
+  Math::Vector::Vec3 GetForwardVec() const { return forwardVec_; }
+  // 右方ベクトルの取得
+  Math::Vector::Vec3 GetRightVec() const { return rightVec_; }
+
 #pragma endregion
 
 private:
@@ -108,6 +113,18 @@ private:
   /// Luaからデータを抽出する
   /// </summary>
   void LoadCoreDataFromLua();
+
+  /// <summary>
+  /// 前方&右方のベクトルを求める
+  /// </summary>
+  void CalcForwardAndRightVec();
+
+  /// <summary>
+  /// Vector3にアフィン変換と透視補正を適用する
+  /// </summary>
+  Math::Vector::Vec3 TransformWithPerspective(const Math::Vector::Vec3 &v,
+                                              const Math::Matrix::Mat4x4 &m);
+
 
   /// <summary>
   /// ノックバック
@@ -147,6 +164,10 @@ private:
 
   // 弾管理クラス
   std::unique_ptr<PlayerBulletManager> bulletManager_;
+
+  // 前方&右方ベクトル
+  Math::Vector::Vec3 forwardVec_{};
+  Math::Vector::Vec3 rightVec_{};
 
   // ノックバック
   bool isKnockBack_ = false;
