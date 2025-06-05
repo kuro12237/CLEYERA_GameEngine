@@ -30,18 +30,50 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  // 雑魚敵1の生成
-  for (uint32_t i = 1u; i <= enemy1Count; ++i) {
-    std::string varName = "Enemy1GeneratePositions.translate" + std::to_string(i);
-    Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
-    GenerateNormalEnemy1(pos);
+  //// 雑魚敵1の生成
+  // for (uint32_t i = 1u; i <= enemy1Count; ++i) {
+  //   std::string varName = "Enemy1GeneratePositions.translate" + std::to_string(i);
+  //   Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
+  //   GenerateNormalEnemy1(pos);
+  // }
+
+  //// 雑魚敵2の生成
+  // for (uint32_t i = 1u; i <= enemy2Count; ++i) {
+  //   std::string varName = "Enemy2GeneratePositions.translate" + std::to_string(i);
+  //   Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
+  //   GenerateNormalEnemy2(pos);
+  // }
+
+  for (size_t i = 0; i < 8; i++) {
+    std::string tag = "NormalEnemy1";
+
+    char name[17];
+
+    if (i == 0) {
+
+      GenerateNormalEnemy1({}, tag);
+    } else {
+      std::snprintf(name, sizeof(name), "NormalEnemy1.%03zu", i);
+
+      GenerateNormalEnemy1({}, name);
+    }
+
   }
 
-  // 雑魚敵2の生成
-  for (uint32_t i = 1u; i <= enemy2Count; ++i) {
-    std::string varName = "Enemy2GeneratePositions.translate" + std::to_string(i);
-    Math::Vector::Vec3 pos = lua_->GetVariable<Math::Vector::Vec3>(varName);
-    GenerateNormalEnemy2(pos);
+  for (size_t i = 0; i < 8; i++) {
+    std::string tag = "NormalEnemy2";
+
+    char name[17];
+    if (i == 0) {
+
+      GenerateNormalEnemy2({}, tag);
+
+    } else {
+      std::snprintf(name, sizeof(name), "NormalEnemy2.%03zu", i);
+
+      GenerateNormalEnemy2({}, name);
+    }
+
   }
 
   for (auto obj : enemyList_) {
@@ -76,7 +108,7 @@ void EnemyManager::Update() {
   }
 }
 
-void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std::string name) {
 
   // 敵の生成
   std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
@@ -84,19 +116,29 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position) {
   enemy->SetInitialPosition(position);
   // 初期化
   enemy->Init();
+
+  if (name != "") {
+    enemy->SetName(name);
+  }
+
   // 挿入
   objComponents_.push_back(enemy);
   colliderSystem_->PushCollider(enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position) {
+void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
   std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化
   enemy->Init();
+
+  if (name != "") {
+    enemy->SetName(name);
+  }
+
   // 挿入
   objComponents_.push_back(enemy);
   colliderSystem_->PushCollider(enemy);
