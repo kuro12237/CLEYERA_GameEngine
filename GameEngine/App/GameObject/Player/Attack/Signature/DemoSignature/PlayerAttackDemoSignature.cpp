@@ -29,16 +29,55 @@ void PlayerAttackDemoSignature::Reset() {}
 /// 攻撃処理
 /// </summary>
 void PlayerAttackDemoSignature::IsAttack() {
-  if (bulManager_) {
+  if (!bulManager_)
+    return;
 
-    // Bullet生成
-    auto newBul = std::make_shared<PlayerDemoBullet>();
-    // 数値の設定
-    newBul->SetPosition(owner_->GetWorldPos());
-    newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 1.0f}));
-    // 初期化処理
+  auto pos = owner_->GetWorldPos();
+  auto forward = owner_->GetForwardVec(); // プレイヤーの正面方向（単位ベクトル）
+
+  // 方向数が1以下なら正面だけ撃つ
+  int count = directionCount_ > 0 ? directionCount_ : 1;
+
+  // 360度をcount分割した角度
+  float angleStep = 2.0f * float(std::numbers::pi) / float(count);
+
+  for (int i = 0; i < count; ++i) {
+    float angle = angleStep * i;
+
+    // forwardベクトルをY軸周りに回転させる（弾の発射方向）
+    Math::Vector::Vec3 dir = RotateAroundAxis(forward, {0, 1, 0}, angle);
+    float bulletSpeed = 0.3f; // 好きな速さに調整
+    dir.x *= bulletSpeed;
+    dir.y *= bulletSpeed;
+    dir.z *= bulletSpeed;
+
+    auto newBul = std::make_shared<PlayerDemoSignatureBullet>();
+    newBul->SetPosition(pos);
+    newBul->SetVelocity(IMagicAttack::CalcVelocity(dir));
     newBul->Init();
-    // Managerに追加
     bulManager_->PushbackNewBullet(std::move(newBul));
   }
+}
+
+/// <summary>
+/// 指定した軸の周りにベクトルを回転させます。
+/// </summary>
+Math::Vector::Vec3 PlayerAttackDemoSignature::RotateAroundAxis(const Math::Vector::Vec3 &v,
+                                                               const Math::Vector::Vec3 &axis,
+                                                               float angle) {
+    // ロドリゲスの回転公式
+  float cosA = cosf(angle);
+  float sinA = sinf(angle);
+
+  // v*cosA
+  Math::Vector::Vec3 term1 = v * cosA;
+
+  // (axis × v)*sinA
+  Math::Vector::Vec3 term2 = Math::Vector::Func::Cross(axis, v) * sinA;
+
+  // axis * (axis・v) * (1 - cosA)
+  float dot = Math::Vector::Func::Dot(axis, v);
+  Math::Vector::Vec3 term3 = axis * dot * (1.0f - cosA);
+
+  return term1 + term2 + term3;
 }

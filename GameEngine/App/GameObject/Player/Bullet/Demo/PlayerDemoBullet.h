@@ -2,21 +2,14 @@
 
 #include "../Interface/IPlayerBullet.h"
 
-struct PlayerDemoBulletParam {
-  float horizontalCurve = 0.0f; // 左右カーブ強さ（右:正 / 左:負）
-  float verticalCurve = 0.0f;   // 上下カーブ強さ（上:正 / 下:負）
-  float curveDistance = 10.0f;  // カーブ終了までのZ軸距離（始点から）
-  bool useDistance = true;      // 距離ベースで終点判定するか
-  float curveTime = 1.0f;       // 時間ベースで終了する場合の秒数
-  enum class CurveType {
-    None,
-    SinWave,
-    Linear,
-    EaseInOut,
-  } type = CurveType::SinWave;
-};
-
 class PlayerDemoBullet : public IPlayerBullet {
+
+public:
+  struct BulletCurveParams {
+    float horizontalCurve = 0.0f;
+    float verticalCurve = 0.0f;
+    float curveDistance = 0.0f;
+  };
 
 public:
   /// <summary>
@@ -39,10 +32,12 @@ public:
   /// </summary>
   void Update() override;
 
-  /// <summary>
-  /// パラメーターの設定
-  /// </summary>
-  void SetParam(const PlayerDemoBulletParam &param) { param_ = param; }
+#pragma region
+
+  // パラメータの設定
+  void SetParams(const BulletCurveParams &prams) { params_ = prams; }
+
+#pragma endregion
 
 private:
   /// <summary>
@@ -51,8 +46,9 @@ private:
   void Move();
 
 private:
-  Math::Vector::Vec3 initVel_ = {0, 0, 1}; // 弾の初期速度
-  PlayerDemoBulletParam param_;            // カーブ情報
-  float traveledDistance_ = 0.0f;          // Z軸方向に進んだ距離
-  float elapsedTime_ = 0.0f;               // 経過時間
+  BulletCurveParams params_{}; // パラメータ
+  float travelDistance_ = 0.0f;
+  Math::Vector::Vec3 direction_{};
+  Math::Vector::Vec3 startPos_{};
+  float elapsedTime_ = 0.0f; // 経過時間（毎フレーム加算）
 };

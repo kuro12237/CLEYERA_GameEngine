@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Bullet/Demo/PlayerDemoBullet.h"
+#include "../../../Bullet/DemoSignature/PlayerDemoSignatureBullet.h"
 #include "../../Interface/IMagicAttack.h"
 #include "CLEYERA.h"
 
@@ -39,4 +39,12 @@ public:
   void IsAttack() override;
 
 private:
+  /// <summary>
+  /// 指定した軸の周りにベクトルを回転させます。
+  /// </summary>
+  Math::Vector::Vec3 RotateAroundAxis(const Math::Vector::Vec3 &v, const Math::Vector::Vec3 &axis,
+                                      float angle);
+
+private:
+  int directionCount_ = 5; // デフォルトは8方向
 };

@@ -18,11 +18,14 @@ void PlayerDemoBullet::Init() {
                                                               "PlayerDemoBullet");
   ObjectComponent::gameObject_->ChangeModel(handle);
 
-  // 生存時間を適当に設定 1秒
-  lifeTime_ = 1.0f * 60.0f;
-
   // ForceからY軸を求める
   CalcRotateFromVelocity();
+
+  // 生存時間を適当に設定 1秒
+  lifeTime_ = 0.5f * 60.0f;
+
+  direction_ = Math::Vector::Func::Normalize(initVel_);
+  startPos_ = translate_;
 }
 
 /// <summary>
@@ -39,56 +42,34 @@ void PlayerDemoBullet::Update() {
 /// 移動処理
 /// </summary>
 void PlayerDemoBullet::Move() {
+  float dt = 1.0f / 60.0f;
+  elapsedTime_ += dt;
 
-  elapsedTime_ += 1.0f / 60.0f;
+  float t = elapsedTime_ / (lifeTime_ / 60.0f); // フレーム→秒変換
+  t = std::clamp(t, 0.0f, 1.0f);
 
-  // 進行ベース
-  float progress = 0.0f;
-  if (param_.useDistance) {
-    traveledDistance_ += initVel_.z;
-    progress = std::clamp(traveledDistance_ / param_.curveDistance, 0.0f, 1.0f);
-  } else {
-    progress = std::clamp(elapsedTime_ / param_.curveTime, 0.0f, 1.0f);
-  }
+  // カーブ角
+  float angle = t * float(std::numbers::pi);
 
-  float curveX = 0.0f, curveY = 0.0f;
+  Math::Vector::Vec3 forward = direction_;
+  Math::Vector::Vec3 right =
+      Math::Vector::Func::Normalize(Math::Vector::Func::Cross({0, 1, 0}, forward));
+  Math::Vector::Vec3 up = Math::Vector::Func::Normalize(Math::Vector::Func::Cross(forward, right));
 
-  switch (param_.type) {
-  case PlayerDemoBulletParam::CurveType::SinWave:
-    curveX = param_.horizontalCurve * sinf(progress * float(std::numbers::pi));
-    curveY = param_.verticalCurve * sinf(progress * float(std::numbers::pi));
-    break;
+  // カーブオフセット
+  Math::Vector::Vec3 curveOffset =
+      right * params_.horizontalCurve * sinf(angle) + up * params_.verticalCurve * sinf(angle);
 
-  case PlayerDemoBulletParam::CurveType::Linear:
-    curveX = param_.horizontalCurve * progress;
-    curveY = param_.verticalCurve * progress;
-    break;
+  // 弾の速度から進行距離を算出
+  float bulletSpeed = Math::Vector::Func::Length(initVel_);
+  float totalDistance = bulletSpeed * (lifeTime_ / 60.0f);
+  Math::Vector::Vec3 curvePos = forward * (totalDistance * t) + curveOffset;
 
-  case PlayerDemoBulletParam::CurveType::EaseInOut:
-    curveX = param_.horizontalCurve * powf(sinf(progress * float(std::numbers::pi) / 2.0f), 2.0f);
-    curveY = param_.verticalCurve * powf(sinf(progress * float(std::numbers::pi) / 2.0f), 2.0f);
-    break;
+  Math::Vector::Vec3 newTargetPos = startPos_ + curvePos;
+  Math::Vector::Vec3 currentWorldPos = translate_;
+  force_ = newTargetPos - currentWorldPos;
 
-  case PlayerDemoBulletParam::CurveType::None:
-  default:
-    break;
-  }
-
-  // 合成された速度
-  Math::Vector::Vec3 velocity = initVel_;
-  velocity.x += curveX;
-  velocity.y += curveY;
-
-  force_ = velocity;
-
-  // ここで isActive を false にする条件を加える
-  if (param_.useDistance) {
-    if (traveledDistance_ >= param_.curveDistance) {
-      isActive_ = false;
-    }
-  } else {
-    if (elapsedTime_ >= param_.curveTime) {
-      isActive_ = false;
-    }
+  if (angle >= std::numbers::pi) {
+    isActive_ = false;
   }
 }

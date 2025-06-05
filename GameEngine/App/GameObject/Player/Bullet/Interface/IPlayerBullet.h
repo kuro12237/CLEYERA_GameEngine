@@ -5,6 +5,9 @@
 
 #include "Component/AttackPower/AttackPower.h"
 
+
+constexpr float BULLET_EPSILON = 0.001f;
+
 /* プレイヤーの攻撃の覇者物クラス */
 class IPlayerBullet : public CLEYERA::Component::ObjectComponent {
 
