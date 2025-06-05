@@ -37,13 +37,13 @@ public:
   /// 雑魚敵を生成
   /// </summary>
   /// <param name="position">座標</param>
-  void GenerateNormalEnemy1(const Math::Vector::Vec3 &position);
+  void GenerateNormalEnemy1(const Math::Vector::Vec3 &position,std::string name ="");
 
   /// <summary>
   /// 雑魚敵2を生成
   /// </summary>
   /// <param name="position">座標</param>
-  void GenerateNormalEnemy2(const Math::Vector::Vec3 &position);
+  void GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name = "");
 
   /// <summary>
   /// ボス敵
