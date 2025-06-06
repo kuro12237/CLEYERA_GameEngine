@@ -28,7 +28,7 @@ void SceneLoader::LoadSceneData(std::string path) {
 }
 
 std::vector<std::shared_ptr<EnvironmentObject>>
-SceneLoader::SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs) {
+SceneLoader::SettingData(std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs) {
 
   std::vector<std::shared_ptr<EnvironmentObject>> enviObjs;
   for (auto obj : objs) {

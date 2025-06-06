@@ -39,9 +39,12 @@ public:
 
   virtual void Init() = 0;
 
-  virtual void ImGuiUpdate();
-
   virtual void Update() = 0;
+  
+  /// <summary>
+  /// IMGui仮想関数上書き推奨
+  /// </summary>
+  virtual void ImGuiUpdate();
 
   /// <summary>
   /// 加速度,veloの更新
@@ -76,12 +79,14 @@ public:
   template <typename T> T GetValue(const std::string &name) {
     return jsonSystem_->GetValue<T>(name);
   }
+
+  bool &GetIsSceneObjectList() { return this->isSceneList_; }
+
 #pragma endregion
 
 #pragma region Set
 
   void SetName(std::string name) { name_ = name; }
-
   void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
   void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
   void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
@@ -146,6 +151,12 @@ protected:
   std::shared_ptr<Component::JsonCompornent> jsonSystem_ = nullptr;
   // WorldTransform,GameObject等のクラス
   std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;
+
+  /// <summary>
+  /// シーンの中のリストに登録されているか
+  /// </summary>
+  bool isSceneList_ = false;
+
 };
 } // namespace Component
 } // namespace CLEYERA

@@ -16,9 +16,9 @@ void EnemyDebugScene::Init() {
 
   // 初期化
   for (auto &manager : managerCompornents_) {
-    manager->Init();
+    manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
-    for (auto &obj : manager->GetObjList()) {
+    for (auto &obj : manager.lock()->GetObjList()) {
 
       // 無視
       objectList_.push_back(obj.lock()->GetGameObject());
@@ -49,7 +49,7 @@ void EnemyDebugScene::Update([[maybe_unused]] GameManager *g) {
 
   for (auto &manager : managerCompornents_) {
 
-    manager->Update();
+    manager.lock()->Update();
   }
 }
 

@@ -30,9 +30,9 @@ void GameScene::Init() {
 
   // 初期化
   for (auto manager : managerCompornents_) {
-    manager->Init();
+    manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
-    for (auto obj : manager->GetObjList()) {
+    for (auto obj : manager.lock()->GetObjList()) {
 
       // 絶対に登録
       objectComponents_.push_back(obj);
@@ -42,15 +42,16 @@ void GameScene::Init() {
       gravityManager_->PushData(obj);
       // 地形当たり判定適用
       terrain_->PushData(obj);
-
-      if (obj.lock()->GetCollder().lock()) {
-        collidersystem_->PushCollider(obj);
-      }
     }
   }
 
   // エディタのデータを各オブジェクトにセット
   enviromentObjs_ = loader_->SettingData(objectComponents_);
+
+  for (auto obj : enviromentObjs_) {
+    objectComponents_.push_back(obj);
+  }
+
   loader_.reset();
 
   // 地形モデルの設定
@@ -69,11 +70,22 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     return;
   }
 
-  for (auto obj : enviromentObjs_) {
-    obj->Update();
-  }
   for (auto manager : managerCompornents_) {
 
-    manager->Update();
+    manager.lock()->Update();
+    for (auto &newObj : manager.lock()->GetObjList()) {
+      auto obj = newObj.lock();
+      if (!obj)
+        continue;
+
+      objectComponents_.push_back(obj); // objectComponents に移動
+    }
+    // manager 側のリストを削除（クリア）
+    manager.lock()->GetObjList().clear();
+  }
+
+  for (auto obj : objectComponents_) {
+
+    obj.lock()->Update();
   }
 }

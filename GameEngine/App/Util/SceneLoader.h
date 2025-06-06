@@ -23,7 +23,7 @@ class SceneLoader {
 
    void LoadSceneData(std::string path);
 
-   std::vector<std::shared_ptr<EnvironmentObject>>SettingData(std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs);
+   std::vector<std::shared_ptr<EnvironmentObject>>SettingData(std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objs);
 
  private:
 
