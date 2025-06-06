@@ -42,20 +42,18 @@ void GameManager::Run() {
 
     scene_->Update(this);
 
- 
-
     engine_->PreDraw();
 
     imGuiManager->Begin();
 
-//#ifdef _DEBUG
+#ifdef _DEBUG
 
     scene_->ImGuiUpdate();
-//    engine_->ImGuiUpdate();
+    engine_->ImGuiUpdate();
 
-//い#endif // _DEBUG
+#endif // _DEBUG
 
-    //scene_->RaytracigTransfar();
+    // scene_->RaytracigTransfar();
 
     CLEYERA::Manager::CameraManager::GetInstance()->Update();
     CLEYERA::Manager::RenderManager::GetInstance()->Update();
@@ -73,19 +71,18 @@ void GameManager::Run() {
     commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
     commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
 
-    //scene_->Render();
-    //CLEYERA::Manager::CameraManager::GetInstance()->BindComputeCommand(1);
+    // scene_->Render();
+    // CLEYERA::Manager::CameraManager::GetInstance()->BindComputeCommand(1);
 
-    //raytracingManager.lock()->DispachRay();
+    // raytracingManager.lock()->DispachRay();
 
     //// レイトレのoutput結果をレンダーターゲットにコピー
-    //swap.lock()->RTVCopyBuf(raytracingManager.lock()->GetOutputResource());
-    
+    // swap.lock()->RTVCopyBuf(raytracingManager.lock()->GetOutputResource());
+
     auto command = CLEYERA::Base::DX::DXCommandManager::GetInstace();
     auto handle =
         CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_);
-    auto dsvhandle =
-        CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetDSVCPUHandle(0);
+    auto dsvhandle = CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetDSVCPUHandle(0);
 
     raytracingManager.lock()->PostRaytracing();
 
@@ -153,7 +150,7 @@ void GameManager::ChangeScene(std::unique_ptr<SceneCompornent> newScene) {
 
   scene_->Update(this);
 
-  //engine_->End();
+  // engine_->End();
   CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
   this->isChange_ = true;
   return;
