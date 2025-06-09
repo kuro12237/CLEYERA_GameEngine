@@ -7,7 +7,9 @@ GameManager::GameManager() {
 
   engine_->Init();
 
-  scene_ = std::make_unique<GameScene>();
+  //scene_ = std::make_unique<GameScene>();
+  scene_ = std::make_unique<EnemyDebugScene>();
+  
   auto raytracingManager = engine_->GetRaytracingManager();
 
   scene_->SetRaytracingManager(raytracingManager);

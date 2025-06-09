@@ -64,6 +64,11 @@ void EnemyManager::Init() {
 
   }
 
+
+  for (size_t i = 0; i < 1; i++) {
+    GenerateBossEnemyEnemy();
+  }
+
   for (auto obj : enemyList_) {
 
     objComponents_.push_back(obj);
