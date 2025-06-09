@@ -22,7 +22,12 @@ public:
 
   virtual void ImGuiUpdate();
 
+  void CollectAllObjects(
+                         std::list<std::weak_ptr<Component::ObjectComponent>> &outList);
+
 #pragma region Get
+
+  std::list<std::weak_ptr<Component::ManagerCompornent>> &GetManagerList() { return childManagerComponents_; }
 
   std::list<std::weak_ptr<Component::ObjectComponent>> &GetObjList() {
     return objComponents_;
@@ -40,6 +45,8 @@ protected:
 
   std::list<std::weak_ptr<Component::ObjectComponent>> objComponents_;
   std::list<std::weak_ptr<Component::CameraCompornent>> cameraCompornents_;
+
+  std::list<std::weak_ptr<Component::ManagerCompornent>> childManagerComponents_;
 };
 
 } // namespace Component

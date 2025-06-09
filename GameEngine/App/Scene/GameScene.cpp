@@ -9,8 +9,7 @@ void GameScene::Init() {
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
   uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   bulletNum;
-  /* uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
-   modelHandle;*/
+
 
   playerManager_ = std::make_shared<PlayerManager>();
   managerCompornents_.push_back(playerManager_);
@@ -43,6 +42,7 @@ void GameScene::Init() {
       // 地形当たり判定適用
       terrain_->PushData(obj);
     }
+    manager.lock()->GetObjList().clear();
   }
 
   // エディタのデータを各オブジェクトにセット
@@ -72,16 +72,8 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
   for (auto manager : managerCompornents_) {
 
-    manager.lock()->Update();
-    for (auto &newObj : manager.lock()->GetObjList()) {
-      auto obj = newObj.lock();
-      if (!obj)
-        continue;
-
-      objectComponents_.push_back(obj); // objectComponents に移動
-    }
-    // manager 側のリストを削除（クリア）
-    manager.lock()->GetObjList().clear();
+    auto mgr = manager.lock();
+    mgr->CollectAllObjects(objectComponents_);
   }
 
   for (auto obj : objectComponents_) {
