@@ -30,11 +30,20 @@ class FirstBossEnemy : public BaseBossEnemy {
    void Update() override;
 
    /// <summary>
+   /// ImGui更新
+   /// </summary>
+   void ImGuiUpdate() override;
+
+   /// <summary>
+   /// 当たり判定
+   /// </summary>
+   /// <param name="other"></param>
+   void OnCollision(std::weak_ptr<ObjectComponent> other);
+
+   /// <summary>
    /// デストラクタ
    /// </summary>
    ~FirstBossEnemy() override = default;
 
-   void OnCollision(std::weak_ptr<ObjectComponent> other);
-
-
+   
 };

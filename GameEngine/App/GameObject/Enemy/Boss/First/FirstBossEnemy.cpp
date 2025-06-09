@@ -79,13 +79,18 @@ void FirstBossEnemy::Update() {
    TransformUpdate();
 
 
+
+}
+
+void FirstBossEnemy::ImGuiUpdate() {
 #ifdef _DEBUG
-   ImGui::Begin("FirstBoss");
-   ImGui::InputFloat3("Translate", &translate_.x);
-   ImGui::InputFloat3("Velocity", &velocity_.x);
-   ImGui::End();
+  ImGui::Begin("FirstBoss");
+  ImGui::InputFloat3("Translate", &translate_.x);
+  ImGui::InputFloat3("Velocity", &velocity_.x);
+  ImGui::End();
 
 #endif // _DEBUG
+
 
 
 }
