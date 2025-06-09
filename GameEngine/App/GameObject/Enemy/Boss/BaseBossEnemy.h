@@ -116,6 +116,29 @@ public:
     // 攻撃したかどうか
     bool isAttack_ = false;
 	
+
+	// ノックバック
+    bool isKnockBack_ = false;
+    // 時間
+    float_t knockBackTime_ = 0.0f;
+    // 線形補間
+    float_t knockbackT_ = 0.0f;
+    // 方向を決める
+    bool isDesidePosition_ = false;
+
+	// ノックバック前の座標
+    Math::Vector::Vec3 beforeKnockBackPosition_ = {};
+    // ノックバック後の座標
+    Math::Vector::Vec3 afterKnockBackPosition_ = {};
+
+protected:
+    // 最大ノックバック時間
+    const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
+    // 時間変化
+    const float_t DELTA_TIME_ = 1.0f / 60.0f;
+    // 線形補間
+    const float_t INCREASE_T_VALUE_ = 0.1f;
+
 protected:
     // 弾のリスト
     std::list<std::shared_ptr<BaseBossEnemyBullet>> bullets_;

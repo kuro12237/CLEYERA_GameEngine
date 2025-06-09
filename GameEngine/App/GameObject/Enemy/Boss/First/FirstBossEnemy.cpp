@@ -157,9 +157,54 @@ void FirstBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
 }
 
 void FirstBossEnemy::KnockBack() {
+  // ランダムの値で位置を決める
+  // SRは固定
+  std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
+  // ランダムエンジン
+  std::random_device seedGenerator;
+  std::mt19937 randomEngine(seedGenerator());
+  if (isKnockBack_ == true) {
+    Math::Vector::Vec3 knockBackDirection = {};
+    if (isDesidePosition_ == false) {
+      knockBackDirection = {
+          .x = (1.0f - directionToPlayer_.x), .y = 0.0f, .z = (1.0f - directionToPlayer_.z)};
+      beforeKnockBackPosition_ = translate_;
+      afterKnockBackPosition_ =
+          beforeKnockBackPosition_ + knockBackDirection * parameter_.knockBackDistance_;
+      isDesidePosition_ = true;
+    }
+    // ノックバックの時間
+    knockBackTime_ += DELTA_TIME_;
+    // 線形補間
+    knockbackT_ += INCREASE_T_VALUE_;
+    // 座標を線形補間でやるよ！
+    translate_ =
+        Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_, knockbackT_);
+    knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
+    // 制限を超えたら0に戻る
+    if (knockbackT_ >= 1.0f && knockBackTime_ > MAX_KNOCK_BACK_TIME_) {
+      knockBackTime_ = 0.0f;
+      knockbackT_ = 0.0f;
+      isKnockBack_ = false;
+      isDesidePosition_ = false;
+    }
+  }
 }
 
 void FirstBossEnemy::Killed() {
+  if (isAlive_ == false) {
+    // 縮小
+    const float_t SCALE_DOWN = 0.05f;
+    scale_ -= {SCALE_DOWN, SCALE_DOWN, SCALE_DOWN};
 
+    if (scale_.x < 0.0f && scale_.y < 0.0f && scale_.z < 0.0f) {
+      // スケール固定
+      scale_.x = 0.0f;
+      scale_.y = 0.0f;
+      scale_.z = 0.0f;
+      // 消す
+      isDelete_ = true;
+    }
+  }
 }
