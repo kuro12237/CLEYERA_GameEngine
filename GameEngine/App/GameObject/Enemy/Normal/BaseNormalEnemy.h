@@ -164,8 +164,7 @@ protected:
     Math::Vector::Vec3 directionToPlayer_ = {};
 	//ビヘイビアツリー
 	std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
-	//攻撃したかどうか
-    bool isAttack_ = false;
+	
 
 	//ノックバック
 	bool isKnockBack_ = false;
@@ -186,6 +185,8 @@ protected:
 	bool isAlive_ = true;
 	//消えるかどうか
     bool isDelete_ = false;
+    // 攻撃したかどうか
+    bool isAttack_ = false;
 
 protected:
 	// パラメーター

@@ -48,7 +48,7 @@ void FirstBossEnemy::Init() {
 #pragma region 通常状態のシーケンス
    std::unique_ptr<BossEnemySequence> approachSequence = std::make_unique<BossEnemySequence>();
    //プレイヤーが設定した範囲内にいるかどうか
-   approachSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(40.0f));
+   approachSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(trackingStartDistance_));
    //追跡
    approachSequence->AddChild(std::make_unique<BossEnemyTracking>());
    //作ったものを入れる
@@ -64,17 +64,62 @@ void FirstBossEnemy::Init() {
    collider_->SetHitCallFunc(
        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+
+   hp_->SetName(this->name_);
+   hp_->Init();
 }
 
 void FirstBossEnemy::Update() {
 
-	//ビヘイビアツリーの実行
-	behaviorTree_->Execute(this);
-	const float_t SPEED = 0.1f;
-	velocity_.x *= SPEED;
-	velocity_.z *= SPEED;
+	// hp処理
+  hp_->Update();
+  if (hp_->GetIsDead()) {
+    // 倒された
+    isAlive_ = false;
+    Killed();
+  }
 
+  if (isAlive_ == true) {
+    // 弾の更新
+    for (const std::shared_ptr<BaseBossEnemyBullet> &bullet : bullets_) {
+      bullet->Update();
+    }
 
+    // 弾の削除
+    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+
+    // 向きを計算しモデルを回転させる
+    float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
+    // 回転のオフセット
+    // 元々のモデルの回転が変だったのでこれを足している
+    const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
+    rotate_.y = directionToRotateY + ROTATE_OFFSET;
+
+    // ビヘイビアツリーの実行
+    behaviorTree_->Execute(this);
+    // atan2 で回転角を求める（ラジアン）
+    float_t angle = std::atan2(-direction_.z, direction_.x);
+    // 角度を敵の回転に設定
+    rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
+    // 速度を計算
+    Math::Vector::Vec3 newDirection = {};
+    if (isAttack_ == false) {
+      newDirection = direction_;
+    }
+
+    velocity_ = newDirection * speed_;
+
+    // 体力無し
+    if (parameter_.hp_ <= 0) {
+      isAlive_ = false;
+    }
+
+    // プレイヤーへの方向を計算
+    directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+
+    // ノックバック
+    KnockBack();
+  }
 	// 更新
    TransformUpdate();
 
@@ -109,4 +154,12 @@ void FirstBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
   //    this->translate_ -= aabb->GetAABB().push;
   //  }
   //}
+}
+
+void FirstBossEnemy::KnockBack() {
+
+}
+
+void FirstBossEnemy::Killed() {
+
 }

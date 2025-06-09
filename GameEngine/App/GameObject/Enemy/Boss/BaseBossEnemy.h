@@ -10,11 +10,24 @@
 #include"CLEYERA.h"
 #include "Enemy/EnemyParameter.h"
 #include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
+#include"Component/Hp/HealthComponent.h"
+#include "BaseBossEnemyBullet.h"
 
 /// <summary>
 /// ボスの基底クラス
 /// </summary>
 class BaseBossEnemy : public CLEYERA::Component::ObjectComponent {
+protected:
+	/// <summary>
+	/// ノックバック
+	/// </summary>
+	virtual void KnockBack() =0;
+
+	/// <summary>
+	/// 倒された
+	/// </summary>
+	virtual void Killed()=0;
+
 public:
    /// <summary>
    /// プレイヤーの座標
@@ -63,16 +76,60 @@ public:
 	   return parameter_;
    }
 
-protected:
+
+   /// <summary>
+   /// 攻撃をしているかを取得
+   /// </summary>
+   /// <returns></returns>
+   inline bool GetIsAttack() const { return isAttack_; }
+
+   /// <summary>
+   /// 攻撃のフラグを設定
+   /// </summary>
+   /// <param name="isAttack"></param>
+   inline void SetIsAttack(const bool &isAttack) { this->isAttack_ = isAttack; }
+
+   /// <summary>
+   /// 消えているかどうかを取得
+   /// </summary>
+   inline bool GetIsDelete() const { return isDelete_; }
+
+   /// <summary>
+   /// 消す
+   /// </summary>
+   inline void SetDelete() { this->isAlive_ = false; }
+
+ protected:
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};
-	//パラメーター
-    EnemyParameter parameter_ = {};
 	//方向
     Math::Vector::Vec3 direction_ = {};
+    // プレイヤーへの方向
+    Math::Vector::Vec3 directionToPlayer_ = {};
 	//ビヘイビアツリー
 	std::unique_ptr<BossEnemyBehaviorNode> behaviorTree_ = nullptr;
 
-
+	// 生存かどうか
+    bool isAlive_ = true;
+    // 消えるかどうか
+    bool isDelete_ = false;
+    // 攻撃したかどうか
+    bool isAttack_ = false;
+	
+protected:
+    // 弾のリスト
+    std::list<std::shared_ptr<BaseBossEnemyBullet>> bullets_;
+	
+	// パラメーター
+    EnemyParameter parameter_ = {};
+    // 攻撃開始距離
+    float_t attackStartDistance_ = 3.0f;
+    // 追跡開始距離
+    float_t trackingStartDistance_ = 40.0f;
+    // スピード
+    float_t speed_ = 0.1f;
+	//体力
+    std::string hpJsonDirectory_ = "Enemys/";
+	std::unique_ptr<HealthComponent> hp_ = nullptr;
 	
 };

@@ -45,5 +45,15 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// </summary>
    ~FirstBossEnemy() override = default;
 
+private:
+   /// <summary>
+   /// ノックバック
+   /// </summary>
+   void KnockBack() override;
+
+   /// <summary>
+   /// 倒された
+   /// </summary>
+   void Killed() override;
    
 };
