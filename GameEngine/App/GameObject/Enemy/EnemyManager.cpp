@@ -30,8 +30,6 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-
-
   for (size_t i = 0; i < 8; i++) {
     std::string tag = "NormalEnemy1";
 
@@ -45,7 +43,6 @@ void EnemyManager::Init() {
 
       GenerateNormalEnemy1({}, name);
     }
-
   }
 
   for (size_t i = 0; i < 8; i++) {
@@ -61,7 +58,6 @@ void EnemyManager::Init() {
 
       GenerateNormalEnemy2({}, name);
     }
-
   }
 
   for (auto obj : enemyList_) {
@@ -80,8 +76,7 @@ void EnemyManager::Update() {
   for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
     // プレイヤーの座標を設定
     enemy->SetPlayerPosition(playerPosition_);
-    // 雑魚敵の更新
-    enemy->Update();
+ 
   }
 
   // 雑魚敵の削除
@@ -91,8 +86,7 @@ void EnemyManager::Update() {
   for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
     // プレイヤーの座標を設定
     enemy->SetPlayerPosition(playerPosition_);
-    // ボスの更新
-    enemy->Update();
+ 
   }
 }
 
@@ -111,7 +105,6 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   objComponents_.push_back(enemy);
-  colliderSystem_->PushCollider(enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -129,7 +122,6 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   objComponents_.push_back(enemy);
-  colliderSystem_->PushCollider(enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -142,7 +134,6 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   enemy->SetInitialPosition(position);
   // 挿入
   objComponents_.push_back(enemy);
-  colliderSystem_->PushCollider(enemy);
   bossEnemyList_.push_back(std::move(enemy));
 }
 

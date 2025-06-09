@@ -10,6 +10,7 @@
 
 #include"Component/Hp/HealthComponent.h"
 
+
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {
 

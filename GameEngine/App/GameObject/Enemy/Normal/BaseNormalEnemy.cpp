@@ -12,7 +12,6 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
           bullet = std::make_shared<NormalEnemy1Bullet>();
           bullet->Initialize(translate_,playerPosition_);
 
-          colliderSystem_->PushCollider(bullet);
           // 挿入
           bullets_.push_back(std::move(bullet));
 
@@ -23,7 +22,6 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
           bullet = std::make_shared<NormalEnemy2Bullet>();
           bullet->Initialize(translate_, playerPosition_);
 
-          colliderSystem_->PushCollider(bullet);
           // 挿入
           bullets_.push_back(std::move(bullet));
 

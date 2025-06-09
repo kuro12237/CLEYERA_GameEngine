@@ -8,6 +8,8 @@ SceneCompornent::SceneCompornent() {
    terrain_ = Manager::Terrain::GetInstance();
    modelManager_ = Manager::ModelManager::GetInstance();
    collidersystem_ = Manager::ColliderSystem::GetInstance();
+
+   collidersystem_->SetObjectComponentList(objectComponents_);
 }
 
 void SceneCompornent::ImGuiUpdate() {
@@ -15,7 +17,7 @@ void SceneCompornent::ImGuiUpdate() {
    // obj
    ImGui::Begin("ManagerList");
    for (auto m : this->managerCompornents_) {
-      m->ImGuiUpdate();
+      m.lock()->ImGuiUpdate();
    }
    ImGui::End();
 }

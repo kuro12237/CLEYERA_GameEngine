@@ -2,9 +2,9 @@
 #include "../Utility/ColliderSystem/ColliderSystem.h"
 #include "Utility/Object/ObjectManager.h"
 
+#include "../Utility/ColliderSystem/AABBCollider.h"
 #include "../Utility/ColliderSystem/Collider.h"
 #include "../Utility/ColliderSystem/OBBCollider.h"
-#include"../Utility/ColliderSystem/AABBCollider.h"
 
 CLEYERA::Component::ObjectComponent::ObjectComponent() {
 
@@ -25,7 +25,7 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
   gameObject_->SetRotate(rotate_);
   gameObject_->SetTranslate(translate_);
   gameObject_->SetName(name_);
- 
+
   // 各マネージャーへのセット
   objectManager_->AddObject(this->gameObject_);
   renderManager_->PushObj(this->gameObject_);
@@ -38,13 +38,14 @@ void CLEYERA::Component::ObjectComponent::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
-  
+    BaseParamImGuiDisply();
 
     ImGui::TreePop();
   }
 }
 
 void CLEYERA::Component::ObjectComponent::TransformUpdate() {
+
   using Vec3 = Math::Vector::Vec3;
 
   Vec3 totalForce = force_;
@@ -75,7 +76,6 @@ void CLEYERA::Component::ObjectComponent::TerrainHit(const Math::Vector::Vec3 &p
   translate_.y = pos.y;
   translate_.y += 1.0f;
 }
-
 
 void CLEYERA::Component::ObjectComponent::BaseParamImGuiDisply() {
   if (ImGui::TreeNode("Transform")) {

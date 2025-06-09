@@ -24,7 +24,7 @@ public:
 
 #pragma region Get
 
-  std::list<std::weak_ptr<Component::ObjectComponent>> GetObjList() {
+  std::list<std::weak_ptr<Component::ObjectComponent>> &GetObjList() {
     return objComponents_;
   }
 #pragma endregion
