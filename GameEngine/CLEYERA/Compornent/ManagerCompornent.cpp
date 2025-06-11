@@ -60,6 +60,12 @@ void CLEYERA::Component::ManagerCompornent::ListInit() {
   for (auto obj : cameraCompornents_) {
     obj.lock()->Init();
   }
+
+  for (auto mgr : childManagerComponents_) {
+    {
+      mgr.lock()->Init();
+    }
+  }
 }
 
 void CLEYERA::Component::ManagerCompornent::ListUpdate() {
