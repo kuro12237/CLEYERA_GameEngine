@@ -33,7 +33,6 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
 
 void CLEYERA::Manager::ColliderSystem::Update() {
 
-
   // Octree初期化（未使用なら削除可）
   std::unique_ptr<Util::Collider::Octree> octree = std::make_unique<Util::Collider::Octree>();
   octree->Init();
@@ -41,6 +40,12 @@ void CLEYERA::Manager::ColliderSystem::Update() {
   // モートン番号ごとにオブジェクトを分類
   std::map<int, std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>>> mortonMap;
   for (const auto &obj : *objectList_) {
+    auto it = obj.lock();
+
+    if (!it) {
+      continue;
+    }
+
     auto collider = obj.lock()->GetCollder().lock();
     if (collider) {
       mortonMap[collider->GetMortonNum()].push_back(obj);
@@ -116,7 +121,13 @@ void CLEYERA::Manager::ColliderSystem::Update() {
 
   // 各コライダーの更新
   for (const auto &obj : *objectList_) {
-    auto collider = obj.lock()->GetCollder().lock();
+    auto it = obj.lock();
+
+    if (!it) {
+      continue;
+    }
+
+    auto collider = it->GetCollder().lock();
     if (collider) {
       collider->MortonUpdate();
       collider->Update();

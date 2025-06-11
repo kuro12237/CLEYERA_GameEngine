@@ -23,12 +23,12 @@ void CLEYERA::Component::ManagerCompornent::ImGuiUpdate() {
 void CLEYERA::Component::ManagerCompornent::CollectAllObjects(
     std::list<std::weak_ptr<Component::ObjectComponent>> &outList) {
 
-    this->Update();
-
   for (auto mgr : childManagerComponents_) {
     auto it = mgr.lock();
     if (!it)
       return;
+
+    it->Update();
 
     // ObjList から Object を取得して objectComponents に移動
     for (auto &newObj : it->GetObjList()) {

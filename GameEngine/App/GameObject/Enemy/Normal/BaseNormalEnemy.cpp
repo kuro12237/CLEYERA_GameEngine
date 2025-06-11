@@ -6,25 +6,42 @@
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   std::shared_ptr<BaseNormalEnemyBullet> bullet = nullptr;
 
-	switch ( selection ) { 
-	case NormalBullet1:
-          // 弾1
-          bullet = std::make_shared<NormalEnemy1Bullet>();
-          bullet->Initialize(translate_,playerPosition_);
+  std::string tag = "";
 
-          // 挿入
-          bullets_.push_back(std::move(bullet));
+  switch (selection) {
+  case NormalBullet1:
+    // 弾1
+    bullet = std::make_shared<NormalEnemy1Bullet>();
+    bullet->Initialize(translate_, playerPosition_);
 
-		break;
+    // 名前設定
+    tag = this->GetName() + "_" + VAR_NAME(NormalEnemy1Bullet);
+    tag = tag + std::to_string(bulletCount_);
+    bullet->SetName(tag);
+    //連番
+    bulletCount_++;
 
-	case NormalBullet2:
-          // 弾2
-          bullet = std::make_shared<NormalEnemy2Bullet>();
-          bullet->Initialize(translate_, playerPosition_);
+    // 挿入
+    mgrObjList_->push_back(bullet);
+    bullets_.push_back(std::move(bullet));
+    break;
 
-          // 挿入
-          bullets_.push_back(std::move(bullet));
+  case NormalBullet2:
+    // 弾2
+    bullet = std::make_shared<NormalEnemy2Bullet>();
+    bullet->Initialize(translate_, playerPosition_);
 
-        break;
-	}
+    //名前設定
+    tag = this->GetName() + "_" + VAR_NAME(NormalEnemy2Bullet);
+    tag = tag + std::to_string(bulletCount_);
+    bullet->SetName(tag);
+    // 連番
+    bulletCount_++;
+
+    // 挿入
+    mgrObjList_->push_back(bullet);
+    bullets_.push_back(std::move(bullet));
+
+    break;
+  }
 }
