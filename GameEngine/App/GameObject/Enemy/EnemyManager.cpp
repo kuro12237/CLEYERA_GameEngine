@@ -31,7 +31,7 @@ void EnemyManager::Init() {
 #endif // _DEBUG
 
 
-
+  //雑魚1
   for (size_t i = 0; i < 8; i++) {
     std::string tag = "NormalEnemy1";
 
@@ -39,34 +39,35 @@ void EnemyManager::Init() {
 
     if (i == 0) {
 
-      GenerateNormalEnemy1({}, tag);
+      //GenerateNormalEnemy1({}, tag);
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy1.%03zu", i);
 
-      GenerateNormalEnemy1({}, name);
+      //GenerateNormalEnemy1({}, name);
     }
 
   }
 
+  //雑魚敵2
   for (size_t i = 0; i < 8; i++) {
     std::string tag = "NormalEnemy2";
 
     char name[17];
     if (i == 0) {
 
-      GenerateNormalEnemy2({}, tag);
+      //GenerateNormalEnemy2({}, tag);
 
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy2.%03zu", i);
 
-      GenerateNormalEnemy2({}, name);
+      //GenerateNormalEnemy2({}, name);
     }
 
   }
 
-
+  //ボス
   for (size_t i = 0; i < 1; i++) {
-    GenerateBossEnemyEnemy();
+    GenerateBossEnemyEnemy({});
   }
 
   for (auto obj : enemyList_) {
