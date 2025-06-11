@@ -3,256 +3,6 @@
     "objects": [
         {
             "type": "MESH",
-            "name": "wall",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -74.0,
-                    34.0,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    12.539226531982422,
-                    42.88407516479492,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.031",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    15.0,
-                    50.5,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    7.0,
-                    10.0,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.030",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -54.0,
-                    87.30006408691406,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.5,
-                    9.399999618530273,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.029",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -44.0,
-                    79.40005493164062,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    8.600000381469727,
-                    1.5,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.028",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -56.27000045776367,
-                    -26.520000457763672,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.5,
-                    10.0,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.027",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -34.0,
-                    51.0,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.5,
-                    42.0,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.026",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    3.1600000858306885,
-                    80.44010925292969,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    7.200002193450928,
-                    1.5,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.025",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    84.04996490478516,
-                    83.93997192382812,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    3.700000047683716,
-                    5.0,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.024",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    45.350006103515625,
-                    87.84004974365234,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    35.0,
-                    8.890000343322754,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.023",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -13.0,
-                    50.0,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    9.0,
-                    39.0,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
             "name": "wall.022",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
@@ -260,7 +10,7 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    97.77005767822266,
+                    361.5959777832031,
                     0.2500002980232239,
                     4.0
                 ],
@@ -270,83 +20,8 @@
                     0.0
                 ],
                 "scale": [
-                    1.5,
-                    99.44998931884766,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.020",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -97.65999603271484,
-                    0.2700002193450928,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.5,
-                    99.447509765625,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.019",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    0.2619999945163727,
-                    98.19010162353516,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    96.6003189086914,
-                    1.5,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.018",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -77.0,
-                    -35.0,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    19.219999313354492,
-                    1.5,
+                    3.0,
+                    360.0,
                     4.0
                 ]
             }
@@ -360,8 +35,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    -76.18003845214844,
-                    -65.19999694824219,
+                    -270.1728820800781,
+                    -157.09133911132812,
                     4.0
                 ],
                 "rotate": [
@@ -370,58 +45,8 @@
                     0.0
                 ],
                 "scale": [
-                    20.0,
-                    1.5,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.016",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -84.17001342773438,
-                    -53.400001525878906,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    12.0,
-                    1.5,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.015",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -50.0,
-                    -53.400001525878906,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    16.0,
-                    1.5,
+                    90.0,
+                    3.0,
                     4.0
                 ]
             }
@@ -435,8 +60,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    -35.4900016784668,
-                    -75.55999755859375,
+                    -147.02696228027344,
+                    -255.18299865722656,
                     4.0
                 ],
                 "rotate": [
@@ -445,33 +70,8 @@
                     0.0
                 ],
                 "scale": [
-                    1.5,
-                    20.690000534057617,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.013",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -39.0,
-                    -31.950000762939453,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.5,
-                    20.0,
+                    3.0,
+                    100.0,
                     4.0
                 ]
             }
@@ -485,8 +85,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    -24.79999542236328,
-                    -8.499998092651367,
+                    -79.2647705078125,
+                    -92.82868957519531,
                     4.0
                 ],
                 "rotate": [
@@ -495,8 +95,8 @@
                     0.0
                 ],
                 "scale": [
-                    2.8504252433776855,
-                    1.5,
+                    12.0,
+                    3.0,
                     4.0
                 ]
             }
@@ -510,8 +110,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    -11.500011444091797,
-                    -52.49008560180664,
+                    -39.174400329589844,
+                    -258.559326171875,
                     4.0
                 ],
                 "rotate": [
@@ -520,8 +120,8 @@
                     0.0
                 ],
                 "scale": [
-                    16.0,
-                    1.5,
+                    54.996864318847656,
+                    3.0,
                     4.0
                 ]
             }
@@ -538,8 +138,8 @@
             },
             "transform": {
                 "translate": [
-                    -29.0,
-                    -30.499988555908203,
+                    -93.2790298461914,
+                    -175.71632385253906,
                     4.0
                 ],
                 "rotate": [
@@ -548,8 +148,8 @@
                     0.0
                 ],
                 "scale": [
-                    1.5,
-                    23.5,
+                    3.0,
+                    86.0,
                     4.0
                 ]
             }
@@ -563,8 +163,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    -13.0,
-                    -23.0,
+                    -43.63044738769531,
+                    -91.95001220703125,
                     4.0
                 ],
                 "rotate": [
@@ -573,8 +173,8 @@
                     0.0
                 ],
                 "scale": [
-                    9.0,
-                    16.0,
+                    25.0,
+                    77.5999984741211,
                     4.0
                 ]
             }
@@ -588,8 +188,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    19.0,
-                    17.91997528076172,
+                    46.22707748413086,
+                    60.121944427490234,
                     4.0
                 ],
                 "rotate": [
@@ -598,8 +198,8 @@
                     0.0
                 ],
                 "scale": [
-                    8.0,
-                    10.0,
+                    37.20452117919922,
+                    29.498899459838867,
                     4.0
                 ]
             }
@@ -613,7 +213,7 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    61.59995651245117,
+                    238.70339965820312,
                     28.690004348754883,
                     4.0
                 ],
@@ -623,8 +223,8 @@
                     0.0
                 ],
                 "scale": [
-                    34.700050354003906,
-                    20.799999237060547,
+                    120.0,
+                    60.0,
                     4.0
                 ]
             }
@@ -638,8 +238,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    87.0,
-                    -11.100025177001953,
+                    310.7585144042969,
+                    -120.25930786132812,
                     4.0
                 ],
                 "rotate": [
@@ -648,8 +248,8 @@
                     0.0
                 ],
                 "scale": [
-                    9.600000381469727,
-                    19.0,
+                    50.0,
+                    90.0,
                     4.0
                 ]
             }
@@ -663,8 +263,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    35.0,
-                    -13.0,
+                    81.51290130615234,
+                    -89.23577880859375,
                     4.0
                 ],
                 "rotate": [
@@ -673,8 +273,8 @@
                     0.0
                 ],
                 "scale": [
-                    29.0,
-                    5.5,
+                    70.0,
+                    20.0,
                     4.0
                 ]
             }
@@ -688,8 +288,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    51.0,
-                    -79.50010681152344,
+                    281.21783447265625,
+                    -230.76158142089844,
                     4.0
                 ],
                 "rotate": [
@@ -698,8 +298,8 @@
                     0.0
                 ],
                 "scale": [
-                    3.5999999046325684,
-                    3.4000000953674316,
+                    36.0,
+                    36.0,
                     4.0
                 ]
             }
@@ -713,8 +313,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    31.039997100830078,
-                    -84.89997863769531,
+                    237.13375854492188,
+                    -283.6670227050781,
                     4.0
                 ],
                 "rotate": [
@@ -723,8 +323,8 @@
                     0.0
                 ],
                 "scale": [
-                    23.600000381469727,
-                    2.0,
+                    80.0,
+                    20.0,
                     4.0
                 ]
             }
@@ -738,8 +338,8 @@
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    34.27995300292969,
-                    -69.24005126953125,
+                    212.95758056640625,
+                    -179.95069885253906,
                     4.0
                 ],
                 "rotate": [
@@ -748,33 +348,8 @@
                     0.0
                 ],
                 "scale": [
-                    25.399999618530273,
-                    6.860000133514404,
-                    4.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "wall.001",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    77.98004150390625,
-                    -53.099998474121094,
-                    4.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    18.299999237060547,
-                    23.0,
+                    50.0,
+                    30.0,
                     4.0
                 ]
             }
@@ -823,6 +398,865 @@
         },
         {
             "type": "MESH",
+            "name": "wall.020",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -361.59600830078125,
+                    0.2500002980232239,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    3.0,
+                    360.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.001",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    121.10154724121094,
+                    286.106689453125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    126.0,
+                    71.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.013",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    21.71631622314453,
+                    154.05535888671875,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    65.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.015",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    107.6771240234375,
+                    153.715087890625,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -270.8329772949219,
+                    323.63262939453125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.051",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -288.96923828125,
+                    214.72669982910156,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.050",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -319.0250244140625,
+                    -34.177207946777344,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.049",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -319.0250244140625,
+                    62.25218963623047,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.048",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -284.9911193847656,
+                    119.42916107177734,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.047",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -147.49407958984375,
+                    247.39666748046875,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.046",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -112.09880065917969,
+                    323.63262939453125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.044",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -42.38332748413086,
+                    -316.58233642578125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    70.0,
+                    20.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.045",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -176.0825653076172,
+                    323.63262939453125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.043",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    63.67228698730469,
+                    -270.35736083984375,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.042",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    123.57197570800781,
+                    -270.35736083984375,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.041",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    123.57197570800781,
+                    -191.39869689941406,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.040",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    47.33600616455078,
+                    -191.39869689941406,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.039",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -34.50148010253906,
+                    293.7010498046875,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.038",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    47.33600616455078,
+                    -19.867778778076172,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.037",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -34.50148010253906,
+                    30.940994262695312,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.036",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -34.50148010253906,
+                    154.05535888671875,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    13.0,
+                    65.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.034",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -200.96310424804688,
+                    -99.68364715576172,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.035",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -298.0605773925781,
+                    -99.68364715576172,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.033",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -288.96923828125,
+                    275.1709289550781,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.032",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -187.20892333984375,
+                    143.8673095703125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.031",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -187.20892333984375,
+                    70.5561294555664,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    37.0,
+                    15.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.030",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "paramFileNames": {
+                "File 0": ""
+            },
+            "transform": {
+                "translate": [
+                    -243.26217651367188,
+                    121.75396728515625,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    3.0,
+                    46.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.029",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -299.2879943847656,
+                    170.71580505371094,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    59.0,
+                    3.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.028",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "paramFileNames": {
+                "File 0": ""
+            },
+            "transform": {
+                "translate": [
+                    -191.19223022460938,
+                    238.52001953125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    3.0,
+                    46.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.027",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -135.1585235595703,
+                    282.3238525390625,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    59.0,
+                    3.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.026",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "paramFileNames": {
+                "File 0": ""
+            },
+            "transform": {
+                "translate": [
+                    -73.25828552246094,
+                    267.6694030761719,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    3.0,
+                    46.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.025",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -101.0,
+                    115.0,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    30.703542709350586,
+                    107.14859008789062,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.024",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -269.22747802734375,
+                    5.514945983886719,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    90.0,
+                    3.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.023",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -175.63433837890625,
+                    -30.409698486328125,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    90.0,
+                    3.0,
+                    4.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
             "name": "wall.021",
             "file_name": "wall",
             "Directory_name": "Resources/Model/map",
@@ -831,7 +1265,7 @@
             "transform": {
                 "translate": [
                     0.2619999945163727,
-                    -97.71000671386719,
+                    356.7799987792969,
                     4.0
                 ],
                 "rotate": [
@@ -840,24 +1274,24 @@
                     0.0
                 ],
                 "scale": [
-                    96.5999984741211,
-                    1.5,
+                    360.0,
+                    3.0,
                     4.0
                 ]
             }
         },
         {
             "type": "MESH",
-            "name": "NormalEnemy1",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
+            "name": "wall.018",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    1.2825491428375244,
-                    -32.79661560058594,
-                    0.0
+                    312.82574462890625,
+                    239.48043823242188,
+                    4.0
                 ],
                 "rotate": [
                     0.0,
@@ -865,24 +1299,24 @@
                     0.0
                 ],
                 "scale": [
-                    1.0,
-                    1.0,
-                    1.0
+                    17.0,
+                    103.0,
+                    4.0
                 ]
             }
         },
         {
             "type": "MESH",
-            "name": "NormalEnemy2",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
+            "name": "wall.016",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    2.015432357788086,
-                    -42.87378692626953,
-                    0.0
+                    223.95953369140625,
+                    153.715087890625,
+                    4.0
                 ],
                 "rotate": [
                     0.0,
@@ -890,24 +1324,27 @@
                     0.0
                 ],
                 "scale": [
-                    1.0,
-                    1.0,
-                    1.0
+                    37.0,
+                    15.0,
+                    4.0
                 ]
             }
         },
         {
             "type": "MESH",
-            "name": "NormalEnemy1.001",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
+            "name": "wall.052",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
             "DrawType": "Normal",
+            "paramFileNames": {
+                "File 0": ""
+            },
             "transform": {
                 "translate": [
-                    18.959739685058594,
-                    -32.79661560058594,
-                    0.0
+                    -115.1629638671875,
+                    -194.27740478515625,
+                    4.0
                 ],
                 "rotate": [
                     0.0,
@@ -915,24 +1352,24 @@
                     0.0
                 ],
                 "scale": [
-                    1.0,
-                    1.0,
-                    1.0
+                    3.0,
+                    165.1368865966797,
+                    4.0
                 ]
             }
         },
         {
             "type": "MESH",
-            "name": "NormalEnemy1.002",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
+            "name": "wall.053",
+            "file_name": "wall",
+            "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
             "DrawType": "Normal",
             "transform": {
                 "translate": [
-                    42.17754364013672,
-                    -32.79661560058594,
-                    0.0
+                    0.2619999945163727,
+                    -356.77960205078125,
+                    4.0
                 ],
                 "rotate": [
                     0.0,
@@ -940,309 +1377,9 @@
                     0.0
                 ],
                 "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy1.003",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -68.31810760498047,
-                    -86.61970520019531,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy1.004",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    25.028030395507812,
-                    -51.792999267578125,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy1.005",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    63.54847717285156,
-                    -84.7728271484375,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy1.006",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    76.21273803710938,
-                    -84.7728271484375,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy1.007",
-            "file_name": "enemy",
-            "Directory_name": "Resources/Model/enemy",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    82.54486846923828,
-                    56.43367004394531,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.001",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -47.058570861816406,
-                    -2.0315513610839844,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.002",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -51.17445373535156,
-                    -66.30266571044922,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.003",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -47.058570861816406,
-                    59.516761779785156,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.004",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -93.02983856201172,
-                    59.516761779785156,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.005",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -81.63200378417969,
-                    -21.02794647216797,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.006",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    42.604400634765625,
-                    63.69596862792969,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "NormalEnemy2.007",
-            "file_name": "Enemy2",
-            "Directory_name": "Resources/Model/Enemy2",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    42.604400634765625,
-                    2.147655487060547,
-                    0.0
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
+                    360.0,
+                    3.0,
+                    4.0
                 ]
             }
         }
