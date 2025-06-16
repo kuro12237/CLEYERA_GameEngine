@@ -28,7 +28,6 @@ public:
 	/// </summary>
 	void Update() override;
 
-
 #pragma region Accessor
 
 	// ターゲットの設定
