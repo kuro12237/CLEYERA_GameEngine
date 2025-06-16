@@ -10,7 +10,6 @@ void GameScene::Init() {
   uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   bulletNum;
 
-
   playerManager_ = std::make_shared<PlayerManager>();
   managerCompornents_.push_back(playerManager_);
 
@@ -73,11 +72,50 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
   for (auto manager : managerCompornents_) {
 
     auto mgr = manager.lock();
+
+    for (auto objs : mgr->GetObjList()) {
+      auto it = objs.lock();
+      if (!it)
+        return;
+
+      if (it) {
+        objectComponents_.push_back(it);
+      }
+    }
+
+    // ObjList をクリア（元の manager 側から削除）
+    mgr->GetObjList().clear();
+    mgr->Update();
     mgr->CollectAllObjects(objectComponents_);
   }
 
+  //コンポーネントがからの場合削除
+  for (auto it = objectComponents_.begin(); it != objectComponents_.end();) {
+    if (it->expired()) {
+      it = objectComponents_.erase(it);
+    } else {
+      ++it;
+    }
+  }
+
+  std::list<std::string> objNames;
+
   for (auto obj : objectComponents_) {
 
+    if (!obj.lock()) {
+      continue;
+    }
+
+    for (std::string name : objNames) {
+
+      if (name == obj.lock()->GetName()) {
+        // 同じものが複数回呼び出されてる
+        assert(0);
+      }
+    }
+
     obj.lock()->Update();
+
+    objNames.push_back(obj.lock()->GetName());
   }
 }

@@ -58,6 +58,7 @@ void PlayerCamera::Update()
 }
 
 
+
 /// <summary>
 /// 前方&右方のベクトルを求める
 /// </summary>
@@ -120,10 +121,8 @@ void PlayerCamera::LoadCameraDataFromLua()
 /// </summary>
 void PlayerCamera::ImGuiFunc()
 {
-	//ImGui::DragFloat3("Offset", &offset_.x, 0.1f);
 
   // jsonに読み書きする変数の設定
   rotate_ = GetValue<Math::Vector::Vec3>("rotate");
-  translate_ = GetValue<Math::Vector::Vec3>("translate");
   offset_ = GetValue<Math::Vector::Vec3>("offset");
 }

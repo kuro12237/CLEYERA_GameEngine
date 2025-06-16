@@ -59,11 +59,6 @@ void EnemyManager::Init() {
       GenerateNormalEnemy2({}, name);
     }
   }
-
-  for (auto obj : enemyList_) {
-
-    objComponents_.push_back(obj);
-  }
 }
 
 void EnemyManager::Update() {
@@ -76,7 +71,6 @@ void EnemyManager::Update() {
   for (std::shared_ptr<BaseNormalEnemy> &enemy : enemyList_) {
     // プレイヤーの座標を設定
     enemy->SetPlayerPosition(playerPosition_);
- 
   }
 
   // 雑魚敵の削除
@@ -86,7 +80,6 @@ void EnemyManager::Update() {
   for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
     // プレイヤーの座標を設定
     enemy->SetPlayerPosition(playerPosition_);
- 
   }
 }
 
@@ -104,6 +97,9 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
   }
 
   // 挿入
+  // 各敵にlistptr持たせる
+  enemy->SetMgrObjList(objComponents_);
+
   objComponents_.push_back(enemy);
   enemyList_.push_back(std::move(enemy));
 }
@@ -121,6 +117,9 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std:
   }
 
   // 挿入
+  // 各敵にlistptr持たせる
+  enemy->SetMgrObjList(objComponents_);
+
   objComponents_.push_back(enemy);
   enemyList_.push_back(std::move(enemy));
 }

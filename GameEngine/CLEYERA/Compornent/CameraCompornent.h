@@ -23,7 +23,7 @@ class CameraCompornent {
 
    virtual void Update() = 0;
 
-   void ImGuiUpdate();
+   virtual void ImGuiUpdate();
 
    std::weak_ptr<Util::Camera> GetCamera() { return camera_; };
 
