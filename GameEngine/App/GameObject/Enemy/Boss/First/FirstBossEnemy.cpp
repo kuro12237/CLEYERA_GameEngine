@@ -30,18 +30,24 @@ void FirstBossEnemy::Init() {
 
    //ルート
    std::unique_ptr<BossEnemySelector> root = std::make_unique<BossEnemySelector>();
+   // 追跡開始距離
+   trackingStartDistance_ = 70.0f;
+   // 攻撃開始距離
+   attackStartDistance_ = 20.0f;
 
 #pragma region 攻撃シーケンス
 	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(5.0f));
-	// ランダム攻撃セレクタ
-	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-	attackSelector->AddChild(std::make_unique<BossEnemyMagicAttack>());
-	attackSelector->AddChild(std::make_unique<BossEnemyThrustAttack>());
-	attackSelector->AddChild(std::make_unique<BossEnemyAttack>());
-	attackSequence->AddChild(std::move(attackSelector));
-	root->AddChild(std::move(attackSequence));
+    attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
+        attackSequence->AddChild(
+            std::make_unique<NormalEnemyAttack>(BossBulletType::NormalBullet2));
+    //// ランダム攻撃セレクタ
+	//std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
+	//attackSelector->AddChild(std::make_unique<BossEnemyMagicAttack>());
+	//attackSelector->AddChild(std::make_unique<BossEnemyThrustAttack>());
+	//attackSelector->AddChild(std::make_unique<BossEnemyAttack>());
+	//attackSequence->AddChild(std::move(attackSelector));
+	//root->AddChild(std::move(attackSequence));
 
 #pragma endregion
 

@@ -12,7 +12,7 @@
 /// <summary>
 /// 弾のタイプ
 /// </summary>
-enum BulletType {
+enum NormalBulletType {
   NormalBullet1,
   NormalBullet2,
 

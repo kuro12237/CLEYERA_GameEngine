@@ -56,7 +56,7 @@ public:
 
 protected:
   // 雑魚敵本体の座標
-  Math::Vector::Vec3 normalEnemyPosition_ = {};
+  Math::Vector::Vec3 bossEnemyPosition_ = {};
   // プレイヤー
   Math::Vector::Vec3 playerPosition_ = {};
 
