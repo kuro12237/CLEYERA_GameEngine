@@ -22,12 +22,12 @@ public:
   /// <summary>
   /// 初期化処理
   /// </summary>
-  void Init();
+  void Init() override;
 
   /// <summary>
   /// 更新処理
   /// </summary>
-  void Update();
+  void Update() override;
 
   /// <summary>
   /// 新しいBulletを追加
@@ -37,7 +37,7 @@ public:
   /// <summary>
   /// ImGuiの描画
   /// </summary>
-  void DrawImGui();
+  void ImGuiUpdate() override;
 
 private:
   // 発射物の配列

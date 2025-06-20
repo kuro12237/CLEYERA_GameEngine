@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Interface/IPlayerBullet.h"
+#include "../../Attack/Interface/IPlayerBullet.h"
 
 class PlayerDemoBullet : public IPlayerBullet {
 

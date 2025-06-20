@@ -11,7 +11,7 @@ public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  PlayerAttackDemoSignature(PlayerCore *corePtr, PlayerBulletManager *bulManagerPtr);
+  PlayerAttackDemoSignature(PlayerCore *corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
 
   /// <summary>
   /// デストラクタ
@@ -46,5 +46,10 @@ private:
                                       float angle);
 
 private:
+
+	/// <summary>
+	/// 弾のこすう
+	/// </summary>
+	size_t bulletCount_ = 0;
   int directionCount_ = 5; // デフォルトは8方向
 };

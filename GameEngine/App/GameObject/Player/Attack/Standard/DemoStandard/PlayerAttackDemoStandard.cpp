@@ -1,12 +1,12 @@
 #include "PlayerAttackDemoStandard.h"
-#include "../../../Bullet/Manager/PlayerBulletManager.h"
+#include "../../../Attack/Manager/PlayerBulletManager.h"
 #include "../../../Core/playerCore.h"
 
 /// <summary>
 /// コンストラクタ
 /// </summary>
 PlayerAttackDemoStandard::PlayerAttackDemoStandard(PlayerCore *corePtr,
-                                                   PlayerBulletManager *bulManagerPtr) {
+                                                   std::weak_ptr<PlayerBulletManager> bulManagerPtr) {
   IMagicAttack::SetPre(corePtr, bulManagerPtr);
 }
 
@@ -61,38 +61,60 @@ void PlayerAttackDemoStandard::StartAttack() {
 }
 
 void PlayerAttackDemoStandard::FireOneBullet(int columnIndex) {
-  if (!bulManager_)
+  if (!bulletManager_.lock())
     return;
 
-  auto newBul = std::make_shared<PlayerDemoStandardBullet>();
+  std::string tag = VAR_NAME(PlayerDemoStandardBullet);
+
+  char name[ 32 ];
 
   // プレイヤー正面基準の位置を取得
   auto basePos = owner_->GetWorldPos();
-  auto forward = IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 1.0f});
-  auto right = Math::Vector::Func::Normalize(Math::Vector::Func::Cross({0, 1, 0}, forward));
+  auto forward = IMagicAttack::CalcVelocity(Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f });
+  auto right = Math::Vector::Func::Normalize(Math::Vector::Func::Cross({ 0, 1, 0 }, forward));
 
   // 三列の横オフセット(右→中央→左)
   float spacing = 3.0f; // 弾の横間隔(調整可)
   Math::Vector::Vec3 offset;
-  switch (columnIndex) {
+  switch ( columnIndex ) {
   case 0:
-    offset = right * spacing;
-    break; // 右
+      offset = right * spacing;
+      break; // 右
   case 1:
-    offset = Math::Vector::Vec3{0, 0, 0};
-    break; // 中央
+      offset = Math::Vector::Vec3{ 0, 0, 0 };
+      break; // 中央
   case 2:
-    offset = right * -spacing;
-    break; // 左
+      offset = right * -spacing;
+      break; // 左
   default:
-    offset = Math::Vector::Vec3{0, 0, 0};
-    break;
+      offset = Math::Vector::Vec3{ 0, 0, 0 };
+      break;
   }
 
-  newBul->SetPosition(basePos + offset);
-  newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{0.0f, 0.0f, 0.4f}));
-  newBul->Init();
+  if ( bulletCount_ == 0 ) {
 
-  bulManager_->PushbackNewBullet(std::move(newBul));
+      auto newBul = std::make_shared<PlayerDemoStandardBullet>();
+
+      newBul->SetPosition(basePos + offset);
+      newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{ 0.0f, 0.0f, 0.4f }));
+      newBul->Init();
+      newBul->SetName(tag);
+
+      bulletManager_.lock()->PushbackNewBullet(std::move(newBul));
+  }
+  else {
+      std::snprintf(name, sizeof(name), "PlayerDemoStandardBullet.%03zu", bulletCount_);
+
+      auto newBul = std::make_shared<PlayerDemoStandardBullet>();
+
+      newBul->SetPosition(basePos + offset);
+      newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{ 0.0f, 0.0f, 0.4f }));
+      newBul->Init();
+      newBul->SetName(name);
+
+      bulletManager_.lock()->PushbackNewBullet(std::move(newBul));
+  }
+
+  bulletCount_++;
 }
 

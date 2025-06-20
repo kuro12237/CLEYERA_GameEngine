@@ -51,9 +51,9 @@ public:
   /// <summary>
   /// Ptrの設定
   /// </summary>
-  void SetPre(PlayerCore *corePtr, PlayerBulletManager *bulManagerPtr) {
+  void SetPre(PlayerCore *corePtr, std::weak_ptr<PlayerBulletManager> bulManPtr) {
     owner_ = corePtr;
-    bulManager_ = bulManagerPtr;
+    bulletManager_ = bulManPtr;
   }
 
   /// <summary>
@@ -66,11 +66,11 @@ public:
   // 親の設定
   void SetOwner(PlayerCore *ptr) { owner_ = ptr; }
 
-  // ProjectileManagerの設定
-  void SetProjectileManager(PlayerBulletManager *ptr) { bulManager_ = ptr; }
-
   // 技の名前の取得
   virtual std::string GetName() { return name_; }
+
+  // 攻撃中
+  virtual bool IsAttacking() const { return isAttacking_; }
 
 #pragma endregion
 
@@ -87,12 +87,15 @@ protected:
   // 親
   PlayerCore *owner_ = nullptr;
 
-  // 発射物管理クラスのweakPtr
-  PlayerBulletManager *bulManager_ = nullptr;
+  // バレット管理クラスのweakPtr
+  std::weak_ptr<PlayerBulletManager> bulletManager_;
 
   // ダメージ
   float damage_ = 0.0f;
 
   // クールダウン
   float coolDown_ = 0.0f;
+
+  // 攻撃中
+  bool isAttacking_ = false;
 };

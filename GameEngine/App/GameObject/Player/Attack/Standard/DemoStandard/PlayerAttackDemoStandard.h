@@ -11,7 +11,7 @@ public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  PlayerAttackDemoStandard(PlayerCore *corePtr, PlayerBulletManager *bulManagerPtr);
+  PlayerAttackDemoStandard(PlayerCore *corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
 
   /// <summary>
   /// デストラクタ
@@ -51,4 +51,10 @@ private:
   float shotTimer_ = 0.0f;    // 発射タイマー
 
   bool isShooting_ = false; // 攻撃開始フラグ
+
+
+  /// <summary>
+  /// 弾のこすう
+  /// </summary>
+  size_t bulletCount_ = 0;
 };

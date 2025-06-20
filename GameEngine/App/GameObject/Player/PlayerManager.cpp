@@ -5,9 +5,9 @@
 /// </summary>
 PlayerManager::PlayerManager() {
   camera_ = std::make_shared<PlayerCamera>();
-  core_ = std::make_shared<PlayerCore>();
-  commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   bulletManager_ = std::make_shared<PlayerBulletManager>();
+  core_ = std::make_shared<PlayerCore>(camera_, bulletManager_);
+  commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   hp_ = std::make_unique<HealthComponent>();
 }
 
@@ -22,7 +22,6 @@ void PlayerManager::Init() {
   ManagerCompornent::cameraCompornents_.push_back(camera_);
 
   // コア
-  core_->SetCameraPtr(camera_);
   core_->Init();
   ManagerCompornent::objComponents_.push_back(core_);
   

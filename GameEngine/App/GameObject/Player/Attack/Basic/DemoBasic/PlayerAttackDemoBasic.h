@@ -8,62 +8,68 @@
 class PlayerAttackDemoBasic : public IMagicAttack {
 
 public:
-  /// <summary>
-  /// コンストラクタ
-  /// </summary>
-  PlayerAttackDemoBasic(PlayerCore *corePtr, PlayerBulletManager *bulManagerPtr);
+	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	PlayerAttackDemoBasic(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
 
-  /// <summary>
-  /// デストラクタ
-  /// </summary>
-  ~PlayerAttackDemoBasic() = default;
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
+	~PlayerAttackDemoBasic() = default;
 
-  /// <summary>
-  /// 初期化処理
-  /// </summary>
-  void Init() override;
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	void Init() override;
 
-  /// <summary>
-  /// 更新処理
-  /// </summary>
-  void Update() override;
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	void Update() override;
 
-  /// <summary>
-  /// リセット
-  /// </summary>
-  void Reset() override;
+	/// <summary>
+	/// リセット
+	/// </summary>
+	void Reset() override;
 
-  /// <summary>
-  /// 攻撃処理
-  /// </summary>
-  void IsAttack() override;
+	/// <summary>
+	/// 攻撃処理
+	/// </summary>
+	void IsAttack() override;
 
-  /// <summary>
-  /// ImGuiの描画
-  /// </summary>
-  void DrwaImGui() override;
-
-private:
-  /// <summary>
-  /// Bulletを生成
-  /// </summary>
-  void FireBullet();
-
-  /// <summary>
-  /// Bulletのパラメータの取得
-  /// </summary>
-  PlayerDemoBullet::BulletCurveParams GetBulletParams();
+	/// <summary>
+	/// ImGuiの描画
+	/// </summary>
+	void DrwaImGui() override;
 
 private:
-  // コンボの段階
-  int comboStep_ = 0;
-  // コンボのMax
-  const int maxCombo_ = 3;
-  // コンボのタイマー
-  float comboTimer_ = 0.0f;
-  // コンボインターバル
-  float comboInterval_ = 60.0f;
+	/// <summary>
+	/// Bulletを生成
+	/// </summary>
+	void FireBullet();
 
-  // Luaスクリプト
-  std::unique_ptr<LuaScript> lua_;
+	/// <summary>
+	/// Bulletのパラメータの取得
+	/// </summary>
+	PlayerDemoBullet::BulletCurveParams GetBulletParams();
+
+private:
+
+	/// <summary>
+	/// 弾のこすう
+	/// </summary>
+	size_t bulletCount_ = 0;
+
+	// コンボの段階
+	int comboStep_ = 0;
+	// コンボのMax
+	const int maxCombo_ = 3;
+	// コンボのタイマー
+	float comboTimer_ = 0.0f;
+	// コンボインターバル
+	float comboInterval_ = 60.0f;
+
+	// Luaスクリプト
+	std::unique_ptr<LuaScript> lua_;
 };
