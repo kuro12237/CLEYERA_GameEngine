@@ -90,6 +90,15 @@ void FirstBossEnemy::Update() {
 
 }
 
+void FirstBossEnemy::KnockBack() {
+
+}
+
+void FirstBossEnemy::Killed() {
+
+
+}
+
 
 
 void FirstBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {

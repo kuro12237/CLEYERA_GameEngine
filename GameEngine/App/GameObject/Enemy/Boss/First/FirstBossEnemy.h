@@ -29,6 +29,18 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// </summary>
    void Update() override;
 
+
+   /// <summary>
+   /// ノックバック
+   /// </summary>
+   void KnockBack();
+
+   /// <summary>
+   /// 倒された
+   /// </summary>
+   void Killed();
+
+
    /// <summary>
    /// デストラクタ
    /// </summary>

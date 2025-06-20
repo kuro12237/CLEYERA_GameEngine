@@ -238,6 +238,8 @@
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="CLEYERA\2d\Sprite.cpp" />
     <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -510,6 +512,7 @@
     <ClInclude Include="App\GameObject\Player\Bullet\DemoSignature\PlayerDemoSignatureBullet.h" />
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
