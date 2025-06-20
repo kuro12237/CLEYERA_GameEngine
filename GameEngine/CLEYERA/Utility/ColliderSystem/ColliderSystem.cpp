@@ -15,7 +15,9 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
         }
         const auto &collider = itr->lock()->GetCollder().lock();
 
-        RenderManager::GetInstance()->PushLine3d(collider->GetLine());
+        if (collider) {
+          RenderManager::GetInstance()->PushLine3d(collider->GetLine());
+        }
       }
       isLineDraw_ = false;
     } else {
@@ -24,7 +26,11 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
           continue;
         }
         const auto &collider = itr->lock()->GetCollder().lock();
-        RenderManager::GetInstance()->PopLine3d(collider->GetLine());
+
+        if (collider) {
+
+          RenderManager::GetInstance()->PopLine3d(collider->GetLine());
+        }
       }
       isLineDraw_ = true;
     }
