@@ -100,9 +100,13 @@ inline void LuaScript::LoadScript(const std::string &rootPath, const std::string
     throw std::runtime_error(errorMsg);
   }
 
+  // Lua 用のパスに変換（区切り文字をスラッシュに統一）
+  std::string luaPath = fullPath.string();
+  std::replace(luaPath.begin(), luaPath.end(), '\\', '/');
+
   // 実際のLuaファイルの読み込み
-  if (!LoadFromFile(fullPath.string())) {
-    std::string errorMsg = "[Lua Error] Failed to load script: " + fullPath.string();
+  if (!LoadFromFile(luaPath)) {
+    std::string errorMsg = "[Lua Error] Failed to load script: " + luaPath;
     std::cerr << errorMsg << std::endl;
     throw std::runtime_error(errorMsg);
   }
