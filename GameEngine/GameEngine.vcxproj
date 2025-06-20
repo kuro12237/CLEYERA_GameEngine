@@ -214,6 +214,8 @@
     <ClCompile Include="App\Scene\IScene.cpp" />
     <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="App\Util\UtilFunc.cpp" />
+    <ClCompile Include="CLEYERA\2d\Sprite.cpp" />
+    <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
     <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
     <ClCompile Include="CLEYERA\3d\Game3dObject.cpp" />
     <ClCompile Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.cpp" />
@@ -364,6 +366,7 @@
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
     <ClInclude Include="CLEYERA\2d\Sprite.h" />
+    <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
     <ClInclude Include="CLEYERA\3d\Game3dObject.h" />
     <ClInclude Include="CLEYERA\3d\GlobalRootSignature\GlobalRootSignature.h" />
