@@ -25,9 +25,14 @@ class BaseNormalEnemyBullet : public CLEYERA::Component::ObjectComponent {
 public:
 
 	/// <summary>
+	/// コンストラクタ
+	/// </summary>
+	BaseNormalEnemyBullet() = default;
+
+	/// <summary>
 	/// 初期化(引数が無い版)
 	/// </summary>
-  void Init() override {};
+	void Init() override {};
 
 	/// <summary>
 	/// 初期化

@@ -237,6 +237,7 @@
     <ClCompile Include="App\GameObject\Player\Bullet\DemoSignature\PlayerDemoSignatureBullet.cpp" />
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />

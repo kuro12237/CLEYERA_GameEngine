@@ -99,6 +99,16 @@ public:
    /// </summary>
    inline void SetDelete() { this->isAlive_ = false; }
 
+   /// <summary>
+   /// 弾を生成
+   /// </summary>
+   virtual void GenerateBullet(const uint32_t &selection);
+
+   /// <summary>
+   /// デストラクタ
+   /// </summary>
+   virtual ~BaseBossEnemy() {};
+
  protected:
 	// プレイヤー座標
 	Math::Vector::Vec3 playerPosition_ = {};

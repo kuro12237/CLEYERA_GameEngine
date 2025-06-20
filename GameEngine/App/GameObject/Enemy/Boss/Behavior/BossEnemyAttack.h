@@ -1,8 +1,8 @@
 #pragma once
 
 /**
- * @file EnemyManager.h
- * @brief 追跡ノードクラス
+ * @file BossEnemyAttack.h
+ * @brief 攻撃クラス
  * @author 茂木翼
  */
 
@@ -22,7 +22,8 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemyAttack() = default;
+    /// <param name="bulletType"></param>
+    BossEnemyAttack(const uint32_t &bulletType) { this->bulletType_ = bulletType; };
 
     /// <summary>
     /// 実行
@@ -34,5 +35,19 @@ public:
     /// デストラクタ
     /// </summary>
     ~BossEnemyAttack() = default;
+
+private:
+    // 時間変化
+    const float_t DELTA_TIME_ = 1.0f / 60.0f;
+
+private:
+    // 弾の種類
+    uint32_t bulletType_ = 0u;
+    // 生成時間
+    float_t generateTime_ = 0.0f;
+
+
+
+
 };
 

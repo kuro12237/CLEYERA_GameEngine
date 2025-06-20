@@ -3,6 +3,8 @@
 void EnemyDebugScene::Init() {
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
 
+  uint32_t sphereModelHandle = modelManager_->LoadModel("Resources/Model/system/Sphere", "Sphere");
+  sphereModelHandle;
   // プレイヤー管理クラスの生成
   playerManager_ = std::make_unique<PlayerManager>();
   managerCompornents_.push_back(playerManager_);

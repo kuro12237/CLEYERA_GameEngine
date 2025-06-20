@@ -141,7 +141,7 @@ public:
    /// <summary>
    /// デストラクタ
    /// </summary>
-   ~BaseNormalEnemy() {};
+   virtual ~BaseNormalEnemy() {};
 
 protected:
 	//最大ノックバック時間

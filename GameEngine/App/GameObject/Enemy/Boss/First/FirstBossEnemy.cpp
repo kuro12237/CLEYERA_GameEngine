@@ -17,7 +17,7 @@ void FirstBossEnemy::Init() {
    name_ = VAR_NAME(FirstBossEnemy);
 
    // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Sphere","Sphere");
+   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/system/Sphere","Sphere");
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
@@ -39,15 +39,16 @@ void FirstBossEnemy::Init() {
 	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
     attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
-        attackSequence->AddChild(
-            std::make_unique<NormalEnemyAttack>(BossBulletType::NormalBullet2));
-    //// ランダム攻撃セレクタ
+    attackSequence->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
+    
+    //ランダム攻撃セレクタ
 	//std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
 	//attackSelector->AddChild(std::make_unique<BossEnemyMagicAttack>());
 	//attackSelector->AddChild(std::make_unique<BossEnemyThrustAttack>());
 	//attackSelector->AddChild(std::make_unique<BossEnemyAttack>());
 	//attackSequence->AddChild(std::move(attackSelector));
-	//root->AddChild(std::move(attackSequence));
+
+	root->AddChild(std::move(attackSequence));
 
 #pragma endregion
 
@@ -70,9 +71,12 @@ void FirstBossEnemy::Init() {
    collider_->SetHitCallFunc(
        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
-
+   hpJsonDirectory_ = name_;
+   hp_ = std::make_unique<HealthComponent>();
    hp_->SetName(this->name_);
    hp_->Init();
+
+   parameter_.hp_ = 1;
 }
 
 void FirstBossEnemy::Update() {
@@ -81,7 +85,7 @@ void FirstBossEnemy::Update() {
   hp_->Update();
   if (hp_->GetIsDead()) {
     // 倒された
-    isAlive_ = false;
+    //isAlive_ = false;
     Killed();
   }
 

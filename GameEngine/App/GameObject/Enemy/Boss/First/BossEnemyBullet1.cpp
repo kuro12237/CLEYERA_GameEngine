@@ -53,9 +53,6 @@ void BossEnemyBullet1::Update() {
   // 更新
   TransformUpdate();
 
-#ifdef _DEBUG
-  DisplayImGui();
-#endif // _DEBUG
 }
 
 void BossEnemyBullet1::OnCollision(std::weak_ptr<ObjectComponent> other) {

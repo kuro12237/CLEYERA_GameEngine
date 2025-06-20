@@ -24,7 +24,7 @@ void EnemyManager::Init() {
   // 生成
   uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
   uint32_t enemy2Count = lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
-
+  enemy1Count, enemy2Count;
 #ifdef _DEBUG
   enemy1Count = 1u;
   enemy2Count = 1u;

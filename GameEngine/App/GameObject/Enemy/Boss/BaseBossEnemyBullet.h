@@ -16,8 +16,8 @@
 /// 弾のタイプ
 /// </summary>
 enum BossBulletType {
-  NormalBullet1,
-  NormalBullet2,
+  BossBullet1,
+  BossBullet2,
 
 };
 

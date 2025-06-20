@@ -7,7 +7,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   std::shared_ptr<BaseNormalEnemyBullet> bullet = nullptr;
 
 	switch ( selection ) { 
-	case NormalBullet1:
+	case NormalBulletType::NormalBullet1:
           // 弾1
           bullet = std::make_shared<NormalEnemy1Bullet>();
           bullet->Initialize(translate_,playerPosition_);
@@ -18,7 +18,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
 
 		break;
 
-	case NormalBullet2:
+	case NormalBulletType::NormalBullet2:
           // 弾2
           bullet = std::make_shared<NormalEnemy2Bullet>();
           bullet->Initialize(translate_, playerPosition_);
