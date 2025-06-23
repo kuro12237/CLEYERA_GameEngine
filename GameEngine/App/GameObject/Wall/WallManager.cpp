@@ -4,7 +4,7 @@ void WallManager::Init() {
 
     name_ = VAR_NAME(WallManager);
 
-  for (size_t i = 0; i < 32; i++) {
+  for (size_t i = 0; i < 52; i++) {
 
     std::shared_ptr<Wall> wall = std::make_shared<Wall>();
     if (i == 0) {

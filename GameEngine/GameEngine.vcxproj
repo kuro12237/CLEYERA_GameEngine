@@ -232,6 +232,7 @@
     <ClCompile Include="CLEYERA\Compornent\CameraCompornent.cpp" />
     <ClCompile Include="CLEYERA\Compornent\JsonCompornent.cpp" />
     <ClCompile Include="CLEYERA\Compornent\ManagerCompornent.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\SpriteComponent.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\DebugCamera.cpp" />
     <ClCompile Include="CLEYERA\DebugTools\Grid.cpp" />
     <ClCompile Include="CLEYERA\DX\DXAdapter\DXAdapter.cpp" />
@@ -383,6 +384,7 @@
     <ClInclude Include="CLEYERA\Compornent\CameraCompornent.h" />
     <ClInclude Include="CLEYERA\Compornent\JsonCompornent.h" />
     <ClInclude Include="CLEYERA\Compornent\ManagerCompornent.h" />
+    <ClInclude Include="CLEYERA\Compornent\SpriteComponent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.h" />
