@@ -104,6 +104,9 @@ public:
 	// 右方ベクトルの取得
 	Math::Vector::Vec3 GetRightVec() const { return rightVec_; }
 
+	// 攻撃後か
+	bool IsAttacked() const { return isAttackStiff_; }
+
 #pragma endregion
 
 private:
@@ -177,7 +180,7 @@ private:
 	// 攻撃後の硬直
 	bool isAttackStiff_ = false;
 	float attackStiffTimer_ = 0.0f;
-	float attackStiffDuration_ = 15.0f; // 0.3秒硬直
+	float attackStiffDuration_ = 10.0f; // 0.3秒硬直
 
 	// ノックバック
 	bool isKnockBack_ = false;

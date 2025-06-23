@@ -87,7 +87,6 @@ void PlayerCore::Update() {
 /// </summary>
 void PlayerCore::PadMove()
 { 
-	if ( isAttackStiff_ ) { return; }
 	moveFunc_->PadMove();
 }
 
@@ -96,7 +95,6 @@ void PlayerCore::PadMove()
 /// </summary>
 void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
 {
-	if ( isAttackStiff_ ) { return; }
 	moveFunc_->KeyMove(input);
 }
 
