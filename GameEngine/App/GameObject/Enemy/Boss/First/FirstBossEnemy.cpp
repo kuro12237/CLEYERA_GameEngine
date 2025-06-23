@@ -5,19 +5,14 @@
 #include "Enemy/Boss/Behavior/BossEnemySequence.h"
 #include "Enemy/Boss/Behavior/BossEnemyTracking.h"
 #include "Enemy/Boss/Behavior/BossEnemyIsPlayerInRange.h"
-#include "Enemy/Boss/Behavior/BossEnemyNoneBehavior.h"
-#include "Enemy/Boss/Behavior/BossEnemyAttack.h"
 #include "Enemy/Boss/Behavior/BossEnemyIsEnraged.h"
 #include "Enemy/Boss/Behavior/BossEnemyRandomAttackSelector.h"
-#include <Enemy/Boss/Behavior/BossEnemyMagicAttack.h>
-#include <Enemy/Boss/Behavior/BossEnemyThrustAttack.h>
-
 void FirstBossEnemy::Init() {
    // 名前の設定
    name_ = VAR_NAME(FirstBossEnemy);
 
    // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Sphere","Sphere");
+   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/system/Sphere","Sphere");
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
@@ -37,9 +32,6 @@ void FirstBossEnemy::Init() {
 	attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(5.0f));
 	// ランダム攻撃セレクタ
 	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-	attackSelector->AddChild(std::make_unique<BossEnemyMagicAttack>());
-	attackSelector->AddChild(std::make_unique<BossEnemyThrustAttack>());
-	attackSelector->AddChild(std::make_unique<BossEnemyAttack>());
 	attackSequence->AddChild(std::move(attackSelector));
 	root->AddChild(std::move(attackSequence));
 
@@ -69,7 +61,7 @@ void FirstBossEnemy::Init() {
 void FirstBossEnemy::Update() {
 
 	//ビヘイビアツリーの実行
-	behaviorTree_->Execute(this);
+	//behaviorTree_->Execute(this);
 	const float_t SPEED = 0.1f;
 	velocity_.x *= SPEED;
 	velocity_.z *= SPEED;
@@ -79,15 +71,21 @@ void FirstBossEnemy::Update() {
    TransformUpdate();
 
 
+
+
+
+}
+
+void FirstBossEnemy::ImGuiUpdate() {
 #ifdef _DEBUG
-   ImGui::Begin("FirstBoss");
-   ImGui::InputFloat3("Translate", &translate_.x);
-   ImGui::InputFloat3("Velocity", &velocity_.x);
-   ImGui::End();
+  if (ImGui::TreeNode(name_.c_str()) == true) {
+    ImGui::InputFloat3("Translate", &translate_.x);
+    ImGui::InputFloat3("Velocity", &velocity_.x);
+    ImGui::TreePop();
+  }
+  
 
 #endif // _DEBUG
-
-
 }
 
 void FirstBossEnemy::KnockBack() {

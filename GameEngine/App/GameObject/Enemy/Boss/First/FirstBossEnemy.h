@@ -29,6 +29,10 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// </summary>
    void Update() override;
 
+   /// <summary>
+   /// ImGui更新
+   /// </summary>
+   void ImGuiUpdate() override;
 
    /// <summary>
    /// ノックバック

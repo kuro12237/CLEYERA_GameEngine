@@ -42,7 +42,7 @@ void EnemyDebugScene::Update([[maybe_unused]] GameManager *g) {
 
     if (changeScene_) {
 
-    g->ChangeScene(std::make_unique<GameScene>());
+    g->ChangeScene(std::make_unique<EnemyDebugScene>());
       return;
   }
 
