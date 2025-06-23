@@ -40,6 +40,14 @@ public:
 
 private:
 
+	/// <summary>
+	/// 移動処理
+	/// </summary>
+	void Move();
+
+
+private:
+
 	// コンボステップ
 	uint32_t comboStep_ = 0;
 

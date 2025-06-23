@@ -68,7 +68,8 @@ void LowAttack_Normal::FireBullet()
 
 		// 数値の設定
 		newBul->SetPosition(owner_->GetWorldPos());
-		newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{ 0.0f, 0.0f, 20.0f }));
+		newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{ 0.0f, 0.0f, 0.5f }));
+		newBul->SetComboStep(comboStep_);
 
 		// 初期化処理
 		newBul->Init();

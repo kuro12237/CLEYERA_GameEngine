@@ -58,6 +58,8 @@ void PlayerCore::Update() {
 
 	// 移動処理クラス
 	moveFunc_->Update();
+	// 移動硬直のタイマー処理
+	StiffMove();
 
 	// 攻撃クラスの更新
 	for ( auto & atk : attacks_ ) {
@@ -83,27 +85,47 @@ void PlayerCore::Update() {
 /// <summary>
 /// Padの移動処理
 /// </summary>
-void PlayerCore::PadMove() { moveFunc_->PadMove(); }
+void PlayerCore::PadMove()
+{ 
+	if ( isAttackStiff_ ) { return; }
+	moveFunc_->PadMove();
+}
 
 /// <summary>
 /// Keyの移動処理
 /// </summary>
-void PlayerCore::KeyMove(const Math::Vector::Vec2 & input) { moveFunc_->KeyMove(input); }
+void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
+{
+	if ( isAttackStiff_ ) { return; }
+	moveFunc_->KeyMove(input);
+}
 
 /// <summary>
 /// ベーシック攻撃
 /// </summary>
-void PlayerCore::BasicAttack() { attacks_[ ToIndex(AttackType::Basic) ]->IsAttack(); }
+void PlayerCore::BasicAttack() 
+{ 
+	attacks_[ ToIndex(AttackType::Basic) ]->IsAttack();
+	isAttackStiff_ = true;
+}
 
 /// <summary>
 /// スタンダード攻撃
 /// </summary>
-void PlayerCore::StandardAttack() { attacks_[ ToIndex(AttackType::Standard) ]->IsAttack(); }
+void PlayerCore::StandardAttack() 
+{ 
+	attacks_[ ToIndex(AttackType::Standard) ]->IsAttack();
+	isAttackStiff_ = true;
+}
 
 /// <summary>
 /// シグネチャー攻撃
 /// </summary>
-void PlayerCore::SignatureAttack() { attacks_[ ToIndex(AttackType::Signature) ]->IsAttack(); }
+void PlayerCore::SignatureAttack()
+{ 
+	attacks_[ ToIndex(AttackType::Signature) ]->IsAttack();
+	isAttackStiff_ = true;
+}
 
 /// <summary>
 /// 衝突時コールバック
@@ -154,6 +176,21 @@ void PlayerCore::InitAttackSlot() {
 	// 初期化
 	for ( auto & atk : attacks_ ) {
 		atk->Init();
+	}
+}
+
+/// <summary>
+/// 移動硬直処理
+/// </summary>
+void PlayerCore::StiffMove()
+{
+	if ( isAttackStiff_) {
+		attackStiffTimer_--; // インクリメント
+
+		if ( attackStiffTimer_ <= 0.0f ) {
+			isAttackStiff_ = false;
+			attackStiffTimer_ = attackStiffDuration_;
+		}
 	}
 }
 

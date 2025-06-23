@@ -113,6 +113,11 @@ private:
 	void InitAttackSlot();
 
 	/// <summary>
+	/// 移動硬直処理
+	/// </summary>
+	void StiffMove();
+
+	/// <summary>
 	/// Luaからデータを抽出する
 	/// </summary>
 	void LoadCoreDataFromLua();
@@ -127,7 +132,6 @@ private:
 	/// </summary>
 	Math::Vector::Vec3 TransformWithPerspective(const Math::Vector::Vec3 & v,
 												const Math::Matrix::Mat4x4 & m);
-
 
 	/// <summary>
 	/// ノックバック
@@ -169,6 +173,11 @@ private:
 	// 前方&右方ベクトル
 	Math::Vector::Vec3 forwardVec_{};
 	Math::Vector::Vec3 rightVec_{};
+
+	// 攻撃後の硬直
+	bool isAttackStiff_ = false;
+	float attackStiffTimer_ = 0.0f;
+	float attackStiffDuration_ = 15.0f; // 0.3秒硬直
 
 	// ノックバック
 	bool isKnockBack_ = false;
