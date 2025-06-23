@@ -236,6 +236,8 @@
     <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -505,6 +507,8 @@
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

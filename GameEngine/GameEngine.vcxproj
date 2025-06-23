@@ -165,11 +165,13 @@
     <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.cpp" />
@@ -301,6 +303,7 @@
     <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.h" />
@@ -311,6 +314,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />

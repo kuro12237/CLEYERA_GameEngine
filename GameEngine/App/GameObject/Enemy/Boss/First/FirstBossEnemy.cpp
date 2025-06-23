@@ -4,6 +4,7 @@
 #include "Enemy/Boss/Behavior/BossEnemySelector.h"
 #include "Enemy/Boss/Behavior/BossEnemySequence.h"
 #include "Enemy/Boss/Behavior/BossEnemyTracking.h"
+#include "Enemy/Boss/Behavior/BossEnemyAttack.h"
 #include "Enemy/Boss/Behavior/BossEnemyIsPlayerInRange.h"
 #include "Enemy/Boss/Behavior/BossEnemyIsEnraged.h"
 #include "Enemy/Boss/Behavior/BossEnemyRandomAttackSelector.h"
@@ -27,13 +28,14 @@ void FirstBossEnemy::Init() {
    std::unique_ptr<BossEnemySelector> root = std::make_unique<BossEnemySelector>();
 
 #pragma region 攻撃シーケンス
-	//std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
-	////プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-	//attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(5.0f));
-	//// ランダム攻撃セレクタ
-	//std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-	//attackSequence->AddChild(std::move(attackSelector));
-	//root->AddChild(std::move(attackSequence));
+	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
+	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
+	attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(5.0f));
+	// ランダム攻撃セレクタ
+	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
+    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
+	attackSequence->AddChild(std::move(attackSelector));
+	root->AddChild(std::move(attackSequence));
 
 #pragma endregion
 
@@ -69,10 +71,6 @@ void FirstBossEnemy::Update() {
 
 	// 更新
    TransformUpdate();
-
-
-
-
 
 }
 
