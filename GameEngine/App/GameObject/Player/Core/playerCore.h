@@ -9,6 +9,9 @@
 #include "../Attack/Interface/IMagicAttack.h"
 #include "../Attack/Signature/DemoSignature/PlayerAttackDemoSignature.h"
 #include "../Attack/Standard/DemoStandard/PlayerAttackDemoStandard.h"
+#include "../Attack/Low/Normal/LowAttack_Normal.h"
+
+
 #include "../Attack/Manager/PlayerBulletManager.h"
 
 // 前方宣言

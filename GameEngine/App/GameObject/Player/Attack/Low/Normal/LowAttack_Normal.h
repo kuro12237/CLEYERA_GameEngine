@@ -14,7 +14,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	LowAttack_Normal() = default;
-	LowAttack_Normal(PlayerCore * corePtr);
+	LowAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
 
 	/// <summary>
 	/// デストラクタ
@@ -66,5 +66,5 @@ private:
 	// コンボ間のインターバル
 	float comboInterval_ = 0.0f;
 	// コンボ進行タイマー
-	float comboElapse_;
+	float comboElapse_ = 0.0f;
 };

@@ -98,4 +98,7 @@ protected:
 
   // 攻撃中
   bool isAttacking_ = false;
+  
+  // 弾の個数
+  size_t bulletCount_ = 0;
 };
