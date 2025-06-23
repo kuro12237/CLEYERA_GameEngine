@@ -33,4 +33,6 @@ void CLEYERA::Sprite2d::Sprite::Update() {
   // 右下
   meshData_[3].vertex.x = (1.0f - anker_->x) * size_->x;
   meshData_[3].vertex.y = -anker_->y * size_->y;
+
+  mesh_->Transfar();
 }

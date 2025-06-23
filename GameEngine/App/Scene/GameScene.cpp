@@ -59,6 +59,11 @@ void GameScene::Init() {
 
   // 無視
   InitRaytracing();
+
+
+  ui_ = std::make_shared<TestUI>();
+  ui_->Init();
+
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -118,4 +123,7 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
     objNames.push_back(obj.lock()->GetName());
   }
+
+  ui_->Update();
+
 }

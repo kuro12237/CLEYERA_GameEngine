@@ -33,6 +33,7 @@
 #include "Compornent/CameraCompornent.h"
 #include "Compornent/ManagerCompornent.h"
 #include "Compornent/ObjectCompornent.h"
+#include "Compornent/SpriteComponent.h"
 
 class Engine {
 public:
@@ -68,8 +69,7 @@ private:
   CLEYERA::Base::Win::WinApp *winApp_ = nullptr;
   CLEYERA::Utility::ImGuiManager *imGuiManager_ = nullptr;
   CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
-  CLEYERA::Graphics::Raster::RasterPiplineManager *rasterPiplineManager_ =
-      nullptr;
+  CLEYERA::Graphics::Raster::RasterPiplineManager *rasterPiplineManager_ = nullptr;
   CLEYERA::DebugTools::Grid *grid_ = nullptr;
   CLEYERA::Manager::LightManager *lightManager_ = nullptr;
   CLEYERA::Manager::ObjectManager *objectManager_ = nullptr;
@@ -82,16 +82,13 @@ private:
 
   std::shared_ptr<CLEYERA::DebugTools::DebugCamera> debugCamera_ = nullptr;
 
-  std::shared_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_ =
-      nullptr;
+  std::shared_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_ = nullptr;
 
-  std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ =
-      nullptr;
+  std::shared_ptr<CLEYERA::LogManager::SystemLogManager> systemLogManager_ = nullptr;
 
-  std::shared_ptr<CLEYERA::Graphics::Raster::system::RasterPiplineCommon>
-      rasterPiplineCommon_ = nullptr;
-  std::shared_ptr<CLEYERA::Graphics::Shader::system::ShaderCommon>
-      shaderCommon_ = nullptr;
+  std::shared_ptr<CLEYERA::Graphics::Raster::system::RasterPiplineCommon> rasterPiplineCommon_ =
+      nullptr;
+  std::shared_ptr<CLEYERA::Graphics::Shader::system::ShaderCommon> shaderCommon_ = nullptr;
 
   std::shared_ptr<CLEYERA::Base::DX::DXCommon> dxCommon_ = nullptr;
   std::shared_ptr<CLEYERA::Utility::ImGuiCommon> imGuiCommon_ = nullptr;

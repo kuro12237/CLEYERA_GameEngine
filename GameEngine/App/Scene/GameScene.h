@@ -10,6 +10,8 @@
 
 #include"TestPlayGui/TestPlayGui.h"
 
+#include"UI/TestUI.h"
+
 
 class GameScene : public SceneCompornent {
 public:
@@ -32,5 +34,7 @@ private:
   std::shared_ptr<WallManager> wallManager_ = nullptr;
 
   std::shared_ptr<TestPlayGui> imgui_ = nullptr;
+
+  std::shared_ptr<TestUI> ui_ = nullptr;
 
 };

@@ -239,6 +239,7 @@
     <ClCompile Include="CLEYERA\2d\Sprite.cpp" />
     <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
     <ClCompile Include="CLEYERA\Compornent\SpriteComponent.cpp" />
+    <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -512,6 +513,7 @@
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
     <ClInclude Include="CLEYERA\Compornent\SpriteComponent.h" />
+    <ClInclude Include="App\GameObject\UI\TestUI.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
