@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "Enemy/Boss/Behavior/BossEnemyCondition.h"
+#include "Enemy/Boss/BossEnemyCondition.h"
 
 /// <summary>
 /// 範囲内にいるかどうか

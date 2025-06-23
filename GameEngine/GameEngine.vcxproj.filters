@@ -205,7 +205,6 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Basic\DemoBasic\PlayerAttackDemoBasic.cpp" />
     <ClCompile Include="App\GameObject\Player\Bullet\Manager\PlayerBulletManager.cpp" />
@@ -469,10 +468,8 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h" />
-    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyCondition.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.h" />
-    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyMagicAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyRandomAttackSelector.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h" />
@@ -507,6 +504,7 @@
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
