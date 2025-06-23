@@ -1,14 +1,26 @@
 #include "BossEnemyAttack.h"
+
 #include <imgui.h>
 
-EnemyNodeState BossEnemyAttack::Execute(BaseBossEnemy * baseBossEnemy){
+#include "Enemy/Boss/BaseBossEnemy.h"
 
-#ifdef _DEBUG
-    ImGui::Begin("Attack");
-    ImGui::End();
-#endif // _DEBUG
-    baseBossEnemy;
 
-    //成功
-    return EnemyNodeState::Success;
+BossEnemyAttack::BossEnemyAttack(const uint32_t &bulletType) { 
+    this->bulletType_ = bulletType;
 }
+
+EnemyNodeState BossEnemyAttack::Execute(BaseBossEnemy *baseBossEnemy) {
+
+    //弾を生成
+    generateTime_ += DELTA_TIME_;
+    if (generateTime_ > 3.0f) {
+      baseBossEnemy->GenerateBullet(bulletType_);
+      generateTime_ = 0.0f;
+      //生成成功
+      return EnemyNodeState::Success;
+    }
+
+    //実行中
+    return EnemyNodeState::Running;
+}
+

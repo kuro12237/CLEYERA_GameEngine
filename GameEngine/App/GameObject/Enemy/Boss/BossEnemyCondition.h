@@ -1,6 +1,7 @@
 #pragma once
 
-#include "BossEnemyBehaviorNode.h"
+
+#include "Behavior/BossEnemyBehaviorNode.h"
 
 class BossEnemyCondition : public BossEnemyBehaviorNode {
 public:

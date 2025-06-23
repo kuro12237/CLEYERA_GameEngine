@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BossEnemyCondition.h"
+#include "Enemy/Boss/BossEnemyCondition.h"
 
 /// <summary>
 /// 発狂状態かどうか

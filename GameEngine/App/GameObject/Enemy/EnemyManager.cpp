@@ -30,6 +30,8 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
+  GenerateBossEnemyEnemy({});
+
   for (size_t i = 0; i < 8; i++) {
     std::string tag = "NormalEnemy1";
 
@@ -37,11 +39,11 @@ void EnemyManager::Init() {
 
     if (i == 0) {
 
-      GenerateNormalEnemy1({}, tag);
+      //GenerateNormalEnemy1({}, tag);
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy1.%03zu", i);
 
-      GenerateNormalEnemy1({}, name);
+      //GenerateNormalEnemy1({}, name);
     }
   }
 
@@ -51,12 +53,12 @@ void EnemyManager::Init() {
     char name[17];
     if (i == 0) {
 
-      GenerateNormalEnemy2({}, tag);
+      ///GenerateNormalEnemy2({}, tag);
 
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy2.%03zu", i);
 
-      GenerateNormalEnemy2({}, name);
+      //GenerateNormalEnemy2({}, name);
     }
   }
 }
@@ -150,8 +152,8 @@ void EnemyManager::ImGuiUpdate() {
 
     int32_t normalEnemyNumber = static_cast<int32_t>(enemyList_.size());
     int32_t bossEnemyNumber = static_cast<int32_t>(bossEnemyList_.size());
-    ImGui::InputInt("雑魚敵", &normalEnemyNumber);
-    ImGui::InputInt("ボス敵", &bossEnemyNumber);
+    ImGui::InputInt("Normal", &normalEnemyNumber);
+    ImGui::InputInt("Boss", &bossEnemyNumber);
 
     if (ImGui::TreeNode("Player") == true) {
       ImGui::InputFloat3("Position", &playerPosition_.x);
