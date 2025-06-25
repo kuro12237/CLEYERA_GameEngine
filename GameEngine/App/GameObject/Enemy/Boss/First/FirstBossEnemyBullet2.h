@@ -8,12 +8,12 @@
 
 #include "CLEYERA.h"
 #include "Component/AttackPower/AttackPower.h"
-#include "Enemy/Normal/BaseNormalEnemyBullet.h"
+#include <Enemy/Boss/BaseBossEnemyBullet.h>
 
 /// <summary>
 /// 雑魚敵の弾
 /// </summary>
-class FirstBossEnemyBullet2 : public BaseNormalEnemyBullet {
+class FirstBossEnemyBullet2 : public BaseBossEnemyBullet {
 public:
   /// <summary>
   /// コンストラクタ

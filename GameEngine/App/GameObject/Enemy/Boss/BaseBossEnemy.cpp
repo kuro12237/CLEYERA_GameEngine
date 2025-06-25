@@ -1,5 +1,6 @@
 #include "BaseBossEnemy.h"
 #include "First/BossEnemyBullet1.h"
+#include "First/FirstBossEnemyBullet2.h"
 
 void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
   std::shared_ptr<BaseBossEnemyBullet> bullet = nullptr;
@@ -16,14 +17,11 @@ void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
 
   case BossBulletType::BossBullet2:
     // 弾2
-    bullet = std::make_shared<BossEnemyBullet1>();
+    bullet = std::make_shared<FirstBossEnemyBullet2>();
     bullet->Initialize(translate_, playerPosition_);
     // 挿入
     bullets_.push_back(std::move(bullet));
 
     break;
   }
-
-
-
 }
