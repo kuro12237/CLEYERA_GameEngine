@@ -35,12 +35,12 @@ void FirstBossEnemy::Init() {
 #pragma region 攻撃シーケンス
 	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-        attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
+    attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
 	// ランダム攻撃セレクタ
-	//std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-        attackSequence->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
-
-	//attackSequence->AddChild(std::move(attackSelector));
+	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
+    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
+    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet2));
+	attackSequence->AddChild(std::move(attackSelector));
 	root->AddChild(std::move(attackSequence));
 
 #pragma endregion
@@ -54,8 +54,6 @@ void FirstBossEnemy::Init() {
    //作ったものを入れる
    root->AddChild(std::move(approachSequence));
 #pragma endregion
-
-
 
    //本体に入れていく
    behaviorTree_ = std::move(root);
@@ -73,14 +71,20 @@ void FirstBossEnemy::Update() {
 	const float_t SPEED = 0.1f;
 	velocity_.x *= SPEED;
 	velocity_.z *= SPEED;
-        // 弾の更新
-        for (const std::shared_ptr<BaseBossEnemyBullet> &bullet : bullets_) {
-          bullet->Update();
-        }
 
-        // 弾の削除
-        bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
 
+    //生存時
+    if (isAlive_ == true) {
+         // 弾の更新
+         for (const std::shared_ptr<BaseBossEnemyBullet> &bullet : bullets_) {
+           bullet->Update();
+         }
+
+         // 弾の削除
+         bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    }
+
+    
 
 	// 更新
    TransformUpdate();

@@ -27,7 +27,7 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="bulletType">弾の種類</param>
-    BossEnemyAttack(const uint32_t &bulletType);
+    BossEnemyAttack(const uint32_t &bulletType) { this->bulletType_ = bulletType; };
 
     /// <summary>
     /// 実行
@@ -67,5 +67,6 @@ private:
     //生成時間
     float_t generateTime_ = 0.0f;
 
+    bool hasAttacked_ = false;
 };
 
