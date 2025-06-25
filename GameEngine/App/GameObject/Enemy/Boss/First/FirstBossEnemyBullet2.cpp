@@ -54,12 +54,6 @@ void FirstBossEnemyBullet2::Update() {
   // 更新
   TransformUpdate();
 
-#ifdef _DEBUG
-  //ImGui::Begin("Bullet");
-  //ImGui::InputFloat3("Translate_", &translate_.x);
-  //ImGui::InputFloat("T", &t_);
-  //ImGui::End();
-#endif // _DEBUG
 }
 
 void FirstBossEnemyBullet2::OnCollision(std::weak_ptr<ObjectComponent> other) {
