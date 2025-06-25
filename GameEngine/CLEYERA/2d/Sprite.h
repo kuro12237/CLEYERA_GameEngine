@@ -3,6 +3,8 @@
 #include "Utility/Camera/CameraManager.h"
 #include "pch/pch.h"
 
+#include "LayerManager.h"
+
 namespace CLEYERA {
 namespace Sprite2d {
 /// <summary>
@@ -21,6 +23,8 @@ public:
 
   void Update();
 
+  void LayerChange(uint32_t newNum) { layerManager_->ChangeLayer(layerNumber_, newNum); }
+
 #pragma region Set
 
   void SetTexHandle(const uint32_t &handle) { this->texHandle_ = &handle; };
@@ -31,6 +35,7 @@ public:
 
 private:
   Manager::CameraManager *cameraManager = nullptr;
+  System::LayerManager *layerManager_ = nullptr;
 
   const Math::Vector::Vec2 *size_ = nullptr;
   const Math::Vector::Vec2 *anker_ = nullptr;
@@ -41,6 +46,8 @@ private:
 
   // Buf
   std::unique_ptr<System::SpriteMesh> mesh_ = nullptr;
+
+  uint32_t layerNumber_ = 0;
 };
 } // namespace Sprite2d
 } // namespace CLEYERA

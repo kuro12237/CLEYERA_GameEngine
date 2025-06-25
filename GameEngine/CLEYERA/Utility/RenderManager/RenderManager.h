@@ -41,7 +41,7 @@ class RenderManager {
 
    std::queue<std::weak_ptr<Model3d::Game3dObject>> newObjs_;
 
-   std::map<Graphics::RasterPipline_Mode, std::list<std::weak_ptr<Model3d::Game3dObject>>> objs_;
+   std::map<Graphics::RasterPipline_Mode3d, std::list<std::weak_ptr<Model3d::Game3dObject>>> objs_;
    std::list < std::weak_ptr < Model3d::Line3d>> line3ds_;
 
    CameraManager *cameraManager_ = nullptr;

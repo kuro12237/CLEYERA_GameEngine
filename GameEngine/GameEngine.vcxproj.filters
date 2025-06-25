@@ -12,6 +12,8 @@
     <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_VS.hlsl" />
     <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl" />
     <FxCompile Include="Resources\Shaders\PostEffect\Copy\PostEffectCopy_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw2d\DFDraw2d_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw2d\DFDraw2d_PS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
@@ -240,6 +242,8 @@
     <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
     <ClCompile Include="CLEYERA\Compornent\SpriteComponent.cpp" />
     <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
+    <ClCompile Include="CLEYERA\2d\LayerManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\2d\DF\DFSprite2dDraw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -514,6 +518,8 @@
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
     <ClInclude Include="CLEYERA\Compornent\SpriteComponent.h" />
     <ClInclude Include="App\GameObject\UI\TestUI.h" />
+    <ClInclude Include="CLEYERA\2d\LayerManager.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\2d\DF\DFSprite2dDraw.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

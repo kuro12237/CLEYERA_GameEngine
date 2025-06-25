@@ -9,7 +9,15 @@ void CLEYERA::Graphics::Shader::system::ShaderCompornent::Init(ShaderCommon *man
    utils_ = common->GetUtils();
    compiler_ = common->getCompiler();
 
-   ShaderTag tag = manager->GetFIleName(rasterMode_);
+   ShaderTag tag;
+
+
+   if (!isUse2d_) {
+     tag = manager->GetFIleName(rasterMode_);
+   } else {
+     tag = manager->GetFIleName(rasterMode2d_);
+   }
+
    std::string none = "NONE";
    std::string Directory = "Resources/Shaders/";
    if (tag.PS != none) {

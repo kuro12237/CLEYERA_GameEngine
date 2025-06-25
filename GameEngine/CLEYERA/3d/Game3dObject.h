@@ -30,7 +30,7 @@ class Game3dObject : public CLEYERA::Util::WorldTransform {
 
 #pragma region Get
    std::weak_ptr<Model> GetModel() { return model_; }
-   const Graphics::RasterPipline_Mode &GetRasterMode() const { return rasterMode_; }
+   const Graphics::RasterPipline_Mode3d &GetRasterMode() const { return rasterMode_; }
 #pragma endregion
 
 #pragma region Set
@@ -41,7 +41,7 @@ class Game3dObject : public CLEYERA::Util::WorldTransform {
  private:
    const std::string *name_ = nullptr;
 
-   Graphics::RasterPipline_Mode rasterMode_ = Graphics::RasterPipline_Mode::DF_MODEL3d;
+   Graphics::RasterPipline_Mode3d rasterMode_ = Graphics::RasterPipline_Mode3d::DF_MODEL3d;
 
    Manager::LightManager *lightManager = nullptr;
    Manager::CameraManager *cameraManager_ = nullptr;

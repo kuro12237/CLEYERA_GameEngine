@@ -35,6 +35,6 @@ private:
 
   std::shared_ptr<TestPlayGui> imgui_ = nullptr;
 
-  std::shared_ptr<TestUI> ui_ = nullptr;
+  std::vector<std::shared_ptr<TestUI>> uis_;
 
 };

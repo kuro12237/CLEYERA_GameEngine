@@ -1,6 +1,12 @@
 #include "Sprite.h"
 
-CLEYERA::Sprite2d::Sprite::Sprite() { cameraManager = Manager::CameraManager::GetInstance(); }
+CLEYERA::Sprite2d::Sprite::Sprite() {
+  cameraManager = Manager::CameraManager::GetInstance();
+
+  layerManager_ = System::LayerManager::GetInstance();
+
+  this->layerNumber_ = layerManager_->RegisterLayer(layerNumber_);
+}
 
 void CLEYERA::Sprite2d::Sprite::Create() {
 
@@ -17,8 +23,7 @@ void CLEYERA::Sprite2d::Sprite::Draw() { mesh_->CommandIBVB(); }
 
 void CLEYERA::Sprite2d::Sprite::Update() {
 
-
-    // 左下
+  // 左下
   meshData_[0].vertex.x = -anker_->x * size_->x;
   meshData_[0].vertex.y = -anker_->y * size_->y;
 

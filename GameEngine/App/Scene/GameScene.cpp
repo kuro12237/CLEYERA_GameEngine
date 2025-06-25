@@ -60,10 +60,14 @@ void GameScene::Init() {
   // 無視
   InitRaytracing();
 
+  uis_.resize(2);
 
-  ui_ = std::make_shared<TestUI>();
-  ui_->Init();
+  for (size_t i = 0; i < 2; i++) {
 
+    std::shared_ptr<TestUI> ui = std::make_shared<TestUI>();
+    ui->Init();
+    uis_[i] = std::move(ui);
+  }
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -94,7 +98,7 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     mgr->CollectAllObjects(objectComponents_);
   }
 
-  //コンポーネントがからの場合削除
+  // コンポーネントがからの場合削除
   for (auto it = objectComponents_.begin(); it != objectComponents_.end();) {
     if (it->expired()) {
       it = objectComponents_.erase(it);
@@ -123,7 +127,8 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
     objNames.push_back(obj.lock()->GetName());
   }
+  for (size_t i = 0; i < 2; i++) {
 
-  ui_->Update();
-
+    uis_[i]->Update();
+  }
 }

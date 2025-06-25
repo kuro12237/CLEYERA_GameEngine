@@ -2,8 +2,8 @@
 
 void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingShader() {
 
-   shaders_[Shader::ShaderMode::PS] = shaderManager_->GetShader(mode_, Shader::ShaderMode::PS);
-   shaders_[Shader::ShaderMode::VS] = shaderManager_->GetShader(mode_, Shader::ShaderMode::VS);
+   shaders_[Shader::ShaderMode::PS] = shaderManager_->GetShader(mode3d_, Shader::ShaderMode::PS);
+   shaders_[Shader::ShaderMode::VS] = shaderManager_->GetShader(mode3d_, Shader::ShaderMode::VS);
 }
 
 void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingRootParam() {

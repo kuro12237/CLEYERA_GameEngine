@@ -215,6 +215,7 @@
     <ClCompile Include="App\Scene\IScene.cpp" />
     <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="App\Util\UtilFunc.cpp" />
+    <ClCompile Include="CLEYERA\2d\LayerManager.cpp" />
     <ClCompile Include="CLEYERA\2d\Sprite.cpp" />
     <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
     <ClCompile Include="CLEYERA\3d\Blas\Blas.cpp" />
@@ -256,6 +257,7 @@
     <ClCompile Include="CLEYERA\DX\DXInfoQueue\DXInfoQueue.cpp" />
     <ClCompile Include="CLEYERA\DX\DXManager.cpp" />
     <ClCompile Include="CLEYERA\DX\DXSwapChain\DXSwapChain.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\2d\DF\DFSprite2dDraw.cpp" />
     <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.cpp" />
     <ClCompile Include="CLEYERA\PostEffect\PostEffect.cpp" />
     <ClCompile Include="CLEYERA\Utility\ColliderSystem\AABBCollider.cpp" />
@@ -368,6 +370,7 @@
     <ClInclude Include="App\Scene\IScene.h" />
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
+    <ClInclude Include="CLEYERA\2d\LayerManager.h" />
     <ClInclude Include="CLEYERA\2d\Sprite.h" />
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
     <ClInclude Include="CLEYERA\3d\Blas\Blas.h" />
@@ -389,6 +392,7 @@
     <ClInclude Include="CLEYERA\Compornent\SpriteComponent.h" />
     <ClInclude Include="CLEYERA\DebugTools\DebugCamera.h" />
     <ClInclude Include="CLEYERA\DebugTools\Grid.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\2d\DF\DFSprite2dDraw.h" />
     <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\PostEffect\PostEffectCopy.h" />
     <ClInclude Include="CLEYERA\Lua\kua.h" />
     <ClInclude Include="CLEYERA\PostEffect\PostEffect.h" />
@@ -489,6 +493,22 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw2d\DFDraw2d_PS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw2d\DFDraw2d_VS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
     <FxCompile Include="Resources\Shaders\Rasterization\DFDraw3d\DFDraw3d_PS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
