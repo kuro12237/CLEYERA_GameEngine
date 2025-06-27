@@ -13,6 +13,7 @@ namespace System {
 struct Mesh2d{
 
   Math::Vector::Vec4 vertex = {};
+  Math::Vector::Vec2 texCoord = {};
 };
 
 class SpriteMesh {
@@ -27,6 +28,8 @@ public:
   void CommandIBVB();
 
   void SetMeshData(const std::vector<Mesh2d> &m) { mesh_ = &m; }
+
+
 
 private:
   std::unique_ptr<Base::DX::DXBufferResource<Mesh2d>> vertexBuf_ = nullptr;

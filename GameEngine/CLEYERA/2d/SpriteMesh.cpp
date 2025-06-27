@@ -7,7 +7,7 @@ CLEYERA::Sprite2d::System::SpriteMesh::SpriteMesh() {
 }
 
 void CLEYERA::Sprite2d::System::SpriteMesh::Create() {
- 
+
   vertexBuf_->Init(4);
   auto device = Base::DX::DXManager::GetInstance()->GetDevice();
   vertexBuf_->SetDevice(device);
@@ -27,8 +27,8 @@ void CLEYERA::Sprite2d::System::SpriteMesh::Transfar() {
   vertexBuf_->UnMap();
   vertexBuf_->Update();
 
-  //indexDatesh
-   index_.resize(6);
+  // indexDatesh
+  index_.resize(6);
   index_[0] = 0;
   index_[1] = 1;
   index_[2] = 2;
@@ -43,7 +43,9 @@ void CLEYERA::Sprite2d::System::SpriteMesh::Transfar() {
 }
 
 void CLEYERA::Sprite2d::System::SpriteMesh::CommandIBVB() {
-
+  auto commandManager = Base::DX::DXCommandManager::GetInstace();
+  commandManager->SetTopology();
   vertexBuf_->VBCommand();
+
   indexBuf_->IBCommand();
 }

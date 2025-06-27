@@ -22,6 +22,9 @@ class ShaderManager {
    void SetCommon(std::weak_ptr<Shader::system::ShaderCommon> c) { common_ = c; }
 
    IDxcBlob *GetShader(Graphics::RasterPipline_Mode3d pipMode, Shader::ShaderMode shaderMode) { return common_.lock()->GetBlob(pipMode, shaderMode); }
+   IDxcBlob *GetShader(Graphics::RasterPipline_Mode2d pipMode, Shader::ShaderMode shaderMode) {
+     return common_.lock()->GetBlob(pipMode, shaderMode);
+   }
 
  private:
 

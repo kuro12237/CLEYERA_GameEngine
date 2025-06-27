@@ -1,6 +1,10 @@
 #include "SpriteComponent.h"
 
-void SpriteComponent::Draw() {}
+void SpriteComponent::ImGuiUpdate() {
+
+	this->TransformImGuiUpdate(); }
+
+void SpriteComponent::Draw() { sprite_->Draw(); }
 
 void SpriteComponent::Create() {
   WTCreate(1);
@@ -13,7 +17,8 @@ void SpriteComponent::Create() {
   sprite_->Create();
   sprite_->SetAnker(this->anker);
   sprite_->SetSize(this->size);
+  sprite_->SetTexHandle(handle_);
 
+  sprite_->SetWorldbindFunc([this](UINT n) { this->BindWT(n); });
 }
 
-void SpriteComponent::TransformUpdate() {}

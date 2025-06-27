@@ -35,6 +35,10 @@ class ShaderCommon {
    void Init();
 
    IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode3d pipMode, Shader::ShaderMode shaderMode) { return compornemts_[pipMode]->GetShader(shaderMode); };
+   IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode2d pipMode,
+                     Shader::ShaderMode shaderMode) {
+     return compornemts2d_[pipMode]->GetShader(shaderMode);
+   };
 
    IDxcIncludeHandler *GetIncludeHandler() { return includeHandler_.Get(); }
    IDxcUtils *GetUtils() { return utils_.Get(); }

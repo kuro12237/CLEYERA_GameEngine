@@ -2,7 +2,14 @@
 #include "../GameManager/GameManager.h"
 
 void GameScene::Init() {
+  uis_.resize(2);
 
+  for (size_t i = 0; i < 1; i++) {
+
+    std::shared_ptr<TestUI> ui = std::make_shared<TestUI>();
+    ui->Init();
+    uis_[i] = std::move(ui);
+  }
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TestData");
 
@@ -60,14 +67,7 @@ void GameScene::Init() {
   // 無視
   InitRaytracing();
 
-  uis_.resize(2);
 
-  for (size_t i = 0; i < 2; i++) {
-
-    std::shared_ptr<TestUI> ui = std::make_shared<TestUI>();
-    ui->Init();
-    uis_[i] = std::move(ui);
-  }
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -127,8 +127,20 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
     objNames.push_back(obj.lock()->GetName());
   }
-  for (size_t i = 0; i < 2; i++) {
+  for (size_t i = 0; i < 1; i++) {
 
     uis_[i]->Update();
   }
 }
+
+void GameScene::Draw2d() {
+
+  for (size_t i = 0; i < 1; i++) {
+
+    uis_[i]->Draw();
+  }
+}
+
+void GameScene::ImGuiUpdate() {
+
+uis_[0]->TransformImGuiUpdate(); }

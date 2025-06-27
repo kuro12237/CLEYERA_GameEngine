@@ -1,12 +1,12 @@
 #include "DFSprite2dDraw.h"
 
 void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingShader() {
-  shaders_[Shader::ShaderMode::PS] = shaderManager_->GetShader(mode3d_, Shader::ShaderMode::PS);
-  shaders_[Shader::ShaderMode::VS] = shaderManager_->GetShader(mode3d_, Shader::ShaderMode::VS);
+  shaders_[Shader::ShaderMode::PS] = shaderManager_->GetShader(mode2d_, Shader::ShaderMode::PS);
+  shaders_[Shader::ShaderMode::VS] = shaderManager_->GetShader(mode2d_, Shader::ShaderMode::VS);
 }
 
 void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingRootParam() {
-  this->rootParam_.resize(6);
+  this->rootParam_.resize(3);
 
   // かめら
   rootParam_[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -30,19 +30,6 @@ void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingRootParam() {
   rootParam_[2].DescriptorTable.pDescriptorRanges = descriptorRangeVertices;
   rootParam_[2].DescriptorTable.NumDescriptorRanges = _countof(descriptorRangeVertices);
 
-  // light
-  rootParam_[3].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-  rootParam_[3].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
-  rootParam_[3].Descriptor.ShaderRegister = 0;
-
-  // PsWorld
-  rootParam_[4].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-  rootParam_[4].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
-  rootParam_[4].Descriptor.ShaderRegister = 1;
-
-  rootParam_[5].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
-  rootParam_[5].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
-  rootParam_[5].Descriptor.ShaderRegister = 2;
 }
 
 void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingSampler() {
