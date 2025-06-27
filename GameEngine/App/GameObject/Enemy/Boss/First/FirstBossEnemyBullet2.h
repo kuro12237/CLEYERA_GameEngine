@@ -11,7 +11,7 @@
 #include <Enemy/Boss/BaseBossEnemyBullet.h>
 
 /// <summary>
-/// 雑魚敵の弾
+/// ボス敵の弾2
 /// </summary>
 class FirstBossEnemyBullet2 : public BaseBossEnemyBullet {
 public:

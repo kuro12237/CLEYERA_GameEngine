@@ -62,6 +62,11 @@ void FirstBossEnemy::Init() {
    collider_->SetHitCallFunc(
        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+   hpJsonDirectory_ = name_;
+   hp_ = std::make_unique<HealthComponent>();
+   hp_->SetName(this->name_);
+   hp_->Init();
+
 }
 
 void FirstBossEnemy::Update() {
@@ -84,8 +89,10 @@ void FirstBossEnemy::Update() {
          bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
     }
 
-    
-
+    //ノックバック
+    KnockBack();
+    //倒される
+    Killed();
 	// 更新
    TransformUpdate();
 
@@ -108,8 +115,10 @@ void FirstBossEnemy::KnockBack() {
 }
 
 void FirstBossEnemy::Killed() {
-
-
+  if (hp_->GetHp() <= 0) {
+    isAlive_ = false;
+    isDelete_ = true;
+  }
 }
 
 
