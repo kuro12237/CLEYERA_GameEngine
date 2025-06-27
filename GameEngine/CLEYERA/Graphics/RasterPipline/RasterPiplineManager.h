@@ -16,8 +16,12 @@ public:
 
   void Init();
 
-  void SetRootsignature(Graphics::RasterPipline_Mode mode);
-  void SetPipline(Graphics::RasterPipline_Mode mode);
+  void SetRootsignature(Graphics::RasterPipline_Mode3d mode);
+  void SetPipline(Graphics::RasterPipline_Mode3d mode);
+
+  void SetRootsignature(Graphics::RasterPipline_Mode2d mode);
+  void SetPipline(Graphics::RasterPipline_Mode2d mode);
+
 
   void SetPostEffectRootsignature(Graphics::PostEffect_Mode mode);
   void SetPostEffectPipline(Graphics::PostEffect_Mode mode);
@@ -26,7 +30,7 @@ public:
   void SetCommon(std::weak_ptr<Raster::system::RasterPiplineCommon> c) { common_ = c; };
 #pragma endregion
 
-  template <typename T> std::weak_ptr<T> GetPipline(Graphics::RasterPipline_Mode mode) {
+  template <typename T> std::weak_ptr<T> GetPipline(Graphics::RasterPipline_Mode3d mode) {
     return common_.lock()->Getpipline<T>(mode);
   }
 

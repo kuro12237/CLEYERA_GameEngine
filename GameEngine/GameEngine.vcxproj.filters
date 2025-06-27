@@ -12,6 +12,8 @@
     <FxCompile Include="Resources\Shaders\Rasterization\Line3d\LineDraw3d_VS.hlsl" />
     <FxCompile Include="Resources\Shaders\RayTracing\triangleShader.hlsl" />
     <FxCompile Include="Resources\Shaders\PostEffect\Copy\PostEffectCopy_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw2d\DFDraw2d_VS.hlsl" />
+    <FxCompile Include="Resources\Shaders\Rasterization\DFDraw2d\DFDraw2d_PS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
@@ -234,6 +236,10 @@
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="CLEYERA\2d\Sprite.cpp" />
     <ClCompile Include="CLEYERA\2d\SpriteMesh.cpp" />
+    <ClCompile Include="CLEYERA\Compornent\SpriteComponent.cpp" />
+    <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
+    <ClCompile Include="CLEYERA\2d\LayerManager.cpp" />
+    <ClCompile Include="CLEYERA\Graphics\RasterPipline\pipline\2d\DF\DFSprite2dDraw.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.cpp" />
@@ -505,6 +511,10 @@
     <ClInclude Include="App\GameObject\Player\Bullet\DemoSignature\PlayerDemoSignatureBullet.h" />
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="CLEYERA\2d\SpriteMesh.h" />
+    <ClInclude Include="CLEYERA\Compornent\SpriteComponent.h" />
+    <ClInclude Include="App\GameObject\UI\TestUI.h" />
+    <ClInclude Include="CLEYERA\2d\LayerManager.h" />
+    <ClInclude Include="CLEYERA\Graphics\RasterPipline\pipline\2d\DF\DFSprite2dDraw.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.h" />

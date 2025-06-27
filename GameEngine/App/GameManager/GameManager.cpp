@@ -111,6 +111,8 @@ void GameManager::Run() {
 
 #pragma region 前景2d
 
+    scene_->Draw2d();
+
 #pragma endregion
 
 #pragma endregion

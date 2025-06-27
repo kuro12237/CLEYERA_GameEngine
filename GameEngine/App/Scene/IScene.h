@@ -31,6 +31,8 @@ public:
 
   virtual void ImGuiUpdate();
 
+  virtual void Draw2d() {};
+
   void InitRaytracing();
 
   void RaytracigTransfar();

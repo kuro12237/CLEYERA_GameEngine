@@ -23,10 +23,10 @@ void CLEYERA::Manager::RenderManager::Update() {
   SettingObjs();
 
   // knumに値があったらエラー
-  if (!objs_[Graphics::RasterPipline_Mode::kNum].empty()) {
+  if (!objs_[Graphics::RasterPipline_Mode3d::kNum].empty()) {
     assert(0);
   }
-  if (!objs_[Graphics::RasterPipline_Mode::NONE].empty()) {
+  if (!objs_[Graphics::RasterPipline_Mode3d::NONE].empty()) {
     assert(0);
   }
 }
@@ -34,21 +34,21 @@ void CLEYERA::Manager::RenderManager::Update() {
 void CLEYERA::Manager::RenderManager::Draw3d() {
 
   for (size_t i = 1;
-       i < static_cast<size_t>(Graphics::RasterPipline_Mode::kNum) - 1; i++) {
+       i < static_cast<size_t>(Graphics::RasterPipline_Mode3d::kNum) - 1; i++) {
 
     piplineManager_->SetRootsignature(
-        static_cast<Graphics::RasterPipline_Mode>(i));
-    piplineManager_->SetPipline(static_cast<Graphics::RasterPipline_Mode>(i));
+        static_cast<Graphics::RasterPipline_Mode3d>(i));
+    piplineManager_->SetPipline(static_cast<Graphics::RasterPipline_Mode3d>(i));
 
-    for (auto obj : objs_[static_cast<Graphics::RasterPipline_Mode>(i)]) {
+    for (auto obj : objs_[static_cast<Graphics::RasterPipline_Mode3d>(i)]) {
       auto it = obj.lock();
       it;
       it->DrawRaster3d();
     }
   }
 
-  piplineManager_->SetRootsignature(Graphics::RasterPipline_Mode::LINE3d);
-  piplineManager_->SetPipline(Graphics::RasterPipline_Mode::LINE3d);
+  piplineManager_->SetRootsignature(Graphics::RasterPipline_Mode3d::LINE3d);
+  piplineManager_->SetPipline(Graphics::RasterPipline_Mode3d::LINE3d);
 
   for (auto obj : line3ds_) {
     auto it = obj.lock();

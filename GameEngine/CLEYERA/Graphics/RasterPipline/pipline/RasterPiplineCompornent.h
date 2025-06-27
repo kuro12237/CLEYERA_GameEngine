@@ -20,7 +20,8 @@ class RasterPiplineCompornent {
 
    void Create();
 
-   void SetMode(RasterPipline_Mode mode) { mode_ = mode; }
+   void SetMode(RasterPipline_Mode3d mode) { mode3d_ = mode; }
+   void SetMode(RasterPipline_Mode2d mode) { mode2d_ = mode; }
 
 #pragma region Get
    ID3D12PipelineState *GetPipline() { return GraphicsPipelineState_.Get(); }
@@ -50,7 +51,8 @@ class RasterPiplineCompornent {
    virtual void SettingBlend();
 
    Shader::ShaderManager *shaderManager_ = nullptr;
-   RasterPipline_Mode mode_;
+   RasterPipline_Mode3d mode3d_;
+   RasterPipline_Mode2d mode2d_;
 
    D3D12_ROOT_SIGNATURE_DESC descriptionRootSignature_{};
    std::vector<D3D12_ROOT_PARAMETER> rootParam_;

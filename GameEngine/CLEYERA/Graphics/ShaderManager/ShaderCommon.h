@@ -34,13 +34,18 @@ class ShaderCommon {
 
    void Init();
 
-   IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode pipMode, Shader::ShaderMode shaderMode) { return compornemts_[pipMode]->GetShader(shaderMode); };
+   IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode3d pipMode, Shader::ShaderMode shaderMode) { return compornemts_[pipMode]->GetShader(shaderMode); };
+   IDxcBlob *GetBlob(CLEYERA::Graphics::RasterPipline_Mode2d pipMode,
+                     Shader::ShaderMode shaderMode) {
+     return compornemts2d_[pipMode]->GetShader(shaderMode);
+   };
 
    IDxcIncludeHandler *GetIncludeHandler() { return includeHandler_.Get(); }
    IDxcUtils *GetUtils() { return utils_.Get(); }
    IDxcCompiler3 *getCompiler() { return compiler_.Get(); }
 
-   ShaderTag GetFIleName(RasterPipline_Mode mode) { return fileNames_[mode]; }
+   ShaderTag GetFIleName(RasterPipline_Mode3d mode) { return fileNames_[mode]; }
+   ShaderTag GetFIleName(RasterPipline_Mode2d mode) { return fileNames2d_[mode]; }
 
  private:
    void LoadJson();
@@ -49,7 +54,7 @@ class ShaderCommon {
 
    ShaderMode TagHandler(std::string tag);
 
-   RasterPipline_Mode RasterHandler(std::string tag);
+   RasterPipline_Mode3d RasterHandler(std::string tag);
 
    std::string filePath_ = "Resources/Shaders/LoadFilesName.json";
 
@@ -57,9 +62,11 @@ class ShaderCommon {
    ComPtr<IDxcUtils> utils_ = nullptr;
    ComPtr<IDxcCompiler3> compiler_ = nullptr;
 
-   std::map<RasterPipline_Mode, ShaderTag> fileNames_;
+   std::map<RasterPipline_Mode3d, ShaderTag> fileNames_;
+   std::map<RasterPipline_Mode2d, ShaderTag> fileNames2d_;
 
-   std::map<RasterPipline_Mode, std::shared_ptr<ShaderCompornent>> compornemts_;
+   std::map<RasterPipline_Mode3d, std::shared_ptr<ShaderCompornent>> compornemts_;
+   std::map<RasterPipline_Mode2d, std::shared_ptr<ShaderCompornent>> compornemts2d_;
 };
 
 } // namespace system

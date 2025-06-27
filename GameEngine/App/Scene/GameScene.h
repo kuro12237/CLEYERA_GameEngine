@@ -8,8 +8,9 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
-#include"TestPlayGui/TestPlayGui.h"
+#include "TestPlayGui/TestPlayGui.h"
 
+#include "UI/TestUI.h"
 
 class GameScene : public SceneCompornent {
 public:
@@ -19,6 +20,10 @@ public:
   void Init() override;
 
   void Update(GameManager *g) override;
+
+  void Draw2d() override;
+
+  void ImGuiUpdate() override;
 
 private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
@@ -33,4 +38,5 @@ private:
 
   std::shared_ptr<TestPlayGui> imgui_ = nullptr;
 
+  std::vector<std::shared_ptr<TestUI>> uis_;
 };

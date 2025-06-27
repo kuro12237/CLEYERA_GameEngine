@@ -38,4 +38,7 @@ void CLEYERA::Util::WorldTransform::SetWorldTransfar() {
    buf_->Update();
 }
 
-void CLEYERA::Util::WorldTransform::BindWT(UINT num) { buf_->GraphicsCommand(num); }
+void CLEYERA::Util::WorldTransform::BindWT(UINT num) {
+  ConvertMat();
+    SetWorldTransfar();
+    buf_->GraphicsCommand(num); }
