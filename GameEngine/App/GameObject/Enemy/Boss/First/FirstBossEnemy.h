@@ -30,6 +30,22 @@ class FirstBossEnemy : public BaseBossEnemy {
    void Update() override;
 
    /// <summary>
+   /// ImGui更新
+   /// </summary>
+   void ImGuiUpdate() override;
+
+   /// <summary>
+   /// ノックバック
+   /// </summary>
+   void KnockBack();
+
+   /// <summary>
+   /// 倒された
+   /// </summary>
+   void Killed();
+
+
+   /// <summary>
    /// デストラクタ
    /// </summary>
    ~FirstBossEnemy() override = default;
