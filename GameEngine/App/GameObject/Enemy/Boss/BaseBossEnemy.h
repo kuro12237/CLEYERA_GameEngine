@@ -148,6 +148,16 @@ protected:
   float_t attackStartDistance_ = 3.0f;
   // 追跡開始距離
   float_t trackingStartDistance_ = 40.0f;
+
+  //発狂状態かどうか
+  bool isEnraged_ = false;
+
+  //攻撃(攻撃)
+  float_t enragedAttackStartDistance_ = 2.0f;
+  //追跡(発狂)
+  float_t enragedTrackingStartDistance_ = 2.0f;
+
+
   // スピード
   float_t speed_ = 0.1f;
   // 体力

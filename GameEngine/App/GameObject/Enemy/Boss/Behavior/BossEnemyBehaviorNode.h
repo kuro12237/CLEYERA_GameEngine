@@ -35,5 +35,17 @@ public:
 	/// </summary>
 	virtual ~BossEnemyBehaviorNode() = default;
 
+public:
+	/// <summary>
+	/// ノードの名前を取得
+	/// </summary>
+	/// <returns></returns>
+	virtual std::string GetNodeName() const { 
+		return nodeName_;
+	}
+
+protected:
+	//ノードの名前
+	std::string nodeName_ = "";
 
 };

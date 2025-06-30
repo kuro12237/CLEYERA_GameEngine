@@ -6,19 +6,20 @@
 
 
 EnemyNodeState BossEnemyAttack::Execute(BaseBossEnemy *baseBossEnemy) {
-  if (!hasAttacked_) {
-    baseBossEnemy->GenerateBullet(bulletType_);
-    hasAttacked_ = true;
-    generateTime_ = 0.0f;
-    return EnemyNodeState::Running; // 実行中
-  }
+    //生成
+    if (hasAttacked_==false) {
+        baseBossEnemy->GenerateBullet(bulletType_);
+        hasAttacked_ = true;
+        generateTime_ = 0.0f;
+        return EnemyNodeState::Running; 
+    }
 
-
-  generateTime_ += DELTA_TIME_;
-  if (generateTime_ > 3.0f) {
-    hasAttacked_ = false;
-    return EnemyNodeState::Success;
-  }
+    //3秒超えたら処理終了
+    generateTime_ += DELTA_TIME_;
+    if (generateTime_ > 3.0f) {
+        hasAttacked_ = false;
+        return EnemyNodeState::Success;
+    }
 
 
     //実行中

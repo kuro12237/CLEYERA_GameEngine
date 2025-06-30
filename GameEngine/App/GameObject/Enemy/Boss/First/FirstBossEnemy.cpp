@@ -25,7 +25,7 @@ void FirstBossEnemy::Init() {
    translate_ = {.x = 5.0f, .y = 0.5f, .z = 15.0f};
 
    // 追跡開始距離
-   trackingStartDistance_ = 50.0f;
+   trackingStartDistance_ = 60.0f;
    // 攻撃開始距離
    attackStartDistance_ = 20.0f;
 
@@ -62,12 +62,28 @@ void FirstBossEnemy::Init() {
    collider_->SetHitCallFunc(
        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+   hpJsonDirectory_ = name_;
+   hp_ = std::make_unique<HealthComponent>();
+   hp_->SetName(this->name_);
+   hp_->Init();
+
 }
 
 void FirstBossEnemy::Update() {
 
 	//ビヘイビアツリーの実行
 	behaviorTree_->Execute(this);
+    if (behaviorTree_->GetNodeName() == "") {
+    
+    }
+
+    // 最大体力の半分以下になったら発狂
+    if (GetBossEnemyParameter().hp_ <=
+        GetBossEnemyParameter().maxHp_ / 2) {
+        isEnraged_ = true;
+    }
+
+    //スピードの設定
 	const float_t SPEED = 0.1f;
 	velocity_.x *= SPEED;
 	velocity_.z *= SPEED;
@@ -84,8 +100,10 @@ void FirstBossEnemy::Update() {
          bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
     }
 
-    
-
+    //ノックバック
+    KnockBack();
+    //倒される
+    Killed();
 	// 更新
    TransformUpdate();
 
@@ -108,8 +126,10 @@ void FirstBossEnemy::KnockBack() {
 }
 
 void FirstBossEnemy::Killed() {
-
-
+  if (hp_->GetHp() <= 0) {
+    isAlive_ = false;
+    isDelete_ = true;
+  }
 }
 
 

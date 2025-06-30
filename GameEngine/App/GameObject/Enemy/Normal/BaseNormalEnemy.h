@@ -181,7 +181,7 @@ protected:
   std::string hpJsonDirectory_ = "Enemys/";
   std::unique_ptr<HealthComponent> hp_ = nullptr;
 
-  std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> *mgrObjList_;
+  std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> *mgrObjList_{};
 
   int32_t bulletCount_ = 0;
 };
