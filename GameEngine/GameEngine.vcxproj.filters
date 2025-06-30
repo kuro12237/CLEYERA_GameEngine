@@ -244,6 +244,8 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -519,6 +521,8 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3Bullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

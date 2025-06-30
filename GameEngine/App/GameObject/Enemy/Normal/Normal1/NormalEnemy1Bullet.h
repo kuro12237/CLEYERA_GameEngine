@@ -23,8 +23,11 @@ public:
   /// <summary>
   /// 初期化
   /// </summary>
-  void Initialize(const Math::Vector::Vec3 &enemyPosition,
-                  const Math::Vector::Vec3 &playerPosition) override;
+  /// <param name="enemyPosition"></param>
+  /// <param name="playerPosition"></param>
+  /// <param name="isPersistentlyTrack"></param>
+  void Initialize(const Math::Vector::Vec3 &enemyPosition, const Math::Vector::Vec3 &playerPosition,
+                  const bool &isPersistentlyTrack) override;
 
   /// <summary>
   /// 更新

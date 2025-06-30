@@ -1,8 +1,10 @@
-#include "NormalEnemy2Bullet.h"
+#include "NormalEnemy3Bullet.h"
 #include "Player/Core/playerCore.h"
 #include "Wall/Wall.h"
 
-void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,const Math::Vector::Vec3 &playerPosition,const bool &isPersistentlyTrack) {
+void NormalEnemy3Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
+                                    const Math::Vector::Vec3 &playerPosition,
+                                    const bool &isPersistentlyTrack) {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemyBullet);
 
@@ -31,7 +33,6 @@ void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,cons
 
   isPersistentlyTrack_ = isPersistentlyTrack;
 
-
   // 攻撃力
   attackPower_ = std::make_unique<AttackPower>();
   attackPower_->Init();
@@ -39,7 +40,9 @@ void NormalEnemy2Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,cons
   attackPower_->SetPower(10);
 }
 
-void NormalEnemy2Bullet::Update() {
+void NormalEnemy3Bullet::Update() {
+
+    playerPosition_;
 
   // 最大5秒まで表示その後に消える
   displayTime_ += DELTA_TIME_;
@@ -58,7 +61,7 @@ void NormalEnemy2Bullet::Update() {
 #endif // _DEBUG
 }
 
-void NormalEnemy2Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void NormalEnemy3Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 
@@ -78,7 +81,7 @@ void NormalEnemy2Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 }
 
-void NormalEnemy2Bullet::DisplayImGui() {
+void NormalEnemy3Bullet::DisplayImGui() {
   /*ImGui::Begin("Bullet2");
   ImGui::InputFloat3("Direction", &direction_.x);
   ImGui::InputFloat3("Position", &translate_.x);

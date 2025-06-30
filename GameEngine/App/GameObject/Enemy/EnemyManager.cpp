@@ -5,9 +5,11 @@
 // 雑魚敵
 #include "Normal/Normal1/NormalEnemy1.h"
 #include "Normal/Normal2/NormalEnemy2.h"
+#include "Normal/Normal3/NormalEnemy3.h"
 
 // ボス
 #include "Boss/First/FirstBossEnemy.h"
+
 
 void EnemyManager::Init() {
 
@@ -30,7 +32,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateBossEnemyEnemy({});
+  GenerateNormalEnemy3({});
 
   for (size_t i = 0; i < 8; i++) {
     std::string tag = "NormalEnemy1";
@@ -109,6 +111,26 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
   std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
+  // 座標の設定
+  enemy->SetInitialPosition(position);
+  // 初期化
+  enemy->Init();
+
+  if (name != "") {
+    enemy->SetName(name);
+  }
+
+  // 挿入
+  // 各敵にlistptr持たせる
+  enemy->SetMgrObjList(objComponents_);
+
+  objComponents_.push_back(enemy);
+  enemyList_.push_back(std::move(enemy));
+}
+
+void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name) {
+  // 敵の生成
+  std::shared_ptr<NormalEnemy3> enemy = std::make_shared<NormalEnemy3>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化

@@ -15,7 +15,7 @@
 enum BulletType {
   NormalBullet1,
   NormalBullet2,
-
+  NormalBullet3,
 };
 
 /// <summary>
@@ -32,7 +32,11 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	virtual void Initialize(const Math::Vector::Vec3 &enemyPosition, const Math::Vector::Vec3 &playerPosition ) = 0;
+	/// <param name="enemyPosition"></param>
+	/// <param name="playerPosition"></param>
+	/// <param name="isPersistentlyTrack"></param>
+	virtual void Initialize(const Math::Vector::Vec3 &enemyPosition,
+                          const Math::Vector::Vec3 &playerPosition,const bool &isPersistentlyTrack) = 0;
 
 	/// <summary>
 	/// 更新
@@ -45,6 +49,9 @@ public:
 	~BaseNormalEnemyBullet()=default;
 
 public:
+        virtual void SetPlayerPosition() {}
+
+      public:
 
 	
     /// <summary>
@@ -58,7 +65,9 @@ protected:
     Math::Vector::Vec3 normalEnemyPosition_ = {};
     // プレイヤー
     Math::Vector::Vec3 playerPosition_ = {};
-
+	//永続的にプレイヤーに追跡するかどうか
+    bool isPersistentlyTrack_ = false;
+    Math::Vector::Vec3 persistentlyPlayerPosition_ = {};
 	// 消去されたか
     bool isDelete_ = false;
 };
