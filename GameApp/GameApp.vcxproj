@@ -141,7 +141,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\;$(ProjectDir)../Externals/Engine/include\;$(ProjectDir)../Externals/Engine/include\CLEYERA\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\;$(ProjectDir)../Externals/Engine/include\;$(ProjectDir)../Externals/Engine/CLEYERA\</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Wv:18 /utf-8 </AdditionalOptions>
@@ -372,9 +372,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
     <ProjectReference Include="..\ImGui\ImGui.vcxproj">
       <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Math\Math.vcxproj">
-      <Project>{98573c11-ed56-44a2-9517-cbd8c1f06b2b}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
