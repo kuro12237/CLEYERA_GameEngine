@@ -1,5 +1,5 @@
 #pragma once
-#include "../../GameEngine/CLEYERA/DX/DXManager.h"
+#include "DX/DXManager.h"
 
 namespace CLEYERA {
 

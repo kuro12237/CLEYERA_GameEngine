@@ -3,7 +3,7 @@
 #include "../../pch/Pch.h"
 #include "Model3dPool.h"
 
-#include "../GameEngine/CLEYERA/Graphics/TexManager/TexManager.h"
+#include "Graphics/TexManager/TexManager.h"
 
 namespace CLEYERA {
 

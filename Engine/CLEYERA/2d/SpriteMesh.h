@@ -1,6 +1,6 @@
 #pragma once
-#include "DX/DXBufferResource/DXBufferResource.h"
-#include "DX/DXManager.h"
+#include "../DX/DXBufferResource/DXBufferResource.h"
+#include "../DX/DXManager.h"
 #include "math.h"
 
 
