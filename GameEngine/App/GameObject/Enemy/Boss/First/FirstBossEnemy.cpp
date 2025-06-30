@@ -77,6 +77,11 @@ void FirstBossEnemy::Update() {
     
     }
 
+    // 最大体力の半分以下になったら発狂
+    if (GetBossEnemyParameter().hp_ <=
+        GetBossEnemyParameter().maxHp_ / 2) {
+        isEnraged_ = true;
+    }
 
     //スピードの設定
 	const float_t SPEED = 0.1f;
