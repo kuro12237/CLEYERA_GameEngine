@@ -2,6 +2,10 @@
 #include"../Scene/IScene.h"
 #include"../Scene/GameScene.h"
 
+#include"CLEYERA.h"
+#pragma comment(lib, "Engine.lib")
+
+
 class GameManager {
  public:
    GameManager();

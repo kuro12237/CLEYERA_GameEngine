@@ -1,18 +1,17 @@
 #pragma once
-#include "../../CLEYERA/3d/Game3dObject.h"
-#include "../../CLEYERA/3d/Line3d/Line3d.h"
 
-#include "../../CLEYERA/3d/GlobalRootSignature/GlobalRootSignature.h"
-#include "../../CLEYERA/3d/ShaderTable/ShaderTable.h"
-#include "../../CLEYERA/3d/StateObject/StateObject.h"
-#include "../../CLEYERA/3d/Tlas/Tlas.h"
-#include "../../CLEYERA/pch/Pch.h"
-
-#include "../../CLEYERA/3d/LocalRootSignature/ClosestHitRootSignature.h"
-#include "../../CLEYERA/3d/LocalRootSignature/RayGenRootSignature.h"
-
-#include "../../CLEYERA/CLEYERA.h"
-#include "../../CLEYERA/Graphics/RaytracingManager/RaytracingManager.h"
+#include"CLEYERA.h"
+#include "3d/Game3dObject.h"
+#include "3d/Line3d/Line3d.h"
+#include "3d/GlobalRootSignature/GlobalRootSignature.h"
+#include "3d/ShaderTable/ShaderTable.h"
+#include "3d/StateObject/StateObject.h"
+#include "3d/Tlas/Tlas.h"
+#include "pch/Pch.h"
+#include "3d/LocalRootSignature/ClosestHitRootSignature.h"
+#include "3d/LocalRootSignature/RayGenRootSignature.h"
+#include "CLEYERA.h"
+#include "Graphics/RaytracingManager/RaytracingManager.h"
 #include "Utility/Json/GlobalVariables.h"
 
 class GameManager;
