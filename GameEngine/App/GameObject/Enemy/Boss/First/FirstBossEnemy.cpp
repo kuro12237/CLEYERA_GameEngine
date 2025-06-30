@@ -25,7 +25,7 @@ void FirstBossEnemy::Init() {
    translate_ = {.x = 5.0f, .y = 0.5f, .z = 15.0f};
 
    // 追跡開始距離
-   trackingStartDistance_ = 50.0f;
+   trackingStartDistance_ = 60.0f;
    // 攻撃開始距離
    attackStartDistance_ = 20.0f;
 
@@ -73,6 +73,12 @@ void FirstBossEnemy::Update() {
 
 	//ビヘイビアツリーの実行
 	behaviorTree_->Execute(this);
+    if (behaviorTree_->GetNodeName() == "") {
+    
+    }
+
+
+    //スピードの設定
 	const float_t SPEED = 0.1f;
 	velocity_.x *= SPEED;
 	velocity_.z *= SPEED;

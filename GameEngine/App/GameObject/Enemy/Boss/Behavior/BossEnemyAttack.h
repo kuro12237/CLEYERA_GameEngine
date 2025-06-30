@@ -27,7 +27,10 @@ public:
     /// コンストラクタ
     /// </summary>
     /// <param name="bulletType">弾の種類</param>
-    BossEnemyAttack(const uint32_t &bulletType) { this->bulletType_ = bulletType; };
+    BossEnemyAttack(const uint32_t &bulletType) { 
+        nodeName_ = VAR_NAME(BossEnemyAttack);
+        this->bulletType_ = bulletType; 
+    };
 
     /// <summary>
     /// 実行

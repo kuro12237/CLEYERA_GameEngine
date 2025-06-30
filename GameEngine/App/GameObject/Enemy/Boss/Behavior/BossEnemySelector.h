@@ -21,7 +21,7 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    BossEnemySelector() = default;
+    BossEnemySelector() {};
 
     /// <summary>
     /// 子を追加
