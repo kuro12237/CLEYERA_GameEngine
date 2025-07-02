@@ -20,13 +20,11 @@ void LowAttack_NormalBullet::Init()
 void LowAttack_NormalBullet::Update()
 {
 	ObjectComponent::TransformUpdate();
+	IPlayerBullet::Update_LifeTime();
 
 	// 移動処理
 	Move();
 }
 
-void LowAttack_NormalBullet::Move()
-{
-	force_ += initVel_;
-}
+void LowAttack_NormalBullet::Move() { force_ += initVel_; }
 

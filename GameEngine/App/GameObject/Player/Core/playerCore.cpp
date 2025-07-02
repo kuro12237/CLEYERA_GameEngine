@@ -167,9 +167,9 @@ void PlayerCore::InitAttackSlot() {
 	attacks_[ ToIndex(AttackType::Basic) ] =
 		std::make_unique<LowAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Standard) ] =
-		std::make_unique<PlayerAttackDemoStandard>(this, bulletManager_);
+		std::make_unique<HighAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Signature) ] =
-		std::make_unique<PlayerAttackDemoSignature>(this, bulletManager_);
+		std::make_unique<SpecialAttack_Normal>(this, bulletManager_);
 
 	// 初期化
 	for ( auto & atk : attacks_ ) {

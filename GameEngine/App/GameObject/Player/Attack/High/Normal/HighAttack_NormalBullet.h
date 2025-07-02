@@ -3,20 +3,20 @@
 #include "CLEYERA.h"
 #include "../../Interface/IPlayerBullet.h"
 
-/* LowAttack NormalBullet */
-class LowAttack_NormalBullet : public IPlayerBullet {
+/* HighAttack NormalBullet */
+class HighAttack_NormalBullet : public IPlayerBullet {
 
 public:
 
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	LowAttack_NormalBullet() = default;
+	HighAttack_NormalBullet() = default;
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~LowAttack_NormalBullet() = default;
+	~HighAttack_NormalBullet() = default;
 
 	/// <summary>
 	/// 初期化処理
@@ -27,13 +27,6 @@ public:
 	/// 更新処理
 	/// </summary>
 	void Update() override;
-
-#pragma region Accessor
-
-	// コンボステップ
-	void SetComboStep(uint32_t step) { comboStep_ = step; }
-
-#pragma endregion
 
 private:
 

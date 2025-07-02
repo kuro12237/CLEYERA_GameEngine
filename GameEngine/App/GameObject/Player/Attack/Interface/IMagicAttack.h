@@ -57,6 +57,16 @@ public:
   }
 
   /// <summary>
+  /// クールダウン開始
+  /// </summary>
+  void SetAttackCoolDown();
+
+  /// <summary>
+  /// クールダウンタイマーの更新
+  /// </summary>
+  void UpdateCoolDownTimer();
+
+  /// <summary>
   /// ImGuiの描画
   /// </summary>
   virtual void DrwaImGui() {};
@@ -71,6 +81,9 @@ public:
 
   // 攻撃中
   virtual bool IsAttacking() const { return isAttacking_; }
+
+  // クールダウン中
+  virtual bool IsCoolDown() const { return isAttackCoolDown_; }
 
 #pragma endregion
 
@@ -94,7 +107,9 @@ protected:
   float damage_ = 0.0f;
 
   // クールダウン
-  float coolDown_ = 0.0f;
+  bool isAttackCoolDown_ = false;
+  float coolDownTimer_ = 0.0f;
+  float coolDownInterval_ = 0.0f;
 
   // 攻撃中
   bool isAttacking_ = false;

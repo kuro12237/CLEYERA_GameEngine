@@ -15,9 +15,11 @@ void LowAttack_Normal::Init()
 	// 攻撃ステップの初期値
 	comboStep_ = 0;
 	// コンボ間インターバルの初期値
-	comboInterval_ = 60.0f;
+	comboInterval_ = 30.0f;
 	// コンボの進行
 	comboElapse_ = 0.0f;
+	// 攻撃のクールダウン
+	coolDownInterval_ = 0.5f * 60.0f;
 }
 
 void LowAttack_Normal::Update()
@@ -32,6 +34,9 @@ void LowAttack_Normal::Update()
 			comboInterval_ = 0.0f;
 		}
 	}
+
+	// クールダウン更新
+	UpdateCoolDownTimer();
 }
 
 void LowAttack_Normal::Reset()
@@ -41,12 +46,24 @@ void LowAttack_Normal::Reset()
 
 void LowAttack_Normal::IsAttack()
 {
+	// 攻撃可能でなければ何もしない
+	if ( IsCoolDown() )
+		return;
+
 	// 弾を発射
 	FireBullet();
 
 	// コンボ進行
-	uint32_t inc = 1;
-	comboStep_ = (comboStep_ + inc) % comboMax_;
+	comboStep_++;
+
+	if ( comboStep_ >= comboMax_ )
+	{
+		comboStep_ = 0; // コンボをリセット
+
+		SetAttackCoolDown(); // 基底クラスのクールダウン処理
+	}
+
+	// コンボインターバル更新
 	comboElapse_ = comboInterval_;
 }
 

@@ -237,6 +237,10 @@
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_NormalBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_NormalBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_Normal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -509,6 +513,10 @@
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_Normal.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_NormalBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_Normal.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_NormalBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
