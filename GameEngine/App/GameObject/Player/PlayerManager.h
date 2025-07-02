@@ -12,6 +12,9 @@
 #include"Component/Hp/HealthComponent.h"
 
 
+// 前方宣言
+class ItemManager;
+
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerCompornent {
 
@@ -19,7 +22,8 @@ public:
   /// <summary>
   /// コンストラク
   /// </summary>
-  PlayerManager();
+    PlayerManager() = default;
+    PlayerManager(std::weak_ptr<ItemManager> itemMgr);
 
   /// <summary>
   /// デストラクタ

@@ -4,7 +4,7 @@
 GameScene::GameScene()
 {
     itemManager_ = std::make_shared<ItemManager>();
-    playerManager_ = std::make_shared<PlayerManager>();
+    playerManager_ = std::make_shared<PlayerManager>(itemManager_);
 }
 
 void GameScene::Init() {
@@ -147,6 +147,3 @@ void GameScene::Draw2d() {
   }
 }
 
-void GameScene::ImGuiUpdate() {
-
-uis_[0]->TransformImGuiUpdate(); }

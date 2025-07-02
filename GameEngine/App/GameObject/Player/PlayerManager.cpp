@@ -3,10 +3,10 @@
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerManager::PlayerManager() {
+PlayerManager::PlayerManager(std::weak_ptr<ItemManager> itemMgr) {
   camera_ = std::make_shared<PlayerCamera>();
   bulletManager_ = std::make_shared<PlayerBulletManager>();
-  core_ = std::make_shared<PlayerCore>(camera_, bulletManager_);
+  core_ = std::make_shared<PlayerCore>(camera_, bulletManager_, itemMgr);
   commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   hp_ = std::make_unique<HealthComponent>();
 }

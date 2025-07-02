@@ -14,6 +14,7 @@
 
 // 前方宣言
 class PlayerCamera;
+class ItemManager;
 
 /* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
@@ -23,7 +24,7 @@ public:
 	/// コンストラク
 	/// </summary>
 	PlayerCore() = default;
-	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr);
+	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr);
 
 	/// <summary>
 	/// デストラクタ
@@ -69,6 +70,8 @@ public:
 	/// 衝突時コールバック
 	/// </summary>
 	void OnCollision(std::weak_ptr<ObjectComponent> other);
+
+	void ImGuiUpdate() override;
 
 #pragma region Accessor
 
@@ -156,6 +159,10 @@ private:
 	const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 
 private:
+
+	// ItemManagerのweak_ptr
+	std::weak_ptr<ItemManager> itemMgr_;
+
 	// Cameraのweak_ptr
 	std::weak_ptr<PlayerCamera> weakpCamera_;
 

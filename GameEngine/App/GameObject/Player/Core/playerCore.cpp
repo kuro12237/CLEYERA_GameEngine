@@ -5,14 +5,18 @@
 #include "Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
 #include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
 
+#include "../../Item/Manager/ItemManager.h"
+#include "../../Item/AttackPickup/AttackPickupItem.h"
+
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr) {
+PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
 	lua_ = std::make_unique<LuaScript>();
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
 	bulletManager_ = bulManPtr;
+	itemMgr_ = itemMgr;
 }
 
 /// <summary>
@@ -78,7 +82,23 @@ void PlayerCore::Update() {
 		translate_ = { 0.0f, 1.0f, 0.0f };
 	}
 
+
+
+
+	if ( auto itemMgr = itemMgr_.lock() ) {
+		auto input = CLEYERA::Manager::InputManager::GetInstance();
+		if ( input->PushKeyPressed(DIK_P) ) {
+			itemMgr->RegisterItem(std::make_shared<AttackPickupItem>());
+		}
+	}
+
+
 #ifdef _DEBUG
+	/*ImGui::Begin("PlayerCore");
+
+
+
+	ImGui::End();*/
 #endif // _DEBUG
 }
 
@@ -276,4 +296,14 @@ Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3
 	}
 
 	return result;
+}
+
+
+void PlayerCore::ImGuiUpdate()
+{
+	if ( ImGui::TreeNode("PlayerCore") ) {
+
+
+		ImGui::TreePop();
+	}
 }

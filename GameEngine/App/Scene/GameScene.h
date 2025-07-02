@@ -24,7 +24,6 @@ public:
 
   void Draw2d() override;
 
-  void ImGuiUpdate() override;
 
 private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
