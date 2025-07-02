@@ -5,14 +5,18 @@
 #include "Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
 #include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
 
+#include "../../Item/Manager/ItemManager.h"
+#include "../../Item/AttackPickup/AttackPickupItem.h"
+
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr) {
+PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
 	lua_ = std::make_unique<LuaScript>();
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
 	bulletManager_ = bulManPtr;
+	itemMgr_ = itemMgr;
 }
 
 /// <summary>
@@ -69,7 +73,7 @@ void PlayerCore::Update() {
 
 	// ノックバック
 	// 前方&右方のベクトルを求める
-	CalcForwardAndRightVec();
+	CalcDirectVec();
 
 	// ノックバック
 	KnockBack();
@@ -78,7 +82,21 @@ void PlayerCore::Update() {
 		translate_ = { 0.0f, 1.0f, 0.0f };
 	}
 
+
+	if ( auto itemMgr = itemMgr_.lock() ) {
+		auto input = CLEYERA::Manager::InputManager::GetInstance();
+		if ( input->PushKeyPressed(DIK_P) ) {
+			itemMgr->RegisterAttackPickup();
+		}
+	}
+
+
 #ifdef _DEBUG
+	/*ImGui::Begin("PlayerCore");
+
+
+
+	ImGui::End();*/
 #endif // _DEBUG
 }
 
@@ -165,7 +183,7 @@ void PlayerCore::InitAttackSlot() {
 
 	// 初期攻撃スロット
 	attacks_[ ToIndex(AttackType::Basic) ] =
-		std::make_unique<LowAttack_Normal>(this, bulletManager_);
+		std::make_unique<LowAttack_Back>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Standard) ] =
 		std::make_unique<HighAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Signature) ] =
@@ -240,21 +258,29 @@ void PlayerCore::KnockBack() {
 }
 
 /// <summary>
-/// 前方&右方のベクトルを求める
+/// 方向ベクトルを求める
 /// </summary>
-void PlayerCore::CalcForwardAndRightVec() {
+void PlayerCore::CalcDirectVec() {
 	// 前方ベクトルのデフォルト値
 	Math::Vector::Vec3 defForwardVec = Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f };
+	// 後方ベクトルのデフォルト値
+	Math::Vector::Vec3 defBackVec = Math::Vector::Vec3{ 0.0f, 0.0f, -1.0f };
 	// 右方ベクトルのデフォルト値
 	Math::Vector::Vec3 defRightVec = Math::Vector::Vec3{ 1.0f, 0.0f, 0.0f };
+	// 左方ベクトルのデフォルト値
+	Math::Vector::Vec3 defLeftVec = Math::Vector::Vec3{ -1.0f, 0.0f, 0.0f };
 
 	// Y軸の回転行列
 	Math::Matrix::Mat4x4 rotateYMat = Math::Matrix::Func::RotateYMatrix(rotate_.y);
 
 	// 前方ベクトルを求める
 	forwardVec_ = TransformWithPerspective(defForwardVec, rotateYMat);
+	// 上方ベクトルを求める
+	backVec_ = TransformWithPerspective(defBackVec, rotateYMat);
 	// 右方ベクトルを求める
 	rightVec_ = TransformWithPerspective(defRightVec, rotateYMat);
+	// 左方ベクトルを求める
+	leftVec_ = TransformWithPerspective(defLeftVec, rotateYMat);
 }
 
 /// <summary>
@@ -276,4 +302,17 @@ Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3
 	}
 
 	return result;
+}
+
+
+void PlayerCore::ImGuiUpdate()
+{
+	if ( ImGui::TreeNode("PlayerCore") ) {
+
+		if ( ImGui::Button("Pop AttackpickupItem ") ) {
+
+		}
+
+		ImGui::TreePop();
+	}
 }

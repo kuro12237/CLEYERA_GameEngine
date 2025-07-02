@@ -185,8 +185,11 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
+    <ClCompile Include="App\GameObject\Item\AttackPickup\AttackPickupItem.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Low\Back\LowAttack_Back.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Low\Back\LowAttack_BackBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_NormalBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_Normal.cpp" />
@@ -298,6 +301,7 @@
     <ClCompile Include="CLEYERA\Utility\TransformBase\TransformBase.cpp" />
     <ClCompile Include="CLEYERA\Utility\World\WorldTransform.cpp" />
     <ClCompile Include="CLEYERA\WIn\WinApp.cpp" />
+    <ClCompile Include="App\GameObject\Item\Manager\ItemManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -338,8 +342,12 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
+    <ClInclude Include="App\GameObject\Item\AttackPickup\AttackPickupItem.h" />
+    <ClInclude Include="App\GameObject\Item\Interface\IItem.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Low\Back\LowAttack_Back.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Low\Back\LowAttack_BackBullet.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_Normal.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_NormalBullet.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_Normal.h" />
@@ -468,6 +476,7 @@
     <ClInclude Include="CLEYERA\Utility\ImGui\ImGuiManager.h" />
     <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h" />
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
+    <ClInclude Include="App\GameObject\Item\Manager\ItemManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

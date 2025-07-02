@@ -6,14 +6,19 @@
 #include "Move/PlayerMoveFunc.h"
 
 #include "../Attack/Interface/IMagicAttack.h"
+
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
+#include "../Attack/Low/Back/LowAttack_Back.h"
+
 #include "../Attack/High/Normal/HighAttack_Normal.h"
+
 #include "../Attack/Special/Normal/SpecialAttack_Normal.h"
 
 #include "../Attack/Manager/PlayerBulletManager.h"
 
 // 前方宣言
 class PlayerCamera;
+class ItemManager;
 
 /* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
@@ -23,7 +28,7 @@ public:
 	/// コンストラク
 	/// </summary>
 	PlayerCore() = default;
-	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr);
+	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr);
 
 	/// <summary>
 	/// デストラクタ
@@ -70,6 +75,8 @@ public:
 	/// </summary>
 	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
+	void ImGuiUpdate() override;
+
 #pragma region Accessor
 
 	// ワールド座標の取得
@@ -99,8 +106,12 @@ public:
 
 	// 前方ベクトルの取得
 	Math::Vector::Vec3 GetForwardVec() const { return forwardVec_; }
+	// 後方ベクトルの取得
+	Math::Vector::Vec3 GetBackVec() const { return backVec_; }
 	// 右方ベクトルの取得
 	Math::Vector::Vec3 GetRightVec() const { return rightVec_; }
+	// 左方ベクトルの取得
+	Math::Vector::Vec3 GetLeftVec() const { return leftVec_; }
 
 	// 攻撃後か
 	bool IsAttacked() const { return isAttackStiff_; }
@@ -124,9 +135,9 @@ private:
 	void LoadCoreDataFromLua();
 
 	/// <summary>
-	/// 前方&右方のベクトルを求める
+	/// 方向ベクトルを求める
 	/// </summary>
-	void CalcForwardAndRightVec();
+	void CalcDirectVec();
 
 	/// <summary>
 	/// Vector3にアフィン変換と透視補正を適用する
@@ -156,6 +167,10 @@ private:
 	const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 
 private:
+
+	// ItemManagerのweak_ptr
+	std::weak_ptr<ItemManager> itemMgr_;
+
 	// Cameraのweak_ptr
 	std::weak_ptr<PlayerCamera> weakpCamera_;
 
@@ -173,7 +188,9 @@ private:
 
 	// 前方&右方ベクトル
 	Math::Vector::Vec3 forwardVec_{};
+	Math::Vector::Vec3 backVec_{};
 	Math::Vector::Vec3 rightVec_{};
+	Math::Vector::Vec3 leftVec_{};
 
 	// 攻撃後の硬直
 	bool isAttackStiff_ = false;

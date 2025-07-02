@@ -72,7 +72,7 @@ void CLEYERA::Component::ManagerCompornent::ListUpdate() {
 
   for (auto obj : objComponents_) {
     obj;
-    // obj.lock()->Update();
+     obj.lock()->Update();
   }
   for (auto obj : cameraCompornents_) {
     obj.lock()->Update();
