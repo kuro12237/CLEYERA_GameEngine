@@ -11,7 +11,7 @@
 
 #include "Player/Core/playerCore.h"
 
-#include"Player/Bullet/Interface/IPlayerBullet.h"
+#include"Player/Attack/Interface/IPlayerBullet.h"
 
 void NormalEnemy2::Init() {
   // 名前の設定

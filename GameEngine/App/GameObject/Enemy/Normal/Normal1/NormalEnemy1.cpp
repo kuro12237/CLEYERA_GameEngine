@@ -10,7 +10,7 @@
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
 
-#include "Player/Bullet/Interface/IPlayerBullet.h"
+#include "../../../Player/Attack/Interface/IPlayerBullet.h"
 
 void NormalEnemy1::Init() {
   // 名前の設定

@@ -37,7 +37,7 @@ void PlayerBulletManager::PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBu
 /// <summary>
 /// ImGuiの描画
 /// </summary>
-void PlayerBulletManager::DrawImGui() {
+void PlayerBulletManager::ImGuiUpdate() {
   if (ImGui::TreeNode("BulletManager")) {
 
     size_t count = bullets_.size();

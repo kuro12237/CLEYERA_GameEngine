@@ -4,9 +4,10 @@
 
 #include "Camera/PlayerCamera.h"
 #include "Command/PlayerCommandHandler.h"
+#include "Attack/Manager/PlayerBulletManager.h"
 #include "Core/playerCore.h"
 
-#include "Bullet/Manager/PlayerBulletManager.h"
+#include "Attack/Manager/PlayerBulletManager.h"
 
 #include"Component/Hp/HealthComponent.h"
 
@@ -51,14 +52,14 @@ private:
   // カメラ
   std::shared_ptr<PlayerCamera> camera_;
 
+  // バレットマネージャー
+  std::shared_ptr<PlayerBulletManager> bulletManager_;
+
   // コア
   std::shared_ptr<PlayerCore> core_;
 
   // コマンドハンドラー
   std::unique_ptr<PlayerCommandHandler> commandHandler_;
-
-  // 発射物管理クラス
-  std::shared_ptr<PlayerBulletManager> projectileManager_;
 
   std::unique_ptr<HealthComponent> hp_ = nullptr;
 };
