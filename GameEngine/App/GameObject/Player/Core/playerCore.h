@@ -5,17 +5,10 @@
 
 #include "Move/PlayerMoveFunc.h"
 
-#include "../Attack/Basic/DemoBasic/PlayerAttackDemoBasic.h"
 #include "../Attack/Interface/IMagicAttack.h"
-#include "../Attack/Signature/DemoSignature/PlayerAttackDemoSignature.h"
-#include "../Attack/Standard/DemoStandard/PlayerAttackDemoStandard.h"
-
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
-
 #include "../Attack/High/Normal/HighAttack_Normal.h"
-
 #include "../Attack/Special/Normal/SpecialAttack_Normal.h"
-
 
 #include "../Attack/Manager/PlayerBulletManager.h"
 
