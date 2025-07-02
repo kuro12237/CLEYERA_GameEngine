@@ -22,7 +22,6 @@ void PlayerManager::Init() {
   ManagerCompornent::cameraCompornents_.push_back(camera_);
 
   // コア
-  core_->Init();
   ManagerCompornent::objComponents_.push_back(core_);
   
   // コマンドハンドラー

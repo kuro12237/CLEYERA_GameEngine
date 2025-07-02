@@ -20,5 +20,6 @@ void AttackPickupItem::Init()
 
 void AttackPickupItem::Update()
 {
+	ObjectComponent::TransformUpdate();
 
 }

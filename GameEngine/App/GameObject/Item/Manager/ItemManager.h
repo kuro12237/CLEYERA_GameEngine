@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CLEYERA.h"
+#include <CLEYERA.h>
 #include "../Interface/IItem.h"
 
 
@@ -12,7 +12,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	ItemManager() = default;
+	ItemManager() {};
 
 	/// <summary>
 	/// デストラクタ
@@ -39,7 +39,12 @@ public:
 	/// </summary>
 	void RegisterItem(std::shared_ptr<IItem> item);
 
+	void RegisterAttackPickup();
+
 private:
+
+	std::list<std::shared_ptr<IItem>>items_;
+	uint32_t attackPickupCount_ = 0;
 
 };
 

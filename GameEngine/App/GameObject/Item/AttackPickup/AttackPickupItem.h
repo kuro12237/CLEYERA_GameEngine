@@ -10,7 +10,7 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	AttackPickupItem() = default;
+	AttackPickupItem() {};
 	
 	/// <summary>
 	/// デストラクタ

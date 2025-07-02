@@ -83,12 +83,10 @@ void PlayerCore::Update() {
 	}
 
 
-
-
 	if ( auto itemMgr = itemMgr_.lock() ) {
 		auto input = CLEYERA::Manager::InputManager::GetInstance();
 		if ( input->PushKeyPressed(DIK_P) ) {
-			itemMgr->RegisterItem(std::make_shared<AttackPickupItem>());
+			itemMgr->RegisterAttackPickup();
 		}
 	}
 
@@ -303,6 +301,9 @@ void PlayerCore::ImGuiUpdate()
 {
 	if ( ImGui::TreeNode("PlayerCore") ) {
 
+		if ( ImGui::Button("Pop AttackpickupItem ") ) {
+
+		}
 
 		ImGui::TreePop();
 	}
