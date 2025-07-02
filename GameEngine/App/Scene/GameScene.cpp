@@ -143,7 +143,7 @@ void GameScene::Draw2d() {
 
   for (size_t i = 0; i < 1; i++) {
 
-    uis_[i]->Draw();
+    //uis_[i]->Draw();
   }
 }
 

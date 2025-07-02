@@ -188,6 +188,8 @@
     <ClCompile Include="App\GameObject\Item\AttackPickup\AttackPickupItem.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Low\Back\LowAttack_Back.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\Low\Back\LowAttack_BackBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_NormalBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_Normal.cpp" />
@@ -344,6 +346,8 @@
     <ClInclude Include="App\GameObject\Item\Interface\IItem.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Low\Back\LowAttack_Back.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\Low\Back\LowAttack_BackBullet.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_Normal.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Normal\LowAttack_NormalBullet.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Special\Normal\SpecialAttack_Normal.h" />
