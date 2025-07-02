@@ -1,6 +1,12 @@
 #include "GameScene.h"
 #include "../GameManager/GameManager.h"
 
+GameScene::GameScene()
+{
+    itemManager_ = std::make_shared<ItemManager>();
+    playerManager_ = std::make_shared<PlayerManager>();
+}
+
 void GameScene::Init() {
   uis_.resize(2);
 
@@ -17,7 +23,7 @@ void GameScene::Init() {
   uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   bulletNum;
 
-  playerManager_ = std::make_shared<PlayerManager>();
+  managerCompornents_.push_back(itemManager_);
   managerCompornents_.push_back(playerManager_);
 
   enemyManager_ = std::make_shared<EnemyManager>();
