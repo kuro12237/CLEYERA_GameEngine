@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -114,8 +114,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\ImGui\;$(ProjectDir)CLEYERA\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)..\ImGui\;$(ProjectDir)CLEYERA\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Wv:18 /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
@@ -123,9 +123,10 @@
       <SubSystem>
       </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Debug\math.lib;$(ProjectDir)..\Externals\assimp\lib\Debug\assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Debug\math.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Debug\math.lib;$(ProjectDir)..\Externals\Engine\lib\Debug\Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -138,6 +139,8 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)..\ImGui\;$(ProjectDir)CLEYERA\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Wv:18 /utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -145,9 +148,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Release\math.lib;$(ProjectDir)..\Externals\assimp\lib\Release\assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)"CLEYERA"$(TargetDir)CLEYERA"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Release\math.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -340,6 +345,14 @@
     <ClInclude Include="CLEYERA\Utility\TransformBase\TransformBase.h" />
     <ClInclude Include="CLEYERA\Utility\World\WorldTransform.h" />
     <ClInclude Include="CLEYERA\WIn\WinApp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Externals\DirectXTex\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
+      <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
+      <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

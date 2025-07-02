@@ -141,7 +141,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\;$(ProjectDir)../Externals/Engine/include\;$(ProjectDir)../Externals/Engine/CLEYERA\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\;$(ProjectDir)../Externals/Engine/include\;$(ProjectDir)../Externals/Engine/CLEYERA\;$(ProjectDir)../Externals/DirectXTex\</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/Wv:18 /utf-8 </AdditionalOptions>
@@ -365,14 +365,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Externals\DirectXTex\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj">
-      <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ImGui\ImGui.vcxproj">
-      <Project>{9c38d001-d527-47b8-b1c0-e1f9a62b5e42}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

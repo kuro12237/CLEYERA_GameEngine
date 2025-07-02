@@ -22,8 +22,9 @@ void EnemyManager::Init() {
   // Luaから抽出したデータの設定
   LoadEnemy2DataFromLua();
   // 生成
-  uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
-  uint32_t enemy2Count = lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
+  [[maybe_unused]]uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
+  [[maybe_unused]] uint32_t enemy2Count =
+      lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
 
 #ifdef _DEBUG
   enemy1Count = 1u;

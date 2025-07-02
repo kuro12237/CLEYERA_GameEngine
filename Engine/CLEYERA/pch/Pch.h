@@ -103,4 +103,4 @@ using namespace Microsoft::WRL;
 
 #include <lua.hpp>
 
-#pragma endregion 
+#pragma endregion
