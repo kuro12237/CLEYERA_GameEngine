@@ -125,7 +125,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)..\Externals\math\lib\Debug\</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\Engine\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\Engine\lib\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>assimp-vc143-mtd.lib;lua51.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
