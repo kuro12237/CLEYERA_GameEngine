@@ -3,7 +3,8 @@
 #include "Wall/Wall.h"
 
 void NormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
-                                    const Math::Vector::Vec3 &playerPosition) {
+                                    const Math::Vector::Vec3 &playerPosition,
+                                    const bool &isPersistentlyTrack) {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemy1Bullet);
 
@@ -24,6 +25,8 @@ void NormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
   // あたりはんてい関数セット
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+
+  isPersistentlyTrack_ = isPersistentlyTrack;
 
   //攻撃力
   attackPower_ = std::make_unique<AttackPower>();

@@ -184,6 +184,8 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3Bullet.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Item\AttackPickup\AttackPickupItem.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.cpp" />
@@ -341,6 +343,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3Bullet.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
     <ClInclude Include="App\GameObject\Item\AttackPickup\AttackPickupItem.h" />
     <ClInclude Include="App\GameObject\Item\Interface\IItem.h" />

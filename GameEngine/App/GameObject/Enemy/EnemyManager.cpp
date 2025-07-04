@@ -5,9 +5,11 @@
 // 雑魚敵
 #include "Normal/Normal1/NormalEnemy1.h"
 #include "Normal/Normal2/NormalEnemy2.h"
+#include "Normal/Normal3/NormalEnemy3.h"
 
 // ボス
 #include "Boss/First/FirstBossEnemy.h"
+
 
 void EnemyManager::Init() {
 
@@ -24,7 +26,8 @@ void EnemyManager::Init() {
   // 生成
   uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
   uint32_t enemy2Count = lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
-
+  enemy1Count;
+  enemy2Count;
 #ifdef _DEBUG
   enemy1Count = 1u;
   enemy2Count = 1u;
@@ -32,28 +35,29 @@ void EnemyManager::Init() {
 
   GenerateBossEnemyEnemy({});
 
-  for (size_t i = 0; i < 8; i++) {
+  //GenerateNormalEnemy3({});
+  for (size_t i = 0; i < 1; i++) {
     std::string tag = "NormalEnemy1";
 
     char name[17];
 
     if (i == 0) {
 
-      //GenerateNormalEnemy1({}, tag);
+     // GenerateNormalEnemy1({}, tag);
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy1.%03zu", i);
 
-      //GenerateNormalEnemy1({}, name);
+      GenerateNormalEnemy1({}, name);
     }
   }
 
-  for (size_t i = 0; i < 8; i++) {
+  for (size_t i = 0; i < 1; i++) {
     std::string tag = "NormalEnemy2";
 
     char name[17];
     if (i == 0) {
 
-      ///GenerateNormalEnemy2({}, tag);
+      //GenerateNormalEnemy2({}, tag);
 
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy2.%03zu", i);
@@ -109,6 +113,26 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
   std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
+  // 座標の設定
+  enemy->SetInitialPosition(position);
+  // 初期化
+  enemy->Init();
+
+  if (name != "") {
+    enemy->SetName(name);
+  }
+
+  // 挿入
+  // 各敵にlistptr持たせる
+  enemy->SetMgrObjList(objComponents_);
+
+  objComponents_.push_back(enemy);
+  enemyList_.push_back(std::move(enemy));
+}
+
+void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name) {
+  // 敵の生成
+  std::shared_ptr<NormalEnemy3> enemy = std::make_shared<NormalEnemy3>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化

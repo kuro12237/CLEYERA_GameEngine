@@ -46,6 +46,13 @@ public:
   void GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name = "");
 
   /// <summary>
+  /// 雑魚敵3を生成
+  /// </summary>
+  /// <param name="position"></param>
+  /// <param name="name"></param>
+  void GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name = "");
+
+  /// <summary>
   /// ボス敵
   /// </summary>
   /// <param name="position">座標</param>

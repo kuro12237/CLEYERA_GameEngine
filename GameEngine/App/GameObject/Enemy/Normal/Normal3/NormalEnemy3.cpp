@@ -1,30 +1,30 @@
-#include "NormalEnemy1.h"
-
-#include "Utility/Easing.h"
+#include "NormalEnemy3.h"
 
 #include "Enemy/Normal/Behavior/NormalEnemyAttack.h"
-#include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h"
 #include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInRange.h"
 #include "Enemy/Normal/Behavior/NormalEnemyNoneBehavior.h"
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
+#include <Enemy/Normal/Behavior/NormalEnemyIsNotAttacking.h>
+#include <Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h>
 
-#include "../../../Player/Attack/Interface/IPlayerBullet.h"
+#include "Player/Core/playerCore.h"
 
-void NormalEnemy1::Init() {
+#include"Player/Bullet/Interface/IPlayerBullet.h"
+
+void NormalEnemy3::Init() {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemy1);
+  name_ = VAR_NAME(NormalEnemy2);
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
-  //"Resources/Model/Sphere", "Sphere"
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
+  //"C:\Lesson\TD4\GameEngine\Resources\Model\Leef\Leef.obj"
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
   uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   modelHandle2;
-
   // コライダー作成
   CreateCollider(ColliderType::AABB);
 
@@ -36,20 +36,21 @@ void NormalEnemy1::Init() {
   parameter_.hp_ = parameter_.maxHp_;
   // ノックバックの距離
   parameter_.knockBackDistance_ = 1.0f;
+
   // ルート
+  // セレクターは一つでもSucceesすればいいよ
   std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
 
   // 追跡開始距離
-  trackingStartDistance_ = 40.0f;
+  trackingStartDistance_ = 70.0f;
   // 攻撃開始距離
-  attackStartDistance_ = 7.0f;
+  attackStartDistance_ = 20.0f;
 
+  // シーケンスは全てSucceesしないとだめだよ
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
-  // プレイヤーが設定した範囲内にいるかどうか(攻撃用)
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
-  // 攻撃
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -75,17 +76,16 @@ void NormalEnemy1::Init() {
   hp_->Init();
 }
 
-void NormalEnemy1::Update() {
+void NormalEnemy3::Update() {
 
   // hp処理
   hp_->Update();
   if (hp_->GetIsDead()) {
-    isAlive_ = false;
     // 倒された
+    isAlive_ = false;
     Killed();
   }
 
-  // 生存時
   if (isAlive_ == true) {
     // 弾の更新
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
@@ -104,7 +104,10 @@ void NormalEnemy1::Update() {
 
     // ビヘイビアツリーの実行
     behaviorTree_->Execute(this);
-
+    // atan2 で回転角を求める（ラジアン）
+    float_t angle = std::atan2(-direction_.z, direction_.x);
+    // 角度を敵の回転に設定
+    rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
     // 速度を計算
     Math::Vector::Vec3 newDirection = {};
     if (isAttack_ == false) {
@@ -124,12 +127,12 @@ void NormalEnemy1::Update() {
     // ノックバック
     KnockBack();
   }
-
   // 更新
   TransformUpdate();
+
 }
 
-void NormalEnemy1::ImGuiUpdate() {
+void NormalEnemy3::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
@@ -143,7 +146,6 @@ void NormalEnemy1::ImGuiUpdate() {
       ImGui::InputFloat3("AfterPosition", &afterKnockBackPosition_.x);
       ImGui::TreePop();
     }
-
     if (ImGui::TreeNode("Parameter") == true) {
       ImGui::SliderInt("MaxHP", &parameter_.maxHp_, 0, 10);
       ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
@@ -151,26 +153,29 @@ void NormalEnemy1::ImGuiUpdate() {
       ImGui::TreePop();
     }
 
-    ImGui::Checkbox("isKnockBack", &isKnockBack_);
     ImGui::InputFloat3("Scele", &scale_.x);
+    ImGui::Checkbox("isKnockBack", &isKnockBack_);
     ImGui::Checkbox("IsAlive", &isAlive_);
     ImGui::Checkbox("IsDelete", &isDelete_);
     ImGui::InputFloat3("Translate", &translate_.x);
     ImGui::InputFloat3("Velocity", &velocity_.x);
 
+    ImGui::Separator();
     hp_->ImGuiUpdate();
+
 
     ImGui::TreePop();
   }
 }
 
-void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void NormalEnemy3::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 
   if (!obj) {
     return;
   }
+
   // Wall 型にキャストできるかをチェック
   if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
     // Wall にぶつかったときの処理
@@ -187,8 +192,7 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 }
 
-void NormalEnemy1::KnockBack() {
-
+void NormalEnemy3::KnockBack() {
   // ランダムの値で位置を決める
   // SRは固定
   std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
@@ -205,7 +209,6 @@ void NormalEnemy1::KnockBack() {
           beforeKnockBackPosition_ + knockBackDirection * parameter_.knockBackDistance_;
       isDesidePosition_ = true;
     }
-
     // ノックバックの時間
     knockBackTime_ += DELTA_TIME_;
     // 線形補間
@@ -225,7 +228,7 @@ void NormalEnemy1::KnockBack() {
   }
 }
 
-void NormalEnemy1::Killed() {
+void NormalEnemy3::Killed() {
   if (isAlive_ == false) {
     // 縮小
     const float_t SCALE_DOWN = 0.05f;
@@ -241,3 +244,4 @@ void NormalEnemy1::Killed() {
     }
   }
 }
+

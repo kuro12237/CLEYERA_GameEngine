@@ -12,7 +12,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   case NormalBullet1:
     // 弾1
     bullet = std::make_shared<NormalEnemy1Bullet>();
-    bullet->Initialize(translate_, playerPosition_);
+    bullet->Initialize(translate_, playerPosition_,false);
 
     // 名前設定
     tag = this->GetName() + "_" + VAR_NAME(NormalEnemy1Bullet);
@@ -29,7 +29,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   case NormalBullet2:
     // 弾2
     bullet = std::make_shared<NormalEnemy2Bullet>();
-    bullet->Initialize(translate_, playerPosition_);
+    bullet->Initialize(translate_, playerPosition_,false);
 
     //名前設定
     tag = this->GetName() + "_" + VAR_NAME(NormalEnemy2Bullet);
