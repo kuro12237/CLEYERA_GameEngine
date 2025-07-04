@@ -83,6 +83,11 @@ void PlayerMoveFunc::PadMove()
 		// 現在の force を滑らかに補間
 		currentForce_ = Math::Vector::Func::Lerp(currentForce_, targetForce, inertiaFactor_);
 
+		// 攻撃直後なら速度を極端に低くする
+		if ( p_player_->IsAttacked() ) {
+			currentForce_ = currentForce_ / 20.0f;
+		}
+
 		// プレイヤーに設定
 		p_player_->SetForce(currentForce_);
 	}
