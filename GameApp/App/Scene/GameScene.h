@@ -5,7 +5,7 @@
 
 #include "Enemy/EnemyManager.h"
 #include "EnvironmentObject/EnvironmentObject.h"
-//#include "Item/Manager/ItemManager.h"
+#include "Item/Manager/ItemManager.h"
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
@@ -13,7 +13,7 @@
 
 #include "UI/TestUI.h"
 
-class GameScene : public SceneCompornent {
+class GameScene : public SceneComponent {
 public:
 	GameScene();
   ~GameScene() {};

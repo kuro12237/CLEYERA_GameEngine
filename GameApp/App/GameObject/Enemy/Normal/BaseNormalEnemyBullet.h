@@ -9,7 +9,6 @@
 
 #include"CLEYERA.h"
 
-
 /// <summary>
 /// 弾のタイプ
 /// </summary>

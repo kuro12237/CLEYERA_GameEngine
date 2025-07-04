@@ -3,7 +3,7 @@
 using namespace CLEYERA;
 using namespace CLEYERA::Model3d;
 
-SceneCompornent::SceneCompornent() {
+SceneComponent::SceneComponent() {
    gravityManager_ = Manager::GravityManager::GetInstance();
    terrain_ = Manager::Terrain::GetInstance();
    modelManager_ = Manager::ModelManager::GetInstance();
@@ -12,7 +12,7 @@ SceneCompornent::SceneCompornent() {
    collidersystem_->SetObjectComponentList(objectComponents_);
 }
 
-void SceneCompornent::ImGuiUpdate() {
+void SceneComponent::ImGuiUpdate() {
 
    // obj
    ImGui::Begin("ManagerList");
@@ -22,7 +22,7 @@ void SceneCompornent::ImGuiUpdate() {
    ImGui::End();
 }
 
-void SceneCompornent::InitRaytracing() {
+void SceneComponent::InitRaytracing() {
 
    // tlas作成
    tlas_ = std::make_unique<system::Tlas>();
@@ -63,12 +63,12 @@ void SceneCompornent::InitRaytracing() {
    shaderTable_->Init();
 }
 
-void SceneCompornent::RaytracigTransfar() {
+void SceneComponent::RaytracigTransfar() {
    // tlas転送
    tlas_->Update(objectList_);
 }
 
-void SceneCompornent::Render() {
+void SceneComponent::Render() {
 
    auto commandManager = Base::DX::DXCommandManager::GetInstace();
    auto list = commandManager->GetCommandList();

@@ -4,10 +4,10 @@
 
 #include "Camera/PlayerCamera.h"
 #include "Command/PlayerCommandHandler.h"
-//#include "Attack/Manager/PlayerBulletManager.h"
+#include "Attack/Manager/PlayerBulletManager.h"
 #include "Core/playerCore.h"
 
-//#include "Attack/Manager/PlayerBulletManager.h"
+#include "Attack/Manager/PlayerBulletManager.h"
 
 #include"Component/Hp/HealthComponent.h"
 
@@ -50,6 +50,7 @@ public:
   
     const int32_t &GetHp() const { return hp_->GetHp(); }
 
+   
 #pragma endregion
 
 private:

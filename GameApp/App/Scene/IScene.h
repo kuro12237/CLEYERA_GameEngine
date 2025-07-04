@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include"CLEYERA.h"
 #include "3d/Game3dObject.h"
 #include "3d/Line3d/Line3d.h"
@@ -10,7 +11,6 @@
 #include "pch/Pch.h"
 #include "3d/LocalRootSignature/ClosestHitRootSignature.h"
 #include "3d/LocalRootSignature/RayGenRootSignature.h"
-#include "CLEYERA.h"
 #include "Graphics/RaytracingManager/RaytracingManager.h"
 #include "Utility/Json/GlobalVariables.h"
 
@@ -19,10 +19,10 @@ class GameManager;
 /// <summary>
 /// Scene抽象クラス
 /// </summary>
-class SceneCompornent {
+class SceneComponent {
 public:
-  SceneCompornent();
-  virtual ~SceneCompornent() {};
+  SceneComponent();
+  virtual ~SceneComponent() {};
 
   virtual void Init() = 0;
 

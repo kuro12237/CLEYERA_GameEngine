@@ -15,7 +15,7 @@
 /// <summary>
 /// 敵のデバッグシーン
 /// </summary>
-class EnemyDebugScene : public SceneCompornent {
+class EnemyDebugScene : public SceneComponent {
  public:
    /// <summary>
    /// コンストラクタ

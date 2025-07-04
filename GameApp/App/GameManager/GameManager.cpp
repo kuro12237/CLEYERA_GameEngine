@@ -131,7 +131,7 @@ void GameManager::Run() {
   engine_->Finalize();
 }
 
-void GameManager::ChangeScene(std::unique_ptr<SceneCompornent> newScene) {
+void GameManager::ChangeScene(std::unique_ptr<SceneComponent> newScene) {
 
   //CLEYERA::Manager::ColliderSystem::GetInstance()->Clear();
   CLEYERA::Manager::GravityManager::GetInstance()->Clear();

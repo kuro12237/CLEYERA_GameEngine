@@ -6,15 +6,15 @@
 #include "Move/PlayerMoveFunc.h"
 
 #include "../Attack/Interface/IMagicAttack.h"
-//
-//#include "../Attack/Low/Normal/LowAttack_Normal.h"
-//#include "../Attack/Low/Back/LowAttack_Back.h"
-//
-//#include "../Attack/High/Normal/HighAttack_Normal.h"
-//
-//#include "../Attack/Special/Normal/SpecialAttack_Normal.h"
-//
-//#include "../Attack/Manager/PlayerBulletManager.h"
+
+#include "../Attack/Low/Normal/LowAttack_Normal.h"
+#include "../Attack/Low/Back/LowAttack_Back.h"
+
+#include "../Attack/High/Normal/HighAttack_Normal.h"
+
+#include "../Attack/Special/Normal/SpecialAttack_Normal.h"
+
+#include "../Attack/Manager/PlayerBulletManager.h"
 
 // 前方宣言
 class PlayerCamera;
