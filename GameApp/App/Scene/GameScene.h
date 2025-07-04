@@ -5,7 +5,7 @@
 
 #include "Enemy/EnemyManager.h"
 #include "EnvironmentObject/EnvironmentObject.h"
-#include "Item/Manager/ItemManager.h"
+//#include "Item/Manager/ItemManager.h"
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
