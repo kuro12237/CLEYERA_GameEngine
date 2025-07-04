@@ -51,8 +51,8 @@
 #include <dxgi1_6.h>
 #include <dxgidebug.h>
 
-#include"../DirectXTex/DirectXTex/DirectXTex.h"
-#include"../DirectXTex/DirectXTex/d3dx12.h"
+#include"DirectXTex/DirectXTex.h"
+#include"DirectXTex/d3dx12.h"
 
 #pragma comment(lib, "d3dcompiler.lib")
 
@@ -103,4 +103,4 @@ using namespace Microsoft::WRL;
 
 #include <lua.hpp>
 
-#pragma endregion 
+#pragma endregion

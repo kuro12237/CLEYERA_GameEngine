@@ -34,7 +34,7 @@ x86/
 #[Ll]ogs/
 generated/
 project/imgui.ini
-Externals/Engine/lib/
+Externals/Engine/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
