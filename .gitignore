@@ -16,7 +16,7 @@
 # Mono auto generated files
 mono_crash.*
 
-# Build results
+# Build resultsA
 #[Dd]ebug/
 #[Dd]ebugPublic/
 #[Rr]elease/
@@ -34,6 +34,7 @@ x86/
 #[Ll]ogs/
 generated/
 project/imgui.ini
+Externals/Engine/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
