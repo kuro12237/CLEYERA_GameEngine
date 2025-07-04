@@ -86,7 +86,7 @@ void PlayerCore::Update() {
 	if ( auto itemMgr = itemMgr_.lock() ) {
 		auto input = CLEYERA::Manager::InputManager::GetInstance();
 		if ( input->PushKeyPressed(DIK_P) ) {
-			itemMgr->RegisterAttackPickup();
+			itemMgr->RegisterAttackPickup(gameObject_->GetWorldPos());
 		}
 	}
 

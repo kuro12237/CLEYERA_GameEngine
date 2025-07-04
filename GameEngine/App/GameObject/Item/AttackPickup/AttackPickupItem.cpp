@@ -8,12 +8,9 @@ void AttackPickupItem::Init()
 
 	// Modelの設定
 	uint32_t handle =
-		ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
+		ObjectComponent::modelManager_->LoadModel("Resources/Model/Item/HealItem", "HealItem");
 	ObjectComponent::gameObject_->ChangeModel(handle);
-	uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
-															  "PlayerDemoBullet");
-	demo;
-
+	
 	// コライダー作成
 	ObjectComponent::CreateCollider(ColliderType::AABB);
 }

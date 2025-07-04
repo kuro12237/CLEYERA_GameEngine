@@ -18,4 +18,11 @@ public:
 	/// </summary>
 	virtual ~IItem() = default;
 
+#pragma region 
+
+	// 座標
+	void SetPostion(const Math::Vector::Vec3 & pos) { translate_ = pos; }
+
+#pragma endregion 
+
 };

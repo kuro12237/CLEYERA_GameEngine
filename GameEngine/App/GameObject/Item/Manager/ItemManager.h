@@ -37,9 +37,7 @@ public:
 	/// <summary>
 	/// ItemをListに登録
 	/// </summary>
-	void RegisterItem(std::shared_ptr<IItem> item);
-
-	void RegisterAttackPickup();
+	void RegisterAttackPickup(const Math::Vector::Vec3& popPosition);
 
 private:
 

@@ -20,7 +20,7 @@ void ItemManager::Update()
 void ItemManager::ImGuiUpdate()
 {
 	if ( ImGui::TreeNode("ItemMananger") ) {
-		size_t count = objComponents_.size();
+		size_t count = items_.size();
 		ImGui::Text("Item Count = %d", count);
 
 		ImGui::Spacing();
@@ -31,17 +31,10 @@ void ItemManager::ImGuiUpdate()
 }
 
 
-void ItemManager::RegisterItem(std::shared_ptr<IItem> item)
-{
-	if ( item ) {
-		objComponents_.push_back(std::move(item));
-		items_.push_back(item);
-	}
-}
-
-void ItemManager::RegisterAttackPickup()
+void ItemManager::RegisterAttackPickup(const Math::Vector::Vec3 & popPosition)
 {
 	std::shared_ptr<AttackPickupItem> item = std::make_shared<AttackPickupItem>();
+	item->SetPostion(popPosition);
 	item->Init();
 
 	if ( attackPickupCount_ == 0 ) {
