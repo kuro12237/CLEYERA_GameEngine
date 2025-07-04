@@ -42,7 +42,7 @@ void NormalEnemy1::Init() {
   // 追跡開始距離
   trackingStartDistance_ = 40.0f;
   // 攻撃開始距離
-  attackStartDistance_ = 3.0f;
+  attackStartDistance_ = 7.0f;
 
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();

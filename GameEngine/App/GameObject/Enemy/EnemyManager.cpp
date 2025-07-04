@@ -26,36 +26,38 @@ void EnemyManager::Init() {
   // 生成
   uint32_t enemy1Count = lua_->GetVariable<uint32_t>("Enemy1GeneratePositions.count");
   uint32_t enemy2Count = lua_->GetVariable<uint32_t>("Enemy2GeneratePositions.count");
-
+  enemy1Count;
+  enemy2Count;
 #ifdef _DEBUG
   enemy1Count = 1u;
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy3({});
+  GenerateBossEnemyEnemy({});
 
-  for (size_t i = 0; i < 8; i++) {
+  //GenerateNormalEnemy3({});
+  for (size_t i = 0; i < 1; i++) {
     std::string tag = "NormalEnemy1";
 
     char name[17];
 
     if (i == 0) {
 
-      //GenerateNormalEnemy1({}, tag);
+     // GenerateNormalEnemy1({}, tag);
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy1.%03zu", i);
 
-      //GenerateNormalEnemy1({}, name);
+      GenerateNormalEnemy1({}, name);
     }
   }
 
-  for (size_t i = 0; i < 8; i++) {
+  for (size_t i = 0; i < 1; i++) {
     std::string tag = "NormalEnemy2";
 
     char name[17];
     if (i == 0) {
 
-      ///GenerateNormalEnemy2({}, tag);
+      //GenerateNormalEnemy2({}, tag);
 
     } else {
       std::snprintf(name, sizeof(name), "NormalEnemy2.%03zu", i);
