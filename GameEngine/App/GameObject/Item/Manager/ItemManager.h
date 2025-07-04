@@ -37,12 +37,24 @@ public:
 	/// <summary>
 	/// ItemをListに登録
 	/// </summary>
+	void RegisterItemm(const std::shared_ptr<IItem> & item);	
+	
+	/// <summary>
+	/// 攻撃ピックアップアイテムを登録
+	/// </summary>
 	void RegisterAttackPickup(const Math::Vector::Vec3& popPosition);
+
+	/// <summary>
+	/// 回復アイテムを登録
+	/// </summary>
+	void RegisterHealItem(const Math::Vector::Vec3 & popPosition);
+
 
 private:
 
 	std::list<std::shared_ptr<IItem>>items_;
 	uint32_t attackPickupCount_ = 0;
+	uint32_t healCount_ = 0;
 
 };
 
