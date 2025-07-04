@@ -1,5 +1,6 @@
 #include "ItemManager.h"
 #include "../AttackPickup/AttackPickupItem.h"
+#include "../Heal/HealItem.h"
 
 void ItemManager::Init()
 {
@@ -15,12 +16,7 @@ void ItemManager::Update()
 	ManagerCompornent::ListUpdate();
 
 
-	// イテレータを使った安全なループ中削除
-	//for ( auto it = items_.begin(); it != items_.end();) {
 
-	//	// 更新処理
-	//	(*it)->Update();
-	//}
 }
 
 
@@ -36,6 +32,7 @@ void ItemManager::ImGuiUpdate()
 		ImGui::TreePop();
 	}
 }
+
 
 void ItemManager::RegisterItemm(const std::shared_ptr<IItem> & item)
 {
@@ -66,16 +63,16 @@ void ItemManager::RegisterAttackPickup(const Math::Vector::Vec3 & popPosition)
 
 void ItemManager::RegisterHealItem(const Math::Vector::Vec3 & popPosition)
 {
-	std::shared_ptr<AttackPickupItem> item = std::make_shared<AttackPickupItem>();
+	std::shared_ptr<HealItem> item = std::make_shared<HealItem>();
 	item->SetPostion(popPosition);
 	item->Init();
 
 	if ( healCount_ == 0 ) {
-		item->SetName(VAR_NAME(AttackPickupItem));
+		item->SetName(VAR_NAME(HealItem));
 	}
 	else {
 		char name[ 32 ];
-		std::snprintf(name, sizeof(name), "AttackPickupItem.%03zu", static_cast< size_t >(healCount_));
+		std::snprintf(name, sizeof(name), "HealItem.%03zu", static_cast< size_t >(healCount_));
 		item->SetName(name);
 	}
 

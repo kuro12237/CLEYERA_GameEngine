@@ -50,6 +50,7 @@ public:
   
     const int32_t &GetHp() const { return hp_->GetHp(); }
 
+   
 #pragma endregion
 
 private:

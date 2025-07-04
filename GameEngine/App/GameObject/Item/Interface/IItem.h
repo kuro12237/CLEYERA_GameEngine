@@ -11,12 +11,12 @@ public:
 	/// <summary>
 	/// コンストラクタ
 	/// </summary>
-	IItem() = default;
+	IItem() {};
 	
 	/// <summary>
 	/// 仮想デストラクタ
 	/// </summary>
-	virtual ~IItem() = default;
+	virtual ~IItem() {};
 
 #pragma region 
 
