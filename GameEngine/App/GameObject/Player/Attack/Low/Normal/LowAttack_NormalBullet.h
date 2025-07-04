@@ -30,6 +30,9 @@ public:
 
 #pragma region Accessor
 
+	// 初期座標
+	void SetInitPos(const Math::Vector::Vec3 & pos) { initPos_ = pos; }
+
 	// コンボステップ
 	void SetComboStep(uint32_t step) { comboStep_ = step; }
 
@@ -38,13 +41,24 @@ public:
 private:
 
 	/// <summary>
-	/// 移動処理
+	/// カーブ移動
 	/// </summary>
-	void Move();
+	void CurveMove();
+
+	/// <summary>
+	/// 直線移動
+	/// </summary>
+	void StraightMove();
 
 private:
 
 	// コンボステップ
 	uint32_t comboStep_ = 0;
 
+	Math::Vector::Vec3 initPos_{};
+	float elapsedTime_ = 0.0f;
+
+	float travelDistance_ = 20.0f;    // 弾が進む最大距離
+	float traveledDistance_ = 0.0f;
+	float curveMagnitude_ = 5.0f;    // カーブの膨らみ具合
 };

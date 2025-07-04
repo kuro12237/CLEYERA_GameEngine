@@ -183,7 +183,7 @@ void PlayerCore::InitAttackSlot() {
 
 	// 初期攻撃スロット
 	attacks_[ ToIndex(AttackType::Basic) ] =
-		std::make_unique<LowAttack_Back>(this, bulletManager_);
+		std::make_unique<LowAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Standard) ] =
 		std::make_unique<HighAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Signature) ] =

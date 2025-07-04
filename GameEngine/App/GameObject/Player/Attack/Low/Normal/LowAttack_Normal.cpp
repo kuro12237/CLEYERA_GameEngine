@@ -50,11 +50,11 @@ void LowAttack_Normal::IsAttack()
 	if ( IsCoolDown() )
 		return;
 
-	// 弾を発射
-	FireBullet();
-
 	// コンボ進行
 	comboStep_++;
+
+	// 弾を発射
+	FireBullet();
 
 	if ( comboStep_ >= comboMax_ )
 	{
@@ -85,7 +85,16 @@ void LowAttack_Normal::FireBullet()
 
 		// 数値の設定
 		newBul->SetPosition(owner_->GetWorldPos());
-		newBul->SetVelocity(IMagicAttack::CalcVelocity(Math::Vector::Vec3{ 0.0f, 0.0f, 0.5f }));
+
+		Math::Vector::Vec3 speed{};
+		if ( comboStep_ == 2 ) {
+			speed = { 0.0f, 0.0f, 0.3f };
+		}
+		else {
+			speed = { 0.0f, 0.0f, 0.6f };
+		}
+		newBul->SetVelocity(IMagicAttack::CalcVelocity(speed));
+		newBul->SetInitPos(owner_->GetWorldPos());
 		newBul->SetComboStep(comboStep_);
 
 		// 初期化処理
