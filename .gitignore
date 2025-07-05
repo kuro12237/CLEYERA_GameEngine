@@ -34,7 +34,10 @@ x86/
 #[Ll]ogs/
 generated/
 project/imgui.ini
-Externals/Engine/
+
+Externals/Engine/CLEYERA/
+Externals/Engine/lib/Debug/
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
