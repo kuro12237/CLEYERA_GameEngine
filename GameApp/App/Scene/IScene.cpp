@@ -7,9 +7,9 @@ SceneComponent::SceneComponent() {
    gravityManager_ = Manager::GravityManager::GetInstance();
    terrain_ = Manager::Terrain::GetInstance();
    modelManager_ = Manager::ModelManager::GetInstance();
-   collidersystem_ = Manager::ColliderSystem::GetInstance();
+   colliderSystem_ = Manager::ColliderSystem::GetInstance();
 
-   collidersystem_->SetObjectComponentList(objectComponents_);
+   colliderSystem_->SetObjectComponentList(objectComponents_);
 }
 
 void SceneComponent::ImGuiUpdate() {

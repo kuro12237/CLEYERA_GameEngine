@@ -55,12 +55,14 @@ protected:
   CLEYERA::Manager::GravityManager *gravityManager_ = nullptr;
   CLEYERA::Manager::Terrain *terrain_ = nullptr;
   CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
-  CLEYERA::Manager::ColliderSystem *collidersystem_ = nullptr;
+  CLEYERA::Manager::ColliderSystem *colliderSystem_ = nullptr;
 
   std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 
   std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> objectComponents_;
   std::list<std::weak_ptr<CLEYERA::Component::ManagerCompornent>> managerCompornents_;
+
+  std::function<void()> imguiFunc_ = nullptr;
 
 private:
   std::weak_ptr<CLEYERA::Graphics::RaytracingManager> raytracingManager_;

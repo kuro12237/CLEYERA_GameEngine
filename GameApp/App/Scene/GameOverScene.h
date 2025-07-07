@@ -2,8 +2,6 @@
 
 #include "../Util/SceneLoader.h"
 #include "IScene.h"
-#include"../GameManager/GameManager.h"
-
 
 #include "Enemy/EnemyManager.h"
 #include "EnvironmentObject/EnvironmentObject.h"
@@ -15,10 +13,10 @@
 
 #include "UI/TestUI.h"
 
-class GameScene : public SceneComponent {
+class GameOverScene : public SceneComponent {
 public:
-	GameScene();
-  ~GameScene() {};
+  GameOverScene() {};
+  ~GameOverScene() {};
 
   void Init() override;
 
@@ -26,21 +24,8 @@ public:
 
   void Draw2d() override;
 
-
 private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
 
   std::vector<std::shared_ptr<EnvironmentObject>> enviromentObjs_;
-
-  std::shared_ptr<ItemManager> itemManager_;
-
-  std::shared_ptr<PlayerManager> playerManager_;
-  // 敵管理クラス
-  std::shared_ptr<EnemyManager> enemyManager_ = nullptr;
-
-  std::shared_ptr<WallManager> wallManager_ = nullptr;
-
-  std::shared_ptr<TestPlayGui> imgui_ = nullptr;
-
-  std::vector<std::shared_ptr<TestUI>> uis_;
 };
