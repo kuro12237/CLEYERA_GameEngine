@@ -6,7 +6,6 @@
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
-#include <Enemy/Normal/Behavior/NormalEnemyIsNotAttacking.h>
 #include <Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h>
 
 #include "Player/Core/playerCore.h"

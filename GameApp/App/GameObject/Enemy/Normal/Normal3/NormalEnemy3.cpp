@@ -6,11 +6,10 @@
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
-#include <Enemy/Normal/Behavior/NormalEnemyIsNotAttacking.h>
 #include <Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h>
+#include <Enemy/Normal/Behavior/NormalEnemyIsCool.h>
 
 #include "Player/Core/playerCore.h"
-
 #include"Player/Attack/Interface/IPlayerBullet.h"
 
 void NormalEnemy3::Init() {
@@ -50,6 +49,7 @@ void NormalEnemy3::Init() {
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
+  attackSequence->AddChild(std::make_unique<NormalEnemyIsNotCool>());
   attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet3, 5u, 0.2f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
@@ -87,6 +87,18 @@ void NormalEnemy3::Update() {
   }
 
   if (isAlive_ == true) {
+      //クールタイム中
+      if ( isCool_ == true ) {
+          coolTime_ += DELTA_TIME_;
+
+          //設定した時間になったら解除
+          if ( coolTime_ > coolTimeLimit_ ) {
+              isCool_ = false;
+          }
+
+      }
+
+
     // 弾の更新
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
         bullet->SetPlayerPosition(playerPosition_);
@@ -152,6 +164,12 @@ void NormalEnemy3::ImGuiUpdate() {
       ImGui::SliderInt("HP", &parameter_.hp_, 0, 10);
       ImGui::SliderFloat("MaxHP", &parameter_.knockBackDistance_, 0.0, 5.0f);
       ImGui::TreePop();
+    }
+
+    if ( ImGui::TreeNode("CoolTime") == true ) {
+        ImGui::Checkbox("IsCoolTime", &isCool_);
+        ImGui::InputFloat("IsCoolTime", &coolTime_);
+
     }
 
     ImGui::InputFloat3("Scele", &scale_.x);

@@ -187,6 +187,10 @@ protected:
   bool isDelete_ = false;
   //クールタイム中かどうか
   bool isCool_ = false;
+  //時間
+  float_t coolTime_ = 0.0f;
+  //制限
+  float_t coolTimeLimit_ = 3.0f;
 
 protected:
   // パラメーター

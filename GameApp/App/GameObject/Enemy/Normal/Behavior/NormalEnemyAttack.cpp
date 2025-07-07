@@ -14,13 +14,16 @@ NormalEnemyAttack::NormalEnemyAttack(const uint32_t & bulletType, const uint32_t
 EnemyNodeState NormalEnemyAttack::Execute(BaseNormalEnemy *baseNormalEnemy) {
 
     //弾を生成
-    generateTime_ += DELTA_TIME_;
-    if ( generateTime_ > generateInterval_ ) {
-        baseNormalEnemy->GenerateBullet(bulletType_);
-        generateTime_ = 0.0f;
-        ++generatedNumber_;
+    if ( baseNormalEnemy->GetIsCoolTime() == false ) {
+        generateTime_ += DELTA_TIME_;
+        if ( generateTime_ > generateInterval_ ) {
+            baseNormalEnemy->GenerateBullet(bulletType_);
+            generateTime_ = 0.0f;
+            ++generatedNumber_;
 
+        }
     }
+    
 
     //生成終了
     if ( generatedNumber_ > bulletNumber_ ) {

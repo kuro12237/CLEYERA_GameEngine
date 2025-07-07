@@ -33,7 +33,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy3({});
+  GenerateNormalEnemy1({.x=0.0f,.y=0.0f,.z=10.0f});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {
@@ -145,7 +145,6 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std:
   // 挿入
   // 各敵にlistptr持たせる
   enemy->SetMgrObjList(objComponents_);
-
   objComponents_.push_back(enemy);
   enemyList_.push_back(std::move(enemy));
 }
