@@ -109,7 +109,7 @@ public:
   /// クールタイムの状態を取得
   /// </summary>
   /// <returns></returns>
-  inline bool IsCoolTime()const {
+  inline bool GetIsCoolTime()const {
       return isCool_;
   }
 
