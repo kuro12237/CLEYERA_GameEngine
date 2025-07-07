@@ -7,6 +7,7 @@
 
 #include "../../Item/Manager/ItemManager.h"
 #include "../../Item/AttackPickup/AttackPickupItem.h"
+#include "../../Item/Heal/HealItem.h"
 
 /// <summary>
 /// コンストラク
@@ -176,6 +177,11 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 	if ( auto bullet2 = std::dynamic_pointer_cast< NormalEnemy2Bullet >(obj) ) {
 
 		hpCalcFunc_(bullet2->GetAttackPower());
+	}
+
+	// HealItem 型にキャストできるかチェック
+	if ( auto healItem = std::dynamic_pointer_cast< HealItem >(obj) ) {
+
 	}
 }
 

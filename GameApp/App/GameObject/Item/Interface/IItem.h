@@ -23,6 +23,14 @@ public:
 	// 座標
 	void SetPostion(const Math::Vector::Vec3 & pos) { translate_ = pos; }
 
+	// 死亡フラグ
+	bool IsDead() const { return isDead_; }
+
 #pragma endregion 
+
+
+protected:
+
+	bool isDead_ = false;
 
 };

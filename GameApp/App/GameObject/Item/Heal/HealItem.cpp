@@ -1,5 +1,5 @@
 #include "HealItem.h"
-
+#include "../../Player/Core/playerCore.h"
 
 
 void HealItem::Init()
@@ -13,6 +13,9 @@ void HealItem::Init()
 
 	// コライダー作成
 	ObjectComponent::CreateCollider(ColliderType::AABB);
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 }
 
 void HealItem::Update()
@@ -23,6 +26,21 @@ void HealItem::Update()
 	RotateY();
 	// 浮遊処理
 	FloatMove();
+}
+
+void HealItem::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) 
+{
+	auto obj = other.lock();
+
+	if ( !obj ) {
+		return;
+	}
+	// 今後dynamicから変更する
+
+	// Wall 型にキャストできるかをチェック
+	if ( auto wall = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+		isDead_ = true;
+	}
 }
 
 void HealItem::RotateY()
@@ -51,3 +69,4 @@ void HealItem::FloatMove()
 	// Transform更新
 	translate_.y = baseHeight_ + offsetY;
 }
+
