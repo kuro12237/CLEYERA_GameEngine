@@ -36,7 +36,6 @@ void GameClearScene::Init() {
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandlet);
 
-    InitRaytracing();
 
 
 }

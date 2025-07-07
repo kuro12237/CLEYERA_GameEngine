@@ -36,7 +36,6 @@ void SelectScene::Init() {
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandlet);
 
-    InitRaytracing();
 }
 
 void SelectScene::Update([[maybe_unused]] GameManager *g) {
