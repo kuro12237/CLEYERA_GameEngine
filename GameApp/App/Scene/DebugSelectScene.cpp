@@ -4,7 +4,7 @@
 
 void DebugSelectScene::Init() {
   // シーン名リストを初期化
-  sceneNames_ = {"TitleScene", "GameScene", "GameOverScene", "GameClearScene"};
+  sceneNames_ = {"TitleScene", "GameScene", "GameOverScene", "GameClearScene","SelectScene"};
   selectedIndex_ = 0;
   //InitRaytracing();
 }
@@ -34,6 +34,8 @@ void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
       g->ChangeScene(std::make_unique<GameOverScene>());
     } else if (sceneNames_[selectedIndex_] == "GameClearScene") {
       g->ChangeScene(std::make_unique<GameClearScene>());
+    } else if (sceneNames_[selectedIndex_] == "SelectScene") {
+      g->ChangeScene(std::make_unique<SelectScene>());
     }
   }
 
