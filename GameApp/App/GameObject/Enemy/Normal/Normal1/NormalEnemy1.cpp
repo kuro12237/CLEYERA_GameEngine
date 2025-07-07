@@ -49,7 +49,7 @@ void NormalEnemy1::Init() {
   // プレイヤーが設定した範囲内にいるかどうか(攻撃用)
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   // 攻撃
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1,1u,3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 

@@ -42,23 +42,32 @@ void NormalEnemy3Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
 
 void NormalEnemy3Bullet::Update() {
 
-    playerPosition_;
+    // 最大5秒まで表示その後に消える
+    displayTime_ += DELTA_TIME_;
+    if (displayTime_ > MAX_DISPLAY_TIME_) {
+        scale_.x -= SCALE_DOWN_VALUE_;
+        scale_.y -= SCALE_DOWN_VALUE_;
+        scale_.z -= SCALE_DOWN_VALUE_;
+    }
+    //スケールが0になったら消える
+    if ( scale_.x <= DELETE_SCALE_ && 
+        scale_.y <= DELETE_SCALE_ && 
+        scale_.z <= DELETE_SCALE_ ) {
+        isDelete_ = true;
+    }
 
-  // 最大5秒まで表示その後に消える
-  displayTime_ += DELTA_TIME_;
-  if (displayTime_ > MAX_DISPLAY_TIME_) {
-    isDelete_ = true;
-  }
+    //TRACKING_LIMIT_TIME_秒まで追跡
+    trackingTime_ += DELTA_TIME_;
+    if ( trackingTime_ < TRACKING_LIMIT_TIME_ ) {
+        direction_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+    }
+    
+    // 座標の加算
+    translate_ += direction_ * SPEED_;
 
-  // 座標の加算
-  translate_ += direction_ * SPEED_;
+    // 更新
+    TransformUpdate();
 
-  // 更新
-  TransformUpdate();
-
-#ifdef _DEBUG
-  DisplayImGui();
-#endif // _DEBUG
 }
 
 void NormalEnemy3Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
@@ -79,11 +88,4 @@ void NormalEnemy3Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
     isDelete_ = true;
   }
-}
-
-void NormalEnemy3Bullet::DisplayImGui() {
-  /*ImGui::Begin("Bullet2");
-  ImGui::InputFloat3("Direction", &direction_.x);
-  ImGui::InputFloat3("Position", &translate_.x);
-  ImGui::End();*/
 }

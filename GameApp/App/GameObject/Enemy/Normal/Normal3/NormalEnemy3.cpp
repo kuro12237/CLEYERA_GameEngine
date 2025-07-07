@@ -50,7 +50,7 @@ void NormalEnemy3::Init() {
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet3, 5u, 0.2f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -89,7 +89,8 @@ void NormalEnemy3::Update() {
   if (isAlive_ == true) {
     // 弾の更新
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-      bullet->Update();
+        bullet->SetPlayerPosition(playerPosition_);
+        bullet->Update();
     }
 
     // 弾の削除

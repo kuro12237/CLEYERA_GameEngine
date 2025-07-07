@@ -105,6 +105,24 @@ public:
   /// </summary>
   inline void SetDelete() { this->isAlive_ = false; }
 
+  /// <summary>
+  /// クールタイムの状態を取得
+  /// </summary>
+  /// <returns></returns>
+  inline bool IsCoolTime()const {
+      return isCool_;
+  }
+
+  /// <summary>
+  /// クールタイム中かどうか
+  /// </summary>
+  /// <param name="isCool"></param>
+  inline void SetIsCoolTime(const bool & isCool) {
+      this->isCool_ = isCool;
+  }
+
+
+
   void SetMgrObjList(std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &list) {
     mgrObjList_ = &list;
   }
@@ -167,6 +185,8 @@ protected:
   bool isAlive_ = true;
   // 消えるかどうか
   bool isDelete_ = false;
+  //クールタイム中かどうか
+  bool isCool_ = false;
 
 protected:
   // パラメーター

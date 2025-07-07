@@ -27,7 +27,7 @@ public:
 	/// <summary>
 	/// 初期化(引数が無い版)
 	/// </summary>
-  void Init() override {};
+	void Init() override {};
 
 	/// <summary>
 	/// 初期化
@@ -49,11 +49,14 @@ public:
 	~BaseNormalEnemyBullet()=default;
 
 public:
-        virtual void SetPlayerPosition() {}
+	/// <summary>
+	/// プレイヤーの座標
+	/// </summary>
+	/// <param name="enemyPosition"></param>
+	virtual void SetPlayerPosition(const Math::Vector::Vec3 & enemyPosition) {
+		this->playerPosition_ = enemyPosition;
+	}
 
-      public:
-
-	
     /// <summary>
     /// 消去されたかどうか
     /// </summary>

@@ -33,7 +33,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateBossEnemyEnemy({});
+  GenerateNormalEnemy3({});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {
