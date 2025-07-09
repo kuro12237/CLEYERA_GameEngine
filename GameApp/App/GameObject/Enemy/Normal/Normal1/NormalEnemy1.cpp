@@ -91,6 +91,14 @@ void NormalEnemy1::Update() {
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
       bullet->Update();
     }
+    //クールタイム中
+    if ( isCool_ == true ) {
+        coolTime_ += DELTA_TIME_;
+        if ( coolTime_ > coolTimeLimit_ ) {
+            isCool_ = false;
+            coolTime_ = 0.0f;
+        }
+    }
 
     // 弾の削除
     bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
