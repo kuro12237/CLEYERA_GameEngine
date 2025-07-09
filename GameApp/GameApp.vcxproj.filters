@@ -95,6 +95,9 @@
     <ClCompile Include="App\Scene\GameOverScene.cpp" />
     <ClCompile Include="App\Scene\SelectScene.cpp" />
     <ClCompile Include="App\Scene\DebugSelectScene.cpp" />
+    <ClCompile Include="App\GameObject\UI\GameLowAttackUI.cpp" />
+    <ClCompile Include="App\GameObject\UI\GameSkillBackUI.cpp" />
+    <ClCompile Include="App\GameObject\UI\state\PlayState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -189,6 +192,11 @@
     <ClInclude Include="App\Scene\GameOverScene.h" />
     <ClInclude Include="App\Scene\SelectScene.h" />
     <ClInclude Include="App\Scene\DebugSelectScene.h" />
+    <ClInclude Include="App\GameObject\UI\GameUIBase.h" />
+    <ClInclude Include="App\GameObject\UI\GameLowAttackUI.h" />
+    <ClInclude Include="App\GameObject\UI\GameSkillBackUI.h" />
+    <ClInclude Include="App\GameObject\UI\state\IuiState.h" />
+    <ClInclude Include="App\GameObject\UI\state\PlayState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

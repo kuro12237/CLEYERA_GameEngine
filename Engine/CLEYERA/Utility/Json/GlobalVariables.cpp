@@ -7,6 +7,8 @@ void CLEYERA::Manager::GlobalVariables::CreateGroup(const ResourcesGroupDirector
 
    if (d == ResourcesGroupDirectory::Entitiys) {
       datas_[name].DirectryPath = "Resources/Configs/Entitiys/" + file + "/";
+   } else {
+     datas_[name].DirectryPath = file;
    }
 }
 

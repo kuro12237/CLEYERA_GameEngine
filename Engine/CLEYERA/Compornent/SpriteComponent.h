@@ -10,6 +10,7 @@ class SpriteComponent : public CLEYERA::Util::WorldTransform,
 public:
   SpriteComponent() {
     texManager_ = CLEYERA::Manager::TexManager::GetInstance();
+    globalVariables_ = CLEYERA::Manager::GlobalVariables::GetInstance();
   };
   virtual ~SpriteComponent() {};
 
@@ -28,6 +29,7 @@ public:
   void Create();
 
   std::string GetName() { return name_; }
+  void SetName(const std::string &name) { name_ = name; }
 
 private:
 protected:

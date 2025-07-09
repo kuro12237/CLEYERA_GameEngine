@@ -60,15 +60,11 @@ void GameScene::Init() {
 
   loader_.reset();
 
+  uiState_ = std::make_unique<PlayUIState>();
+  uiState_->SetScene(this);
+  uiState_->Init();
+
   // spriteの初期化
-
-  for (size_t i = 0; i < 1; i++) {
-
-    std::shared_ptr<TestUI> ui = std::make_shared<TestUI>();
-    spriteComponents_.push_back(ui);
-    uis_[i] = std::move(ui);
-  }
-
   for (auto s : spriteComponents_) {
 
     s.lock()->Init();
@@ -90,6 +86,8 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
     return;
   }
+
+  uiState_->Update();
 
   // managerのコンポーネントからシーンに移譲
   for (auto manager : managerComponents_) {
@@ -163,8 +161,4 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
   }
 }
 
-void GameScene::Draw2d() {
-
-  uis_[0]->Draw();
-
-}
+void GameScene::Draw2d() { uiState_->Draw2d(); }

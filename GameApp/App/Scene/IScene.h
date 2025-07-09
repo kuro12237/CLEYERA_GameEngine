@@ -49,6 +49,10 @@ public:
     raytracingManager_ = m;
   }
 
+  void SpriteListPush(std::weak_ptr<SpriteComponent> s) {
+    spriteComponents_.push_back(s);
+  }
+
 #pragma endregion
 
 protected:
