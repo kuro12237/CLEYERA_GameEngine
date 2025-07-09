@@ -18,17 +18,19 @@ class JsonCompornent {
    /// <summary>
    /// 追加
    /// </summary>
-   template <typename T> void SetValue(std::string itemName, T value) { return globalVariables_->AddItem(*name_, itemName, value); }
+   template <typename T> void SetValue(std::string itemName, T value) { return globalVariables_->AddItem(*p_name_, itemName, value); }
 
    /// <summary>
    /// 入手
    /// </summary>
-   template <typename T> T GetValue(std::string itemName) { return globalVariables_->GetValue<T>(*name_, itemName); }
+   template <typename T> T GetValue(std::string itemName) { return globalVariables_->GetValue<T>(*p_name_, itemName); }
+
+   const std::string *GetJsonName() { return p_name_; }
 
  private:
    Manager::GlobalVariables *globalVariables_ = nullptr;
 
-   const std::string *name_ = nullptr;
+   const std::string *p_name_ = nullptr;
 };
 
 } // namespace Component

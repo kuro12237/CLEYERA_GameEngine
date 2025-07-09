@@ -15,8 +15,17 @@ void ItemManager::Update()
 {
 	ManagerCompornent::ListUpdate();
 
-
-
+	// イテレータを使った安全なループ中削除
+	for ( auto it = items_.begin(); it != items_.end();) {
+;
+		// 非アクティブなら削除し、次の有効なイテレータを取得
+		if ( !(*it)->IsDead() ) {
+			it = items_.erase(it);
+		}
+		else {
+			++it; // アクティブなら次の要素へ
+		}
+	}
 }
 
 

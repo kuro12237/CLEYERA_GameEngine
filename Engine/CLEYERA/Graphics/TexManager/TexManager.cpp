@@ -19,6 +19,13 @@ uint32_t CLEYERA::Manager::TexManager::LoadPngTex(const std::string &path) {
 
    isUseDirectoryPath_ = true;
 
+   // すでに読み込まれているかチェック
+   auto it = texs_.find(filePath);
+   if (it != texs_.end()) {
+     return it->second->GetTexHandle(); // すでに存在するならそのハンドルを返す
+   }
+
+
    // MipImageを作る
    DirectX::ScratchImage mipImages = CreateMipImage(filePath);
    const DirectX::TexMetadata &metadata = mipImages.GetMetadata();

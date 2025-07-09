@@ -1,5 +1,5 @@
 #include "HealItem.h"
-
+#include "../../Player/Core/playerCore.h"
 
 
 void HealItem::Init()
@@ -7,13 +7,15 @@ void HealItem::Init()
 	ObjectComponent::name_ = VAR_NAME(HealItem);
 
 	// Modelの設定
-	// modelがないため頼む@ひな
-	//uint32_t handle =
-	//	ObjectComponent::modelManager_->LoadModel("Resources/Model/Item/HealItem", "HealItem");
-	//ObjectComponent::gameObject_->ChangeModel(handle);
+	uint32_t handle =
+		ObjectComponent::modelManager_->LoadModel("Resources/Model/Item/HealItem", "HealItem");
+	ObjectComponent::gameObject_->ChangeModel(handle);
 
 	// コライダー作成
 	ObjectComponent::CreateCollider(ColliderType::AABB);
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 }
 
 void HealItem::Update()
@@ -26,9 +28,24 @@ void HealItem::Update()
 	FloatMove();
 }
 
+void HealItem::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) 
+{
+	auto obj = other.lock();
+
+	if ( !obj ) {
+		return;
+	}
+	// 今後dynamicから変更する
+
+	// Wall 型にキャストできるかをチェック
+	if ( auto wall = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+		isDead_ = true;
+	}
+}
+
 void HealItem::RotateY()
 {
-	float rotateSpeed = 90.0f; // 1秒で90度回転
+	float rotateSpeed = 1.0f; 
 	rotationAngleY_ += rotateSpeed * (1.0f / 60.0f);
 
 	// 0-360度に正規化
@@ -44,7 +61,7 @@ void HealItem::FloatMove()
 {
 	floatTimer_ += (1.0f / 60.0f);
 
-	float floatHeight = 0.3f; // 振れ幅（上下0.3m動く）
+	float floatHeight = 0.5f; // 振れ幅（上下0.3m動く）
 	float floatSpeed = 2.0f;  // 1秒間に2πラジアン進む(周期約3.14秒)
 
 	float offsetY = sinf(floatTimer_ * floatSpeed) * floatHeight;
@@ -52,3 +69,4 @@ void HealItem::FloatMove()
 	// Transform更新
 	translate_.y = baseHeight_ + offsetY;
 }
+

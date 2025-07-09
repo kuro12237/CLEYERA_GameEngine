@@ -10,7 +10,9 @@ MSBuild "Engine\Engine.vcxproj" /t:clean;rebuild /p:Configuration=Debug;MultiPro
 
 
 xcopy /S /Y /I "Engine\CLEYERA\*.h" "Externals\Engine\CLEYERA\"
-xcopy /S /Y /I "Engine\CLEYERA\*.cpp" "Externals\Engine\CLEYERA\"
+
+mkdir "Externals\Engine\lib\"
+mkdir "Externals\Engine\lib\Debug\"
 
 copy /Y "generated\output\Debug\Engine.lib" "Externals\Engine\lib\Debug\"
 

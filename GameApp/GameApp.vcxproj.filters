@@ -90,6 +90,11 @@
     <ClCompile Include="App\GameObject\Item\Manager\ItemManager.cpp" />
     <ClCompile Include="App\GameObject\Item\Heal\HealItem.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsCool.cpp" />
+    <ClCompile Include="App\Scene\TitleScene.cpp" />
+    <ClCompile Include="App\Scene\GameClearScene.cpp" />
+    <ClCompile Include="App\Scene\GameOverScene.cpp" />
+    <ClCompile Include="App\Scene\SelectScene.cpp" />
+    <ClCompile Include="App\Scene\DebugSelectScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -179,6 +184,11 @@
     <ClInclude Include="App\GameObject\Item\Manager\ItemManager.h" />
     <ClInclude Include="App\GameObject\Item\Heal\HealItem.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsCool.h" />
+    <ClInclude Include="App\Scene\TitleScene.h" />
+    <ClInclude Include="App\Scene\GameClearScene.h" />
+    <ClInclude Include="App\Scene\GameOverScene.h" />
+    <ClInclude Include="App\Scene\SelectScene.h" />
+    <ClInclude Include="App\Scene\DebugSelectScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

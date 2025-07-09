@@ -27,6 +27,19 @@ public:
 	/// </summary>
 	void Update() override;
 
+	/// <summary>
+	/// 衝突時コールバック
+	/// </summary>
+	void OnCollision(std::weak_ptr<ObjectComponent> other);
+
+
+#pragma region 
+
+	// 回復値
+	uint32_t GetHealValue() const { return healValue_; }
+
+#pragma endregion 
+
 private:
 
 	/// <summary>
@@ -40,6 +53,8 @@ private:
 	void FloatMove();
 
 private:
+
+	uint32_t healValue_ = 20;
 
 	float rotationAngleY_ = 0.0f; // Y軸回転角度
 	float floatTimer_ = 0.0f;     // 上下移動用タイマー

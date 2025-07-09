@@ -127,7 +127,7 @@
       <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Debug\math.lib;$(ProjectDir)..\Externals\assimp\lib\Debug\assimp-vc143-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Debug\math.lib;$(ProjectDir)..\Externals\DirectXTex\lib\Debug\DirectXTex.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(ProjectDir)..\Externals\math\lib\Debug\math.lib;$(ProjectDir)..\Externals\DirectXTex\DirectXTex\\lib\Debug\DirectXTex.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

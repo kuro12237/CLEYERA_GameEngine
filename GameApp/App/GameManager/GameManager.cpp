@@ -1,13 +1,14 @@
 #include "GameManager.h"
 
 #include "../Scene/EnemyDebugScene.h"
+#include"../Scene/DebugSelectScene.h"
 
 GameManager::GameManager() {
   engine_ = std::make_unique<Engine>();
 
   engine_->Init();
 
-  scene_ = std::make_unique<GameScene>();
+  scene_ = std::make_unique<DebugSelectScene>();
   auto raytracingManager = engine_->GetRaytracingManager();
 
   scene_->SetRaytracingManager(raytracingManager);
@@ -22,21 +23,14 @@ void GameManager::Run() {
       CLEYERA::Base::DX::DXCommandManager::GetInstace();
   CLEYERA::Base::Win::WinApp *winApp = CLEYERA::Base::Win::WinApp::GetInstance();
   auto imGuiManager = CLEYERA::Utility::ImGuiManager::GetInstance();
-  auto raytracingManager = engine_->GetRaytracingManager();
-
-  // 一旦クローズ
-  CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
-  raytracingManager.lock()->SetDispathRayDesc(scene_->GetTable()->GetDispatchRayDesc());
 
   while (CLEYERA::Base::Win::WinApp::GetInstance()->WinMsg()) {
     engine_->Begin();
     auto swap = CLEYERA::Base::DX::DXManager::GetInstance()->GetSwapChain();
 
-#pragma region ImGui
-
-#pragma endregion
-
 #pragma region 更新
+
+    imGuiManager->Begin();
 
     engine_->PhysiceForcesUpdate();
 
@@ -44,7 +38,6 @@ void GameManager::Run() {
 
     engine_->PreDraw();
 
-    imGuiManager->Begin();
 
     scene_->ImGuiUpdate();
     engine_->ImGuiUpdate();
@@ -60,9 +53,6 @@ void GameManager::Run() {
 #pragma region レイトレーシング
     UINT backBufferIndex_ = swap.lock()->GetSwapChain()->GetCurrentBackBufferIndex();
 
-    raytracingManager.lock()->SetBarrierRTVResource(
-        swap.lock()->GetSwapChainResource(backBufferIndex_));
-    raytracingManager.lock()->PreRaytracing();
 
     commandManager->SetViewCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
     commandManager->SetScissorCommand(winApp->GetKWindowWidth(), winApp->GetKWindowHeight());
@@ -80,7 +70,6 @@ void GameManager::Run() {
         CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetRTVCPUHandle(backBufferIndex_);
     auto dsvhandle = CLEYERA::Base::DX::DXDescripterManager::GetInstance()->GetDSVCPUHandle(0);
 
-    raytracingManager.lock()->PostRaytracing();
 
     command->ClearRenderTargetView(handle, {1.0f, 0.0f, 0.0f, 1.0f});
     command->ClearDepthStencilView(dsvhandle, D3D12_CLEAR_FLAG_STENCIL);
