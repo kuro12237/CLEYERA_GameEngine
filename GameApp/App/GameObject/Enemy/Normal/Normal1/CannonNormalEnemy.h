@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file NormalEnemy1.h
+ * @file CannonNormalEnemy.h
  * @brief 雑魚敵1クラス
  * @author 茂木翼
  */
@@ -12,19 +12,19 @@
 #include <list>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "NormalEnemy1Bullet.h"
+#include "CannonNormalEnemy1Bullet.h"
 
 #include "Wall/Wall.h"
 
 /// <summary>
 /// 最初の敵
 /// </summary>
-class NormalEnemy1 : public BaseNormalEnemy {
+class CannonNormalEnemy : public BaseNormalEnemy {
 public:
   /// <summary>
   /// 最初のボス
   /// </summary>
-  NormalEnemy1() = default;
+  CannonNormalEnemy() = default;
 
   /// <summary>
   /// 初期化
@@ -39,7 +39,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemy1() override = default;
+  ~CannonNormalEnemy() override = default;
 
   void ImGuiUpdate() override;
 

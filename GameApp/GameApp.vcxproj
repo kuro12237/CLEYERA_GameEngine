@@ -181,8 +181,8 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyNoneBehavior.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyTracking.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.cpp" />
@@ -262,8 +262,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemySelector.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemySequence.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyTracking.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy1Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.h" />

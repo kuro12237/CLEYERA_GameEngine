@@ -3,7 +3,7 @@
 #include "Player/PlayerManager.h"
 
 // 雑魚敵
-#include "Normal/Normal1/NormalEnemy1.h"
+#include "Normal/Normal1/CannonNormalEnemy.h"
 #include "Normal/Normal2/NormalEnemy2.h"
 #include "Normal/Normal3/NormalEnemy3.h"
 
@@ -33,7 +33,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy3({.x=0.0f,.y=0.0f,.z=10.0f});
+  GenerateNormalEnemy1({.x=0.0f,.y=0.0f,.z=10.0f});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {
@@ -92,7 +92,7 @@ void EnemyManager::Update() {
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std::string name) {
 
   // 敵の生成
-  std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
+  std::shared_ptr<CannonNormalEnemy> enemy = std::make_shared<CannonNormalEnemy>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化

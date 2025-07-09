@@ -45,7 +45,7 @@
     <ClCompile Include="App\Util\UtilFunc.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyNoneBehavior.cpp" />
@@ -64,7 +64,7 @@
     <ClCompile Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Standard\PlayerStandardAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
@@ -129,7 +129,7 @@
     <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyBehaviorNode.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyCondition.h" />
@@ -157,7 +157,7 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\NormalEnemy2Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemyBullet.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\NormalEnemy1Bullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy1Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
     <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />

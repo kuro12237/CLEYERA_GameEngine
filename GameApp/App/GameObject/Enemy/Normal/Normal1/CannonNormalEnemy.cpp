@@ -1,4 +1,4 @@
-#include "NormalEnemy1.h"
+#include "CannonNormalEnemy.h"
 
 #include "Utility/Easing.h"
 
@@ -12,9 +12,9 @@
 
 #include "../../../Player/Attack/Interface/IPlayerBullet.h"
 
-void NormalEnemy1::Init() {
+void CannonNormalEnemy::Init() {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemy1);
+  name_ = VAR_NAME(CannonNormalEnemy);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
@@ -75,7 +75,7 @@ void NormalEnemy1::Init() {
   hp_->Init();
 }
 
-void NormalEnemy1::Update() {
+void CannonNormalEnemy::Update() {
 
   // hp処理
   hp_->Update();
@@ -139,7 +139,7 @@ void NormalEnemy1::Update() {
   TransformUpdate();
 }
 
-void NormalEnemy1::ImGuiUpdate() {
+void CannonNormalEnemy::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
@@ -174,7 +174,7 @@ void NormalEnemy1::ImGuiUpdate() {
   }
 }
 
-void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void CannonNormalEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 
@@ -197,7 +197,7 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 }
 
-void NormalEnemy1::KnockBack() {
+void CannonNormalEnemy::KnockBack() {
 
   // ランダムの値で位置を決める
   // SRは固定
@@ -235,7 +235,7 @@ void NormalEnemy1::KnockBack() {
   }
 }
 
-void NormalEnemy1::Killed() {
+void CannonNormalEnemy::Killed() {
   if (isAlive_ == false) {
     // 縮小
     const float_t SCALE_DOWN = 0.05f;
