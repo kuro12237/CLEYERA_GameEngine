@@ -71,6 +71,11 @@ public:
 	void SignatureAttack();
 
 	/// <summary>
+	/// ダッシュ
+	/// </summary>
+	void Dash();
+
+	/// <summary>
 	/// 衝突時コールバック
 	/// </summary>
 	void OnCollision(std::weak_ptr<ObjectComponent> other);

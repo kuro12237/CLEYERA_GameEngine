@@ -5,6 +5,7 @@
 #include "../Command/Interface/IPlayerCommand.h"
 #include "../Command/Move/Key/PlayerKeyMoveCommand.h"
 #include "../Command/Move/Pad/PlayerPadMoveCommand.h"
+#include "../Command/Dash/PlayerDashCommand.h"
 
 /// <summary>
 /// コンストラク
@@ -41,6 +42,10 @@ void PlayerCommandHandler::Init() {
   inputCommandMap_["BasicAttack"] = []() { return std::make_unique<PlayerBasicAttackCommand>(); };
   inputCommandMap_["SignatureAttack"] = []() { return std::make_unique<PlayerSignatureAttackCommand>(); };
   inputCommandMap_["StandardAttack"] = []() { return std::make_unique<PlayerStandardAttackCommand>(); };
+
+  // ダッシュコマンド
+  inputCommandMap_["Dash" ] = []() { return std::make_unique<PlayerDashCommand>(); };
+
 }
 
 /// <summary>
@@ -75,6 +80,11 @@ void PlayerCommandHandler::Handle() {
   }
   if (input_->PushBottonPressed(XINPUT_GAMEPAD_B)) {
     CommandPush("SignatureAttack");
+  }
+
+  // ダッシュコマンド
+  if ( input_->PushBottonPressed(XINPUT_GAMEPAD_A) ) {
+      CommandPush("Dash");
   }
 }
 

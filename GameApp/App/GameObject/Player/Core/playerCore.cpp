@@ -9,9 +9,6 @@
 #include "../../Item/AttackPickup/AttackPickupItem.h"
 #include "../../Item/Heal/HealItem.h"
 
-/// <summary>
-/// コンストラク
-/// </summary>
 PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
 	lua_ = std::make_unique<LuaScript>();
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
@@ -20,9 +17,6 @@ PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<Play
 	itemMgr_ = itemMgr;
 }
 
-/// <summary>
-/// 初期化処理
-/// </summary>
 void PlayerCore::Init() {
 	// クラス名
 	ObjectComponent::name_ = VAR_NAME(PlayerCore);
@@ -55,9 +49,6 @@ void PlayerCore::Init() {
 	InitAttackSlot();
 }
 
-/// <summary>
-/// 更新処理
-/// </summary>
 void PlayerCore::Update() {
 	ObjectComponent::TransformUpdate();
 
@@ -104,52 +95,39 @@ void PlayerCore::Update() {
 #endif // _DEBUG
 }
 
-/// <summary>
-/// Padの移動処理
-/// </summary>
 void PlayerCore::PadMove()
 { 
 	moveFunc_->PadMove();
 }
 
-/// <summary>
-/// Keyの移動処理
-/// </summary>
 void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
 {
 	moveFunc_->KeyMove(input);
 }
 
-/// <summary>
-/// ベーシック攻撃
-/// </summary>
 void PlayerCore::BasicAttack() 
 { 
 	attacks_[ ToIndex(AttackType::Basic) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
-/// <summary>
-/// スタンダード攻撃
-/// </summary>
 void PlayerCore::StandardAttack() 
 { 
 	attacks_[ ToIndex(AttackType::Standard) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
-/// <summary>
-/// シグネチャー攻撃
-/// </summary>
 void PlayerCore::SignatureAttack()
 { 
 	attacks_[ ToIndex(AttackType::Signature) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
-/// <summary>
-/// 衝突時コールバック
-/// </summary>
+void PlayerCore::Dash()
+{
+
+}
+
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
 	auto obj = other.lock();
 
@@ -185,9 +163,6 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 	}
 }
 
-/// <summary>
-/// 攻撃スロットの初期化
-/// </summary>
 void PlayerCore::InitAttackSlot() {
 
 	// 初期攻撃スロット
@@ -204,9 +179,6 @@ void PlayerCore::InitAttackSlot() {
 	}
 }
 
-/// <summary>
-/// 移動硬直処理
-/// </summary>
 void PlayerCore::StiffMove()
 {
 	if ( isAttackStiff_) {
@@ -219,9 +191,6 @@ void PlayerCore::StiffMove()
 	}
 }
 
-/// <summary>
-/// Luaからデータを抽出する
-/// </summary>
 void PlayerCore::LoadCoreDataFromLua() {
 	translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
 }
@@ -266,9 +235,6 @@ void PlayerCore::KnockBack() {
 	}
 }
 
-/// <summary>
-/// 方向ベクトルを求める
-/// </summary>
 void PlayerCore::CalcDirectVec() {
 	// 前方ベクトルのデフォルト値
 	Math::Vector::Vec3 defForwardVec = Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f };
@@ -292,9 +258,6 @@ void PlayerCore::CalcDirectVec() {
 	leftVec_ = TransformWithPerspective(defLeftVec, rotateYMat);
 }
 
-/// <summary>
-/// Vector3にアフィン変換と透視補正を適用する
-/// </summary>
 Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3 & v,
 														const Math::Matrix::Mat4x4 & m) {
 	Math::Vector::Vec3 result = {

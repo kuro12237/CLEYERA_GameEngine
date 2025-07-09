@@ -52,7 +52,6 @@ public:
 #pragma endregion
 
 
-
 public:
 
 	/// <summary>

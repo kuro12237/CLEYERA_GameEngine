@@ -95,6 +95,8 @@
     <ClCompile Include="App\Scene\GameOverScene.cpp" />
     <ClCompile Include="App\Scene\SelectScene.cpp" />
     <ClCompile Include="App\Scene\DebugSelectScene.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\Dash\PlayerDashFunc.cpp" />
+    <ClCompile Include="App\GameObject\Player\Command\Dash\PlayerDashCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -189,6 +191,8 @@
     <ClInclude Include="App\Scene\GameOverScene.h" />
     <ClInclude Include="App\Scene\SelectScene.h" />
     <ClInclude Include="App\Scene\DebugSelectScene.h" />
+    <ClInclude Include="App\GameObject\Player\Core\Dash\PlayerDashFunc.h" />
+    <ClInclude Include="App\GameObject\Player\Command\Dash\PlayerDashCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
