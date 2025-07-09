@@ -4,7 +4,7 @@ void GameSkillBackUI::Init() {
 
   this->Create();
 
-  this->CreateJsonSystem("Resources/Configs/UI/PlayState/");
+  this->CreateJsonSystem("GamePlay");
  
   uint32_t handle = texManager_->LoadPngTex("UI/skillBack");
   handle_ = handle;

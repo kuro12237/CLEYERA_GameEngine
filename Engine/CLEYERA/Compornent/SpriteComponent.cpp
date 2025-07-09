@@ -33,7 +33,7 @@ void SpriteComponent::Create() {
 }
 
 void SpriteComponent::CreateJsonSystem(const std::string &fileGroupName) {
-  CreateJson(name_, fileGroupName);
+  CreateJson(name_, fileGroupName,CLEYERA::Manager::GlobalVariables::ResourcesGroupDirectory::UI);
 
   // 各パラメータの保存
   this->SetValue<Math::Vector::Vec3>(VAR_NAME(scale_), scale_);

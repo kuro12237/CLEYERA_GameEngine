@@ -36,7 +36,7 @@ protected:
   /// <summary>
   /// jsonの作成
   /// </summary>
-  void CreateJsonSystem(const std::string &fileGroupName);
+  void CreateJsonSystem(const std::string &fileGroupName="");
 
   std::string name_ = "";
 
