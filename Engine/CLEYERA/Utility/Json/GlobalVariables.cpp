@@ -8,6 +8,13 @@ void CLEYERA::Manager::GlobalVariables::CreateGroup(const ResourcesGroupDirector
    if (d == ResourcesGroupDirectory::Entitiys) {
       datas_[name].DirectryPath = "Resources/Configs/Entitiys/" + file + "/";
    }
+   if (d == ResourcesGroupDirectory::UI) {
+     datas_[name].DirectryPath = "Resources/Configs/UI/" + file + "/";
+   }
+   
+   else {
+     datas_[name].DirectryPath = file;
+   }
 }
 
 void CLEYERA::Manager::GlobalVariables::SaveFile(const std::string &groupName) {
