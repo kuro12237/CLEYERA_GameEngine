@@ -193,6 +193,7 @@
     <ClInclude Include="App\Scene\DebugSelectScene.h" />
     <ClInclude Include="App\GameObject\Player\Core\Dash\PlayerDashFunc.h" />
     <ClInclude Include="App\GameObject\Player\Command\Dash\PlayerDashCommand.h" />
+    <ClInclude Include="App\GameObject\Player\State\Interface\IPlayerState.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

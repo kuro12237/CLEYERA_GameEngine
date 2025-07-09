@@ -32,11 +32,22 @@ public:
 	/// </summary>
 	void Update();
 
+#pragma region 
+
+	// ダッシュ中か
+	bool IsDash() const {return isDashing_;}
+
+#pragma endregion 
+
+
 private:
 
 	// 親クラス
 	PlayerCore * p_player_ = nullptr;
 
-
+	bool isDashing_ = false;
+	float dashTime_ = 0.0f;
+	const float dashDuration_ = 0.3f;   // ダッシュ継続時間
+	const float dashSpeed_ = 20.0f;     // ダッシュ速度
 };
 

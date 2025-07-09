@@ -298,6 +298,7 @@
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
+    <ClInclude Include="App\GameObject\Player\State\Interface\IPlayerState.h" />
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="App\GameObject\UI\TestUI.h" />
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
