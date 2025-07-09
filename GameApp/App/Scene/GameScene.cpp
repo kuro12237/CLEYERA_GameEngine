@@ -9,6 +9,8 @@ GameScene::GameScene() {
 void GameScene::Init() {
   uis_.resize(2);
 
+  CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
+
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TestData");
 

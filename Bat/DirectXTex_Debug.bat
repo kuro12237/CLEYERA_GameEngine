@@ -19,8 +19,5 @@ IF EXIST "generated\output\Debug\DirectXTex.lib" (
 ) ELSE (
     echo DirectXTex.lib not found. Build may have failed.
     pause
-    exit /b 1
 )
 
-
-pause
