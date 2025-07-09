@@ -86,6 +86,16 @@ void NormalEnemy2::Update() {
   }
 
   if (isAlive_ == true) {
+      //クールタイム中
+      if ( isCool_ == true ) {
+          coolTime_ += DELTA_TIME_;
+          if ( coolTime_ > coolTimeLimit_ ) {
+              isCool_ = false;
+              coolTime_ = 0.0f;
+              generateBulletNumber_ = 0u;
+          }
+      }
+
     // 弾の更新
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
       bullet->Update();

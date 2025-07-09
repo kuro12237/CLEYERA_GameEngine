@@ -33,7 +33,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy1({.x=0.0f,.y=0.0f,.z=10.0f});
+  GenerateNormalEnemy3({.x=0.0f,.y=0.0f,.z=10.0f});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {

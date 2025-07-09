@@ -6,7 +6,7 @@
 EnemyNodeState NormalEnemyIsNotCool::Execute(BaseNormalEnemy *baseNormalEnemy) {
     
     //クールタイム中ではない時通す
-    if (baseNormalEnemy->GetIsCoolTime()!=false) {
+    if (baseNormalEnemy->GetIsCool()==false) {
         return EnemyNodeState::Success;
     } 
     else {

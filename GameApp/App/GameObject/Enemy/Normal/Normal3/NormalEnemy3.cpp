@@ -90,13 +90,13 @@ void NormalEnemy3::Update() {
       //クールタイム中
       if ( isCool_ == true ) {
           coolTime_ += DELTA_TIME_;
-
-          //設定した時間になったら解除
           if ( coolTime_ > coolTimeLimit_ ) {
               isCool_ = false;
+              coolTime_ = 0.0f;
+              generateBulletNumber_ = 0u;
           }
-
       }
+
 
 
     // 弾の更新

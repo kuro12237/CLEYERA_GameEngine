@@ -73,7 +73,5 @@ private:
 
     //生成時間
     float_t generateTime_ = 0.0f;
-    //生成された数
-    uint32_t generatedNumber_=0u;
 };
 
