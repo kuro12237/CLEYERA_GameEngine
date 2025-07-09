@@ -5,7 +5,7 @@ void SelectScene::Init() {
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("SelectSceneData");
   // 初期化
-  for (auto manager : managerCompornents_) {
+  for (auto manager : managerComponents_) {
     manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
     for (auto obj : manager.lock()->GetObjList()) {
@@ -40,7 +40,7 @@ void SelectScene::Init() {
 
 void SelectScene::Update([[maybe_unused]] GameManager *g) {
 
-  for (auto manager : managerCompornents_) {
+  for (auto manager : managerComponents_) {
 
     auto mgr = manager.lock();
 

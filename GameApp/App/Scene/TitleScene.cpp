@@ -5,7 +5,7 @@ void TitleScene::Init() {
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TitleSceneData");
   // 初期化
-  for (auto manager : managerCompornents_) {
+  for (auto manager : managerComponents_) {
     manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
     for (auto obj : manager.lock()->GetObjList()) {
@@ -41,7 +41,7 @@ void TitleScene::Init() {
 void TitleScene::Update([[maybe_unused]] GameManager *g) {
 
 
-  for (auto manager : managerCompornents_) {
+  for (auto manager : managerComponents_) {
 
     auto mgr = manager.lock();
 

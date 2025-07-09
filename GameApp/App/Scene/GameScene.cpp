@@ -1,46 +1,40 @@
 #include "GameScene.h"
 #include "../GameManager/GameManager.h"
 
-GameScene::GameScene()
-{
-    itemManager_ = std::make_shared<ItemManager>();
-    playerManager_ = std::make_shared<PlayerManager>(itemManager_);
+GameScene::GameScene() {
+  itemManager_ = std::make_shared<ItemManager>();
+  playerManager_ = std::make_shared<PlayerManager>(itemManager_);
 }
 
 void GameScene::Init() {
   uis_.resize(2);
 
-  for (size_t i = 0; i < 1; i++) {
-
-    std::shared_ptr<TestUI> ui = std::make_shared<TestUI>();
-    ui->Init();
-    uis_[i] = std::move(ui);
-  }
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TestData");
 
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
-  uint32_t bulletNum = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t bulletNum =
+      modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   bulletNum;
 
-  managerCompornents_.push_back(itemManager_);
-  managerCompornents_.push_back(playerManager_);
+  managerComponents_.push_back(itemManager_);
+  managerComponents_.push_back(playerManager_);
 
   enemyManager_ = std::make_shared<EnemyManager>();
   enemyManager_->SetPlayerManager(playerManager_.get());
-  managerCompornents_.push_back(enemyManager_);
+  managerComponents_.push_back(enemyManager_);
 
   wallManager_ = std::make_shared<WallManager>();
-  managerCompornents_.push_back(wallManager_);
+  managerComponents_.push_back(wallManager_);
 
   imgui_ = std::make_shared<TestPlayGui>();
   imgui_->SetPlayerHp(playerManager_->GetHp());
   imgui_->SetEnemyCount(enemyManager_->GetEnemyCount());
 
-  managerCompornents_.push_back(imgui_);
+  managerComponents_.push_back(imgui_);
 
   // 初期化
-  for (auto manager : managerCompornents_) {
+  for (auto manager : managerComponents_) {
     manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
     for (auto obj : manager.lock()->GetObjList()) {
@@ -66,14 +60,27 @@ void GameScene::Init() {
 
   loader_.reset();
 
+  // spriteの初期化
+
+  for (size_t i = 0; i < 1; i++) {
+
+    std::shared_ptr<TestUI> ui = std::make_shared<TestUI>();
+    spriteComponents_.push_back(ui);
+    uis_[i] = std::move(ui);
+  }
+
+  for (auto s : spriteComponents_) {
+
+    s.lock()->Init();
+  }
+
   // 地形モデルの設定
-  uint32_t modelHandlet = modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
+  uint32_t modelHandlet =
+      modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandlet);
 
   // 無視
   InitRaytracing();
-
-
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -84,7 +91,8 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     return;
   }
 
-  for (auto manager : managerCompornents_) {
+  // managerのコンポーネントからシーンに移譲
+  for (auto manager : managerComponents_) {
 
     auto mgr = manager.lock();
 
@@ -121,29 +129,42 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
       continue;
     }
 
+#ifdef _DEBUG
     for (std::string name : objNames) {
-
       if (name == obj.lock()->GetName()) {
         // 同じものが複数回呼び出されてる
         assert(0);
       }
     }
+#endif // _DEBUG
 
     obj.lock()->Update();
 
     objNames.push_back(obj.lock()->GetName());
   }
-  for (size_t i = 0; i < 1; i++) {
 
-    uis_[i]->Update();
+  // sprite更新
+  std::list<std::string> spNames;
+  for (auto s : spriteComponents_) {
+
+#ifdef _DEBUG
+
+    if (s.lock()->GetName() != "") {
+      for (std::string name : spNames) {
+        if (name == s.lock()->GetName()) {
+          // 同じものが複数回呼び出されてる
+          assert(0);
+        }
+      }
+    }
+#endif // _DEBUG
+    s.lock()->Update();
+    spNames.push_back(s.lock()->GetName());
   }
 }
 
 void GameScene::Draw2d() {
 
-  for (size_t i = 0; i < 1; i++) {
+  uis_[0]->Draw();
 
-    //uis_[i]->Draw();
-  }
 }
-

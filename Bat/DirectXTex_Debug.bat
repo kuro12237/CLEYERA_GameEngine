@@ -9,7 +9,9 @@ call "%ProgramFiles%\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\v
 MSBuild "Externals\DirectXTex\DirectXTex\DirectXTex_Desktop_2022_Win10.vcxproj" ^
  /t:clean;rebuild ^
  /p:Configuration=Debug;Platform=x64;ConfigurationType=StaticLibrary ^
+ /p:OutDir=../../../generated\output\Debug\ ^
  /m
+
 
 IF EXIST "generated\output\Debug\DirectXTex.lib" (
     mkdir "Externals\DirectXTex\DirectXTex\lib\Debug" >nul 2>&1
@@ -19,5 +21,6 @@ IF EXIST "generated\output\Debug\DirectXTex.lib" (
     pause
     exit /b 1
 )
+
 
 pause

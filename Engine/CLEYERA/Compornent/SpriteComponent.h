@@ -1,10 +1,16 @@
 #pragma once
 #include "2d/Sprite.h"
-#include"Utility/World/WorldTransform.h"
+#include "Utility/Json/GlobalVariables.h"
+#include "Utility/World/WorldTransform.h"
 
-class SpriteComponent :public CLEYERA::Util::WorldTransform{
+#include "JsonCompornent.h"
+
+class SpriteComponent : public CLEYERA::Util::WorldTransform,
+                        public CLEYERA::Component::JsonCompornent {
 public:
-  SpriteComponent() { texManager_ = CLEYERA::Manager::TexManager::GetInstance(); };
+  SpriteComponent() {
+    texManager_ = CLEYERA::Manager::TexManager::GetInstance();
+  };
   virtual ~SpriteComponent() {};
 
 #pragma region VirtualFunc
@@ -21,11 +27,19 @@ public:
 
   void Create();
 
+  std::string GetName() { return name_; }
 
 private:
 protected:
+  /// <summary>
+  /// jsonの作成
+  /// </summary>
+  void CreateJsonSystem(const std::string &fileGroupName);
 
-	CLEYERA::Manager::TexManager *texManager_ = nullptr;
+  std::string name_ = "";
+
+  CLEYERA::Manager::TexManager *texManager_ = nullptr;
+  CLEYERA::Manager::GlobalVariables *globalVariables_ = nullptr;
 
   std::shared_ptr<CLEYERA::Sprite2d::Sprite> sprite_;
 
@@ -33,7 +47,7 @@ protected:
   Math::Vector::Vec3 rotate_ = {};
   Math::Vector::Vec3 translate_ = {};
 
-  Math::Vector::Vec2 size = {1280.0f,1280.0f};
+  Math::Vector::Vec2 size = {1280.0f, 1280.0f};
   Math::Vector::Vec2 anker = {0.5f, 0.5f};
 
   uint32_t handle_ = 0;
