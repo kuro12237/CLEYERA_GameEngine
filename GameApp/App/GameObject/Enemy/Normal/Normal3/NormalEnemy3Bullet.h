@@ -48,24 +48,26 @@ public:
 
 
 private:
-  /// <summary>
-  /// ImGui表示用
-  /// </summary>
-  void DisplayImGui();
-
-private:
   // スケールサイズ
   const float_t SCALE_SIZE_ = 1.0f;
   // 弾の速さ
-  const float_t SPEED_ = 0.5f;
+  const float_t SPEED_ = 0.2f;
   // 時間変化
   const float_t DELTA_TIME_ = 1.0f / 60.0f;
   // 最大表示時間
   const float_t MAX_DISPLAY_TIME_ = 5.0f;
+  //スケールダウン
+  const float_t SCALE_DOWN_VALUE_ = 0.1f;
+  //消えるサイズ
+  const float_t DELETE_SCALE_ = 0.0f;
+  //追跡時間制限
+  const float_t TRACKING_LIMIT_TIME_ = 1.0f;
 
 private:
   // 方向
   Math::Vector::Vec3 direction_ = {};
+  //追跡時間
+  float_t trackingTime_ = 0.0f;
 
   // 表示時間
   float_t displayTime_ = 0.0f;

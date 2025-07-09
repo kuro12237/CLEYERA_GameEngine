@@ -26,8 +26,10 @@ public:
     /// <summary>
     /// コンストラクタ
     /// </summary>
-    /// <param name="bulletType">弾の種類</param>
-    NormalEnemyAttack(const uint32_t&bulletType);
+    /// <param name="bulletType"></param>
+    /// <param name="bulletNumber"></param>
+    /// <param name="generateINterval"></param>
+    NormalEnemyAttack(const uint32_t&bulletType,const uint32_t& bulletNumber,const float_t& generateInterval);
 
     /// <summary>
     /// 実行
@@ -55,6 +57,11 @@ private:
 private:
     //弾の種類
     uint32_t bulletType_ = 0u;
+    //生成する数
+    uint32_t bulletNumber_ = 0u;
+    //生成の間隔
+    float_t generateInterval_ = 0.0f;
+
 
     //攻撃準備
     bool isReadyForAttack_ = true;
@@ -66,6 +73,5 @@ private:
 
     //生成時間
     float_t generateTime_ = 0.0f;
-
 };
 

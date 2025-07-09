@@ -6,7 +6,6 @@
 #include "Enemy/Normal/Behavior/NormalEnemySelector.h"
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
-#include <Enemy/Normal/Behavior/NormalEnemyIsNotAttacking.h>
 #include <Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h>
 
 #include "Player/Core/playerCore.h"
@@ -50,7 +49,7 @@ void NormalEnemy2::Init() {
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -87,6 +86,16 @@ void NormalEnemy2::Update() {
   }
 
   if (isAlive_ == true) {
+      //クールタイム中
+      if ( isCool_ == true ) {
+          coolTime_ += DELTA_TIME_;
+          if ( coolTime_ > coolTimeLimit_ ) {
+              isCool_ = false;
+              coolTime_ = 0.0f;
+              generateBulletNumber_ = 0u;
+          }
+      }
+
     // 弾の更新
     for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
       bullet->Update();
