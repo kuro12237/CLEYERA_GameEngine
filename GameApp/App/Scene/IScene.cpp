@@ -8,6 +8,7 @@ SceneComponent::SceneComponent() {
   terrain_ = Manager::Terrain::GetInstance();
   modelManager_ = Manager::ModelManager::GetInstance();
   colliderSystem_ = Manager::ColliderSystem::GetInstance();
+  objectManager_ = Manager::ObjectManager::GetInstance();
 
   colliderSystem_->SetObjectComponentList(objectComponents_);
 }

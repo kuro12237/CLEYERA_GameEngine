@@ -4,14 +4,43 @@ using json = nlohmann::json;
 
 void CLEYERA::Manager::ObjectManager::Update() {
 
-  for (auto it = objectList_.begin(); it != objectList_.end();) {
+  for (const auto &m : this->objects_) {
+    for (auto &[name, obj] : m.second) {
+      if (!obj)
+        continue;
 
-    if (!(*it).expired()) {
+      switch (obj->GetMode()) {
+      case Component::ObjectComponent::OBJ_MODE::SPAWN: {
+        obj->Init();
+        obj->SetMode(Component::ObjectComponent::OBJ_MODE::ACTIVE);
+        obj->Update();
+        obj->GameObjectUpdate();
+        break;
+      }
 
-      (*it).lock()->Update();
-      ++it;
-    } else {
-      it = objectList_.erase(it);
+      case Component::ObjectComponent::OBJ_MODE::REMOVE: {
+        // 削除対象
+        DeleteObject(obj);
+        break;
+      }
+
+      case Component::ObjectComponent::OBJ_MODE::PAUSE: {
+        // 一時停止中なので何もしない（Update済み）
+        break;
+      }
+
+      case Component::ObjectComponent::OBJ_MODE::INACTIVE: {
+        // 完全に非アクティブなのでスキップ
+        // 必要なら Update() 呼ばない方が良い
+        break;
+      }
+
+      case Component::ObjectComponent::OBJ_MODE::ACTIVE: {
+        obj->Update();
+        obj->GameObjectUpdate();
+        break;
+      }
+      }
     }
   }
 }
@@ -42,7 +71,8 @@ void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
   nlohmann::json jsonRoot;
   ifs >> jsonRoot;
 
-  // グループ名（例: "test"）を指定// ファイル名（例: "test.json"）から拡張子を除去
+  // グループ名（例: "test"）を指定// ファイル名（例:
+  // "test.json"）から拡張子を除去
   std::string groupName = file;
   size_t dotPos = groupName.rfind('.');
   if (dotPos != std::string::npos) {
@@ -78,7 +108,49 @@ void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
 
       // 登録
       objects_[name][fullName] = nullptr;
-      unUseObjsName_[name][fullName] = fullName;
+      unUseObjsName_[name].push_back(fullName);
     }
   }
+}
+
+void CLEYERA::Manager::ObjectManager::CreateObject(
+    const std::string &category,
+    std::shared_ptr<Component::ObjectComponent> obj) {
+
+  auto itCategory = unUseObjsName_.find(category);
+  if (itCategory == unUseObjsName_.end() || itCategory->second.empty()) {
+    std::cerr << "No available object names for category: " << category
+              << std::endl;
+    return;
+  }
+
+  std::string name = itCategory->second.front();
+  itCategory->second.erase(itCategory->second.begin());
+  // 登録
+  objects_[category][name] = obj;
+
+  // 名前とカテゴリを設定
+  obj->SetName(name);
+  obj->SetCategory(category);
+}
+
+void CLEYERA::Manager::ObjectManager::DeleteObject(
+    std::weak_ptr<Component::ObjectComponent> obj) {
+  if (!obj.lock())
+    return;
+
+  const std::string &name = obj.lock()->GetName();
+  const std::string &category = obj.lock()->GetCategory();
+
+  auto itCat = objects_.find(category);
+  if (itCat != objects_.end()) {
+    auto &nameMap = itCat->second;
+    auto itName = nameMap.find(name);
+    if (itName != nameMap.end()) {
+      itName->second = nullptr;
+    }
+  }
+
+  // 名前を unUse に戻す
+  unUseObjsName_[category].push_back(name);
 }

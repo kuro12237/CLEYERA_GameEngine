@@ -13,7 +13,7 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
         if (itr->expired()) {
           continue;
         }
-        const auto &collider = itr->lock()->GetCollder().lock();
+        const auto &collider = itr->lock()->GetCollider().lock();
 
         if (collider) {
           RenderManager::GetInstance()->PushLine3d(collider->GetLine());
@@ -25,7 +25,7 @@ void CLEYERA::Manager::ColliderSystem::ImGuiUpdate() {
         if (itr->expired()) {
           continue;
         }
-        const auto &collider = itr->lock()->GetCollder().lock();
+        const auto &collider = itr->lock()->GetCollider().lock();
 
         if (collider) {
 
@@ -52,7 +52,7 @@ void CLEYERA::Manager::ColliderSystem::Update() {
       continue;
     }
 
-    auto collider = obj.lock()->GetCollder().lock();
+    auto collider = obj.lock()->GetCollider().lock();
     if (collider) {
       mortonMap[collider->GetMortonNum()].push_back(obj);
     }
@@ -72,7 +72,7 @@ void CLEYERA::Manager::ColliderSystem::Update() {
       if (!aabb2)
         continue;
 
-      auto colA = aabb2->GetCollder().lock();
+      auto colA = aabb2->GetCollider().lock();
       auto typeA = dynamic_cast<Util::Collider::AABBCollider *>(colA.get());
       if (!typeA)
         continue;
@@ -81,7 +81,7 @@ void CLEYERA::Manager::ColliderSystem::Update() {
         auto aabb1 = group[j].lock();
         if (!aabb1)
           continue;
-        auto colB = aabb1->GetCollder().lock();
+        auto colB = aabb1->GetCollider().lock();
         auto typeB = dynamic_cast<Util::Collider::AABBCollider *>(colB.get());
         if (!typeB)
           continue;
@@ -133,7 +133,7 @@ void CLEYERA::Manager::ColliderSystem::Update() {
       continue;
     }
 
-    auto collider = it->GetCollder().lock();
+    auto collider = it->GetCollider().lock();
     if (collider) {
       collider->MortonUpdate();
       collider->Update();

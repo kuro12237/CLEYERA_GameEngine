@@ -37,10 +37,18 @@ public:
   ObjectComponent();
   virtual ~ObjectComponent() {};
 
-  virtual void Init() = 0;
+  enum class OBJ_MODE {
+    SPAWN = 0, // 生成直後
+    ACTIVE,    // 通常動作中
+    INACTIVE,  // 非アクティブ（更新/描画なし）
+    PAUSE,     // 一時停止
+    REMOVE,    // 削除予定（DeleteObjectと連携）
 
+  };
+
+  virtual void Init() = 0;
   virtual void Update() = 0;
-  
+  virtual void Finalize() {};
   /// <summary>
   /// IMGui仮想関数上書き推奨
   /// </summary>
@@ -63,10 +71,15 @@ public:
   /// <param name="pos"></param>
   void TerrainHit(const Math::Vector::Vec3 &pos);
 
+  void GameObjectUpdate() { this->gameObject_->Update(); };
+
 #pragma region Get
-  const std::string &GetName() { return name_; }
+  const std::string &GetName() const { return name_; }
+  const std::string &GetCategory() const { return category_; }
+  const OBJ_MODE &GetMode() const { return mode_; }
+
   std::weak_ptr<Model3d::Game3dObject> GetGameObject() { return gameObject_; }
-  std::weak_ptr<Util::Collider::Collider> GetCollder() { return collider_; }
+  std::weak_ptr<Util::Collider::Collider> GetCollider() { return collider_; }
   Math::Vector::Vec3 &GetTranslate() { return translate_; }
   Math::Matrix::Mat4x4 GetMatWorld() const {
 
@@ -87,11 +100,15 @@ public:
 #pragma region Set
 
   void SetName(std::string name) { name_ = name; }
+  void SetCategory(const std::string &category) { category_ = category; }
+  void SetMode(const OBJ_MODE mode) { mode_ = mode; }
+
+#pragma region param
   void SetScale(const Math::Vector::Vec3 &v) { scale_ = v; }
   void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
   void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
   void SetForce(const Math::Vector::Vec3 &v) { force_ = v; }
-
+#pragma endregion
   void SetModelHandle(uint32_t handle) {
     modelHandle_ = handle;
     gameObject_->ChangeModel(handle);
@@ -133,6 +150,7 @@ protected:
   /// </summary>
   void CreateJsonSystem(const std::string &fileGroupName);
 
+  std::string category_ = "";
   std::string name_ = "";
 
   Math::Vector::Vec3 scale_ = {2.0f, 2.0f, 2.0f};
@@ -157,6 +175,7 @@ protected:
   /// </summary>
   bool isSceneList_ = false;
 
+  OBJ_MODE mode_ = OBJ_MODE::SPAWN;
 };
 } // namespace Component
 } // namespace CLEYERA
