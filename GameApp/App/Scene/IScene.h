@@ -60,6 +60,7 @@ protected:
   CLEYERA::Manager::Terrain *terrain_ = nullptr;
   CLEYERA::Manager::ModelManager *modelManager_ = nullptr;
   CLEYERA::Manager::ColliderSystem *colliderSystem_ = nullptr;
+  CLEYERA::Manager::ObjectManager *objectManager_ = nullptr;
 
   std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 

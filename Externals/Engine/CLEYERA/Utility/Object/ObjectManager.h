@@ -45,12 +45,19 @@ public:
   /// </summary>
   void LoadObjectData(const std::string &file);
 
+  /// <summary>
+  /// オブジェクトを作成(jsonで確保した配列に作成)
+  /// </summary>
+  void CreateObject(const std::string &category,std::shared_ptr<Component::ObjectComponent>obj);
+
+  void DeleteObject(std::weak_ptr<Component::ObjectComponent> obj);
+
 private:
   std::vector<std::weak_ptr<Model3d::Game3dObject>> objectList_ = {};
 
   std::map<std::string,std::map<std::string, std::shared_ptr<Component::ObjectComponent>>>
       objects_;
-  std::map<std::string,std::map<std::string, std::string>> unUseObjsName_;
+  std::map<std::string,std::vector<std::string>> unUseObjsName_;
 
 #pragma region Singleton
 

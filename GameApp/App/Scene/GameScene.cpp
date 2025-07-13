@@ -43,6 +43,7 @@ void GameScene::Init() {
 
       // 絶対に登録
       objectComponents_.push_back(obj);
+      
       objectList_.push_back(obj.lock()->GetGameObject());
 
       // 重力適用
