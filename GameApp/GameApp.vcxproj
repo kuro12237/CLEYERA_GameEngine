@@ -115,7 +115,7 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(SolutionDir)..\Externals\LuaAssets\;$(SolutionDir)..\Externals\Engine\CLEYERA\;$(ProjectDir)..\Externals\DirectXTex\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\assimp\include\;$(ProjectDir)..\Externals\nlohmann\;$(SolutionDir)..\Externals\LuaAssets\;$(SolutionDir)..\Externals\Engine\CLEYERA\;$(ProjectDir)..\Externals\DirectXTex\;$(ProjectDir)..\Externals\curl\include\</AdditionalIncludeDirectories>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWarningAsError>true</TreatWarningAsError>
@@ -125,7 +125,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)..\Externals\math\lib\Debug\</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\Engine\lib\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\Engine\lib\Debug\;$(ProjectDir)..\Externals\curl\lib\libcurl.lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>assimp-vc143-mtd.lib;lua51.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -219,12 +219,14 @@
     <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
+    <ClCompile Include="App\SampleObj\Coin.cpp" />
     <ClCompile Include="App\Scene\DebugSelectScene.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
     <ClCompile Include="App\Scene\GameClearScene.cpp" />
     <ClCompile Include="App\Scene\GameOverScene.cpp" />
     <ClCompile Include="App\Scene\GameScene.cpp" />
     <ClCompile Include="App\Scene\IScene.cpp" />
+    <ClCompile Include="App\Scene\SampleGameScene.cpp" />
     <ClCompile Include="App\Scene\SelectScene.cpp" />
     <ClCompile Include="App\Scene\TitleScene.cpp" />
     <ClCompile Include="App\Util\SceneLoader.cpp" />
@@ -306,12 +308,15 @@
     <ClInclude Include="App\GameObject\UI\GameSkillBackUI.h" />
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
     <ClInclude Include="App\GameObject\Wall\WallManager.h" />
+    <ClInclude Include="App\SampleObj\Coin.h" />
+    <ClInclude Include="App\SampleObj\WinLoseObj.h" />
     <ClInclude Include="App\Scene\GameClearScene.h" />
     <ClInclude Include="App\Scene\EnemyDebugScene.h" />
     <ClInclude Include="App\Scene\GameOverScene.h" />
     <ClInclude Include="App\Scene\GameScene.h" />
     <ClInclude Include="App\Scene\IScene.h" />
     <ClInclude Include="App\Scene\DebugSelectScene.h" />
+    <ClInclude Include="App\Scene\SampleGameScene.h" />
     <ClInclude Include="App\Scene\SelectScene.h" />
     <ClInclude Include="App\Scene\TitleScene.h" />
     <ClInclude Include="App\Util\SceneLoader.h" />

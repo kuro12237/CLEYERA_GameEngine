@@ -4,12 +4,15 @@
 
 void DebugSelectScene::Init() {
   // シーン名リストを初期化
-  sceneNames_ = {"TitleScene", "GameScene", "GameOverScene", "GameClearScene","SelectScene"};
+  sceneNames_ = {"TitleScene", "GameScene", "GameOverScene", "GameClearScene",
+                 "SelectScene"};
   selectedIndex_ = 0;
-  //InitRaytracing();
+  // InitRaytracing();
 }
 
 void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
+
+ 
 
   ImGui::Begin("SceneSelect");
 
@@ -22,7 +25,7 @@ void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
   // Combo表示
   ImGui::Combo("Scene", &selectedIndex_, items.data(),
                static_cast<int>(items.size()));
-  
+
   // 決定ボタン
   if (ImGui::Button("SceneChange")) {
     // シーン切替
@@ -40,6 +43,7 @@ void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
   }
 
   ImGui::End();
+  g->ChangeScene(std::make_unique<SampleGameScene>());
 }
 
 void DebugSelectScene::Draw2d() {}

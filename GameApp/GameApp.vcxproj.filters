@@ -98,6 +98,8 @@
     <ClCompile Include="App\GameObject\UI\GameLowAttackUI.cpp" />
     <ClCompile Include="App\GameObject\UI\GameSkillBackUI.cpp" />
     <ClCompile Include="App\GameObject\UI\state\PlayState.cpp" />
+    <ClCompile Include="App\Scene\SampleGameScene.cpp" />
+    <ClCompile Include="App\SampleObj\Coin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -197,6 +199,9 @@
     <ClInclude Include="App\GameObject\UI\GameSkillBackUI.h" />
     <ClInclude Include="App\GameObject\UI\state\IuiState.h" />
     <ClInclude Include="App\GameObject\UI\state\PlayState.h" />
+    <ClInclude Include="App\Scene\SampleGameScene.h" />
+    <ClInclude Include="App\SampleObj\Coin.h" />
+    <ClInclude Include="App\SampleObj\WinLoseObj.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

@@ -1,8 +1,8 @@
 #pragma once
 
+#include "../GameManager/GameManager.h"
 #include "../Util/SceneLoader.h"
 #include "IScene.h"
-#include"../GameManager/GameManager.h"
 
 #include "Enemy/EnemyManager.h"
 #include "EnvironmentObject/EnvironmentObject.h"
@@ -20,6 +20,7 @@
 #include "SelectScene.h"
 #include "TitleScene.h"
 
+#include "SampleGameScene.h"
 
 class DebugSelectScene : public SceneComponent {
 public:
@@ -33,7 +34,6 @@ public:
   void Draw2d() override;
 
 private:
-
   std::vector<std::string> sceneNames_;
   int selectedIndex_ = 0;
 
