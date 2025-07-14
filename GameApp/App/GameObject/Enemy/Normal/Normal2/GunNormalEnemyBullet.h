@@ -1,8 +1,8 @@
 #pragma once
 
 /**
- * @file NormalEnemy2Bullet.h
- * @brief 雑魚敵の弾クラス
+ * @file GunNormalEnemyBullet.h
+ * @brief 雑魚敵(Gun)の弾クラス
  * @author 茂木翼
  */
 
@@ -11,14 +11,14 @@
 #include "Enemy/Normal/BaseNormalEnemyBullet.h"
 
 /// <summary>
-/// 雑魚敵の弾
+/// 雑魚敵(Gun)の弾
 /// </summary>
-class NormalEnemy2Bullet : public BaseNormalEnemyBullet {
+class GunNormalEnemyBullet : public BaseNormalEnemyBullet {
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  NormalEnemy2Bullet() = default;
+  GunNormalEnemyBullet() = default;
 
   /// <summary>
   /// 初期化
@@ -37,7 +37,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemy2Bullet() = default;
+  ~GunNormalEnemyBullet() = default;
 
   void OnCollision(std::weak_ptr<ObjectComponent> other);
 

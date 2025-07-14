@@ -1,12 +1,12 @@
-#include "NormalEnemy1Bullet.h"
+#include "CannonNormalEnemy1Bullet.h"
 #include "Player/Core/playerCore.h"
 #include "Wall/Wall.h"
 
-void NormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
+void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition,
                                     const bool &isPersistentlyTrack) {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemy1Bullet);
+  name_ = VAR_NAME(CannonNormalEnemy1Bullet);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
@@ -36,7 +36,7 @@ void NormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
 
 }
 
-void NormalEnemy1Bullet::Update() {
+void CannonNormalEnemy1Bullet::Update() {
   // 時間
   aliveTime_ += DELTA_TIME_;
   if (aliveTime_ > DELETE_TIME_) {
@@ -65,7 +65,7 @@ void NormalEnemy1Bullet::Update() {
 #endif // _DEBUG
 }
 
-void NormalEnemy1Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void CannonNormalEnemy1Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 

@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file NormalEnemy2Bullet.h
+ * @file GunNormalEnemyBullet.h
  * @brief 雑魚敵の弾クラス
  * @author 茂木翼
  */

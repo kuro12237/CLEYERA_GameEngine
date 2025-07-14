@@ -1,29 +1,30 @@
 #pragma once
 
 /**
- * @file NormalEnemy2Bullet.h
- * @brief 雑魚敵2クラス
+ * @file CannonNormalEnemy.h
+ * @brief 雑魚敵1クラス
  * @author 茂木翼
  */
 
-// 一直線
+// 詳しい挙動とかはここにあるよ
+// https://docs.google.com/presentation/d/1LTi0n_xoAkvzk13g5KMXGNqeEhtBJlnYJjtetUjhM7M/edit#slide=id.p
 
 #include <list>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "NormalEnemy2Bullet.h"
+#include "CannonNormalEnemy1Bullet.h"
 
-#include"Wall/Wall.h"
+#include "Wall/Wall.h"
 
 /// <summary>
 /// 最初の敵
 /// </summary>
-class NormalEnemy2 : public BaseNormalEnemy {
+class CannonNormalEnemy : public BaseNormalEnemy {
 public:
   /// <summary>
   /// 最初のボス
   /// </summary>
-  NormalEnemy2() = default;
+  CannonNormalEnemy() = default;
 
   /// <summary>
   /// 初期化
@@ -38,21 +39,16 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemy2() override = default;
+  ~CannonNormalEnemy() override = default;
 
-  /// <summary>
-  /// imGUi
-  /// </summary>
   void ImGuiUpdate() override;
 
 public:
-
   /// <summary>
   /// 衝突
   /// </summary>
   /// <param name="other"></param>
   void OnCollision(std::weak_ptr<ObjectComponent> other);
-
 
   /// <summary>
   /// ノックバック
@@ -64,5 +60,4 @@ public:
   /// </summary>
   void Killed() override;
 
- 
 };
