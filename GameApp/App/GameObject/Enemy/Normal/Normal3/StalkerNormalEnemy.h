@@ -1,8 +1,8 @@
 #pragma once
 
 /**
- * @file GunNormalEnemyBullet.h
- * @brief 雑魚敵2クラス
+ * @file StalkerNormalEnemy.h
+ * @brief 雑魚敵3クラス
  * @author 茂木翼
  */
 
@@ -16,14 +16,14 @@
 #include"Wall/Wall.h"
 
 /// <summary>
-/// 3つ目の敵
+/// 3つ目の雑魚敵
 /// </summary>
-class NormalEnemy3 : public BaseNormalEnemy {
+class StalkerNormalEnemy : public BaseNormalEnemy {
 public:
   /// <summary>
   /// 最初のボス
   /// </summary>
-  NormalEnemy3() = default;
+  StalkerNormalEnemy() = default;
 
   /// <summary>
   /// 初期化
@@ -38,7 +38,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemy3() override = default;
+  ~StalkerNormalEnemy() override = default;
 
   /// <summary>
   /// imGUi

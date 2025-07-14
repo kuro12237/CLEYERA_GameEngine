@@ -5,10 +5,10 @@
 // 雑魚敵
 #include "Normal/Normal1/CannonNormalEnemy.h"
 #include "Normal/Normal2/GunNormalEnemy.h"
-#include "Normal/Normal3/NormalEnemy3.h"
+#include "Normal/Normal3/StalkerNormalEnemy.h"
 
 // ボス
-#include "Boss/First/FirstBossEnemy.h"
+#include "Boss/First/BakugekiSnipeBossEnemy.h"
 
 
 void EnemyManager::Init() {
@@ -33,7 +33,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy1({.x=0.0f,.y=0.0f,.z=10.0f});
+  GenerateNormalEnemy3({.x=0.0f,.y=0.0f,.z=10.0f});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {
@@ -132,7 +132,7 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std:
 
 void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
-  std::shared_ptr<NormalEnemy3> enemy = std::make_shared<NormalEnemy3>();
+  std::shared_ptr<StalkerNormalEnemy> enemy = std::make_shared<StalkerNormalEnemy>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化
@@ -151,7 +151,7 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std:
 
 void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   // ボスの生成
-  std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<FirstBossEnemy>();
+  std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<BakugekiSnipeBossEnemy>();
   // 初期化
   enemy->Init();
   // 座標の設定

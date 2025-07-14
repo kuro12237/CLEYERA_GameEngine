@@ -1,9 +1,8 @@
-#include "BossEnemyBullet1.h"
+#include "BakugekiSnipeBossEnemyBullet1.h"
 #include "Player/Core/playerCore.h"
 #include "Wall/Wall.h"
-#include "BossEnemyBullet1.h"
 
-void BossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPosition,
+void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPositio) {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemyBullet);
@@ -39,7 +38,7 @@ void BossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPosition,
   attackPower_->SetPower(10);
 }
 
-void BossEnemyBullet1::Update() {
+void BakugekiSnipeBossEnemyBullet1::Update() {
 
   // 最大5秒まで表示その後に消える
   displayTime_ += DELTA_TIME_;
@@ -55,7 +54,7 @@ void BossEnemyBullet1::Update() {
 
 }
 
-void BossEnemyBullet1::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void BakugekiSnipeBossEnemyBullet1::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 

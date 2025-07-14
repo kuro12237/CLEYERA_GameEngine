@@ -1,8 +1,8 @@
 #pragma once
 
 /**
- * @file GunNormalEnemyBullet.h
- * @brief 雑魚敵の弾クラス
+ * @file BakugekiSnipeBossEnemyBullet1.h
+ * @brief バクゲキスナイプ(ボス)の弾クラス
  * @author 茂木翼
  */
 
@@ -13,12 +13,12 @@
 /// <summary>
 /// ボス敵の弾
 /// </summary>
-class BossEnemyBullet1 : public BaseBossEnemyBullet {
+class BakugekiSnipeBossEnemyBullet1 : public BaseBossEnemyBullet {
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  BossEnemyBullet1() = default;
+  BakugekiSnipeBossEnemyBullet1() = default;
 
   /// <summary>
   /// 初期化
@@ -34,7 +34,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~BossEnemyBullet1() = default;
+  ~BakugekiSnipeBossEnemyBullet1() = default;
 
   void OnCollision(std::weak_ptr<ObjectComponent> other);
 

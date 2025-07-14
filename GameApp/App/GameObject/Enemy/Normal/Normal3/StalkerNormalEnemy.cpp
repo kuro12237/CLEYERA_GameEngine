@@ -1,4 +1,4 @@
-#include "NormalEnemy3.h"
+#include "StalkerNormalEnemy.h"
 
 #include "Enemy/Normal/Behavior/NormalEnemyAttack.h"
 #include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInRange.h"
@@ -12,7 +12,7 @@
 #include "Player/Core/playerCore.h"
 #include"Player/Attack/Interface/IPlayerBullet.h"
 
-void NormalEnemy3::Init() {
+void StalkerNormalEnemy::Init() {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemy2);
 
@@ -76,7 +76,7 @@ void NormalEnemy3::Init() {
   hp_->Init();
 }
 
-void NormalEnemy3::Update() {
+void StalkerNormalEnemy::Update() {
 
   // hp処理
   hp_->Update();
@@ -145,7 +145,7 @@ void NormalEnemy3::Update() {
 
 }
 
-void NormalEnemy3::ImGuiUpdate() {
+void StalkerNormalEnemy::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
@@ -187,7 +187,7 @@ void NormalEnemy3::ImGuiUpdate() {
   }
 }
 
-void NormalEnemy3::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void StalkerNormalEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 
@@ -211,7 +211,7 @@ void NormalEnemy3::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 }
 
-void NormalEnemy3::KnockBack() {
+void StalkerNormalEnemy::KnockBack() {
   // ランダムの値で位置を決める
   // SRは固定
   std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
@@ -247,7 +247,7 @@ void NormalEnemy3::KnockBack() {
   }
 }
 
-void NormalEnemy3::Killed() {
+void StalkerNormalEnemy::Killed() {
   if (isAlive_ == false) {
     // 縮小
     const float_t SCALE_DOWN = 0.05f;
