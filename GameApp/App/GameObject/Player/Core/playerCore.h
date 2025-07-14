@@ -3,17 +3,18 @@
 #include "CLEYERA.h"
 #include "Lua/Script/LuaScript.h"
 
+#include "../Command/PlayerCommandHandler.h"
+
+#include "../State/Action/Interface/IPlayerActionState.h"
+#include "../State/Action/LowAttack/PlayerLowAttackState.h"
+
 #include "Move/PlayerMoveFunc.h"
 
 #include "../Attack/Interface/IMagicAttack.h"
-
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
 #include "../Attack/Low/Back/LowAttack_Back.h"
-
 #include "../Attack/High/Normal/HighAttack_Normal.h"
-
 #include "../Attack/Special/Normal/SpecialAttack_Normal.h"
-
 #include "../Attack/Manager/PlayerBulletManager.h"
 
 // 前方宣言
@@ -79,6 +80,11 @@ public:
 	/// 衝突時コールバック
 	/// </summary>
 	void OnCollision(std::weak_ptr<ObjectComponent> other);
+
+	/// <summary>
+	/// Stateの変更
+	/// </summary>
+	void ChangeActionState(std::unique_ptr<IPlayerActionState> newState);
 
 	void ImGuiUpdate() override;
 
@@ -172,6 +178,12 @@ private:
 	const float_t MAX_KNOCK_BACK_TIME_ = 3.0f;
 
 private:
+
+	// CommandHandler
+	std::unique_ptr<PlayerCommandHandler> commandHandler_;
+	
+	// State
+	std::unique_ptr<IPlayerActionState> state_;
 
 	// ItemManagerのweak_ptr
 	std::weak_ptr<ItemManager> itemMgr_;

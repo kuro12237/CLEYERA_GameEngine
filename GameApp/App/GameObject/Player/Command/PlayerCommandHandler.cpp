@@ -10,12 +10,12 @@
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerCommandHandler::PlayerCommandHandler(std::weak_ptr<PlayerCore> player) {
+PlayerCommandHandler::PlayerCommandHandler(PlayerCore * ptr) {
   // 入力デバイス
   input_ = CLEYERA::Manager::InputManager::GetInstance();
 
   // プレイヤーのポインタ
-  player_ = player;
+  p_Player_ = ptr;
 }
 
 /// <summary>
@@ -95,7 +95,7 @@ void PlayerCommandHandler::Exec() {
   // キュー内の全コマンドを順次実行
   while (!commands_.empty()) {
     auto &command = commands_.front();
-    command->Exec(player_);
+    command->Exec(p_Player_);
     commands_.pop();
   }
 }

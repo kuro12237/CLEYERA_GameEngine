@@ -5,8 +5,8 @@
 /// <summary>
 /// 実行処理
 /// </summary>
-void PlayerDashCommand::Exec(const std::weak_ptr<PlayerCore> & player)
+void PlayerDashCommand::Exec(PlayerCore* ptr)
 {
 	// ダッシュ処理
-	player.lock()->Dash();
+	ptr->Dash();
 }

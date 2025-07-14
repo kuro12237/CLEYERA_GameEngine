@@ -214,6 +214,7 @@
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Manager\PlayerBulletManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.cpp" />
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
@@ -298,7 +299,8 @@
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
-    <ClInclude Include="App\GameObject\Player\State\Interface\IPlayerState.h" />
+    <ClInclude Include="App\GameObject\Player\State\Action\Interface\IPlayerActionState.h" />
+    <ClInclude Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.h" />
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="App\GameObject\UI\TestUI.h" />
     <ClInclude Include="App\GameObject\Wall\Wall.h" />

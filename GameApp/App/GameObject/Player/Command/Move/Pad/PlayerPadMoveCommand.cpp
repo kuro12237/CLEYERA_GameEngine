@@ -5,9 +5,9 @@
 /// <summary>
 /// 実行処理
 /// </summary>
-void PlayerPadMoveCommand::Exec(const std::weak_ptr<PlayerCore> & player)
+void PlayerPadMoveCommand::Exec(PlayerCore* ptr)
 {
 	// 移動処理
-	player.lock()->PadMove();
+	ptr->PadMove();
 }
 

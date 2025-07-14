@@ -11,6 +11,7 @@
 
 PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
 	lua_ = std::make_unique<LuaScript>();
+	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
 	bulletManager_ = bulManPtr;
@@ -42,6 +43,13 @@ void PlayerCore::Init() {
 	collider_->SetHitCallFunc(
 		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+
+	// コマンドハンドラー
+	commandHandler_->Init();
+
+	// Stateの初期化
+	//ChangeActionState(std::make_unique<nullptr>());
+
 	// 移動処理クラスの初期化
 	moveFunc_->Init();
 
@@ -51,6 +59,15 @@ void PlayerCore::Init() {
 
 void PlayerCore::Update() {
 	ObjectComponent::TransformUpdate();
+
+	// ハンドラー
+	commandHandler_->Handle();
+	commandHandler_->Exec();
+
+	// State
+	if ( state_ ) {
+		state_->Update();
+	}
 
 	// 移動処理クラス
 	moveFunc_->Update();
@@ -73,26 +90,6 @@ void PlayerCore::Update() {
 	if ( translate_.y <= -2.0f ) {
 		translate_ = { 0.0f, 1.0f, 0.0f };
 	}
-
-
-	if ( auto itemMgr = itemMgr_.lock() ) {
-		auto input = CLEYERA::Manager::InputManager::GetInstance();
-		if ( input->PushKeyPressed(DIK_H) ) {
-			itemMgr->RegisterHealItem(gameObject_->GetWorldPos());
-		}
-		if ( input->PushKeyPressed(DIK_I) ) {
-			itemMgr->RegisterAttackPickup(gameObject_->GetWorldPos());
-		}
-	}
-
-
-#ifdef _DEBUG
-	/*ImGui::Begin("PlayerCore");
-
-
-
-	ImGui::End();*/
-#endif // _DEBUG
 }
 
 void PlayerCore::PadMove()
@@ -276,6 +273,13 @@ Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3
 	return result;
 }
 
+
+void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
+{
+	if(state_ ) state_->Exit();
+	state_ = std::move(newState);
+	state_->Enter(this);
+}
 
 void PlayerCore::ImGuiUpdate()
 {
