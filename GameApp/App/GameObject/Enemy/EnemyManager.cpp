@@ -4,7 +4,7 @@
 
 // 雑魚敵
 #include "Normal/Normal1/CannonNormalEnemy.h"
-#include "Normal/Normal2/NormalEnemy2.h"
+#include "Normal/Normal2/GunNormalEnemy.h"
 #include "Normal/Normal3/NormalEnemy3.h"
 
 // ボス
@@ -112,7 +112,7 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
 
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
-  std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
+  std::shared_ptr<GunNormalEnemy> enemy = std::make_shared<GunNormalEnemy>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化

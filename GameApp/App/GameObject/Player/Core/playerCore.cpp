@@ -3,7 +3,7 @@
 #include "Wall/Wall.h"
 
 #include "Enemy/Normal/Normal1/CannonNormalEnemy1Bullet.h"
-#include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
+#include "Enemy/Normal/Normal2/GunNormalEnemyBullet.h"
 
 #include "../../Item/Manager/ItemManager.h"
 #include "../../Item/AttackPickup/AttackPickupItem.h"
@@ -174,7 +174,7 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 	}
 
 	// bullet2 型にキャストできるかをチェック
-	if ( auto bullet2 = std::dynamic_pointer_cast< NormalEnemy2Bullet >(obj) ) {
+	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
 
 		hpCalcFunc_(bullet2->GetAttackPower());
 	}

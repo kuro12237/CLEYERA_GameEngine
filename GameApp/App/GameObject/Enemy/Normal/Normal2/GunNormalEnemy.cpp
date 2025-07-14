@@ -1,4 +1,4 @@
-#include "NormalEnemy2.h"
+#include "GunNormalEnemy.h"
 
 #include "Enemy/Normal/Behavior/NormalEnemyAttack.h"
 #include "Enemy/Normal/Behavior/NormalEnemyIsPlayerInRange.h"
@@ -12,9 +12,9 @@
 
 #include"Player/Attack/Interface/IPlayerBullet.h"
 
-void NormalEnemy2::Init() {
+void GunNormalEnemy::Init() {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemy2);
+  name_ = VAR_NAME(GunNormalEnemy);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
@@ -75,7 +75,7 @@ void NormalEnemy2::Init() {
   hp_->Init();
 }
 
-void NormalEnemy2::Update() {
+void GunNormalEnemy::Update() {
 
   // hp処理
   hp_->Update();
@@ -141,7 +141,7 @@ void NormalEnemy2::Update() {
 
 }
 
-void NormalEnemy2::ImGuiUpdate() {
+void GunNormalEnemy::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
@@ -177,7 +177,7 @@ void NormalEnemy2::ImGuiUpdate() {
   }
 }
 
-void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void GunNormalEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 
@@ -201,7 +201,7 @@ void NormalEnemy2::OnCollision(std::weak_ptr<ObjectComponent> other) {
   }
 }
 
-void NormalEnemy2::KnockBack() {
+void GunNormalEnemy::KnockBack() {
   // ランダムの値で位置を決める
   // SRは固定
   std::uniform_real_distribution<float_t> distribute(-1.0f, 1.0f);
@@ -237,7 +237,7 @@ void NormalEnemy2::KnockBack() {
   }
 }
 
-void NormalEnemy2::Killed() {
+void GunNormalEnemy::Killed() {
   if (isAlive_ == false) {
     // 縮小
     const float_t SCALE_DOWN = 0.05f;

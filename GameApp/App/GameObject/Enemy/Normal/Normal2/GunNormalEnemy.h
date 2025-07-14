@@ -1,29 +1,28 @@
 #pragma once
 
 /**
- * @file NormalEnemy2Bullet.h
+ * @file GunNormalEnemyBullet.h
  * @brief 雑魚敵2クラス
  * @author 茂木翼
  */
 
-// 一直線
 
 #include <list>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "NormalEnemy2Bullet.h"
+#include "GunNormalEnemyBullet.h"
 
 #include"Wall/Wall.h"
 
 /// <summary>
-/// 最初の敵
+/// 雑魚敵(Gun)
 /// </summary>
-class NormalEnemy2 : public BaseNormalEnemy {
+class GunNormalEnemy : public BaseNormalEnemy {
 public:
   /// <summary>
   /// 最初のボス
   /// </summary>
-  NormalEnemy2() = default;
+  GunNormalEnemy() = default;
 
   /// <summary>
   /// 初期化
@@ -38,7 +37,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemy2() override = default;
+  ~GunNormalEnemy() override = default;
 
   /// <summary>
   /// imGUi

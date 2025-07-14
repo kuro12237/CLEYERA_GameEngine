@@ -1,7 +1,7 @@
 #include "BaseNormalEnemy.h"
 
 #include "Normal1/CannonNormalEnemy1Bullet.h"
-#include "Normal2/NormalEnemy2Bullet.h"
+#include "Normal2/GunNormalEnemyBullet.h"
 #include "Normal3/NormalEnemy3Bullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
@@ -29,11 +29,11 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
 
   case NormalBullet2:
     // 弾2
-    bullet = std::make_shared<NormalEnemy2Bullet>();
+    bullet = std::make_shared<GunNormalEnemyBullet>();
     bullet->Initialize(translate_, playerPosition_,false);
 
     //名前設定
-    tag = this->GetName() + "_" + VAR_NAME(NormalEnemy2Bullet);
+    tag = this->GetName() + "_" + VAR_NAME(GunNormalEnemyBullet);
     tag = tag + std::to_string(bulletCount_);
     bullet->SetName(tag);
     // 連番

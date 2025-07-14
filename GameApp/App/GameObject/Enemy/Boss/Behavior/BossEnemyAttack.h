@@ -15,8 +15,8 @@
 #include <list>
 
 #include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
-#include "Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
-#include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
+#include "Enemy/Normal/Normal1/CannonNormalEnemy1Bullet.h"
+#include "Enemy/Normal/Normal2/GunNormalEnemyBullet.h"
 
 /// <summary>
 /// 攻撃
