@@ -58,7 +58,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
       bulletCount_++;
 
       // 挿入
-      mgrObjList_->push_back(bullet);
+      objectManager_->CreateObject("BossNormalEnemy",bullet);
       bullets_.push_back(std::move(bullet));
 
       break;

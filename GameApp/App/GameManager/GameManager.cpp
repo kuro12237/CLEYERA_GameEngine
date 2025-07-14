@@ -32,6 +32,7 @@ void GameManager::Run() {
 
     imGuiManager->Begin();
 
+   
     engine_->PhysiceForcesUpdate();
 
     scene_->Update(this);
@@ -47,7 +48,9 @@ void GameManager::Run() {
     CLEYERA::Manager::CameraManager::GetInstance()->Update();
     CLEYERA::Manager::RenderManager::GetInstance()->Update();
 
+
     engine_->Update();
+
 #pragma endregion
 
 #pragma region レイトレーシング
@@ -129,16 +132,13 @@ void GameManager::ChangeScene(std::unique_ptr<SceneComponent> newScene) {
   scene_.reset();
 
   scene_ = std::move(newScene);
-  auto raytracingManager = engine_->GetRaytracingManager();
-
-  scene_->SetRaytracingManager(raytracingManager);
 
   scene_->Init();
 
   scene_->Update(this);
+  CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // engine_->End();
-  CLEYERA::Base::DX::DXCommandManager::GetInstace()->CommandClose();
   this->isChange_ = true;
   return;
 }

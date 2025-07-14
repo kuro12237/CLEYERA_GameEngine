@@ -88,10 +88,10 @@ void Engine::PhysiceForcesUpdate() { gravityManager_->Update(); }
 void Engine::Update() {
 
   terrain_->Update();
+  objectManager_->Update();
 
   terrain_->CheckObjct();
   colliderSystem_->Update();
-  objectManager_->Update();
   grid_->Update();
   lightManager_->Update();
 

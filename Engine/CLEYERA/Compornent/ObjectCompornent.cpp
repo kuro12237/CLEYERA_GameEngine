@@ -27,8 +27,6 @@ CLEYERA::Component::ObjectComponent::ObjectComponent() {
   gameObject_->SetName(name_);
 
   // 各マネージャーへのセット
-  objectManager_->AddObject(this->gameObject_);
-  renderManager_->PushObj(this->gameObject_);
 }
 
 void CLEYERA::Component::ObjectComponent::ImGuiUpdate() {

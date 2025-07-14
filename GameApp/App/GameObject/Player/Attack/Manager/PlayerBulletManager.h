@@ -6,7 +6,7 @@
 #include "../Interface/IPlayerBullet.h"
 
 /* プレイヤーの発射物管理クラス */
-class PlayerBulletManager : public CLEYERA::Component::ManagerCompornent {
+class PlayerBulletManager : public CLEYERA::Component::ManagerComponent {
 
 public:
   /// <summary>

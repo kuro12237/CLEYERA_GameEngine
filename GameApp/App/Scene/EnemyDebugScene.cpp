@@ -18,16 +18,16 @@ void EnemyDebugScene::Init() {
   for (auto &manager : managerComponents_) {
     manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
-    for (auto &obj : manager.lock()->GetObjList()) {
+    //for (auto &obj : manager.lock()->GetObjList()) {
 
-      // 無視
-      objectList_.push_back(obj.lock()->GetGameObject());
+    //  // 無視
+    //  objectList_.push_back(obj.lock()->GetGameObject());
 
-      // 重力適用
-      gravityManager_->PushData(obj);
-      // 地形当たり判定適用
-      terrain_->PushData(obj);
-    }
+    //  // 重力適用
+    //  gravityManager_->PushData(obj);
+    //  // 地形当たり判定適用
+    //  terrain_->PushData(obj);
+    //}
   }
 
   // 地形モデルの設定

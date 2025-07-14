@@ -29,7 +29,7 @@ void PlayerBulletManager::Update() {
 /// </summary>
 void PlayerBulletManager::PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul) {
   if (newBul) {
-    objComponents_.push_back(newBul);
+    objectManager_->CreateObject("PlayerBullet",newBul);
     bullets_.push_back(std::move(newBul));
   }
 }

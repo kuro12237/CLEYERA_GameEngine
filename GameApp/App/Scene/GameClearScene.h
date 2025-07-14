@@ -10,7 +10,6 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
-#include "TestPlayGui/TestPlayGui.h"
 
 #include "UI/TestUI.h"
 

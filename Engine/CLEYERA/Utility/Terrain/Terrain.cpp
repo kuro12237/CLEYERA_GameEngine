@@ -18,9 +18,7 @@ void CLEYERA::Manager::Terrain::Init() {
   this->gameObj_->Update();
 
   renderManager_->PushObj(gameObj_);
-  renderManager_->PushObj(gameObj_);
-  renderManager_->PushObj(gameObj_);
-  objectManager_->AddObject(gameObj_);
+  //objectManager_->AddObject(gameObj_);
 
   CLEYERA::Model3d::MeshData *meshData = gameObj_->GetModel().lock()->GetMeshData();
   CLEYERA::Model3d::system::VertexData data = meshData->GetData();
@@ -94,6 +92,7 @@ void CLEYERA::Manager::Terrain::Update() {
     triCollider_[i].dot =
         Math::Vector::Func::Dot(triCollider_[i].normal * -1, triCollider_[i].vertex[0]);
   }
+  gameObj_->Update();
 }
 
 void CLEYERA::Manager::Terrain::Finalize() {

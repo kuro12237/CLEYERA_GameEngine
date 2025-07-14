@@ -21,7 +21,7 @@ class PlayerManager;
 /// <summary>
 /// 敵管理クラス
 /// </summary>
-class EnemyManager : public CLEYERA::Component::ManagerCompornent {
+class EnemyManager : public CLEYERA::Component::ManagerComponent {
 public:
   /// <summary>
   /// 初期化
