@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file NormalEnemy3Bullet.h
+ * @file StalkerEnemyBullet.h
  * @brief 雑魚敵3の弾クラス
  * @author 茂木翼
  */
@@ -11,14 +11,14 @@
 #include "Enemy/Normal/BaseNormalEnemyBullet.h"
 
 /// <summary>
-/// 雑魚敵の弾
+/// 追跡の敵の弾
 /// </summary>
-class NormalEnemy3Bullet : public BaseNormalEnemyBullet {
+class StalkerEnemyBullet : public BaseNormalEnemyBullet {
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  NormalEnemy3Bullet() = default;
+  StalkerEnemyBullet() = default;
 
   /// <summary>
   /// 初期化
@@ -37,7 +37,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~NormalEnemy3Bullet() = default;
+  ~StalkerEnemyBullet() = default;
 
   void OnCollision(std::weak_ptr<ObjectComponent> other);
 

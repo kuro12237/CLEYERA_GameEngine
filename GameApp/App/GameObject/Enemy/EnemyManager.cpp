@@ -3,12 +3,12 @@
 #include "Player/PlayerManager.h"
 
 // 雑魚敵
-#include "Normal/Normal1/CannonNormalEnemy.h"
-#include "Normal/Normal2/GunNormalEnemy.h"
-#include "Normal/Normal3/StalkerNormalEnemy.h"
+#include "Normal/Cannon/CannonNormalEnemy.h"
+#include "Normal/Gun/GunNormalEnemy.h"
+#include "Normal/Stalker/StalkerNormalEnemy.h"
 
 // ボス
-#include "Boss/First/BakugekiSnipeBossEnemy.h"
+#include "Boss/BakugekiSnipe/BakugekiSnipeBossEnemy.h"
 
 
 void EnemyManager::Init() {

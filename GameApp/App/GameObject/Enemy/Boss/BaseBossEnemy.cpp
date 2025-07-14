@@ -1,6 +1,6 @@
 #include "BaseBossEnemy.h"
-#include "First/BakugekiSnipeBossEnemyBullet1.h"
-#include "First/BakugekiSnipeBossEnemyBullet2.h"
+#include "BakugekiSnipe/BakugekiSnipeBossEnemyBullet1.h"
+#include "BakugekiSnipe/BakugekiSnipeBossEnemyBullet2.h"
 
 
 void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {

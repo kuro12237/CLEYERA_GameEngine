@@ -11,7 +11,7 @@
 #include <list>
 
 #include "Enemy/Normal/BaseNormalEnemy.h"
-#include "NormalEnemy3Bullet.h"
+#include "StalkerEnemyBullet.h"
 
 #include"Wall/Wall.h"
 

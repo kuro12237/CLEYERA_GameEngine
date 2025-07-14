@@ -1,8 +1,8 @@
-#include "NormalEnemy3Bullet.h"
+#include "StalkerEnemyBullet.h"
 #include "Player/Core/playerCore.h"
 #include "Wall/Wall.h"
 
-void NormalEnemy3Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
+void StalkerEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition,
                                     const bool &isPersistentlyTrack) {
   // 名前の設定
@@ -40,7 +40,7 @@ void NormalEnemy3Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
   attackPower_->SetPower(10);
 }
 
-void NormalEnemy3Bullet::Update() {
+void StalkerEnemyBullet::Update() {
 
     // 最大5秒まで表示その後に消える
     displayTime_ += DELTA_TIME_;
@@ -70,7 +70,7 @@ void NormalEnemy3Bullet::Update() {
 
 }
 
-void NormalEnemy3Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void StalkerEnemyBullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 

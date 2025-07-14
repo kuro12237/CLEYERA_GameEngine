@@ -1,8 +1,8 @@
 #include "BaseNormalEnemy.h"
 
-#include "Normal1/CannonNormalEnemy1Bullet.h"
-#include "Normal2/GunNormalEnemyBullet.h"
-#include "Normal3/NormalEnemy3Bullet.h"
+#include "Cannon/CannonNormalEnemy1Bullet.h"
+#include "Gun/GunNormalEnemyBullet.h"
+#include "Stalker/StalkerEnemyBullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   std::shared_ptr<BaseNormalEnemyBullet> bullet = nullptr;
@@ -47,11 +47,11 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   
   case NormalBullet3:
       // 弾3
-      bullet = std::make_shared<NormalEnemy3Bullet>();
+      bullet = std::make_shared<StalkerEnemyBullet>();
       bullet->Initialize(translate_, playerPosition_, false);
 
       //名前設定
-      tag = this->GetName() + "_" + VAR_NAME(NormalEnemy3Bullet);
+      tag = this->GetName() + "_" + VAR_NAME(StalkerEnemyBullet);
       tag = tag + std::to_string(bulletCount_);
       bullet->SetName(tag);
       // 連番
