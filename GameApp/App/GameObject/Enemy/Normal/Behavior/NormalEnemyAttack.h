@@ -15,8 +15,8 @@
 #include <list>
 
 #include "NormalEnemyCondition.h"
-#include "Enemy/Normal/Normal1/CannonNormalEnemy1Bullet.h"
-#include "Enemy/Normal/Normal2/GunNormalEnemyBullet.h"
+#include "Enemy/Normal/Cannon/CannonNormalEnemy1Bullet.h"
+#include "Enemy/Normal/Gun/GunNormalEnemyBullet.h"
 
 /// <summary>
 /// 攻撃

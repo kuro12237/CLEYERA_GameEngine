@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file FirstBossEnemy.h
+ * @file BakugekiSnipeBossEnemy.h
  * @brief 最初の敵クラス
  * @author 茂木翼
  */
@@ -12,12 +12,12 @@
 /// <summary>
 /// 最初の敵
 /// </summary>
-class FirstBossEnemy : public BaseBossEnemy {
+class BakugekiSnipeBossEnemy : public BaseBossEnemy {
  public:
 	/// <summary>
    /// 最初のボス
    /// </summary>
-   FirstBossEnemy() = default;
+   BakugekiSnipeBossEnemy() = default;
 
    /// <summary>
    /// 初期化
@@ -48,7 +48,7 @@ class FirstBossEnemy : public BaseBossEnemy {
    /// <summary>
    /// デストラクタ
    /// </summary>
-   ~FirstBossEnemy() override = default;
+   ~BakugekiSnipeBossEnemy() override = default;
 
    void OnCollision(std::weak_ptr<ObjectComponent> other);
 

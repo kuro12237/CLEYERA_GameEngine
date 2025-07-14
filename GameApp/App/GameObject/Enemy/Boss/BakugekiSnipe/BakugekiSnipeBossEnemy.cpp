@@ -1,4 +1,4 @@
-#include "FirstBossEnemy.h"
+#include "BakugekiSnipeBossEnemy.h"
 
 
 #include "Enemy/Boss/Behavior/BossEnemySelector.h"
@@ -8,7 +8,7 @@
 #include "Enemy/Boss/Behavior/BossEnemyIsPlayerInRange.h"
 #include "Enemy/Boss/Behavior/BossEnemyIsEnraged.h"
 #include "Enemy/Boss/Behavior/BossEnemyRandomAttackSelector.h"
-void FirstBossEnemy::Init() {
+void BakugekiSnipeBossEnemy::Init() {
    // 名前の設定
    name_ = VAR_NAME(FirstBossEnemy);
 
@@ -69,7 +69,7 @@ void FirstBossEnemy::Init() {
 
 }
 
-void FirstBossEnemy::Update() {
+void BakugekiSnipeBossEnemy::Update() {
 
 	//ビヘイビアツリーの実行
 	behaviorTree_->Execute(this);
@@ -109,7 +109,7 @@ void FirstBossEnemy::Update() {
 
 }
 
-void FirstBossEnemy::ImGuiUpdate() {
+void BakugekiSnipeBossEnemy::ImGuiUpdate() {
 #ifdef _DEBUG
   if (ImGui::TreeNode(name_.c_str()) == true) {
     ImGui::InputFloat3("Translate", &translate_.x);
@@ -121,11 +121,11 @@ void FirstBossEnemy::ImGuiUpdate() {
 #endif // _DEBUG
 }
 
-void FirstBossEnemy::KnockBack() {
+void BakugekiSnipeBossEnemy::KnockBack() {
 
 }
 
-void FirstBossEnemy::Killed() {
+void BakugekiSnipeBossEnemy::Killed() {
   if (hp_->GetHp() <= 0) {
     isAlive_ = false;
     isDelete_ = true;
@@ -134,7 +134,7 @@ void FirstBossEnemy::Killed() {
 
 
 
-void FirstBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void BakugekiSnipeBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
   other;
   //if (auto obj = other.lock()) {
   //  // Wall 型にキャストできるかをチェック

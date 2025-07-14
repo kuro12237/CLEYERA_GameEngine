@@ -32,7 +32,6 @@
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.cpp" />
     <ClCompile Include="App\GameManager\GameManager.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Player\Camera\PlayerCamera.cpp" />
@@ -45,7 +44,6 @@
     <ClCompile Include="App\Util\UtilFunc.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyNoneBehavior.cpp" />
@@ -57,25 +55,18 @@
     <ClCompile Include="App\GameObject\Player\Command\Attack\Basic\PlayerBasicAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\GunNormalEnemy.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal2\GunNormalEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Interface\IMagicAttack.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Attack\Standard\PlayerStandardAttackCommand.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.cpp" />
-    <ClCompile Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3Bullet.cpp" />
     <ClCompile Include="App\GameObject\Item\AttackPickup\AttackPickupItem.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.cpp" />
@@ -98,6 +89,15 @@
     <ClCompile Include="App\GameObject\UI\GameLowAttackUI.cpp" />
     <ClCompile Include="App\GameObject\UI\GameSkillBackUI.cpp" />
     <ClCompile Include="App\GameObject\UI\state\PlayState.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemyBullet1.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemyBullet2.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemyBullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy1Bullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Stalker\StalkerEnemyBullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Stalker\StalkerNormalEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -117,7 +117,6 @@
     <ClInclude Include="App\GameObject\Player\Command\Move\Key\PlayerKeyMoveCommand.h" />
     <ClInclude Include="App\GameManager\GameManager.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemy.h" />
-    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
     <ClInclude Include="App\GameObject\EnvironmentObject\EnvironmentObject.h" />
     <ClInclude Include="App\GameObject\Player\Camera\PlayerCamera.h" />
@@ -132,7 +131,6 @@
     <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyBehaviorNode.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyCondition.h" />
@@ -156,22 +154,15 @@
     <ClInclude Include="App\GameObject\Player\Command\Attack\Signature\PlayerSignatureAttackCommand.h" />
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
     <ClInclude Include="App\GameObject\Wall\WallManager.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\GunNormalEnemy.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal2\GunNormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyIsPlayerInAttackRange.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\BaseNormalEnemyBullet.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal1\CannonNormalEnemy1Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
     <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
     <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="App\GameObject\UI\TestUI.h" />
-    <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
-    <ClInclude Include="App\GameObject\Enemy\Boss\First\FirstBossEnemyBullet2.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3.h" />
-    <ClInclude Include="App\GameObject\Enemy\Normal\Normal3\NormalEnemy3Bullet.h" />
     <ClInclude Include="App\GameObject\Item\AttackPickup\AttackPickupItem.h" />
     <ClInclude Include="App\GameObject\Item\Interface\IItem.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.h" />
@@ -197,6 +188,15 @@
     <ClInclude Include="App\GameObject\UI\GameSkillBackUI.h" />
     <ClInclude Include="App\GameObject\UI\state\IuiState.h" />
     <ClInclude Include="App\GameObject\UI\state\PlayState.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemyBullet1.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemyBullet2.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemyBullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy1Bullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Stalker\StalkerEnemyBullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Stalker\StalkerNormalEnemy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

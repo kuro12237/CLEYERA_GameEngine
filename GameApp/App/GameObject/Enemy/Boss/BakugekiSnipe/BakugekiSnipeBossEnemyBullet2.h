@@ -1,8 +1,8 @@
 #pragma once
 
 /**
- * @file FirstBossEnemyBullet2.h
- * @brief ボス敵の弾2クラス
+ * @file BakugekiSnipeBossEnemyBullet2.h
+ * @brief バクゲキスナイプの弾2クラス
  * @author 茂木翼
  */
 
@@ -13,12 +13,12 @@
 /// <summary>
 /// ボス敵の弾2
 /// </summary>
-class FirstBossEnemyBullet2 : public BaseBossEnemyBullet {
+class BakugekiSnipeBossEnemyBullet2 : public BaseBossEnemyBullet {
 public:
   /// <summary>
   /// コンストラクタ
   /// </summary>
-  FirstBossEnemyBullet2() = default;
+  BakugekiSnipeBossEnemyBullet2() = default;
 
   /// <summary>
   /// 初期化
@@ -34,7 +34,7 @@ public:
   /// <summary>
   /// デストラクタ
   /// </summary>
-  ~FirstBossEnemyBullet2() = default;
+  ~BakugekiSnipeBossEnemyBullet2() = default;
 
   void OnCollision(std::weak_ptr<ObjectComponent> other);
 
