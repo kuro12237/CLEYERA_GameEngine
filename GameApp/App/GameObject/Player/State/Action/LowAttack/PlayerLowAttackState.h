@@ -3,7 +3,6 @@
 #include "../Interface/IPlayerActionState.h"
 
 
-/* LowAttackState */
 class PlayerLowAttackState : public IPlayerActionState {
 
 public:

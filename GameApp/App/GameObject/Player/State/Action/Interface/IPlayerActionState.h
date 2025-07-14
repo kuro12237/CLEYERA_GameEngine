@@ -4,7 +4,7 @@
 // 前方宣言
 class PlayerCore;
 
-/* PlayerのStateの基底クラス */
+/* PlayerのAction　Stateの基底クラス */
 class IPlayerActionState {
 
 public:

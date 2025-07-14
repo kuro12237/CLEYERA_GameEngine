@@ -183,7 +183,7 @@ private:
 	std::unique_ptr<PlayerCommandHandler> commandHandler_;
 	
 	// State
-	std::unique_ptr<IPlayerActionState> state_;
+	std::unique_ptr<IPlayerActionState> actionState_;
 
 	// ItemManagerのweak_ptr
 	std::weak_ptr<ItemManager> itemMgr_;

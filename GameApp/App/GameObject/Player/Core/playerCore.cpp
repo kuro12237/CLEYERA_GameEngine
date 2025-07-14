@@ -11,6 +11,7 @@
 
 PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
 	lua_ = std::make_unique<LuaScript>();
+	weakpCamera_ = cameraptr;
 	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
@@ -65,8 +66,8 @@ void PlayerCore::Update() {
 	commandHandler_->Exec();
 
 	// State
-	if ( state_ ) {
-		state_->Update();
+	if (actionState_) {
+		actionState_->Update();
 	}
 
 	// 移動処理クラス
@@ -273,12 +274,11 @@ Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3
 	return result;
 }
 
-
 void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
 {
-	if(state_ ) state_->Exit();
-	state_ = std::move(newState);
-	state_->Enter(this);
+	if(actionState_ ) actionState_->Exit();
+	actionState_ = std::move(newState);
+	actionState_->Enter(this);
 }
 
 void PlayerCore::ImGuiUpdate()
