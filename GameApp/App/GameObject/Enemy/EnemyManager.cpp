@@ -104,9 +104,9 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   // 各敵にlistptr持たせる
-  enemy->SetMgrObjList(objComponents_);
+  //enemy->SetMgrObjList(objComponents_);
 
-  objComponents_.push_back(enemy);
+  objectManager_->CreateObject("NormalEnemy1", enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -124,9 +124,9 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   // 各敵にlistptr持たせる
-  enemy->SetMgrObjList(objComponents_);
+  //enemy->SetMgrObjList(objComponents_);
 
-  objComponents_.push_back(enemy);
+  objectManager_->CreateObject("NormalEnemy2",enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -144,8 +144,8 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   // 各敵にlistptr持たせる
-  enemy->SetMgrObjList(objComponents_);
-  objComponents_.push_back(enemy);
+
+  objectManager_->CreateObject("NormalEnemy3", enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -157,7 +157,8 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 挿入
-  objComponents_.push_back(enemy);
+
+  objectManager_->CreateObject(VAR_NAME(FirstBossEnemy), enemy);
   bossEnemyList_.push_back(std::move(enemy));
 }
 
@@ -185,10 +186,10 @@ void EnemyManager::ImGuiUpdate() {
 
     ImGui::Separator();
 
-    for (auto obj : objComponents_) {
+  /*  for (auto obj : objComponents_) {
 
       obj.lock()->ImGuiUpdate();
-    }
+    }*/
 
     ImGui::TreePop();
   }

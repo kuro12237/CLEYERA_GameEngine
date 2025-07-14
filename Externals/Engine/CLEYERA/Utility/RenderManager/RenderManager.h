@@ -33,6 +33,11 @@ class RenderManager {
 
    void SetPipline(Graphics::PostEffect_Mode mode);
 
+   void Clear() {
+     this->objs_.clear();
+     line3ds_.clear();
+   }
+
  private:
    /// <summary>
    /// newobjsに入っていたらobjvecに登録

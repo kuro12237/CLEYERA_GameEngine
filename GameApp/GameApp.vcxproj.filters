@@ -68,7 +68,6 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
-    <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.cpp" />
@@ -164,7 +163,6 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
     <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
-    <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
     <ClInclude Include="App\GameObject\UI\TestUI.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\First\BossEnemyBullet1.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />

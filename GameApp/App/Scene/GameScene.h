@@ -11,8 +11,6 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
-#include "TestPlayGui/TestPlayGui.h"
-
 #include "UI/TestUI.h"
 #include"UI/state/PlayState.h"
 
@@ -41,7 +39,6 @@ private:
 
   std::shared_ptr<WallManager> wallManager_ = nullptr;
 
-  std::shared_ptr<TestPlayGui> imgui_ = nullptr;
 
   std::vector<std::shared_ptr<TestUI>> uis_;
 

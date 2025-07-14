@@ -1,5 +1,7 @@
 #pragma once
 #include "Compornent/ObjectCompornent.h"
+#include "Utility/PhysicsForces/GravityManager.h"
+#include "Utility/Terrain/Terrain.h"
 
 namespace CLEYERA {
 
@@ -30,16 +32,6 @@ public:
 
   void ImGuiUpdate();
 
-  void AddObject(std::shared_ptr<Model3d::Game3dObject> object) {
-    objectList_.push_back(object);
-  }
-
-  const std::vector<std::weak_ptr<Model3d::Game3dObject>> &
-
-  GetObjectList() const {
-    return objectList_;
-  }
-
   /// <summary>
   /// オブジェクトの合計数を読み込む関数
   /// </summary>
@@ -48,16 +40,22 @@ public:
   /// <summary>
   /// オブジェクトを作成(jsonで確保した配列に作成)
   /// </summary>
-  void CreateObject(const std::string &category,std::shared_ptr<Component::ObjectComponent>obj);
+  void CreateObject(const std::string &category,
+                    std::shared_ptr<Component::ObjectComponent> obj);
 
   void DeleteObject(std::weak_ptr<Component::ObjectComponent> obj);
 
-private:
-  std::vector<std::weak_ptr<Model3d::Game3dObject>> objectList_ = {};
+  std::map<std::string,
+           std::map<std::string, std::shared_ptr<Component::ObjectComponent>>>
+  GetObjects() const {
+    return objects_;
+  }
 
-  std::map<std::string,std::map<std::string, std::shared_ptr<Component::ObjectComponent>>>
+private:
+  std::map<std::string,
+           std::map<std::string, std::shared_ptr<Component::ObjectComponent>>>
       objects_;
-  std::map<std::string,std::vector<std::string>> unUseObjsName_;
+  std::map<std::string, std::vector<std::string>> unUseObjsName_;
 
 #pragma region Singleton
 

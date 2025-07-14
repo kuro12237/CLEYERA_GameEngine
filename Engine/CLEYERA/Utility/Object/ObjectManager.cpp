@@ -15,10 +15,15 @@ void CLEYERA::Manager::ObjectManager::Update() {
         obj->SetMode(Component::ObjectComponent::OBJ_MODE::ACTIVE);
         obj->Update();
         obj->GameObjectUpdate();
+
+        Manager::GravityManager::GetInstance()->PushData(obj);
+        CLEYERA::Manager::Terrain::GetInstance()->PushData(obj);
+
         break;
       }
 
       case Component::ObjectComponent::OBJ_MODE::REMOVE: {
+        obj->Finalize();
         // 削除対象
         DeleteObject(obj);
         break;
@@ -45,19 +50,7 @@ void CLEYERA::Manager::ObjectManager::Update() {
   }
 }
 
-void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {
-
-  for (auto it = objectList_.begin(); it != objectList_.end();) {
-
-    if (!(*it).expired()) {
-
-      (*it).lock()->ImGuiUpdate();
-      ++it;
-    } else {
-      it = objectList_.erase(it);
-    }
-  }
-}
+void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {}
 
 void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
   const std::string filePath = "Resources/Configs/SceneObjectNum/" + file;
@@ -117,17 +110,36 @@ void CLEYERA::Manager::ObjectManager::CreateObject(
     const std::string &category,
     std::shared_ptr<Component::ObjectComponent> obj) {
 
+  // カテゴリが存在しない場合、自動で128個作成
   auto itCategory = unUseObjsName_.find(category);
-  if (itCategory == unUseObjsName_.end() || itCategory->second.empty()) {
+  if (itCategory == unUseObjsName_.end()) {
+    for (uint32_t i = 0; i < 128; ++i) {
+      std::string fullName = category;
+      if (i > 0) {
+        std::ostringstream oss;
+        oss << "." << std::setfill('0') << std::setw(3) << i;
+        fullName += oss.str();
+      }
+
+      // 登録
+      objects_[category][fullName] = nullptr;
+      unUseObjsName_[category].push_back(fullName);
+    }
+  }
+
+  // 使用可能名がないならエラー
+  if (unUseObjsName_[category].empty()) {
     std::cerr << "No available object names for category: " << category
               << std::endl;
     return;
   }
 
+  itCategory = unUseObjsName_.find(category);
   std::string name = itCategory->second.front();
   itCategory->second.erase(itCategory->second.begin());
   // 登録
   objects_[category][name] = obj;
+  RenderManager::GetInstance()->PushObj(obj->GetGameObject());
 
   // 名前とカテゴリを設定
   obj->SetName(name);

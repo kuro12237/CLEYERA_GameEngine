@@ -19,8 +19,7 @@ void CLEYERA::Manager::RenderManager::Update() {
         objList.end());
   }
 
-  // 新しいオブジェクトを登録
-  SettingObjs();
+
 
   // knumに値があったらエラー
   if (!objs_[Graphics::RasterPipline_Mode3d::kNum].empty()) {
@@ -54,7 +53,7 @@ void CLEYERA::Manager::RenderManager::Draw3d() {
     auto it = obj.lock();
     if (it) {
 
-      it->DrawLine3d();
+      //it->DrawLine3d();
     } else {
     }
   }
@@ -76,16 +75,4 @@ void CLEYERA::Manager::RenderManager::PopLine3d(
   });
 }
 
-void CLEYERA::Manager::RenderManager::SettingObjs() {
 
-  while (!newObjs_.empty()) {
-    auto obj = newObjs_.front().lock();
-
-    if (!obj) {
-      continue;
-    }
-
-    objs_[obj->GetRasterMode()].push_back(obj);
-    newObjs_.pop();
-  }
-}
