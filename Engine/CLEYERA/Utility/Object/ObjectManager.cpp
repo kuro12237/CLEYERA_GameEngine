@@ -50,10 +50,33 @@ void CLEYERA::Manager::ObjectManager::Update() {
   }
 }
 
-void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {}
+void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {
+
+  ImGui::Begin("ObjManager");
+
+  for (const auto &m : objects_) {
+
+    if (ImGui::TreeNode(m.first.c_str())) {
+
+      for (const auto &obj : m.second) {
+
+        if (!obj.second) {
+          continue;
+        }
+        obj.second->ImGuiUpdate();
+      }
+      ImGui::TreePop();
+    }
+  }
+
+  ImGui::End();
+}
 
 void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
   const std::string filePath = "Resources/Configs/SceneObjectNum/" + file;
+
+  CLEYERA::Manager::RenderManager::GetInstance()->Clear();
+  Clear();
 
   std::ifstream ifs(filePath);
   if (!ifs) {
