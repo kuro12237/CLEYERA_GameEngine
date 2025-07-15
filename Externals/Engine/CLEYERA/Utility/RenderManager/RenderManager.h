@@ -26,7 +26,10 @@ class RenderManager {
 
    void Draw3d();
 
-   void PushObj(std::weak_ptr<Model3d::Game3dObject> obj) { newObjs_.push(obj); }
+   void PushObj(std::weak_ptr<Model3d::Game3dObject> obj) {
+     objs_[obj.lock()->GetRasterMode()].push_back(obj);
+   }
+
    void PushLine3d(std::weak_ptr<Model3d::Line3d> obj) { line3ds_.push_back(obj); }
  
    void PopLine3d(std::weak_ptr<Model3d::Line3d> line);
@@ -39,10 +42,7 @@ class RenderManager {
    }
 
  private:
-   /// <summary>
-   /// newobjsに入っていたらobjvecに登録
-   /// </summary>
-   void SettingObjs();
+  
 
    std::queue<std::weak_ptr<Model3d::Game3dObject>> newObjs_;
 

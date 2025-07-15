@@ -32,6 +32,8 @@ public:
 
   void ImGuiUpdate();
 
+  void Clear() { objects_.clear(), unUseObjsName_.clear(); }
+
   /// <summary>
   /// オブジェクトの合計数を読み込む関数
   /// </summary>

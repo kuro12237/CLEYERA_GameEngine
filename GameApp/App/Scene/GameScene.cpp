@@ -2,6 +2,8 @@
 #include "../GameManager/GameManager.h"
 
 GameScene::GameScene() {
+  CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
+
   itemManager_ = std::make_shared<ItemManager>();
   playerManager_ = std::make_shared<PlayerManager>(itemManager_);
 }
@@ -9,8 +11,7 @@ GameScene::GameScene() {
 void GameScene::Init() {
   uis_.resize(2);
 
-  CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
-
+ 
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TestData");
 
@@ -28,6 +29,8 @@ void GameScene::Init() {
 
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
+
+  CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // 初期化
   for (auto manager : managerComponents_) {
