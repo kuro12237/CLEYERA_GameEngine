@@ -71,6 +71,7 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
   for (const auto &m : this->managerComponents_) {
     m.lock()->Update();
+    m.lock()->CollectAllManagers();
   }
 
   // sprite更新

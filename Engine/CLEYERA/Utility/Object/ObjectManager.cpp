@@ -84,7 +84,7 @@ void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
     return;
   }
 
-  nlohmann::json jsonRoot;
+  json jsonRoot;
   ifs >> jsonRoot;
 
   // グループ名（例: "test"）を指定// ファイル名（例:
@@ -129,11 +129,32 @@ void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
   }
 }
 
-void CLEYERA::Manager::ObjectManager::CreateObject(
-    const std::string &category,
-    std::shared_ptr<Component::ObjectComponent> obj) {
+void CLEYERA::Manager::ObjectManager::DeleteObject(
+    std::weak_ptr<Component::ObjectComponent> obj) {
+  if (!obj.lock())
+    return;
 
-  // カテゴリが存在しない場合、自動で128個作成
+  const std::string &name = obj.lock()->GetName();
+  const std::string &category = obj.lock()->GetCategory();
+
+  auto itCat = objects_.find(category);
+  if (itCat != objects_.end()) {
+    auto &nameMap = itCat->second;
+    auto itName = nameMap.find(name);
+    if (itName != nameMap.end()) {
+      itName->second.reset();
+    }
+  }
+
+  // 名前を unUse に戻す
+  unUseObjsName_[category].push_back(name);
+}
+
+void CLEYERA::Manager::ObjectManager::ObjectRegister(
+    const std::string &category, const size_t &size,
+                    const std::shared_ptr<CLEYERA::Component::ObjectComponent> &obj) {
+
+     // カテゴリが存在しない場合、自動で128個作成
   auto itCategory = unUseObjsName_.find(category);
   if (itCategory == unUseObjsName_.end()) {
     for (uint32_t i = 0; i < 128; ++i) {
@@ -154,7 +175,6 @@ void CLEYERA::Manager::ObjectManager::CreateObject(
   if (unUseObjsName_[category].empty()) {
     std::cerr << "No available object names for category: " << category
               << std::endl;
-    return;
   }
 
   itCategory = unUseObjsName_.find(category);
@@ -167,25 +187,6 @@ void CLEYERA::Manager::ObjectManager::CreateObject(
   // 名前とカテゴリを設定
   obj->SetName(name);
   obj->SetCategory(category);
-}
 
-void CLEYERA::Manager::ObjectManager::DeleteObject(
-    std::weak_ptr<Component::ObjectComponent> obj) {
-  if (!obj.lock())
-    return;
 
-  const std::string &name = obj.lock()->GetName();
-  const std::string &category = obj.lock()->GetCategory();
-
-  auto itCat = objects_.find(category);
-  if (itCat != objects_.end()) {
-    auto &nameMap = itCat->second;
-    auto itName = nameMap.find(name);
-    if (itName != nameMap.end()) {
-      itName->second = nullptr;
-    }
-  }
-
-  // 名前を unUse に戻す
-  unUseObjsName_[category].push_back(name);
 }

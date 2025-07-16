@@ -80,8 +80,10 @@ void EnemyManager::Update() {
   }
 
   // 雑魚敵の削除
-  enemyList_.remove_if(
-      [](const std::shared_ptr<BaseNormalEnemy> &enemy) { return enemy->GetIsDelete(); });
+  enemyList_.remove_if([](const std::shared_ptr<BaseNormalEnemy> &enemy) {
+    enemy->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+    return enemy->GetIsDelete();
+  });
 
   for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
     // プレイヤーの座標を設定
@@ -106,7 +108,7 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
   // 各敵にlistptr持たせる
   //enemy->SetMgrObjList(objComponents_);
 
-  objectManager_->CreateObject("NormalEnemy1", enemy);
+  objectManager_->CreateObject<CannonNormalEnemy>("NormalEnemy1", enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -126,7 +128,7 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std:
   // 各敵にlistptr持たせる
   //enemy->SetMgrObjList(objComponents_);
 
-  objectManager_->CreateObject("NormalEnemy2",enemy);
+  objectManager_->CreateObject<GunNormalEnemy>("NormalEnemy2",enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -145,7 +147,7 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std:
   // 挿入
   // 各敵にlistptr持たせる
 
-  objectManager_->CreateObject("NormalEnemy3", enemy);
+  objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy3", enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -158,7 +160,7 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   enemy->SetInitialPosition(position);
   // 挿入
 
-  objectManager_->CreateObject(VAR_NAME(FirstBossEnemy), enemy);
+  objectManager_->CreateObject<BakugekiSnipeBossEnemy>(VAR_NAME(FirstBossEnemy), enemy);
   bossEnemyList_.push_back(std::move(enemy));
 }
 

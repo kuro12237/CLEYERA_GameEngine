@@ -13,10 +13,11 @@ void PlayerBulletManager::Update() {
   for (auto it = bullets_.begin(); it != bullets_.end();) {
 
     // 更新処理
-    (*it)->Update();
+    //(*it)->Update();
 
     // 非アクティブなら削除し、次の有効なイテレータを取得
     if (!(*it)->IsActive()) {
+      (*it)->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
       it = bullets_.erase(it);
     } else {
       ++it; // アクティブなら次の要素へ
@@ -27,9 +28,10 @@ void PlayerBulletManager::Update() {
 /// <summary>
 /// 新しいBulletを追加
 /// </summary>
-void PlayerBulletManager::PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul) {
+void PlayerBulletManager::PushbackNewBullet(
+    const std::string &category, std::shared_ptr<IPlayerBullet> newBul) {
   if (newBul) {
-    objectManager_->CreateObject("PlayerBullet",newBul);
+    objectManager_->CreateObject<IPlayerBullet>(category,newBul);
     bullets_.push_back(std::move(newBul));
   }
 }

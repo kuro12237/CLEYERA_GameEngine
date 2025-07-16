@@ -25,8 +25,7 @@ public:
 
   virtual void ImGuiUpdate();
 
-  void CollectAllObjects(
-      std::list<std::weak_ptr<Component::ObjectComponent>> &outList);
+  void CollectAllManagers();
 
 #pragma region Get
 

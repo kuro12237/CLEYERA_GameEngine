@@ -32,7 +32,7 @@ public:
   /// <summary>
   /// 新しいBulletを追加
   /// </summary>
-  void PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul);
+  void PushbackNewBullet(const std::string& category, std::shared_ptr<IPlayerBullet> newBul);
 
   /// <summary>
   /// ImGuiの描画

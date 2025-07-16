@@ -52,7 +52,7 @@ void ItemManager::RegisterAttackPickup(const Math::Vector::Vec3 &popPosition) {
     item->SetName(name);
   }
 
-  objectManager_->CreateObject("AttackPickupItem", item);
+  objectManager_->CreateObject<AttackPickupItem>("AttackPickupItem", item);
   items_.push_back(std::move(item));
 
   attackPickupCount_++;
@@ -72,7 +72,7 @@ void ItemManager::RegisterHealItem(const Math::Vector::Vec3 &popPosition) {
     item->SetName(name);
   }
 
-  objectManager_->CreateObject("HealItem", item);
+  objectManager_->CreateObject<HealItem>("HealItem", item);
   items_.push_back(std::move(item));
 
   healCount_++;

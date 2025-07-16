@@ -8,7 +8,7 @@ void WallManager::Init() {
     std::shared_ptr<Wall> wall = std::make_shared<Wall>();
     wall->Init();
     walls_.push_back(wall);
-    objectManager_->CreateObject("wall", std::move(wall));
+    objectManager_->CreateObject<Wall>("wall", std::move(wall));
   }
 }
 
