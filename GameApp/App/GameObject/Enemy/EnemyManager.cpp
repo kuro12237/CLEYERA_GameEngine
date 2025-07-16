@@ -100,10 +100,6 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std:
   // 初期化
   enemy->Init();
 
-  if (name != "") {
-    enemy->SetName(name);
-  }
-
   // 挿入
   // 各敵にlistptr持たせる
   //enemy->SetMgrObjList(objComponents_);

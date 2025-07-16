@@ -1,6 +1,7 @@
 #include "ObjectManager.h"
 
 using json = nlohmann::json;
+using OBJ_MODE = CLEYERA::Component::ObjectComponent::OBJ_MODE;
 
 void CLEYERA::Manager::ObjectManager::Update() {
 
@@ -10,37 +11,41 @@ void CLEYERA::Manager::ObjectManager::Update() {
         continue;
 
       switch (obj->GetMode()) {
-      case Component::ObjectComponent::OBJ_MODE::SPAWN: {
+      case OBJ_MODE::SPAWN: {
+        auto gravity = Manager::GravityManager::GetInstance();
+        auto terrain = Manager::Terrain::GetInstance();
+
         obj->Init();
-        obj->SetMode(Component::ObjectComponent::OBJ_MODE::ACTIVE);
+        obj->SetMode(OBJ_MODE::ACTIVE);
         obj->Update();
         obj->GameObjectUpdate();
 
-        Manager::GravityManager::GetInstance()->PushData(obj);
-        CLEYERA::Manager::Terrain::GetInstance()->PushData(obj);
+        gravity->PushData(obj);
+        terrain->PushData(obj);
 
         break;
       }
 
-      case Component::ObjectComponent::OBJ_MODE::REMOVE: {
+      case OBJ_MODE::REMOVE: {
         obj->Finalize();
         // 削除対象
         DeleteObject(obj);
         break;
       }
 
-      case Component::ObjectComponent::OBJ_MODE::PAUSE: {
+      case OBJ_MODE::PAUSE: {
         // 一時停止中なので何もしない（Update済み）
+        obj->GameObjectUpdate();
         break;
       }
 
-      case Component::ObjectComponent::OBJ_MODE::INACTIVE: {
+      case OBJ_MODE::INACTIVE: {
         // 完全に非アクティブなのでスキップ
         // 必要なら Update() 呼ばない方が良い
         break;
       }
 
-      case Component::ObjectComponent::OBJ_MODE::ACTIVE: {
+      case OBJ_MODE::ACTIVE: {
         obj->Update();
         obj->GameObjectUpdate();
         break;
@@ -61,9 +66,10 @@ void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {
       for (const auto &obj : m.second) {
 
         if (!obj.second) {
-          continue;
+          return;
         }
         obj.second->ImGuiUpdate();
+ 
       }
       ImGui::TreePop();
     }
@@ -103,7 +109,6 @@ void CLEYERA::Manager::ObjectManager::LoadObjectData(const std::string &file) {
   }
 
   for (auto &[name, value] : itGroup->items()) {
-    // ["Enemy", 3] の形式チェック
     if (!value.is_array() || value.size() != 2 || !value[0].is_string() ||
         !value[1].is_number_unsigned()) {
       std::cerr << "Invalid object format for key: " << name << std::endl;
@@ -137,7 +142,6 @@ void CLEYERA::Manager::ObjectManager::DeleteObject(
   const std::string &name = obj.lock()->GetName();
   const std::string &category = obj.lock()->GetCategory();
 
-  
   // 名前を unUse に戻す
   unUseObjsName_[category].push_back(name);
 
@@ -149,17 +153,16 @@ void CLEYERA::Manager::ObjectManager::DeleteObject(
       itName->second.reset();
     }
   }
-
 }
 
 void CLEYERA::Manager::ObjectManager::ObjectRegister(
     const std::string &category, const size_t &size,
-                    const std::shared_ptr<CLEYERA::Component::ObjectComponent> &obj) {
+    const std::shared_ptr<CLEYERA::Component::ObjectComponent> &obj) {
 
-     // カテゴリが存在しない場合、自動で128個作成
+  // カテゴリが存在しない場合、自動で128個作成
   auto itCategory = unUseObjsName_.find(category);
   if (itCategory == unUseObjsName_.end()) {
-    for (uint32_t i = 0; i < 128; ++i) {
+    for (uint32_t i = 0; i < size; ++i) {
       std::string fullName = category;
       if (i > 0) {
         std::ostringstream oss;
@@ -189,6 +192,4 @@ void CLEYERA::Manager::ObjectManager::ObjectRegister(
   // 名前とカテゴリを設定
   obj->SetName(name);
   obj->SetCategory(category);
-
-
 }
