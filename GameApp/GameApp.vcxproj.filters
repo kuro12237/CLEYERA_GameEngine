@@ -96,6 +96,8 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy1Bullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Stalker\StalkerEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Stalker\StalkerNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemyBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -193,6 +195,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy1Bullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Stalker\StalkerEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Stalker\StalkerNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemyBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

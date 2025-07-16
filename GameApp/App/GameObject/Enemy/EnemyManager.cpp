@@ -9,6 +9,7 @@
 
 // ボス
 #include "Boss/BakugekiSnipe/BakugekiSnipeBossEnemy.h"
+#include "Normal/Donut/DonutNormalEnemy.h"
 
 
 void EnemyManager::Init() {
@@ -33,7 +34,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy3({.x=0.0f,.y=0.0f,.z=10.0f});
+  GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {
@@ -145,6 +146,25 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std:
 
   objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy3", enemy);
   enemyList_.push_back(std::move(enemy));
+}
+
+void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name){
+    // 敵の生成
+    std::shared_ptr<DonutNormalEnemy> enemy = std::make_shared<DonutNormalEnemy>();
+    // 座標の設定
+    enemy->SetInitialPosition(position);
+    // 初期化
+    enemy->Init();
+
+    if ( name != "" ) {
+        enemy->SetName(name);
+    }
+
+    // 挿入
+    // 各敵にlistptr持たせる
+    enemy->SetMgrObjList(objComponents_);
+    objComponents_.push_back(enemy);
+    enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {

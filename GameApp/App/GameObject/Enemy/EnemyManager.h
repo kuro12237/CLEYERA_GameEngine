@@ -53,6 +53,13 @@ public:
   void GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name = "");
 
   /// <summary>
+  /// ドーナツを生成
+  /// </summary>
+  /// <param name="position"></param>
+  /// <param name="name"></param>
+  void GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name = "");
+
+  /// <summary>
   /// ボス敵
   /// </summary>
   /// <param name="position">座標</param>
