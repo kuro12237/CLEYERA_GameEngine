@@ -93,7 +93,7 @@ void EnemyManager::Update() {
 }
 
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std::string name) {
-
+    name;
   // 敵の生成
   std::shared_ptr<CannonNormalEnemy> enemy = std::make_shared<CannonNormalEnemy>();
   // 座標の設定
@@ -162,8 +162,7 @@ void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std
 
     // 挿入
     // 各敵にlistptr持たせる
-    enemy->SetMgrObjList(objComponents_);
-    objComponents_.push_back(enemy);
+    objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy4", enemy);
     enemyList_.push_back(std::move(enemy));
 }
 
