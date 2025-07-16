@@ -9,9 +9,9 @@ PlayerManager::PlayerManager(std::weak_ptr<ItemManager> itemMgr) {
 
   camera_ = std::make_shared<PlayerCamera>();
   bulletManager_ = std::make_shared<PlayerBulletManager>();
-  std::shared_ptr<PlayerCore>core = std::make_shared<PlayerCore>(camera_, bulletManager_, itemMgr);
-  core_ = core;
-  objectManager_->CreateObject("Player", std::move(core));
+
+  core_ = objectManager_->CreateObject<PlayerCore>(
+      "PlayerCore", std::make_shared<PlayerCore>(camera_, bulletManager_, itemMgr));
 
   commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   hp_ = std::make_unique<HealthComponent>();
@@ -25,10 +25,9 @@ void PlayerManager::Init() {
   // カメラ
   ManagerComponent::cameraComponents_.push_back(camera_);
 
-
   // コマンドハンドラー
   commandHandler_->Init();
-  
+
   // バレットマネージャー
   this->childManagerComponents_.push_back(bulletManager_);
 
@@ -42,9 +41,9 @@ void PlayerManager::Init() {
   hp_->SetName(VAR_NAME(PlayerCore));
   hp_->Init();
 
-  //関数セット
-  core_.lock()->SetHpCalcfunc([this](int32_t attackPower) { hp_->CalcHp(attackPower); });
-
+  // 関数セット
+  core_.lock()->SetHpCalcfunc(
+      [this](int32_t attackPower) { hp_->CalcHp(attackPower); });
 }
 
 /// <summary>
@@ -57,7 +56,6 @@ void PlayerManager::Update() {
   // ハンドラー
   commandHandler_->Handle();
   commandHandler_->Exec();
-
 }
 
 void PlayerManager::ImGuiUpdate() {

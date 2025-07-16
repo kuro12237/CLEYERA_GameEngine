@@ -58,7 +58,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
       bulletCount_++;
 
       // 挿入
-      objectManager_->CreateObject("BossNormalEnemy",bullet);
+      objectManager_->CreateObject<StalkerEnemyBullet>("BossNormalEnemy",bullet);
       bullets_.push_back(std::move(bullet));
 
       break;

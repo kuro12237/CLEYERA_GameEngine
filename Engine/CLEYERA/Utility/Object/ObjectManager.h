@@ -42,8 +42,14 @@ public:
   /// <summary>
   /// オブジェクトを作成(jsonで確保した配列に作成)
   /// </summary>
-  void CreateObject(const std::string &category,
-                    std::shared_ptr<Component::ObjectComponent> obj);
+  template <typename T>
+  std::weak_ptr<T>
+  CreateObject(const std::string &category,
+               std::shared_ptr<Component::ObjectComponent> obj) {
+
+    this->ObjectRegister(category, 128, obj);
+    return std::dynamic_pointer_cast<T>(obj);
+  };
 
   void DeleteObject(std::weak_ptr<Component::ObjectComponent> obj);
 
@@ -58,6 +64,9 @@ private:
            std::map<std::string, std::shared_ptr<Component::ObjectComponent>>>
       objects_;
   std::map<std::string, std::vector<std::string>> unUseObjsName_;
+
+  void ObjectRegister(const std::string &category, const size_t &size,
+                      const std::shared_ptr<Component::ObjectComponent> &obj);
 
 #pragma region Singleton
 

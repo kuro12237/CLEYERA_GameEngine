@@ -11,14 +11,12 @@ GameScene::GameScene() {
 void GameScene::Init() {
   uis_.resize(2);
 
- 
+  //読み込み
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TestData");
 
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
-  uint32_t bulletNum =
-      modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
-  bulletNum;
+
 
   managerComponents_.push_back(itemManager_);
   managerComponents_.push_back(playerManager_);
@@ -61,8 +59,6 @@ void GameScene::Init() {
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandlet);
 
-  // 無視
-  // InitRaytracing();
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -71,6 +67,7 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
   for (const auto &m : this->managerComponents_) {
     m.lock()->Update();
+    m.lock()->CollectAllManagers();
   }
 
   // sprite更新

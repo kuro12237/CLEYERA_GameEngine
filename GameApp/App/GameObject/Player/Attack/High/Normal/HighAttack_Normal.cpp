@@ -107,7 +107,7 @@ void HighAttack_Normal::FireOneBullet(int columnIndex)
     bullet->Init();
     bullet->SetName(bulletName);
 
-    bulletManager->PushbackNewBullet(std::move(bullet));
+    bulletManager->PushbackNewBullet(VAR_NAME(HighAttack_NormalBullet),std::move(bullet));
 
     bulletCount_++;
 }

@@ -3,9 +3,6 @@
 
 void SpecialAttack_NormalBullet::Init()
 {
-	// クラス名
-	ObjectComponent::name_ = VAR_NAME(SpecialAttack_NormalBullet);
-
 	// Modelの設定
 	uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
 																"PlayerDemoBullet");

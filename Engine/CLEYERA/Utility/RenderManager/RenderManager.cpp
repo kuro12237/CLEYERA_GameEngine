@@ -19,8 +19,6 @@ void CLEYERA::Manager::RenderManager::Update() {
         objList.end());
   }
 
-
-
   // knumに値があったらエラー
   if (!objs_[Graphics::RasterPipline_Mode3d::kNum].empty()) {
     assert(0);
@@ -41,8 +39,10 @@ void CLEYERA::Manager::RenderManager::Draw3d() {
 
     for (auto obj : objs_[static_cast<Graphics::RasterPipline_Mode3d>(i)]) {
       auto it = obj.lock();
-      it;
-      it->DrawRaster3d();
+      if (it) {
+
+        it->DrawRaster3d();
+      }
     }
   }
 
@@ -53,7 +53,7 @@ void CLEYERA::Manager::RenderManager::Draw3d() {
     auto it = obj.lock();
     if (it) {
 
-      //it->DrawLine3d();
+      // it->DrawLine3d();
     } else {
     }
   }
@@ -74,5 +74,3 @@ void CLEYERA::Manager::RenderManager::PopLine3d(
     return objPtr && objPtr == linePtr;
   });
 }
-
-

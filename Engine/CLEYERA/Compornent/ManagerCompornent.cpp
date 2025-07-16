@@ -17,8 +17,7 @@ void CLEYERA::Component::ManagerComponent::ImGuiUpdate() {
   }
 }
 
-void CLEYERA::Component::ManagerComponent::CollectAllObjects(
-    std::list<std::weak_ptr<Component::ObjectComponent>> &outList) {
+void CLEYERA::Component::ManagerComponent::CollectAllManagers() {
 
   for (auto mgr : childManagerComponents_) {
     auto it = mgr.lock();
@@ -31,7 +30,7 @@ void CLEYERA::Component::ManagerComponent::CollectAllObjects(
     for (auto &childMgrWeak : it->GetManagerList()) {
       auto childMgr = childMgrWeak.lock();
       if (childMgr) {
-        childMgr->CollectAllObjects(outList);
+        childMgr->CollectAllManagers();
       }
     }
   }

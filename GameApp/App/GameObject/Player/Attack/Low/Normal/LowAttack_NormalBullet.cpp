@@ -4,7 +4,7 @@
 void LowAttack_NormalBullet::Init()
 {
 	// クラス名
-	name_ = VAR_NAME(LowAttack_NormalBullet);
+	//name_ = VAR_NAME(LowAttack_NormalBullet);
 
 	// Modelの設定
 	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet",	"PlayerDemoBullet");
@@ -35,6 +35,7 @@ void LowAttack_NormalBullet::Update()
 
 void LowAttack_NormalBullet::CurveMove()
 {
+  name_;
     // 進む距離（1frameの速度）
     float frameSpeed = Math::Vector::Func::Length(initVel_);
     traveledDistance_ += frameSpeed;
