@@ -137,6 +137,10 @@ void CLEYERA::Manager::ObjectManager::DeleteObject(
   const std::string &name = obj.lock()->GetName();
   const std::string &category = obj.lock()->GetCategory();
 
+  
+  // 名前を unUse に戻す
+  unUseObjsName_[category].push_back(name);
+
   auto itCat = objects_.find(category);
   if (itCat != objects_.end()) {
     auto &nameMap = itCat->second;
@@ -146,8 +150,6 @@ void CLEYERA::Manager::ObjectManager::DeleteObject(
     }
   }
 
-  // 名前を unUse に戻す
-  unUseObjsName_[category].push_back(name);
 }
 
 void CLEYERA::Manager::ObjectManager::ObjectRegister(

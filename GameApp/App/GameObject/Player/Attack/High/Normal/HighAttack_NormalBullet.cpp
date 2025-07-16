@@ -3,8 +3,7 @@
 
 void HighAttack_NormalBullet::Init()
 {
-	// クラス名
-	
+
 	// Modelの設定
 	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
 	gameObject_->ChangeModel(handle);
