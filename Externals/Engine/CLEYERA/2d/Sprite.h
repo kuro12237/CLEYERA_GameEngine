@@ -33,7 +33,15 @@ public:
   void SetTexHandle(const uint32_t &handle) { this->texHandle_ = &handle; };
   void SetSize(const Math::Vector::Vec2 &size) { this->size_ = &size; };
   void SetAnker(const Math::Vector::Vec2 &anker) { this->anker_ = &anker; };
-
+  void SetTexCooadPos(const Math::Vector::Vec2 *leftTop,
+                      const Math::Vector::Vec2 *rightTop,
+                      const Math::Vector::Vec2 *leftBottom,
+                      const Math::Vector::Vec2 *rightBottom) {
+    LeftTop_ = leftTop;
+    RightTop_ = rightTop;
+    LeftBottom = leftBottom;
+    RightBottom_ = rightBottom;
+  }
   void SetWorldbindFunc(std::function<void(UINT n)> f) { wtCallFunc_ = f; }
 #pragma endregion
 
@@ -49,6 +57,10 @@ private:
 
   const Math::Vector::Vec2 *size_ = nullptr;
   const Math::Vector::Vec2 *anker_ = nullptr;
+  const Math::Vector::Vec2 *LeftTop_ = nullptr;
+  const Math::Vector::Vec2 *RightTop_ = nullptr;
+  const Math::Vector::Vec2 *LeftBottom = nullptr;
+  const Math::Vector::Vec2 *RightBottom_ = nullptr;
 
   const uint32_t *texHandle_ = nullptr;
 

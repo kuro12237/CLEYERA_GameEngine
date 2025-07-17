@@ -14,6 +14,9 @@ void PlayUIState::Init() {
     std::string name = VAR_NAME(GameSkillBackUI) + std::to_string(i);
     skillBacks_[i]->SetName(name);
   }
+
+  scene_->SpriteListPush(test_ = std::make_shared<TestUI>());
+
 }
 
 void PlayUIState::Update() {}
@@ -26,4 +29,6 @@ void PlayUIState::Draw2d() {
   }
 
   lowAttack_->Draw();
+
+  test_->Draw();
 }

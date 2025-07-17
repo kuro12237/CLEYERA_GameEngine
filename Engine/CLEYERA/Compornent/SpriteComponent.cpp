@@ -30,6 +30,7 @@ void SpriteComponent::Create() {
   sprite_->SetTexHandle(handle_);
 
   sprite_->SetWorldbindFunc([this](UINT n) { this->BindWT(n); });
+  sprite_->SetTexCooadPos(&LeftTop, &RightTop, &LeftBottom, &RightBottom);
 }
 
 void SpriteComponent::CreateJsonSystem(const std::string &fileGroupName) {

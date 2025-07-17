@@ -10,5 +10,7 @@ public:
 
   void Update() override;
 
+  void ImGuiUpdate() override;
+
 private:
 };
