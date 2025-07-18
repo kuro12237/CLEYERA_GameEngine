@@ -167,7 +167,7 @@ protected:
 
 protected:
   // 弾のリスト
-  std::list<std::shared_ptr<BaseNormalEnemyBullet>> bullets_;
+  std::list<std::weak_ptr<BaseNormalEnemyBullet>> bullets_;
   // プレイヤー座標
   Math::Vector::Vec3 playerPosition_ = {};
   // 方向

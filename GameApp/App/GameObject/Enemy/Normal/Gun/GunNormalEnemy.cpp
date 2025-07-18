@@ -96,13 +96,15 @@ void GunNormalEnemy::Update() {
           }
       }
 
-    // 弾の更新
-    for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-      bullet->Update();
-    }
 
-    // 弾の削除
-    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+
+  
+    for (std::weak_ptr<BaseNormalEnemyBullet> b : bullets_) {
+        auto it = b.lock();
+        if (it->GetIsDelete()) {
+          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+        }
+      }
 
     // 向きを計算しモデルを回転させる
     float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
@@ -191,7 +193,7 @@ void GunNormalEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
     auto aabb =
         std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall);
     // 押し出し
-    this->translate_ -= aabb->GetAABB().push;
+    //this->translate_ -= aabb->GetAABB().push;
   }
 
   // Player型にキャストできるかをチェック

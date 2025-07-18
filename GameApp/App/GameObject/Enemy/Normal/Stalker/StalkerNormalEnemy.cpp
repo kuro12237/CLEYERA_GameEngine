@@ -100,13 +100,17 @@ void StalkerNormalEnemy::Update() {
 
 
     // 弾の更新
-    for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-        bullet->SetPlayerPosition(playerPosition_);
-        bullet->Update();
+    for (const std::weak_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
+        auto it = bullet.lock();
+        it->SetPlayerPosition(playerPosition_);
+
+        if (it->GetIsDelete()) {
+          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+        }
     }
 
-    // 弾の削除
-    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+
+
 
     // 向きを計算しモデルを回転させる
     float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
