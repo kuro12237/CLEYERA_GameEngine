@@ -1,6 +1,8 @@
 #include "SampleGameScene.h"
 
 void SampleGameScene::Init() {
+  curl_global_init(CURL_GLOBAL_ALL);
+  [[maybe_unused]]CURL *curl = curl_easy_init();
 
   coins_.resize(4);
 
@@ -40,6 +42,7 @@ void SampleGameScene::Init() {
   coins_[3]->SetUpTex(texHandle);
 
   coins_[3]->SetSRT({0.1f, 0.1f, 0.1f}, {}, {480.0f, 512.0f, 0.0f});
+  getScoreFuture_ = GetAllScoresAsync();
 }
 
 void SampleGameScene::Update([[maybe_unused]] GameManager *g) {
@@ -111,13 +114,55 @@ void SampleGameScene::Update([[maybe_unused]] GameManager *g) {
     isEnemyAttack_ = false;
   }
 
+
+
   ImGui::Begin("BESample");
- 
+
   ImGui::Text("Rank");
 
+  //ここに表示
+
+  if (getScoreFuture_.valid() && getScoreFuture_.wait_for(std::chrono::seconds(
+                                     0)) == std::future_status::ready) {
+
+    std::string jsonResponse = getScoreFuture_.get();
+
+    try {
+      nlohmann::json json = nlohmann::json::parse(jsonResponse);
+
+      // スコアだけを格納
+      std::vector<int> allScores;
+
+      for (auto &entry : json) {
+        allScores.push_back(entry["score"].get<int>());
+      }
+
+      // 高い順にソート
+      std::sort(allScores.begin(), allScores.end(), std::greater<>());
+
+      // 上位5件を表示（必要に応じて調整）
+      int maxDisplay = std::min(5, static_cast<int>(allScores.size()));
+      rankText_ = "";
+      for (int i = 0; i < maxDisplay; ++i) {
+        // 例えば順位とスコアをテキストにまとめる場合
+      
+        rankText_ +=
+            std::to_string(i + 1) + ":: " + std::to_string(allScores[i]) + "\n";
+
+        // ImGuiで表示したい場合はコメントアウトを外す
+        // ImGui::Text("%d:: %d", i + 1, allScores[i]);
+      }
+
+    } catch (...) {
+      ImGui::Text("エラー: JSON解析失敗");
+    }
+  }
+
+  
+  ImGui::Text("%s", rankText_.c_str());
 
   ImGui::Separator();
-  ImGui::Text("%d", scores_);
+  ImGui::Text("%d", scores_*1000);
 
   if (isSelect_ && !gameReset_) {
 
@@ -133,6 +178,7 @@ void SampleGameScene::Update([[maybe_unused]] GameManager *g) {
 
     if (input->PushKey(DIK_R)) {
 
+      PostScoreAsync(scores_*1000);
       g->ChangeScene(std::make_unique<SampleGameScene>());
       return;
     }

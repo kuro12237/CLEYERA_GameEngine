@@ -100,6 +100,7 @@
     <ClCompile Include="App\GameObject\UI\state\PlayState.cpp" />
     <ClCompile Include="App\Scene\SampleGameScene.cpp" />
     <ClCompile Include="App\SampleObj\Coin.cpp" />
+    <ClCompile Include="App\SampleObj\ScoreFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="App\Scene\SampleGameScene.h" />
     <ClInclude Include="App\SampleObj\Coin.h" />
     <ClInclude Include="App\SampleObj\WinLoseObj.h" />
+    <ClInclude Include="App\SampleObj\ScoreFunc.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

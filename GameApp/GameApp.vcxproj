@@ -125,8 +125,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)..\Externals\math\lib\Debug\</ImportLibrary>
-      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\Engine\lib\Debug\;$(ProjectDir)..\Externals\curl\lib\libcurl.lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp-vc143-mtd.lib;lua51.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../Externals\Math\lib\Debug\;$(ProjectDir)..\Externals\assimp\lib\Debug\;$(ProjectDir)..\Externals\LuaAssets\;$(ProjectDir)..\Externals\Engine\lib\Debug\;$(ProjectDir)..\Externals\curl\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc143-mtd.lib;lua51.lib;Engine.lib;lib\libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(SolutionDir)..\Externals\LuaAssets\lua51.dll" "$(TargetDir)lua51.dll"
@@ -220,6 +220,7 @@
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
     <ClCompile Include="App\SampleObj\Coin.cpp" />
+    <ClCompile Include="App\SampleObj\ScoreFunc.cpp" />
     <ClCompile Include="App\Scene\DebugSelectScene.cpp" />
     <ClCompile Include="App\Scene\EnemyDebugScene.cpp" />
     <ClCompile Include="App\Scene\GameClearScene.cpp" />
@@ -309,6 +310,7 @@
     <ClInclude Include="App\GameObject\Wall\Wall.h" />
     <ClInclude Include="App\GameObject\Wall\WallManager.h" />
     <ClInclude Include="App\SampleObj\Coin.h" />
+    <ClInclude Include="App\SampleObj\ScoreFunc.h" />
     <ClInclude Include="App\SampleObj\WinLoseObj.h" />
     <ClInclude Include="App\Scene\GameClearScene.h" />
     <ClInclude Include="App\Scene\EnemyDebugScene.h" />

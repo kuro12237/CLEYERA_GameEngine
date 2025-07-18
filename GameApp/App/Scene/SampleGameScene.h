@@ -7,6 +7,8 @@
 #include "../SampleObj/Coin.h"
 #include "curl/curl.h"
 
+#include"../SampleObj/ScoreFunc.h"
+
 class SampleGameScene : public SceneComponent {
 public:
   SampleGameScene() {};
@@ -28,4 +30,9 @@ private:
   std::random_device rd;
   int scores_ = 0;
   bool gameReset_ = false;
+
+  std::future<std::string> getScoreFuture_;
+  std::string rankText_ = "読み込み中...";
+
+
 };
