@@ -32,6 +32,11 @@ public:
 	/// </summary>
 	void Update();
 
+	/// <summary>
+	/// ダッシュ処理開始
+	/// </summary>
+	void StartDash();
+
 #pragma region 
 
 	// ダッシュ中か
@@ -42,12 +47,22 @@ public:
 
 private:
 
+	/// <summary>
+	/// ダッシュの処理
+	/// </summary>
+	void Dash();
+
+
+private:
+
 	// 親クラス
 	PlayerCore * p_player_ = nullptr;
 
 	bool isDashing_ = false;
-	float dashTime_ = 0.0f;
-	const float dashDuration_ = 0.3f;   // ダッシュ継続時間
-	const float dashSpeed_ = 20.0f;     // ダッシュ速度
+	float dashTimer_ = 0.0f;
+	const float dashDuration_ = 0.1f; // ダッシュ時間（秒）
+	const float dashSpeed_ = 2.0f;   // ダッシュ速度
+
+	Math::Vector::Vec3 dashForce_ = {}; // ダッシュ速度ベクトル
 };
 

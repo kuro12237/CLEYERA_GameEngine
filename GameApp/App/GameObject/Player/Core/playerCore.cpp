@@ -15,6 +15,7 @@ PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<Play
 	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
+	dashFunc_ = std::make_unique<PlayerDashFunc>(this);
 	bulletManager_ = bulManPtr;
 	itemMgr_ = itemMgr;
 }
@@ -48,11 +49,10 @@ void PlayerCore::Init() {
 	// コマンドハンドラー
 	commandHandler_->Init();
 
-	// Stateの初期化
-	//ChangeActionState(std::make_unique<nullptr>());
-
 	// 移動処理クラスの初期化
 	moveFunc_->Init();
+	// ダッシュ処理クラスの初期化
+	dashFunc_->Init();
 
 	// 攻撃スロットの初期化
 	InitAttackSlot();
@@ -74,6 +74,8 @@ void PlayerCore::Update() {
 	moveFunc_->Update();
 	// 移動硬直のタイマー処理
 	StiffMove();
+	// ダッシュ処理クラス
+	dashFunc_->Update();
 
 	// 攻撃クラスの更新
 	for ( auto & atk : attacks_ ) {
@@ -123,7 +125,7 @@ void PlayerCore::SignatureAttack()
 
 void PlayerCore::Dash()
 {
-
+	dashFunc_->StartDash();
 }
 
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {

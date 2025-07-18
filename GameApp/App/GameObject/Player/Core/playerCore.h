@@ -9,6 +9,7 @@
 #include "../State/Action/LowAttack/PlayerLowAttackState.h"
 
 #include "Move/PlayerMoveFunc.h"
+#include "Dash/PlayerDashFunc.h"
 
 #include "../Attack/Interface/IMagicAttack.h"
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
@@ -196,6 +197,8 @@ private:
 
 	// 移動処理
 	std::unique_ptr<PlayerMoveFunc> moveFunc_;
+	// ダッシュ処理
+	std::unique_ptr<PlayerDashFunc> dashFunc_;
 
 	// 攻撃コマンド
 	std::array<std::unique_ptr<IMagicAttack>, 3> attacks_;
