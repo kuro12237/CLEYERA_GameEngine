@@ -17,11 +17,13 @@
 #include "../Attack/Low/Back/LowAttack_Back.h"
 #include "../Attack/High/Normal/HighAttack_Normal.h"
 #include "../Attack/Special/Normal/SpecialAttack_Normal.h"
+#include "../Attack/Special/Power/SpecialAttack_Power.h"
 #include "../Attack/Manager/PlayerBulletManager.h"
 
 // 前方宣言
 class PlayerCamera;
 class ItemManager;
+class EnemyManager;
 
 /* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
@@ -31,7 +33,7 @@ public:
 	/// コンストラク
 	/// </summary>
 	PlayerCore() = default;
-	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr);
+	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr);
 
 	/// <summary>
 	/// デストラクタ
@@ -153,6 +155,11 @@ private:
 	void CalcDirectVec();
 
 	/// <summary>
+	/// 一番近いエネミーを求める
+	/// </summary>
+	void GetNearestEnemy();
+
+	/// <summary>
 	/// Vector3にアフィン変換と透視補正を適用する
 	/// </summary>
 	Math::Vector::Vec3 TransformWithPerspective(const Math::Vector::Vec3 & v,
@@ -186,12 +193,13 @@ private:
 	
 	// State
 	std::unique_ptr<IPlayerActionState> actionState_;
-
+	
 	// ItemManagerのweak_ptr
 	std::weak_ptr<ItemManager> itemMgr_;
-
 	// Cameraのweak_ptr
 	std::weak_ptr<PlayerCamera> weakpCamera_;
+	// EnemyManagerのweak_ptr
+	std::weak_ptr<EnemyManager> enemyManager_;
 
 	// PlayerCoreのLua
 	std::unique_ptr<LuaScript> lua_;

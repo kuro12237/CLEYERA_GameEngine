@@ -2,6 +2,7 @@
 #include "../Camera/PlayerCamera.h"
 #include "Wall/Wall.h"
 
+#include "Enemy/EnemyManager.h"
 #include "Enemy/Normal/Cannon/CannonNormalEnemy1Bullet.h"
 #include "Enemy/Normal/Gun/GunNormalEnemyBullet.h"
 
@@ -9,16 +10,20 @@
 #include "../../Item/AttackPickup/AttackPickupItem.h"
 #include "../../Item/Heal/HealItem.h"
 
-PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
+PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, 
+	std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr,
+	std::weak_ptr<EnemyManager> enemyMgr) {
+
 	lua_ = std::make_unique<LuaScript>();
-	weakpCamera_ = cameraptr;
 	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
 	dashFunc_ = std::make_unique<PlayerDashFunc>(this);
 	invincibleFunc_ = std::make_unique<PlayerInvincibleFunc>(this);
+	weakpCamera_ = cameraptr;
 	bulletManager_ = bulManPtr;
 	itemMgr_ = itemMgr;
+	enemyManager_ = enemyMgr;
 }
 
 void PlayerCore::Init() {
@@ -172,7 +177,7 @@ void PlayerCore::InitAttackSlot() {
 	attacks_[ ToIndex(AttackType::Standard) ] =
 		std::make_unique<HighAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Signature) ] =
-		std::make_unique<SpecialAttack_Normal>(this, bulletManager_);
+		std::make_unique<SpecialAttack_Power>(this, bulletManager_);
 
 	// 初期化
 	for ( auto & atk : attacks_ ) {
@@ -257,6 +262,10 @@ void PlayerCore::CalcDirectVec() {
 	rightVec_ = TransformWithPerspective(defRightVec, rotateYMat);
 	// 左方ベクトルを求める
 	leftVec_ = TransformWithPerspective(defLeftVec, rotateYMat);
+}
+
+void PlayerCore::GetNearestEnemy()
+{
 }
 
 Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3 & v,
