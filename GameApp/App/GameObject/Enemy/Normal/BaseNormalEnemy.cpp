@@ -70,7 +70,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
       bulletCount_++;
 
       // 挿入
-      mgrObjList_->push_back(bullet);
+      //mgrObjList_->push_back(bullet);
       bullets_.push_back(std::move(bullet));
 
       break;
