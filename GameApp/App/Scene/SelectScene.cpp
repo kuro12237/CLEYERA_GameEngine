@@ -23,7 +23,7 @@ void SelectScene::Init() {
   //}
 
   // エディタのデータを各オブジェクトにセット
-  enviromentObjs_ = loader_->SettingData(objectComponents_);
+  enviromentObjs_ = loader_->SettingData();
 
   for (auto obj : enviromentObjs_) {
     objectComponents_.push_back(obj);

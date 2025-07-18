@@ -26,31 +26,28 @@ void SceneLoader::LoadSceneData(std::string path) {
     }
   }
 }
-std::vector<std::shared_ptr<EnvironmentObject>> SceneLoader::SettingData(
-    std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> /*unused*/) {
 
+std::vector<std::weak_ptr<EnvironmentObject>> SceneLoader::SettingData() {
   const auto &objsMap =
       CLEYERA::Manager::ObjectManager::GetInstance()->GetObjects();
 
   std::vector<std::shared_ptr<EnvironmentObject>> enviObjs;
+  std::vector<std::weak_ptr<EnvironmentObject>> resultEnviObjs;
 
   for (const auto &[category, nameMap] : objsMap) {
     for (const auto &[name, obj] : nameMap) {
       if (!obj)
         continue;
 
-      // データがあれば反映
       auto itData = objDatas_.find(name);
       if (itData != objDatas_.end()) {
         const auto &data = itData->second;
 
-        // 変換データを適用
         obj->SetScale(data.scale);
         obj->SetRotate(data.rotate);
         obj->SetTranslate(data.translate);
         obj->SetModelHandle(data.modeHandle_);
 
-        // 親設定
         auto gameObj = obj->GetGameObject().lock();
         if (gameObj) {
           for (const auto &parentName : data.parentObjName_) {
@@ -66,29 +63,67 @@ std::vector<std::shared_ptr<EnvironmentObject>> SceneLoader::SettingData(
           }
         }
 
-        objDatas_.erase(itData); // 反映済データ削除
+        objDatas_.erase(itData);
       }
     }
   }
 
-  return enviObjs;
+  // 残ったobjDatas_に対して新しくEnvironmentObjectを作成
+  for (const auto &[name, data] : objDatas_) {
+    auto obj = CLEYERA::Manager::ObjectManager::GetInstance()->CreateObject<EnvironmentObject>(name,
+        std::make_shared<EnvironmentObject>()).lock();
+
+    // 各種データを反映
+    obj->SetName(name); // 名前を設定（必要なら）
+    obj->SetScale(data.scale);
+    obj->SetRotate(data.rotate);
+    obj->SetTranslate(data.translate);
+    obj->SetModelHandle(data.modeHandle_);
+
+    // 親設定
+    auto gameObj = obj->GetGameObject().lock();
+    if (gameObj) {
+      for (const auto &parentName : data.parentObjName_) {
+        for (const auto &[_, innerMap] : objsMap) {
+          for (const auto &[_a, potentialParent] : innerMap) {
+            if (potentialParent && potentialParent->GetName() == parentName) {
+              gameObj->SetParent(potentialParent->GetGameObject());
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    enviObjs.push_back(obj);
+    resultEnviObjs.push_back(obj); // weakにして返却リストに追加
+  }
+
+  // objDatas_を空にする（処理済なので）
+  objDatas_.clear();
+
+
+  return resultEnviObjs;
 }
 
-
-
 void SceneLoader::SetParentObjects(
-    [[maybe_unused]] const std::shared_ptr<CLEYERA::Component::ObjectComponent> &obj,
+    [[maybe_unused]] const std::shared_ptr<CLEYERA::Component::ObjectComponent>
+        &obj,
     [[maybe_unused]] const std::vector<std::string> &parentNames,
-    [[maybe_unused]] const std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs,
-    [[maybe_unused]] std::vector<std::shared_ptr<EnvironmentObject>> &environmentObjects) {}
+    [[maybe_unused]] const std::vector<
+        std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs,
+    [[maybe_unused]] std::vector<std::shared_ptr<EnvironmentObject>>
+        &environmentObjects) {}
 
 std::shared_ptr<EnvironmentObject> SceneLoader::CreateEnvironmentObject(
     [[maybe_unused]] const SceneObjData &data,
-    [[maybe_unused]] const std::vector<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs) {
+    [[maybe_unused]] const std::vector<
+        std::weak_ptr<CLEYERA::Component::ObjectComponent>> &objs) {
   return std::shared_ptr<EnvironmentObject>();
 }
 
-SceneObjData SceneLoader::LoadobjData(nlohmann::json object, [[maybe_unused]] SceneObjData data,
+SceneObjData SceneLoader::LoadobjData(nlohmann::json object,
+                                      [[maybe_unused]] SceneObjData data,
                                       std::string name) {
 
   SceneObjData newData{};

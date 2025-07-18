@@ -4,15 +4,14 @@
 #include"../Scene/DebugSelectScene.h"
 
 GameManager::GameManager() {
-  engine_ = std::make_unique<Engine>();
 
+  engine_ = std::make_unique<Engine>();
   engine_->Init();
 
   scene_ = std::make_unique<DebugSelectScene>();
   auto raytracingManager = engine_->GetRaytracingManager();
 
   scene_->SetRaytracingManager(raytracingManager);
-
   scene_->Init();
 }
 
@@ -125,10 +124,9 @@ void GameManager::Run() {
 
 void GameManager::ChangeScene(std::unique_ptr<SceneComponent> newScene) {
 
-  //CLEYERA::Manager::ColliderSystem::GetInstance()->Clear();
   CLEYERA::Manager::GravityManager::GetInstance()->Clear();
   CLEYERA::Manager::Terrain::GetInstance()->Clear();
-
+  CLEYERA::Manager::Terrain::GetInstance()->Init();
   scene_.reset();
 
   scene_ = std::move(newScene);
@@ -137,8 +135,5 @@ void GameManager::ChangeScene(std::unique_ptr<SceneComponent> newScene) {
 
   scene_->Update(this);
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
-
-  // engine_->End();
-  this->isChange_ = true;
   return;
 }
