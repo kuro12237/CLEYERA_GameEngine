@@ -17,12 +17,14 @@ void CannonNormalEnemy::Init() {
   name_ = VAR_NAME(CannonNormalEnemy);
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+  uint32_t modelHandle =
+      modelManager_->LoadModel("Resources/Model/enemy", "enemy");
   //"Resources/Model/Sphere", "Sphere"
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
-  uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t modelHandle2 =
+      modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   modelHandle2;
 
   // コライダー作成
@@ -37,7 +39,8 @@ void CannonNormalEnemy::Init() {
   // ノックバックの距離
   parameter_.knockBackDistance_ = 1.0f;
   // ルート
-  std::unique_ptr<NormalEnemySelector> root = std::make_unique<NormalEnemySelector>();
+  std::unique_ptr<NormalEnemySelector> root =
+      std::make_unique<NormalEnemySelector>();
 
   // 追跡開始距離
   trackingStartDistance_ = 40.0f;
@@ -45,18 +48,23 @@ void CannonNormalEnemy::Init() {
   attackStartDistance_ = 7.0f;
 
 #pragma region 攻撃シーケンス
-  std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
+  std::unique_ptr<NormalEnemySequence> attackSequence =
+      std::make_unique<NormalEnemySequence>();
   // プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-  attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
+  attackSequence->AddChild(
+      std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   // 攻撃
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1,1u,3.0f));
+  attackSequence->AddChild(
+      std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
 #pragma region 通常状態のシーケンス
-  std::unique_ptr<NormalEnemySequence> approachSequence = std::make_unique<NormalEnemySequence>();
+  std::unique_ptr<NormalEnemySequence> approachSequence =
+      std::make_unique<NormalEnemySequence>();
   // プレイヤーが設定した範囲内にいるかどうか
-  approachSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
+  approachSequence->AddChild(
+      std::make_unique<NormalEnemyIsPlayerInRange>(trackingStartDistance_));
   // 追跡
   approachSequence->AddChild(std::make_unique<NormalEnemyTracking>());
   // 作ったものを入れる
@@ -67,8 +75,9 @@ void CannonNormalEnemy::Init() {
   behaviorTree_ = std::move(root);
 
   // あたりはんてい関数セット
-  collider_->SetHitCallFunc(
-      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+  collider_->SetHitCallFunc([this](std::weak_ptr<ObjectComponent> other) {
+    this->OnCollision(other);
+  });
 
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
@@ -87,23 +96,30 @@ void CannonNormalEnemy::Update() {
 
   // 生存時
   if (isAlive_ == true) {
-      //クールタイム中
-      if ( isCool_ == true ) {
-          coolTime_ += DELTA_TIME_;
-          if ( coolTime_ > coolTimeLimit_ ) {
-              isCool_ = false;
-              coolTime_ = 0.0f;
-              generateBulletNumber_ = 0u;
-          }
+    // クールタイム中
+    if (isCool_ == true) {
+      coolTime_ += DELTA_TIME_;
+      if (coolTime_ > coolTimeLimit_) {
+        isCool_ = false;
+        coolTime_ = 0.0f;
+        generateBulletNumber_ = 0u;
       }
-    // 弾の更新
-    for (const std::shared_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-      bullet->Update();
     }
-    
 
-    // 弾の削除
-    bullets_.remove_if([](const auto &bullet) { return bullet->GetIsDelete(); });
+    for (auto it = bullets_.begin(); it != bullets_.end();) {
+      if (it->expired()) {
+        it = bullets_.erase(it); // expiredならeraseして次に進む
+        continue;
+      }
+
+      auto sp = it->lock();
+      if (sp && sp->GetIsDelete()) {
+        sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+      }
+
+      ++it;
+    }
+
 
     // 向きを計算しモデルを回転させる
     float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
@@ -129,7 +145,8 @@ void CannonNormalEnemy::Update() {
     }
 
     // プレイヤーへの方向を計算
-    directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+    directionToPlayer_ =
+        Math::Vector::Func::Normalize(playerPosition_ - translate_);
 
     // ノックバック
     KnockBack();
@@ -187,7 +204,7 @@ void CannonNormalEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
     auto aabb =
         std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall);
     // 押し出し
-    this->translate_ -= aabb->GetAABB().push;
+    // this->translate_ -= aabb->GetAABB().push;
   }
 
   // Player型にキャストできるかをチェック
@@ -208,11 +225,13 @@ void CannonNormalEnemy::KnockBack() {
   if (isKnockBack_ == true) {
     Math::Vector::Vec3 knockBackDirection = {};
     if (isDesidePosition_ == false) {
-      knockBackDirection = {
-          .x = (1.0f - directionToPlayer_.x), .y = 0.0f, .z = (1.0f - directionToPlayer_.z)};
+      knockBackDirection = {.x = (1.0f - directionToPlayer_.x),
+                            .y = 0.0f,
+                            .z = (1.0f - directionToPlayer_.z)};
       beforeKnockBackPosition_ = translate_;
       afterKnockBackPosition_ =
-          beforeKnockBackPosition_ + knockBackDirection * parameter_.knockBackDistance_;
+          beforeKnockBackPosition_ +
+          knockBackDirection * parameter_.knockBackDistance_;
       isDesidePosition_ = true;
     }
 
@@ -221,8 +240,8 @@ void CannonNormalEnemy::KnockBack() {
     // 線形補間
     knockbackT_ += INCREASE_T_VALUE_;
     // 座標を線形補間でやるよ！
-    translate_ =
-        Math::Vector::Func::Lerp(beforeKnockBackPosition_, afterKnockBackPosition_, knockbackT_);
+    translate_ = Math::Vector::Func::Lerp(beforeKnockBackPosition_,
+                                          afterKnockBackPosition_, knockbackT_);
     knockbackT_ = std::clamp(knockbackT_, 0.0f, 1.0f);
 
     // 制限を超えたら0に戻る

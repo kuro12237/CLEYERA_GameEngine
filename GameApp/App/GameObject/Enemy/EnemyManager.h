@@ -111,13 +111,13 @@ private:
   Math::Vector::Vec3 playerPosition_ = {};
 
   // 雑魚敵
-  std::list<std::shared_ptr<BaseNormalEnemy>> enemyList_;
+  std::list<std::weak_ptr<BaseNormalEnemy>> enemyList_;
 
   // PlayerCoreのLua
   std::unique_ptr<LuaScript> lua_;
 
   // ボス敵
-  std::list<std::shared_ptr<BaseBossEnemy>> bossEnemyList_;
+  std::list<std::weak_ptr<BaseBossEnemy>> bossEnemyList_;
 
   // 生成の文字列を入れる
   std::stringstream enemyPositionsFromCSV_;

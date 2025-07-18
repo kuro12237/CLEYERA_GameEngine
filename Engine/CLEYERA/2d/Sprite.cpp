@@ -62,10 +62,10 @@ void CLEYERA::Sprite2d::Sprite::Update() {
   meshData_[3].vertex.w = 1.0f;
 
   // テクスチャ座標も同じ順で
-  meshData_[0].texCoord = {0.0f, 1.0f}; // 左上（画像的には下）
-  meshData_[1].texCoord = {0.0f, 0.0f}; // 左下（画像的には上）
-  meshData_[2].texCoord = {1.0f, 0.0f}; // 右下（画像的には上）
-  meshData_[3].texCoord = {1.0f, 1.0f}; // 右上（画像的には下）
+  meshData_[0].texCoord = *LeftTop_; // 左上（画像的には下）
+  meshData_[1].texCoord = *LeftBottom; // 左下（画像的には上）
+  meshData_[2].texCoord = *RightBottom_; // 右下（画像的には上）
+  meshData_[3].texCoord = *RightTop_; // 右上（画像的には下）
 
 
   mesh_->Transfar();

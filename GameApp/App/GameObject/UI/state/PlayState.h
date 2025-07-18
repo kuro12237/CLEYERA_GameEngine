@@ -22,4 +22,7 @@ private:
 
   std::shared_ptr<GameLowAttackUI> lowAttack_ = nullptr;
   std::vector<std::shared_ptr<GameSkillBackUI>> skillBacks_;
+
+  std::shared_ptr<TestUI> test_ = nullptr;
+
 };
