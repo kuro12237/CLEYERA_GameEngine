@@ -27,8 +27,11 @@ void TestUI::ImGuiUpdate() {
     ImGui::Separator();
 
     ImGui::DragFloat2("size", &size.x, 4.0f);
-    ImGui::DragFloat2("anker",)
-
+    ImGui::DragFloat2("anker", &anker.x);
+    ImGui::DragFloat2("leftTop", &LeftTop.x,0.1f);
+    ImGui::DragFloat2("RightTop", &RightTop.x, 0.1f);
+    ImGui::DragFloat2("leftBottom", &LeftBottom.x, 0.1f);
+    ImGui::DragFloat2("RightBottom", &RightBottom.x, 0.1f);
 
     ImGui::TreePop();
   }
