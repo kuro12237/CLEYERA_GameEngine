@@ -16,6 +16,7 @@ PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<Play
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
 	dashFunc_ = std::make_unique<PlayerDashFunc>(this);
+	invincibleFunc_ = std::make_unique<PlayerInvincibleFunc>(this);
 	bulletManager_ = bulManPtr;
 	itemMgr_ = itemMgr;
 }
@@ -53,6 +54,8 @@ void PlayerCore::Init() {
 	moveFunc_->Init();
 	// ダッシュ処理クラスの初期化
 	dashFunc_->Init();
+	// 無敵時間クラスの初期化
+	invincibleFunc_->Init();
 
 	// 攻撃スロットの初期化
 	InitAttackSlot();
@@ -61,32 +64,25 @@ void PlayerCore::Init() {
 void PlayerCore::Update() {
 	ObjectComponent::TransformUpdate();
 
-	// ハンドラー
 	commandHandler_->Handle();
 	commandHandler_->Exec();
 
-	// State
 	if (actionState_) {
 		actionState_->Update();
 	}
 
-	// 移動処理クラス
 	moveFunc_->Update();
-	// 移動硬直のタイマー処理
-	StiffMove();
-	// ダッシュ処理クラス
+	StiffMove(); // // 移動硬直のタイマー処理
 	dashFunc_->Update();
+	invincibleFunc_->Update();
 
-	// 攻撃クラスの更新
 	for ( auto & atk : attacks_ ) {
 		if ( atk )
 			atk->Update();
 	}
 
-	// ノックバック
 	// 前方&右方のベクトルを求める
 	CalcDirectVec();
-
 	// ノックバック
 	KnockBack();
 
@@ -125,6 +121,7 @@ void PlayerCore::SignatureAttack()
 
 void PlayerCore::Dash()
 {
+	invincibleFunc_->AddInvTimer(0.2f);
 	dashFunc_->StartDash();
 }
 
@@ -145,21 +142,23 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 		this->translate_ -= aabb->GetAABB().push;
 	}
 
-	// bullet1 型にキャストできるかをチェック
-	if ( auto bullet1 = std::dynamic_pointer_cast< NormalEnemy1Bullet >(obj) ) {
-
-		hpCalcFunc_(bullet1->GetAttackPower());
-	}
-
-	// bullet2 型にキャストできるかをチェック
-	if ( auto bullet2 = std::dynamic_pointer_cast< NormalEnemy2Bullet >(obj) ) {
-
-		hpCalcFunc_(bullet2->GetAttackPower());
-	}
-
 	// HealItem 型にキャストできるかチェック
 	if ( auto healItem = std::dynamic_pointer_cast< HealItem >(obj) ) {
 
+	}
+
+
+	// 無敵なので早期return
+	if ( invincibleFunc_->IsInvincible() )
+		return; 
+
+	// bullet1 型にキャストできるかをチェック
+	if ( auto bullet1 = std::dynamic_pointer_cast< NormalEnemy1Bullet >(obj) ) {
+		hpCalcFunc_(bullet1->GetAttackPower());
+	}
+	// bullet2 型にキャストできるかをチェック
+	if ( auto bullet2 = std::dynamic_pointer_cast< NormalEnemy2Bullet >(obj) ) {
+		hpCalcFunc_(bullet2->GetAttackPower());
 	}
 }
 

@@ -10,6 +10,7 @@
 
 #include "Move/PlayerMoveFunc.h"
 #include "Dash/PlayerDashFunc.h"
+#include "Invincible/PlayerInvincibleFunc.h"
 
 #include "../Attack/Interface/IMagicAttack.h"
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
@@ -199,6 +200,8 @@ private:
 	std::unique_ptr<PlayerMoveFunc> moveFunc_;
 	// ダッシュ処理
 	std::unique_ptr<PlayerDashFunc> dashFunc_;
+	// 無敵時間
+	std::unique_ptr<PlayerInvincibleFunc> invincibleFunc_;
 
 	// 攻撃コマンド
 	std::array<std::unique_ptr<IMagicAttack>, 3> attacks_;

@@ -98,6 +98,7 @@
     <ClCompile Include="App\GameObject\Player\Core\Dash\PlayerDashFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Command\Dash\PlayerDashCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.cpp" />
+    <ClCompile Include="App\GameObject\Player\Core\Invincible\PlayerInvincibleFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -196,6 +197,7 @@
     <ClInclude Include="App\GameObject\Player\Command\Dash\PlayerDashCommand.h" />
     <ClInclude Include="App\GameObject\Player\State\Action\Interface\IPlayerActionState.h" />
     <ClInclude Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.h" />
+    <ClInclude Include="App\GameObject\Player\Core\Invincible\PlayerInvincibleFunc.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />
