@@ -14,7 +14,7 @@
 
 void StalkerNormalEnemy::Init() {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemy2);
+  name_ = VAR_NAME(StalkerNormalEnemy);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
@@ -99,15 +99,24 @@ void StalkerNormalEnemy::Update() {
 
 
 
-    // 弾の更新
-    for (const std::weak_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-        auto it = bullet.lock();
-        it->SetPlayerPosition(playerPosition_);
+      // 弾の更新
+      for ( auto itr = bullets_.begin(); itr != bullets_.end(); )
+      {
+          if ( itr->expired() )
+          {
+              itr = bullets_.erase(itr); // erase は削除後、次要素のイテレータを返す
+              return;
+          }
 
-        if (it->GetIsDelete()) {
-          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
-        }
-    }
+
+          auto it = (*itr).lock();
+
+          if ( it->GetIsDelete() )
+          {
+              it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+          }
+          ++itr;
+      }
 
 
 

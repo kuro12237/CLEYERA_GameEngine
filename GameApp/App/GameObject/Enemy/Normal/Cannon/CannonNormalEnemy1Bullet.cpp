@@ -54,6 +54,8 @@ void CannonNormalEnemy1Bullet::Update() {
   translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
   translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
 
+
+
   // 更新
   TransformUpdate();
 

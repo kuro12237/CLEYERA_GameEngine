@@ -37,11 +37,11 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy1({}, "NormalEnemy1");
-  GenerateNormalEnemy2({}, "NormalEnemy2");
-  GenerateNormalEnemy3({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
+    GenerateCannonNormalEnemy({});
+  //GenerateGunNormalEnemy({});
+  //GenerateStalkerNormalEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f});
 
-  GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
+  //GenerateDonutNormalEnemy({.x=0.0f,.y=0.0f,.z=10.0f});
 
 
 }
@@ -69,28 +69,23 @@ void EnemyManager::Update() {
   }
 }
 
-void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position,
-                                        std::string name) {
-    name;
+void EnemyManager::GenerateCannonNormalEnemy(const Math::Vector::Vec3 &position) {
   // 敵の生成
   std::weak_ptr<CannonNormalEnemy> enemy =
       objectManager_->CreateObject<CannonNormalEnemy>(
-          "NormalEnemy1", std::make_shared<CannonNormalEnemy>());
+          "CannonNormalEnemy", std::make_shared<CannonNormalEnemy>());
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
 
-
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position,
-                                        std::string name) {
-    name;
+void EnemyManager::GenerateGunNormalEnemy(const Math::Vector::Vec3 &position) {
   // 敵の生成
   std::weak_ptr<GunNormalEnemy> enemy =
       objectManager_->CreateObject<GunNormalEnemy>(
-          "NormalEnemy2", std::make_shared<GunNormalEnemy>());
+          "GunNormalEnemy", std::make_shared<GunNormalEnemy>());
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
@@ -99,13 +94,11 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position,
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
-                                        std::string name) {
-    name;
+void EnemyManager::GenerateStalkerNormalEnemy(const Math::Vector::Vec3 &position) {
   // 敵の生成
   std::weak_ptr<StalkerNormalEnemy> enemy =
       objectManager_->CreateObject<StalkerNormalEnemy>(
-          "NormalEnemy3", std::make_shared<StalkerNormalEnemy>());
+          "StalkerNormalEnemy", std::make_shared<StalkerNormalEnemy>());
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
@@ -113,11 +106,10 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name){
-    name;
+void EnemyManager::GenerateDonutNormalEnemy(const Math::Vector::Vec3 & position){
     // 敵の生成
     std::weak_ptr<DonutNormalEnemy> enemy = 
-    objectManager_->CreateObject<DonutNormalEnemy>("NormalEnemy4", std::make_shared<DonutNormalEnemy>());
+    objectManager_->CreateObject<DonutNormalEnemy>("DonutNormalEnemy", std::make_shared<DonutNormalEnemy>());
     // 座標の設定
     enemy.lock()->SetInitialPosition(position);
   

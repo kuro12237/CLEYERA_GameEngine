@@ -98,14 +98,24 @@ void GunNormalEnemy::Update() {
 
 
 
-  
-    for (std::weak_ptr<BaseNormalEnemyBullet> b : bullets_) {
-        auto it = b.lock();
-        if (it->GetIsDelete()) {
-          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+    // 弾の更新
+    for ( auto itr = bullets_.begin(); itr != bullets_.end(); )
+    {
+        if ( itr->expired() )
+        {
+            itr = bullets_.erase(itr); // erase は削除後、次要素のイテレータを返す
+            return;
         }
-      }
 
+
+        auto it = (*itr).lock();
+
+        if ( it->GetIsDelete() )
+        {
+            it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+        }
+        ++itr;
+    }
     // 向きを計算しモデルを回転させる
     float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
     // 回転のオフセット
