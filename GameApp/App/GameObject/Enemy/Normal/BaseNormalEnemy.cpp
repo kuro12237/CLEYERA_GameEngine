@@ -3,6 +3,7 @@
 #include "Cannon/CannonNormalEnemy1Bullet.h"
 #include "Gun/GunNormalEnemyBullet.h"
 #include "Stalker/StalkerEnemyBullet.h"
+#include "Donut/DonutNormalEnemyBullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
   std::weak_ptr<BaseNormalEnemyBullet> bullet;
@@ -59,5 +60,27 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
     bullets_.push_back(std::move(bullet));
 
       break;
+
+  case BulletType::NormalBullet4:
+      // 弾3
+      bullet = std::make_shared<DonutNormalEnemyBullet>();
+      bullet->Initialize(translate_, playerPosition_, false);
+
+      //名前設定
+      tag = this->GetName() + "_" + VAR_NAME(DonutNormalEnemyBullet);
+      tag = tag + std::to_string(bulletCount_);
+      bullet->SetName(tag);
+      // 連番
+      bulletCount_++;
+
+      // 挿入
+      mgrObjList_->push_back(bullet);
+      bullets_.push_back(std::move(bullet));
+
+      break;
     }
+  
+
+
+
 }

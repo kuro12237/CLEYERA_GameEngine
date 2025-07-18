@@ -9,6 +9,7 @@
 
 // ボス
 #include "Boss/BakugekiSnipe/BakugekiSnipeBossEnemy.h"
+#include "Normal/Donut/DonutNormalEnemy.h"
 
 void EnemyManager::Init() {
 
@@ -39,6 +40,10 @@ void EnemyManager::Init() {
   GenerateNormalEnemy1({}, "NormalEnemy1");
   GenerateNormalEnemy2({}, "NormalEnemy2");
   GenerateNormalEnemy3({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
+
+  GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
+
+
 }
 
 void EnemyManager::Update() {
@@ -66,6 +71,7 @@ void EnemyManager::Update() {
 
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position,
                                         std::string name) {
+
   // 敵の生成
   std::weak_ptr<CannonNormalEnemy> enemy =
       objectManager_->CreateObject<CannonNormalEnemy>(
@@ -107,6 +113,18 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
   enemy.lock()->SetName(name);
 
   enemyList_.push_back(std::move(enemy));
+}
+
+void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name){
+    // 敵の生成
+    std::weak_ptr<DonutNormalEnemy> enemy = 
+    objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy4", std::make_shared<DonutNormalEnemy>());
+    // 座標の設定
+    enemy->SetInitialPosition(position);
+  
+    // 挿入
+    // 各敵にlistptr持たせる
+    enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {

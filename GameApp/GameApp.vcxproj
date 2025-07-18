@@ -184,6 +184,8 @@
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy1Bullet.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Stalker\StalkerEnemyBullet.cpp" />
@@ -267,6 +269,8 @@
     <ClInclude Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyTracking.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Cannon\CannonNormalEnemy1Bullet.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\Normal\Donut\DonutNormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Gun\GunNormalEnemyBullet.h" />
     <ClInclude Include="App\GameObject\Enemy\Normal\Stalker\StalkerEnemyBullet.h" />
