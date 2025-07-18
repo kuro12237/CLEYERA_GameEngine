@@ -1,6 +1,6 @@
 #include "PlayerSignatureAttackCommand.h"
 #include "../../../Core/playerCore.h"
 
-void PlayerSignatureAttackCommand::Exec(const std::weak_ptr<PlayerCore> &player) {
-  player.lock()->SignatureAttack();
+void PlayerSignatureAttackCommand::Exec(PlayerCore * ptr) {
+  ptr->SignatureAttack();
 }

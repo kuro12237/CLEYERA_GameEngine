@@ -63,8 +63,5 @@ private:
   // コア
   std::weak_ptr<PlayerCore> core_;
 
-  // コマンドハンドラー
-  std::unique_ptr<PlayerCommandHandler> commandHandler_;
-
   std::unique_ptr<HealthComponent> hp_ = nullptr;
 };

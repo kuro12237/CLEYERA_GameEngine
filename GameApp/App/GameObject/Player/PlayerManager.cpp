@@ -13,7 +13,6 @@ PlayerManager::PlayerManager(std::weak_ptr<ItemManager> itemMgr) {
   core_ = objectManager_->CreateObject<PlayerCore>(
       "PlayerCore", std::make_shared<PlayerCore>(camera_, bulletManager_, itemMgr));
 
-  commandHandler_ = std::make_unique<PlayerCommandHandler>(core_);
   hp_ = std::make_unique<HealthComponent>();
 }
 
@@ -25,9 +24,9 @@ void PlayerManager::Init() {
   // カメラ
   ManagerComponent::cameraComponents_.push_back(camera_);
 
-  // コマンドハンドラー
-  commandHandler_->Init();
-
+  // コア
+  ManagerCompornent::objComponents_.push_back(core_);
+  
   // バレットマネージャー
   this->childManagerComponents_.push_back(bulletManager_);
 
@@ -53,9 +52,7 @@ void PlayerManager::Update() {
   // 更新
   ManagerComponent::ListUpdate();
 
-  // ハンドラー
-  commandHandler_->Handle();
-  commandHandler_->Exec();
+
 }
 
 void PlayerManager::ImGuiUpdate() {

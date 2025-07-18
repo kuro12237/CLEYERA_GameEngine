@@ -16,7 +16,7 @@ public:
 	/// <summary>
 	/// コンストラク
 	/// </summary>
-	PlayerCommandHandler(std::weak_ptr<PlayerCore> player);
+	PlayerCommandHandler(PlayerCore* ptr);
 
 	/// <summary>
 	/// デストラクタ
@@ -50,11 +50,12 @@ private:
 	// 入力
 	CLEYERA::Manager::InputManager * input_ = nullptr;
 
+	// Player
+	PlayerCore * p_Player_ = nullptr;
+
 	std::queue<std::unique_ptr<IPlayerCommand>> commands_;
 
 	// 入力->コマンド生成用のマップ
 	std::unordered_map<std::string, std::function<std::unique_ptr<IPlayerCommand>()>> inputCommandMap_;
 
-	// Playerのweak_ptr
-	std::weak_ptr<PlayerCore> player_;
 };

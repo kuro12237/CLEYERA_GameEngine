@@ -18,7 +18,7 @@ public:
 	/// <summary>
 	/// 実行処理
 	/// </summary>
-	virtual void Exec(const std::weak_ptr<PlayerCore>& player) = 0;
+	virtual void Exec(PlayerCore* ptr) = 0;
 
 	/// <summary>
 	/// clone関数 : プロトタイプを複製するためのインターフェイス

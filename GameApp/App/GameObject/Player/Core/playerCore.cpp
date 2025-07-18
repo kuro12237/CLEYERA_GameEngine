@@ -9,20 +9,18 @@
 #include "../../Item/AttackPickup/AttackPickupItem.h"
 #include "../../Item/Heal/HealItem.h"
 
-/// <summary>
-/// コンストラク
-/// </summary>
 PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr) {
 	lua_ = std::make_unique<LuaScript>();
+	weakpCamera_ = cameraptr;
+	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	moveFunc_->SetCameraPtr(cameraptr);
+	dashFunc_ = std::make_unique<PlayerDashFunc>(this);
+	invincibleFunc_ = std::make_unique<PlayerInvincibleFunc>(this);
 	bulletManager_ = bulManPtr;
 	itemMgr_ = itemMgr;
 }
 
-/// <summary>
-/// 初期化処理
-/// </summary>
 void PlayerCore::Init() {
 	// クラス名
 	ObjectComponent::name_ = VAR_NAME(PlayerCore);
@@ -48,108 +46,85 @@ void PlayerCore::Init() {
 	collider_->SetHitCallFunc(
 		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+
+	// コマンドハンドラー
+	commandHandler_->Init();
+
 	// 移動処理クラスの初期化
 	moveFunc_->Init();
+	// ダッシュ処理クラスの初期化
+	dashFunc_->Init();
+	// 無敵時間クラスの初期化
+	invincibleFunc_->Init();
 
 	// 攻撃スロットの初期化
 	InitAttackSlot();
 }
 
-/// <summary>
-/// 更新処理
-/// </summary>
 void PlayerCore::Update() {
 	ObjectComponent::TransformUpdate();
 
-	// 移動処理クラス
-	moveFunc_->Update();
-	// 移動硬直のタイマー処理
-	StiffMove();
+	commandHandler_->Handle();
+	commandHandler_->Exec();
 
-	// 攻撃クラスの更新
+	if (actionState_) {
+		actionState_->Update();
+	}
+
+	moveFunc_->Update();
+	StiffMove(); // // 移動硬直のタイマー処理
+	dashFunc_->Update();
+	invincibleFunc_->Update();
+
 	for ( auto & atk : attacks_ ) {
 		if ( atk )
 			atk->Update();
 	}
 
-	// ノックバック
 	// 前方&右方のベクトルを求める
 	CalcDirectVec();
-
 	// ノックバック
 	KnockBack();
 
 	if ( translate_.y <= -2.0f ) {
 		translate_ = { 0.0f, 1.0f, 0.0f };
 	}
-
-
-	if ( auto itemMgr = itemMgr_.lock() ) {
-		auto input = CLEYERA::Manager::InputManager::GetInstance();
-		if ( input->PushKeyPressed(DIK_H) ) {
-			itemMgr->RegisterHealItem(gameObject_->GetWorldPos());
-		}
-		if ( input->PushKeyPressed(DIK_I) ) {
-			itemMgr->RegisterAttackPickup(gameObject_->GetWorldPos());
-		}
-	}
-
-
-#ifdef _DEBUG
-	/*ImGui::Begin("PlayerCore");
-
-
-
-	ImGui::End();*/
-#endif // _DEBUG
 }
 
-/// <summary>
-/// Padの移動処理
-/// </summary>
 void PlayerCore::PadMove()
 { 
 	moveFunc_->PadMove();
 }
 
-/// <summary>
-/// Keyの移動処理
-/// </summary>
 void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
 {
 	moveFunc_->KeyMove(input);
 }
 
-/// <summary>
-/// ベーシック攻撃
-/// </summary>
 void PlayerCore::BasicAttack() 
 { 
 	attacks_[ ToIndex(AttackType::Basic) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
-/// <summary>
-/// スタンダード攻撃
-/// </summary>
 void PlayerCore::StandardAttack() 
 { 
 	attacks_[ ToIndex(AttackType::Standard) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
-/// <summary>
-/// シグネチャー攻撃
-/// </summary>
 void PlayerCore::SignatureAttack()
 { 
 	attacks_[ ToIndex(AttackType::Signature) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
-/// <summary>
-/// 衝突時コールバック
-/// </summary>
+void PlayerCore::Dash()
+{
+	invincibleFunc_->AddInvTimer(0.2f);
+	dashFunc_->StartDash();
+}
+
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
 	auto obj = other.lock();
 
@@ -167,27 +142,28 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 		this->translate_ -= aabb->GetAABB().push;
 	}
 
+	// HealItem 型にキャストできるかチェック
+	if ( auto healItem = std::dynamic_pointer_cast< HealItem >(obj) ) {
+
+	}
+
+
+	// 無敵なので早期return
+	if ( invincibleFunc_->IsInvincible() )
+		return; 
+
 	// bullet1 型にキャストできるかをチェック
 	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
 
 		hpCalcFunc_(bullet1->GetAttackPower());
 	}
-
 	// bullet2 型にキャストできるかをチェック
 	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
 
 		hpCalcFunc_(bullet2->GetAttackPower());
 	}
-
-	// HealItem 型にキャストできるかチェック
-	if ( auto healItem = std::dynamic_pointer_cast< HealItem >(obj) ) {
-
-	}
 }
 
-/// <summary>
-/// 攻撃スロットの初期化
-/// </summary>
 void PlayerCore::InitAttackSlot() {
 
 	// 初期攻撃スロット
@@ -204,9 +180,6 @@ void PlayerCore::InitAttackSlot() {
 	}
 }
 
-/// <summary>
-/// 移動硬直処理
-/// </summary>
 void PlayerCore::StiffMove()
 {
 	if ( isAttackStiff_) {
@@ -219,9 +192,6 @@ void PlayerCore::StiffMove()
 	}
 }
 
-/// <summary>
-/// Luaからデータを抽出する
-/// </summary>
 void PlayerCore::LoadCoreDataFromLua() {
 	translate_ = lua_->GetVariable<Math::Vector::Vec3>("PlayerCore.translate");
 }
@@ -266,9 +236,6 @@ void PlayerCore::KnockBack() {
 	}
 }
 
-/// <summary>
-/// 方向ベクトルを求める
-/// </summary>
 void PlayerCore::CalcDirectVec() {
 	// 前方ベクトルのデフォルト値
 	Math::Vector::Vec3 defForwardVec = Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f };
@@ -292,9 +259,6 @@ void PlayerCore::CalcDirectVec() {
 	leftVec_ = TransformWithPerspective(defLeftVec, rotateYMat);
 }
 
-/// <summary>
-/// Vector3にアフィン変換と透視補正を適用する
-/// </summary>
 Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3 & v,
 														const Math::Matrix::Mat4x4 & m) {
 	Math::Vector::Vec3 result = {
@@ -313,6 +277,12 @@ Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3
 	return result;
 }
 
+void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
+{
+	if(actionState_ ) actionState_->Exit();
+	actionState_ = std::move(newState);
+	actionState_->Enter(this);
+}
 
 void PlayerCore::ImGuiUpdate()
 {

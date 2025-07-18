@@ -14,7 +14,7 @@ PlayerKeyMoveCommand::PlayerKeyMoveCommand(const Math::Vector::Vec2 & input)
 /// <summary>
 /// 実行処理
 /// </summary>
-void PlayerKeyMoveCommand::Exec(const std::weak_ptr<PlayerCore> & player)
+void PlayerKeyMoveCommand::Exec(PlayerCore* ptr)
 {
-	player.lock()->KeyMove(keyInput_);
+	ptr->KeyMove(keyInput_);
 }

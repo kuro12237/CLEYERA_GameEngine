@@ -5,16 +5,17 @@
 #include "../Command/Interface/IPlayerCommand.h"
 #include "../Command/Move/Key/PlayerKeyMoveCommand.h"
 #include "../Command/Move/Pad/PlayerPadMoveCommand.h"
+#include "../Command/Dash/PlayerDashCommand.h"
 
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerCommandHandler::PlayerCommandHandler(std::weak_ptr<PlayerCore> player) {
+PlayerCommandHandler::PlayerCommandHandler(PlayerCore * ptr) {
   // 入力デバイス
   input_ = CLEYERA::Manager::InputManager::GetInstance();
 
   // プレイヤーのポインタ
-  player_ = player;
+  p_Player_ = ptr;
 }
 
 /// <summary>
@@ -41,6 +42,10 @@ void PlayerCommandHandler::Init() {
   inputCommandMap_["BasicAttack"] = []() { return std::make_unique<PlayerBasicAttackCommand>(); };
   inputCommandMap_["SignatureAttack"] = []() { return std::make_unique<PlayerSignatureAttackCommand>(); };
   inputCommandMap_["StandardAttack"] = []() { return std::make_unique<PlayerStandardAttackCommand>(); };
+
+  // ダッシュコマンド
+  inputCommandMap_["Dash" ] = []() { return std::make_unique<PlayerDashCommand>(); };
+
 }
 
 /// <summary>
@@ -76,6 +81,11 @@ void PlayerCommandHandler::Handle() {
   if (input_->PushBottonPressed(XINPUT_GAMEPAD_B)) {
     CommandPush("SignatureAttack");
   }
+
+  // ダッシュコマンド
+  if ( input_->PushBottonPressed(XINPUT_GAMEPAD_A) ) {
+      CommandPush("Dash");
+  }
 }
 
 /// <summary>
@@ -85,7 +95,7 @@ void PlayerCommandHandler::Exec() {
   // キュー内の全コマンドを順次実行
   while (!commands_.empty()) {
     auto &command = commands_.front();
-    command->Exec(player_);
+    command->Exec(p_Player_);
     commands_.pop();
   }
 }

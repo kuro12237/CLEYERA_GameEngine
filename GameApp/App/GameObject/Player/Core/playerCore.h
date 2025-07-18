@@ -3,17 +3,20 @@
 #include "CLEYERA.h"
 #include "Lua/Script/LuaScript.h"
 
+#include "../Command/PlayerCommandHandler.h"
+
+#include "../State/Action/Interface/IPlayerActionState.h"
+#include "../State/Action/LowAttack/PlayerLowAttackState.h"
+
 #include "Move/PlayerMoveFunc.h"
+#include "Dash/PlayerDashFunc.h"
+#include "Invincible/PlayerInvincibleFunc.h"
 
 #include "../Attack/Interface/IMagicAttack.h"
-
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
 #include "../Attack/Low/Back/LowAttack_Back.h"
-
 #include "../Attack/High/Normal/HighAttack_Normal.h"
-
 #include "../Attack/Special/Normal/SpecialAttack_Normal.h"
-
 #include "../Attack/Manager/PlayerBulletManager.h"
 
 // 前方宣言
@@ -71,9 +74,19 @@ public:
 	void SignatureAttack();
 
 	/// <summary>
+	/// ダッシュ
+	/// </summary>
+	void Dash();
+
+	/// <summary>
 	/// 衝突時コールバック
 	/// </summary>
 	void OnCollision(std::weak_ptr<ObjectComponent> other);
+
+	/// <summary>
+	/// Stateの変更
+	/// </summary>
+	void ChangeActionState(std::unique_ptr<IPlayerActionState> newState);
 
 	void ImGuiUpdate() override;
 
@@ -168,6 +181,12 @@ private:
 
 private:
 
+	// CommandHandler
+	std::unique_ptr<PlayerCommandHandler> commandHandler_;
+	
+	// State
+	std::unique_ptr<IPlayerActionState> actionState_;
+
 	// ItemManagerのweak_ptr
 	std::weak_ptr<ItemManager> itemMgr_;
 
@@ -179,6 +198,10 @@ private:
 
 	// 移動処理
 	std::unique_ptr<PlayerMoveFunc> moveFunc_;
+	// ダッシュ処理
+	std::unique_ptr<PlayerDashFunc> dashFunc_;
+	// 無敵時間
+	std::unique_ptr<PlayerInvincibleFunc> invincibleFunc_;
 
 	// 攻撃コマンド
 	std::array<std::unique_ptr<IMagicAttack>, 3> attacks_;

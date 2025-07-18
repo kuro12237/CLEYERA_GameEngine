@@ -17,7 +17,7 @@ public:
 	/// <summary>
 	/// 実行処理
 	/// </summary>
-	void Exec(const std::weak_ptr<PlayerCore> & player) override;
+	void Exec(PlayerCore* ptr) override;
 
 	/// <summary>
 	/// クローン関数
