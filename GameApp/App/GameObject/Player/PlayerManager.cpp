@@ -24,9 +24,6 @@ void PlayerManager::Init() {
   // カメラ
   ManagerComponent::cameraComponents_.push_back(camera_);
 
-  // コア
-  ManagerCompornent::objComponents_.push_back(core_);
-  
   // バレットマネージャー
   this->childManagerComponents_.push_back(bulletManager_);
 

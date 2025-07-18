@@ -53,9 +53,7 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
     // 連番
     bulletCount_++;
 
-    // 連番
-    bulletCount_++;
-
+  
     // 挿入
     bullets_.push_back(std::move(bullet));
 
@@ -63,13 +61,11 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
 
   case BulletType::NormalBullet4:
       // 弾3
-      bullet = std::make_shared<DonutNormalEnemyBullet>();
-      bullet->Initialize(translate_, playerPosition_, false);
 
-      //名前設定
-      tag = this->GetName() + "_" + VAR_NAME(DonutNormalEnemyBullet);
-      tag = tag + std::to_string(bulletCount_);
-      bullet->SetName(tag);
+      tag = VAR_NAME(DonutNormalEnemyBullet);
+      bullet = objectManager_->CreateObject<DonutNormalEnemyBullet>(
+          tag, std::make_shared<DonutNormalEnemyBullet>());
+      bullet.lock()->Initialize(translate_, playerPosition_, false);
       // 連番
       bulletCount_++;
 

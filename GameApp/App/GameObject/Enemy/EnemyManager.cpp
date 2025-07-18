@@ -71,7 +71,7 @@ void EnemyManager::Update() {
 
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position,
                                         std::string name) {
-
+    name;
   // 敵の生成
   std::weak_ptr<CannonNormalEnemy> enemy =
       objectManager_->CreateObject<CannonNormalEnemy>(
@@ -80,13 +80,13 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position,
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
 
-  enemy.lock()->SetName(name);
 
   enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position,
                                         std::string name) {
+    name;
   // 敵の生成
   std::weak_ptr<GunNormalEnemy> enemy =
       objectManager_->CreateObject<GunNormalEnemy>(
@@ -95,13 +95,13 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position,
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
 
-  enemy.lock()->SetName(name);
 
   enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
                                         std::string name) {
+    name;
   // 敵の生成
   std::weak_ptr<StalkerNormalEnemy> enemy =
       objectManager_->CreateObject<StalkerNormalEnemy>(
@@ -110,17 +110,16 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
 
-  enemy.lock()->SetName(name);
-
   enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name){
+    name;
     // 敵の生成
     std::weak_ptr<DonutNormalEnemy> enemy = 
-    objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy4", std::make_shared<DonutNormalEnemy>());
+    objectManager_->CreateObject<DonutNormalEnemy>("NormalEnemy4", std::make_shared<DonutNormalEnemy>());
     // 座標の設定
-    enemy->SetInitialPosition(position);
+    enemy.lock()->SetInitialPosition(position);
   
     // 挿入
     // 各敵にlistptr持たせる

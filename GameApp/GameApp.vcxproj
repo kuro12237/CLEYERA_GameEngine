@@ -223,7 +223,6 @@
     <ClCompile Include="App\GameObject\UI\state\PlayState.cpp" />
     <ClCompile Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.cpp" />
     <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
-    <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
     <ClCompile Include="App\GameObject\Wall\Wall.cpp" />
     <ClCompile Include="App\GameObject\Wall\WallManager.cpp" />
     <ClCompile Include="App\Scene\DebugSelectScene.cpp" />
