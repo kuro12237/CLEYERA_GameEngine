@@ -24,5 +24,4 @@ class GameManager {
 
    std::unique_ptr<SceneComponent> scene_ = nullptr;
 
-   bool isChange_ = false;
 };

@@ -45,7 +45,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体",
+            "name": "til",
             "file_name": "signboard",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -70,57 +70,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.002",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    100.0,
-                    0.0,
-                    86.38589477539062
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    100.0,
-                    100.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "立方体.003",
-            "file_name": "wall",
-            "Directory_name": "Resources/Model/map",
-            "ModelFileType": "obj",
-            "DrawType": "Normal",
-            "transform": {
-                "translate": [
-                    -100.0,
-                    0.0,
-                    86.38589477539062
-                ],
-                "rotate": [
-                    0.0,
-                    -0.0,
-                    0.0
-                ],
-                "scale": [
-                    1.0,
-                    100.0,
-                    100.0
-                ]
-            }
-        },
-        {
-            "type": "MESH",
-            "name": "平面",
+            "name": "wall",
             "file_name": "til_wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -145,7 +95,7 @@
         },
         {
             "type": "MESH",
-            "name": "平面.001",
+            "name": "wall.001",
             "file_name": "til_wall",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",
@@ -170,7 +120,7 @@
         },
         {
             "type": "MESH",
-            "name": "立方体.001",
+            "name": "bota",
             "file_name": "A",
             "Directory_name": "Resources/Model/map",
             "ModelFileType": "obj",

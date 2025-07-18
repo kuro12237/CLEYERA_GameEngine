@@ -36,7 +36,7 @@ void GameScene::Init() {
   }
 
   // エディタのデータを各オブジェクトにセット
-  enviromentObjs_ = loader_->SettingData(objectComponents_);
+  enviromentObjs_ = loader_->SettingData();
 
   for (auto obj : enviromentObjs_) {
     objectComponents_.push_back(obj);
@@ -55,9 +55,9 @@ void GameScene::Init() {
   }
 
   // 地形モデルの設定
-  uint32_t modelHandlet =
+  uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
-  terrain_->ChengeData(modelHandlet);
+  terrain_->ChengeData(modelHandle);
 
 }
 
