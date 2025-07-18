@@ -55,6 +55,7 @@ uint32_t CLEYERA::Manager::ModelManager::LoadModel(const std::string &directory,
    return handle_++;
 }
 
+
 std::weak_ptr<CLEYERA::Model3d::Model> CLEYERA::Manager::ModelManager::GetModel(uint32_t key) {
 
    for (const auto &data : datas_) {
