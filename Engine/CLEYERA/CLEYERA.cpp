@@ -75,12 +75,12 @@ void Engine::ImGuiUpdate() {
   flame_->ImGuiUpdate();
   dxCommon_->ImGuiUpdate();
 
-  //lightManager_->ImGuiUpdate();
-  //debugCamera_->ImGuiUpdate();
+  // lightManager_->ImGuiUpdate();
+  // debugCamera_->ImGuiUpdate();
 
-  //grid_->ImGuiUpdate();
+  // grid_->ImGuiUpdate();
   colliderSystem_->ImGuiUpdate();
- 
+  objectManager_->ImGuiUpdate();
 }
 
 void Engine::PhysiceForcesUpdate() { gravityManager_->Update(); }
@@ -88,10 +88,10 @@ void Engine::PhysiceForcesUpdate() { gravityManager_->Update(); }
 void Engine::Update() {
 
   terrain_->Update();
+  objectManager_->Update();
 
   terrain_->CheckObjct();
   colliderSystem_->Update();
-  objectManager_->Update();
   grid_->Update();
   lightManager_->Update();
 
@@ -99,7 +99,8 @@ void Engine::Update() {
 }
 
 void Engine::Finalize() {
-
+  CLEYERA::Manager::RenderManager::GetInstance()->Clear();
+  CLEYERA::Manager::ObjectManager::GetInstance()->Clear();
   inputManager_->Finalize();
   terrain_->Finalize();
   lightManager_->Finalize();
@@ -117,14 +118,9 @@ void Engine::Finalize() {
   imGuiCommon_.reset();
   dxCommon_->Finalize();
   winApp_->Finalize();
-
-
-  
 }
 
-void Engine::Begin() {
-  inputManager_->Begin();
-}
+void Engine::Begin() { inputManager_->Begin(); }
 
 void Engine::End() {
   dxCommon_->PostDraw();

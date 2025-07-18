@@ -6,6 +6,7 @@
 #include "ColliderFunc.h"
 #include "OBBCollider.h"
 
+#include "../Object/ObjectManager.h"
 #include "../RenderManager/RenderManager.h"
 #include "Octree/Octree.h"
 
@@ -31,13 +32,14 @@ public:
 
   void Update();
 
- /* void Clear() { objectList_.clear(); }
+  /* void Clear() { objectList_.clear(); }
 
-  void PushCollider(std::weak_ptr<Component::ObjectComponent> collider) {
-    objectList_.push_back(collider);
-  }*/
+   void PushCollider(std::weak_ptr<Component::ObjectComponent> collider) {
+     objectList_.push_back(collider);
+   }*/
 
-  void SetObjectComponentList(const std::list<std::weak_ptr<Component::ObjectComponent>> &list) {
+  void SetObjectComponentList(
+      const std::list<std::weak_ptr<Component::ObjectComponent>> &list) {
     objectList_ = &list;
   }
 

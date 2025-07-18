@@ -5,29 +5,29 @@ void EnemyDebugScene::Init() {
 
   // プレイヤー管理クラスの生成
   playerManager_ = std::make_unique<PlayerManager>();
-  managerCompornents_.push_back(playerManager_);
+  managerComponents_.push_back(playerManager_);
 
   // 敵管理クラスの生成
   enemyManager_ = std::make_unique<EnemyManager>();
   // プレイヤー管理クラスの設定
   enemyManager_->SetPlayerManager(playerManager_.get());
   // コンポーネントに挿入
-  managerCompornents_.push_back(enemyManager_);
+  managerComponents_.push_back(enemyManager_);
 
   // 初期化
-  for (auto &manager : managerCompornents_) {
+  for (auto &manager : managerComponents_) {
     manager.lock()->Init();
     // マネージャーのGameObjListをSceneにも登録(weak)
-    for (auto &obj : manager.lock()->GetObjList()) {
+    //for (auto &obj : manager.lock()->GetObjList()) {
 
-      // 無視
-      objectList_.push_back(obj.lock()->GetGameObject());
+    //  // 無視
+    //  objectList_.push_back(obj.lock()->GetGameObject());
 
-      // 重力適用
-      gravityManager_->PushData(obj);
-      // 地形当たり判定適用
-      terrain_->PushData(obj);
-    }
+    //  // 重力適用
+    //  gravityManager_->PushData(obj);
+    //  // 地形当たり判定適用
+    //  terrain_->PushData(obj);
+    //}
   }
 
   // 地形モデルの設定
@@ -47,7 +47,7 @@ void EnemyDebugScene::Update([[maybe_unused]] GameManager *g) {
   }
 
 
-  for (auto &manager : managerCompornents_) {
+  for (auto &manager : managerComponents_) {
 
     manager.lock()->Update();
   }

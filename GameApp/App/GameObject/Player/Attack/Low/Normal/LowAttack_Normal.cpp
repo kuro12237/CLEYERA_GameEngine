@@ -24,6 +24,7 @@ void LowAttack_Normal::Init()
 
 void LowAttack_Normal::Update()
 {
+  name_;
 	// コンボ進行タイマー更新
 	if ( comboElapse_ > 0.0f ) {
 		comboElapse_--;
@@ -100,18 +101,8 @@ void LowAttack_Normal::FireBullet()
 		// 初期化処理
 		newBul->Init();
 
-		// 名前設定
-		if ( bulletCount_ == 0 ) {
-			newBul->SetName(VAR_NAME(LowAttack_NormalBullet));
-		}
-		else {
-			char name[ 32 ];
-			std::snprintf(name, sizeof(name), "LowAttack_NormalBullet.%03zu", bulletCount_);
-			newBul->SetName(name);
-		}
-
 		// Managerに追加
-		bulMgr->PushbackNewBullet(std::move(newBul));
+		bulMgr->PushbackNewBullet(VAR_NAME(LowAttack_NormalBullet),std::move(newBul));
 	}
 
 	bulletCount_++;

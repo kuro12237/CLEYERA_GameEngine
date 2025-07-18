@@ -6,7 +6,7 @@
 #include "../Interface/IPlayerBullet.h"
 
 /* プレイヤーの発射物管理クラス */
-class PlayerBulletManager : public CLEYERA::Component::ManagerCompornent {
+class PlayerBulletManager : public CLEYERA::Component::ManagerComponent {
 
 public:
   /// <summary>
@@ -32,7 +32,7 @@ public:
   /// <summary>
   /// 新しいBulletを追加
   /// </summary>
-  void PushbackNewBullet(std::shared_ptr<IPlayerBullet> newBul);
+  void PushbackNewBullet(const std::string& category, std::shared_ptr<IPlayerBullet> newBul);
 
   /// <summary>
   /// ImGuiの描画

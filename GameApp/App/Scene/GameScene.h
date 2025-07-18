@@ -11,9 +11,8 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
-#include "TestPlayGui/TestPlayGui.h"
-
 #include "UI/TestUI.h"
+#include"UI/state/PlayState.h"
 
 class GameScene : public SceneComponent {
 public:
@@ -40,7 +39,8 @@ private:
 
   std::shared_ptr<WallManager> wallManager_ = nullptr;
 
-  std::shared_ptr<TestPlayGui> imgui_ = nullptr;
 
   std::vector<std::shared_ptr<TestUI>> uis_;
+
+  std::unique_ptr<IuiState> uiState_ = nullptr;
 };

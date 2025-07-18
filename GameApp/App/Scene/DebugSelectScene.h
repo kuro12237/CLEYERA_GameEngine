@@ -10,8 +10,6 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
-#include "TestPlayGui/TestPlayGui.h"
-
 #include "UI/TestUI.h"
 
 #include "GameClearScene.h"
@@ -40,4 +38,8 @@ private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
 
   std::vector<std::shared_ptr<EnvironmentObject>> enviromentObjs_;
+
+
+
+  bool f_ = false;
 };

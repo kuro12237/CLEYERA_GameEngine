@@ -2,8 +2,8 @@
 #include "../Camera/PlayerCamera.h"
 #include "Wall/Wall.h"
 
-#include "Enemy/Normal/Normal1/NormalEnemy1Bullet.h"
-#include "Enemy/Normal/Normal2/NormalEnemy2Bullet.h"
+#include "Enemy/Normal/Cannon/CannonNormalEnemy1Bullet.h"
+#include "Enemy/Normal/Gun/GunNormalEnemyBullet.h"
 
 #include "../../Item/Manager/ItemManager.h"
 #include "../../Item/AttackPickup/AttackPickupItem.h"
@@ -162,19 +162,19 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 	if ( auto wall = std::dynamic_pointer_cast< Wall >(obj) ) {
 		// Wall にぶつかったときの処理
 		auto aabb =
-			std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(wall->GetCollder().lock());
+			std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(wall->GetCollider().lock());
 		// 押し出し
 		this->translate_ -= aabb->GetAABB().push;
 	}
 
 	// bullet1 型にキャストできるかをチェック
-	if ( auto bullet1 = std::dynamic_pointer_cast< NormalEnemy1Bullet >(obj) ) {
+	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
 
 		hpCalcFunc_(bullet1->GetAttackPower());
 	}
 
 	// bullet2 型にキャストできるかをチェック
-	if ( auto bullet2 = std::dynamic_pointer_cast< NormalEnemy2Bullet >(obj) ) {
+	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
 
 		hpCalcFunc_(bullet2->GetAttackPower());
 	}

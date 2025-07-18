@@ -1,7 +1,7 @@
 #pragma once
 #include "Wall.h"
 
-class WallManager : public CLEYERA::Component::ManagerCompornent {
+class WallManager : public CLEYERA::Component::ManagerComponent {
 public:
   WallManager() {};
   ~WallManager() {};
@@ -11,5 +11,5 @@ public:
   void Update() override;
 
 private:
-  std::list<std::shared_ptr<Wall>> walls_;
+  std::list<std::weak_ptr<Wall>> walls_;
 };

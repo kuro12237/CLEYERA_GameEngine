@@ -175,7 +175,7 @@ void NormalEnemy1::OnCollision(std::weak_ptr<ObjectComponent> other) {
   if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
     // Wall にぶつかったときの処理
     auto aabb =
-        std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall->GetCollder().lock());
+        std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(wall->GetCollider().lock());
     // 押し出し
     this->translate_ -= aabb->GetAABB().push;
   }

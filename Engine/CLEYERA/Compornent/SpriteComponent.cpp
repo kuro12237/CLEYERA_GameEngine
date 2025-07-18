@@ -2,7 +2,17 @@
 
 void SpriteComponent::ImGuiUpdate() {
 
-	this->TransformImGuiUpdate(); }
+  if (ImGui::TreeNode(name_.c_str())) {
+
+    this->TransformImGuiUpdate();
+
+    if (GetJsonName()) {
+
+      JsonImGuiUpdate();
+    }
+    ImGui::TreePop();
+  }
+}
 
 void SpriteComponent::Draw() { sprite_->Draw(); }
 
@@ -22,3 +32,20 @@ void SpriteComponent::Create() {
   sprite_->SetWorldbindFunc([this](UINT n) { this->BindWT(n); });
 }
 
+void SpriteComponent::CreateJsonSystem(const std::string &fileGroupName) {
+  CreateJson(name_, fileGroupName,CLEYERA::Manager::GlobalVariables::ResourcesGroupDirectory::UI);
+
+  // 各パラメータの保存
+  this->SetValue<Math::Vector::Vec3>(VAR_NAME(scale_), scale_);
+  this->SetValue<Math::Vector::Vec3>(VAR_NAME(rotate_), rotate_);
+  this->SetValue<Math::Vector::Vec3>(VAR_NAME(translate_), translate_);
+  this->SetValue<Math::Vector::Vec2>(VAR_NAME(size), size);
+  this->SetValue<Math::Vector::Vec2>(VAR_NAME(anker), anker);
+
+  // 各パラメータの読込
+  scale_ = this->GetValue<Math::Vector::Vec3>(VAR_NAME(scale_));
+  rotate_ = this->GetValue<Math::Vector::Vec3>(VAR_NAME(rotate_));
+  translate_ = this->GetValue<Math::Vector::Vec3>(VAR_NAME(translate_));
+  size = this->GetValue<Math::Vector::Vec2>(VAR_NAME(size));
+  anker = this->GetValue<Math::Vector::Vec2>(VAR_NAME(anker));
+}

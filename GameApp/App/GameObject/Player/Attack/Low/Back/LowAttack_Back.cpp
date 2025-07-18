@@ -65,7 +65,7 @@ void LowAttack_Back::IsAttack()
             newBul->SetName(name);
         }
 
-        bulletManager->PushbackNewBullet(std::move(newBul));
+        bulletManager->PushbackNewBullet(VAR_NAME(LowAttack_BackBullet),std::move(newBul));
         bulletCount_++;
     }
 

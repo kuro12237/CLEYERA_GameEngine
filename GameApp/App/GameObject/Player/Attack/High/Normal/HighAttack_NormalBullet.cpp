@@ -3,8 +3,6 @@
 
 void HighAttack_NormalBullet::Init()
 {
-	// クラス名
-	name_ = VAR_NAME(HighAttack_NormalBullet);
 
 	// Modelの設定
 	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
@@ -19,6 +17,7 @@ void HighAttack_NormalBullet::Init()
 
 void HighAttack_NormalBullet::Update()
 {
+  name_;
 	ObjectComponent::TransformUpdate();
 	IPlayerBullet::Update_LifeTime();
 

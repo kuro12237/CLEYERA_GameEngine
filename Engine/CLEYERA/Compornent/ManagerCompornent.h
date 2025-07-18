@@ -5,16 +5,19 @@
 #include "../Compornent/CameraCompornent.h"
 #include "ObjectCompornent.h"
 
+#include "../Utility/Object/ObjectManager.h"
+
 namespace CLEYERA {
 
 namespace Component {
 
-class ManagerCompornent {
+class ManagerComponent {
 public:
-  ManagerCompornent() {
+  ManagerComponent() {
     colliderSystem_ = Manager::ColliderSystem::GetInstance();
+    objectManager_ = Manager::ObjectManager::GetInstance();
   };
-  virtual ~ManagerCompornent() {};
+  virtual ~ManagerComponent() {};
 
   virtual void Init() = 0;
 
@@ -22,31 +25,30 @@ public:
 
   virtual void ImGuiUpdate();
 
-  void CollectAllObjects(
-                         std::list<std::weak_ptr<Component::ObjectComponent>> &outList);
+  void CollectAllManagers();
 
 #pragma region Get
 
-  std::list<std::weak_ptr<Component::ManagerCompornent>> &GetManagerList() { return childManagerComponents_; }
-
-  std::list<std::weak_ptr<Component::ObjectComponent>> &GetObjList() {
-    return objComponents_;
+  std::list<std::weak_ptr<Component::ManagerComponent>> &GetManagerList() {
+    return childManagerComponents_;
   }
+
 #pragma endregion
 
 private:
 protected:
   Manager::ColliderSystem *colliderSystem_ = nullptr;
+  Manager::ObjectManager *objectManager_ = nullptr;
 
   void ListInit();
   void ListUpdate();
 
   std::string name_ = "";
 
-  std::list<std::weak_ptr<Component::ObjectComponent>> objComponents_;
-  std::list<std::weak_ptr<Component::CameraCompornent>> cameraCompornents_;
+  std::list<std::weak_ptr<Component::CameraCompornent>> cameraComponents_;
 
-  std::list<std::weak_ptr<Component::ManagerCompornent>> childManagerComponents_;
+  std::list<std::weak_ptr<Component::ManagerComponent>>
+      childManagerComponents_;
 };
 
 } // namespace Component

@@ -21,7 +21,7 @@ class PlayerManager;
 /// <summary>
 /// 敵管理クラス
 /// </summary>
-class EnemyManager : public CLEYERA::Component::ManagerCompornent {
+class EnemyManager : public CLEYERA::Component::ManagerComponent {
 public:
   /// <summary>
   /// 初期化
@@ -51,6 +51,13 @@ public:
   /// <param name="position"></param>
   /// <param name="name"></param>
   void GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name = "");
+
+  /// <summary>
+  /// ドーナツを生成
+  /// </summary>
+  /// <param name="position"></param>
+  /// <param name="name"></param>
+  void GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name = "");
 
   /// <summary>
   /// ボス敵

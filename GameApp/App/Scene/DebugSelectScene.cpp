@@ -25,6 +25,16 @@ void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
   
   // 決定ボタン
   if (ImGui::Button("SceneChange")) {
+
+      f_ = true;
+ 
+  }
+
+  ImGui::End();
+
+
+
+  if (f_) {
     // シーン切替
     if (sceneNames_[selectedIndex_] == "TitleScene") {
       g->ChangeScene(std::make_unique<TitleScene>());
@@ -37,9 +47,9 @@ void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
     } else if (sceneNames_[selectedIndex_] == "SelectScene") {
       g->ChangeScene(std::make_unique<SelectScene>());
     }
+  
   }
 
-  ImGui::End();
 }
 
 void DebugSelectScene::Draw2d() {}

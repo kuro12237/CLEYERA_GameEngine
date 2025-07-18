@@ -3,12 +3,13 @@
 #include "Player/PlayerManager.h"
 
 // 雑魚敵
-#include "Normal/Normal1/NormalEnemy1.h"
-#include "Normal/Normal2/NormalEnemy2.h"
-#include "Normal/Normal3/NormalEnemy3.h"
+#include "Normal/Cannon/CannonNormalEnemy.h"
+#include "Normal/Gun/GunNormalEnemy.h"
+#include "Normal/Stalker/StalkerNormalEnemy.h"
 
 // ボス
-#include "Boss/First/FirstBossEnemy.h"
+#include "Boss/BakugekiSnipe/BakugekiSnipeBossEnemy.h"
+#include "Normal/Donut/DonutNormalEnemy.h"
 
 
 void EnemyManager::Init() {
@@ -33,7 +34,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateBossEnemyEnemy({});
+  GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f});
 
   //GenerateNormalEnemy3({});
   for (size_t i = 0; i < 1; i++) {
@@ -80,8 +81,10 @@ void EnemyManager::Update() {
   }
 
   // 雑魚敵の削除
-  enemyList_.remove_if(
-      [](const std::shared_ptr<BaseNormalEnemy> &enemy) { return enemy->GetIsDelete(); });
+  enemyList_.remove_if([](const std::shared_ptr<BaseNormalEnemy> &enemy) {
+    enemy->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+    return enemy->GetIsDelete();
+  });
 
   for (std::shared_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
     // プレイヤーの座標を設定
@@ -90,29 +93,25 @@ void EnemyManager::Update() {
 }
 
 void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position, std::string name) {
-
+    name;
   // 敵の生成
-  std::shared_ptr<NormalEnemy1> enemy = std::make_shared<NormalEnemy1>();
+  std::shared_ptr<CannonNormalEnemy> enemy = std::make_shared<CannonNormalEnemy>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化
   enemy->Init();
 
-  if (name != "") {
-    enemy->SetName(name);
-  }
-
   // 挿入
   // 各敵にlistptr持たせる
-  enemy->SetMgrObjList(objComponents_);
+  //enemy->SetMgrObjList(objComponents_);
 
-  objComponents_.push_back(enemy);
+  objectManager_->CreateObject<CannonNormalEnemy>("NormalEnemy1", enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
-  std::shared_ptr<NormalEnemy2> enemy = std::make_shared<NormalEnemy2>();
+  std::shared_ptr<GunNormalEnemy> enemy = std::make_shared<GunNormalEnemy>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化
@@ -124,15 +123,15 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   // 各敵にlistptr持たせる
-  enemy->SetMgrObjList(objComponents_);
+  //enemy->SetMgrObjList(objComponents_);
 
-  objComponents_.push_back(enemy);
+  objectManager_->CreateObject<GunNormalEnemy>("NormalEnemy2",enemy);
   enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name) {
   // 敵の生成
-  std::shared_ptr<NormalEnemy3> enemy = std::make_shared<NormalEnemy3>();
+  std::shared_ptr<StalkerNormalEnemy> enemy = std::make_shared<StalkerNormalEnemy>();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 初期化
@@ -144,21 +143,39 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std:
 
   // 挿入
   // 各敵にlistptr持たせる
-  enemy->SetMgrObjList(objComponents_);
 
-  objComponents_.push_back(enemy);
+  objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy3", enemy);
   enemyList_.push_back(std::move(enemy));
+}
+
+void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name){
+    // 敵の生成
+    std::shared_ptr<DonutNormalEnemy> enemy = std::make_shared<DonutNormalEnemy>();
+    // 座標の設定
+    enemy->SetInitialPosition(position);
+    // 初期化
+    enemy->Init();
+
+    if ( name != "" ) {
+        enemy->SetName(name);
+    }
+
+    // 挿入
+    // 各敵にlistptr持たせる
+    objectManager_->CreateObject<StalkerNormalEnemy>("NormalEnemy4", enemy);
+    enemyList_.push_back(std::move(enemy));
 }
 
 void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
   // ボスの生成
-  std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<FirstBossEnemy>();
+  std::shared_ptr<BaseBossEnemy> enemy = std::make_shared<BakugekiSnipeBossEnemy>();
   // 初期化
   enemy->Init();
   // 座標の設定
   enemy->SetInitialPosition(position);
   // 挿入
-  objComponents_.push_back(enemy);
+
+  objectManager_->CreateObject<BakugekiSnipeBossEnemy>(VAR_NAME(FirstBossEnemy), enemy);
   bossEnemyList_.push_back(std::move(enemy));
 }
 
@@ -186,10 +203,10 @@ void EnemyManager::ImGuiUpdate() {
 
     ImGui::Separator();
 
-    for (auto obj : objComponents_) {
+  /*  for (auto obj : objComponents_) {
 
       obj.lock()->ImGuiUpdate();
-    }
+    }*/
 
     ImGui::TreePop();
   }

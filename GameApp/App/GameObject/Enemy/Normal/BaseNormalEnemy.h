@@ -105,6 +105,36 @@ public:
   /// </summary>
   inline void SetDelete() { this->isAlive_ = false; }
 
+  /// <summary>
+  /// クールタイムの状態を取得
+  /// </summary>
+  /// <returns></returns>
+  inline bool GetIsCool()const {
+      return isCool_;
+  }
+
+  /// <summary>
+  /// クールタイム中かどうか
+  /// </summary>
+  /// <param name="isCool"></param>
+  inline void SetIsCool(const bool & isCool) {
+      this->isCool_ = isCool;
+  }
+
+  /// <summary>
+  /// 弾の数を増やす
+  /// </summary>
+  inline void IncrementBulletNumber() {
+      this->generateBulletNumber_++;
+  }
+
+  /// <summary>
+  /// 生成した弾の数
+  /// </summary>
+  inline uint32_t GetGenerateBulletNumber()const {
+      return generateBulletNumber_;
+  }
+
   void SetMgrObjList(std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> &list) {
     mgrObjList_ = &list;
   }
@@ -167,6 +197,14 @@ protected:
   bool isAlive_ = true;
   // 消えるかどうか
   bool isDelete_ = false;
+  //クールタイム中かどうか
+  bool isCool_ = false;
+  //時間
+  float_t coolTime_ = 0.0f;
+  //制限
+  float_t coolTimeLimit_ = 3.0f;
+  //生成した弾の数。これが無いと管理しにくい
+  uint32_t generateBulletNumber_ = 0u;
 
 protected:
   // パラメーター

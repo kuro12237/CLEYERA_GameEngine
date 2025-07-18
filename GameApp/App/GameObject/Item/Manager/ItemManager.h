@@ -5,7 +5,7 @@
 
 
 /* IItemを継承しているObjectを管理するクラス */
-class ItemManager : public CLEYERA::Component::ManagerCompornent {
+class ItemManager : public CLEYERA::Component::ManagerComponent {
 
 public:
 

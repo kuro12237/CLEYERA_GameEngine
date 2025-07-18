@@ -1,6 +1,6 @@
 #include "ManagerCompornent.h"
 
-void CLEYERA::Component::ManagerCompornent::ImGuiUpdate() {
+void CLEYERA::Component::ManagerComponent::ImGuiUpdate() {
 
   if (name_ == "") {
     return;
@@ -8,11 +8,8 @@ void CLEYERA::Component::ManagerCompornent::ImGuiUpdate() {
 
   if (ImGui::TreeNode(name_.c_str())) {
 
-    for (auto obj : objComponents_) {
-
-      obj.lock()->ImGuiUpdate();
-    }
-    for (auto obj : cameraCompornents_) {
+  
+    for (auto obj : cameraComponents_) {
       obj.lock()->ImGuiUpdate();
     }
 
@@ -20,8 +17,7 @@ void CLEYERA::Component::ManagerCompornent::ImGuiUpdate() {
   }
 }
 
-void CLEYERA::Component::ManagerCompornent::CollectAllObjects(
-    std::list<std::weak_ptr<Component::ObjectComponent>> &outList) {
+void CLEYERA::Component::ManagerComponent::CollectAllManagers() {
 
   for (auto mgr : childManagerComponents_) {
     auto it = mgr.lock();
@@ -30,34 +26,19 @@ void CLEYERA::Component::ManagerCompornent::CollectAllObjects(
 
     it->Update();
 
-    // ObjList から Object を取得して objectComponents に移動
-    for (auto &newObj : it->GetObjList()) {
-      auto obj = newObj.lock();
-      if (obj) {
-        outList.push_back(obj);
-      }
-    }
-
-    // ObjList をクリア（元の manager 側から削除）
-    it->GetObjList().clear();
-
     // 子 Manager に対して再帰的に同じ処理を行う
     for (auto &childMgrWeak : it->GetManagerList()) {
       auto childMgr = childMgrWeak.lock();
       if (childMgr) {
-        childMgr->CollectAllObjects(outList);
+        childMgr->CollectAllManagers();
       }
     }
   }
 }
 
-void CLEYERA::Component::ManagerCompornent::ListInit() {
+void CLEYERA::Component::ManagerComponent::ListInit() {
 
-  for (auto obj : objComponents_) {
-
-    obj.lock()->Init();
-  }
-  for (auto obj : cameraCompornents_) {
+  for (auto obj : cameraComponents_) {
     obj.lock()->Init();
   }
 
@@ -68,13 +49,9 @@ void CLEYERA::Component::ManagerCompornent::ListInit() {
   }
 }
 
-void CLEYERA::Component::ManagerCompornent::ListUpdate() {
+void CLEYERA::Component::ManagerComponent::ListUpdate() {
 
-  for (auto obj : objComponents_) {
-    obj;
-     obj.lock()->Update();
-  }
-  for (auto obj : cameraCompornents_) {
+  for (auto obj : cameraComponents_) {
     obj.lock()->Update();
   }
 }

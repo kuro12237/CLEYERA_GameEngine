@@ -16,7 +16,7 @@
 class ItemManager;
 
 /* Player関連の一元管理クラス */
-class PlayerManager : public CLEYERA::Component::ManagerCompornent {
+class PlayerManager : public CLEYERA::Component::ManagerComponent {
 
 public:
   /// <summary>
@@ -61,7 +61,7 @@ private:
   std::shared_ptr<PlayerBulletManager> bulletManager_;
 
   // コア
-  std::shared_ptr<PlayerCore> core_;
+  std::weak_ptr<PlayerCore> core_;
 
   // コマンドハンドラー
   std::unique_ptr<PlayerCommandHandler> commandHandler_;

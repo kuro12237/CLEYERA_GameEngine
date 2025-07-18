@@ -60,7 +60,7 @@ void SpecialAttack_Normal::IsAttack()
         bullet->Init();
         bullet->SetName(bulletName);
 
-        bulletManager->PushbackNewBullet(std::move(bullet));
+        bulletManager->PushbackNewBullet(VAR_NAME(SpecialAttack_NormalBullet),std::move(bullet));
 
         bulletCount_++;
     }
