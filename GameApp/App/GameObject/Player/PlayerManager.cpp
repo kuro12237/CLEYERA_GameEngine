@@ -3,7 +3,7 @@
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerManager::PlayerManager(std::weak_ptr<ItemManager> itemMgr) {
+PlayerManager::PlayerManager() {
   // クラス名
   ManagerComponent::name_ = VAR_NAME(PlayerManager);
 
@@ -11,7 +11,7 @@ PlayerManager::PlayerManager(std::weak_ptr<ItemManager> itemMgr) {
   bulletManager_ = std::make_shared<PlayerBulletManager>();
 
   core_ = objectManager_->CreateObject<PlayerCore>(
-      "PlayerCore", std::make_shared<PlayerCore>(camera_, bulletManager_, itemMgr));
+      "PlayerCore", std::make_shared<PlayerCore>());
 
   hp_ = std::make_unique<HealthComponent>();
 }
@@ -64,4 +64,9 @@ void PlayerManager::ImGuiUpdate() {
 
     ImGui::TreePop();
   }
+}
+
+void PlayerManager::SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr)
+{
+    core_.lock()->SetPtr(camera_, bulletManager_, itemMgr, enemyMgr);
 }

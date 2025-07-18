@@ -3,6 +3,8 @@
 #include "CLEYERA.h"
 #include "Lua/Script/LuaScript.h"
 
+#include "../Helper/PlayerHelper.h"
+
 #include "../Command/PlayerCommandHandler.h"
 
 #include "../State/Action/Interface/IPlayerActionState.h"
@@ -32,8 +34,7 @@ public:
 	/// <summary>
 	/// コンストラク
 	/// </summary>
-	PlayerCore() = default;
-	PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr);
+	PlayerCore();
 
 	/// <summary>
 	/// デストラクタ
@@ -49,6 +50,16 @@ public:
 	/// 更新処理
 	/// </summary>
 	void Update() override;
+
+	/// <summary>
+	/// ImGuiの表示
+	/// </summary>
+	void ImGuiUpdate() override;
+
+	/// <summary>
+	/// 衝突時コールバック
+	/// </summary>
+	void OnCollision(std::weak_ptr<ObjectComponent> other);
 
 	/// <summary>
 	/// Padの移動処理
@@ -81,18 +92,25 @@ public:
 	void Dash();
 
 	/// <summary>
-	/// 衝突時コールバック
-	/// </summary>
-	void OnCollision(std::weak_ptr<ObjectComponent> other);
-
-	/// <summary>
 	/// Stateの変更
 	/// </summary>
 	void ChangeActionState(std::unique_ptr<IPlayerActionState> newState);
 
-	void ImGuiUpdate() override;
 
 #pragma region Accessor
+
+	// Ptrの設定
+	inline void SetPtr(std::weak_ptr<PlayerCamera> cameraptr,
+		std::weak_ptr<PlayerBulletManager> bulManPtr,
+		std::weak_ptr<ItemManager> itemMgr,
+		std::weak_ptr<EnemyManager> enemyMgr)
+	{
+		weakpCamera_ = cameraptr;
+		moveFunc_->SetCameraPtr(cameraptr);
+		bulletManager_ = bulManPtr;
+		itemMgr_ = itemMgr;
+		enemyManager_ = enemyMgr;
+	}
 
 	// ワールド座標の取得
 	inline Math::Vector::Vec3 GetWorldPos() const {
@@ -114,19 +132,30 @@ public:
 		};
 	}
 
-	/// <summary>
-	/// hp計算関数をセット
-	/// </summary>
-	void SetHpCalcfunc(std::function<void(int32_t)> hpCalcFunc) { hpCalcFunc_ = hpCalcFunc; };
+	// 各ベクトルの取得
+	inline Math::Vector::Vec3 GetForwardVec() const
+	{
+		Math::Vector::Vec3 def = Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f };
+		return PlayerHelper::CalcDirectVec(def, rotate_.y);
+	}
+	inline Math::Vector::Vec3 GetBackVec() const
+	{
+		Math::Vector::Vec3 def = Math::Vector::Vec3{ 0.0f, 0.0f, -1.0f };
+		return PlayerHelper::CalcDirectVec(def, rotate_.y);
+	}
+	inline Math::Vector::Vec3 GetRightVec() const
+	{
+		Math::Vector::Vec3 def = Math::Vector::Vec3{ 1.0f, 0.0f, 0.0f };
+		return PlayerHelper::CalcDirectVec(def, rotate_.y);
+	}
+	inline Math::Vector::Vec3 GetLeftVec() const
+	{
+		Math::Vector::Vec3 def = Math::Vector::Vec3{ -1.0f, 0.0f, 0.0f };
+		return PlayerHelper::CalcDirectVec(def, rotate_.y);
+	}
 
-	// 前方ベクトルの取得
-	Math::Vector::Vec3 GetForwardVec() const { return forwardVec_; }
-	// 後方ベクトルの取得
-	Math::Vector::Vec3 GetBackVec() const { return backVec_; }
-	// 右方ベクトルの取得
-	Math::Vector::Vec3 GetRightVec() const { return rightVec_; }
-	// 左方ベクトルの取得
-	Math::Vector::Vec3 GetLeftVec() const { return leftVec_; }
+	// hp計算関数をセット
+	void SetHpCalcfunc(std::function<void(int32_t)> hpCalcFunc) { hpCalcFunc_ = hpCalcFunc; };
 
 	// 攻撃後か
 	bool IsAttacked() const { return isAttackStiff_; }
@@ -134,6 +163,7 @@ public:
 #pragma endregion
 
 private:
+
 	/// <summary>
 	/// 攻撃スロットの初期化
 	/// </summary>
@@ -148,22 +178,6 @@ private:
 	/// Luaからデータを抽出する
 	/// </summary>
 	void LoadCoreDataFromLua();
-
-	/// <summary>
-	/// 方向ベクトルを求める
-	/// </summary>
-	void CalcDirectVec();
-
-	/// <summary>
-	/// 一番近いエネミーを求める
-	/// </summary>
-	void GetNearestEnemy();
-
-	/// <summary>
-	/// Vector3にアフィン変換と透視補正を適用する
-	/// </summary>
-	Math::Vector::Vec3 TransformWithPerspective(const Math::Vector::Vec3 & v,
-												const Math::Matrix::Mat4x4 & m);
 
 	/// <summary>
 	/// ノックバック

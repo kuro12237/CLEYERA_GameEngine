@@ -5,7 +5,7 @@ GameScene::GameScene() {
   CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
 
   itemManager_ = std::make_shared<ItemManager>();
-  playerManager_ = std::make_shared<PlayerManager>(itemManager_);
+  playerManager_ = std::make_shared<PlayerManager>();
 }
 
 void GameScene::Init() {
@@ -29,6 +29,8 @@ void GameScene::Init() {
   managerComponents_.push_back(wallManager_);
 
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
+
+  playerManager_->SetPtr(itemManager_, enemyManager_);
 
   // 初期化
   for (auto manager : managerComponents_) {

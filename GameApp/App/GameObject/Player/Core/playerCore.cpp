@@ -10,20 +10,13 @@
 #include "../../Item/AttackPickup/AttackPickupItem.h"
 #include "../../Item/Heal/HealItem.h"
 
-PlayerCore::PlayerCore(std::weak_ptr<PlayerCamera> cameraptr, 
-	std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<ItemManager> itemMgr,
-	std::weak_ptr<EnemyManager> enemyMgr) {
-
+PlayerCore::PlayerCore() 
+{
 	lua_ = std::make_unique<LuaScript>();
 	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
-	moveFunc_->SetCameraPtr(cameraptr);
 	dashFunc_ = std::make_unique<PlayerDashFunc>(this);
 	invincibleFunc_ = std::make_unique<PlayerInvincibleFunc>(this);
-	weakpCamera_ = cameraptr;
-	bulletManager_ = bulManPtr;
-	itemMgr_ = itemMgr;
-	enemyManager_ = enemyMgr;
 }
 
 void PlayerCore::Init() {
@@ -86,13 +79,62 @@ void PlayerCore::Update() {
 			atk->Update();
 	}
 
-	// 前方&右方のベクトルを求める
-	CalcDirectVec();
 	// ノックバック
 	KnockBack();
 
 	if ( translate_.y <= -2.0f ) {
 		translate_ = { 0.0f, 1.0f, 0.0f };
+	}
+}
+
+void PlayerCore::ImGuiUpdate()
+{
+	if ( ImGui::TreeNode("PlayerCore") ) {
+
+		if ( ImGui::Button("Pop AttackpickupItem ") ) {
+
+		}
+
+		ImGui::TreePop();
+	}
+}
+
+void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
+	auto obj = other.lock();
+
+	if ( !obj ) {
+		return;
+	}
+	// 今後dynamicから変更する
+
+	// Wall 型にキャストできるかをチェック
+	if ( auto wall = std::dynamic_pointer_cast< Wall >(obj) ) {
+		// Wall にぶつかったときの処理
+		auto aabb =
+			std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(wall->GetCollider().lock());
+		// 押し出し
+		this->translate_ -= aabb->GetAABB().push;
+	}
+
+	// HealItem 型にキャストできるかチェック
+	if ( auto healItem = std::dynamic_pointer_cast< HealItem >(obj) ) {
+
+	}
+
+
+	// 無敵なので早期return
+	if ( invincibleFunc_->IsInvincible() )
+		return;
+
+	// bullet1 型にキャストできるかをチェック
+	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
+
+		hpCalcFunc_(bullet1->GetAttackPower());
+	}
+	// bullet2 型にキャストできるかをチェック
+	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
+
+		hpCalcFunc_(bullet2->GetAttackPower());
 	}
 }
 
@@ -130,43 +172,11 @@ void PlayerCore::Dash()
 	dashFunc_->StartDash();
 }
 
-void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
-	auto obj = other.lock();
-
-	if ( !obj ) {
-		return;
-	}
-	// 今後dynamicから変更する
-
-	// Wall 型にキャストできるかをチェック
-	if ( auto wall = std::dynamic_pointer_cast< Wall >(obj) ) {
-		// Wall にぶつかったときの処理
-		auto aabb =
-			std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(wall->GetCollider().lock());
-		// 押し出し
-		this->translate_ -= aabb->GetAABB().push;
-	}
-
-	// HealItem 型にキャストできるかチェック
-	if ( auto healItem = std::dynamic_pointer_cast< HealItem >(obj) ) {
-
-	}
-
-
-	// 無敵なので早期return
-	if ( invincibleFunc_->IsInvincible() )
-		return; 
-
-	// bullet1 型にキャストできるかをチェック
-	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
-
-		hpCalcFunc_(bullet1->GetAttackPower());
-	}
-	// bullet2 型にキャストできるかをチェック
-	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
-
-		hpCalcFunc_(bullet2->GetAttackPower());
-	}
+void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
+{
+	if ( actionState_ ) actionState_->Exit();
+	actionState_ = std::move(newState);
+	actionState_->Enter(this);
 }
 
 void PlayerCore::InitAttackSlot() {
@@ -238,69 +248,5 @@ void PlayerCore::KnockBack() {
 			isKnockBack_ = false;
 			isDesidePosition_ = false;
 		}
-	}
-}
-
-void PlayerCore::CalcDirectVec() {
-	// 前方ベクトルのデフォルト値
-	Math::Vector::Vec3 defForwardVec = Math::Vector::Vec3{ 0.0f, 0.0f, 1.0f };
-	// 後方ベクトルのデフォルト値
-	Math::Vector::Vec3 defBackVec = Math::Vector::Vec3{ 0.0f, 0.0f, -1.0f };
-	// 右方ベクトルのデフォルト値
-	Math::Vector::Vec3 defRightVec = Math::Vector::Vec3{ 1.0f, 0.0f, 0.0f };
-	// 左方ベクトルのデフォルト値
-	Math::Vector::Vec3 defLeftVec = Math::Vector::Vec3{ -1.0f, 0.0f, 0.0f };
-
-	// Y軸の回転行列
-	Math::Matrix::Mat4x4 rotateYMat = Math::Matrix::Func::RotateYMatrix(rotate_.y);
-
-	// 前方ベクトルを求める
-	forwardVec_ = TransformWithPerspective(defForwardVec, rotateYMat);
-	// 上方ベクトルを求める
-	backVec_ = TransformWithPerspective(defBackVec, rotateYMat);
-	// 右方ベクトルを求める
-	rightVec_ = TransformWithPerspective(defRightVec, rotateYMat);
-	// 左方ベクトルを求める
-	leftVec_ = TransformWithPerspective(defLeftVec, rotateYMat);
-}
-
-void PlayerCore::GetNearestEnemy()
-{
-}
-
-Math::Vector::Vec3 PlayerCore::TransformWithPerspective(const Math::Vector::Vec3 & v,
-														const Math::Matrix::Mat4x4 & m) {
-	Math::Vector::Vec3 result = {
-		(v.x * m.m[ 0 ][ 0 ]) + (v.y * m.m[ 1 ][ 0 ]) + (v.z * m.m[ 2 ][ 0 ]) + (1.0f * m.m[ 3 ][ 0 ]),
-		(v.x * m.m[ 0 ][ 1 ]) + (v.y * m.m[ 1 ][ 1 ]) + (v.z * m.m[ 2 ][ 1 ]) + (1.0f * m.m[ 3 ][ 1 ]),
-		(v.x * m.m[ 0 ][ 2 ]) + (v.y * m.m[ 1 ][ 2 ]) + (v.z * m.m[ 2 ][ 2 ]) + (1.0f * m.m[ 3 ][ 2 ]) };
-	float w = (v.x * m.m[ 0 ][ 3 ]) + (v.y * m.m[ 1 ][ 3 ]) + (v.z * m.m[ 2 ][ 3 ]) + (1.0f * m.m[ 3 ][ 3 ]);
-
-	// 0除算を避ける
-	if ( w != 0.0f ) {
-		result.x /= w;
-		result.y /= w;
-		result.z /= w;
-	}
-
-	return result;
-}
-
-void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
-{
-	if(actionState_ ) actionState_->Exit();
-	actionState_ = std::move(newState);
-	actionState_->Enter(this);
-}
-
-void PlayerCore::ImGuiUpdate()
-{
-	if ( ImGui::TreeNode("PlayerCore") ) {
-
-		if ( ImGui::Button("Pop AttackpickupItem ") ) {
-
-		}
-
-		ImGui::TreePop();
 	}
 }

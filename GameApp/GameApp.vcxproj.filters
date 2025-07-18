@@ -210,6 +210,7 @@
     <ClInclude Include="App\GameObject\Player\Core\Invincible\PlayerInvincibleFunc.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Special\Power\SpecialAttack_Power.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Special\Power\SpecialAttack_PowerBullet.h" />
+    <ClInclude Include="App\GameObject\Player\Helper\PlayerHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

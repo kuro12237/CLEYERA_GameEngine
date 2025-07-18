@@ -311,6 +311,7 @@
     <ClInclude Include="App\GameObject\Player\Core\Invincible\PlayerInvincibleFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
+    <ClInclude Include="App\GameObject\Player\Helper\PlayerHelper.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
     <ClInclude Include="App\GameObject\UI\GameLowAttackUI.h" />
     <ClInclude Include="App\GameObject\UI\GameUIBase.h" />
