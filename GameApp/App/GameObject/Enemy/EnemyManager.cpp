@@ -37,12 +37,12 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy1({}, "NormalEnemy1");
-  GenerateNormalEnemy2({}, "NormalEnemy2");
-  GenerateNormalEnemy3({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
+  //GenerateNormalEnemy1({}, "NormalEnemy1");
+  //GenerateNormalEnemy2({}, "NormalEnemy2");
+  //GenerateNormalEnemy3({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
 
-  GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
-
+  //GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
+  GenerateBossEnemyEnemy({});
 
 }
 
