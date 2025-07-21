@@ -8,8 +8,7 @@
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
 #include <Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h>
 
-#include "Player/Core/playerCore.h"
-
+#include <Player/PlayerManager.h>
 #include"Player/Attack/Interface/IPlayerBullet.h"
 
 void GunNormalEnemy::Init() {
@@ -49,7 +48,7 @@ void GunNormalEnemy::Init() {
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2, 1u, 3.0f));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::GunBullet, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -143,7 +142,7 @@ void GunNormalEnemy::Update() {
     }
 
     // プレイヤーへの方向を計算
-    directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+    directionToPlayer_ = Math::Vector::Func::Normalize(playerManager_->GetPlayerCore().lock()->GetWorldPos() - translate_);
 
     // ノックバック
     KnockBack();

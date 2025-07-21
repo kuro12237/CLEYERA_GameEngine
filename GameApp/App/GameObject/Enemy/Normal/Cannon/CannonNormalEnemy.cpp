@@ -10,6 +10,7 @@
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
 
+#include <Player/PlayerManager.h>
 #include "../../../Player/Attack/Interface/IPlayerBullet.h"
 
 void CannonNormalEnemy::Init() {
@@ -55,7 +56,7 @@ void CannonNormalEnemy::Init() {
       std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   // 攻撃
   attackSequence->AddChild(
-      std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1, 1u, 3.0f));
+      std::make_unique<NormalEnemyAttack>(BulletType::CannonBullet, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -146,7 +147,7 @@ void CannonNormalEnemy::Update() {
 
     // プレイヤーへの方向を計算
     directionToPlayer_ =
-        Math::Vector::Func::Normalize(playerPosition_ - translate_);
+        Math::Vector::Func::Normalize(playerManager_->GetPlayerCore().lock()->GetWorldPos() - translate_);
 
     // ノックバック
     KnockBack();

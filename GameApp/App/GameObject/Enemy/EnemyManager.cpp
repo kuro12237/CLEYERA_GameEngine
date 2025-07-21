@@ -12,6 +12,7 @@
 #include "Normal/Donut/DonutNormalEnemy.h"
 
 void EnemyManager::Init() {
+    assert(playerManager_);
 
   name_ = VAR_NAME(EnemyManager);
 
@@ -37,9 +38,10 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
+  GenerateBossEnemyEnemy({});
     GenerateCannonNormalEnemy({});
-  //GenerateGunNormalEnemy({});
-  //GenerateStalkerNormalEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f});
+   // GenerateGunNormalEnemy({});
+  GenerateStalkerNormalEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f});
 
   //GenerateDonutNormalEnemy({.x=0.0f,.y=0.0f,.z=10.0f});
 
@@ -55,8 +57,6 @@ void EnemyManager::Update() {
 
   for (std::weak_ptr<BaseNormalEnemy> &enemy : enemyList_) {
     auto it = enemy.lock();
-    // プレイヤーの座標を設定
-    it->SetPlayerPosition(playerPosition_);
 
     if (it->GetIsDelete()) {
       it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
@@ -64,8 +64,11 @@ void EnemyManager::Update() {
   }
 
   for (std::weak_ptr<BaseBossEnemy> &enemy : bossEnemyList_) {
-    // プレイヤーの座標を設定
-    enemy.lock()->SetPlayerPosition(playerPosition_);
+      auto it = enemy.lock();
+
+      if ( it->GetIsDelete() ) {
+          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+      }
   }
 }
 
@@ -77,7 +80,7 @@ void EnemyManager::GenerateCannonNormalEnemy(const Math::Vector::Vec3 &position)
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
+  enemy.lock()->SetPlayerManager(playerManager_);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -89,7 +92,7 @@ void EnemyManager::GenerateGunNormalEnemy(const Math::Vector::Vec3 &position) {
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
+  enemy.lock()->SetPlayerManager(playerManager_);
 
   enemyList_.push_back(std::move(enemy));
 }
@@ -102,7 +105,7 @@ void EnemyManager::GenerateStalkerNormalEnemy(const Math::Vector::Vec3 &position
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
+  enemy.lock()->SetPlayerManager(playerManager_);
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -112,7 +115,7 @@ void EnemyManager::GenerateDonutNormalEnemy(const Math::Vector::Vec3 & position)
     objectManager_->CreateObject<DonutNormalEnemy>("DonutNormalEnemy", std::make_shared<DonutNormalEnemy>());
     // 座標の設定
     enemy.lock()->SetInitialPosition(position);
-  
+    enemy.lock()->SetPlayerManager(playerManager_);
     // 挿入
     // 各敵にlistptr持たせる
     enemyList_.push_back(std::move(enemy));
@@ -127,6 +130,7 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
+  enemy.lock()->SetPlayerManager(playerManager_);
   bossEnemyList_.push_back(std::move(enemy));
 }
 
@@ -151,6 +155,14 @@ void EnemyManager::ImGuiUpdate() {
       ImGui::InputFloat3("Position", &playerPosition_.x);
       ImGui::TreePop();
     }
+
+    for ( const std::weak_ptr<BaseNormalEnemy> & enemy : enemyList_ ) {
+        if ( enemy.lock()->GetName() == "GunNormalEnemy" ) {
+            enemy.lock()->ImGuiUpdate();
+        }
+        
+    }
+
 
     ImGui::Separator();
 

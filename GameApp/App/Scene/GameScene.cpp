@@ -6,6 +6,7 @@ GameScene::GameScene() {
 
   itemManager_ = std::make_shared<ItemManager>();
   playerManager_ = std::make_shared<PlayerManager>(itemManager_);
+  enemyManager_ = std::make_shared<EnemyManager>();
 }
 
 void GameScene::Init() {
@@ -21,7 +22,7 @@ void GameScene::Init() {
   managerComponents_.push_back(itemManager_);
   managerComponents_.push_back(playerManager_);
 
-  enemyManager_ = std::make_shared<EnemyManager>();
+  
   enemyManager_->SetPlayerManager(playerManager_.get());
   managerComponents_.push_back(enemyManager_);
 

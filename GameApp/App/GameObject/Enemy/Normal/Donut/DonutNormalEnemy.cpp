@@ -10,6 +10,7 @@
 #include "Enemy/Normal/Behavior/NormalEnemySequence.h"
 #include "Enemy/Normal/Behavior/NormalEnemyTracking.h"
 
+#include <Player/PlayerManager.h>
 #include "../../../Player/Attack/Interface/IPlayerBullet.h"
 
 void DonutNormalEnemy::Init() {
@@ -49,7 +50,7 @@ void DonutNormalEnemy::Init() {
 	// プレイヤーが設定した範囲内にいるかどうか(攻撃用)
 	attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
 	// 攻撃
-	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet4, 1u, 3.0f));
+	attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::DonutBullet, 1u, 3.0f));
 	root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -139,7 +140,7 @@ void DonutNormalEnemy::Update() {
 		}
 
 		// プレイヤーへの方向を計算
-		directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+		directionToPlayer_ = Math::Vector::Func::Normalize(playerManager_->GetPlayerCore().lock()->GetWorldPos() - translate_);
 
 		// ノックバック
 		KnockBack();

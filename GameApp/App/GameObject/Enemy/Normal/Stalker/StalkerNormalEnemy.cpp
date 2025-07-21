@@ -9,7 +9,7 @@
 #include <Enemy/Normal/Behavior/NormalEnemyIsPlayerInAttackRange.h>
 #include <Enemy/Normal/Behavior/NormalEnemyIsCool.h>
 
-#include "Player/Core/playerCore.h"
+#include <Player/PlayerManager.h>
 #include"Player/Attack/Interface/IPlayerBullet.h"
 
 void StalkerNormalEnemy::Init() {
@@ -50,7 +50,7 @@ void StalkerNormalEnemy::Init() {
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   attackSequence->AddChild(std::make_unique<NormalEnemyIsNotCool>());
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet3, 5u, 0.2f));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::StalkerBullet, 5u, 0.2f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
@@ -148,7 +148,7 @@ void StalkerNormalEnemy::Update() {
     }
 
     // プレイヤーへの方向を計算
-    directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+    directionToPlayer_ = Math::Vector::Func::Normalize(playerManager_->GetPlayerCore().lock()->GetWorldPos() - translate_);
 
     // ノックバック
     KnockBack();

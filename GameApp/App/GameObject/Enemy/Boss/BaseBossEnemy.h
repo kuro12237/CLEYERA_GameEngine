@@ -13,6 +13,11 @@
 #include "Enemy/EnemyParameter.h"
 
 /// <summary>
+/// プレイヤー管理クラス
+/// </summary>
+class PlayerManager;
+
+/// <summary>
 /// ボスの基底クラス
 /// </summary>
 class BaseBossEnemy : public CLEYERA::Component::ObjectComponent {
@@ -28,13 +33,21 @@ protected:
   virtual void Killed() = 0;
 
 public:
-  /// <summary>
-  /// プレイヤーの座標
-  /// </summary>
-  /// <param name="position">座標</param>
-  inline void SetPlayerPosition(const Math::Vector::Vec3 &position) {
-    this->playerPosition_ = position;
-  }
+
+    /// <summary>
+      /// プレイヤー管理システム
+      /// </summary>
+      /// <param name="playerManager"></param>
+    inline void SetPlayerManager(PlayerManager * playerManager) {
+        this->playerManager_ = playerManager;
+    }
+
+    /// <summary>
+    /// プレイヤーの座標を取得
+    /// </summary>
+    /// <returns></returns>
+    virtual Math::Vector::Vec3 GetPlayerPosition();
+
 
   /// <summary>
   /// 生成時の初期座標
@@ -54,12 +67,6 @@ public:
   /// </summary>
   /// <returns>座標</returns>
   inline Math::Vector::Vec3 GetPosition() const { return translate_; }
-
-  /// <summary>
-  /// プレイヤーの座標を取得
-  /// </summary>
-  /// <returns>座標</returns>
-  inline Math::Vector::Vec3 GetPlayerPosition() const { return playerPosition_; }
 
   /// <summary>
   /// パラメーターを取得
@@ -100,12 +107,12 @@ public:
   virtual ~BaseBossEnemy() {};
 
 protected:
-  // プレイヤー座標
-  Math::Vector::Vec3 playerPosition_ = {};
   // 方向
   Math::Vector::Vec3 direction_ = {};
   // プレイヤーへの方向
   Math::Vector::Vec3 directionToPlayer_ = {};
+  // プレイヤー管理クラス
+  PlayerManager * playerManager_ = nullptr;
   // ビヘイビアツリー
   std::unique_ptr<BossEnemyBehaviorNode> behaviorTree_ = nullptr;
 

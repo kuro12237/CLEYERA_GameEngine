@@ -1,7 +1,12 @@
 #include "BaseBossEnemy.h"
+
 #include "BakugekiSnipe/BakugekiSnipeBossEnemyBullet1.h"
 #include "BakugekiSnipe/BakugekiSnipeBossEnemyBullet2.h"
+#include <Player/PlayerManager.h>
 
+Math::Vector::Vec3 BaseBossEnemy::GetPlayerPosition() {
+    return playerManager_->GetPlayerCore().lock()->GetWorldPos();
+}
 
 void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
   std::shared_ptr<BaseBossEnemyBullet> bullet = nullptr;
@@ -10,7 +15,7 @@ void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
   case BossBulletType::BossBullet1:
     // 弾1
     bullet = std::make_shared<BakugekiSnipeBossEnemyBullet1>();
-    bullet->Initialize(translate_, playerPosition_);
+    bullet->Initialize(translate_, GetPlayerPosition());
     // 挿入
     bullets_.push_back(std::move(bullet));
 
@@ -19,7 +24,7 @@ void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
   case BossBulletType::BossBullet2:
     // 弾2
     bullet = std::make_shared<BakugekiSnipeBossEnemyBullet2>();
-    bullet->Initialize(translate_, playerPosition_);
+    bullet->Initialize(translate_, GetPlayerPosition());
     // 挿入
     bullets_.push_back(std::move(bullet));
 

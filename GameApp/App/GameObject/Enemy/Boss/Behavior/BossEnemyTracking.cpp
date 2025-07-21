@@ -1,7 +1,7 @@
 #include "BossEnemyTracking.h"
 
 #include "Enemy/Boss/BaseBossEnemy.h"
-
+#include <Player/PlayerManager.h>
 
 EnemyNodeState BossEnemyTracking::Execute(BaseBossEnemy * baseBossEnemy){
 

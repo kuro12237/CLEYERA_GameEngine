@@ -13,11 +13,17 @@
 /// 弾のタイプ
 /// </summary>
 enum BulletType {
-  NormalBullet1,
-  NormalBullet2,
-  NormalBullet3,
-  NormalBullet4,
+  CannonBullet,
+  GunBullet,
+  StalkerBullet,
+  DonutBullet,
 };
+
+
+/// <summary>
+/// プレイヤー管理クラス
+/// </summary>
+class PlayerManager;
 
 /// <summary>
 /// 雑魚敵の弾
@@ -51,11 +57,11 @@ public:
 
 public:
 	/// <summary>
-	/// プレイヤーの座標
+	/// プレイヤー管理クラス
 	/// </summary>
-	/// <param name="enemyPosition"></param>
-	virtual void SetPlayerPosition(const Math::Vector::Vec3 & enemyPosition) {
-		this->playerPosition_ = enemyPosition;
+	/// <param name="playerManager"></param>
+	inline void SetPlayerManager(PlayerManager * playerManager) {
+		this->playerManager_ = playerManager;
 	}
 
     /// <summary>
@@ -65,10 +71,11 @@ public:
     inline bool GetIsDelete() const { return isDelete_; }
 
 protected:
-    // 雑魚敵本体の座標
+	//プレイヤー管理クラス
+	PlayerManager * playerManager_ = nullptr;
+	Math::Vector::Vec3 playerPosition_ = {};
+	// 雑魚敵本体の座標
     Math::Vector::Vec3 normalEnemyPosition_ = {};
-    // プレイヤー
-    Math::Vector::Vec3 playerPosition_ = {};
 	//永続的にプレイヤーに追跡するかどうか
     bool isPersistentlyTrack_ = false;
     Math::Vector::Vec3 persistentlyPlayerPosition_ = {};
