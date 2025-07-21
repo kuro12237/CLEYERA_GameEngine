@@ -113,6 +113,16 @@ protected:
   bool isAlive_ = true;
   // 消えるかどうか
   bool isDelete_ = false;
+
+  //クールタイム中かどうか
+  bool isCool_ = false;
+  //時間
+  float_t coolTime_ = 0.0f;
+  //制限
+  float_t coolTimeLimit_ = 3.0f;
+  //生成した弾の数。これが無いと管理しにくい
+  uint32_t generateBulletNumber_ = 0u;
+
   // 攻撃したかどうか
   bool isAttack_ = false;
 
@@ -140,7 +150,7 @@ protected:
 
 protected:
   // 弾のリスト
-  std::list<std::shared_ptr<BaseBossEnemyBullet>> bullets_;
+  std::list<std::weak_ptr<BaseBossEnemyBullet>> bullets_;
 
   // パラメーター
   EnemyParameter parameter_ = {};

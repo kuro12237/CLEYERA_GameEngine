@@ -36,9 +36,6 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
     // 連番
     bulletCount_++;
 
-    // 連番
-    bulletCount_++;
-
     // 挿入
     bullets_.push_back(std::move(bullet));
 
