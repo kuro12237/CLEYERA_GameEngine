@@ -22,10 +22,6 @@ void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPo
   direction_ = playerPositio - translate_;
   direction_ = Math::Vector::Func::Normalize(direction_);
 
-  auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
-
-  aabb->SetSize({-1.0f, -1.0f, -1.0f}, {1.0f, 1.0f, 1.0f});
-
   // あたりはんてい関数セット
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });

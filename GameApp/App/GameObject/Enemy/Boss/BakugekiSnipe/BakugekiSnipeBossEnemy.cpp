@@ -33,15 +33,15 @@ void BakugekiSnipeBossEnemy::Init() {
    std::unique_ptr<BossEnemySelector> root = std::make_unique<BossEnemySelector>();
 
 #pragma region 攻撃シーケンス
-	//std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
-	////プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-    //attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
-	//// ランダム攻撃セレクタ
-	//std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-    //attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
-    //attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet2));
-	//attackSequence->AddChild(std::move(attackSelector));
-	//root->AddChild(std::move(attackSequence));
+	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
+	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
+    attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
+	// ランダム攻撃セレクタ
+	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
+    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
+    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet2));
+	attackSequence->AddChild(std::move(attackSelector));
+	root->AddChild(std::move(attackSequence));
 
 #pragma endregion
 
