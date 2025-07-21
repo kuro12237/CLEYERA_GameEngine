@@ -33,15 +33,15 @@ void BakugekiSnipeBossEnemy::Init() {
    std::unique_ptr<BossEnemySelector> root = std::make_unique<BossEnemySelector>();
 
 #pragma region 攻撃シーケンス
-	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
-	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-    attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
-	// ランダム攻撃セレクタ
-	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
-    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet2));
-	attackSequence->AddChild(std::move(attackSelector));
-	root->AddChild(std::move(attackSequence));
+	//std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
+	////プレイヤーが設定した範囲内にいるかどうか(攻撃用)
+    //attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
+	//// ランダム攻撃セレクタ
+	//std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
+    //attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
+    //attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet2));
+	//attackSequence->AddChild(std::move(attackSelector));
+	//root->AddChild(std::move(attackSequence));
 
 #pragma endregion
 
@@ -67,29 +67,25 @@ void BakugekiSnipeBossEnemy::Init() {
    hp_->SetName(this->name_);
    hp_->Init();
 
+
+   parameter_.maxHp_ = 10;
+   parameter_.hp_ = parameter_.maxHp_;
+
+
 }
 
 void BakugekiSnipeBossEnemy::Update() {
-
-	//ビヘイビアツリーの実行
-	behaviorTree_->Execute(this);
-
-    // 最大体力の半分以下になったら発狂
-    if (GetBossEnemyParameter().hp_ <=
-        GetBossEnemyParameter().maxHp_ / 2) {
-        isEnraged_ = true;
-    }
-
     // hp処理
     hp_->Update();
     if ( hp_->GetIsDead() ) {
-        // 倒された
         isAlive_ = false;
+        // 倒された
         Killed();
     }
 
+    // 生存時
     if ( isAlive_ == true ) {
-        //クールタイム中
+        // クールタイム中
         if ( isCool_ == true ) {
             coolTime_ += DELTA_TIME_;
             if ( coolTime_ > coolTimeLimit_ ) {
@@ -99,27 +95,21 @@ void BakugekiSnipeBossEnemy::Update() {
             }
         }
 
-
-
-
-        // 弾の更新
-        for ( auto itr = bullets_.begin(); itr != bullets_.end(); )
-        {
-            if ( itr->expired() )
-            {
-                itr = bullets_.erase(itr); // erase は削除後、次要素のイテレータを返す
-                return;
+        for ( auto it = bullets_.begin(); it != bullets_.end();) {
+            if ( it->expired() ) {
+                it = bullets_.erase(it); // expiredならeraseして次に進む
+                continue;
             }
 
-
-            auto it = (*itr).lock();
-
-            if ( it->GetIsDelete() )
-            {
-                it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+            auto sp = it->lock();
+            if ( sp && sp->GetIsDelete() ) {
+                sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
             }
-            ++itr;
+
+            ++it;
         }
+
+
         // 向きを計算しモデルを回転させる
         float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
         // 回転のオフセット
@@ -129,10 +119,7 @@ void BakugekiSnipeBossEnemy::Update() {
 
         // ビヘイビアツリーの実行
         behaviorTree_->Execute(this);
-        // atan2 で回転角を求める（ラジアン）
-        float_t angle = std::atan2(-direction_.z, direction_.x);
-        // 角度を敵の回転に設定
-        rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
+
         // 速度を計算
         Math::Vector::Vec3 newDirection = {};
         if ( isAttack_ == false ) {
@@ -146,7 +133,25 @@ void BakugekiSnipeBossEnemy::Update() {
             isAlive_ = false;
         }
 
+        // プレイヤーへの方向を計算
+        directionToPlayer_ =
+            Math::Vector::Func::Normalize(playerPosition_ - translate_);
+
+        // ノックバック
+        KnockBack();
     }
+
+    // 更新
+    TransformUpdate();
+#ifdef _DEBUG
+    ImGui::Begin("FBE");
+    ImGui::InputFloat3("Direction", &direction_.x);
+    ImGui::InputFloat3("Velocity", &velocity_.x);
+
+    ImGui::End();
+
+#endif // _DEBUG
+
 
 }
 

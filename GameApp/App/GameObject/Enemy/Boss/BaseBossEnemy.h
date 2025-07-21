@@ -50,6 +50,12 @@ public:
   inline void SetVelocity(const Math::Vector::Vec3 &velocity) { this->velocity_ = velocity; }
 
   /// <summary>
+  /// 方向を設定
+  /// </summary>
+  /// <param name="direction"></param>
+  inline void SetDirection(const Math::Vector::Vec3 & direction) { this->direction_ = direction; }
+
+  /// <summary>
   /// 座標の取得
   /// </summary>
   /// <returns>座標</returns>
