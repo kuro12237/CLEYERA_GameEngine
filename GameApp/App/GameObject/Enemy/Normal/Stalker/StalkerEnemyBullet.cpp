@@ -5,8 +5,6 @@
 void StalkerEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition,
                                     const bool &isPersistentlyTrack) {
-  // 名前の設定
-  name_ = VAR_NAME(NormalEnemyBullet);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");

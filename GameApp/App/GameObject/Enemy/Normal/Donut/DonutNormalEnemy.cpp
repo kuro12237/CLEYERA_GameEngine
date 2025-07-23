@@ -97,22 +97,18 @@ void DonutNormalEnemy::Update() {
 			}
 		}
 		// 弾の更新
-		for ( auto itr = bullets_.begin(); itr != bullets_.end(); )
-		{
-			if ( itr->expired() )
-			{
-				itr = bullets_.erase(itr); // erase は削除後、次要素のイテレータを返す
-				return;
+		for ( auto it = bullets_.begin(); it != bullets_.end();) {
+			if ( it->expired() ) {
+				it = bullets_.erase(it); // expiredならeraseして次に進む
+				continue;
 			}
 
-
-			auto it = (*itr).lock();
-
-			if ( it->GetIsDelete() )
-			{
-				it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+			auto sp = it->lock();
+			if ( sp && sp->GetIsDelete() ) {
+				sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
 			}
-			++itr;
+
+			++it;
 		}
 
 		// 向きを計算しモデルを回転させる

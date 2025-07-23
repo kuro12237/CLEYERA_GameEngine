@@ -37,12 +37,12 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateNormalEnemy1({}, "NormalEnemy1");
-  //GenerateNormalEnemy2({}, "NormalEnemy2");
-  //GenerateNormalEnemy3({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
+  //GenerateCannonEnemy({}, "NormalEnemy1");
+  //GenerateGunEnemy({}, "NormalEnemy2");
+  //GenerateStalkerEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
 
-  //GenerateNormalEnemy4({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
-  //GenerateBossEnemyEnemy({});
+  //GenerateDonutEnemy({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
+  GenerateBossEnemyEnemy({});
 
 }
 
@@ -69,7 +69,7 @@ void EnemyManager::Update() {
   }
 }
 
-void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position,
+void EnemyManager::GenerateCannonEnemy(const Math::Vector::Vec3 &position,
                                         std::string name) {
     name;
   // 敵の生成
@@ -84,7 +84,7 @@ void EnemyManager::GenerateNormalEnemy1(const Math::Vector::Vec3 &position,
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position,
+void EnemyManager::GenerateGunEnemy(const Math::Vector::Vec3 &position,
                                         std::string name) {
     name;
   // 敵の生成
@@ -99,7 +99,7 @@ void EnemyManager::GenerateNormalEnemy2(const Math::Vector::Vec3 &position,
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
+void EnemyManager::GenerateStalkerEnemy(const Math::Vector::Vec3 &position,
                                         std::string name) {
     name;
   // 敵の生成
@@ -113,7 +113,7 @@ void EnemyManager::GenerateNormalEnemy3(const Math::Vector::Vec3 &position,
   enemyList_.push_back(std::move(enemy));
 }
 
-void EnemyManager::GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name){
+void EnemyManager::GenerateDonutEnemy(const Math::Vector::Vec3 & position, std::string name){
     name;
     // 敵の生成
     std::weak_ptr<DonutNormalEnemy> enemy = 

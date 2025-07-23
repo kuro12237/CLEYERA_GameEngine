@@ -39,7 +39,7 @@ void BakugekiSnipeBossEnemy::Init() {
     attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInAttackRange>());
 	// ランダム攻撃セレクタ
 	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
-    //attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
+    attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));
     attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet2));
 	attackSequence->AddChild(std::move(attackSelector));
 	root->AddChild(std::move(attackSequence));
@@ -107,26 +107,10 @@ void BakugekiSnipeBossEnemy::Update() {
                 sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
             }
 
-#ifdef _DEBUG
-            ImGui::Begin("Bullet");
-            bool isDelete = sp->GetIsDelete();
-            ImGui::Checkbox("IsDelete", &isDelete);
-            ImGui::End();
-#endif // _DEBUG
-
 
             ++it;
         }
 
-
-        for ( auto b : bullets_ )
-        {
-            if ( b.lock()->GetIsDelete() )
-            {
-                b.lock()->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
-
-            }
-        }
      
 
         // 向きを計算しモデルを回転させる
