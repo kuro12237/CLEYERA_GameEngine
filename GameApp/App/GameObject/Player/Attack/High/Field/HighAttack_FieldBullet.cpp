@@ -1,7 +1,7 @@
-#include "HighAttack_NormalBullet.h"
+#include "HighAttack_FieldBullet.h"
 
 
-void HighAttack_NormalBullet::Init()
+void HighAttack_FieldBullet::Init()
 {
 
 	// Modelの設定
@@ -15,13 +15,9 @@ void HighAttack_NormalBullet::Init()
 	lifeTime_ = 0.5f * 60.0f;
 }
 
-void HighAttack_NormalBullet::Update()
+void HighAttack_FieldBullet::Update()
 {
 	ObjectComponent::TransformUpdate();
 	IPlayerBullet::Update_LifeTime();
 
-	// 移動処理
-	Move();
 }
-
-void HighAttack_NormalBullet::Move() { force_ += initVel_; }
