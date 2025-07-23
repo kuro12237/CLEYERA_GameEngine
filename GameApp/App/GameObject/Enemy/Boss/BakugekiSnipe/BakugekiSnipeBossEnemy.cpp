@@ -112,13 +112,16 @@ void BakugekiSnipeBossEnemy::Update() {
             bool isDelete = sp->GetIsDelete();
             ImGui::Checkbox("IsDelete", &isDelete);
             ImGui::End();
-
 #endif // _DEBUG
-
 
 
             ++it;
         }
+
+
+        bullets_.remove_if([](const std::weak_ptr<BaseBossEnemyBullet> & bullet) {
+            return bullet.lock()->GetIsDelete() == true;
+        });
 
 
         // 向きを計算しモデルを回転させる
