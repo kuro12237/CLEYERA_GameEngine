@@ -54,11 +54,6 @@ private:
 	Math::Vector::Vec3 RotateAroundAxis(const Math::Vector::Vec3 & v, const Math::Vector::Vec3 & axis,
 										float angle);
 
-	/// <summary>
-	/// バレットの名前の生成
-	/// </summary>
-	std::string GenerateBulletName(const std::string & baseTag, size_t count);
-
 private:
 
 	// スクリプト

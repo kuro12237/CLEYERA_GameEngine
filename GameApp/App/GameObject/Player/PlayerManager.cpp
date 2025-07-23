@@ -3,7 +3,7 @@
 /// <summary>
 /// コンストラク
 /// </summary>
-PlayerManager::PlayerManager(std::weak_ptr<ItemManager> itemMgr) {
+PlayerManager::PlayerManager() {
   // クラス名
   ManagerComponent::name_ = VAR_NAME(PlayerManager);
 
@@ -63,4 +63,9 @@ void PlayerManager::ImGuiUpdate() {
 
     ImGui::TreePop();
   }
+}
+
+void PlayerManager::SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr)
+{
+    core_.lock()->SetPtr(camera_, bulletManager_, itemMgr, enemyMgr);
 }

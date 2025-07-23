@@ -14,6 +14,7 @@
 
 // 前方宣言
 class ItemManager;
+class EnemyManager;
 
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerComponent {
@@ -22,8 +23,7 @@ public:
   /// <summary>
   /// コンストラク
   /// </summary>
-    PlayerManager() = default;
-    PlayerManager(std::weak_ptr<ItemManager> itemMgr);
+    PlayerManager();
 
   /// <summary>
   /// デストラクタ
@@ -42,13 +42,18 @@ public:
 
   void ImGuiUpdate() override;
 
+  /// <summary>
+  /// Ptrの設定
+  /// </summary>
+  void SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr);
+
 #pragma region Accessor
 
   // CoreのweakPtrの取得
   std::weak_ptr<PlayerCore> GetPlayerCore() const { return this->core_; }
 
   
-    const int32_t &GetHp() const { return hp_->GetHp(); }
+  const int32_t &GetHp() const { return hp_->GetHp(); }
 
    
 #pragma endregion

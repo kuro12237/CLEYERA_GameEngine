@@ -50,15 +50,11 @@ void SpecialAttack_Normal::IsAttack()
         auto dir = RotateAroundAxis(forward, { 0, 1, 0 }, angle);
         dir = dir * bulletSpeed;
 
-        // 弾名生成
-        std::string bulletName = GenerateBulletName(tagBase, bulletCount_);
-
         // 弾生成
         auto bullet = std::make_shared<SpecialAttack_NormalBullet>();
         bullet->SetPosition(pos);
         bullet->SetVelocity(IMagicAttack::CalcVelocity(dir));
         bullet->Init();
-        bullet->SetName(bulletName);
 
         bulletManager->PushbackNewBullet(VAR_NAME(SpecialAttack_NormalBullet),std::move(bullet));
 
@@ -70,15 +66,6 @@ void SpecialAttack_Normal::IsAttack()
 
 void SpecialAttack_Normal::DrwaImGui() {}
 
-std::string SpecialAttack_Normal::GenerateBulletName(const std::string & baseTag, size_t count)
-{
-    if ( count == 0 )
-        return baseTag;
-
-    char name[ 32 ] = {};
-    std::snprintf(name, sizeof(name), "%s.%03zu", baseTag.c_str(), count);
-    return name;
-}
 
 Math::Vector::Vec3 SpecialAttack_Normal::RotateAroundAxis(const Math::Vector::Vec3 & v,
 															   const Math::Vector::Vec3 & axis,

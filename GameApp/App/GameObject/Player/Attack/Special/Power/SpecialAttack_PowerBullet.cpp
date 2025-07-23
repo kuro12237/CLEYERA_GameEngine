@@ -1,8 +1,8 @@
-#include "SpecialAttack_NormalBullet.h"
+#include "SpecialAttack_PowerBullet.h"
 
 
 
-void SpecialAttack_NormalBullet::Init()
+void SpecialAttack_PowerBullet::Init()
 {
 	// Modelの設定
 	uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
@@ -17,13 +17,17 @@ void SpecialAttack_NormalBullet::Init()
 }
 
 
-void SpecialAttack_NormalBullet::Update()
+void SpecialAttack_PowerBullet::Update()
 {
 	ObjectComponent::TransformUpdate();
 	IPlayerBullet::Update_LifeTime();
 
 	// 移動処理
 	Move();
+
+	if ( translate_.y <= 0.5f ) {
+		isActive_ = false;
+	}
 }
 
-void SpecialAttack_NormalBullet::Move() { force_ = initVel_; }
+void SpecialAttack_PowerBullet::Move() { force_ = initVel_; }
