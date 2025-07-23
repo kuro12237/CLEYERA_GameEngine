@@ -9,7 +9,7 @@ HighAttack_Field::HighAttack_Field(PlayerCore * corePtr, std::weak_ptr<PlayerBul
 
 void HighAttack_Field::Init()
 {
-    coolDownInterval_ = 2.0f * 60.0f; // 攻撃のインターバル
+    coolDownInterval_ = 0.0f * 60.0f; // 攻撃のインターバル
 }
 
 void HighAttack_Field::Update()
@@ -25,8 +25,21 @@ void HighAttack_Field::IsAttack()
     if ( IsCoolDown() )
         return;
 
+    auto bulletManager = bulletManager_.lock();
+    if ( !bulletManager )
+        return;
 
+    auto newBul = std::make_shared<HighAttack_FieldBullet>();
 
+    // 初期座標
+    newBul->SetPosition(owner_->GetWorldPos());
+
+    // 初期化
+    newBul->Init();
+
+    bulletManager->PushbackNewBullet(VAR_NAME(SpecialAttack_PowerBullet), std::move(newBul));
+
+    SetAttackCoolDown();
 }
 
 void HighAttack_Field::DrwaImGui() {}

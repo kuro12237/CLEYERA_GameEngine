@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../Interface/IMagicAttack.h"
+#include "HighAttack_FieldBullet.h"
 #include <CLEYERA.h>
 
 
