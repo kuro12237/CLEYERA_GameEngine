@@ -10,15 +10,48 @@ void HighAttack_FieldBullet::Init()
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
-	scale_ = {3.0f, 0.5f, 3.0f};
+    // スケールアニメ用
+    expandDuration_ = 30.0f;  // 30フレーム拡大
+    shrinkDuration_ = 30.0f;  // 30フレーム収縮
+    maxScale_ = 5.0f;         // 好きな最大サイズ
 
-	// 生存時間を適当に設定 1秒
-	lifeTime_ = 0.5f * 60.0f;
+    phase_ = Expand;
+    frameCount_ = 0;
+
+    scale_ = { 0.1f, 0.5f, 0.1f };
 }
 
 void HighAttack_FieldBullet::Update()
 {
 	ObjectComponent::TransformUpdate();
-	IPlayerBullet::Update_LifeTime();
+    Wave();
+}
 
+void HighAttack_FieldBullet::Wave()
+{
+    frameCount_++;
+
+    float scale = 1.0f;
+
+    if ( phase_ == Expand ) {
+        float expandT = std::min(frameCount_ / expandDuration_, 1.0f);
+        scale = Math::Vector::Func::Lerp(0.1f, maxScale_, expandT);
+        if ( expandT >= 1.0f ) {
+            phase_ = Shrink;
+            frameCount_ = 0;
+        }
+    }
+    else if ( phase_ == Shrink ) {
+        float shrinkT = std::min(frameCount_ / shrinkDuration_, 1.0f);
+        scale = Math::Vector::Func::Lerp(maxScale_, 0.0f, shrinkT);
+        if ( shrinkT >= 1.0f ) {
+            isActive_ = true;
+        }
+    }
+
+    scale_.x = scale;
+    scale_.y = 0.5f;
+    scale_.z = scale;
+
+    gameObject_->SetScale(scale_);
 }

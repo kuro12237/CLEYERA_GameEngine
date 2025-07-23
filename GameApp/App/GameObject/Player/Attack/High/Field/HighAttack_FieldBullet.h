@@ -30,4 +30,21 @@ public:
 	void Update() override;
 
 
+private:
+
+	/// <summary>
+	/// ウェーブ
+	/// </summary>
+	void Wave();
+
+
+private:
+
+	float frameCount_ = 0.0f;
+	float expandDuration_ = 18.0f;
+	float shrinkDuration_ = 18.0f;
+	float maxScale_ = 5.0f;
+
+	enum Phase { Expand, Shrink } phase_ = Expand;
+
 };
