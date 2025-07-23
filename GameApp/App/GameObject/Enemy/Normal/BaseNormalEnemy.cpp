@@ -6,7 +6,7 @@
 #include "Donut/DonutNormalEnemyBullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
-  std::weak_ptr<BaseNormalEnemyBullet> bullet;
+    std::weak_ptr<BaseNormalEnemyBullet> bullet;
 
   std::string tag = "";
 

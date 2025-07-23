@@ -103,7 +103,7 @@ void BakugekiSnipeBossEnemy::Update() {
 
             auto sp = it->lock();
             if ( sp && sp->GetIsDelete() ) {
-                sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+                //sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
             }
 
             ++it;

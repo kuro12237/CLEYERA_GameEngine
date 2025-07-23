@@ -76,5 +76,4 @@ private:
   const float_t INCREASE_T_VALUE_ = 0.01f;
   float_t t_ = 0.0f;
 
-  std::unique_ptr<AttackPower> attackPower_ = nullptr;
 };

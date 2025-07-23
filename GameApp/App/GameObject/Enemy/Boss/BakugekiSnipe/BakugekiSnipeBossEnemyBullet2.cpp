@@ -34,26 +34,18 @@ void BakugekiSnipeBossEnemyBullet2::Initialize(const Math::Vector::Vec3 &enemyPo
 }
 
 void BakugekiSnipeBossEnemyBullet2::Update() {
-  // 時間
-  aliveTime_ += DELTA_TIME_;
-  if (aliveTime_ > DELETE_TIME_) {
-    isDelete_ = true;
-  }
+    // 最大5秒まで表示その後に消える
+    displayTime_ += DELTA_TIME_;
+    if ( displayTime_ > MAX_DISPLAY_TIME_ ) {
+        isDelete_ = true;
+    }
 
-  // 線形補間でXZ
-  t_ += 1.0f / (ATTACK_ALL_TIME_ * FPS_VALUE_);
-  t_ = std::clamp(t_, 0.0f, 1.0f);
-  float_t startY = bossEnemyPosition_.y;
-  float_t endY = playerPosition_.y;
-  float_t baseY = std::lerp(startY, endY, t_);
+    // 座標の加算
 
-  translate_.x = Math::Vector::Func::Lerp(bossEnemyPosition_, playerPosition_, t_).x;
-  translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
-  translate_.z = Math::Vector::Func::Lerp(bossEnemyPosition_, playerPosition_, t_).z;
+    translate_ += direction_ * SPEED_;
 
-  // 更新
-  TransformUpdate();
-
+    // 更新
+    TransformUpdate();
 }
 
 void BakugekiSnipeBossEnemyBullet2::OnCollision(std::weak_ptr<ObjectComponent> other) {

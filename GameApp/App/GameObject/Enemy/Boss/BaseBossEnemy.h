@@ -157,6 +157,8 @@ protected:
 protected:
   // 弾のリスト
   std::list<std::weak_ptr<BaseBossEnemyBullet>> bullets_;
+  //カウント
+  int32_t bulletCount_ = 0;
 
   // パラメーター
   EnemyParameter parameter_ = {};
