@@ -5,7 +5,7 @@
 void BakugekiSnipeBossEnemyBullet2::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition) {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemy1Bullet);
+  name_ = VAR_NAME(BakugekiSnipeBossEnemyBullet2);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
@@ -40,9 +40,26 @@ void BakugekiSnipeBossEnemyBullet2::Update() {
         isDelete_ = true;
     }
 
-    // 座標の加算
+    // 線形補間でXZ
+    t_ += 1.0f / (ATTACK_ALL_TIME_ * FPS_VALUE_);
+    t_ = std::clamp(t_, 0.0f, 1.0f);
+    float_t startY = bossEnemyPosition_.y;
+    float_t endY = playerPosition_.y;
+    float_t baseY = std::lerp(startY, endY, t_);
 
-    translate_ += direction_ * SPEED_;
+    translate_.x = Math::Vector::Func::Lerp(bossEnemyPosition_, playerPosition_, t_).x;
+    translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+    translate_.z = Math::Vector::Func::Lerp(bossEnemyPosition_, playerPosition_, t_).z;
+
+#ifdef _DEBUG
+    ImGui::Begin("BossBullet2");
+    ImGui::InputFloat3("Position", &translate_.x);
+    ImGui::InputFloat("T", &t_);
+    ImGui::InputFloat("DisplayTime", &displayTime_);
+    ImGui::End();
+#endif // _DEBUG
+
+
 
     // 更新
     TransformUpdate();

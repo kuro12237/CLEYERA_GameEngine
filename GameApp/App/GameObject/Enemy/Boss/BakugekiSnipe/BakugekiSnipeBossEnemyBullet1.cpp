@@ -5,7 +5,7 @@
 void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition) {
   // 名前の設定
-  name_ = VAR_NAME(NormalEnemyBullet);
+  name_ = VAR_NAME(BakugekiSnipeBossEnemyBullet1);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");

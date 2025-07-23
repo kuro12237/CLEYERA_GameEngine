@@ -17,7 +17,8 @@ void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
         bullet = objectManager_->CreateObject<BakugekiSnipeBossEnemyBullet1>(
             tag, std::make_shared<BakugekiSnipeBossEnemyBullet1>());
         bullet.lock()->Initialize(translate_, playerPosition_);
-
+        // 挿入
+        bullets_.push_back(std::move(bullet));
         // 連番
         bulletCount_++;
 
@@ -30,6 +31,8 @@ void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
         bullet = objectManager_->CreateObject<BakugekiSnipeBossEnemyBullet2>(
             tag, std::make_shared<BakugekiSnipeBossEnemyBullet2>());
         bullet.lock()->Initialize(translate_, playerPosition_);
+        // 挿入
+        bullets_.push_back(std::move(bullet));
 
         // 連番
         bulletCount_++;
