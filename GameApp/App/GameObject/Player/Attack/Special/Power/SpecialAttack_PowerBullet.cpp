@@ -24,6 +24,10 @@ void SpecialAttack_PowerBullet::Update()
 
 	// 移動処理
 	Move();
+
+	if ( translate_.y <= 0.5f ) {
+		isActive_ = false;
+	}
 }
 
 void SpecialAttack_PowerBullet::Move() { force_ = initVel_; }

@@ -23,43 +23,16 @@ void PlayerCore::Init() {
 	// クラス名
 	ObjectComponent::name_ = VAR_NAME(PlayerCore);
 
-	// Luaの読み込み
-	lua_->LoadScript("Player/Core", "PlayerCore");
-	lua_->SetReloadCallBack([this]() { LoadCoreDataFromLua(); });
-
-	// Luaから抽出したデータの設定
-	LoadCoreDataFromLua();
-
-	// Modelの設定
-	uint32_t handle =
-		ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
-	ObjectComponent::gameObject_->ChangeModel(handle);
-	uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
-															  "PlayerDemoBullet");
-	demo;
-
-	// コライダー作成
-	ObjectComponent::CreateCollider(ColliderType::AABB);
-	// 当たり判定関数セット
-	collider_->SetHitCallFunc(
-		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
-
-
-	// コマンドハンドラー
-	commandHandler_->Init();
-
-	// 移動処理クラスの初期化
-	moveFunc_->Init();
-	// ダッシュ処理クラスの初期化
-	dashFunc_->Init();
-	// 無敵時間クラスの初期化
-	invincibleFunc_->Init();
-
+	InitLua();
+	InitModel();
+	InitCollider();
+	InitHandlers();
 	// 攻撃スロットの初期化
 	InitAttackSlot();
 }
 
 void PlayerCore::Update() {
+
 	ObjectComponent::TransformUpdate();
 
 	commandHandler_->Handle();
@@ -87,17 +60,7 @@ void PlayerCore::Update() {
 	}
 }
 
-void PlayerCore::ImGuiUpdate()
-{
-	if ( ImGui::TreeNode("PlayerCore") ) {
-
-		if ( ImGui::Button("Pop AttackpickupItem ") ) {
-
-		}
-
-		ImGui::TreePop();
-	}
-}
+void PlayerCore::ImGuiUpdate() {}
 
 void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> other) {
 	auto obj = other.lock();
@@ -177,6 +140,44 @@ void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
 	if ( actionState_ ) actionState_->Exit();
 	actionState_ = std::move(newState);
 	actionState_->Enter(this);
+}
+
+void PlayerCore::InitLua()
+{
+	// Luaの読み込み
+	lua_->LoadScript("Player/Core", "PlayerCore");
+	lua_->SetReloadCallBack([this]() { LoadCoreDataFromLua(); });
+
+	// Luaから抽出したデータの設定
+	LoadCoreDataFromLua();
+}
+
+void PlayerCore::InitModel()
+{
+	// Modelの設定
+	uint32_t handle =
+		ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
+	ObjectComponent::gameObject_->ChangeModel(handle);
+	uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
+															  "PlayerDemoBullet");
+	demo;
+}
+
+void PlayerCore::InitCollider()
+{
+	// コライダー作成
+	ObjectComponent::CreateCollider(ColliderType::AABB);
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+}
+
+void PlayerCore::InitHandlers()
+{
+	commandHandler_->Init();
+	moveFunc_->Init();
+	dashFunc_->Init();
+	invincibleFunc_->Init();
 }
 
 void PlayerCore::InitAttackSlot() {

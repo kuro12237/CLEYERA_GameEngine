@@ -46,4 +46,10 @@ public:
 	/// </summary>
 	void DrwaImGui() override;
 
+private:
+
+	inline float DegreesToRadians(float degrees) {
+		return degrees * (3.14159265f / 180.0f);
+	}
+
 };

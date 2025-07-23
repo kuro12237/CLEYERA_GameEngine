@@ -165,6 +165,26 @@ public:
 private:
 
 	/// <summary>
+	/// Luaの初期化
+	/// </summary>
+	void InitLua();
+
+	/// <summary>
+	/// Modelの初期化
+	/// </summary>
+	void InitModel();
+
+	/// <summary>
+	/// Colliderの初期化
+	/// </summary>
+	void InitCollider();
+
+	/// <summary>
+	/// Handlerの初期化
+	/// </summary>
+	void InitHandlers();
+
+	/// <summary>
 	/// 攻撃スロットの初期化
 	/// </summary>
 	void InitAttackSlot();

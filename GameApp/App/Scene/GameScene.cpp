@@ -28,9 +28,9 @@ void GameScene::Init() {
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
 
-  CLEYERA::Manager::ObjectManager::GetInstance()->Update();
-
   playerManager_->SetPtr(itemManager_, enemyManager_);
+
+  CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // 初期化
   for (auto manager : managerComponents_) {
