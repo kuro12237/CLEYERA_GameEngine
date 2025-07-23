@@ -5,8 +5,6 @@
 void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition,
                                     const bool &isPersistentlyTrack) {
-  // 名前の設定
-  name_ = VAR_NAME(CannonNormalEnemy1Bullet);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
@@ -71,10 +69,13 @@ void CannonNormalEnemy1Bullet::OnCollision(std::weak_ptr<ObjectComponent> other)
   if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
 
     isDelete_ = true;
+
+    mode_ = CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
   }
 
   if (auto enemyBullet = std::dynamic_pointer_cast<PlayerCore>(obj)) {
 
     isDelete_ = true;
+    mode_ = CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
   }
 }

@@ -119,10 +119,15 @@ void BakugekiSnipeBossEnemy::Update() {
         }
 
 
-        bullets_.remove_if([](const std::weak_ptr<BaseBossEnemyBullet> & bullet) {
-            return bullet.lock()->GetIsDelete() == true;
-        });
+        for ( auto b : bullets_ )
+        {
+            if ( b.lock()->GetIsDelete() )
+            {
+                b.lock()->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
 
+            }
+        }
+     
 
         // 向きを計算しモデルを回転させる
         float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
