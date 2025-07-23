@@ -4,31 +4,36 @@
 
 
 void BaseBossEnemy::GenerateBullet(const uint32_t &selection) {
-  std::weak_ptr<BaseBossEnemyBullet> bullet;
+   //弾
+    std::weak_ptr<BaseBossEnemyBullet> bullet;
+    //タグ
+    std::string tag = "";
 
-  std::string tag = "";
+    switch (selection) {
+    case BossBulletType::BossBullet1:
+        // 弾1
+        tag = VAR_NAME(BakugekiSnipeBossEnemyBullet1);
+        //生成
+        bullet = objectManager_->CreateObject<BakugekiSnipeBossEnemyBullet1>(
+            tag, std::make_shared<BakugekiSnipeBossEnemyBullet1>());
+        bullet.lock()->Initialize(translate_, playerPosition_);
 
-  switch (selection) {
-  case BossBulletType::BossBullet1:
-    // 弾1
-    tag = VAR_NAME(BakugekiSnipeBossEnemyBullet1);
-    bullet = objectManager_->CreateObject<BakugekiSnipeBossEnemyBullet1>(
-        tag, std::make_shared<BakugekiSnipeBossEnemyBullet1>());
-    bullet.lock()->Initialize(translate_, playerPosition_);
-    // 連番
-    bulletCount_++;
+        // 連番
+        bulletCount_++;
 
-    break;
+        break;
 
-  case BossBulletType::BossBullet2:
-    // 弾2
-    tag = VAR_NAME(BakugekiSnipeBossEnemyBullet2);
-    bullet = objectManager_->CreateObject<BakugekiSnipeBossEnemyBullet2>(
-        tag, std::make_shared<BakugekiSnipeBossEnemyBullet2>());
-    bullet.lock()->Initialize(translate_, playerPosition_);
-    // 連番
-    bulletCount_++;
+    case BossBulletType::BossBullet2:
+        // 弾2
+        tag = VAR_NAME(BakugekiSnipeBossEnemyBullet2);
+        //生成
+        bullet = objectManager_->CreateObject<BakugekiSnipeBossEnemyBullet2>(
+            tag, std::make_shared<BakugekiSnipeBossEnemyBullet2>());
+        bullet.lock()->Initialize(translate_, playerPosition_);
 
-    break;
-  }
+        // 連番
+        bulletCount_++;
+
+        break;
+    }
 }

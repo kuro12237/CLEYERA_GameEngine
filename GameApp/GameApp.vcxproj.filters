@@ -101,8 +101,8 @@
     <ClCompile Include="App\GameObject\Player\Command\Dash\PlayerDashCommand.cpp" />
     <ClCompile Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\Invincible\PlayerInvincibleFunc.cpp" />
-    <ClCompile Include="App\GameObject\TestPlayGui\TestPlayGui.cpp" />
     <ClCompile Include="App\GameObject\UI\TestUI.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInAttackRange.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -207,7 +207,7 @@
     <ClInclude Include="App\GameObject\Player\State\Action\Interface\IPlayerActionState.h" />
     <ClInclude Include="App\GameObject\Player\State\Action\LowAttack\PlayerLowAttackState.h" />
     <ClInclude Include="App\GameObject\Player\Core\Invincible\PlayerInvincibleFunc.h" />
-    <ClInclude Include="App\GameObject\TestPlayGui\TestPlayGui.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInAttackRange.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

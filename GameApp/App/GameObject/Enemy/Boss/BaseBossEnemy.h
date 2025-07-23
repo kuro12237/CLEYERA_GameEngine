@@ -101,6 +101,13 @@ public:
   virtual void GenerateBullet(const uint32_t &selection);
 
   /// <summary>
+  /// 攻撃開始距離を取得
+  /// </summary>
+  /// <returns></returns>
+  float_t GetAttackStartDistance() const { return attackStartDistance_; }
+
+
+  /// <summary>
   /// デストラクタ
   /// </summary>
   virtual ~BaseBossEnemy() {};

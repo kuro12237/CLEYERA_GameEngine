@@ -22,8 +22,10 @@ public:
   /// <summary>
   /// 初期化
   /// </summary>
+  /// <param name="enemyPosition"></param>
+  /// <param name="playerPosition"></param>
   void Initialize(const Math::Vector::Vec3 &enemyPosition,
-                  const Math::Vector::Vec3 &playerPositio) override;
+                  const Math::Vector::Vec3 & playerPosition) override;
 
   /// <summary>
   /// 更新

@@ -8,6 +8,7 @@
 #include "Enemy/Boss/Behavior/BossEnemyIsPlayerInRange.h"
 #include "Enemy/Boss/Behavior/BossEnemyIsEnraged.h"
 #include "Enemy/Boss/Behavior/BossEnemyRandomAttackSelector.h"
+#include <Enemy/Boss/Behavior/BossEnemyIsPlayerInAttackRange.h>
 void BakugekiSnipeBossEnemy::Init() {
    // 名前の設定
    name_ = VAR_NAME(FirstBossEnemy);
@@ -35,7 +36,7 @@ void BakugekiSnipeBossEnemy::Init() {
 #pragma region 攻撃シーケンス
 	std::unique_ptr<BossEnemySequence> attackSequence = std::make_unique<BossEnemySequence>();
 	//プレイヤーが設定した範囲内にいるかどうか(攻撃用)
-    attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInRange>(attackStartDistance_));
+    attackSequence->AddChild(std::make_unique<BossEnemyIsPlayerInAttackRange>());
 	// ランダム攻撃セレクタ
 	std::unique_ptr<BossEnemyRandomAttackSelector> attackSelector = std::make_unique<BossEnemyRandomAttackSelector>();
     attackSelector->AddChild(std::make_unique<BossEnemyAttack>(BossBulletType::BossBullet1));

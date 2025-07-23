@@ -3,7 +3,7 @@
 #include "Wall/Wall.h"
 
 void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPosition,
-                                    const Math::Vector::Vec3 &playerPositio) {
+                                    const Math::Vector::Vec3 &playerPosition) {
   // 名前の設定
   name_ = VAR_NAME(NormalEnemyBullet);
 
@@ -19,7 +19,7 @@ void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPo
   translate_ = enemyPosition;
 
   // 方向を決める
-  direction_ = playerPositio - translate_;
+  direction_ = playerPosition - translate_;
   direction_ = Math::Vector::Func::Normalize(direction_);
 
   // あたりはんてい関数セット
