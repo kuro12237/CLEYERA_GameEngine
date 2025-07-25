@@ -16,8 +16,6 @@
 /// </summary>
 class BaseNormalEnemy : public BaseEnemy {
 public:
-
-  
   /// <summary>
   /// コンストラクタ
   /// </summary>
@@ -38,5 +36,6 @@ protected:
   std::list<std::weak_ptr<BaseNormalEnemyBullet>> bullets_;
   // ビヘイビアツリー
   std::unique_ptr<NormalEnemyBehaviorNode> behaviorTree_ = nullptr;
+  
 
 };

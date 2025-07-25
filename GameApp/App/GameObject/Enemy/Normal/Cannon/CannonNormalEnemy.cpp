@@ -82,12 +82,17 @@ void CannonNormalEnemy::Init() {
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
+  //ゲージ
+  hpGauge_ = std::make_unique<EnemyHPGauge>(parameter_.maxHp_,this);
+  hpGauge_->Init();
+
 }
 
 void CannonNormalEnemy::Update() {
 
     // hp処理
     hp_->Update();
+    hpGauge_->Update();
     if (hp_->GetIsDead()) {
         isAlive_ = false;
         // 倒された

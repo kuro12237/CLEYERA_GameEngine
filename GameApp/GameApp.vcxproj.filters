@@ -106,6 +106,7 @@
     <ClCompile Include="App\GameObject\Player\Attack\Special\Power\SpecialAttack_PowerBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Special\Power\SpecialAttack_Power.cpp" />
     <ClCompile Include="App\GameObject\Enemy\BaseEnemy.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\EnemyHP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -215,6 +216,7 @@
     <ClInclude Include="App\GameObject\Player\Attack\Special\Power\SpecialAttack_PowerBullet.h" />
     <ClInclude Include="App\GameObject\Player\Helper\PlayerHelper.h" />
     <ClInclude Include="App\GameObject\Enemy\BaseEnemy.h" />
+    <ClInclude Include="App\GameObject\Enemy\EnemyHP.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

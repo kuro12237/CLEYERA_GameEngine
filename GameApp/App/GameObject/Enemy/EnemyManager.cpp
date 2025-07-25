@@ -37,7 +37,7 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  GenerateCannonEnemy({}, "NormalEnemy1");
+  //GenerateCannonEnemy({}, "NormalEnemy1");
   //GenerateGunEnemy({}, "NormalEnemy2");
   //GenerateStalkerEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
 

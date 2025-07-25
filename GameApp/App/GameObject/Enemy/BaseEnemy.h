@@ -11,6 +11,7 @@
 #include "Enemy/EnemyParameter.h"
 //
 #include "Component/Hp/HealthComponent.h"
+#include "EnemyHP.h"
 
 /// <summary>
 /// 敵の基底クラス
@@ -210,6 +211,8 @@ protected:
 
     std::string hpJsonDirectory_ = "Enemys/";
     std::unique_ptr<HealthComponent> hp_ = nullptr;
+    //体力ゲージ
+    std::unique_ptr<EnemyHPGauge>hpGauge_ = nullptr;
 
     std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> *mgrObjList_{};
 

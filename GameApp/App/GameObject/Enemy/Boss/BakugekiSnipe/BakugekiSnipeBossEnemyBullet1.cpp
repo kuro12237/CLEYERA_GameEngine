@@ -12,7 +12,7 @@ void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPo
   // コライダー作成
   CreateCollider(ColliderType::AABB);
 
-  isGravity_ = false;
+  //isGravity_ = false;
   // スケールの設定
   scale_ = {.x = SCALE_SIZE_, .y = SCALE_SIZE_, .z = SCALE_SIZE_};
   translate_ = enemyPosition;

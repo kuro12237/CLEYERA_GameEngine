@@ -159,15 +159,6 @@ void BakugekiSnipeBossEnemy::Update() {
 }
 
 void BakugekiSnipeBossEnemy::ImGuiUpdate() {
-#ifdef _DEBUG
-  if (ImGui::TreeNode(name_.c_str()) == true) {
-    ImGui::InputFloat3("Translate", &translate_.x);
-    ImGui::InputFloat3("Velocity", &velocity_.x);
-    ImGui::TreePop();
-  }
-  
-
-#endif // _DEBUG
 }
 
 void BakugekiSnipeBossEnemy::KnockBack() {
