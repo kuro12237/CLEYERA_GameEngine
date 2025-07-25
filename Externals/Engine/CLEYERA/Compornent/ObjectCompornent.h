@@ -82,7 +82,6 @@ public:
   std::weak_ptr<Util::Collider::Collider> GetCollider() { return collider_; }
   Math::Vector::Vec3 &GetTranslate() { return translate_; }
   Math::Matrix::Mat4x4 GetMatWorld() const {
-
     return Math::Matrix::Func::AffineMatrix(scale_, rotate_, translate_);
   }
 
@@ -93,8 +92,8 @@ public:
     return jsonSystem_->GetValue<T>(name);
   }
 
-  bool &GetIsSceneObjectList() { return this->isSceneList_; }
-
+  bool GetIsGravity() { return isGravity_; }
+  bool GetIsTerrainHit() { return isTerrainHit_; }
 #pragma endregion
 
 #pragma region Set
@@ -108,6 +107,17 @@ public:
   void SetRotate(const Math::Vector::Vec3 &v) { rotate_ = v; }
   void SetTranslate(const Math::Vector::Vec3 &v) { translate_ = v; }
   void SetForce(const Math::Vector::Vec3 &v) { force_ = v; }
+
+  /// <summary>
+  /// 使う場合にtrue
+  /// </summary>
+  void SetIsGravity(bool f = true) { isGravity_ = f; }
+
+  /// <summary>
+  /// 使う場合にtrue
+  /// </summary>
+  void SetIsTerrainHit(bool f = true) { isTerrainHit_ = f; }
+
 #pragma endregion
   void SetModelHandle(uint32_t handle) {
     modelHandle_ = handle;
@@ -126,6 +136,8 @@ private:
   uint32_t modelHandle_ = 0;
 
 protected:
+  using OBJ_MODE = CLEYERA::Component::ObjectComponent::OBJ_MODE;
+
   /// <summary>
   /// 基礎機能表示(内容Transform,json,collider)
   /// </summary>
@@ -170,12 +182,10 @@ protected:
   // WorldTransform,GameObject等のクラス
   std::shared_ptr<Model3d::Game3dObject> gameObject_ = nullptr;
 
-  /// <summary>
-  /// シーンの中のリストに登録されているか
-  /// </summary>
-  bool isSceneList_ = false;
-
   OBJ_MODE mode_ = OBJ_MODE::SPAWN;
+
+  bool isGravity_ = true;
+  bool isTerrainHit_ = true;
 };
 } // namespace Component
 } // namespace CLEYERA

@@ -2,12 +2,13 @@
 #include "Player/Core/playerCore.h"
 #include "Wall/Wall.h"
 
-void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
-                                    const Math::Vector::Vec3 &playerPosition,
-                                    const bool &isPersistentlyTrack) {
-
+void CannonNormalEnemy1Bullet::Initialize(
+    const Math::Vector::Vec3 &enemyPosition,
+    const Math::Vector::Vec3 &playerPosition, const bool &isPersistentlyTrack) {
+  isGravity_ = false;
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t modelHandle =
+      modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   gameObject_->ChangeModel(modelHandle);
 
   // コライダー作成
@@ -21,25 +22,25 @@ void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPositio
   playerPosition_ = playerPosition;
 
   // あたりはんてい関数セット
-  collider_->SetHitCallFunc(
-      [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+  collider_->SetHitCallFunc([this](std::weak_ptr<ObjectComponent> other) {
+    this->OnCollision(other);
+  });
 
   isPersistentlyTrack_ = isPersistentlyTrack;
 
-  //攻撃力
+  // 攻撃力
   attackPower_ = std::make_unique<AttackPower>();
   attackPower_->Init();
-  //jsonで変更できるように
+  // jsonで変更できるように
   attackPower_->SetPower(10);
-
 }
 
 void CannonNormalEnemy1Bullet::Update() {
   // 時間
   aliveTime_ += DELTA_TIME_;
-  //if (aliveTime_ > DELETE_TIME_) {
-  //  isDelete_ = true;
-  //}
+  // if (aliveTime_ > DELETE_TIME_) {
+  //   isDelete_ = true;
+  // }
 
   // 線形補間でXZ
   t_ += 1.0f / (ATTACK_ALL_TIME_ * FPS_VALUE_);
@@ -47,16 +48,18 @@ void CannonNormalEnemy1Bullet::Update() {
   float_t startY = normalEnemyPosition_.y;
   float_t endY = playerPosition_.y;
   float_t baseY = std::lerp(startY, endY, t_);
-  
-  if ( t_ >= 1.0f ) {
-      isDelete_;
+
+  if (t_ >= 1.0f) {
+    isDelete_;
   }
 
-  translate_.x = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
-  //translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+  translate_.x =
+      Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
+  // translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
   float_t a = sinf(t_ * std::numbers::pi_v<float_t>);
-  translate_.y = 1.0f+a;
-  translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
+  translate_.y = 1.0f + a;
+  translate_.z =
+      Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
 
 #ifdef _DEBUG
   ImGui::Begin("Cannon");
@@ -70,13 +73,12 @@ void CannonNormalEnemy1Bullet::Update() {
   ImGui::End();
 #endif // _DEBUG
 
-
   // 更新
   TransformUpdate();
-
 }
 
-void CannonNormalEnemy1Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
+void CannonNormalEnemy1Bullet::OnCollision(
+    std::weak_ptr<ObjectComponent> other) {
 
   auto obj = other.lock();
 

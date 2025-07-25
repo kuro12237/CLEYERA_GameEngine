@@ -20,8 +20,11 @@ void CLEYERA::Manager::ObjectManager::Update() {
         obj->Update();
         obj->GameObjectUpdate();
 
-        gravity->PushData(obj);
-        terrain->PushData(obj);
+        if (obj->GetIsGravity())
+          gravity->PushData(obj);
+
+        if (obj->GetIsTerrainHit())
+          terrain->PushData(obj);
 
         break;
       }
@@ -69,7 +72,6 @@ void CLEYERA::Manager::ObjectManager::ImGuiUpdate() {
           return;
         }
         obj.second->ImGuiUpdate();
- 
       }
       ImGui::TreePop();
     }
