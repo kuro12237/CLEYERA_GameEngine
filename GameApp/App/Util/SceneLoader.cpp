@@ -47,7 +47,9 @@ std::vector<std::weak_ptr<EnvironmentObject>> SceneLoader::SettingData() {
         obj->SetRotate(data.rotate);
         obj->SetTranslate(data.translate);
         obj->SetModelHandle(data.modeHandle_);
-
+        obj->SetIsTerrainHit(data.isTerrainHit);
+        obj->SetIsGravity(data.isGravity_);
+        
         auto gameObj = obj->GetGameObject().lock();
         if (gameObj) {
           for (const auto &parentName : data.parentObjName_) {
@@ -79,6 +81,8 @@ std::vector<std::weak_ptr<EnvironmentObject>> SceneLoader::SettingData() {
     obj->SetRotate(data.rotate);
     obj->SetTranslate(data.translate);
     obj->SetModelHandle(data.modeHandle_);
+    obj->SetIsTerrainHit(data.isTerrainHit);
+    obj->SetIsGravity(data.isGravity_);
 
     // 親設定
     auto gameObj = obj->GetGameObject().lock();
@@ -144,6 +148,13 @@ SceneObjData SceneLoader::LoadobjData(nlohmann::json object,
   }
   if (object.contains("file_name")) {
     newData.modelName = object["file_name"].get<std::string>();
+  }
+
+  if (object.contains("gravity_Flag")) {
+    newData.isGravity_ = object["gravity_Flag"].get<bool>();
+  }
+  if (object.contains("terrain_Flag")) {
+    newData.isGravity_ = object["terrain_Flag"].get<bool>();
   }
 
   if (newData.modelName != "" && newData.modelDirectoryPath != "") {

@@ -14,6 +14,9 @@ struct SceneObjData {
    std::string modelName = "";
    uint32_t modeHandle_ = 0;
    std::vector<std::string> parentObjName_;
+   bool isGravity_ = true;
+   bool isTerrainHit = true;
+
 };
 
 class SceneLoader {

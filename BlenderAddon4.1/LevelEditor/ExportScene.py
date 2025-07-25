@@ -84,6 +84,15 @@ class MYADDON_OT_export_scene(bpy.types.Operator,bpy_extras.io_utils.ExportHelpe
             collider["size"] = object["collider_size"].to_list()
             json_object["collider"] = collider
 
+        if "gravity_Flag" in object:
+            if False == object["gravity_Flag"]:
+               json_object["gravity_Flag"] = False
+
+        if "terrain_Flag" in object:
+            if False == object["terrain_Flag"]:
+               json_object["terrain_Flag"] = False
+
+
         data_parent.append(json_object)
         if len(object.children) > 0:
             json_object["children"] = list()
