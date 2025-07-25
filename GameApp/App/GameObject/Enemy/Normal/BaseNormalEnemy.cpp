@@ -6,7 +6,7 @@
 #include "Donut/DonutNormalEnemyBullet.h"
 
 void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
-  std::weak_ptr<BaseNormalEnemyBullet> bullet;
+    std::weak_ptr<BaseNormalEnemyBullet> bullet;
 
   std::string tag = "";
 
@@ -33,9 +33,6 @@ void BaseNormalEnemy::GenerateBullet(const uint32_t &selection) {
         tag, std::make_shared<GunNormalEnemyBullet>());
 
     bullet.lock()->Initialize(translate_, playerPosition_, false);
-    // 連番
-    bulletCount_++;
-
     // 連番
     bulletCount_++;
 

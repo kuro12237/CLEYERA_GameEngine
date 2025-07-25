@@ -86,74 +86,73 @@ void CannonNormalEnemy::Init() {
 
 void CannonNormalEnemy::Update() {
 
-  // hp処理
-  hp_->Update();
-  if (hp_->GetIsDead()) {
-    isAlive_ = false;
-    // 倒された
-    Killed();
-  }
-
-  // 生存時
-  if (isAlive_ == true) {
-    // クールタイム中
-    if (isCool_ == true) {
-      coolTime_ += DELTA_TIME_;
-      if (coolTime_ > coolTimeLimit_) {
-        isCool_ = false;
-        coolTime_ = 0.0f;
-        generateBulletNumber_ = 0u;
-      }
+    // hp処理
+    hp_->Update();
+    if (hp_->GetIsDead()) {
+        isAlive_ = false;
+        // 倒された
+        Killed();
     }
 
-    for (auto it = bullets_.begin(); it != bullets_.end();) {
-      if (it->expired()) {
-        it = bullets_.erase(it); // expiredならeraseして次に進む
-        continue;
-      }
+    // 生存時
+    if (isAlive_ == true) {
+        // クールタイム中
+        if (isCool_ == true) {
+            coolTime_ += DELTA_TIME_;
+            if (coolTime_ > coolTimeLimit_) {
+                isCool_ = false;
+                coolTime_ = 0.0f;
+                generateBulletNumber_ = 0u;
+            }
+        }
 
-      auto sp = it->lock();
-      if (sp && sp->GetIsDelete()) {
-        sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
-      }
+        for (auto it = bullets_.begin(); it != bullets_.end();) {
+            if (it->expired()) {
+                it = bullets_.erase(it); // expiredならeraseして次に進む
+                continue;
+            }
 
-      ++it;
+            auto sp = it->lock();
+            if (sp && sp->GetIsDelete()) {
+                sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+            }
+
+            ++it;
+        }
+
+
+        // 向きを計算しモデルを回転させる
+        float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
+        // 回転のオフセット
+        // 元々のモデルの回転が変だったのでこれを足している
+        const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
+        rotate_.y = directionToRotateY + ROTATE_OFFSET;
+
+        // ビヘイビアツリーの実行
+        behaviorTree_->Execute(this);
+
+        // 速度を計算
+        Math::Vector::Vec3 newDirection = {};
+        if (isAttack_ == false) {
+           newDirection = direction_;
+        }
+
+        velocity_ = newDirection * speed_;
+
+        // 体力無し
+        if (parameter_.hp_ <= 0) {
+          isAlive_ = false;
+        }
+
+        // プレイヤーへの方向を計算
+        directionToPlayer_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+
+        // ノックバック
+        KnockBack();
     }
 
-
-    // 向きを計算しモデルを回転させる
-    float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
-    // 回転のオフセット
-    // 元々のモデルの回転が変だったのでこれを足している
-    const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
-    rotate_.y = directionToRotateY + ROTATE_OFFSET;
-
-    // ビヘイビアツリーの実行
-    behaviorTree_->Execute(this);
-
-    // 速度を計算
-    Math::Vector::Vec3 newDirection = {};
-    if (isAttack_ == false) {
-      newDirection = direction_;
-    }
-
-    velocity_ = newDirection * speed_;
-
-    // 体力無し
-    if (parameter_.hp_ <= 0) {
-      isAlive_ = false;
-    }
-
-    // プレイヤーへの方向を計算
-    directionToPlayer_ =
-        Math::Vector::Func::Normalize(playerPosition_ - translate_);
-
-    // ノックバック
-    KnockBack();
-  }
-
-  // 更新
-  TransformUpdate();
+    // 更新
+    TransformUpdate();
 }
 
 void CannonNormalEnemy::ImGuiUpdate() {

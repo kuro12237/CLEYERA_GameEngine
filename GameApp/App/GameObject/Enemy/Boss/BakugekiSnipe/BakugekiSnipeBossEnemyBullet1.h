@@ -7,7 +7,6 @@
  */
 
 #include "CLEYERA.h"
-#include "Component/AttackPower/AttackPower.h"
 #include "Enemy/Boss/BaseBossEnemyBullet.h"
 
 /// <summary>
@@ -23,8 +22,10 @@ public:
   /// <summary>
   /// 初期化
   /// </summary>
+  /// <param name="enemyPosition"></param>
+  /// <param name="playerPosition"></param>
   void Initialize(const Math::Vector::Vec3 &enemyPosition,
-                  const Math::Vector::Vec3 &playerPositio) override;
+                  const Math::Vector::Vec3 & playerPosition) override;
 
   /// <summary>
   /// 更新
@@ -45,21 +46,8 @@ public:
 
 
 private:
-  // スケールサイズ
-  const float_t SCALE_SIZE_ = 1.0f;
-  // 弾の速さ
-  const float_t SPEED_ = 0.5f;
+  
   // 時間変化
   const float_t DELTA_TIME_ = 1.0f / 60.0f;
-  // 最大表示時間
-  const float_t MAX_DISPLAY_TIME_ = 5.0f;
-
-private:
-  // 方向
-  Math::Vector::Vec3 direction_ = {};
-
-  // 表示時間
-  float_t displayTime_ = 0.0f;
-
-  std::unique_ptr<AttackPower> attackPower_ = nullptr;
+    
 };

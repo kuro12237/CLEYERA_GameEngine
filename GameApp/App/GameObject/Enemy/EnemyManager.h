@@ -37,27 +37,27 @@ public:
   /// 雑魚敵を生成
   /// </summary>
   /// <param name="position">座標</param>
-  void GenerateNormalEnemy1(const Math::Vector::Vec3 &position,std::string name ="");
+  void GenerateCannonEnemy(const Math::Vector::Vec3 &position,std::string name ="");
 
   /// <summary>
   /// 雑魚敵2を生成
   /// </summary>
   /// <param name="position">座標</param>
-  void GenerateNormalEnemy2(const Math::Vector::Vec3 &position, std::string name = "");
+  void GenerateGunEnemy(const Math::Vector::Vec3 &position, std::string name = "");
 
   /// <summary>
   /// 雑魚敵3を生成
   /// </summary>
   /// <param name="position"></param>
   /// <param name="name"></param>
-  void GenerateNormalEnemy3(const Math::Vector::Vec3 &position, std::string name = "");
+  void GenerateStalkerEnemy(const Math::Vector::Vec3 &position, std::string name = "");
 
   /// <summary>
   /// ドーナツを生成
   /// </summary>
   /// <param name="position"></param>
   /// <param name="name"></param>
-  void GenerateNormalEnemy4(const Math::Vector::Vec3 & position, std::string name = "");
+  void GenerateDonutEnemy(const Math::Vector::Vec3 & position, std::string name = "");
 
   /// <summary>
   /// ボス敵

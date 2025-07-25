@@ -50,6 +50,12 @@ public:
   inline void SetVelocity(const Math::Vector::Vec3 &velocity) { this->velocity_ = velocity; }
 
   /// <summary>
+  /// 方向を設定
+  /// </summary>
+  /// <param name="direction"></param>
+  inline void SetDirection(const Math::Vector::Vec3 & direction) { this->direction_ = direction; }
+
+  /// <summary>
   /// 座標の取得
   /// </summary>
   /// <returns>座標</returns>
@@ -95,6 +101,13 @@ public:
   virtual void GenerateBullet(const uint32_t &selection);
 
   /// <summary>
+  /// 攻撃開始距離を取得
+  /// </summary>
+  /// <returns></returns>
+  float_t GetAttackStartDistance() const { return attackStartDistance_; }
+
+
+  /// <summary>
   /// デストラクタ
   /// </summary>
   virtual ~BaseBossEnemy() {};
@@ -113,6 +126,16 @@ protected:
   bool isAlive_ = true;
   // 消えるかどうか
   bool isDelete_ = false;
+
+  //クールタイム中かどうか
+  bool isCool_ = false;
+  //時間
+  float_t coolTime_ = 0.0f;
+  //制限
+  float_t coolTimeLimit_ = 3.0f;
+  //生成した弾の数。これが無いと管理しにくい
+  uint32_t generateBulletNumber_ = 0u;
+
   // 攻撃したかどうか
   bool isAttack_ = false;
 
@@ -140,7 +163,9 @@ protected:
 
 protected:
   // 弾のリスト
-  std::list<std::shared_ptr<BaseBossEnemyBullet>> bullets_;
+  std::list<std::weak_ptr<BaseBossEnemyBullet>> bullets_;
+  //カウント
+  int32_t bulletCount_ = 0;
 
   // パラメーター
   EnemyParameter parameter_ = {};

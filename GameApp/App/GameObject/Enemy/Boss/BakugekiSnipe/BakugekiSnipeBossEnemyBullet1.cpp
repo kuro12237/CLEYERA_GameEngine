@@ -3,9 +3,7 @@
 #include "Wall/Wall.h"
 
 void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPosition,
-                                    const Math::Vector::Vec3 &playerPositio) {
-  // 名前の設定
-  name_ = VAR_NAME(NormalEnemyBullet);
+                                    const Math::Vector::Vec3 &playerPosition) {
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
@@ -19,12 +17,8 @@ void BakugekiSnipeBossEnemyBullet1::Initialize(const Math::Vector::Vec3 &enemyPo
   translate_ = enemyPosition;
 
   // 方向を決める
-  direction_ = playerPositio - translate_;
+  direction_ = playerPosition - translate_;
   direction_ = Math::Vector::Func::Normalize(direction_);
-
-  auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
-
-  aabb->SetSize({-1.0f, -1.0f, -1.0f}, {1.0f, 1.0f, 1.0f});
 
   // あたりはんてい関数セット
   collider_->SetHitCallFunc(

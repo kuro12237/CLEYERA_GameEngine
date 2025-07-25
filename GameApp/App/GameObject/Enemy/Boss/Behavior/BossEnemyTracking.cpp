@@ -13,9 +13,9 @@ EnemyNodeState BossEnemyTracking::Execute(BaseBossEnemy * baseBossEnemy){
 
     };
 
-    //本体に設定
-    baseBossEnemy->SetVelocity(Math::Vector::Func::Normalize(velocity));
-    
+    //正規化し本体に設定
+    baseBossEnemy->SetDirection(Math::Vector::Func::Normalize(velocity));
+
     //成功
     return EnemyNodeState::Success;
 

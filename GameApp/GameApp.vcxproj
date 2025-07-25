@@ -172,6 +172,7 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\BaseBossEnemyBullet.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInAttackRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyAttack.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyBehaviorNode.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsEnraged.h" />
+    <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInAttackRange.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyRandomAttackSelector.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySelector.h" />

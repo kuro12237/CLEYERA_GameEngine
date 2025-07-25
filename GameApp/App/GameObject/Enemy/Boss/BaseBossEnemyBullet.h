@@ -10,6 +10,7 @@
 #include"CLEYERA.h"
 #include "Enemy/EnemyParameter.h"
 #include "Enemy/Boss/Behavior/BossEnemyBehaviorNode.h"
+#include "Component/AttackPower/AttackPower.h"
 
 /// <summary>
 /// 弾のタイプ
@@ -61,4 +62,20 @@ protected:
 
   // 消去されたか
   bool isDelete_ = false;
+
+  // 方向
+  Math::Vector::Vec3 direction_ = {};
+  
+  // 表示時間
+  float_t displayTime_ = 0.0f;
+  // 最大表示時間
+  float_t MAX_DISPLAY_TIME_ = 5.0f;
+
+  // スケールサイズ
+  float_t SCALE_SIZE_ = 1.0f;
+  // 弾の速さ
+  float_t SPEED_ = 0.5f;
+
+  //攻撃力
+  std::unique_ptr<AttackPower> attackPower_ = nullptr;
 };

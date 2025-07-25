@@ -13,8 +13,6 @@
 #include"Player/Attack/Interface/IPlayerBullet.h"
 
 void GunNormalEnemy::Init() {
-  // 名前の設定
-  name_ = VAR_NAME(GunNormalEnemy);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
@@ -99,11 +97,18 @@ void GunNormalEnemy::Update() {
 
 
   
-    for (std::weak_ptr<BaseNormalEnemyBullet> b : bullets_) {
-        auto it = b.lock();
-        if (it->GetIsDelete()) {
-          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
-        }
+      for ( auto it = bullets_.begin(); it != bullets_.end();) {
+          if ( it->expired() ) {
+              it = bullets_.erase(it); // expiredならeraseして次に進む
+              continue;
+          }
+
+          auto sp = it->lock();
+          if ( sp && sp->GetIsDelete() ) {
+              sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+          }
+
+          ++it;
       }
 
     // 向きを計算しモデルを回転させる

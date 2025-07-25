@@ -5,8 +5,6 @@
 void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition,
                                     const bool &isPersistentlyTrack) {
-  // 名前の設定
-  name_ = VAR_NAME(CannonNormalEnemy1Bullet);
 
   // モデルの設定
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
@@ -39,9 +37,9 @@ void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPositio
 void CannonNormalEnemy1Bullet::Update() {
   // 時間
   aliveTime_ += DELTA_TIME_;
-  if (aliveTime_ > DELETE_TIME_) {
-    isDelete_ = true;
-  }
+  //if (aliveTime_ > DELETE_TIME_) {
+  //  isDelete_ = true;
+  //}
 
   // 線形補間でXZ
   t_ += 1.0f / (ATTACK_ALL_TIME_ * FPS_VALUE_);
@@ -49,20 +47,33 @@ void CannonNormalEnemy1Bullet::Update() {
   float_t startY = normalEnemyPosition_.y;
   float_t endY = playerPosition_.y;
   float_t baseY = std::lerp(startY, endY, t_);
+  
+  if ( t_ >= 1.0f ) {
+      isDelete_;
+  }
 
   translate_.x = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
-  translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+  //translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+  float_t a = sinf(t_ * std::numbers::pi_v<float_t>);
+  translate_.y = 1.0f+a;
   translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
+
+#ifdef _DEBUG
+  ImGui::Begin("Cannon");
+  ImGui::InputFloat3("Translate", &translate_.x);
+  ImGui::InputFloat("BaseY", &baseY);
+  ImGui::InputFloat("T", &t_);
+  ImGui::InputFloat("A", &a);
+
+  ImGui::InputFloat3("PlayerPosition", &playerPosition_.x);
+  ImGui::InputFloat3("EnemyPosition", &normalEnemyPosition_.x);
+  ImGui::End();
+#endif // _DEBUG
+
 
   // 更新
   TransformUpdate();
 
-#ifdef _DEBUG
-  //ImGui::Begin("Bullet");
-  //ImGui::InputFloat3("Translate_", &translate_.x);
-  //ImGui::InputFloat("T", &t_);
-  //ImGui::End();
-#endif // _DEBUG
 }
 
 void CannonNormalEnemy1Bullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
@@ -77,10 +88,13 @@ void CannonNormalEnemy1Bullet::OnCollision(std::weak_ptr<ObjectComponent> other)
   if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
 
     isDelete_ = true;
+
+    mode_ = CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
   }
 
   if (auto enemyBullet = std::dynamic_pointer_cast<PlayerCore>(obj)) {
 
     isDelete_ = true;
+    mode_ = CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
   }
 }

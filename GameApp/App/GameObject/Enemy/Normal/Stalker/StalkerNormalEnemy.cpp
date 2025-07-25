@@ -99,15 +99,22 @@ void StalkerNormalEnemy::Update() {
 
 
 
-    // 弾の更新
-    for (const std::weak_ptr<BaseNormalEnemyBullet> &bullet : bullets_) {
-        auto it = bullet.lock();
-        it->SetPlayerPosition(playerPosition_);
+      for ( auto it = bullets_.begin(); it != bullets_.end();) {
 
-        if (it->GetIsDelete()) {
-          it->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
-        }
-    }
+
+          if ( it->expired() ) {
+              it = bullets_.erase(it); // expiredならeraseして次に進む
+              continue;
+          }
+
+          auto sp = it->lock();
+          sp->SetPlayerPosition(playerPosition_);
+          if ( sp && sp->GetIsDelete() ) {
+              sp->SetMode(CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE);
+          }
+
+          ++it;
+      }
 
 
 
