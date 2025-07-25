@@ -9,6 +9,8 @@ void BakugekiSnipeBossEnemyBullet2::Initialize(const Math::Vector::Vec3 &enemyPo
   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
   gameObject_->ChangeModel(modelHandle);
 
+  isGravity_ = false;
+
   // コライダー作成
   CreateCollider(ColliderType::AABB);
   // スケールの設定
@@ -32,11 +34,10 @@ void BakugekiSnipeBossEnemyBullet2::Initialize(const Math::Vector::Vec3 &enemyPo
 }
 
 void BakugekiSnipeBossEnemyBullet2::Update() {
-    // 最大5秒まで表示その後に消える
+
     displayTime_ += DELTA_TIME_;
-    if ( displayTime_ > MAX_DISPLAY_TIME_ ) {
-        isDelete_ = true;
-    }
+    
+    
 
     // 線形補間でXZ
     t_ += 1.0f / (ATTACK_ALL_TIME_ * FPS_VALUE_);
@@ -44,7 +45,9 @@ void BakugekiSnipeBossEnemyBullet2::Update() {
     float_t startY = bossEnemyPosition_.y;
     float_t endY = playerPosition_.y;
     float_t baseY = std::lerp(startY, endY, t_);
-
+    if ( t_ >= 1.0f ) {
+        isDelete_ = true;
+    }
     translate_.x = Math::Vector::Func::Lerp(bossEnemyPosition_, playerPosition_, t_).x;
     translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
     translate_.z = Math::Vector::Func::Lerp(bossEnemyPosition_, playerPosition_, t_).z;
