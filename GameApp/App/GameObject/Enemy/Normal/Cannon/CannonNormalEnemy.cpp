@@ -45,7 +45,7 @@ void CannonNormalEnemy::Init() {
   // 追跡開始距離
   trackingStartDistance_ = 40.0f;
   // 攻撃開始距離
-  attackStartDistance_ = 7.0f;
+  attackStartDistance_ = 10.0f;
 
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence =
@@ -55,7 +55,7 @@ void CannonNormalEnemy::Init() {
       std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   // 攻撃
   attackSequence->AddChild(
-      std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1, 1u, 3.0f));
+      std::make_unique<NormalEnemyAttack>(BulletType::NormalCannonBullet, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 

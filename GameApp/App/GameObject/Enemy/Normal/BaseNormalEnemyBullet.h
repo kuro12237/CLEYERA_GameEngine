@@ -13,10 +13,10 @@
 /// 弾のタイプ
 /// </summary>
 enum BulletType {
-  NormalBullet1,
-  NormalBullet2,
-  NormalBullet3,
-  NormalBullet4,
+  NormalCannonBullet,
+  GunNormalBullet,
+  StalkerNormalBullet,
+  DonutNormalBullet,
 };
 
 /// <summary>

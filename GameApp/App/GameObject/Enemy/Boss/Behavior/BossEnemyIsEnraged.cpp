@@ -4,7 +4,7 @@
 
 bool BossEnemyIsEnraged::CheckCondition(BaseBossEnemy * baseBossEnemy){
     //最大体力の半分以下になったら発狂
-    if ( baseBossEnemy->GetBossEnemyParameter().hp_ <= baseBossEnemy->GetBossEnemyParameter().maxHp_ / 2 ) {
+    if ( baseBossEnemy->GetEnemyParameter().hp_ <= baseBossEnemy->GetEnemyParameter().maxHp_ / 2 ) {
         return true;
     }
     else {

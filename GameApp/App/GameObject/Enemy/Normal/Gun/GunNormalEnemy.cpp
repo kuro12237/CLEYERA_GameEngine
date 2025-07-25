@@ -47,7 +47,7 @@ void GunNormalEnemy::Init() {
 #pragma region 攻撃シーケンス
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet2, 1u, 3.0f));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::GunNormalBullet, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
