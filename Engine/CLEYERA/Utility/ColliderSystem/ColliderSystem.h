@@ -39,14 +39,18 @@ public:
    }*/
 
   void SetObjectComponentList(
-      const std::list<std::weak_ptr<Component::ObjectComponent>> &list) {
+      std::map<std::string,
+      std::map<std::string, std::shared_ptr<Component::ObjectComponent>>> list) {
     objectList_ = &list;
   }
 
 private:
   bool isLineDraw_ = true;
 
-  const std::list<std::weak_ptr<Component::ObjectComponent>> *objectList_;
+  const std::map<
+      std::string,
+      std::map<std::string, std::shared_ptr<Component::ObjectComponent>>>
+      *objectList_;
 
 #pragma region Single
 

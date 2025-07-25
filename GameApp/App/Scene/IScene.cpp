@@ -10,7 +10,6 @@ SceneComponent::SceneComponent() {
   colliderSystem_ = Manager::ColliderSystem::GetInstance();
   objectManager_ = Manager::ObjectManager::GetInstance();
 
-  colliderSystem_->SetObjectComponentList(objectComponents_);
 }
 
 void SceneComponent::ImGuiUpdate() {

@@ -40,10 +40,6 @@ void GameScene::Init() {
   // エディタのデータを各オブジェクトにセット
   enviromentObjs_ = loader_->SettingData();
 
-  for (auto obj : enviromentObjs_) {
-    objectComponents_.push_back(obj);
-  }
-
   loader_.reset();
 
   uiState_ = std::make_unique<PlayUIState>();

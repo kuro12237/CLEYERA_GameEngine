@@ -64,8 +64,6 @@ protected:
 
   std::vector<std::weak_ptr<CLEYERA::Model3d::Game3dObject>> objectList_;
 
-  std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>>
-      objectComponents_;
   std::list<std::weak_ptr<CLEYERA::Component::ManagerComponent>>
       managerComponents_;
   std::list<std::weak_ptr<SpriteComponent>> spriteComponents_;
