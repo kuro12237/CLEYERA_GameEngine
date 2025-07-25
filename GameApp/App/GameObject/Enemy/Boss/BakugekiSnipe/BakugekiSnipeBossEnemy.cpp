@@ -9,6 +9,7 @@
 #include "Enemy/Boss/Behavior/BossEnemyIsEnraged.h"
 #include "Enemy/Boss/Behavior/BossEnemyRandomAttackSelector.h"
 #include <Enemy/Boss/Behavior/BossEnemyIsPlayerInAttackRange.h>
+
 void BakugekiSnipeBossEnemy::Init() {
    // 名前の設定
    name_ = VAR_NAME(FirstBossEnemy);

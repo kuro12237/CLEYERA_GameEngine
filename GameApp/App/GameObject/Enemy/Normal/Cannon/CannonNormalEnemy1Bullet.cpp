@@ -37,9 +37,9 @@ void CannonNormalEnemy1Bullet::Initialize(const Math::Vector::Vec3 &enemyPositio
 void CannonNormalEnemy1Bullet::Update() {
   // 時間
   aliveTime_ += DELTA_TIME_;
-  if (aliveTime_ > DELETE_TIME_) {
-    isDelete_ = true;
-  }
+  //if (aliveTime_ > DELETE_TIME_) {
+  //  isDelete_ = true;
+  //}
 
   // 線形補間でXZ
   t_ += 1.0f / (ATTACK_ALL_TIME_ * FPS_VALUE_);
@@ -47,10 +47,29 @@ void CannonNormalEnemy1Bullet::Update() {
   float_t startY = normalEnemyPosition_.y;
   float_t endY = playerPosition_.y;
   float_t baseY = std::lerp(startY, endY, t_);
+  
+  if ( t_ >= 1.0f ) {
+      isDelete_;
+  }
 
   translate_.x = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
-  translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+  //translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
+  float_t a = sinf(t_ * std::numbers::pi_v<float_t>);
+  translate_.y = 1.0f+a;
   translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
+
+#ifdef _DEBUG
+  ImGui::Begin("Cannon");
+  ImGui::InputFloat3("Translate", &translate_.x);
+  ImGui::InputFloat("BaseY", &baseY);
+  ImGui::InputFloat("T", &t_);
+  ImGui::InputFloat("A", &a);
+
+  ImGui::InputFloat3("PlayerPosition", &playerPosition_.x);
+  ImGui::InputFloat3("EnemyPosition", &normalEnemyPosition_.x);
+  ImGui::End();
+#endif // _DEBUG
+
 
   // 更新
   TransformUpdate();
