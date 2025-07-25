@@ -50,7 +50,7 @@ void StalkerNormalEnemy::Init() {
   std::unique_ptr<NormalEnemySequence> attackSequence = std::make_unique<NormalEnemySequence>();
   attackSequence->AddChild(std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   attackSequence->AddChild(std::make_unique<NormalEnemyIsNotCool>());
-  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet3, 5u, 0.2f));
+  attackSequence->AddChild(std::make_unique<NormalEnemyAttack>(BulletType::StalkerNormalBullet, 5u, 0.2f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 

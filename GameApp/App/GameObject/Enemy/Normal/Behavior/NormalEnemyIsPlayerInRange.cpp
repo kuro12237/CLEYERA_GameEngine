@@ -5,7 +5,7 @@
 
 EnemyNodeState NormalEnemyIsPlayerInRange::Execute(BaseNormalEnemy *baseNormalEnemy) {
     // 距離を求める
-    float_t disttance = Math::Vector::Func::Length(baseNormalEnemy->GetWorldPosition() -
+    float_t disttance = Math::Vector::Func::Length(baseNormalEnemy->GetPosition() -
                                                    baseNormalEnemy->GetPlayerPosition());
 
     // 範囲内かつ攻撃中かどうか

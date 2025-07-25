@@ -55,7 +55,7 @@ void CannonNormalEnemy::Init() {
       std::make_unique<NormalEnemyIsPlayerInAttackRange>());
   // 攻撃
   attackSequence->AddChild(
-      std::make_unique<NormalEnemyAttack>(BulletType::NormalBullet1, 1u, 3.0f));
+      std::make_unique<NormalEnemyAttack>(BulletType::NormalCannonBullet, 1u, 3.0f));
   root->AddChild(std::move(attackSequence));
 #pragma endregion
 
