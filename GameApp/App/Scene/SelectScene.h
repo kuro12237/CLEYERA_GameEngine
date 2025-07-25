@@ -28,5 +28,5 @@ public:
 private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
 
-  std::vector<std::shared_ptr<EnvironmentObject>> enviromentObjs_;
+  std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
 };

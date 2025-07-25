@@ -5,7 +5,7 @@ GameScene::GameScene() {
   CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
 
   itemManager_ = std::make_shared<ItemManager>();
-  playerManager_ = std::make_shared<PlayerManager>(itemManager_);
+  playerManager_ = std::make_shared<PlayerManager>();
 }
 
 void GameScene::Init() {
@@ -28,6 +28,8 @@ void GameScene::Init() {
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
 
+  playerManager_->SetPtr(itemManager_, enemyManager_);
+
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // 初期化
@@ -36,7 +38,7 @@ void GameScene::Init() {
   }
 
   // エディタのデータを各オブジェクトにセット
-  enviromentObjs_ = loader_->SettingData(objectComponents_);
+  enviromentObjs_ = loader_->SettingData();
 
   for (auto obj : enviromentObjs_) {
     objectComponents_.push_back(obj);
@@ -55,9 +57,9 @@ void GameScene::Init() {
   }
 
   // 地形モデルの設定
-  uint32_t modelHandlet =
+  uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
-  terrain_->ChengeData(modelHandlet);
+  terrain_->ChengeData(modelHandle);
 
 }
 
@@ -91,5 +93,5 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 }
 
 void GameScene::Draw2d() { 
-    //uiState_->Draw2d();
+    uiState_->Draw2d();
   }
