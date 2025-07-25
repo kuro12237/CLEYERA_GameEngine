@@ -56,9 +56,9 @@ private:
   // 時間変化
   const float_t DELTA_TIME_ = 1.0f / FPS_VALUE_;
   // 攻撃時間
-  const float_t ATTACK_ALL_TIME_ = 1.0f;
+  const float_t ATTACK_ALL_TIME_ = 2.0f;
   // 高さ
-  float_t HEIGHT_ = 4.0f;
+  float_t HEIGHT_ = 8.0f;
   // 消える時間
   const float_t DELETE_TIME_ = 1.0f;
 
