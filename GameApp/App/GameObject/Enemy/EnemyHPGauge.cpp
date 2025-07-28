@@ -12,12 +12,12 @@ void EnemyHPGauge::Init(){
 	isGravity_ = false;
 
 	// スケールの設定
-	scale_ = { .x = 1.0f, .y = 1.0f, .z = 1.0f };
+	scale_ = { .x = 2.0f, .y = 0.3f, .z = 1.0f };
 }
 
 void EnemyHPGauge::Update(){
 
-	translate_.x = baseEnemy_->GetPosition().x;
+	translate_.x = baseEnemy_->GetPosition().x + OFFSET_X_;
 	translate_.y = baseEnemy_->GetPosition().y + 3.0f;
 	translate_.z = baseEnemy_->GetPosition().z;
 

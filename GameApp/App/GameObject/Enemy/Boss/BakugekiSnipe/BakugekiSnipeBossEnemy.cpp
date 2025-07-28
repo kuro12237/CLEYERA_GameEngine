@@ -69,6 +69,11 @@ void BakugekiSnipeBossEnemy::Init() {
    hp_->SetName(this->name_);
    hp_->Init();
 
+   hpGauge_ = objectManager_->CreateObject<EnemyHPGauge>(
+    "HPGauge", std::make_shared<EnemyHPGauge>());
+   hpGauge_.lock()->Init();
+   hpGauge_.lock()->SetBaseEnemy(this);
+
 
    parameter_.maxHp_ = 10;
    parameter_.hp_ = parameter_.maxHp_;
@@ -79,6 +84,7 @@ void BakugekiSnipeBossEnemy::Init() {
 void BakugekiSnipeBossEnemy::Update() {
     // hp処理
     hp_->Update();
+    hpGauge_.lock()->Update();
     if ( hp_->GetIsDead() ) {
         isAlive_ = false;
         // 倒された
