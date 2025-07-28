@@ -68,6 +68,11 @@ void GunNormalEnemy::Init() {
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+  hpGauge_ = objectManager_->CreateObject<EnemyHPGauge>(
+    "HPGauge", std::make_shared<EnemyHPGauge>());
+  hpGauge_.lock()->Init();
+  hpGauge_.lock()->SetBaseEnemy(this);
+
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
@@ -77,6 +82,7 @@ void GunNormalEnemy::Update() {
 
   // hp処理
   hp_->Update();
+  hpGauge_.lock()->Update();
   if (hp_->GetIsDead()) {
     // 倒された
     isAlive_ = false;
