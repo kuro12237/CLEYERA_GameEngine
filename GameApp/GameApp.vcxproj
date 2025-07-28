@@ -176,6 +176,7 @@
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInAttackRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyIsPlayerInRange.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.cpp" />
+    <ClCompile Include="App\GameObject\Enemy\EnemyHPGauge.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyManager.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\BaseNormalEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Normal\Behavior\NormalEnemyAttack.cpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemySequence.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\Behavior\BossEnemyTracking.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BossEnemyCondition.h" />
+    <ClInclude Include="App\GameObject\Enemy\EnemyHPGauge.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyManager.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyNodeState.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyParameter.h" />

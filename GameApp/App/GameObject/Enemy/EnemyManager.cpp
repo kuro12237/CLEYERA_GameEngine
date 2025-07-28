@@ -39,7 +39,7 @@ void EnemyManager::Init() {
 
   GenerateCannonEnemy({}, "NormalEnemy1");
   //GenerateGunEnemy({}, "NormalEnemy2");
-  //GenerateStalkerEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
+  GenerateStalkerEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
 
   //GenerateDonutEnemy({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
   GenerateBossEnemyEnemy({});

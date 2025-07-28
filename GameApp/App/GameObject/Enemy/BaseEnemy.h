@@ -9,7 +9,7 @@
 
 #include "CLEYERA.h"
 #include "Enemy/EnemyParameter.h"
-//
+#include <Enemy/EnemyHPGauge.h>
 #include "Component/Hp/HealthComponent.h"
 
 /// <summary>
@@ -210,6 +210,7 @@ protected:
 
     std::string hpJsonDirectory_ = "Enemys/";
     std::unique_ptr<HealthComponent> hp_ = nullptr;
+    std::weak_ptr<EnemyHPGauge> hpGauge_;
 
     std::list<std::weak_ptr<CLEYERA::Component::ObjectComponent>> *mgrObjList_{};
 
