@@ -19,7 +19,6 @@ void CannonNormalEnemy::Init() {
   // モデルの設定
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/enemy", "enemy");
-  //"Resources/Model/Sphere", "Sphere"
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
@@ -79,15 +78,23 @@ void CannonNormalEnemy::Init() {
     this->OnCollision(other);
   });
 
+  
+  hpGauge_=objectManager_->CreateObject<EnemyHPGauge>(
+      "HPGauge", std::make_shared<EnemyHPGauge>());
+  hpGauge_.lock()->Init();
+  hpGauge_.lock()->SetBaseEnemy(this);
+
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
+
 }
 
 void CannonNormalEnemy::Update() {
 
     // hp処理
     hp_->Update();
+    hpGauge_.lock()->Update();
     if (hp_->GetIsDead()) {
         isAlive_ = false;
         // 倒された
