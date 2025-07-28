@@ -21,6 +21,11 @@ void EnemyHPGauge::Update(){
 	translate_.y = baseEnemy_->GetPosition().y + 3.0f;
 	translate_.z = baseEnemy_->GetPosition().z;
 
+
+	if ( baseEnemy_->GetIsDelete() == true ) {
+		CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
+	}
+
 #ifdef _DEBUG
 	ImGui::Begin("EnemyHPGauge");
 	ImGui::InputFloat3("Translate", &translate_.x);

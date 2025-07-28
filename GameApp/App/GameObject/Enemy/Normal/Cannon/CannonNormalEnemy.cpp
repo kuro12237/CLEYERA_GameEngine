@@ -94,12 +94,21 @@ void CannonNormalEnemy::Update() {
 
     // hp処理
     hp_->Update();
-    hpGauge_.lock()->Update();
+    
     if (hp_->GetIsDead()) {
         isAlive_ = false;
         // 倒された
         Killed();
     }
+
+
+    int a = 0;
+    if ( isDelete_ == true ) {
+        a++;
+    }
+
+    //HPゲージ
+    hpGauge_.lock()->Update();
 
     // 生存時
     if (isAlive_ == true) {
@@ -266,7 +275,7 @@ void CannonNormalEnemy::Killed() {
     const float_t SCALE_DOWN = 0.05f;
     scale_ -= {SCALE_DOWN, SCALE_DOWN, SCALE_DOWN};
 
-    if (scale_.x < 0.0f && scale_.y < 0.0f && scale_.z < 0.0f) {
+    if (scale_.x < 0.0f) {
       // スケール固定
       scale_.x = 0.0f;
       scale_.y = 0.0f;
