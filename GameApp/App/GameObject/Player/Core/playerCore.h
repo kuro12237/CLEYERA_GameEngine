@@ -18,6 +18,7 @@
 #include "../Attack/Low/Normal/LowAttack_Normal.h"
 #include "../Attack/Low/Back/LowAttack_Back.h"
 #include "../Attack/High/Normal/HighAttack_Normal.h"
+#include "../Attack/High/Field/HighAttack_Field.h"
 #include "../Attack/Special/Normal/SpecialAttack_Normal.h"
 #include "../Attack/Special/Power/SpecialAttack_Power.h"
 #include "../Attack/Manager/PlayerBulletManager.h"

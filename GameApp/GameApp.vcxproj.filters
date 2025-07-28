@@ -107,6 +107,8 @@
     <ClCompile Include="App\GameObject\Player\Attack\Special\Power\SpecialAttack_Power.cpp" />
     <ClCompile Include="App\GameObject\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\EnemyHPGauge.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -217,6 +219,8 @@
     <ClInclude Include="App\GameObject\Player\Helper\PlayerHelper.h" />
     <ClInclude Include="App\GameObject\Enemy\BaseEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\EnemyHPGauge.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

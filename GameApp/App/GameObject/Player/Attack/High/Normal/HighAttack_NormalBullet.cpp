@@ -17,7 +17,6 @@ void HighAttack_NormalBullet::Init()
 
 void HighAttack_NormalBullet::Update()
 {
-  name_;
 	ObjectComponent::TransformUpdate();
 	IPlayerBullet::Update_LifeTime();
 
