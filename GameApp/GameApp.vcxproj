@@ -195,6 +195,7 @@
     <ClCompile Include="App\GameObject\EnvironmentObject\EnvironmentObject.cpp" />
     <ClCompile Include="App\GameObject\Item\AttackPickup\AttackPickupItem.cpp" />
     <ClCompile Include="App\GameObject\Item\Heal\HealItem.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Low\Back\LowAttack_Back.cpp" />
@@ -240,6 +241,7 @@
     <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="App\Util\UtilFunc.cpp" />
     <ClCompile Include="App\GameObject\Item\Manager\ItemManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +291,7 @@
     <ClInclude Include="App\GameObject\Item\AttackPickup\AttackPickupItem.h" />
     <ClInclude Include="App\GameObject\Item\Heal\HealItem.h" />
     <ClInclude Include="App\GameObject\Item\Interface\IItem.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_Normal.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Normal\HighAttack_NormalBullet.h" />
     <ClInclude Include="App\GameObject\Player\Attack\Low\Back\LowAttack_Back.h" />
@@ -338,6 +341,7 @@
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
     <ClInclude Include="App\GameObject\Item\Manager\ItemManager.h" />
+    <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

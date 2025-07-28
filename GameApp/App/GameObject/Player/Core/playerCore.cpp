@@ -27,7 +27,6 @@ void PlayerCore::Init() {
 	InitModel();
 	InitCollider();
 	InitHandlers();
-	// 攻撃スロットの初期化
 	InitAttackSlot();
 }
 
@@ -186,7 +185,7 @@ void PlayerCore::InitAttackSlot() {
 	attacks_[ ToIndex(AttackType::Basic) ] =
 		std::make_unique<LowAttack_Normal>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Standard) ] =
-		std::make_unique<HighAttack_Normal>(this, bulletManager_);
+		std::make_unique<HighAttack_Field>(this, bulletManager_);
 	attacks_[ ToIndex(AttackType::Signature) ] =
 		std::make_unique<SpecialAttack_Power>(this, bulletManager_);
 
