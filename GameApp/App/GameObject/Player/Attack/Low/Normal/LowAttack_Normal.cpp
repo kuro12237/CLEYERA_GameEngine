@@ -24,7 +24,6 @@ void LowAttack_Normal::Init()
 
 void LowAttack_Normal::Update()
 {
-  name_;
 	// コンボ進行タイマー更新
 	if ( comboElapse_ > 0.0f ) {
 		comboElapse_--;
