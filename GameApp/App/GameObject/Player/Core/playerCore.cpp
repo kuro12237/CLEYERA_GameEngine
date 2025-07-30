@@ -37,12 +37,8 @@ void PlayerCore::Update() {
 	commandHandler_->Handle();
 	commandHandler_->Exec();
 
-	if (actionState_) {
-		actionState_->Update();
-	}
-
 	moveFunc_->Update();
-	StiffMove(); // // 移動硬直のタイマー処理
+	StiffMove(); // 移動硬直のタイマー処理
 	dashFunc_->Update();
 	invincibleFunc_->Update();
 
@@ -50,6 +46,8 @@ void PlayerCore::Update() {
 		if ( atk )
 			atk->Update();
 	}
+
+	CheckAttackUpgrade();
 
 	// ノックバック
 	KnockBack();
@@ -112,19 +110,19 @@ void PlayerCore::KeyMove(const Math::Vector::Vec2 & input)
 
 void PlayerCore::BasicAttack() 
 { 
-	attacks_[ ToIndex(AttackType::Basic) ]->IsAttack();
+	attacks_[ ToIndex(AttackType::Low) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
 void PlayerCore::StandardAttack() 
 { 
-	attacks_[ ToIndex(AttackType::Standard) ]->IsAttack();
+	attacks_[ ToIndex(AttackType::High) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
 void PlayerCore::SignatureAttack()
 { 
-	attacks_[ ToIndex(AttackType::Signature) ]->IsAttack();
+	attacks_[ ToIndex(AttackType::Special) ]->IsAttack();
 	isAttackStiff_ = true;
 }
 
@@ -132,13 +130,6 @@ void PlayerCore::Dash()
 {
 	invincibleFunc_->AddInvTimer(0.2f);
 	dashFunc_->StartDash();
-}
-
-void PlayerCore::ChangeActionState(std::unique_ptr<IPlayerActionState> newState)
-{
-	if ( actionState_ ) actionState_->Exit();
-	actionState_ = std::move(newState);
-	actionState_->Enter(this);
 }
 
 void PlayerCore::InitLua()
@@ -182,11 +173,11 @@ void PlayerCore::InitHandlers()
 void PlayerCore::InitAttackSlot() {
 
 	// 初期攻撃スロット
-	attacks_[ ToIndex(AttackType::Basic) ] =
+	attacks_[ ToIndex(AttackType::Low) ] =
 		std::make_unique<LowAttack_Normal>(this, bulletManager_);
-	attacks_[ ToIndex(AttackType::Standard) ] =
-		std::make_unique<HighAttack_Field>(this, bulletManager_);
-	attacks_[ ToIndex(AttackType::Signature) ] =
+	attacks_[ ToIndex(AttackType::High) ] =
+		std::make_unique<HighAttack_Normal>(this, bulletManager_);
+	attacks_[ ToIndex(AttackType::Special) ] =
 		std::make_unique<SpecialAttack_Power>(this, bulletManager_);
 
 	// 初期化
@@ -249,4 +240,47 @@ void PlayerCore::KnockBack() {
 			isDesidePosition_ = false;
 		}
 	}
+}
+
+void PlayerCore::CheckAttackUpgrade()
+{
+	CheckLowAttackUpgrade();
+	CheckHighAttackUpgread();
+	CheckSpecialAttackUpgread();
+}
+
+void PlayerCore::CheckLowAttackUpgrade()
+{
+	if(lowAttack_Upgreaded_ ) return;
+
+	attacks_[ ToIndex(AttackType::Low) ] = 
+		std::make_unique<LowAttack_Normal>(this, bulletManager_);
+
+	attacks_[ToIndex(AttackType::Low) ]->Init();
+
+	lowAttack_Upgreaded_ = true;
+}
+
+void PlayerCore::CheckHighAttackUpgread()
+{
+	if ( highAttack_Upgreaded_ ) return;
+
+	attacks_[ ToIndex(AttackType::High) ] =
+		std::make_unique<HighAttack_Field>(this, bulletManager_);
+
+	attacks_[ ToIndex(AttackType::High) ]->Init();
+
+	highAttack_Upgreaded_ = true;
+}
+
+void PlayerCore::CheckSpecialAttackUpgread()
+{
+	if ( specialAttack_Upgreaded_ ) return;
+
+	attacks_[ ToIndex(AttackType::Special) ] =
+		std::make_unique<SpecialAttack_Power>(this, bulletManager_);
+
+	attacks_[ ToIndex(AttackType::Special) ]->Init();
+
+	specialAttack_Upgreaded_ = true;
 }

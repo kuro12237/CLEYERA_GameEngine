@@ -12,9 +12,9 @@ class PlayerBulletManager;
 // 攻撃のタイプ
 enum class AttackType {
   None = -1,
-  Basic,
-  Standard,
-  Signature,
+  Low,
+  High,
+  Special,
 };
 inline size_t ToIndex(AttackType type) { return static_cast<size_t>(type); }
 

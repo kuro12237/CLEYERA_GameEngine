@@ -35,4 +35,13 @@ private:
 	/// </summary>
 	void Move();
 
+
+private:
+
+	// 爆発中フラグ初期化
+	bool isExploding_ = false;
+
+	// 爆発エフェクト用タイマー（任意で使う）
+	float explodeTimer_ = 0.0f;
+
 };

@@ -7,9 +7,6 @@
 
 #include "../Command/PlayerCommandHandler.h"
 
-#include "../State/Action/Interface/IPlayerActionState.h"
-#include "../State/Action/LowAttack/PlayerLowAttackState.h"
-
 #include "Move/PlayerMoveFunc.h"
 #include "Dash/PlayerDashFunc.h"
 #include "Invincible/PlayerInvincibleFunc.h"
@@ -91,11 +88,6 @@ public:
 	/// ダッシュ
 	/// </summary>
 	void Dash();
-
-	/// <summary>
-	/// Stateの変更
-	/// </summary>
-	void ChangeActionState(std::unique_ptr<IPlayerActionState> newState);
 
 
 #pragma region Accessor
@@ -205,6 +197,22 @@ private:
 	/// </summary>
 	void KnockBack();
 
+	/// <summary>
+	/// 敵のキルカウントのインクリメント
+	/// </summary>
+	void AddKillCountCannon(){KillCount_Cannon_++;}
+	void AddKillCountDonut(){killCount_Donut_++;}
+	void AddKillCountGun(){killCount_Gun_++;}
+	void AddKillCountStalker(){killCount_Stalker_++;}
+
+	/// <summary>
+	/// 攻撃のアップグレードの確認
+	/// </summary>
+	void CheckAttackUpgrade();
+	void CheckLowAttackUpgrade();
+	void CheckHighAttackUpgread();
+	void CheckSpecialAttackUpgread();
+
 private:
 	/// <summary>
 	/// hp計算関数ポインタ
@@ -225,9 +233,6 @@ private:
 
 	// CommandHandler
 	std::unique_ptr<PlayerCommandHandler> commandHandler_;
-	
-	// State
-	std::unique_ptr<IPlayerActionState> actionState_;
 	
 	// ItemManagerのweak_ptr
 	std::weak_ptr<ItemManager> itemMgr_;
@@ -262,6 +267,17 @@ private:
 	bool isAttackStiff_ = false;
 	float attackStiffTimer_ = 0.0f;
 	float attackStiffDuration_ = 10.0f; // 0.3秒硬直
+
+	// 敵のキルカウント
+	uint32_t KillCount_Cannon_ = 0;
+	uint32_t killCount_Donut_ = 0;
+	uint32_t killCount_Gun_ = 0;
+	uint32_t killCount_Stalker_ = 0;
+
+	// 攻撃をアップグレードしたか
+	bool lowAttack_Upgreaded_ = false;
+	bool highAttack_Upgreaded_ = false;
+	bool specialAttack_Upgreaded_ = false;
 
 	// ノックバック
 	bool isKnockBack_ = false;

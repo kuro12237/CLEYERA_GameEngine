@@ -14,7 +14,7 @@ void LowAttack_NormalBullet::Init()
 	CalcRotateFromVelocity();
 
 	// 生存時間を適当に設定 1秒
-	lifeTime_ = 0.5f * 60.0f;
+	lifeTime_ = 1.5f * 60.0f;
 
     elapsedTime_ = 0.0f;
 }
@@ -25,38 +25,37 @@ void LowAttack_NormalBullet::Update()
 	IPlayerBullet::Update_LifeTime();
 
     // 移動処理
-    if ( comboStep_ >= 2 ) {
-        StraightMove();
-    }
-    else {
+    if ( comboStep_ == 1 ) {
         CurveMove();
+    }
+    else if ( comboStep_ == 2 ) {
+        CurveMove();
+    }
+    else if ( comboStep_ == 3 ) {
+        StraightMove();
     }
 }
 
 void LowAttack_NormalBullet::CurveMove()
 {
-  name_;
-    // 進む距離（1frameの速度）
-    float frameSpeed = Math::Vector::Func::Length(initVel_);
-    traveledDistance_ += frameSpeed;
+    // 統一したスピードにする（フレームあたり距離）
+    float fixedSpeed = 0.6f;
+    traveledDistance_ += fixedSpeed;
 
-    // 総距離に応じた t（0～1）を算出
+    // 総距離に対するt（0～1）
     float t = std::clamp(traveledDistance_ / travelDistance_, 0.0f, 1.0f);
 
-    // 軌道構成
+    // 基本軸ベクトル
     Math::Vector::Vec3 forward = Math::Vector::Func::Normalize(initVel_);
     Math::Vector::Vec3 right = Math::Vector::Func::Normalize(Math::Vector::Func::Cross({ 0,1,0 }, forward));
 
-    // ComboStepが1なら左カーブ
-    if ( comboStep_ == 1 ) {
-        right = right * -1.0f;
-    }
-
+    // カーブ方向による反転
+    float signedMagnitude = (comboStep_ == 2) ? -curveMagnitude_ : curveMagnitude_;
     Math::Vector::Vec3 p0 = initPos_;
     Math::Vector::Vec3 p2 = initPos_ + forward * travelDistance_;
-    Math::Vector::Vec3 p1 = initPos_ + forward * (travelDistance_ * 0.25f) + right * curveMagnitude_;
+    Math::Vector::Vec3 p1 = initPos_ + forward * (travelDistance_ * 0.25f) + right * signedMagnitude;
 
-    // ベジェ補間
+    // 2次ベジェ補間
     Math::Vector::Vec3 bezierPos =
         p0 * ((1 - t) * (1 - t)) +
         p1 * (2 * (1 - t) * t) +
