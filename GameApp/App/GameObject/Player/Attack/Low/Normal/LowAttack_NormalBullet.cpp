@@ -14,7 +14,7 @@ void LowAttack_NormalBullet::Init()
 	CalcRotateFromVelocity();
 
 	// 生存時間を適当に設定 1秒
-	lifeTime_ = 1.0f * 60.0f;
+	lifeTime_ = 0.6f * 60.0f;
 
     elapsedTime_ = 0.0f;
 }
@@ -39,7 +39,7 @@ void LowAttack_NormalBullet::Update()
 void LowAttack_NormalBullet::CurveMove()
 {
     // 統一したスピードにする（フレームあたり距離）
-    float fixedSpeed = 1.0f;
+    float fixedSpeed = 2.8f;
     traveledDistance_ += fixedSpeed;
 
     // 総距離に対するt（0～1）
