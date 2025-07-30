@@ -84,6 +84,7 @@ void CannonNormalEnemy::Init() {
   hpGauge_.lock()->Init();
   hpGauge_.lock()->SetBaseEnemy(this);
 
+
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();

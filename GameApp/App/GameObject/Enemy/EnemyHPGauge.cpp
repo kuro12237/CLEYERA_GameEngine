@@ -21,9 +21,12 @@ void EnemyHPGauge::Update(){
 	translate_.y = baseEnemy_->GetPosition().y + 3.0f;
 	translate_.z = baseEnemy_->GetPosition().z;
 
-
+	int a = 0;
 	if ( baseEnemy_->GetIsDelete() == true ) {
-		CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
+
+		a++;
+
+		mode_=CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
 	}
 
 #ifdef _DEBUG
