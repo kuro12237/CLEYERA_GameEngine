@@ -44,4 +44,6 @@ private:
 	// 爆発エフェクト用タイマー（任意で使う）
 	float explodeTimer_ = 0.0f;
 
+	Math::Vector::Vec3 initialScale_ = { 2.0f, 2.0f, 2.0f };
+	Math::Vector::Vec3 explodeScaleMax_ = { 14.0f, 14.0f, 14.0f };
 };

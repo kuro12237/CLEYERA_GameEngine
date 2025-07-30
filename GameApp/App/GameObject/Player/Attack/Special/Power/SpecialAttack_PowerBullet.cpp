@@ -15,6 +15,8 @@ void SpecialAttack_PowerBullet::Init()
 	SetIsGravity(false);
 	SetIsTerrainHit(false);
 
+	scale_ = initialScale_;
+
 	// 生存時間を適当に設定 1秒
 	lifeTime_ = 3.0f * 60.0f;
 
@@ -28,29 +30,45 @@ void SpecialAttack_PowerBullet::Init()
 
 void SpecialAttack_PowerBullet::Update()
 {
-	ObjectComponent::TransformUpdate();
-
 	if ( !isExploding_ ) {
-		// 移動
 		Move();
 
-		// 高さチェックして爆発に遷移
 		if ( translate_.y <= 0.5f ) {
 			isExploding_ = true;
 			explodeTimer_ = 0.0f;
+			velocity_ = {};
+			force_ = {};
+			translate_.y = 0.5f;
 		}
 	}
 	else {
-		// 爆発中：スケール拡大処理
-		const float scaleSpeed = 1.5f;
-		scale_ += {scaleSpeed, scaleSpeed, scaleSpeed};
-
-		// 時間経過後に削除
 		explodeTimer_ += 1.0f;
-		if ( explodeTimer_ >= 2.0f * 60.0f ) { // 約10フレーム後
+
+		// 総時間（拡大＋収束にかける時間）
+		const float explodeDuration = 20.0f; // フレーム数
+		float t = std::clamp(explodeTimer_ / explodeDuration, 0.0f, 1.0f);
+
+		// ベジェ的に拡大→収束（t: 0→1）
+		// P0: 初期スケール, P1: 最大, P2: 最終スケール
+		Math::Vector::Vec3 p0 = initialScale_;
+		Math::Vector::Vec3 p1 = explodeScaleMax_;
+		Math::Vector::Vec3 p2 = { 0.0f, 0.0f, 0.0f }; // 消えるように収束
+
+		// 2次ベジェ補間で滑らかな拡大→収束
+		Math::Vector::Vec3 scale =
+			p0 * ((1 - t) * (1 - t)) +
+			p1 * (2 * (1 - t) * t) +
+			p2 * (t * t);
+
+		scale_ = scale;
+
+		// 完全に収束したら非アクティブ
+		if ( t >= 1.0f ) {
 			isActive_ = false;
 		}
 	}
+
+	ObjectComponent::TransformUpdate();
 }
 
 void SpecialAttack_PowerBullet::Move() { force_ = initVel_; }
