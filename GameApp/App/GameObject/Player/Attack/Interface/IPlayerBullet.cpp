@@ -12,5 +12,5 @@ void IPlayerBullet::OnCollision(std::weak_ptr<ObjectComponent> other) {
     return;
   }
 
-  isActive_ = false;
+  //isActive_ = false;
 }

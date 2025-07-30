@@ -12,6 +12,9 @@ void SpecialAttack_PowerBullet::Init()
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
+	SetIsGravity(false);
+	SetIsTerrainHit(false);
+
 	// 生存時間を適当に設定 1秒
 	lifeTime_ = 3.0f * 60.0f;
 
@@ -39,12 +42,12 @@ void SpecialAttack_PowerBullet::Update()
 	}
 	else {
 		// 爆発中：スケール拡大処理
-		const float scaleSpeed = 0.05f;
+		const float scaleSpeed = 1.5f;
 		scale_ += {scaleSpeed, scaleSpeed, scaleSpeed};
 
 		// 時間経過後に削除
 		explodeTimer_ += 1.0f;
-		if ( explodeTimer_ >= 10.0f ) { // 約10フレーム後
+		if ( explodeTimer_ >= 2.0f * 60.0f ) { // 約10フレーム後
 			isActive_ = false;
 		}
 	}
