@@ -34,13 +34,13 @@ void SpecialAttack_Power::IsAttack()
 
     // 初期座標　player上空
     auto initPos = owner_->GetWorldPos();
-    auto up = Math::Vector::Vec3{0.0f, 15.0f, 0.0f};
+    auto up = Math::Vector::Vec3{0.0f, 35.0f, 0.0f};
     initPos += up;
     newBul->SetPosition(initPos);
 
     // 初期速度　前方+下向き
     auto forward = owner_->GetForwardVec();
-    auto fallDir = forward * 1.5f  + Math::Vector::Vec3{0.0f, -1.0f, 0.0f};
+    auto fallDir = forward * 0.3f  + Math::Vector::Vec3{0.0f, -0.1f, 0.0f};
     newBul->SetVelocity(fallDir);
 
     newBul->Init();

@@ -14,19 +14,39 @@ void SpecialAttack_PowerBullet::Init()
 
 	// 生存時間を適当に設定 1秒
 	lifeTime_ = 3.0f * 60.0f;
+
+	// 爆発中フラグ初期化
+	isExploding_ = false;
+
+	// 爆発エフェクト用タイマー（任意で使う）
+	explodeTimer_ = 0.0f;
 }
 
 
 void SpecialAttack_PowerBullet::Update()
 {
 	ObjectComponent::TransformUpdate();
-	IPlayerBullet::Update_LifeTime();
 
-	// 移動処理
-	Move();
+	if ( !isExploding_ ) {
+		// 移動
+		Move();
 
-	if ( translate_.y <= 0.5f ) {
-		isActive_ = false;
+		// 高さチェックして爆発に遷移
+		if ( translate_.y <= 0.5f ) {
+			isExploding_ = true;
+			explodeTimer_ = 0.0f;
+		}
+	}
+	else {
+		// 爆発中：スケール拡大処理
+		const float scaleSpeed = 0.05f;
+		scale_ += {scaleSpeed, scaleSpeed, scaleSpeed};
+
+		// 時間経過後に削除
+		explodeTimer_ += 1.0f;
+		if ( explodeTimer_ >= 10.0f ) { // 約10フレーム後
+			isActive_ = false;
+		}
 	}
 }
 
