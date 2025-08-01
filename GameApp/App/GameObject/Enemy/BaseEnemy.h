@@ -149,6 +149,14 @@ public:
       mgrObjList_ = &list;
     }
 
+    /// <summary>
+    /// 状態
+    /// </summary>
+    /// <returns></returns>
+    HealthComponent* GetHealthComponent(){
+        return hp_.get();
+    }
+
 
   
 protected:

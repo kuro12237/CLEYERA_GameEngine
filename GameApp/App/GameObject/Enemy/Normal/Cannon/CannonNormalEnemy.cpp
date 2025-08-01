@@ -18,7 +18,7 @@ void CannonNormalEnemy::Init() {
 
   // モデルの設定
   uint32_t modelHandle =
-      modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+      modelManager_->LoadModel("Resources/Model/GunEnemy","enemy1");
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
@@ -88,7 +88,7 @@ void CannonNormalEnemy::Init() {
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
-
+  hp_->SetMaxHP(10u);
 }
 
 void CannonNormalEnemy::Update() {
@@ -100,12 +100,6 @@ void CannonNormalEnemy::Update() {
         isAlive_ = false;
         // 倒された
         Killed();
-    }
-
-
-    int a = 0;
-    if ( isDelete_ == true ) {
-        a++;
     }
 
     //HPゲージ

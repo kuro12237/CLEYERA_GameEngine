@@ -15,7 +15,7 @@ void BakugekiSnipeBossEnemy::Init() {
    name_ = VAR_NAME(FirstBossEnemy);
 
    // モデルの設定
-   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/system/Sphere","Sphere");
+   uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/boss","boss");
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成

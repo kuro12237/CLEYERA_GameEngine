@@ -58,10 +58,14 @@ private:
 	BaseEnemy * baseEnemy_ = nullptr;
 	//X座標のオフセット
 	const float_t OFFSET_X_ = -2.0f;
+	//スケールのオフセット
+	const float_t SCALE_OFFSET_ = 2.0f;
+
 
 private:
 	//最大HP
 	int32_t maxHP_ = 0u;
-
+	//現在の体力
+	int32_t currentHP = 0;
 };
 
