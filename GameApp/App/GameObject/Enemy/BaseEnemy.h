@@ -12,6 +12,10 @@
 #include <Enemy/EnemyHPGauge.h>
 #include "Component/Hp/HealthComponent.h"
 
+
+// 前方宣言
+class PlayerCore;
+
 /// <summary>
 /// 敵の基底クラス
 /// </summary>
@@ -149,6 +153,12 @@ public:
       mgrObjList_ = &list;
     }
 
+    /// <summary>
+    /// PlayerCoreのweak_ptrの設定
+    /// </summary>
+    void SetPlayerCore(std::weak_ptr<PlayerCore> corePtr) {
+        corePtr_ = corePtr;
+    }
 
   
 protected:
@@ -162,6 +172,8 @@ protected:
     const float_t KNOCK_BACK_DISTANCE_ = 3.0f;
 
 protected:
+    // プレイヤーのポインタ
+    std::weak_ptr<PlayerCore> corePtr_;
     // プレイヤー座標
     Math::Vector::Vec3 playerPosition_ = {};
     // 方向
