@@ -23,6 +23,8 @@ void EnemyManager::Init() {
                    "Enemy2GeneratePositions");
   lua_->SetReloadCallBack([this]() { LoadEnemy2DataFromLua(); });
 
+  
+
   // Luaから抽出したデータの設定
   LoadEnemy2DataFromLua();
   // 生成

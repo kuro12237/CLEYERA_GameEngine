@@ -17,7 +17,6 @@ void GameScene::Init() {
 
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
 
-
   managerComponents_.push_back(itemManager_);
   managerComponents_.push_back(playerManager_);
 
