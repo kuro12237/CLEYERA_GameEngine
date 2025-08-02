@@ -1,5 +1,5 @@
 #include "SpecialAttack_PowerBullet.h"
-
+#include "Enemy/BaseEnemy.h"
 
 
 void SpecialAttack_PowerBullet::Init()
@@ -71,4 +71,44 @@ void SpecialAttack_PowerBullet::Update()
 	ObjectComponent::TransformUpdate();
 }
 
-void SpecialAttack_PowerBullet::Move() { force_ = initVel_; }
+void SpecialAttack_PowerBullet::Move() 
+{
+	force_ = initVel_; 
+
+	//const float maxHomingDistance = 0.0f; // 追尾する最大距離
+
+	//if ( homingFrames_ > 0 ) {
+	//	if ( auto enemy = nearestEnemy_.lock() ) {
+	//		Math::Vector::Vec3 targetPos = enemy->GetPosition();
+	//		Math::Vector::Vec3 toEnemy = targetPos - translate_;
+	//		float distance = Math::Vector::Func::Length(toEnemy);
+
+	//		if ( distance <= maxHomingDistance ) {
+	//			// 敵が近い場合は追尾
+	//			Math::Vector::Vec3 direction = Math::Vector::Func::Normalize(toEnemy);
+	//			float speed = Math::Vector::Func::Length(initVel_);
+	//			velocity_ = direction * speed;
+	//			force_ = velocity_;
+
+	//			// 向き補正
+	//			CalcRotateFromVelocity();
+	//		}
+	//		else {
+	//			// 敵が遠すぎたら直進
+	//			velocity_ = initVel_;
+	//			force_ = velocity_;
+	//		}
+	//	}
+	//	else {
+	//		// 敵が無効になったら直進
+	//		velocity_ = initVel_;
+	//		force_ = velocity_;
+	//	}
+	//	--homingFrames_;
+	//}
+	//else {
+	//	// 追尾期間を過ぎたら直進
+	//	velocity_ = initVel_;
+	//	force_ = velocity_;
+	//}
+}

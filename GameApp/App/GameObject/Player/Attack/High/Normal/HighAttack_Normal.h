@@ -14,7 +14,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	HighAttack_Normal() = default;
-	HighAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
+	HighAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> eneManaPtr);
 
 	/// <summary>
 	/// デストラクタ

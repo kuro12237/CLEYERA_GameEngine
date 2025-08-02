@@ -2,9 +2,9 @@
 #include "SpecialAttack_NormalBullet.h"
 #include "../../../Core/playerCore.h"
 
-SpecialAttack_Normal::SpecialAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr)
+SpecialAttack_Normal::SpecialAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> enemyMgr)
 {
-	IMagicAttack::SetPre(corePtr, bulManagerPtr);
+	IMagicAttack::SetPre(corePtr, bulManagerPtr, enemyMgr);
 	lua_ = std::make_unique<LuaScript>();
 }
 

@@ -8,6 +8,7 @@ class PlayerCore;
 class InputManager;
 class IPlayerCommand;
 class PlayerBulletManager;
+class EnemyManager;
 
 // 攻撃のタイプ
 enum class AttackType {
@@ -51,9 +52,10 @@ public:
   /// <summary>
   /// Ptrの設定
   /// </summary>
-  void SetPre(PlayerCore *corePtr, std::weak_ptr<PlayerBulletManager> bulManPtr) {
+  void SetPre(PlayerCore *corePtr, std::weak_ptr<PlayerBulletManager> bulManPtr, std::weak_ptr<EnemyManager> eneManPtr) {
     owner_ = corePtr;
     bulletManager_ = bulManPtr;
+    enemyMgr_ = eneManPtr;
   }
 
   /// <summary>
@@ -102,6 +104,9 @@ protected:
 
   // バレット管理クラスのweakPtr
   std::weak_ptr<PlayerBulletManager> bulletManager_;
+
+  // エネミーマネージャー
+  std::weak_ptr<EnemyManager> enemyMgr_;
 
   // ダメージ
   float damage_ = 0.0f;

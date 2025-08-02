@@ -3,9 +3,9 @@
 #include "../../../Core/playerCore.h"
 
 
-LowAttack_Back::LowAttack_Back(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr)
+LowAttack_Back::LowAttack_Back(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> EneManaPtr)
 {
-	IMagicAttack::SetPre(corePtr, bulManagerPtr);
+	IMagicAttack::SetPre(corePtr, bulManagerPtr, EneManaPtr);
 	lua_ = std::make_unique<LuaScript>();
 }
 
