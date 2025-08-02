@@ -23,6 +23,8 @@ void EnemyManager::Init() {
                    "Enemy2GeneratePositions");
   lua_->SetReloadCallBack([this]() { LoadEnemy2DataFromLua(); });
 
+  
+
   // Luaから抽出したデータの設定
   LoadEnemy2DataFromLua();
   // 生成
@@ -42,7 +44,7 @@ void EnemyManager::Init() {
   GenerateStalkerEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
 
   //GenerateDonutEnemy({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
-  GenerateBossEnemyEnemy({});
+  //GenerateBossEnemyEnemy({});
 
 }
 

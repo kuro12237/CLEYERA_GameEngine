@@ -154,12 +154,18 @@ public:
     }
 
     /// <summary>
+    /// 状態
+    /// </summary>
+    /// <returns></returns>
+    HealthComponent* GetHealthComponent(){
+        return hp_.get();
+    }
+
     /// PlayerCoreのweak_ptrの設定
     /// </summary>
     void SetPlayerCore(std::weak_ptr<PlayerCore> corePtr) {
         corePtr_ = corePtr;
     }
-
   
 protected:
     // 最大ノックバック時間

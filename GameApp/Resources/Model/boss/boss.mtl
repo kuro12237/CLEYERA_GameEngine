@@ -1,0 +1,12 @@
+# Blender 3.5.0 MTL File: 'boss.blend'
+# www.blender.org
+
+newmtl Material.001
+Ns 370.510345
+Ka 0.800366 0.800366 0.800366
+Ks 0.221739 0.221739 0.221739
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd kani.png

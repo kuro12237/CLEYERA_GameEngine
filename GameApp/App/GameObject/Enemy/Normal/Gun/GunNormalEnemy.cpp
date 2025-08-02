@@ -15,7 +15,7 @@
 void GunNormalEnemy::Init() {
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/GunEnemy", "GunEnemy");
   //"C:\Lesson\TD4\GameEngine\Resources\Model\Leef\Leef.obj"
   gameObject_->ChangeModel(modelHandle);
 
@@ -29,7 +29,7 @@ void GunNormalEnemy::Init() {
   scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
 
   // 体力
-  parameter_.maxHp_ = 3u;
+  parameter_.maxHp_ = 10u;
   parameter_.hp_ = parameter_.maxHp_;
   // ノックバックの距離
   parameter_.knockBackDistance_ = 1.0f;
@@ -68,15 +68,22 @@ void GunNormalEnemy::Init() {
   collider_->SetHitCallFunc(
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
+  hpGauge_ = objectManager_->CreateObject<EnemyHPGauge>(
+    "HPGauge", std::make_shared<EnemyHPGauge>());
+  hpGauge_.lock()->Init();
+  hpGauge_.lock()->SetBaseEnemy(this);
+
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
+  hp_->SetMaxHP(10u);
 }
 
 void GunNormalEnemy::Update() {
 
   // hp処理
   hp_->Update();
+  hpGauge_.lock()->Update();
   if (hp_->GetIsDead()) {
     // 倒された
     isAlive_ = false;
@@ -206,6 +213,7 @@ void GunNormalEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
     // Player にぶつかったときの処理
     hp_->CalcHp(p->GetAttackPower());
   }
+
 }
 
 void GunNormalEnemy::KnockBack() {

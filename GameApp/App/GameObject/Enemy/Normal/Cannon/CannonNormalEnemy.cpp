@@ -18,7 +18,7 @@ void CannonNormalEnemy::Init() {
 
   // モデルの設定
   uint32_t modelHandle =
-      modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+      modelManager_->LoadModel("Resources/Model/CannonEnemy","CannonEnemy");
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
@@ -84,22 +84,26 @@ void CannonNormalEnemy::Init() {
   hpGauge_.lock()->Init();
   hpGauge_.lock()->SetBaseEnemy(this);
 
+
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
-
+  hp_->SetMaxHP(10u);
 }
 
 void CannonNormalEnemy::Update() {
 
     // hp処理
     hp_->Update();
-    hpGauge_.lock()->Update();
+    
     if (hp_->GetIsDead()) {
         isAlive_ = false;
         // 倒された
         Killed();
     }
+
+    //HPゲージ
+    hpGauge_.lock()->Update();
 
     // 生存時
     if (isAlive_ == true) {
@@ -129,11 +133,7 @@ void CannonNormalEnemy::Update() {
 
 
         // 向きを計算しモデルを回転させる
-        float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
-        // 回転のオフセット
-        // 元々のモデルの回転が変だったのでこれを足している
-        const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
-        rotate_.y = directionToRotateY + ROTATE_OFFSET;
+        rotate_.y = std::atan2f(-direction_.z, direction_.x);
 
         // ビヘイビアツリーの実行
         behaviorTree_->Execute(this);
@@ -266,7 +266,7 @@ void CannonNormalEnemy::Killed() {
     const float_t SCALE_DOWN = 0.05f;
     scale_ -= {SCALE_DOWN, SCALE_DOWN, SCALE_DOWN};
 
-    if (scale_.x < 0.0f && scale_.y < 0.0f && scale_.z < 0.0f) {
+    if (scale_.x < 0.0f) {
       // スケール固定
       scale_.x = 0.0f;
       scale_.y = 0.0f;

@@ -6,7 +6,7 @@ void BakugekiSnipeBossEnemyBullet2::Initialize(const Math::Vector::Vec3 &enemyPo
                                     const Math::Vector::Vec3 &playerPosition) {
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
   gameObject_->ChangeModel(modelHandle);
 
   isGravity_ = false;

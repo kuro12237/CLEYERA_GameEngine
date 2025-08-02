@@ -7,6 +7,8 @@ void HealthComponent::Init() {
 
   this->SetValue(VAR_NAME(hp_), hp_);
   hp_ = this->GetValue<int32_t>(VAR_NAME(hp_));
+
+
 }
 
 void HealthComponent::ImGuiUpdate() {
