@@ -8,7 +8,7 @@ void CannonNormalEnemy1Bullet::Initialize(
   isGravity_ = false;
   // モデルの設定
   uint32_t modelHandle =
-      modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+      modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
   gameObject_->ChangeModel(modelHandle);
 
   // コライダー作成
@@ -47,8 +47,13 @@ void CannonNormalEnemy1Bullet::Update() {
 
   if (t_ >= 1.0f) {
     isDelete_;
+    mode_ = CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
   }
 
+  //向きを計算
+  Math::Vector::Vec3 direction = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+  rotate_.y = std::atan2f(direction.x, direction.z);
+  //座標の計算
   translate_.x =Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
   translate_.y = baseY + sinf(t_ * std::numbers::pi_v<float_t>);
   translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;

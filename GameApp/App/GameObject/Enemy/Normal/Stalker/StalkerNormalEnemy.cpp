@@ -21,7 +21,7 @@ void StalkerNormalEnemy::Init() {
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
-  uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
   modelHandle2;
   // コライダー作成
   CreateCollider(ColliderType::AABB);

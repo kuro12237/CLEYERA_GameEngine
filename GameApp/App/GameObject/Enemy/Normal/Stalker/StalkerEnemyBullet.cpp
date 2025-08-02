@@ -7,7 +7,7 @@ void StalkerEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const bool &isPersistentlyTrack) {
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
   gameObject_->ChangeModel(modelHandle);
 
   // コライダー作成
@@ -52,14 +52,19 @@ void StalkerEnemyBullet::Update() {
         scale_.y <= DELETE_SCALE_ && 
         scale_.z <= DELETE_SCALE_ ) {
         isDelete_ = true;
+
+        mode_ = CLEYERA::Component::ObjectComponent::OBJ_MODE::REMOVE;
     }
 
     //TRACKING_LIMIT_TIME_秒まで追跡
     trackingTime_ += DELTA_TIME_;
     if ( trackingTime_ < TRACKING_LIMIT_TIME_ ) {
         direction_ = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+        rotate_.y = std::atan2f(direction_.x,direction_.z);
     }
     
+
+
     // 座標の加算
     translate_ += direction_ * SPEED_;
 

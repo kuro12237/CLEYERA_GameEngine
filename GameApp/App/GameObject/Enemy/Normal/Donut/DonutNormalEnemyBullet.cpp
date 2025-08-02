@@ -7,7 +7,7 @@ void DonutNormalEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const bool &isPersistentlyTrack) {
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
   gameObject_->ChangeModel(modelHandle);
 
   // コライダー作成
