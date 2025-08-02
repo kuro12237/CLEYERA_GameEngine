@@ -18,7 +18,7 @@ void CannonNormalEnemy::Init() {
 
   // モデルの設定
   uint32_t modelHandle =
-      modelManager_->LoadModel("Resources/Model/GunEnemy","enemy1");
+      modelManager_->LoadModel("Resources/Model/CannonEnemy","CannonEnemy");
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
@@ -133,11 +133,7 @@ void CannonNormalEnemy::Update() {
 
 
         // 向きを計算しモデルを回転させる
-        float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
-        // 回転のオフセット
-        // 元々のモデルの回転が変だったのでこれを足している
-        const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
-        rotate_.y = directionToRotateY + ROTATE_OFFSET;
+        rotate_.y = std::atan2f(-direction_.z, direction_.x);
 
         // ビヘイビアツリーの実行
         behaviorTree_->Execute(this);

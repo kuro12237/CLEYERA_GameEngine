@@ -17,8 +17,7 @@ void StalkerNormalEnemy::Init() {
   name_ = VAR_NAME(NormalEnemy2);
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
-  //"C:\Lesson\TD4\GameEngine\Resources\Model\Leef\Leef.obj"
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/StalkerEnemy", "StalkerEnemy");
   gameObject_->ChangeModel(modelHandle);
 
   // これが無いと描画エラーになる
@@ -129,15 +128,11 @@ void StalkerNormalEnemy::Update() {
     float_t directionToRotateY = std::atan2f(-direction_.z, direction_.x);
     // 回転のオフセット
     // 元々のモデルの回転が変だったのでこれを足している
-    const float_t ROTATE_OFFSET = -std::numbers::pi_v<float_t> / 2.0f;
+    const float_t ROTATE_OFFSET = 0.0f;
     rotate_.y = directionToRotateY + ROTATE_OFFSET;
 
     // ビヘイビアツリーの実行
     behaviorTree_->Execute(this);
-    // atan2 で回転角を求める（ラジアン）
-    float_t angle = std::atan2(-direction_.z, direction_.x);
-    // 角度を敵の回転に設定
-    rotate_.y = angle - std::numbers::pi_v<float_t> / 2.0f;
     // 速度を計算
     Math::Vector::Vec3 newDirection = {};
     if (isAttack_ == false) {

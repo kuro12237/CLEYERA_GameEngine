@@ -15,7 +15,7 @@
 void GunNormalEnemy::Init() {
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Enemy2", "Enemy2");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/GunEnemy", "GunEnemy");
   //"C:\Lesson\TD4\GameEngine\Resources\Model\Leef\Leef.obj"
   gameObject_->ChangeModel(modelHandle);
 
