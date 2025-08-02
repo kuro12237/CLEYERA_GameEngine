@@ -52,7 +52,7 @@ public:
   // CoreのweakPtrの取得
   std::weak_ptr<PlayerCore> GetPlayerCore() const { return this->core_; }
 
-  
+  // HP
   const int32_t &GetHp() const { return hp_->GetHp(); }
 
    

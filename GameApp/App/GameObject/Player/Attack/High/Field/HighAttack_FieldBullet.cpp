@@ -11,9 +11,9 @@ void HighAttack_FieldBullet::Init()
 	CalcRotateFromVelocity();
 
     // スケールアニメ用
-    expandDuration_ = 30.0f;  // 30フレーム拡大
-    shrinkDuration_ = 30.0f;  // 30フレーム収縮
-    maxScale_ = 5.0f;         // 好きな最大サイズ
+    expandDuration_ = 10.0f;  // 30フレーム拡大
+    shrinkDuration_ = 10.0f;  // 30フレーム収縮
+    maxScale_ = 15.0f;         // 好きな最大サイズ
 
     phase_ = Expand;
     frameCount_ = 0;

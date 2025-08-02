@@ -58,7 +58,7 @@ private:
 	Math::Vector::Vec3 initPos_{};
 	float elapsedTime_ = 0.0f;
 
-	float travelDistance_ = 20.0f;    // 弾が進む最大距離
+	float travelDistance_ = 25.0f;    // 弾が進む最大距離
 	float traveledDistance_ = 0.0f;
-	float curveMagnitude_ = 5.0f;    // カーブの膨らみ具合
+	float curveMagnitude_ = 10.0f;    // カーブの膨らみ具合
 };

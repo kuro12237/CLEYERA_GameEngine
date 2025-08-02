@@ -82,7 +82,6 @@ void EnemyManager::GenerateCannonEnemy(const Math::Vector::Vec3 &position,
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
 
-
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -96,7 +95,6 @@ void EnemyManager::GenerateGunEnemy(const Math::Vector::Vec3 &position,
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
 
   enemyList_.push_back(std::move(enemy));
 }

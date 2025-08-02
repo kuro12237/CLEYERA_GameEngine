@@ -11,7 +11,6 @@ void EnemyHPGauge::Init(){
 
 	// スケールの設定
 	scale_ = { .x = 2.0f, .y = 0.3f, .z = 1.0f };
-
 }
 
 void EnemyHPGauge::Update(){
