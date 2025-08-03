@@ -14,6 +14,9 @@
 #include "UI/TestUI.h"
 #include"UI/state/PlayState.h"
 
+#include"GameClearScene.h"
+#include"GameOverScene.h"
+
 class GameScene : public SceneComponent {
 public:
 	GameScene();

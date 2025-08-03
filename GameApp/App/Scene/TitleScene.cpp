@@ -17,7 +17,12 @@ void TitleScene::Init() {
 }
 
 void TitleScene::Update([[maybe_unused]] GameManager *g) {
+  auto input = CLEYERA::Manager::InputManager::GetInstance();
+  if (input->PushBotton(XINPUT_GAMEPAD_A)) {
 
+    g->ChangeScene(std::make_unique<GameScene>());
+    return;
+  }
 }
 
 void TitleScene::Draw2d() {}

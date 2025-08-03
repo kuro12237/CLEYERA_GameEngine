@@ -11,7 +11,7 @@ GameScene::GameScene() {
 void GameScene::Init() {
   uis_.resize(2);
 
-  //読み込み
+  // 読み込み
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TestData");
 
@@ -55,7 +55,6 @@ void GameScene::Init() {
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandle);
-
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -85,8 +84,17 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     s.lock()->Update();
     spNames.push_back(s.lock()->GetName());
   }
+
+  //if書き換える::
+  if (false) {
+    g->ChangeScene(std::make_unique<GameClearScene>());
+    return;
+  }
+
+  if (false) {
+    g->ChangeScene(std::make_unique<GameOverScene>());
+    return;
+  }
 }
 
-void GameScene::Draw2d() { 
-    uiState_->Draw2d();
-  }
+void GameScene::Draw2d() { uiState_->Draw2d(); }
