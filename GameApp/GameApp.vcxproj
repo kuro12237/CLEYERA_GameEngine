@@ -143,7 +143,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\Externals\Math\Include\;$(ProjectDir)..\Externals\LuaAssets\;%(AdditionalIncludeDirectories);$(ProjectDir)..\Externals\nlohmann\;$(ProjectDir)../Externals/assimp/include\;$(SolutionDir)..\Externals\Engine\CLEYERA\;$(ProjectDir)..\Externals\DirectXTex\</AdditionalIncludeDirectories>
       <Optimization>MinSpace</Optimization>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /Wv:18 %(AdditionalOptions)</AdditionalOptions>
