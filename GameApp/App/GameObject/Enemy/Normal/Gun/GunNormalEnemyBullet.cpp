@@ -34,7 +34,7 @@ void GunNormalEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,co
   attackPower_ = std::make_unique<AttackPower>();
   attackPower_->Init();
   // jsonで変更できるように
-  attackPower_->SetPower(10);
+  attackPower_->SetPower(5);
 }
 
 void GunNormalEnemyBullet::Update() {

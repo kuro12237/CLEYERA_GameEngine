@@ -43,6 +43,11 @@ public:
 	  return maxHp_;
   }
 
+
+  void SetHP(const int32_t & hp) {
+	  hp_ = hp;
+  }
+
 private:
   bool isDead_ = false;
 

@@ -67,7 +67,9 @@ void BakugekiSnipeBossEnemy::Init() {
    hpJsonDirectory_ = name_;
    hp_ = std::make_unique<HealthComponent>();
    hp_->SetName(this->name_);
+   hp_->SetMaxHP(300);
    hp_->Init();
+   hp_->SetHP(300);
 
    hpGauge_ = objectManager_->CreateObject<EnemyHPGauge>(
     "HPGauge", std::make_shared<EnemyHPGauge>());

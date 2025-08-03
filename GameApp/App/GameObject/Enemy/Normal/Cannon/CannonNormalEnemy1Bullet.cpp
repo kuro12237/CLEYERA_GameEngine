@@ -32,7 +32,7 @@ void CannonNormalEnemy1Bullet::Initialize(
   attackPower_ = std::make_unique<AttackPower>();
   attackPower_->Init();
   // jsonで変更できるように
-  attackPower_->SetPower(10);
+  attackPower_->SetPower(5);
 }
 
 void CannonNormalEnemy1Bullet::Update() {

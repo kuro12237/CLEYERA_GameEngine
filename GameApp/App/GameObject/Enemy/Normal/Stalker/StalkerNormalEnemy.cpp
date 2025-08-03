@@ -77,7 +77,9 @@ void StalkerNormalEnemy::Init() {
 
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
+  hp_->SetMaxHP(40);
   hp_->Init();
+  hp_->SetHP(40);
 }
 
 void StalkerNormalEnemy::Update() {
