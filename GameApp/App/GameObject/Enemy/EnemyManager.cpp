@@ -81,7 +81,7 @@ void EnemyManager::GenerateCannonEnemy(const Math::Vector::Vec3 &position,
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
+  enemy.lock()->SetPlayerCore(playerManager_->GetPlayerCore());
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -95,7 +95,7 @@ void EnemyManager::GenerateGunEnemy(const Math::Vector::Vec3 &position,
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
+  enemy.lock()->SetPlayerCore(playerManager_->GetPlayerCore());
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -109,7 +109,7 @@ void EnemyManager::GenerateStalkerEnemy(const Math::Vector::Vec3 &position,
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
-
+  enemy.lock()->SetPlayerCore(playerManager_->GetPlayerCore());
   enemyList_.push_back(std::move(enemy));
 }
 
@@ -120,7 +120,7 @@ void EnemyManager::GenerateDonutEnemy(const Math::Vector::Vec3 & position, std::
     objectManager_->CreateObject<DonutNormalEnemy>("NormalEnemy4", std::make_shared<DonutNormalEnemy>());
     // 座標の設定
     enemy.lock()->SetInitialPosition(position);
-  
+    enemy.lock()->SetPlayerCore(playerManager_->GetPlayerCore());
     // 挿入
     // 各敵にlistptr持たせる
     enemyList_.push_back(std::move(enemy));
@@ -135,6 +135,7 @@ void EnemyManager::GenerateBossEnemyEnemy(const Math::Vector::Vec3 &position) {
 
   // 座標の設定
   enemy.lock()->SetInitialPosition(position);
+  enemy.lock()->SetPlayerCore(playerManager_->GetPlayerCore());
   bossEnemyList_.push_back(std::move(enemy));
 }
 
