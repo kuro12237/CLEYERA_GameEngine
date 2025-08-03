@@ -225,6 +225,14 @@
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Manager\PlayerBulletManager.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\BG\PlayerSkillUI_BG.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\High\Field\PlayerSkillUI_HighField.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\High\Normal\PlayerSkillUI_HighNormal.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\Low\Back\PlayerSkillUI_LowBack.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\Low\Normal\PlayerSkillUI_LowNormal.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\PlayerSkillUI_Manager.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\Special\Norml\PlayerSkillUI_SpecialNormal.cpp" />
+    <ClCompile Include="App\GameObject\Player\SkillUI\Special\Power\PlayerSkillUI_SpecialPower.cpp" />
     <ClCompile Include="App\GameObject\UI\GameLowAttackUI.cpp" />
     <ClCompile Include="App\GameObject\UI\GameSkillBackUI.cpp" />
     <ClCompile Include="App\GameObject\UI\state\PlayState.cpp" />
@@ -239,6 +247,7 @@
     <ClCompile Include="App\Scene\IScene.cpp" />
     <ClCompile Include="App\Scene\SelectScene.cpp" />
     <ClCompile Include="App\Scene\TitleScene.cpp" />
+    <ClCompile Include="App\Util\SceneChangeAnim.cpp" />
     <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="App\Util\UtilFunc.cpp" />
     <ClCompile Include="App\GameObject\Item\Manager\ItemManager.cpp" />
@@ -323,6 +332,15 @@
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\Helper\PlayerHelper.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\BG\PlayerSkillUI_BG.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\High\Field\PlayerSkillUI_HighField.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\High\Normal\PlayerSkillUI_HighNormal.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\IPlayerSkillUI.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\Low\Back\PlayerSkillUI_LowBack.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\Low\Normal\PlayerSkillUI_LowNormal.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\PlayerSkillUI_Manager.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\Special\Norml\PlayerSkillUI_SpecialNormal.h" />
+    <ClInclude Include="App\GameObject\Player\SkillUI\Special\Power\PlayerSkillUI_SpecialPower.h" />
     <ClInclude Include="App\GameObject\UI\GameLowAttackUI.h" />
     <ClInclude Include="App\GameObject\UI\GameUIBase.h" />
     <ClInclude Include="App\GameObject\UI\state\IuiState.h" />
@@ -339,6 +357,7 @@
     <ClInclude Include="App\Scene\DebugSelectScene.h" />
     <ClInclude Include="App\Scene\SelectScene.h" />
     <ClInclude Include="App\Scene\TitleScene.h" />
+    <ClInclude Include="App\Util\SceneChangeAnim.h" />
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
     <ClInclude Include="App\GameObject\Item\Manager\ItemManager.h" />

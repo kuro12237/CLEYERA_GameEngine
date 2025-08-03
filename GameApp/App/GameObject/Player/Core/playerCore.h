@@ -7,6 +7,8 @@
 
 #include "../Command/PlayerCommandHandler.h"
 
+#include "../../Component/Hp/HealthComponent.h"
+
 #include "Move/PlayerMoveFunc.h"
 #include "Dash/PlayerDashFunc.h"
 #include "Invincible/PlayerInvincibleFunc.h"
@@ -24,6 +26,7 @@
 class PlayerCamera;
 class ItemManager;
 class EnemyManager;
+class PlayerSkillUI_Manager;
 
 /* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
@@ -96,13 +99,17 @@ public:
 	inline void SetPtr(std::weak_ptr<PlayerCamera> cameraptr,
 		std::weak_ptr<PlayerBulletManager> bulManPtr,
 		std::weak_ptr<ItemManager> itemMgr,
-		std::weak_ptr<EnemyManager> enemyMgr)
+		std::weak_ptr<EnemyManager> enemyMgr, 
+		std::weak_ptr<PlayerSkillUI_Manager> skillMgr,
+		std::weak_ptr<HealthComponent> hpComp)
 	{
 		weakpCamera_ = cameraptr;
 		moveFunc_->SetCameraPtr(cameraptr);
 		bulletManager_ = bulManPtr;
 		itemMgr_ = itemMgr;
 		enemyManager_ = enemyMgr;
+		playerSkillMgr_ = skillMgr;
+		hpComp_ = hpComp;
 	}
 
 	// ワールド座標の取得
@@ -240,6 +247,8 @@ private:
 	std::weak_ptr<PlayerCamera> weakpCamera_;
 	// EnemyManagerのweak_ptr
 	std::weak_ptr<EnemyManager> enemyManager_;
+	// PlayerSkillUiManagerのweak_ptr
+	std::weak_ptr<PlayerSkillUI_Manager> playerSkillMgr_;
 
 	// PlayerCoreのLua
 	std::unique_ptr<LuaScript> lua_;
@@ -257,6 +266,9 @@ private:
 	// 弾管理クラス
 	std::weak_ptr<PlayerBulletManager> bulletManager_;
 
+	// HPComponent
+	std::weak_ptr<HealthComponent> hpComp_;
+	
 	// 前方&右方ベクトル
 	Math::Vector::Vec3 forwardVec_{};
 	Math::Vector::Vec3 backVec_{};

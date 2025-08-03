@@ -8,7 +8,7 @@ void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingShader() {
 
 void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingRootParam() {
 
-   this->rootParam_.resize(6);
+   this->rootParam_.resize(7);
 
    // かめら
    rootParam_[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -45,6 +45,10 @@ void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingRootParam() {
    rootParam_[5].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
    rootParam_[5].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
    rootParam_[5].Descriptor.ShaderRegister = 2;
+
+   rootParam_[6].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+   rootParam_[6].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+   rootParam_[6].Descriptor.ShaderRegister = 3;
 }
 
 void CLEYERA::Graphics::Raster::system::DFModel3dDraw::SettingSampler() {

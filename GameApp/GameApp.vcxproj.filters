@@ -109,6 +109,7 @@
     <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.cpp" />
     <ClCompile Include="App\GameObject\EditorObject\ABotton\ABotton.cpp" />
+    <ClCompile Include="App\Util\SceneChangeAnim.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -220,6 +221,7 @@
     <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.h" />
     <ClInclude Include="App\GameObject\EditorObject\ABotton\ABotton.h" />
+    <ClInclude Include="App\Util\SceneChangeAnim.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

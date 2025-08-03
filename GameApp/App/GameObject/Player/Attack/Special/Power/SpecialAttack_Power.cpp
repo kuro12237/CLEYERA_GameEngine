@@ -1,9 +1,11 @@
 #include "SpecialAttack_Power.h"
 #include "../../../Core/playerCore.h"
+#include "Enemy/EnemyManager.h"
+#include "Enemy/BaseEnemy.h"
 
-SpecialAttack_Power::SpecialAttack_Power(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr)
+SpecialAttack_Power::SpecialAttack_Power(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> eneManaPtr)
 {
-	IMagicAttack::SetPre(corePtr, bulManagerPtr);
+	IMagicAttack::SetPre(corePtr, bulManagerPtr, eneManaPtr);
 }
 
 
@@ -43,6 +45,9 @@ void SpecialAttack_Power::IsAttack()
     auto fallDir = forward * 0.3f  + Math::Vector::Vec3{0.0f, -0.1f, 0.0f};
     newBul->SetVelocity(fallDir);
 
+    FindNearestEnemy(owner_->GetWorldPos());
+
+    newBul->SetNearestEnemy(nearestEnemy_);
     newBul->Init();
 
     bulletManager->PushbackNewBullet(VAR_NAME(SpecialAttack_PowerBullet), std::move(newBul));
@@ -51,3 +56,23 @@ void SpecialAttack_Power::IsAttack()
 }
 
 void SpecialAttack_Power::DrwaImGui() {}
+
+void SpecialAttack_Power::FindNearestEnemy(const Math::Vector::Vec3 & fromPos)
+{
+    float minDistSq = std::numeric_limits<float>::max();
+    std::shared_ptr<BaseEnemy> closest = nullptr;
+
+    // 雑魚敵をチェック
+    auto & enemyList = enemyMgr_.lock()->GetEnemyList();
+    for ( const auto & weak : enemyList ) {
+        if ( auto enemy = weak.lock() ) {
+            float distSq = Math::Vector::Func::Length(enemy->GetPosition() - fromPos);
+            if ( distSq < minDistSq ) {
+                minDistSq = distSq;
+                closest = enemy;
+            }
+        }
+    }
+
+    nearestEnemy_ = closest;
+}

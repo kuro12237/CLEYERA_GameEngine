@@ -2,9 +2,9 @@
 #include "../../../Core/playerCore.h"
 
 
-HighAttack_Field::HighAttack_Field(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr)
+HighAttack_Field::HighAttack_Field(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> eneManaPtr)
 {
-    IMagicAttack::SetPre(corePtr, bulManagerPtr);
+    IMagicAttack::SetPre(corePtr, bulManagerPtr, eneManaPtr);
 }
 
 void HighAttack_Field::Init()

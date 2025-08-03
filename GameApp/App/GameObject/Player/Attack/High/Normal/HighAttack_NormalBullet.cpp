@@ -1,12 +1,16 @@
 #include "HighAttack_NormalBullet.h"
-
+#include "../../../Core/playerCore.h"
 
 void HighAttack_NormalBullet::Init()
 {
 
 	// Modelの設定
-	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet", "Bullet");
 	gameObject_->ChangeModel(handle);
+
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
@@ -23,5 +27,20 @@ void HighAttack_NormalBullet::Update()
 	// 移動処理
 	Move();
 }
+
+void HighAttack_NormalBullet::OnCollision(std::weak_ptr<ObjectComponent> other)
+{
+	auto obj = other.lock();
+	// Player型にキャストできるかをチェック
+	if ( auto p = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+		return;
+	}
+	if ( auto p = std::dynamic_pointer_cast< IPlayerBullet >(obj) ) {
+		return;
+	}
+
+	isActive_ = true;
+}
+
 
 void HighAttack_NormalBullet::Move() { force_ += initVel_; }

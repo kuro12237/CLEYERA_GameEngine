@@ -1,13 +1,17 @@
 #include "SpecialAttack_PowerBullet.h"
-
+#include "Enemy/BaseEnemy.h"
+#include "../../../Core/playerCore.h"
 
 
 void SpecialAttack_PowerBullet::Init()
 {
 	// Modelの設定
-	uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
-																"PlayerDemoBullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet2", "Bullet2");
 	ObjectComponent::gameObject_->ChangeModel(handle);
+
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
@@ -68,7 +72,79 @@ void SpecialAttack_PowerBullet::Update()
 		}
 	}
 
+	auto aabb = std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(collider_);
+	if ( aabb ) {
+		Math::Vector::Vec3 half = {
+			0.5f * scale_.x,
+			0.5f * scale_.y,
+			0.5f * scale_.z
+		};
+		Math::Vector::Vec3 min = {
+			-half.x,
+			-half.y,
+			-half.z
+		};
+		Math::Vector::Vec3 max = half;
+
+		aabb->SetSize(min, max);
+	}
+
+	ObjectComponent::TransformUpdate();
+
 	ObjectComponent::TransformUpdate();
 }
 
-void SpecialAttack_PowerBullet::Move() { force_ = initVel_; }
+void SpecialAttack_PowerBullet::OnCollision(std::weak_ptr<ObjectComponent> other)
+{
+	auto obj = other.lock();
+	// Player型にキャストできるかをチェック
+	if ( auto p = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+		return;
+	}
+	if ( auto p = std::dynamic_pointer_cast< IPlayerBullet >(obj) ) {
+		return;
+	}
+
+}
+
+void SpecialAttack_PowerBullet::Move() 
+{
+	force_ = initVel_; 
+
+	//const float maxHomingDistance = 0.0f; // 追尾する最大距離
+
+	//if ( homingFrames_ > 0 ) {
+	//	if ( auto enemy = nearestEnemy_.lock() ) {
+	//		Math::Vector::Vec3 targetPos = enemy->GetPosition();
+	//		Math::Vector::Vec3 toEnemy = targetPos - translate_;
+	//		float distance = Math::Vector::Func::Length(toEnemy);
+
+	//		if ( distance <= maxHomingDistance ) {
+	//			// 敵が近い場合は追尾
+	//			Math::Vector::Vec3 direction = Math::Vector::Func::Normalize(toEnemy);
+	//			float speed = Math::Vector::Func::Length(initVel_);
+	//			velocity_ = direction * speed;
+	//			force_ = velocity_;
+
+	//			// 向き補正
+	//			CalcRotateFromVelocity();
+	//		}
+	//		else {
+	//			// 敵が遠すぎたら直進
+	//			velocity_ = initVel_;
+	//			force_ = velocity_;
+	//		}
+	//	}
+	//	else {
+	//		// 敵が無効になったら直進
+	//		velocity_ = initVel_;
+	//		force_ = velocity_;
+	//	}
+	//	--homingFrames_;
+	//}
+	//else {
+	//	// 追尾期間を過ぎたら直進
+	//	velocity_ = initVel_;
+	//	force_ = velocity_;
+	//}
+}

@@ -80,6 +80,11 @@ public:
 	float TurningSpeedScale(float angle);
 
 	/// <summary>
+	/// 浮遊処理
+	/// </summary>
+	void ApplyFloating();
+
+	/// <summary>
 	/// Luaからデータを読み込む
 	/// </summary>
 	void LoadDataFromLua();
@@ -123,4 +128,8 @@ private:
 
 	// Padの左stickのDeadZone
 	float LStickDzone_ = 0.0f;
+
+	float floatingTimer_ = 0.0f;
+	float floatingAmplitude_ = 0.00f;     // 上下の揺れの幅（高さ）
+	float floatingFrequency_ = 0.0f;      // 1秒間の揺れ回数（速さ）
 };
