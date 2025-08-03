@@ -29,6 +29,8 @@ void PlayerCore::Init() {
 	InitCollider();
 	InitHandlers();
 	InitAttackSlot();
+
+	hpComp_.lock()->SetHP(50);
 }
 
 void PlayerCore::Update() {

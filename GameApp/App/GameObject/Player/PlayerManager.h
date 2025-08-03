@@ -69,5 +69,5 @@ private:
   // コア
   std::weak_ptr<PlayerCore> core_;
 
-  std::unique_ptr<HealthComponent> hp_ = nullptr;
+  std::shared_ptr<HealthComponent> hp_ = nullptr;
 };

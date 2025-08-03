@@ -21,6 +21,8 @@ public:
 
   bool GetIsDead() { return isDead_; }
 
+  void SetHP(uint32_t val) {hp_ = val;}
+	   
   const int32_t &GetHp() const { return hp_; }
 
 private:

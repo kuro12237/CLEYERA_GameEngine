@@ -7,6 +7,8 @@
 
 #include "../Command/PlayerCommandHandler.h"
 
+#include "../../Component/Hp/HealthComponent.h"
+
 #include "Move/PlayerMoveFunc.h"
 #include "Dash/PlayerDashFunc.h"
 #include "Invincible/PlayerInvincibleFunc.h"
@@ -98,7 +100,8 @@ public:
 		std::weak_ptr<PlayerBulletManager> bulManPtr,
 		std::weak_ptr<ItemManager> itemMgr,
 		std::weak_ptr<EnemyManager> enemyMgr, 
-		std::weak_ptr<PlayerSkillUI_Manager> skillMgr)
+		std::weak_ptr<PlayerSkillUI_Manager> skillMgr,
+		std::weak_ptr<HealthComponent> hpComp)
 	{
 		weakpCamera_ = cameraptr;
 		moveFunc_->SetCameraPtr(cameraptr);
@@ -106,6 +109,7 @@ public:
 		itemMgr_ = itemMgr;
 		enemyManager_ = enemyMgr;
 		playerSkillMgr_ = skillMgr;
+		hpComp_ = hpComp;
 	}
 
 	// ワールド座標の取得
@@ -262,6 +266,9 @@ private:
 	// 弾管理クラス
 	std::weak_ptr<PlayerBulletManager> bulletManager_;
 
+	// HPComponent
+	std::weak_ptr<HealthComponent> hpComp_;
+	
 	// 前方&右方ベクトル
 	Math::Vector::Vec3 forwardVec_{};
 	Math::Vector::Vec3 backVec_{};
