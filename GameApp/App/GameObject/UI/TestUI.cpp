@@ -32,7 +32,7 @@ void TestUI::ImGuiUpdate() {
     ImGui::DragFloat2("RightTop", &RightTop.x, 0.1f);
     ImGui::DragFloat2("leftBottom", &LeftBottom.x, 0.1f);
     ImGui::DragFloat2("RightBottom", &RightBottom.x, 0.1f);
-
+    ImGui::DragFloat4("color", &sprite_->ColorData().color_.x,0.01f);
     ImGui::TreePop();
   }
 }

@@ -10,6 +10,7 @@ void GameLowAttackUI::Init() {
 
 void GameLowAttackUI::Update() {
 
+	
   sprite_->Update();
   WorldMatUpdate();
 }

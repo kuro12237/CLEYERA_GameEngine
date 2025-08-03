@@ -97,4 +97,6 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
   }
 }
 
-void GameScene::Draw2d() { uiState_->Draw2d(); }
+void GameScene::Draw2d() { uiState_->Draw2d();
+
+}

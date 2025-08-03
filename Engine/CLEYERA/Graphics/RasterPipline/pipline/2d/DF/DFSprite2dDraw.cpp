@@ -6,7 +6,7 @@ void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingShader() {
 }
 
 void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingRootParam() {
-  this->rootParam_.resize(3);
+  this->rootParam_.resize(4);
 
   // かめら
   rootParam_[0].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
@@ -29,7 +29,10 @@ void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingRootParam() {
   rootParam_[2].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
   rootParam_[2].DescriptorTable.pDescriptorRanges = descriptorRangeVertices;
   rootParam_[2].DescriptorTable.NumDescriptorRanges = _countof(descriptorRangeVertices);
-
+  // mat
+  rootParam_[3].ParameterType = D3D12_ROOT_PARAMETER_TYPE_CBV;
+  rootParam_[3].ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL;
+  rootParam_[3].Descriptor.ShaderRegister = 2;
 }
 
 void CLEYERA::Graphics::Raster::system::DFSprite2dDraw::SettingSampler() {
