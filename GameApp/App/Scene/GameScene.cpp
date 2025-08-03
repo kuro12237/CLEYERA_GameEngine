@@ -35,6 +35,7 @@ void GameScene::Init() {
   playerHpUI_->SetPtr(playerManager_->GetPlayerCore(), this);
   playerHpUI_->Init();
 
+
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // 初期化
