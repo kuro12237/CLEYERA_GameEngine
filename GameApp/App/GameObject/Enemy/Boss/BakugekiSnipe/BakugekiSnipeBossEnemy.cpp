@@ -9,6 +9,8 @@
 #include "Enemy/Boss/Behavior/BossEnemyIsEnraged.h"
 #include "Enemy/Boss/Behavior/BossEnemyRandomAttackSelector.h"
 #include <Enemy/Boss/Behavior/BossEnemyIsPlayerInAttackRange.h>
+#include <Wall/Wall.h>
+#include <Player/Attack/Interface/IPlayerBullet.h>
 
 void BakugekiSnipeBossEnemy::Init() {
    // 名前の設定
@@ -192,15 +194,24 @@ void BakugekiSnipeBossEnemy::Killed() {
 
 
 void BakugekiSnipeBossEnemy::OnCollision(std::weak_ptr<ObjectComponent> other) {
-  other;
-  //if (auto obj = other.lock()) {
-  //  // Wall 型にキャストできるかをチェック
-  //  if (auto wall = std::dynamic_pointer_cast<Wall>(obj)) {
-  //    // Wall にぶつかったときの処理
-  //    auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(
-  //        wall->GetCollder().lock());
-  //    // 押し出し
-  //    this->translate_ -= aabb->GetAABB().push;
-  //  }
-  //}
+    auto obj = other.lock();
+
+    if ( !obj ) {
+        return;
+    }
+
+    // Wall 型にキャストできるかをチェック
+    if ( auto wall = std::dynamic_pointer_cast< Wall >(obj) ) {
+        // Wall にぶつかったときの処理
+        auto aabb =
+            std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(wall);
+        // 押し出し
+        //this->translate_ -= aabb->GetAABB().push;
+    }
+
+    // Player型にキャストできるかをチェック
+    if ( auto p = std::dynamic_pointer_cast< IPlayerBullet >(obj) ) {
+        // Player にぶつかったときの処理
+        hp_->CalcHp(p->GetAttackPower());
+    }
 }
