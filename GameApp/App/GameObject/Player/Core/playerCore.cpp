@@ -30,7 +30,7 @@ void PlayerCore::Init() {
 	InitHandlers();
 	InitAttackSlot();
 
-	hpComp_.lock()->SetHP(50);
+	hpComp_.lock()->SetMaxHP(50);
 }
 
 void PlayerCore::Update() {

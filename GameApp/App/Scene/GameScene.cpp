@@ -89,16 +89,14 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     g->ChangeScene(std::make_unique<GameClearScene>());
     return;
   }
-
-void GameScene::Draw2d() { 
-    playerSkillUIMgr_->Draw2D();
-  }
-  if (false) {
-    g->ChangeScene(std::make_unique<GameOverScene>());
-    return;
+  if ( false ) {
+      g->ChangeScene(std::make_unique<GameOverScene>());
+      return;
   }
 }
 
-void GameScene::Draw2d() { uiState_->Draw2d();
+void GameScene::Draw2d() { 
 
+    playerSkillUIMgr_->Draw2D();
+  
 }
