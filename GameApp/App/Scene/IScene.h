@@ -85,4 +85,6 @@ private:
   std::unique_ptr<CLEYERA::Model3d::system::PiplineStateObject> stateObject_ =
       nullptr;
   std::unique_ptr<ShaderTable> shaderTable_ = nullptr;
+
+
 };

@@ -17,6 +17,8 @@
 #include"GameClearScene.h"
 #include"GameOverScene.h"
 
+#include "../Util/SceneChangeAnim.h"
+
 class GameScene : public SceneComponent {
 public:
 	GameScene();
@@ -46,4 +48,6 @@ private:
   std::vector<std::shared_ptr<TestUI>> uis_;
 
   std::unique_ptr<IuiState> uiState_ = nullptr;
+
+  std::unique_ptr<SceneChangeAnim> sceneAnim_ = nullptr;
 };

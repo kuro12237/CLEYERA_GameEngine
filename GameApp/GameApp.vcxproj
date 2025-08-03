@@ -238,6 +238,7 @@
     <ClCompile Include="App\Scene\IScene.cpp" />
     <ClCompile Include="App\Scene\SelectScene.cpp" />
     <ClCompile Include="App\Scene\TitleScene.cpp" />
+    <ClCompile Include="App\Util\SceneChangeAnim.cpp" />
     <ClCompile Include="App\Util\SceneLoader.cpp" />
     <ClCompile Include="App\Util\UtilFunc.cpp" />
     <ClCompile Include="App\GameObject\Item\Manager\ItemManager.cpp" />
@@ -337,6 +338,7 @@
     <ClInclude Include="App\Scene\DebugSelectScene.h" />
     <ClInclude Include="App\Scene\SelectScene.h" />
     <ClInclude Include="App\Scene\TitleScene.h" />
+    <ClInclude Include="App\Util\SceneChangeAnim.h" />
     <ClInclude Include="App\Util\SceneLoader.h" />
     <ClInclude Include="App\Util\UtilFunc.h" />
     <ClInclude Include="App\GameObject\Item\Manager\ItemManager.h" />

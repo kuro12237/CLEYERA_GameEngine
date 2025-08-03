@@ -108,6 +108,7 @@
     <ClCompile Include="App\GameObject\Enemy\EnemyHPGauge.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.cpp" />
+    <ClCompile Include="App\Util\SceneChangeAnim.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -218,6 +219,7 @@
     <ClInclude Include="App\GameObject\Enemy\EnemyHPGauge.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_Field.h" />
     <ClInclude Include="App\GameObject\Player\Attack\High\Field\HighAttack_FieldBullet.h" />
+    <ClInclude Include="App\Util\SceneChangeAnim.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

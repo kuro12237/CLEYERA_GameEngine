@@ -12,11 +12,7 @@ void GameSkillBackUI::Init() {
 
 void GameSkillBackUI::Update() {
 
-  if (ImGui::TreeNode(name_.c_str())) {
 
-    ImGui::DragFloat4("color", &sprite_->ColorData().color_.x, 0.01f);
-    ImGui::TreePop();
-  }
   sprite_->Update();
   WorldMatUpdate();
 }

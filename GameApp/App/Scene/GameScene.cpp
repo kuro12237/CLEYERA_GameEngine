@@ -55,6 +55,10 @@ void GameScene::Init() {
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandle);
+
+  sceneAnim_ = std::make_unique<SceneChangeAnim>();
+  sceneAnim_->Init();
+
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
@@ -85,18 +89,34 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     spNames.push_back(s.lock()->GetName());
   }
 
+    sceneAnim_->Update();
+
+ 
+
   //if書き換える::
-  if (false) {
-    g->ChangeScene(std::make_unique<GameClearScene>());
+    //gameOver
+  if (playerManager_->GetHp()<=0) {
+
+    sceneAnim_->Start();
+    if (sceneAnim_->IsEnd()) {
+
+      g->ChangeScene(std::make_unique<GameOverScene>());
+    }
     return;
   }
-
+  //clear
   if (false) {
-    g->ChangeScene(std::make_unique<GameOverScene>());
+    sceneAnim_->Start();
+    if (sceneAnim_->IsEnd()) {
+
+      g->ChangeScene(std::make_unique<GameClearScene>());
+    }
     return;
   }
 }
 
 void GameScene::Draw2d() { uiState_->Draw2d();
+
+  sceneAnim_->Draw();
 
 }
