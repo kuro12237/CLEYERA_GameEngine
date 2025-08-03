@@ -71,9 +71,9 @@ private:
 };
 
 template <typename T> inline void Game3dObject::ChangeMaterialMode() {
-  if (T == dynamic_cast<MaterialMode::DF_Mode>) {
+  T;
     material_ = std::make_unique<CLEYERA::Model3d::Material::ColorMaterial>();
-  }
+  
 }
 
 } // namespace Model3d
