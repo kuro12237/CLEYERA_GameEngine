@@ -17,14 +17,15 @@ void DonutNormalEnemy::Init() {
 	name_ = VAR_NAME(DonutNormalEnemy);
 
 	// モデルの設定
-	uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/enemy", "enemy");
+	uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/NormalEnemy/Donut","donuts");
 	//"Resources/Model/Sphere", "Sphere"
 	gameObject_->ChangeModel(modelHandle);
 
+	uint32_t modelHandle3 = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
 	// これが無いと描画エラーになる
 	uint32_t modelHandle2 = modelManager_->LoadModel("Resources/Model/enemyBullet", "enemyBullet");
 	modelHandle2;
-
+	modelHandle3;
 	// コライダー作成
 	CreateCollider(ColliderType::AABB);
 

@@ -5,9 +5,10 @@
 void DonutNormalEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
                                     const Math::Vector::Vec3 &playerPosition,
                                     const bool &isPersistentlyTrack) {
+ 
 
   // モデルの設定
-  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet", "NormalBullet");
+  uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/Bullet/NormalBullet","NormalBullet");
   gameObject_->ChangeModel(modelHandle);
 
   // コライダー作成
@@ -25,6 +26,8 @@ void DonutNormalEnemyBullet::Initialize(const Math::Vector::Vec3 &enemyPosition,
       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
   isPersistentlyTrack_ = isPersistentlyTrack;
+
+  isGravity_ = false;
 
   //攻撃力
   attackPower_ = std::make_unique<AttackPower>();
@@ -51,7 +54,9 @@ void DonutNormalEnemyBullet::Update() {
   //大きい状態からどんどん小さくなっていく
   bulletScele_ = Math::Vector::Func::Lerp(MAX_SCALE_, MIN_SCALE_, t_);
   scale_ = { .x = bulletScele_ ,.y = bulletScele_ ,.z = bulletScele_ };
-
+  //向きを計算
+  Math::Vector::Vec3 direction = Math::Vector::Func::Normalize(playerPosition_ - translate_);
+  rotate_.y = std::atan2f(direction.x, direction.z);
   translate_.x = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).x;
   translate_.y = sin(t_ * std::numbers::pi_v<float_t>) * HEIGHT_ + baseY;
   translate_.z = Math::Vector::Func::Lerp(normalEnemyPosition_, playerPosition_, t_).z;
