@@ -147,7 +147,7 @@ void GameManager::ChangeScene(std::unique_ptr<SceneComponent> newScene) {
   scene_.reset();
 
   scene_ = std::move(newScene);
-  objMgr->Clear();
+
   scene_->Init();
 
   scene_->Update(this);

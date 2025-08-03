@@ -25,7 +25,7 @@ void TitleScene::Init() {
 }
 
 void TitleScene::Update([[maybe_unused]] GameManager *g) {
-
+  objectManager_;
   sceneAnim_->Update();
 
   auto input = CLEYERA::Manager::InputManager::GetInstance();
