@@ -7,6 +7,7 @@ GameScene::GameScene() {
   itemManager_ = std::make_shared<ItemManager>();
   playerManager_ = std::make_shared<PlayerManager>();
   playerSkillUIMgr_ = std::make_shared<PlayerSkillUI_Manager>();
+  playerHpUI_ = std::make_shared<PlayerHpUI>();
 }
 
 void GameScene::Init() {
@@ -31,6 +32,8 @@ void GameScene::Init() {
   playerManager_->SetPtr(itemManager_, enemyManager_, playerSkillUIMgr_);
   playerSkillUIMgr_->SetPtr(playerManager_->GetPlayerCore(), this);
   playerSkillUIMgr_->Init();
+  playerHpUI_->SetPtr(playerManager_->GetPlayerCore(), this);
+  playerHpUI_->Init();
 
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
@@ -59,6 +62,7 @@ void GameScene::Init() {
 void GameScene::Update([[maybe_unused]] GameManager *g) {
 
   playerSkillUIMgr_->Update();
+  playerHpUI_->Update();
 
   for (const auto &m : this->managerComponents_) {
     m.lock()->Update();
@@ -98,5 +102,5 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 void GameScene::Draw2d() { 
 
     playerSkillUIMgr_->Draw2D();
-  
+    playerHpUI_->Draw2D();
 }

@@ -222,6 +222,7 @@
     <ClCompile Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.cpp" />
     <ClCompile Include="App\GameObject\Player\Core\playerCore.cpp" />
     <ClCompile Include="App\GameObject\Component\Hp\HealthComponent.cpp" />
+    <ClCompile Include="App\GameObject\Player\HPUI\PlayerHpUI.cpp" />
     <ClCompile Include="App\GameObject\Player\PlayerManager.cpp" />
     <ClCompile Include="App\GameObject\Player\Attack\Manager\PlayerBulletManager.cpp" />
     <ClCompile Include="App\GameObject\Player\SkillUI\BG\PlayerSkillUI_BG.cpp" />
@@ -328,6 +329,11 @@
     <ClInclude Include="App\GameObject\Player\Core\Move\PlayerMoveFunc.h" />
     <ClInclude Include="App\GameObject\Player\Core\playerCore.h" />
     <ClInclude Include="App\GameObject\Player\Helper\PlayerHelper.h" />
+    <ClInclude Include="App\GameObject\Player\HPUI\IPlayerHpUI.h" />
+    <ClInclude Include="App\GameObject\Player\HPUI\PlayerHpUI.h" />
+    <ClInclude Include="App\GameObject\Player\HPUI\PlayerHpUI_Frame.h" />
+    <ClInclude Include="App\GameObject\Player\HPUI\PlayerHpUI_Gauge.h" />
+    <ClInclude Include="App\GameObject\Player\HPUI\PlayerHpUI_Heart.h" />
     <ClInclude Include="App\GameObject\Player\PlayerManager.h" />
     <ClInclude Include="App\GameObject\Player\SkillUI\BG\PlayerSkillUI_BG.h" />
     <ClInclude Include="App\GameObject\Player\SkillUI\High\Field\PlayerSkillUI_HighField.h" />
