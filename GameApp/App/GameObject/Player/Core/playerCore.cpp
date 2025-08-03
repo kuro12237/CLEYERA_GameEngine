@@ -5,7 +5,11 @@
 
 #include "Enemy/EnemyManager.h"
 #include "Enemy/Normal/Cannon/CannonNormalEnemy1Bullet.h"
+#include "Enemy/Normal/Donut/DonutNormalEnemyBullet.h"
 #include "Enemy/Normal/Gun/GunNormalEnemyBullet.h"
+#include "Enemy/Normal/Stalker/StalkerNormalEnemy.h"
+#include "Enemy/Boss/BakugekiSnipe/BakugekiSnipeBossEnemyBullet1.h"
+#include "Enemy/Boss/BakugekiSnipe/BakugekiSnipeBossEnemyBullet2.h"
 
 #include "../../Item/Manager/ItemManager.h"
 #include "../../Item/AttackPickup/AttackPickupItem.h"
@@ -88,25 +92,29 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 	if ( invincibleFunc_->IsInvincible() )
 		return;
 
-	// bullet1 型にキャストできるかをチェック
-	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
-
+	if ( auto bullet1 = std::dynamic_pointer_cast< BakugekiSnipeBossEnemyBullet1 >(obj) ) {
 		uint32_t damage = bullet1->GetAttackPower();
 		hpComp_.lock()->CalcHp(damage);
-
-		/*if ( hpComp_.lock()->GetHp() <= 0 ) {
-			hpComp_.lock()->SetHP(0);
-		}*/
 	}
-	// bullet2 型にキャストできるかをチェック
+	if ( auto bullet1 = std::dynamic_pointer_cast< BakugekiSnipeBossEnemyBullet2 >(obj) ) {
+		uint32_t damage = bullet1->GetAttackPower();
+		hpComp_.lock()->CalcHp(damage);
+	}
+	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
+		uint32_t damage = bullet1->GetAttackPower();
+		hpComp_.lock()->CalcHp(damage);
+	}
+	if ( auto bullet1 = std::dynamic_pointer_cast< DonutNormalEnemyBullet >(obj) ) {
+		uint32_t damage = bullet1->GetAttackPower();
+		hpComp_.lock()->CalcHp(damage);
+	}
 	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
-
 		uint32_t damage = bullet2->GetAttackPower();
 		hpComp_.lock()->CalcHp(damage);
-
-		/*if ( hpComp_.lock()->GetHp() <= 0 ) {
-			hpComp_.lock()->SetHP(0);
-		}*/
+	}
+	if ( auto bullet2 = std::dynamic_pointer_cast< StalkerEnemyBullet >(obj) ) {
+		uint32_t damage = bullet2->GetAttackPower();
+		hpComp_.lock()->CalcHp(damage);
 	}
 }
 
