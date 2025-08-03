@@ -14,6 +14,8 @@ void HighAttack_FieldBullet::Init()
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
+	attackPower_->SetPower(10);
+
 	// スケールアニメ用
 	expandDuration_ = 10.0f;  // 30フレーム拡大
 	shrinkDuration_ = 10.0f;  // 30フレーム収縮

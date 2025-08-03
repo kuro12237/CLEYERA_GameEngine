@@ -15,6 +15,8 @@ void HighAttack_NormalBullet::Init()
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
+	attackPower_->SetPower(10);
+
 	// 生存時間を適当に設定 1秒
 	lifeTime_ = 0.5f * 60.0f;
 }
