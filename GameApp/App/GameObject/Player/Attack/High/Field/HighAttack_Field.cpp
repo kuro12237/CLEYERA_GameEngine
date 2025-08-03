@@ -9,7 +9,7 @@ HighAttack_Field::HighAttack_Field(PlayerCore * corePtr, std::weak_ptr<PlayerBul
 
 void HighAttack_Field::Init()
 {
-    coolDownInterval_ = 0.0f * 60.0f; // 攻撃のインターバル
+    coolDownInterval_ = 2.0f * 60.0f; // 攻撃のインターバル
 }
 
 void HighAttack_Field::Update()

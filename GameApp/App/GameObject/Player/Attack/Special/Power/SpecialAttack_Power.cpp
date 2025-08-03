@@ -13,7 +13,7 @@ void SpecialAttack_Power::Init()
 {
 
 	// 攻撃のインターバル
-	coolDownInterval_ = 0.0f * 60.0f;
+	coolDownInterval_ = 3.0f * 60.0f;
 }
 
 void SpecialAttack_Power::Update()
