@@ -37,6 +37,7 @@ project/imgui.ini
 
 Externals/Engine/CLEYERA/
 Externals/Engine/lib/Debug/
+Externals/Engine/lib/Release/
 
 
 # Visual Studio 2015/2017 cache/options directory

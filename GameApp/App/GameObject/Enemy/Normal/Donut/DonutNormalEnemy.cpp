@@ -17,7 +17,7 @@ void DonutNormalEnemy::Init() {
 	name_ = VAR_NAME(DonutNormalEnemy);
 
 	// モデルの設定
-	uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/NormalEnemy/Donut","donuts");
+	uint32_t modelHandle = modelManager_->LoadModel("Resources/Model/NormalEnemy/Donuts","donuts");
 	//"Resources/Model/Sphere", "Sphere"
 	gameObject_->ChangeModel(modelHandle);
 
