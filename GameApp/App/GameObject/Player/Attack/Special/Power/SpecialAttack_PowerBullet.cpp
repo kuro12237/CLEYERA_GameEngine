@@ -1,13 +1,17 @@
 #include "SpecialAttack_PowerBullet.h"
 #include "Enemy/BaseEnemy.h"
+#include "../../../Core/playerCore.h"
 
 
 void SpecialAttack_PowerBullet::Init()
 {
 	// Modelの設定
-	uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Bullet",
-																"Bullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet2", "Bullet2");
 	ObjectComponent::gameObject_->ChangeModel(handle);
+
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
@@ -68,7 +72,39 @@ void SpecialAttack_PowerBullet::Update()
 		}
 	}
 
+	auto aabb = std::dynamic_pointer_cast< CLEYERA::Util::Collider::AABBCollider >(collider_);
+	if ( aabb ) {
+		Math::Vector::Vec3 half = {
+			0.5f * scale_.x,
+			0.5f * scale_.y,
+			0.5f * scale_.z
+		};
+		Math::Vector::Vec3 min = {
+			-half.x,
+			-half.y,
+			-half.z
+		};
+		Math::Vector::Vec3 max = half;
+
+		aabb->SetSize(min, max);
+	}
+
 	ObjectComponent::TransformUpdate();
+
+	ObjectComponent::TransformUpdate();
+}
+
+void SpecialAttack_PowerBullet::OnCollision(std::weak_ptr<ObjectComponent> other)
+{
+	auto obj = other.lock();
+	// Player型にキャストできるかをチェック
+	if ( auto p = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+		return;
+	}
+	if ( auto p = std::dynamic_pointer_cast< IPlayerBullet >(obj) ) {
+		return;
+	}
+
 }
 
 void SpecialAttack_PowerBullet::Move() 

@@ -10,6 +10,10 @@ void LowAttack_BackBullet::Init()
 	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet", "Bullet");
 	gameObject_->ChangeModel(handle);
 
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
@@ -38,7 +42,7 @@ void LowAttack_BackBullet::OnCollision(std::weak_ptr<ObjectComponent> other)
 		return;
 	}
 
-	isActive_ = true;
+	isActive_ = false;
 }
 
 void LowAttack_BackBullet::Move() { force_ += initVel_; }

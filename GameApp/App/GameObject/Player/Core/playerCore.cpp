@@ -146,12 +146,12 @@ void PlayerCore::InitLua()
 void PlayerCore::InitModel()
 {
 	// Modelの設定
-	uint32_t handle =
-		ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
-	ObjectComponent::gameObject_->ChangeModel(handle);
-	uint32_t demo = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Bullet",
-															  "Bullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Core", "Core");
+	gameObject_->ChangeModel(handle);
+	uint32_t demo = modelManager_->LoadModel("Resources/Model/Player/Bullet", "Bullet");
 	demo;
+	uint32_t demo2 = modelManager_->LoadModel("Resources/Model/Player/Bullet2", "Bullet2");
+	demo2;
 }
 
 void PlayerCore::InitCollider()

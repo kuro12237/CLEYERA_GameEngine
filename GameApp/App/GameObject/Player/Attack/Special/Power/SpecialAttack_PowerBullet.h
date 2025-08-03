@@ -35,6 +35,11 @@ public:
 	/// </summary>
 	void SetNearestEnemy(const std::weak_ptr<BaseEnemy> ptr){nearestEnemy_ = ptr;}
 
+	/// <summary>
+	/// 衝突時コールバック
+	/// </summary>
+	void OnCollision(std::weak_ptr<ObjectComponent> other) override;
+
 private:
 
 	/// <summary>

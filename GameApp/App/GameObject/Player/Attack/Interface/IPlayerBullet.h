@@ -31,7 +31,7 @@ public:
   /// <summary>
   /// 衝突時コールバック
   /// </summary>
-  virtual void OnCollision(std::weak_ptr<ObjectComponent> other);
+  virtual void OnCollision(std::weak_ptr<ObjectComponent> other) = 0;
 
 #pragma region Accessor
 

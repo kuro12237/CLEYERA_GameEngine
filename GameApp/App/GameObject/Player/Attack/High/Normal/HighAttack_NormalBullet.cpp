@@ -8,6 +8,10 @@ void HighAttack_NormalBullet::Init()
 	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet", "Bullet");
 	gameObject_->ChangeModel(handle);
 
+	// 当たり判定関数セット
+	collider_->SetHitCallFunc(
+		[this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
+
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
