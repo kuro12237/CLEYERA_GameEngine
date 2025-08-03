@@ -102,6 +102,16 @@ public:
   }
   const size_t &GetEnemyCount() const { return enemyCount_; }
 
+  bool GetIsKillBossEnemy() {
+      if ( bossEnemyList_.size() == 0u ) {
+          return true;
+      }
+      else {
+          false;
+      }
+  }
+
+
 private:
   size_t enemyCount_ = 0;
 
