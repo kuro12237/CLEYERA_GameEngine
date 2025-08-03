@@ -59,6 +59,10 @@ void EnemyManager::Update() {
 
   for (std::weak_ptr<BaseNormalEnemy> &enemy : enemyList_) {
     auto it = enemy.lock();
+
+    // emptyならcontine
+    if(!it) continue;
+
     // プレイヤーの座標を設定
     it->SetPlayerPosition(playerPosition_);
 

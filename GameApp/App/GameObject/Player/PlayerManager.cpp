@@ -36,6 +36,7 @@ void PlayerManager::Init() {
   // Hp
   hp_->SetName(VAR_NAME(PlayerCore));
   hp_->Init();
+  hp_->SetHP(50);
 
   // 関数セット
   core_.lock()->SetHpCalcfunc(

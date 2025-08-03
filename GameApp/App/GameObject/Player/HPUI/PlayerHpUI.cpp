@@ -33,7 +33,7 @@ void PlayerHpUI::Update()
 		ui->Update();
 	}
 
-	float maxHp = 100.0f;
+	float maxHp = 50.0f;
 
 	float hpRate = std::clamp(p_playerCore_.lock()->GetHP() / maxHp, 0.0f, 1.0f);
 	float baseScaleX = 0.2f;

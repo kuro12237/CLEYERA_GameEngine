@@ -84,7 +84,6 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 
 	}
 
-
 	// 無敵なので早期return
 	if ( invincibleFunc_->IsInvincible() )
 		return;
@@ -92,12 +91,14 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 	// bullet1 型にキャストできるかをチェック
 	if ( auto bullet1 = std::dynamic_pointer_cast< CannonNormalEnemy1Bullet >(obj) ) {
 
-		hpCalcFunc_(bullet1->GetAttackPower());
+		uint32_t damage = bullet1->GetAttackPower();
+		hpComp_.lock()->CalcHp(damage);
 	}
 	// bullet2 型にキャストできるかをチェック
 	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
 
-		hpCalcFunc_(bullet2->GetAttackPower());
+		uint32_t damage = bullet2->GetAttackPower();
+		hpComp_.lock()->CalcHp(damage);
 	}
 }
 
