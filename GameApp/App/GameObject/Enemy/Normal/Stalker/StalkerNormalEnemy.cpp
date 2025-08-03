@@ -89,6 +89,7 @@ void StalkerNormalEnemy::Update() {
     // 倒された
     isAlive_ = false;
     Killed();
+    //corePtr_.lock()->
   }
 
   if (isAlive_ == true) {
@@ -152,6 +153,10 @@ void StalkerNormalEnemy::Update() {
     // ノックバック
     KnockBack();
   }
+
+  direction_;
+  velocity_ = {0.0f,0.0f,0.1f};
+
   // 更新
   TransformUpdate();
 
