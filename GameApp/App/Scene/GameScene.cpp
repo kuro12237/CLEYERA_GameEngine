@@ -120,10 +120,10 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
   }
   //clear
   if (enemyManager_->GetIsKillBossEnemy()) {
-    //sceneAnim_->Start();
+    sceneAnim_->Start();
     if (sceneAnim_->IsEnd()) {
 
-      //g->ChangeScene(std::make_unique<GameClearScene>());
+      g->ChangeScene(std::make_unique<GameClearScene>());
 
       return;
     }
@@ -132,7 +132,7 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 
 void GameScene::Draw2d() {
     //uiState_->Draw2d();
-
+  sceneAnim_->Draw();
     playerSkillUIMgr_->Draw2D();
     playerHpUI_->Draw2D();
 }

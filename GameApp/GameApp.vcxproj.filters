@@ -118,6 +118,8 @@
     <ClCompile Include="App\GameObject\Player\SkillUI\PlayerSkillUI_Manager.cpp" />
     <ClCompile Include="App\GameObject\Player\HPUI\PlayerHpUI.cpp" />
     <ClCompile Include="App\GameObject\GameOver\Camera\GameOverCamera.cpp" />
+    <ClCompile Include="App\GameObject\Title\Camera\TitleCamera.cpp" />
+    <ClCompile Include="App\GameObject\GameClear\Camera\GameClear.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\GameManager\GameManager.h" />
@@ -246,6 +248,8 @@
     <ClInclude Include="App\GameObject\Player\HPUI\PlayerHpUI_Gauge.h" />
     <ClInclude Include="App\GameObject\Player\HPUI\IPlayerHpUI.h" />
     <ClInclude Include="App\GameObject\GameOver\Camera\GameOverCamera.h" />
+    <ClInclude Include="App\GameObject\Title\Camera\TitleCamera.h" />
+    <ClInclude Include="App\GameObject\GameClear\Camera\GameClear.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Common\Camera.hlsli" />

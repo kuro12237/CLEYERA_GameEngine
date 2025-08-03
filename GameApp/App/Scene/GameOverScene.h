@@ -20,7 +20,7 @@
 
 class GameOverScene : public SceneComponent {
 public:
-  GameOverScene() {};
+  GameOverScene();
   ~GameOverScene() {};
 
   void Init() override;

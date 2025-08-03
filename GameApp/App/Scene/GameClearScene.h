@@ -16,9 +16,12 @@
 #include"TitleScene.h"
 
 #include "../Util/SceneChangeAnim.h"
+
+#include"../GameObject/GameClear/Camera/GameClear.h"
+
 class GameClearScene : public SceneComponent {
 public:
-  GameClearScene() {};
+  GameClearScene();
   ~GameClearScene() {};
 
   void Init() override;
@@ -33,4 +36,6 @@ private:
   std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
 
   std::unique_ptr<SceneChangeAnim> sceneAnim_ = nullptr;
+
+  std::unique_ptr<GameClearCamera> camera_;
 };

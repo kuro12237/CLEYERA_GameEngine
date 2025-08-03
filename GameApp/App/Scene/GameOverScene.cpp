@@ -1,7 +1,11 @@
 #include "GameOverScene.h"
 
-void GameOverScene::Init() {
+GameOverScene::GameOverScene() {
+  CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
+}
 
+void GameOverScene::Init() {
+ 
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("GameOverSceneData");
 
