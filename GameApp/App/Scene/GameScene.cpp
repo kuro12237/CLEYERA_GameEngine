@@ -6,7 +6,6 @@ GameScene::GameScene() {
 
   itemManager_ = std::make_shared<ItemManager>();
   playerManager_ = std::make_shared<PlayerManager>();
-  playerSkillUIMgr_ = std::make_shared<PlayerSkillUI_Manager>();
 }
 
 void GameScene::Init() {
@@ -28,9 +27,7 @@ void GameScene::Init() {
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
 
-  playerManager_->SetPtr(itemManager_, enemyManager_, playerSkillUIMgr_);
-  playerSkillUIMgr_->SetPtr(playerManager_->GetPlayerCore(), this);
-  playerSkillUIMgr_->Init();
+  playerManager_->SetPtr(itemManager_, enemyManager_);
 
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
@@ -44,6 +41,10 @@ void GameScene::Init() {
 
   loader_.reset();
 
+  uiState_ = std::make_unique<PlayUIState>();
+  uiState_->SetScene(this);
+  uiState_->Init();
+
   // spriteの初期化
   for (auto s : spriteComponents_) {
 
@@ -54,11 +55,15 @@ void GameScene::Init() {
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandle);
+
+  sceneAnim_ = std::make_unique<SceneChangeAnim>();
+  sceneAnim_->Init();
+
 }
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
 
-  playerSkillUIMgr_->Update();
+  uiState_->Update();
 
   for (const auto &m : this->managerComponents_) {
     m.lock()->Update();
@@ -84,19 +89,34 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     spNames.push_back(s.lock()->GetName());
   }
 
+    sceneAnim_->Update();
+
+ 
+
   //if書き換える::
-  if (false) {
-    g->ChangeScene(std::make_unique<GameClearScene>());
+    //gameOver
+  if (playerManager_->GetHp()<=0) {
+
+    sceneAnim_->Start();
+    if (sceneAnim_->IsEnd()) {
+
+      g->ChangeScene(std::make_unique<GameOverScene>());
+    }
     return;
   }
-  if ( false ) {
-      g->ChangeScene(std::make_unique<GameOverScene>());
-      return;
+  //clear
+  if (false) {
+    sceneAnim_->Start();
+    if (sceneAnim_->IsEnd()) {
+
+      g->ChangeScene(std::make_unique<GameClearScene>());
+    }
+    return;
   }
 }
 
-void GameScene::Draw2d() { 
+void GameScene::Draw2d() { uiState_->Draw2d();
 
-    playerSkillUIMgr_->Draw2D();
-  
+  sceneAnim_->Draw();
+
 }

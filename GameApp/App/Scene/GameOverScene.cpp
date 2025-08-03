@@ -14,13 +14,21 @@ void GameOverScene::Init() {
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandle);
+
+   sceneAnim_ = std::make_unique<SceneChangeAnim>();
+  sceneAnim_->Init();
 }
 
 void GameOverScene::Update([[maybe_unused]] GameManager *g) {
 
-      auto input = CLEYERA::Manager::InputManager::GetInstance();
+  sceneAnim_->Update();
+
+  auto input = CLEYERA::Manager::InputManager::GetInstance();
   if (input->PushBotton(XINPUT_GAMEPAD_A)) {
 
+    sceneAnim_->Start();
+  }
+  if (sceneAnim_->IsEnd()) {
     g->ChangeScene(std::make_unique<TitleScene>());
     return;
   }
@@ -28,4 +36,4 @@ void GameOverScene::Update([[maybe_unused]] GameManager *g) {
 
 }
 
-void GameOverScene::Draw2d() {}
+void GameOverScene::Draw2d() { sceneAnim_->Draw(); }
