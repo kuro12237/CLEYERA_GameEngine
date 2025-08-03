@@ -1382,6 +1382,31 @@
                     4.0
                 ]
             }
+        },
+        {
+            "type": "MESH",
+            "name": "wall.019",
+            "file_name": "over_wall",
+            "Directory_name": "Resources/Model/map",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    0.0,
+                    5.613559246063232,
+                    4.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    -179.99998474121094
+                ],
+                "scale": [
+                    3.0,
+                    3.0,
+                    3.0
+                ]
+            }
         }
     ]
 }
