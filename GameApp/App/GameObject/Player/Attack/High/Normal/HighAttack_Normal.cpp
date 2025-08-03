@@ -2,9 +2,9 @@
 #include "HighAttack_NormalBullet.h"
 #include "../../../Core/playerCore.h"
 
-HighAttack_Normal::HighAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr)
+HighAttack_Normal::HighAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> eneManaPtr)
 {
-	IMagicAttack::SetPre(corePtr, bulManagerPtr);
+	IMagicAttack::SetPre(corePtr, bulManagerPtr, eneManaPtr);
 	lua_ = std::make_unique<LuaScript>();
 }
 

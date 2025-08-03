@@ -1,4 +1,5 @@
 #include "LowAttack_NormalBullet.h"
+#include "../../../Core/playerCore.h"
 #include <algorithm>
 
 void LowAttack_NormalBullet::Init()
@@ -7,8 +8,12 @@ void LowAttack_NormalBullet::Init()
 	//name_ = VAR_NAME(LowAttack_NormalBullet);
 
 	// Modelの設定
-	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet",	"PlayerDemoBullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet",	"Bullet");
 	gameObject_->ChangeModel(handle);
+
+    // 当たり判定関数セット
+    collider_->SetHitCallFunc(
+        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
@@ -34,6 +39,20 @@ void LowAttack_NormalBullet::Update()
     else if ( comboStep_ == 3 ) {
         StraightMove();
     }
+}
+
+void LowAttack_NormalBullet::OnCollision(std::weak_ptr<ObjectComponent> other)
+{
+    auto obj = other.lock();
+    // Player型にキャストできるかをチェック
+    if ( auto p = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+        return;
+    }
+    if ( auto p = std::dynamic_pointer_cast< IPlayerBullet >(obj) ) {
+        return;
+    }
+
+    isActive_ = false;
 }
 
 void LowAttack_NormalBullet::CurveMove()

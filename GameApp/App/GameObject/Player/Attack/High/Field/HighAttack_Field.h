@@ -14,7 +14,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	HighAttack_Field() = default;
-	HighAttack_Field(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
+	HighAttack_Field(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> eneManaPtr);
 
 	/// <summary>
 	/// デストラクタ

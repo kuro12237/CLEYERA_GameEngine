@@ -9,10 +9,10 @@
 #include "EnvironmentObject/EnvironmentObject.h"
 #include "Item/Manager/ItemManager.h"
 #include "Player/PlayerManager.h"
+#include "Player/SkillUI/PlayerSkillUI_Manager.h"
 #include "Wall/WallManager.h"
 
 #include "UI/TestUI.h"
-#include"UI/state/PlayState.h"
 
 #include"GameClearScene.h"
 #include"GameOverScene.h"
@@ -37,6 +37,8 @@ private:
   std::shared_ptr<ItemManager> itemManager_;
 
   std::shared_ptr<PlayerManager> playerManager_;
+  std::shared_ptr<PlayerSkillUI_Manager> playerSkillUIMgr_;
+
   // 敵管理クラス
   std::shared_ptr<EnemyManager> enemyManager_ = nullptr;
 
@@ -44,6 +46,4 @@ private:
 
 
   std::vector<std::shared_ptr<TestUI>> uis_;
-
-  std::unique_ptr<IuiState> uiState_ = nullptr;
 };

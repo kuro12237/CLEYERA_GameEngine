@@ -15,6 +15,7 @@
 // 前方宣言
 class ItemManager;
 class EnemyManager;
+class PlayerSkillUI_Manager;
 
 /* Player関連の一元管理クラス */
 class PlayerManager : public CLEYERA::Component::ManagerComponent {
@@ -45,7 +46,7 @@ public:
   /// <summary>
   /// Ptrの設定
   /// </summary>
-  void SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr);
+  void SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr, std::weak_ptr<PlayerSkillUI_Manager> skillMgr);
 
 #pragma region Accessor
 
@@ -68,5 +69,5 @@ private:
   // コア
   std::weak_ptr<PlayerCore> core_;
 
-  std::unique_ptr<HealthComponent> hp_ = nullptr;
+  std::shared_ptr<HealthComponent> hp_ = nullptr;
 };

@@ -3,6 +3,8 @@
 #include "CLEYERA.h"
 #include "../../Interface/IPlayerBullet.h"
 
+class BaseEnemy;
+
 /* SpecialAttack PowerBullet */
 class SpecialAttack_PowerBullet : public IPlayerBullet {
 
@@ -28,6 +30,16 @@ public:
 	/// </summary>
 	void Update() override;
 
+	/// <summary>
+	/// 一番近いエネミーのptr設定
+	/// </summary>
+	void SetNearestEnemy(const std::weak_ptr<BaseEnemy> ptr){nearestEnemy_ = ptr;}
+
+	/// <summary>
+	/// 衝突時コールバック
+	/// </summary>
+	void OnCollision(std::weak_ptr<ObjectComponent> other) override;
+
 private:
 
 	/// <summary>
@@ -46,4 +58,10 @@ private:
 
 	Math::Vector::Vec3 initialScale_ = { 2.0f, 2.0f, 2.0f };
 	Math::Vector::Vec3 explodeScaleMax_ = { 14.0f, 14.0f, 14.0f };
+
+	// 追尾時間
+	int homingFrames_ = 60;
+
+	// 一番近いエネミー
+	std::weak_ptr<BaseEnemy> nearestEnemy_;
 };

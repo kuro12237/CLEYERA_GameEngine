@@ -13,7 +13,7 @@ PlayerManager::PlayerManager() {
   core_ = objectManager_->CreateObject<PlayerCore>(
       "PlayerCore", std::make_shared<PlayerCore>());
 
-  hp_ = std::make_unique<HealthComponent>();
+  hp_ = std::make_shared<HealthComponent>();
 }
 
 /// <summary>
@@ -64,7 +64,7 @@ void PlayerManager::ImGuiUpdate() {
   }
 }
 
-void PlayerManager::SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr)
+void PlayerManager::SetPtr(std::weak_ptr<ItemManager> itemMgr, std::weak_ptr<EnemyManager> enemyMgr, std::weak_ptr<PlayerSkillUI_Manager> skillMgr)
 {
-    core_.lock()->SetPtr(camera_, bulletManager_, itemMgr, enemyMgr);
+    core_.lock()->SetPtr(camera_, bulletManager_, itemMgr, enemyMgr, skillMgr, hp_);
 }

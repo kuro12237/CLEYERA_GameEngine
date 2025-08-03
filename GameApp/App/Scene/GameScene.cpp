@@ -6,6 +6,7 @@ GameScene::GameScene() {
 
   itemManager_ = std::make_shared<ItemManager>();
   playerManager_ = std::make_shared<PlayerManager>();
+  playerSkillUIMgr_ = std::make_shared<PlayerSkillUI_Manager>();
 }
 
 void GameScene::Init() {
@@ -27,7 +28,9 @@ void GameScene::Init() {
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
 
-  playerManager_->SetPtr(itemManager_, enemyManager_);
+  playerManager_->SetPtr(itemManager_, enemyManager_, playerSkillUIMgr_);
+  playerSkillUIMgr_->SetPtr(playerManager_->GetPlayerCore(), this);
+  playerSkillUIMgr_->Init();
 
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
@@ -40,10 +43,6 @@ void GameScene::Init() {
   enviromentObjs_ = loader_->SettingData();
 
   loader_.reset();
-
-  uiState_ = std::make_unique<PlayUIState>();
-  uiState_->SetScene(this);
-  uiState_->Init();
 
   // spriteの初期化
   for (auto s : spriteComponents_) {
@@ -59,7 +58,7 @@ void GameScene::Init() {
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
 
-  uiState_->Update();
+  playerSkillUIMgr_->Update();
 
   for (const auto &m : this->managerComponents_) {
     m.lock()->Update();
@@ -91,6 +90,9 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     return;
   }
 
+void GameScene::Draw2d() { 
+    playerSkillUIMgr_->Draw2D();
+  }
   if (false) {
     g->ChangeScene(std::make_unique<GameOverScene>());
     return;

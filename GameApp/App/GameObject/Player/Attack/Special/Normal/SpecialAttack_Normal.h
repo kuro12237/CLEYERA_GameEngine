@@ -14,7 +14,7 @@ public:
 	/// コンストラクタ
 	/// </summary>
 	SpecialAttack_Normal() = default;
-	SpecialAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr);
+	SpecialAttack_Normal(PlayerCore * corePtr, std::weak_ptr<PlayerBulletManager> bulManagerPtr, std::weak_ptr<EnemyManager> enemyMgr);
 
 	/// <summary>
 	/// デストラクタ

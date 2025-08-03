@@ -11,7 +11,7 @@ PlayerMoveFunc::PlayerMoveFunc(PlayerCore * pPlayer)
 {
 	// 入力デバイス
 	inputManager_ = CLEYERA::Manager::InputManager::GetInstance();
-	
+
 	// 親プレイヤー
 	p_player_ = pPlayer;
 
@@ -45,6 +45,9 @@ void PlayerMoveFunc::Update()
 	// 移動方向の計算
 	CalcMoveDirection();
 
+	// 浮遊処理
+	//ApplyFloating();
+
 	// 0で初期化 この処理は一番最後にやらないとダメ
 	keyDir_ = Math::Vector::Vec3{ 0.0f, 0.0f, 0.0f };
 
@@ -60,11 +63,11 @@ void PlayerMoveFunc::Update()
 void PlayerMoveFunc::PadMove()
 {
 	if ( std::abs(LStickInput_.x) > LStickDzone_ || std::abs(LStickInput_.y) > LStickDzone_ ) {
-		
+
 		// カメラの前方と右方
 		Math::Vector::Vec3 forward = weakpCamera_.lock()->GetForwardVec();
 		Math::Vector::Vec3 right = weakpCamera_.lock()->GetRightVec();
-		
+
 		// カメラの向きを考慮したDirectionを求める
 		padDir_ = {
 			(LStickInput_.x * right.x) + (LStickInput_.y * forward.x),
@@ -108,7 +111,7 @@ void PlayerMoveFunc::KeyMove(const Math::Vector::Vec2 & input)
 	// カメラの前方と右方
 	Math::Vector::Vec3 forward = weakpCamera_.lock()->GetForwardVec();
 	Math::Vector::Vec3 right = weakpCamera_.lock()->GetRightVec();
-	
+
 	// カメラの向きを考慮したDirectionを求める
 	keyDir_ = {
 		(keyInput_.x * right.x) + (keyInput_.y * forward.x),
@@ -217,6 +220,30 @@ float PlayerMoveFunc::TurningSpeedScale(float angle)
 {
 	const float maxAngle = 3.14159265f; // π = 180度
 	return std::lerp(1.0f, minSpeedScale_, angle / maxAngle);
+}
+
+/// <summary>
+/// 浮遊処理
+/// </summary>
+void PlayerMoveFunc::ApplyFloating()
+{
+	// 入力がある＝動いているときにだけ適用
+	if ( std::abs(LStickInput_.x) > LStickDzone_ || std::abs(LStickInput_.y) > LStickDzone_ ) {
+		floatingTimer_ += 1.0f / 60.0f; // 1フレームごとの加算（60FPS想定）
+		float offsetY = std::sin(floatingTimer_ * 2.0f * 3.14159265f * floatingFrequency_) * floatingAmplitude_;
+
+		// 現在の位置を取得してYを加算
+		auto playerObj = p_player_->GetGameObject().lock();
+		if ( playerObj ) {
+			Math::Vector::Vec3 pos = playerObj->GetTranslate();
+			pos.y += offsetY;
+			playerObj->SetTranslate(pos);
+		}
+	}
+	else {
+		// 停止中は浮遊をリセット
+		floatingTimer_ = 0.0f;
+	}
 }
 
 

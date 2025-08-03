@@ -102,6 +102,11 @@ public:
   }
   const size_t &GetEnemyCount() const { return enemyCount_; }
 
+
+  const std::list<std::weak_ptr<BaseNormalEnemy>> & GetEnemyList() const {
+      return enemyList_;
+  }
+
 private:
   size_t enemyCount_ = 0;
 
