@@ -15,6 +15,7 @@
 
 #include"TitleScene.h"
 
+#include "../Util/SceneChangeAnim.h"
 class GameClearScene : public SceneComponent {
 public:
   GameClearScene() {};
@@ -30,4 +31,6 @@ private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
 
   std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
+
+  std::unique_ptr<SceneChangeAnim> sceneAnim_ = nullptr;
 };

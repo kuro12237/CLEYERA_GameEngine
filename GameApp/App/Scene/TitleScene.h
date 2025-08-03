@@ -1,8 +1,7 @@
 #pragma once
+#include "../GameManager/GameManager.h"
 #include "../Util/SceneLoader.h"
 #include "IScene.h"
-#include"../GameManager/GameManager.h"
-
 
 #include "Enemy/EnemyManager.h"
 #include "EnvironmentObject/EnvironmentObject.h"
@@ -10,7 +9,7 @@
 #include "Player/PlayerManager.h"
 #include "Wall/WallManager.h"
 
-
+#include "../Util/SceneChangeAnim.h"
 #include "UI/TestUI.h"
 
 class TitleScene : public SceneComponent {
@@ -29,4 +28,5 @@ private:
 
   std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
 
+  std::unique_ptr<SceneChangeAnim> sceneAnim_ = nullptr;
 };
