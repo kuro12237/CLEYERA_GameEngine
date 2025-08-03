@@ -1507,6 +1507,806 @@
                     1.0
                 ]
             }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.001",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    99.37606048583984,
+                    -214.18658447265625,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.002",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    320.56597900390625,
+                    -247.8287353515625,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.003",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    320.56597900390625,
+                    -318.0853271484375,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.004",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    186.47341918945312,
+                    -318.0853271484375,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.005",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    49.136688232421875,
+                    -337.6703186035156,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.006",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -68.21453857421875,
+                    -272.517333984375,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.007",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    155.02520751953125,
+                    -236.6177978515625,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy1.008",
+            "file_name": "CannonEnemy",
+            "Directory_name": "Resources/Model/CannonEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    226.634765625,
+                    -93.33917236328125,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.001",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    0.0,
+                    98.04391479492188,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.002",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    144.1626434326172,
+                    98.04391479492188,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.003",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    144.1626434326172,
+                    194.54837036132812,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.004",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    286.2312316894531,
+                    256.49822998046875,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.005",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    286.2312316894531,
+                    108.20384216308594,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.006",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    206.48648071289062,
+                    -80.43009948730469,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.007",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    341.3165283203125,
+                    185.7523956298828,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy2.008",
+            "file_name": "GunEnemy",
+            "Directory_name": "Resources/Model/GunEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    341.3165283203125,
+                    279.6802673339844,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.001",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -166.4242401123047,
+                    100.85650634765625,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.002",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -166.4242401123047,
+                    100.85650634765625,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.003",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -166.4242401123047,
+                    190.21121215820312,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.004",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -254.2626953125,
+                    190.21121215820312,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.005",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -342.62066650390625,
+                    302.5871276855469,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.006",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -342.62066650390625,
+                    105.15911865234375,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.007",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -342.62066650390625,
+                    157.97862243652344,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy3.008",
+            "file_name": "StalkerEnemy",
+            "Directory_name": "Resources/Model/StalkerEnemy",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -177.782470703125,
+                    -10.783416748046875,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.001",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -164.86080932617188,
+                    -132.00192260742188,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.002",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -131.12196350097656,
+                    -269.70074462890625,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.003",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -354.674560546875,
+                    -117.97434997558594,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.004",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -108.30078125,
+                    -117.97434997558594,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.005",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -108.30078125,
+                    292.6165771484375,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.006",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -13.457984924316406,
+                    292.6165771484375,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.007",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -13.457984924316406,
+                    171.5001220703125,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        },
+        {
+            "type": "MESH",
+            "name": "NormalEnemy4.008",
+            "file_name": "Donuts",
+            "Directory_name": "Resources/Model/NormalEnemy/Donuts",
+            "ModelFileType": "obj",
+            "DrawType": "Normal",
+            "transform": {
+                "translate": [
+                    -59.37028884887695,
+                    171.5001220703125,
+                    0.0
+                ],
+                "rotate": [
+                    0.0,
+                    -0.0,
+                    0.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
         }
     ]
 }
