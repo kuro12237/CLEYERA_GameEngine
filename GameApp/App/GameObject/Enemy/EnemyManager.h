@@ -102,6 +102,14 @@ public:
   }
   const size_t &GetEnemyCount() const { return enemyCount_; }
 
+  bool GetIsKillBossEnemy() {
+      if ( bossEnemyList_.size() == 0u ) {
+          return true;
+      }
+      else {
+          false;
+      }
+  }
 
   const std::list<std::weak_ptr<BaseNormalEnemy>> & GetEnemyList() const {
       return enemyList_;

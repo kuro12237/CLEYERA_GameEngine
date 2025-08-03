@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="App\GameManager\GameManager.cpp" />
     <ClCompile Include="App\GameObject\Component\AttackPower\AttackPower.cpp" />
+    <ClCompile Include="App\GameObject\EditorObject\ABotton\ABotton.cpp" />
     <ClCompile Include="App\GameObject\Enemy\BaseEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemy.cpp" />
     <ClCompile Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemyBullet1.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="App\GameManager\GameManager.h" />
     <ClInclude Include="App\GameObject\Component\AttackPower\AttackPower.h" />
     <ClInclude Include="App\GameObject\Component\Hp\HealthComponent.h" />
+    <ClInclude Include="App\GameObject\EditorObject\ABotton\ABotton.h" />
     <ClInclude Include="App\GameObject\Enemy\BaseEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemy.h" />
     <ClInclude Include="App\GameObject\Enemy\Boss\BakugekiSnipe\BakugekiSnipeBossEnemyBullet1.h" />
