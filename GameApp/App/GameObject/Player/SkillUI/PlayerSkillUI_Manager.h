@@ -18,6 +18,15 @@ class PlayerSkillUI_Manager {
 
 public:
 
+	enum class SkillTypes {
+		Low_Normal,
+		Low_Back,
+		High_Normal,
+		High_Field,
+		Special_Normal,
+		Special_Power,
+	};
+
 	PlayerSkillUI_Manager() = default;
 	~PlayerSkillUI_Manager() = default;
 
@@ -30,19 +39,15 @@ public:
 		scene_ = scenePtr;
 	}
 
+	void SetActive(int uint, bool state) {
+		skillUIs_[uint ]->SetActive(state);
+	}
+
 private:
 
 
 private:
 
-	enum class SkillTypes {
-		Low_Normal,
-		Low_Back,
-		High_Normal,
-		High_Field,
-		Special_Normal,
-		Special_Power,
-	};
 
 	std::weak_ptr<PlayerCore> p_playerCore_;
 	SceneComponent * scene_ = nullptr;

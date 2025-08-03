@@ -6,7 +6,7 @@ GameScene::GameScene() {
 
   itemManager_ = std::make_shared<ItemManager>();
   playerManager_ = std::make_shared<PlayerManager>();
-  playerSkillUIMgr_ = std::make_unique<PlayerSkillUI_Manager>();
+  playerSkillUIMgr_ = std::make_shared<PlayerSkillUI_Manager>();
 }
 
 void GameScene::Init() {
@@ -29,7 +29,7 @@ void GameScene::Init() {
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
 
-  playerManager_->SetPtr(itemManager_, enemyManager_);
+  playerManager_->SetPtr(itemManager_, enemyManager_, playerSkillUIMgr_);
   playerSkillUIMgr_->SetPtr(playerManager_->GetPlayerCore(), this);
   playerSkillUIMgr_->Init();
 
@@ -44,10 +44,6 @@ void GameScene::Init() {
   enviromentObjs_ = loader_->SettingData();
 
   loader_.reset();
-
-  uiState_ = std::make_unique<PlayUIState>();
-  uiState_->SetScene(this);
-  uiState_->Init();
 
   // spriteの初期化
   for (auto s : spriteComponents_) {
@@ -64,7 +60,6 @@ void GameScene::Init() {
 
 void GameScene::Update([[maybe_unused]] GameManager *g) {
 
-  uiState_->Update();
   playerSkillUIMgr_->Update();
 
   for (const auto &m : this->managerComponents_) {
@@ -93,6 +88,5 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
 }
 
 void GameScene::Draw2d() { 
-    uiState_->Draw2d();
     playerSkillUIMgr_->Draw2D();
   }

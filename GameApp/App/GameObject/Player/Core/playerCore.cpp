@@ -1,6 +1,7 @@
 #include "playerCore.h"
 #include "../Camera/PlayerCamera.h"
 #include "Wall/Wall.h"
+#include "../SkillUI/PlayerSkillUI_Manager.h"
 
 #include "Enemy/EnemyManager.h"
 #include "Enemy/Normal/Cannon/CannonNormalEnemy1Bullet.h"
@@ -259,6 +260,10 @@ void PlayerCore::CheckLowAttackUpgrade()
 	attacks_[ToIndex(AttackType::Low) ]->Init();
 
 	lowAttack_Upgreaded_ = true;
+
+	// UIを変更
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Low_Normal), false);
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Low_Normal), true);
 }
 
 void PlayerCore::CheckHighAttackUpgread()
@@ -271,6 +276,10 @@ void PlayerCore::CheckHighAttackUpgread()
 	attacks_[ ToIndex(AttackType::High) ]->Init();
 
 	highAttack_Upgreaded_ = true;
+
+	// UIを変更
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::High_Normal), false);
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::High_Field), true);
 }
 
 void PlayerCore::CheckSpecialAttackUpgread()
@@ -283,4 +292,8 @@ void PlayerCore::CheckSpecialAttackUpgread()
 	attacks_[ ToIndex(AttackType::Special) ]->Init();
 
 	specialAttack_Upgreaded_ = true;
+
+	// UIを変更
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Special_Normal), false);
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Special_Power), true);
 }

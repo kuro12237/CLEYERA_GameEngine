@@ -24,6 +24,7 @@
 class PlayerCamera;
 class ItemManager;
 class EnemyManager;
+class PlayerSkillUI_Manager;
 
 /* Playerの実体クラス */
 class PlayerCore : public CLEYERA::Component::ObjectComponent {
@@ -96,13 +97,15 @@ public:
 	inline void SetPtr(std::weak_ptr<PlayerCamera> cameraptr,
 		std::weak_ptr<PlayerBulletManager> bulManPtr,
 		std::weak_ptr<ItemManager> itemMgr,
-		std::weak_ptr<EnemyManager> enemyMgr)
+		std::weak_ptr<EnemyManager> enemyMgr, 
+		std::weak_ptr<PlayerSkillUI_Manager> skillMgr)
 	{
 		weakpCamera_ = cameraptr;
 		moveFunc_->SetCameraPtr(cameraptr);
 		bulletManager_ = bulManPtr;
 		itemMgr_ = itemMgr;
 		enemyManager_ = enemyMgr;
+		playerSkillMgr_ = skillMgr;
 	}
 
 	// ワールド座標の取得
@@ -240,6 +243,8 @@ private:
 	std::weak_ptr<PlayerCamera> weakpCamera_;
 	// EnemyManagerのweak_ptr
 	std::weak_ptr<EnemyManager> enemyManager_;
+	// PlayerSkillUiManagerのweak_ptr
+	std::weak_ptr<PlayerSkillUI_Manager> playerSkillMgr_;
 
 	// PlayerCoreのLua
 	std::unique_ptr<LuaScript> lua_;
