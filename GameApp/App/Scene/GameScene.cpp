@@ -29,6 +29,7 @@ void GameScene::Init() {
 
   playerManager_->SetPtr(itemManager_, enemyManager_);
 
+
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // 初期化
