@@ -16,6 +16,8 @@ void SpecialAttack_PowerBullet::Init()
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
 
+	attackPower_->SetPower(50);
+
 	SetIsGravity(false);
 	SetIsTerrainHit(false);
 

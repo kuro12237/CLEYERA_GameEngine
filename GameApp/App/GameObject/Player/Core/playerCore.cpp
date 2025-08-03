@@ -17,7 +17,7 @@ PlayerCore::PlayerCore()
 	commandHandler_ = std::make_unique<PlayerCommandHandler>(this);
 	moveFunc_ = std::make_unique<PlayerMoveFunc>(this);
 	dashFunc_ = std::make_unique<PlayerDashFunc>(this);
-	invincibleFunc_ = std::make_unique<PlayerInvincibleFunc>(this);
+	invincibleFunc_ = std::make_unique<PlayerInvincibleFunc>(this); 
 }
 
 void PlayerCore::Init() {
@@ -93,12 +93,20 @@ void PlayerCore::OnCollision([[maybe_unused]] std::weak_ptr<ObjectComponent> oth
 
 		uint32_t damage = bullet1->GetAttackPower();
 		hpComp_.lock()->CalcHp(damage);
+
+		/*if ( hpComp_.lock()->GetHp() <= 0 ) {
+			hpComp_.lock()->SetHP(0);
+		}*/
 	}
 	// bullet2 型にキャストできるかをチェック
 	if ( auto bullet2 = std::dynamic_pointer_cast< GunNormalEnemyBullet >(obj) ) {
 
 		uint32_t damage = bullet2->GetAttackPower();
 		hpComp_.lock()->CalcHp(damage);
+
+		/*if ( hpComp_.lock()->GetHp() <= 0 ) {
+			hpComp_.lock()->SetHP(0);
+		}*/
 	}
 }
 
