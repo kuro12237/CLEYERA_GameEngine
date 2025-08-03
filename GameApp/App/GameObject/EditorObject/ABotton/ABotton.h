@@ -42,4 +42,16 @@ public:
     /// </summary>
     virtual ~ABotton() {};
 
+public:
+    inline void SetIsStart(const bool & isStart) {
+        this->isStart_ = isStart;
+    }
+
+private:
+    bool isStart_ = false;
+
+    float_t addValueY_ = 0.0f;
+
+    float_t theta_ = 0.0f;
+
 };

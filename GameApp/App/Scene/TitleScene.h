@@ -29,4 +29,6 @@ private:
 
   std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
 
+  bool isStart_ = false;
+
 };
