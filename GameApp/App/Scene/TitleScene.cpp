@@ -7,7 +7,8 @@ void TitleScene::Init() {
   loader_->LoadSceneData("TitleSceneData");
 
   std::shared_ptr<ABotton>abotton = std::make_shared<ABotton>();
-  objectManager_->CreateObject<ABotton>("til", abotton);
+  abotton->SetTitleScene(this);
+  objectManager_->CreateObject<ABotton>("bota", abotton);
 
   // エディタのデータを各オブジェクトにセット
   enviromentObjs_ = loader_->SettingData();
@@ -23,18 +24,16 @@ void TitleScene::Init() {
 }
 
 void TitleScene::Update([[maybe_unused]] GameManager *g) {
-
-
+    
 
   auto input = CLEYERA::Manager::InputManager::GetInstance();
   if (input->PushBotton(XINPUT_GAMEPAD_A)==true||input->PushKey(DIK_SPACE)==true) {
 
       isStart_ = true;
-
     
   }
 
-  if ( isStart_ == true ) {
+  if ( isEndProcess_ == true ) {
       g->ChangeScene(std::make_unique<GameScene>());
       return;
   }

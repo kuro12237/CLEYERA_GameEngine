@@ -24,11 +24,23 @@ public:
 
   void Draw2d() override;
 
+
+  inline bool GetIsStart()const {
+	  return isStart_;
+  }
+
+  void SetIsEndProcess(const bool & isEndProcess) {
+	  this->isEndProcess_ = isEndProcess;
+  }
+
 private:
   std::unique_ptr<SceneLoader> loader_ = nullptr;
 
   std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
 
   bool isStart_ = false;
+
+  bool isEndProcess_ = false;
+
 
 };
