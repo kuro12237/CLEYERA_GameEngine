@@ -103,7 +103,16 @@ public:
   const size_t &GetEnemyCount() const { return enemyCount_; }
 
   bool GetIsKillBossEnemy() {
-      if ( bossEnemyList_.size() == 0 ) {
+      bool isEnd = false;
+      for ( auto e : bossEnemyList_ ) {
+          isEnd=e.lock()->GetIsDelete();
+          if ( isEnd == true ) {
+              break;
+          }
+
+      }
+
+      if ( isEnd==true ) {
           return true;
       }
       else {

@@ -21,7 +21,7 @@ void BakugekiSnipeBossEnemy::Init() {
    gameObject_->ChangeModel(modelHandle);
 
    // コライダー作成
-   CreateCollider(ColliderType::OBB);
+   CreateCollider(ColliderType::AABB);
 
    //スケールの設定
    scale_ = {.x = 3.0f, .y = 3.0f, .z = 3.0f};
@@ -88,15 +88,23 @@ void BakugekiSnipeBossEnemy::Init() {
 void BakugekiSnipeBossEnemy::Update() {
     // hp処理
     hp_->Update();
-    hpGauge_.lock()->Update();
+    
     if ( hp_->GetIsDead() ) {
         isAlive_ = false;
         // 倒された
         Killed();
+        isAlive_ = false;
+        isDelete_ = true;
     }
-
+    else {
+        hpGauge_.lock()->Update();
+    }
+    
     // 生存時
     if ( isAlive_ == true ) {
+
+
+
         // クールタイム中
         if ( isCool_ == true ) {
             coolTime_ += DELTA_TIME_;
