@@ -109,8 +109,9 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     if (sceneAnim_->IsEnd()) {
 
       g->ChangeScene(std::make_unique<GameOverScene>());
+
+      return;
     }
-    return;
   }
   //clear
   if (enemyManager_->GetIsKillBossEnemy()) {
@@ -118,8 +119,9 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     if (sceneAnim_->IsEnd()) {
 
       g->ChangeScene(std::make_unique<GameClearScene>());
+
+      return;
     }
-    return;
   }
 }
 
