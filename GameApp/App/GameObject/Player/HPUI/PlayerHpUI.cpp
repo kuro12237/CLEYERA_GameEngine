@@ -19,7 +19,8 @@ void PlayerHpUI::Init()
 		// 左上基準
 		ui->SetAnker({ 0.0f, 0.0f });
 
-		ui->SetScale({ 0.2f, 0.08f });
+		ui->SetSize({ 384.0f, 128.0f });
+
 		ui->SetTranslate({ 30.0f, 20.0f });
 
 		ui->Init();
@@ -33,13 +34,26 @@ void PlayerHpUI::Update()
 		ui->Update();
 	}
 
+	// --- HPゲージ用の更新処理 ---
+	auto gaugeUI = hpUI_[ 1 ];
+
 	float maxHp = 50.0f;
+	float currentHp = static_cast< float >(p_playerCore_.lock()->GetHP());
+	float hpRate = std::clamp(currentHp / maxHp, 0.0f, 1.0f);
 
-	float hpRate = std::clamp(p_playerCore_.lock()->GetHP() / maxHp, 0.0f, 1.0f);
-	float baseScaleX = 0.2f;
+	// UV座標設定（上下は反転ありなので注意）
+	gaugeUI->SetLeftTop({ 0.0f, 1.0f });
+	gaugeUI->SetRightTop({ hpRate, 1.0f });
+	gaugeUI->SetLeftBottom({ 0.0f, 0.0f });
+	gaugeUI->SetRightBottom({ hpRate, 0.0f });
 
-	// HPが減るとスケールXが0.0fに近づく
-	hpUI_[ 1 ]->SetScale({ baseScaleX * hpRate, 0.08f });
+	// 元のサイズ（テクスチャの本来のサイズ）
+	Math::Vector::Vec2 baseSize = { 384.0f, 128.0f };
+
+	// サイズをHP割合に合わせて縮める（左上基準なので位置は変わらない）
+	gaugeUI->SetSize({ baseSize.x * hpRate, baseSize.y });
+
+	// translateは固定のままでOK（左上基準だから）
 }
 
 void PlayerHpUI::Draw2D()
