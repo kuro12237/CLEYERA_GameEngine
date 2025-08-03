@@ -29,7 +29,7 @@ void GunNormalEnemy::Init() {
   scale_ = {.x = 1.0f, .y = 1.0f, .z = 1.0f};
 
   // 体力
-  parameter_.maxHp_ = 10u;
+  parameter_.maxHp_ = 15u;
   parameter_.hp_ = parameter_.maxHp_;
   // ノックバックの距離
   parameter_.knockBackDistance_ = 1.0f;
@@ -75,8 +75,9 @@ void GunNormalEnemy::Init() {
 
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
+  hp_->SetMaxHP(15);
   hp_->Init();
-  hp_->SetMaxHP(10u);
+  hp_->SetHP(15u);
 }
 
 void GunNormalEnemy::Update() {

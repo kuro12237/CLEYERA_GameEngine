@@ -39,11 +39,11 @@ void EnemyManager::Init() {
   enemy2Count = 1u;
 #endif // _DEBUG
 
-  //GenerateCannonEnemy({}, "NormalEnemy1");
-  //GenerateGunEnemy({}, "NormalEnemy2");
+  GenerateCannonEnemy({}, "NormalEnemy1");
+  GenerateGunEnemy({}, "NormalEnemy2");
   //GenerateStalkerEnemy({.x = 0.0f, .y = 0.0f, .z = 20.0f}, "NormalEnemy3");
 
-  GenerateDonutEnemy({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
+  //GenerateDonutEnemy({.x=0.0f,.y=0.0f,.z=10.0f},"NormalEnemy4");
   //GenerateBossEnemyEnemy({});
 
 }

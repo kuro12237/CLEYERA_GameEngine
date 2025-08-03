@@ -78,7 +78,9 @@ void DonutNormalEnemy::Init() {
 
 	hpJsonDirectory_ = name_;
 	hp_->SetName(this->name_);
+	hp_->SetMaxHP(30);
 	hp_->Init();
+	hp_->SetHP(30);
 }
 
 void DonutNormalEnemy::Update() {

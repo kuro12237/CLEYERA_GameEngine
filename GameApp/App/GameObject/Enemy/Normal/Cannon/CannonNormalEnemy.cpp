@@ -88,7 +88,7 @@ void CannonNormalEnemy::Init() {
   hpJsonDirectory_ = name_;
   hp_->SetName(this->name_);
   hp_->Init();
-  hp_->SetMaxHP(10u);
+  hp_->SetMaxHP(15);
 }
 
 void CannonNormalEnemy::Update() {
