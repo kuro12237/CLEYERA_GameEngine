@@ -16,6 +16,16 @@ void GameOverScene::Init() {
   terrain_->ChengeData(modelHandle);
 }
 
-void GameOverScene::Update([[maybe_unused]] GameManager *g) {}
+void GameOverScene::Update([[maybe_unused]] GameManager *g) {
+
+      auto input = CLEYERA::Manager::InputManager::GetInstance();
+  if (input->PushBotton(XINPUT_GAMEPAD_A)) {
+
+    g->ChangeScene(std::make_unique<TitleScene>());
+    return;
+  }
+
+
+}
 
 void GameOverScene::Draw2d() {}

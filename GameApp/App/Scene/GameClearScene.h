@@ -13,6 +13,8 @@
 
 #include "UI/TestUI.h"
 
+#include"TitleScene.h"
+
 class GameClearScene : public SceneComponent {
 public:
   GameClearScene() {};

@@ -12,6 +12,8 @@
 
 #include "UI/TestUI.h"
 
+#include"TitleScene.h"
+
 class GameOverScene : public SceneComponent {
 public:
   GameOverScene() {};

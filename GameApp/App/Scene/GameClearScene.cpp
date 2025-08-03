@@ -23,6 +23,13 @@ void GameClearScene::Update([[maybe_unused]] GameManager *g) {
     auto mgr = manager.lock();
     mgr->Update();
   }
+
+  auto input = CLEYERA::Manager::InputManager::GetInstance();
+  if (input->PushBotton(XINPUT_GAMEPAD_A)) {
+
+    g->ChangeScene(std::make_unique<TitleScene>());
+    return;
+  }
 }
 
 void GameClearScene::Draw2d() {}
