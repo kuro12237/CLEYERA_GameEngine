@@ -7,7 +7,7 @@ namespace Material {
 
 struct ColorMaterialData {
 
-  Math::Vector::Vec4 color_;
+  Math::Vector::Vec4 color_ = {1.0f,1.0f,1.0f,1.0f};
 };
 
 

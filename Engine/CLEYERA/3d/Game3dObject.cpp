@@ -18,6 +18,9 @@ void CLEYERA::Model3d::Game3dObject::Create(uint32_t handle) {
 
    WTCreate(ins_);
    this->ChangeMaterialMode<int>();
+   auto data =
+       dynamic_cast<CLEYERA::Model3d::Material::ColorMaterial*>(material_.get());
+   data->SetParam(&colors_);
 }
 
 void CLEYERA::Model3d::Game3dObject::Update() {
@@ -25,6 +28,7 @@ void CLEYERA::Model3d::Game3dObject::Update() {
    this->WorldMatUpdate();
 
    this->ConvertMat();
+   material_->Update();
 }
 
 void CLEYERA::Model3d::Game3dObject::DrawRaster3d() {
@@ -39,6 +43,7 @@ void CLEYERA::Model3d::Game3dObject::DrawRaster3d() {
    this->BindWT(4);
 
    cameraManager_->BindCommand(5);
+   material_->Bind(6);
    // 頂点、インデックス、形状設定
    model_->RasterDraw3d();
 

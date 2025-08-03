@@ -15,9 +15,11 @@ public:
 
   void Bind(const size_t &index) override;
 
-  void Create();
+  void Create()override;
 
-  void Update();
+  void Update()override;
+
+  void SetParam(T *p) { param_ = p; }
 
 private:
   T *param_;
@@ -35,7 +37,9 @@ template <typename T> inline void MaterialBase<T>::Bind(const size_t &index) {
 template <typename T> inline void MaterialBase<T>::Create() {
 
   auto device = CLEYERA::Base::DX::DXManager::GetInstance()->GetDevice();
+  buf_ = std::make_unique<CLEYERA::Base::DX::DXBufferResource<T>>();
   buf_->SetDevice(device);
+  buf_->Init();
   buf_->CreateBuffer(D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_GENERIC_READ);
 }
 template <typename T> inline void MaterialBase<T>::Update() {
