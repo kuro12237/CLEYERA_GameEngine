@@ -249,9 +249,15 @@ void PlayerCore::KnockBack() {
 
 void PlayerCore::CheckAttackUpgrade()
 {
-	CheckLowAttackUpgrade();
-	CheckHighAttackUpgread();
-	CheckSpecialAttackUpgread();
+	if ( KillCount_Cannon_ >= 3 || killCount_Gun_  >= 3) {
+		CheckLowAttackUpgrade();
+	}
+	if ( killCount_Donut_ >= 3) {
+		CheckHighAttackUpgread();
+	}
+	if ( killCount_Stalker_ >= 3 ) {
+		CheckSpecialAttackUpgread();
+	}
 }
 
 void PlayerCore::CheckLowAttackUpgrade()
