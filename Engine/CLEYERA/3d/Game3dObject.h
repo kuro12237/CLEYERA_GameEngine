@@ -64,6 +64,8 @@ private:
   std::shared_ptr<Model> model_ = nullptr;
   std::unique_ptr<IMaterial> material_ = nullptr;
 
+  CLEYERA::Model3d::Material::ColorMaterialData colors_ = {};
+
   uint32_t modelHandle_ = 0;
   uint32_t texHandle_ = 0;
 
@@ -73,7 +75,7 @@ private:
 template <typename T> inline void Game3dObject::ChangeMaterialMode() {
   T;
     material_ = std::make_unique<CLEYERA::Model3d::Material::ColorMaterial>();
-  
+  material_->Create();
 }
 
 } // namespace Model3d
