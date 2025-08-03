@@ -256,6 +256,10 @@
     <ClInclude Include="CLEYERA\3d\Line3d\Line3d.h" />
     <ClInclude Include="CLEYERA\3d\LocalRootSignature\ClosestHitRootSignature.h" />
     <ClInclude Include="CLEYERA\3d\LocalRootSignature\RayGenRootSignature.h" />
+    <ClInclude Include="CLEYERA\3d\Material\BaseMaterial3d.h" />
+    <ClInclude Include="CLEYERA\3d\Material\ColorMaterial3d.h" />
+    <ClInclude Include="CLEYERA\3d\Material\IMaterial3d.h" />
+    <ClInclude Include="CLEYERA\3d\Material\MaterialEnum.h" />
     <ClInclude Include="CLEYERA\3d\Mesh\MeshData.h" />
     <ClInclude Include="CLEYERA\3d\Model3d.h" />
     <ClInclude Include="CLEYERA\3d\ModelManager\Model3dPool.h" />
