@@ -77,7 +77,7 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     m.lock()->Update();
     m.lock()->CollectAllManagers();
   }
-
+  objectManager_;
   // sprite更新
   std::list<std::string> spNames;
   for (auto s : spriteComponents_) {
@@ -113,17 +113,18 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
     return;
   }
   //clear
-  if (false) {
-    sceneAnim_->Start();
+  if (enemyManager_->GetIsKillBossEnemy()) {
+    //sceneAnim_->Start();
     if (sceneAnim_->IsEnd()) {
 
-      g->ChangeScene(std::make_unique<GameClearScene>());
+      //g->ChangeScene(std::make_unique<GameClearScene>());
     }
     return;
   }
 }
 
-void GameScene::Draw2d() { uiState_->Draw2d();
+void GameScene::Draw2d() {
+    //uiState_->Draw2d();
 
     playerSkillUIMgr_->Draw2D();
     playerHpUI_->Draw2D();

@@ -39,8 +39,12 @@ void GameManager::Run() {
 
     engine_->PreDraw();
 
+#ifdef _DEBUG
+
     scene_->ImGuiUpdate();
     engine_->ImGuiUpdate();
+
+#endif // _DEBUG
 
     // scene_->RaytracigTransfar();
 
