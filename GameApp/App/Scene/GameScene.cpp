@@ -20,28 +20,33 @@ void GameScene::Init() {
   CLEYERA::Manager::GlobalVariables::GetInstance()->LoadFiles("Configs");
 
   managerComponents_.push_back(itemManager_);
+  itemManager_->Init();
   managerComponents_.push_back(playerManager_);
-
+ 
   enemyManager_ = std::make_shared<EnemyManager>();
   enemyManager_->SetPlayerManager(playerManager_.get());
   managerComponents_.push_back(enemyManager_);
+  enemyManager_->Init();
 
   wallManager_ = std::make_shared<WallManager>();
   managerComponents_.push_back(wallManager_);
+  wallManager_->Init();
 
+  
   playerManager_->SetPtr(itemManager_, enemyManager_, playerSkillUIMgr_);
   playerSkillUIMgr_->SetPtr(playerManager_->GetPlayerCore(), this);
   playerSkillUIMgr_->Init();
   playerHpUI_->SetPtr(playerManager_->GetPlayerCore(), this);
   playerHpUI_->Init();
 
+  playerManager_->Init();
 
   CLEYERA::Manager::ObjectManager::GetInstance()->Update();
 
   // 初期化
-  for (auto manager : managerComponents_) {
+ /* for (auto manager : managerComponents_) {
     manager.lock()->Init();
-  }
+  }*/
 
   // エディタのデータを各オブジェクトにセット
   enviromentObjs_ = loader_->SettingData();
@@ -115,10 +120,10 @@ void GameScene::Update([[maybe_unused]] GameManager *g) {
   }
   //clear
   if (enemyManager_->GetIsKillBossEnemy()) {
-    sceneAnim_->Start();
+    //sceneAnim_->Start();
     if (sceneAnim_->IsEnd()) {
 
-      g->ChangeScene(std::make_unique<GameClearScene>());
+      //g->ChangeScene(std::make_unique<GameClearScene>());
 
       return;
     }

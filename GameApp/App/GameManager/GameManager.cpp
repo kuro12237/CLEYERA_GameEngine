@@ -142,15 +142,14 @@ void GameManager::ChangeScene(std::unique_ptr<SceneComponent> newScene) {
 
   auto objMgr = CLEYERA::Manager::ObjectManager::GetInstance();
   auto colMgr = CLEYERA::Manager::ColliderSystem::GetInstance();
-
+  //objMgr->Clear();
   colMgr->SetObjectComponentList(objMgr->GetObjects());
   scene_.reset();
 
   scene_ = std::move(newScene);
-
+  objMgr->Clear();
   scene_->Init();
 
   scene_->Update(this);
-  CLEYERA::Manager::ObjectManager::GetInstance()->Update();
   return;
 }

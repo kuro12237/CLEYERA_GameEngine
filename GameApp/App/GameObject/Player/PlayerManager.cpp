@@ -8,6 +8,7 @@ PlayerManager::PlayerManager() {
   ManagerComponent::name_ = VAR_NAME(PlayerManager);
 
   camera_ = std::make_shared<PlayerCamera>();
+  camera_->Init();
   bulletManager_ = std::make_shared<PlayerBulletManager>();
 
   core_ = objectManager_->CreateObject<PlayerCore>(
