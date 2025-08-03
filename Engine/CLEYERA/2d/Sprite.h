@@ -7,6 +7,9 @@
 #include "Graphics/RasterPipline/RasterPiplineManager.h"
 #include "LayerManager.h"
 #include "Utility/World/WorldTransform.h"
+#include "../3d/Material/BaseMaterial3d.h"
+#include "../3d/Material/MaterialEnum.h"
+#include "../3d/Material/ColorMaterial3d.h"
 
 namespace CLEYERA {
 namespace Sprite2d {
@@ -27,6 +30,9 @@ public:
   void Update();
 
   void LayerChange(uint32_t newNum) { layerManager_->ChangeLayer(layerNumber_, newNum); }
+
+  
+  CLEYERA::Model3d::Material::ColorMaterialData &ColorData() { return colors_; }
 
 #pragma region Set
 
@@ -70,6 +76,10 @@ private:
 
   // Buf
   std::unique_ptr<System::SpriteMesh> mesh_ = nullptr;
+  std::unique_ptr<IMaterial> material_ = nullptr;
+
+  CLEYERA::Model3d::Material::ColorMaterialData colors_ = {};
+
 
   uint32_t layerNumber_ = 0;
 };

@@ -39,6 +39,7 @@ public:
   const Graphics::RasterPipline_Mode3d &GetRasterMode() const {
     return rasterMode_;
   }
+  Material::ColorMaterialData &ColorData() { return colors_; }
 #pragma endregion
 
 #pragma region Set
