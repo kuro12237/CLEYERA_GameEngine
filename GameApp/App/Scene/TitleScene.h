@@ -12,9 +12,11 @@
 #include "../Util/SceneChangeAnim.h"
 #include "UI/TestUI.h"
 
+#include"Title/Camera/TitleCamera.h"
+
 class TitleScene : public SceneComponent {
 public:
-  TitleScene() {};
+  TitleScene();
   ~TitleScene() {};
 
   void Init() override;
@@ -43,4 +45,6 @@ private:
 
 
   std::unique_ptr<SceneChangeAnim> sceneAnim_ = nullptr;
+
+  std::unique_ptr<TitleCamera> camera_;
 };

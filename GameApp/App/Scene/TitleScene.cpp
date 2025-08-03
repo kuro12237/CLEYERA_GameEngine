@@ -1,8 +1,12 @@
 #include "TitleScene.h"
 #include <EditorObject/ABotton/ABotton.h>
 
-void TitleScene::Init() {
+TitleScene::TitleScene() {
+  CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
+}
 
+void TitleScene::Init() {
+ 
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("TitleSceneData");
 
@@ -14,7 +18,8 @@ void TitleScene::Init() {
   enviromentObjs_ = loader_->SettingData();
 
   loader_.reset();
-
+  camera_ = std::make_unique<TitleCamera>();
+  camera_->Init();
   // 地形モデルの設定
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
@@ -22,6 +27,8 @@ void TitleScene::Init() {
 
   sceneAnim_ = std::make_unique<SceneChangeAnim>();
   sceneAnim_->Init();
+
+
 }
 
 void TitleScene::Update([[maybe_unused]] GameManager *g) {

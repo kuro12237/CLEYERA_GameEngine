@@ -1,7 +1,12 @@
 #include "GameClearScene.h"
 
-void GameClearScene::Init() {
+GameClearScene::GameClearScene() {
 
+ CLEYERA::Manager::ObjectManager::GetInstance()->LoadObjectData("test.json");
+}
+
+void GameClearScene::Init() {
+  
   loader_ = std::make_unique<SceneLoader>();
   loader_->LoadSceneData("GameClearSceneData");
 
@@ -9,6 +14,9 @@ void GameClearScene::Init() {
   enviromentObjs_ = loader_->SettingData();
 
   loader_.reset();
+
+  camera_ = std::make_unique<GameClearCamera>();
+  camera_->Init();
 
   // 地形モデルの設定
   uint32_t modelHandle =
