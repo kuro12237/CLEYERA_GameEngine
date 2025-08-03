@@ -21,8 +21,6 @@ public:
     CreateCollider(ColliderType::AABB);
     auto aabb = std::dynamic_pointer_cast<CLEYERA::Util::Collider::AABBCollider>(collider_);
     aabb->SetSize({-2.0f, -2.0f, -2.0f},{2.0f, 2.0f, 2.0f});
-    collider_->SetHitCallFunc(
-        [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
   }
 
   /// <summary>

@@ -5,8 +5,8 @@
 void SpecialAttack_PowerBullet::Init()
 {
 	// Modelの設定
-	uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/DemoBullet",
-																"PlayerDemoBullet");
+	uint32_t handle = ObjectComponent::modelManager_->LoadModel("Resources/Model/Player/Bullet",
+																"Bullet");
 	ObjectComponent::gameObject_->ChangeModel(handle);
 
 	// ForceからY軸を求める

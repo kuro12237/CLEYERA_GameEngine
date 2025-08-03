@@ -1,11 +1,15 @@
 #include "HighAttack_FieldBullet.h"
-
+#include "../../../Core/playerCore.h"
 
 void HighAttack_FieldBullet::Init()
 {
 	// Modelの設定
-	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet", "PlayerDemoBullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet", "Bullet");
 	gameObject_->ChangeModel(handle);
+
+    // コライダーに関数ポインタを設定
+    collider_->SetHitCallFunc(
+       [this](std::weak_ptr<ObjectComponent> other) { this->OnCollision(other); });
 
 	// ForceからY軸を求める
 	CalcRotateFromVelocity();
@@ -25,6 +29,18 @@ void HighAttack_FieldBullet::Update()
 {
 	ObjectComponent::TransformUpdate();
     Wave();
+}
+
+void HighAttack_FieldBullet::OnCollision(std::weak_ptr<ObjectComponent> other)
+{
+    auto obj = other.lock();
+    // Player型にキャストできるかをチェック
+    if ( auto p = std::dynamic_pointer_cast< PlayerCore >(obj) ) {
+        return;
+    }
+    if ( auto p = std::dynamic_pointer_cast< IPlayerBullet >(obj) ) {
+        return;
+    }
 }
 
 void HighAttack_FieldBullet::Wave()

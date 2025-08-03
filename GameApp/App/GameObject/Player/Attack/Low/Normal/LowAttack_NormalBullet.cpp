@@ -7,7 +7,7 @@ void LowAttack_NormalBullet::Init()
 	//name_ = VAR_NAME(LowAttack_NormalBullet);
 
 	// Modelの設定
-	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/DemoBullet",	"PlayerDemoBullet");
+	uint32_t handle = modelManager_->LoadModel("Resources/Model/Player/Bullet",	"Bullet");
 	gameObject_->ChangeModel(handle);
 
 	// ForceからY軸を求める
