@@ -5,7 +5,7 @@ void PlayerSkillUI_SpecialPower::Init()
 	this->Create();
 	this->GetJsonName();
 	this->CreateJsonSystem("PlayerSkillUI_SpecialPower");
-	uint32_t handle = texManager_->LoadPngTex("UI/Special_Normal");
+	uint32_t handle = texManager_->LoadPngTex("UI/special_power");
 	handle_ = handle;
 }
 

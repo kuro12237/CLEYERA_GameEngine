@@ -176,10 +176,12 @@ void PlayerCore::InitAttackSlot() {
 	// 初期攻撃スロット
 	attacks_[ ToIndex(AttackType::Low) ] =
 		std::make_unique<LowAttack_Normal>(this, bulletManager_, enemyManager_);
+
 	attacks_[ ToIndex(AttackType::High) ] =
 		std::make_unique<HighAttack_Normal>(this, bulletManager_, enemyManager_);
+
 	attacks_[ ToIndex(AttackType::Special) ] =
-		std::make_unique<SpecialAttack_Power>(this, bulletManager_, enemyManager_);
+		std::make_unique<SpecialAttack_Normal>(this, bulletManager_, enemyManager_);
 
 	// 初期化
 	for ( auto & atk : attacks_ ) {
@@ -254,8 +256,9 @@ void PlayerCore::CheckLowAttackUpgrade()
 {
 	if(lowAttack_Upgreaded_ ) return;
 
+	attacks_[ ToIndex(AttackType::Low) ].reset();
 	attacks_[ ToIndex(AttackType::Low) ] = 
-		std::make_unique<LowAttack_Normal>(this, bulletManager_, enemyManager_);
+		std::make_unique<LowAttack_Back>(this, bulletManager_, enemyManager_);
 
 	attacks_[ToIndex(AttackType::Low) ]->Init();
 
@@ -263,13 +266,14 @@ void PlayerCore::CheckLowAttackUpgrade()
 
 	// UIを変更
 	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Low_Normal), false);
-	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Low_Normal), true);
+	playerSkillMgr_.lock()->SetActive(int(PlayerSkillUI_Manager::SkillTypes::Low_Back), true);
 }
 
 void PlayerCore::CheckHighAttackUpgread()
 {
 	if ( highAttack_Upgreaded_ ) return;
 
+	attacks_[ ToIndex(AttackType::High) ].reset();
 	attacks_[ ToIndex(AttackType::High) ] =
 		std::make_unique<HighAttack_Field>(this, bulletManager_, enemyManager_);
 
@@ -286,6 +290,7 @@ void PlayerCore::CheckSpecialAttackUpgread()
 {
 	if ( specialAttack_Upgreaded_ ) return;
 
+	attacks_[ ToIndex(AttackType::Special) ].reset();
 	attacks_[ ToIndex(AttackType::Special) ] =
 		std::make_unique<SpecialAttack_Power>(this, bulletManager_, enemyManager_);
 
