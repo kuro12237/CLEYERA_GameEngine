@@ -15,6 +15,7 @@ EnemyNodeState NormalEnemyTracking::Execute(BaseNormalEnemy * baseNormalEnemy){
     //正規化し本体に設定
     baseNormalEnemy->SetDirection(Math::Vector::Func::Normalize(difference));
     
+
     //成功
     return EnemyNodeState::Success;
 }
