@@ -28,7 +28,9 @@ protected:
 
 template <typename T> inline void MaterialBase<T>::Bind(const size_t &index) {
 
-  buf_->GraphicsCommand(index);
+	UINT num = static_cast<UINT>(index);
+
+  buf_->GraphicsCommand(num);
 }
 template <typename T> inline void MaterialBase<T>::Create() {
 

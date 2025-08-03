@@ -17,6 +17,7 @@ void CLEYERA::Model3d::Game3dObject::Create(uint32_t handle) {
    texHandle_ = model_->GetTexHandle();
 
    WTCreate(ins_);
+   this->ChangeMaterialMode<int>();
 }
 
 void CLEYERA::Model3d::Game3dObject::Update() {
