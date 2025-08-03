@@ -38,12 +38,16 @@ void DebugSelectScene::Update([[maybe_unused]] GameManager *g) {
     // シーン切替
     if (sceneNames_[selectedIndex_] == "TitleScene") {
       g->ChangeScene(std::make_unique<TitleScene>());
+      return;
     } else if (sceneNames_[selectedIndex_] == "GameScene") {
       g->ChangeScene(std::make_unique<GameScene>());
+      return;
     } else if (sceneNames_[selectedIndex_] == "GameOverScene") {
       g->ChangeScene(std::make_unique<GameOverScene>());
+      return;
     } else if (sceneNames_[selectedIndex_] == "GameClearScene") {
       g->ChangeScene(std::make_unique<GameClearScene>());
+      return;
     } else if (sceneNames_[selectedIndex_] == "SelectScene") {
       g->ChangeScene(std::make_unique<SelectScene>());
     }
