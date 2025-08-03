@@ -10,19 +10,24 @@ void GameOverScene::Init() {
 
   loader_.reset();
 
+    sceneAnim_ = std::make_unique<SceneChangeAnim>();
+  sceneAnim_->Init();
+
+  
+  camera_ = std::make_shared<GameOverCamera>();
+  camera_->Init();
   // 地形モデルの設定
   uint32_t modelHandle =
       modelManager_->LoadModel("Resources/Model/Terrain/", "terrain");
   terrain_->ChengeData(modelHandle);
 
-   sceneAnim_ = std::make_unique<SceneChangeAnim>();
-  sceneAnim_->Init();
+ 
 }
 
 void GameOverScene::Update([[maybe_unused]] GameManager *g) {
 
   sceneAnim_->Update();
-
+ 
   auto input = CLEYERA::Manager::InputManager::GetInstance();
   if (input->PushBotton(XINPUT_GAMEPAD_A)) {
 

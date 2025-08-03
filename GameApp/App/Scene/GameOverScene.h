@@ -15,6 +15,9 @@
 #include"TitleScene.h"
 
 #include "../Util/SceneChangeAnim.h"
+
+#include"GameOver/Camera/GameOverCamera.h"
+
 class GameOverScene : public SceneComponent {
 public:
   GameOverScene() {};
@@ -32,4 +35,7 @@ private:
   std::vector<std::weak_ptr<EnvironmentObject>> enviromentObjs_;
 
   std::unique_ptr<SceneChangeAnim> sceneAnim_ = nullptr;
+
+  std::shared_ptr<GameOverCamera> camera_;
+
 };
