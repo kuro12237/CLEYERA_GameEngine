@@ -132,6 +132,8 @@ public:
 		};
 	}
 
+	uint32_t GetHP() const {return hpComp_.lock()->GetHp(); }
+
 	// 各ベクトルの取得
 	inline Math::Vector::Vec3 GetForwardVec() const
 	{
